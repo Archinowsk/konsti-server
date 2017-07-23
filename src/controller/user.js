@@ -1,4 +1,4 @@
-const checkSerial = require('../utils/serials');
+const { checkSerial } = require('../utils/serials');
 const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
 const hashPassword = require('../utils/bcrypt').hashPassword;
@@ -45,6 +45,7 @@ const postUser = (req, res) => {
             `MongoDB: Username "${registrationData.username}" is already registered`
           );
           res.json({
+            code: 11,
             message: 'Username in already registered',
             status: 'error',
             client_data: req.body,
@@ -59,6 +60,7 @@ const postUser = (req, res) => {
   } else {
     logger.info('Serial does not match');
     res.json({
+      code: 12,
       message: 'Invalid serial',
       status: 'error',
       client_data: req.body,

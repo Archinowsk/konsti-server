@@ -6,10 +6,19 @@ const checkSerial = serial => {
   return valid;
 };
 
-for (let i = 1; i <= 10; i += 1) {
-  const serialNumber = generator.generate(10); // '8380289275'
-  logger.info(`Serial ${i}: ${serialNumber}`);
-}
+const isInt = n => n % 1 === 0;
+
+const generateSerials = () => {
+  const count = process.argv[1];
+  if (count === 0 || typeof count === 'undefined' || !isInt(count)) {
+    logger.error('Give number parameter: "npm run generate-serials 10"');
+  } else {
+    for (let i = 1; i <= process.argv[1]; i += 1) {
+      const serialNumber = generator.generate(10);
+      logger.info(`Serial ${i}: ${serialNumber}`);
+    }
+  }
+};
 
 /*
 const generate = () => {
@@ -24,4 +33,4 @@ const generate = () => {
 };
 */
 
-module.exports = checkSerial;
+module.exports = { checkSerial, generateSerials };

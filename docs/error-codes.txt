@@ -1,0 +1,2 @@
+11: Username not free
+12: Serial not valid
