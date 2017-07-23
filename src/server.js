@@ -18,6 +18,7 @@ db.connectToDb();
 munkres.runMunkres();
 
 const allowCORS = require('./middleware/cors');
+const requireAuthHeader = require('./middleware/authHeader');
 const apiRoutes = require('./apiRoutes');
 
 const app = express();
@@ -47,7 +48,7 @@ if (developmentEnv) {
   app.use(allowCORS);
 }
 
-app.use('/api', apiRoutes);
+app.use('/api', requireAuthHeader, apiRoutes);
 
 // Set static path
 const staticPath = path.join(__dirname, '../', 'front');

@@ -13,6 +13,7 @@ config.logDir = './logs';
 if (process.env.NODE_ENV === 'production') {
   config.env = 'production';
   config.db = process.env.CUSTOMCONNSTR_CosmosDBConnString;
+  config.jwtSecretKey = process.env.JWT_SECRET_KEY;
   config.allowedCorsOrigins = [];
 }
 
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV === 'development') {
   config.env = 'development';
   config.db = 'mongodb://localhost/ropecon-rpg-signup';
+  config.jwtSecretKey = '';
   config.allowedCorsOrigins = ['http://localhost:8080'];
 }
 
