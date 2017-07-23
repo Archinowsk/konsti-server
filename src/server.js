@@ -48,7 +48,8 @@ if (developmentEnv) {
   app.use(allowCORS);
 }
 
-app.use('/api', requireAuthHeader, apiRoutes);
+// app.use('/api', requireAuthHeader, apiRoutes);
+app.use('/api', apiRoutes);
 
 // Set static path
 const staticPath = path.join(__dirname, '../', 'front');

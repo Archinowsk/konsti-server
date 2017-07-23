@@ -164,7 +164,11 @@ const getUserData = userData => {
 
   return User.find({ username: userData.username }).then(
     response => {
-      logger.info(`MongoDB: Found user "${userData.username}"`);
+      if (response.length === 0) {
+        logger.info(`MongoDB: User "${userData.username}" not found`);
+      } else {
+        logger.info(`MongoDB: Found user "${userData.username}"`);
+      }
       return response;
     },
     error => {

@@ -19,12 +19,14 @@
     "eslint-fix": "eslint  --fix --ext .js,.jsx,.json,.scss src",
     "prettier": "prettier --single-quote --trailing-comma es5 --write \"{src}/**/*.jsx\"",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js"
+    "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
+    "generate-serials": "node src/utils/serials.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "generate-serial-number": "0.0.3",
     "i18next": "^8.4.3",
     "i18next-browser-languagedetector": "^2.0.0",
     "i18next-localstorage-cache": "^1.1.1",
