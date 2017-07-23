@@ -49,10 +49,9 @@ const storeUserData = userData => {
 
   // Example user data
   const user = new User({
-    // id: '12345',
     username: userData.username,
     password: userData.passwordHash,
-    user_group: 'admin',
+    user_group: 'admin', // Options: 'user' and 'admin'
     favorited_games: [],
     signed_games: [],
     entered_games: [],
@@ -90,7 +89,7 @@ const storeGamesData = games => {
   games.forEach(game => {
     const people = [];
 
-    // TODO: Combine date and time
+    // Combine date and time
     const date = new Date(game.date);
     const hours = game.time.substring(0, game.time.indexOf(':'));
     date.setHours(hours);
