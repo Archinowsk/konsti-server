@@ -1,2 +1,4 @@
 11: Username not free
 12: Serial not valid
+
+21: Login failed, username and password don't match

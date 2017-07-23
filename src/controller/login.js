@@ -38,6 +38,7 @@ function postLogin(req, res) {
               );
 
               res.json({
+                code: 21,
                 message: 'User login failed',
                 status: 'error',
                 response: response2,
