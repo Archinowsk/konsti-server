@@ -7,15 +7,12 @@ const UserSchema = mongoose.Schema({
   favorited_games: [{}],
   signed_games: [{}],
   entered_games: Array,
-  created: Date,
-  updated_at: Date,
+  created: { type: Date, default: Date.now },
+  updated_at: { type: Date },
 });
 
 // On every save, add the date
 UserSchema.pre('save', next => {
-  // Add created date
-  if (!this.created) this.created = new Date();
-
   // Add updated_at field
   this.updated_at = new Date();
   next();

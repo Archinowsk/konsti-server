@@ -51,7 +51,7 @@ const storeUserData = userData => {
   const user = new User({
     username: userData.username,
     password: userData.passwordHash,
-    user_group: 'admin', // Options: 'user' and 'admin'
+    user_group: 'user', // Options: 'user' and 'admin'
     favorited_games: [],
     signed_games: [],
     entered_games: [],
