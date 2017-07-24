@@ -35,7 +35,8 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
-const developmentEnv = config.env === 'development';
+// const developmentEnv = config.env === 'development';
+
 logger.info(`Node environment: ${config.env}`);
 
 // Set logger
@@ -48,15 +49,6 @@ app.use(bodyParser.json({ limit: '100kb' }));
 app.use(
   expressJWT({ secret: config.jwtSecretKey }).unless({
     path: [
-      /*
-      { url: '/', methods: ['GET'] },
-      { url: '/signup', methods: ['GET'] },
-      { url: '/games', methods: ['GET'] },
-      { url: '/login', methods: ['GET'] },
-      { url: '/registration', methods: ['GET'] },
-      { url: '/mygames', methods: ['GET'] },
-      { url: '/admin', methods: ['GET'] },
-      */
       // Allow all paths not starting with "/api"
       { url: /^(?!\/api).*$/i, methods: ['GET'] },
       { url: '/api/login', methods: ['POST', 'OPTIONS'] },
@@ -68,14 +60,6 @@ app.use(
 );
 
 app.use(allowCORS);
-
-/*
-if (developmentEnv) {
-  // logger.info('Express: Enable CORS in dev mode');
-  app.use(allowCORS);
-}
-*/
-
 app.use('/api', apiRoutes);
 
 // Set static path
@@ -83,10 +67,7 @@ const staticPath = path.join(__dirname, '../', 'front');
 app.use(express.static(staticPath));
 
 // Set static path for Azure Let's encrypt extension
-app.use(
-  '/.well-known',
-  express.static(path.join(__dirname, '../', '.well-known'))
-);
+app.use(express.static(path.join(__dirname, '../', '.well-known')));
 
 // No match, route to index
 app.get('/*', (req, res) => {
