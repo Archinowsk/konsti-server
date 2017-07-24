@@ -11,14 +11,12 @@ const postFavorite = (req, res) => {
       res.json({
         message: 'Update favorite success',
         status: 'success',
-        client_data: req.body,
       });
     },
     error => {
       res.json({
         message: 'Update favorite failure',
         status: 'error',
-        client_data: req.body,
         error,
       });
     }

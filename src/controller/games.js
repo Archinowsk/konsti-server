@@ -2,6 +2,7 @@ const requestPromiseNative = require('request-promise-native');
 
 const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
+// const validateAuthHeader = require('../utils/authHeader');
 
 const updateGames = () => {
   logger.info('Games: GET games from Conbase');
@@ -43,6 +44,26 @@ const updateGames = () => {
 // Update games db from Conbase
 const postGames = (req, res) => {
   logger.info('API call: POST /api/games');
+
+  /*
+  const jwtToken = req.headers.authorization;
+  const validToken = validateAuthHeader(jwtToken);
+
+  logger.info('jwtToken');
+  logger.info(jwtToken);
+
+  logger.info('validToken');
+  logger.info(validToken);
+
+  if (!validToken) {
+    logger.info('Games: Invalid jwt token');
+    res.json({
+      code: 31,
+      message: 'Unauthorized',
+      status: 'error',
+    });
+  }
+  */
 
   return updateGames().then(
     response =>

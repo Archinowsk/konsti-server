@@ -1,7 +1,8 @@
 const logger = require('../utils/logger').logger;
+const config = require('../../config');
 
 function allowCrossDomain(req, res, next) {
-  const allowedOrigins = ['http://localhost:8080'];
+  const allowedOrigins = config.allowedCorsOrigins;
   const origin = req.headers.origin;
 
   if (allowedOrigins.indexOf(origin) > -1) {
@@ -12,8 +13,7 @@ function allowCrossDomain(req, res, next) {
   }
 
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   return next();
 }

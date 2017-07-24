@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const expressJWT = require('express-jwt');
+
 const config = require('../config');
 
 const logger = require('./utils/logger').logger;
@@ -18,7 +20,6 @@ db.connectToDb();
 munkres.runMunkres();
 
 const allowCORS = require('./middleware/cors');
-const requireAuthHeader = require('./middleware/authHeader');
 const apiRoutes = require('./apiRoutes');
 
 const app = express();
@@ -44,11 +45,21 @@ app.use(require('morgan')('dev', { stream }));
 // Parse body and populate req.body - only accepts JSON
 app.use(bodyParser.json({ limit: '100kb' }));
 
+app.use(
+  expressJWT({ secret: config.jwtSecretKey }).unless({
+    path: [
+      { url: '/api/login', methods: ['POST', 'OPTIONS'] },
+      { url: '/api/user', methods: ['POST', 'OPTIONS'] },
+      { url: '/api/games', methods: ['GET', 'OPTIONS'] },
+    ],
+  })
+);
+
 if (developmentEnv) {
+  // logger.info('Express: Enable CORS in dev mode');
   app.use(allowCORS);
 }
 
-// app.use('/api', requireAuthHeader, apiRoutes);
 app.use('/api', apiRoutes);
 
 // Set static path

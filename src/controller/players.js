@@ -16,7 +16,6 @@ const postPlayers = (req, res) => {
       res.json({
         message: 'Players assign success',
         status: 'success',
-        client_data: req.body,
         response,
       });
     },
@@ -24,7 +23,6 @@ const postPlayers = (req, res) => {
       res.json({
         message: 'layers assign failure',
         status: 'error',
-        client_data: req.body,
         error,
       });
     }

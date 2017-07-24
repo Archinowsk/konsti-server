@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 if (process.env.NODE_ENV === 'development') {
   config.env = 'development';
   config.db = 'mongodb://localhost/ropecon-rpg-signup';
-  config.jwtSecretKey = '';
+  config.jwtSecretKey = 'secret';
   config.allowedCorsOrigins = ['http://localhost:8080'];
 }
 

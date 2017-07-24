@@ -11,7 +11,6 @@ const postSignup = (req, res) => {
       res.json({
         message: 'Signup success',
         status: 'success',
-        client_data: req.body,
         response,
       });
     },
@@ -19,7 +18,6 @@ const postSignup = (req, res) => {
       res.json({
         message: 'Signup failure',
         status: 'error',
-        client_data: req.body,
         error,
       });
     }

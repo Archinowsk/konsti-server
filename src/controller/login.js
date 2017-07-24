@@ -1,6 +1,8 @@
+const jwt = require('jsonwebtoken');
 const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
 const comparePasswordHash = require('../utils/bcrypt').comparePasswordHash;
+const config = require('../../config');
 
 const validateLogin = (loginData, hash) =>
   comparePasswordHash(loginData.password, hash).then(response => {
@@ -31,6 +33,11 @@ function postLogin(req, res) {
           // logger.info(`User "${loginData.username}" found`);
           return validateLogin(loginData, response[0].password).then(
             response2 => {
+              const jwtToken = jwt.sign(
+                { username: loginData.username },
+                config.jwtSecretKey
+              );
+
               if (response2 === true) {
                 logger.info(
                   `Login: Password for user "${loginData.username}" matches`
@@ -39,7 +46,7 @@ function postLogin(req, res) {
                   message: 'User login success',
                   status: 'success',
                   response: response2,
-                  client_data: loginData,
+                  jwtToken,
                 });
               } else {
                 logger.info(
@@ -51,7 +58,6 @@ function postLogin(req, res) {
                   message: 'User login failed',
                   status: 'error',
                   response: response2,
-                  client_data: loginData,
                 });
               }
             },
