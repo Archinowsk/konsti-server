@@ -48,7 +48,7 @@ app.use(bodyParser.json({ limit: '100kb' }));
 app.use(
   expressJWT({ secret: config.jwtSecretKey }).unless({
     path: [
-      // { url: '/', methods: ['GET'], ext: ['.js', '.css'] },
+      { url: '/', methods: ['GET'] },
       // { ext: ['.js', '.css', '.html'] },
       // { url: '/index.html', methods: ['GET'] },
       { url: '/api/login', methods: ['POST', 'OPTIONS'] },
