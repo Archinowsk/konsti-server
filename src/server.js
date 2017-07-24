@@ -48,6 +48,7 @@ app.use(bodyParser.json({ limit: '100kb' }));
 app.use(
   expressJWT({ secret: config.jwtSecretKey }).unless({
     path: [
+      /*
       { url: '/', methods: ['GET'] },
       { url: '/signup', methods: ['GET'] },
       { url: '/games', methods: ['GET'] },
@@ -55,6 +56,8 @@ app.use(
       { url: '/registration', methods: ['GET'] },
       { url: '/mygames', methods: ['GET'] },
       { url: '/admin', methods: ['GET'] },
+      */
+      { url: /^(?!\/api).*$/i, methods: ['GET'] },
       { url: '/api/login', methods: ['POST', 'OPTIONS'] },
       { url: '/api/user', methods: ['POST', 'OPTIONS'] },
       { url: '/api/games', methods: ['GET', 'OPTIONS'] },
