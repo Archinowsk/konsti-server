@@ -45,7 +45,7 @@ function postLogin(req, res) {
                 res.json({
                   message: 'User login success',
                   status: 'success',
-                  response: response2,
+                  // response: response2,
                   jwtToken,
                 });
               } else {
@@ -57,7 +57,7 @@ function postLogin(req, res) {
                   code: 21,
                   message: 'User login failed',
                   status: 'error',
-                  response: response2,
+                  // response: response2,
                 });
               }
             },

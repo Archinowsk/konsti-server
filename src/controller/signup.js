@@ -7,11 +7,11 @@ const postSignup = (req, res) => {
   const signupData = req.body.signupData;
 
   db.storeSignupData(signupData).then(
-    response => {
+    () => {
       res.json({
         message: 'Signup success',
         status: 'success',
-        response,
+        // response,
       });
     },
     error => {

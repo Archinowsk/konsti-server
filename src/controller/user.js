@@ -39,11 +39,11 @@ const postUser = (req, res) => {
               registrationData.passwordHash = response2;
 
               db.storeUserData(registrationData).then(
-                response3 => {
+                () => {
                   res.json({
                     message: 'User registration success',
                     status: 'success',
-                    data: response3,
+                    // data: response3,
                   });
                 },
                 error => {
@@ -67,7 +67,7 @@ const postUser = (req, res) => {
             code: 11,
             message: 'Username in already registered',
             status: 'error',
-            response,
+            // response,
           });
         }
       },
