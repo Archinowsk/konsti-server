@@ -57,6 +57,7 @@ app.use(
       { url: '/mygames', methods: ['GET'] },
       { url: '/admin', methods: ['GET'] },
       */
+      // Allow all paths not starting with "/api"
       { url: /^(?!\/api).*$/i, methods: ['GET'] },
       { url: '/api/login', methods: ['POST', 'OPTIONS'] },
       { url: '/api/user', methods: ['POST', 'OPTIONS'] },
