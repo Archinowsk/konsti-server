@@ -78,6 +78,9 @@ app.use('/api', apiRoutes);
 const staticPath = path.join(__dirname, '../', 'front');
 app.use(express.static(staticPath));
 
+// Set static path for Azure Let's encrypt extension
+app.use('/.well-known', express.static(path.join(__dirname, '.well-known')));
+
 // No match, route to index
 app.get('/*', (req, res) => {
   res.redirect('/');
