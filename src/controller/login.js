@@ -17,63 +17,71 @@ function postLogin(req, res) {
   logger.info('API call: POST /api/login');
   const loginData = req.body.loginData;
 
-  db.getUserData(loginData).then(
-    response => {
-      // User exists
-      if (response.length > 0) {
-        // logger.info(`User "${loginData.username}" found`);
-        return validateLogin(loginData, response[0].password).then(
-          response2 => {
-            if (response2 === true) {
-              logger.info(
-                `Login: Password for user "${loginData.username}" matches`
-              );
-              res.json({
-                message: 'User login success',
-                status: 'success',
-                response: response2,
-                client_data: loginData,
-              });
-            } else {
-              logger.info(
-                `Login: Password for user "${loginData.username}" doesn't match`
-              );
+  if (!loginData || !loginData.username || !loginData.password) {
+    logger.info('Login: validation failed');
+    res.json({
+      message: 'Validation error',
+      status: 'error',
+    });
+  } else {
+    db.getUserData(loginData).then(
+      response => {
+        // User exists
+        if (response.length > 0) {
+          // logger.info(`User "${loginData.username}" found`);
+          return validateLogin(loginData, response[0].password).then(
+            response2 => {
+              if (response2 === true) {
+                logger.info(
+                  `Login: Password for user "${loginData.username}" matches`
+                );
+                res.json({
+                  message: 'User login success',
+                  status: 'success',
+                  response: response2,
+                  client_data: loginData,
+                });
+              } else {
+                logger.info(
+                  `Login: Password for user "${loginData.username}" doesn't match`
+                );
 
+                res.json({
+                  code: 21,
+                  message: 'User login failed',
+                  status: 'error',
+                  response: response2,
+                  client_data: loginData,
+                });
+              }
+            },
+            error => {
+              logger.error(`Login: ${error}`);
               res.json({
-                code: 21,
-                message: 'User login failed',
+                message: 'User login error',
                 status: 'error',
-                response: response2,
-                client_data: loginData,
+                error,
               });
             }
-          },
-          error => {
-            logger.error(`Login: ${error}`);
-            res.json({
-              message: 'User login error',
-              status: 'error',
-              error,
-            });
-          }
-        );
+          );
+        }
+        logger.info(`Login: User "${loginData.username}" not found`);
+        res.json({
+          message: 'User login error',
+          status: 'error',
+        });
+        return undefined;
+      },
+      error => {
+        logger.error(`Login: ${error}`);
+        res.json({
+          message: 'User login error',
+          status: 'error',
+          error,
+        });
       }
-      logger.info(`Login: User "${loginData.username}" not found`);
-      res.json({
-        message: 'User login error',
-        status: 'error',
-      });
-      return undefined;
-    },
-    error => {
-      logger.error(`Login: ${error}`);
-      res.json({
-        message: 'User login error',
-        status: 'error',
-        error,
-      });
-    }
-  );
+    );
+  }
 }
 
 module.exports = { postLogin };
