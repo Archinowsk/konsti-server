@@ -49,7 +49,7 @@ app.use(
   expressJWT({ secret: config.jwtSecretKey }).unless({
     path: [
       { url: '/', methods: ['GET'], ext: ['.js', '.css'] },
-      { url: '/*', methods: ['GET'], ext: ['.js', '.css'] },
+      { ext: ['.js', '.css'] },
       { url: '/index.html', methods: ['GET'] },
       { url: '/api/login', methods: ['POST', 'OPTIONS'] },
       { url: '/api/user', methods: ['POST', 'OPTIONS'] },
