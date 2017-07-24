@@ -34,6 +34,7 @@
     "i18next-xhr-backend": "^1.4.2",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "mongoose": "^4.11.4",
     "morgan": "^1.8.2",
     "munkres-js": "^1.2.2",

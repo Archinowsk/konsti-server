@@ -1,5 +1,6 @@
 // Load mongoose package
 const mongoose = require('mongoose');
+const moment = require('moment');
 const logger = require('./utils/logger').logger;
 const UserSchema = require('./models/userSchema');
 const GameSchema = require('./models/gameSchema');
@@ -90,9 +91,9 @@ const storeGamesData = games => {
     const people = [];
 
     // Combine date and time
-    const date = new Date(game.date);
+    let date = moment.utc(game.date);
     const hours = game.time.substring(0, game.time.indexOf(':'));
-    date.setHours(hours);
+    date = moment(date).add(hours, 'hours');
 
     // Parse min and max attendance number from string
     if (game.attendance) {
