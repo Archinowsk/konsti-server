@@ -6,10 +6,10 @@ const validateLogin = (loginData, hash) =>
   comparePasswordHash(loginData.password, hash).then(response => {
     // Password matches hash
     if (response === true) {
-      logger.info(`MongoDB: User "${loginData.username}" password match`);
+      // logger.info(`Login: User "${loginData.username}" password match`);
       return true;
     }
-    logger.info(`MongoDB: User "${loginData.username}" password doesn't match`);
+    // logger.info(`Login: User "${loginData.username}" password doesn't match`);
     return false;
   }, error => error);
 
@@ -25,7 +25,9 @@ function postLogin(req, res) {
         return validateLogin(loginData, response[0].password).then(
           response2 => {
             if (response2 === true) {
-              logger.info(`Password for user "${loginData.username}" matches`);
+              logger.info(
+                `Login: Password for user "${loginData.username}" matches`
+              );
               res.json({
                 message: 'User login success',
                 status: 'success',
@@ -33,8 +35,8 @@ function postLogin(req, res) {
                 client_data: loginData,
               });
             } else {
-              logger.error(
-                `Password for user "${loginData.username}" doesn't match`
+              logger.info(
+                `Login: Password for user "${loginData.username}" doesn't match`
               );
 
               res.json({
@@ -56,7 +58,7 @@ function postLogin(req, res) {
           }
         );
       }
-      logger.info(`MongoDB: User "${loginData.username}" not found`);
+      logger.info(`Login: User "${loginData.username}" not found`);
       res.json({
         message: 'User login error',
         status: 'error',

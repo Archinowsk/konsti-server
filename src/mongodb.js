@@ -162,6 +162,8 @@ const getUserData = userData => {
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
 
+  // TODO: Update to use findOne() instead of find()
+  // return User.findOne({ username: userData.username }).then(
   return User.find({ username: userData.username }).then(
     response => {
       if (response.length === 0) {
