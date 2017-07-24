@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
   config.env = 'production';
   config.db = process.env.CUSTOMCONNSTR_CosmosDBConnString;
   config.jwtSecretKey = process.env.JWT_SECRET_KEY;
-  config.allowedCorsOrigins = [];
+  config.allowedCorsOrigins = ['https://konsti.ropecon.fi'];
 }
 
 // Variables for development environment

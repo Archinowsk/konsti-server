@@ -67,10 +67,14 @@ app.use(
   })
 );
 
+app.use(allowCORS);
+
+/*
 if (developmentEnv) {
   // logger.info('Express: Enable CORS in dev mode');
   app.use(allowCORS);
 }
+*/
 
 app.use('/api', apiRoutes);
 
