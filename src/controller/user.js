@@ -9,7 +9,7 @@ const postUser = (req, res) => {
   const registrationData = req.body.registrationData;
 
   if (checkSerial(registrationData.serial)) {
-    logger.info('Serial match');
+    logger.info('User: Serial match');
     // Check if user already exists
     db.getUserData({ username: registrationData.username }).then(
       response => {
@@ -28,7 +28,7 @@ const postUser = (req, res) => {
                   });
                 },
                 error => {
-                  logger.error(error);
+                  logger.error(`User: ${error}`);
                   res.json({
                     message: 'User registration failed',
                     status: 'error',
@@ -37,12 +37,12 @@ const postUser = (req, res) => {
               );
             },
             error => {
-              logger.error(error);
+              logger.error(`User: ${error}`);
             }
           );
         } else {
           logger.info(
-            `MongoDB: Username "${registrationData.username}" is already registered`
+            `User: Username "${registrationData.username}" is already registered`
           );
           res.json({
             code: 11,
@@ -54,11 +54,11 @@ const postUser = (req, res) => {
         }
       },
       error => {
-        logger.error(error);
+        logger.error(`User: ${error}`);
       }
     );
   } else {
-    logger.info('Serial does not match');
+    logger.info('User: Serial does not match');
     res.json({
       code: 12,
       message: 'Invalid serial',
@@ -88,7 +88,7 @@ const getUser = (req, res) => {
       });
     },
     error => {
-      logger.error(error);
+      logger.error(`User: ${error}`);
       res.json({
         message: 'Getting user data failed',
         status: 'error',

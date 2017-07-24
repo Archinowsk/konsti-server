@@ -49,7 +49,7 @@ function postLogin(req, res) {
             }
           },
           error => {
-            logger.error(error);
+            logger.error(`Login: ${error}`);
             res.json({
               message: 'User login error',
               status: 'error',
@@ -66,7 +66,7 @@ function postLogin(req, res) {
       return undefined;
     },
     error => {
-      logger.error(error);
+      logger.error(`Login: ${error}`);
       res.json({
         message: 'User login error',
         status: 'error',

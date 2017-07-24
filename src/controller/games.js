@@ -4,7 +4,7 @@ const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
 
 const updateGames = () => {
-  logger.info('GET games from Conbase');
+  logger.info('Games: GET games from Conbase');
 
   const options = {
     // uri: `http://archinowsk.kapsi.fi/games.json`,
@@ -18,7 +18,7 @@ const updateGames = () => {
   return requestPromiseNative(options).then(
     response => {
       if (response.success === true) {
-        logger.info(`GET Games: success`);
+        logger.info(`Games: GET Games success`);
       }
 
       // TODO: Filter roleplaying games in designated locations, i.e. not "hall 5"
@@ -34,7 +34,7 @@ const updateGames = () => {
       return games;
     },
     error => {
-      logger.error(`requestPromiseNative(): ${error}`);
+      logger.error(`Games: requestPromiseNative(): ${error}`);
       return Promise.reject(error);
     }
   );
@@ -64,7 +64,7 @@ const postGames = (req, res) => {
         }
       ),
     error => {
-      logger.error(error);
+      logger.error(`Games: ${error}`);
     }
   );
 };
