@@ -19,9 +19,9 @@ const connect = () => db.connectToDb();
 const removeUsers = () => db.removeUsers();
 const removeGames = () => db.removeGames();
 
-const newUsersCount = 4;
-const newGamesCount = 10;
-const newSignupsCount = 5;
+const newUsersCount = 4; // How many players exist overall, add +1 for admin account
+const newGamesCount = 10; // How many games are availale for signup
+const newSignupsCount = 5; // How many players will sign up for three games
 
 connect()
   .then(() => removeUsers())

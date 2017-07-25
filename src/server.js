@@ -10,14 +10,11 @@ const logger = require('./utils/logger').logger;
 const stream = require('./utils/logger').stream;
 
 const db = require('./mongodb');
-const munkres = require('./utils/munkres');
 
 const COMPRESSED = ['/client.bundle'];
 
 // TODO: Should be promise
 db.connectToDb();
-
-munkres.runMunkres();
 
 const allowCORS = require('./middleware/cors');
 const apiRoutes = require('./apiRoutes');
