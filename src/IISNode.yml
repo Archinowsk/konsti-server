@@ -1,2 +1,2 @@
-loggingEnabled: false
-devErrorsEnabled: false
+loggingEnabled: true
+devErrorsEnabled: true
