@@ -16,14 +16,24 @@ const postPlayers = (req, res) => {
 
           // TODO: Assign
           assignPlayers(response, response2, startingTime).then(
-            () => {
-              // db.signupResultData(signupResultData);
-
-              res.json({
-                message: 'Players assign success',
-                status: 'success',
-                // response,
-              });
+            response3 => {
+              db.storeSignupResultData(response3[2]).then(
+                response4 => {
+                  res.json({
+                    message: 'Players assign success',
+                    status: 'success',
+                    response3,
+                  });
+                },
+                error => {
+                  logger.error(`Players: ${error}`);
+                  res.json({
+                    message: 'Players assign failure',
+                    status: 'error',
+                    error,
+                  });
+                }
+              );
             },
             error => {
               logger.error(`Players: ${error}`);

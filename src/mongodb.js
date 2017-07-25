@@ -270,7 +270,7 @@ const storeSignupResultData = signupResultData => {
   // Save to database
   return User.update(
     { username: signupResultData.username },
-    { $set: { entered_games: signupResultData.enteredGames } }
+    { $push: { entered_games: { id: signupResultData.enteredGame } } }
   ).then(
     response => {
       logger.info(

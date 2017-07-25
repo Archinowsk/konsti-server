@@ -46,32 +46,104 @@ const assignPlayers = (players, games, startingTime) => {
 
   const startingGamesWishes = [];
   const selectedGames = [];
+  let minAttendance = 0;
+  let maxAttendance = 0;
 
   startingGames.forEach(startingGame => {
     for (let i = 0; i < signupWishes.length; i += 1) {
       if (startingGame.id === signupWishes[i].id) {
-        startingGamesWishes.push(signupWishes[i]);
         selectedGames.push(startingGame);
+        minAttendance += startingGame.min_attendance;
+        maxAttendance += startingGame.max_attendance;
         break;
       }
     }
   });
 
-  // logger.info(signupWishes);
+  logger.info(
+    `Found ${selectedGames.length} games that have signup wishes and ${minAttendance}-${maxAttendance} available seats`
+  );
 
-  logger.info(`Found ${selectedGames.length} games that have signup wishes`);
+  // Find all wishes that match game ID and store them to same array
+  startingGames.forEach(startingGame => {
+    signupWishes.forEach(signupWish => {
+      if (startingGame.id === signupWish.id) {
+        startingGamesWishes.push(signupWish);
+      }
+    });
+  });
+
+  logger.info(
+    `Found ${startingGamesWishes.length} signup wishes for this starting time`
+  );
 
   // Sort same game wishes to single array
 
+  // Create matrix for the sorting algorithm
+  // Each available seat is possible result
+  const signupMatrix = [];
+  let counter = 0;
+
+  selectedGames.forEach(selectedGame => {
+    const gameSignups = [];
+
+    players.forEach(player => {
+      let match = false;
+      for (let i = 0; i < player.signed_games.length; i += 1) {
+        if (selectedGame.id === player.signed_games[i].id) {
+          gameSignups.push(player.signed_games[i].priority);
+          match = true;
+          break;
+        }
+      }
+      if (!match) {
+        gameSignups.push(9);
+      }
+    });
+    // Add one matrix row for each attendance seat
+    for (let j = 0; j < selectedGame.max_attendance; j += 1) {
+      // Copy array, don't add reference
+      signupMatrix[counter] = gameSignups.slice();
+      counter += 1;
+    }
+  });
+
   // Game signups for the selected time slot
-  startingGamesWishes.forEach(startingGamesWish => {});
 
-  // Games for the selected time slot that have any signups
-  selectedGames.forEach(selectedGame => {});
+  logger.info(signupMatrix);
 
-  // Form matrix
+  // NOTES
+  // Single array is priorities for one game
 
-  // const signupMatrix = [[], [], []];
+  const results = munkres(signupMatrix);
+  logger.info(results);
+
+  const combinedResult = [];
+
+  for (let i = 0; i < results.length; i += 1) {
+    const matrixValue = signupMatrix[results[i][0]][results[i][1]];
+    const selectedRow = parseInt(results[i][0], 10);
+    const selectedPlayer = parseInt(results[i][1], 10);
+    logger.info(`matrix value: ${matrixValue}`);
+    logger.info(`selected player: ${selectedPlayer}`);
+    logger.info(`selected row: ${selectedRow}`);
+
+    let attendanceRange = 0;
+    for (let j = 0; j < selectedGames.length; j += 1) {
+      let matchingGame;
+      attendanceRange += selectedGames[j].max_attendance;
+      if (selectedRow <= attendanceRange) {
+        matchingGame = selectedGames[j];
+        combinedResult.push({
+          username: players[selectedPlayer].username,
+          enteredGame: matchingGame.id,
+        });
+        break;
+      }
+    }
+  }
+
+  /*
   const signupMatrix = [
     [3, 9, 9, 1, 9, 1],
     [3, 9, 9, 1, 9, 1],
@@ -89,17 +161,9 @@ const assignPlayers = (players, games, startingTime) => {
     [9, 9, 3, 9, 1, 9],
     [9, 9, 3, 9, 1, 9],
   ];
+  */
 
-  const results = munkres(signupMatrix);
-  logger.info(results);
-
-  for (let i = 0; i < results.length; i += 1) {
-    const matrixValue = signupMatrix[results[i][0]][results[i][1]];
-    logger.info(`matrix value: ${matrixValue}`);
-    logger.info(`seledted player ${results[i][1]}`);
-  }
-
-  return Promise.resolve();
+  return Promise.resolve(combinedResult);
 };
 
 module.exports = { assignPlayers };
