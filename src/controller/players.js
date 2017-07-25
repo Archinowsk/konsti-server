@@ -2,6 +2,14 @@ const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
 const assignPlayers = require('../utils/munkres').assignPlayers;
 
+const storeMultiple = signupData => {
+  return (function loop(i) {
+    return new Promise(resolve =>
+      db.storeSignupResultData(signupData[i - 1]).then(() => resolve())
+    ).then(() => i >= signupData.length || loop(i + 1));
+  })(1);
+};
+
 // Assign players to games
 const postPlayers = (req, res) => {
   logger.info('API call: POST /api/players');
@@ -11,13 +19,11 @@ const postPlayers = (req, res) => {
     response => {
       db.getGamesData().then(
         response2 => {
-          // Execute sorting algorithm for users with valid signups
-          // Store results to user profile
-
-          // TODO: Assign
           assignPlayers(response, response2, startingTime).then(
             response3 => {
-              db.storeSignupResultData(response3[2]).then(
+              // TODO: Store all results, not only one
+              storeMultiple(response3).then(
+                // db.storeSignupResultData(response3).then(
                 response4 => {
                   res.json({
                     message: 'Players assign success',
