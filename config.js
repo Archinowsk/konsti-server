@@ -25,4 +25,12 @@ if (process.env.NODE_ENV === 'development') {
   config.allowedCorsOrigins = ['http://localhost:8080'];
 }
 
+// Variables for development environment
+if (process.env.NODE_ENV === 'testing') {
+  config.env = 'testing';
+  config.db = 'mongodb://localhost/ropecon-rpg-signup';
+  config.jwtSecretKey = 'secret';
+  config.allowedCorsOrigins = [];
+}
+
 module.exports = config;

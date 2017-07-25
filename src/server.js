@@ -13,6 +13,10 @@ const db = require('./mongodb');
 
 const COMPRESSED = ['/client.bundle'];
 
+// const developmentEnv = config.env === 'development';
+const testingEnv = config.env === 'testing';
+const productionEnv = config.env === 'productionEnv';
+
 // TODO: Should be promise
 db.connectToDb();
 
@@ -21,18 +25,18 @@ const apiRoutes = require('./apiRoutes');
 
 const app = express();
 
-// Request gzip file if should be compressed
-app.get('*.js', (req, res, next) => {
-  COMPRESSED.forEach((value, index) => {
-    if (req.url.startsWith(value[index])) {
-      req.url += '.gz';
-      res.set('Content-Encoding', 'gzip');
-    }
-  }, this);
-  next();
-});
-
-// const developmentEnv = config.env === 'development';
+if (productionEnv) {
+  // Request gzip file if should be compressed
+  app.get('*.js', (req, res, next) => {
+    COMPRESSED.forEach((value, index) => {
+      if (req.url.startsWith(value[index])) {
+        req.url += '.gz';
+        res.set('Content-Encoding', 'gzip');
+      }
+    }, this);
+    next();
+  });
+}
 
 logger.info(`Node environment: ${config.env}`);
 
@@ -56,7 +60,11 @@ app.use(
   })
 );
 
-app.use(allowCORS);
+// Don't use CORS in testing
+if (!testingEnv) {
+  app.use(allowCORS);
+}
+
 app.use('/api', apiRoutes);
 
 // Set static path
