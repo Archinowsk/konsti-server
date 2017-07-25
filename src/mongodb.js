@@ -264,13 +264,14 @@ const storeFavoriteData = favoriteData => {
 };
 
 const storeSignupResultData = signupResultData => {
+  // TODO: Store old results
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
 
   // Save to database
   return User.update(
     { username: signupResultData.username },
-    { $push: { entered_games: { id: signupResultData.enteredGame } } }
+    { $set: { entered_games: { id: signupResultData.enteredGame } } }
   ).then(
     response => {
       logger.info(
