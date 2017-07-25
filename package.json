@@ -8,7 +8,7 @@
     "name": "Arttu Hanska"
   },
   "engines": {
-    "node": "8.1.x"
+    "node": " 6.11.X"
   },
   "scripts": {
     "start": "node src/server.js",
