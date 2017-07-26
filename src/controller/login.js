@@ -56,6 +56,7 @@ function postLogin(req, res) {
                   message: 'User login success',
                   status: 'success',
                   jwtToken,
+                  userGroup: response[0].user_group,
                 });
               } else {
                 logger.info(
