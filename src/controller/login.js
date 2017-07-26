@@ -30,14 +30,24 @@ function postLogin(req, res) {
       response => {
         // User exists
         if (response.length > 0) {
-          // logger.info(`User "${loginData.username}" found`);
           return validateLogin(loginData, response[0].password).then(
             response2 => {
-              const jwtToken = jwt.sign(
-                { username: loginData.username },
-                config.jwtSecretKey
+              logger.info(
+                `Login: User "${response[0].username}" with "${response[0]
+                  .user_group}" account`
               );
-
+              let jwtToken = '';
+              if (response[0].user_group === 'admin') {
+                jwtToken = jwt.sign(
+                  { username: loginData.username },
+                  config.jwtSecretKeyAdmin
+                );
+              } else {
+                jwtToken = jwt.sign(
+                  { username: loginData.username },
+                  config.jwtSecretKey
+                );
+              }
               if (response2 === true) {
                 logger.info(
                   `Login: Password for user "${loginData.username}" matches`

@@ -48,11 +48,17 @@ const storeUserData = userData => {
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
 
+  let userGroup = 'user';
+
+  if (userData.user_group) {
+    userGroup = userData.user_group;
+  }
+
   // Example user data
   const user = new User({
     username: userData.username,
     password: userData.passwordHash,
-    user_group: 'user', // Options: 'user' and 'admin'
+    user_group: userGroup, // Options: 'user' and 'admin'
     favorited_games: [],
     signed_games: [],
     entered_games: [],
