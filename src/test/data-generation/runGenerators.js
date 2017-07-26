@@ -3,6 +3,8 @@ const db = require('../../mongodb');
 const createUsers = require('./generators/userDataGenerators').createUsers;
 const createAdminUser = require('./generators/userDataGenerators')
   .createAdminUser;
+const createTestUser = require('./generators/userDataGenerators')
+  .createTestUser;
 const createGames = require('./generators/gameDataGenerators').createGames;
 const createSignupData = require('./generators/signupDataGenerators')
   .createSignupData;
@@ -19,7 +21,7 @@ const connect = () => db.connectToDb();
 const removeUsers = () => db.removeUsers();
 const removeGames = () => db.removeGames();
 
-const newUsersCount = 4; // How many players exist overall, add +1 for admin account
+const newUsersCount = 4; // How many players exist overall, add +2 for test accounts
 const newGamesCount = 10; // How many games are availale for signup
 const newSignupsCount = 5; // How many players will sign up for three games
 
@@ -27,6 +29,7 @@ connect()
   .then(() => removeUsers())
   .then(() => removeGames())
   .then(() => createAdminUser())
+  .then(() => createTestUser())
   .then(() => createUsers(newUsersCount))
   .then(() => createGames(newGamesCount))
   .then(() => createSignupData(newSignupsCount))

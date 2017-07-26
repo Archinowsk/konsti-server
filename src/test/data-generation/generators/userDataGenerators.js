@@ -5,7 +5,7 @@ const hashPassword = require('../../../utils/bcrypt').hashPassword;
 
 const createAdminUser = () => {
   // Create admin user with predefined data
-  logger.info(`Generate data for admin user admin:test`);
+  logger.info(`Generate data for admin user "admin:test"`);
 
   return hashPassword('test').then(response => {
     const passwordHash = response;
@@ -14,6 +14,26 @@ const createAdminUser = () => {
       username: 'admin',
       passwordHash,
       user_group: 'admin',
+      favorited_games: [],
+      signed_games: [{}],
+      entered_games: [],
+    };
+
+    return db.storeUserData(registrationData);
+  });
+};
+
+const createTestUser = () => {
+  // Create admin user with predefined data
+  logger.info(`Generate data for user "test:test"`);
+
+  return hashPassword('test').then(response => {
+    const passwordHash = response;
+
+    const registrationData = {
+      username: 'test',
+      passwordHash,
+      user_group: 'user',
       favorited_games: [],
       signed_games: [{}],
       entered_games: [],
@@ -51,4 +71,4 @@ const createUsers = count => {
   })(1);
 };
 
-module.exports = { createUsers, createAdminUser };
+module.exports = { createUsers, createAdminUser, createTestUser };

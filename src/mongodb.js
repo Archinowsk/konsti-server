@@ -229,13 +229,13 @@ const storeSignupData = signupData => {
   ).then(
     response => {
       logger.info(
-        `MongoDB: Signup data stored for user ${signupData.username}`
+        `MongoDB: Signup data stored for user "${signupData.username}"`
       );
       return response;
     },
     error => {
       logger.error(
-        `MongoDB: Error storing signup data for user ${signupData.username} - ${error}`
+        `MongoDB: Error storing signup data for user "${signupData.username}" - ${error}`
       );
       return error;
     }
@@ -253,13 +253,13 @@ const storeFavoriteData = favoriteData => {
   ).then(
     response => {
       logger.info(
-        `MongoDB: Signup data stored for user ${favoriteData.username}`
+        `MongoDB: Favorite data stored for user "${favoriteData.username}"`
       );
       return response;
     },
     error => {
       logger.error(
-        `MongoDB: Error storing signup data for user ${favoriteData.username} - ${error}`
+        `MongoDB: Error storing signup data for user "${favoriteData.username}" - ${error}`
       );
       return error;
     }

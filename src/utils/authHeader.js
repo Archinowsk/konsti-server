@@ -3,7 +3,7 @@ const logger = require('../utils/logger').logger;
 const config = require('../../config');
 
 const validateAuthHeader = (authHeader, userGroup) => {
-  logger.info(`Require jwt token for "${userGroup}" user group`);
+  logger.info(`Auth: Require jwt token for "${userGroup}" user group`);
 
   let jwtToken = '';
 
