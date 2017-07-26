@@ -1,6 +1,7 @@
 const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
 const assignPlayers = require('../utils/munkres').assignPlayers;
+const validateAuthHeader = require('../utils/authHeader');
 
 const storeMultiple = signupData => {
   return (function loop(i) {
@@ -15,7 +16,19 @@ const postPlayers = (req, res) => {
   logger.info('API call: POST /api/players');
   const startingTime = req.body.startingTime;
 
-  db.getUsersData().then(
+  const authHeader = req.headers.authorization;
+  const validToken = validateAuthHeader(authHeader, 'admin');
+
+  if (!validToken) {
+    res.json({
+      code: 31,
+      message: 'Unauthorized',
+      status: 'error',
+    });
+    return undefined;
+  }
+
+  return db.getUsersData().then(
     response => {
       db.getGamesData().then(
         response2 => {

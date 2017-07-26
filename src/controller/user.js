@@ -2,6 +2,7 @@ const { checkSerial } = require('../utils/serials');
 const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
 const hashPassword = require('../utils/bcrypt').hashPassword;
+const validateAuthHeader = require('../utils/authHeader');
 
 // Register new user
 const postUser = (req, res) => {
@@ -78,11 +79,24 @@ const postUser = (req, res) => {
   }
 };
 
+// Get user info
 const getUser = (req, res) => {
   logger.info('API call: GET /api/user');
   const username = req.query.username;
 
-  db.getUserData({ username }).then(
+  const authHeader = req.headers.authorization;
+  const validToken = validateAuthHeader(authHeader, 'user');
+
+  if (!validToken) {
+    res.json({
+      code: 31,
+      message: 'Unauthorized',
+      status: 'error',
+    });
+    return undefined;
+  }
+
+  return db.getUserData({ username }).then(
     response => {
       const returnData = {
         enteredGames: response[0].entered_games,

@@ -13,7 +13,7 @@ const db = require('./mongodb');
 
 const COMPRESSED = ['/client.bundle'];
 
-// const developmentEnv = config.env === 'development';
+const developmentEnv = config.env === 'development';
 const testingEnv = config.env === 'testing';
 const productionEnv = config.env === 'productionEnv';
 
@@ -47,8 +47,9 @@ app.use(require('morgan')('dev', { stream }));
 // Parse body and populate req.body - only accepts JSON
 app.use(bodyParser.json({ limit: '100kb' }));
 
+/*
 app.use(
-  expressJWT({ secret: config.jwtSecretKey }).unless({
+  expressJWT({ secret: config.jwtSecretKeyAdmin }).unless({
     path: [
       // Allow all paths not starting with "/api"
       { url: /^(?!\/api).*$/i, methods: ['GET'] },
@@ -59,9 +60,10 @@ app.use(
     ext: ['.js', '.css', '.html'],
   })
 );
+*/
 
 // Don't use CORS in testing
-if (!testingEnv) {
+if (developmentEnv || productionEnv) {
   app.use(allowCORS);
 }
 
