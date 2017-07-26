@@ -28,7 +28,7 @@ const logger = new winston.Logger({
     */
     new winston.transports.DailyRotateFile({
       // level: 'error', // info, debug, warn, error
-      level: 'error', // info, debug, warn, error
+      level: 'info', // info, debug, warn, error
       filename: `${logDir}/log`,
       datePattern: 'yyyy-MM-dd.',
       prepend: true,
