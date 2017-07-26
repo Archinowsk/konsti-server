@@ -1,10 +1,12 @@
 const logger = require('../utils/logger').logger;
 const db = require('../mongodb');
-const validateAuthHeader = require('../utils/authHeader');
+// const validateAuthHeader = require('../utils/authHeader');
 
 // Get settings
 const getSettings = (req, res) => {
   logger.info('API call: GET /api/settings');
+
+  /*
   const authHeader = req.headers.authorization;
   const validToken = validateAuthHeader(authHeader, 'admin');
 
@@ -16,6 +18,7 @@ const getSettings = (req, res) => {
     });
     return undefined;
   }
+  */
 
   return db.getSettingsData().then(
     response => {
