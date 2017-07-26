@@ -4,6 +4,7 @@ const moment = require('moment');
 const logger = require('./utils/logger').logger;
 const UserSchema = require('./models/userSchema');
 const GameSchema = require('./models/gameSchema');
+const SettingsSchema = require('./models/settingsSchema');
 const config = require('../config');
 
 const connectToDb = () => {
@@ -186,6 +187,22 @@ const getUserData = userData => {
   );
 };
 
+const getSettingsData = () => {
+  // Create a model based on the schema
+  const Settings = mongoose.model('Settings', SettingsSchema);
+
+  return Settings.find({}).then(
+    response => {
+      logger.error(`MongoDB: Settings data found`);
+      return response;
+    },
+    error => {
+      logger.error(`MongoDB: Error finding settings data - ${error}`);
+      return error;
+    }
+  );
+};
+
 const getGamesData = () => {
   // Create a model based on the schema
   const Game = mongoose.model('Game', GameSchema);
@@ -259,8 +276,27 @@ const storeFavoriteData = favoriteData => {
     },
     error => {
       logger.error(
-        `MongoDB: Error storing signup data for user "${favoriteData.username}" - ${error}`
+        `MongoDB: Error storing favorite data for user "${favoriteData.username}" - ${error}`
       );
+      return error;
+    }
+  );
+};
+
+const storeBlacklistData = blacklistData => {
+  // Create a model based on the schema
+  const Settings = mongoose.model('Settings', SettingsSchema);
+
+  // Save to database
+  return Settings.update({
+    $set: { blacklisted_games: blacklistData.blacklistedGames },
+  }).then(
+    response => {
+      logger.info(`MongoDB: Blacklist data updated`);
+      return response;
+    },
+    error => {
+      logger.error(`MongoDB: Error updating blacklist data - ${error}`);
       return error;
     }
   );
@@ -324,8 +360,10 @@ module.exports = {
   getUsersData,
   storeSignupData,
   storeFavoriteData,
+  storeBlacklistData,
   storeSignupResultData,
   storeFavoriteGamesData,
   removeUsers,
   removeGames,
+  getSettingsData,
 };
