@@ -71,7 +71,7 @@ app.use('/api', apiRoutes);
 const staticPath = path.join(__dirname, '../', 'front');
 app.use(express.static(staticPath));
 
-// Set static path
+// Set static path for register description
 const registerInfoPath = path.join(
   __dirname,
   '../',
