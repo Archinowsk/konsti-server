@@ -3,13 +3,12 @@ const db = require('../mongodb');
 const assignPlayers = require('../utils/munkres').assignPlayers;
 const validateAuthHeader = require('../utils/authHeader');
 
-const storeMultiple = signupData => {
-  return (function loop(i) {
+const storeMultiple = signupData =>
+  (function loop(i) {
     return new Promise(resolve =>
       db.storeSignupResultData(signupData[i - 1]).then(() => resolve())
     ).then(() => i >= signupData.length || loop(i + 1));
   })(1);
-};
 
 // Assign players to games
 const postPlayers = (req, res) => {
@@ -37,11 +36,11 @@ const postPlayers = (req, res) => {
               // TODO: Store all results, not only one
               storeMultiple(response3).then(
                 // db.storeSignupResultData(response3).then(
-                response4 => {
+                () => {
                   res.json({
                     message: 'Players assign success',
                     status: 'success',
-                    response3,
+                    results: response3,
                   });
                 },
                 error => {

@@ -45,7 +45,7 @@ const signupMultiple = (count, games, users) => {
 
   return (function loop(i) {
     return new Promise(resolve =>
-      signup(games, users[i - 1]).then(() => resolve())
+      signup(games, users[i]).then(() => resolve())
     ).then(() => i >= count || loop(i + 1));
   })(1);
 };
