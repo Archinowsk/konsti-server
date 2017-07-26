@@ -15,14 +15,7 @@ const GameSchema = mongoose.Schema({
   max_attendance: Number,
   attributes: Array,
   table: String,
-  updated_at: { type: Date, default: Date.now },
-});
-
-// On every save, add the date
-GameSchema.pre('save', next => {
-  // Change the updated_at field to current date
-  this.updated_at = new Date();
-  next();
+  created: { type: Date, default: Date.now },
 });
 
 module.exports = GameSchema;

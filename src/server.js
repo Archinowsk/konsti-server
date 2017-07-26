@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const expressJWT = require('express-jwt');
+// const expressJWT = require('express-jwt');
 
 const config = require('../config');
 
@@ -14,11 +14,23 @@ const db = require('./mongodb');
 const COMPRESSED = ['/client.bundle'];
 
 const developmentEnv = config.env === 'development';
-const testingEnv = config.env === 'testing';
+// const testingEnv = config.env === 'testing';
 const productionEnv = config.env === 'productionEnv';
 
 // TODO: Should be promise
 db.connectToDb();
+
+/*
+db.connectToDb().then(
+  () => {
+    logger.info(response)
+  },
+  error => {
+    logger.error(error);
+    Promise.reject(error);
+  }
+);
+*/
 
 const allowCORS = require('./middleware/cors');
 const apiRoutes = require('./apiRoutes');

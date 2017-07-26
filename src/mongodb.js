@@ -16,8 +16,20 @@ const connectToDb = () => {
     .connect(config.db, {
       useMongoClient: true,
     })
-    .then(() => logger.info('MongoDB: Connection succesful'))
-    .catch(err => logger.error(err));
+    .then(response => {
+      logger.info('MongoDB: Connection succesful');
+      /*
+      const collections = response.getCollectionNames();
+      logger.info('collections');
+      logger.info(collections);
+      */
+      return response;
+    })
+    .catch(error => {
+      logger.error(`MongoDB: Error connecting to DB: ${error}`);
+      // return error;
+      return Promise.reject(error);
+    });
 };
 
 const gracefulExit = () => {
@@ -187,13 +199,42 @@ const getUserData = userData => {
   );
 };
 
+const createSettingsData = () => {
+  // Create a model based on the schema
+  const Settings = mongoose.model('Settings', SettingsSchema);
+  logger.info('MongoDB: "Settings" collection not found, create empty');
+  // Example user data
+  const settings = new Settings({
+    blacklisted_games: [],
+    canceled_games: [],
+  });
+
+  // Save to database
+  return settings.save().then(
+    response => {
+      logger.info(`MongoDB: Empty settings collection saved to DB`);
+      return response;
+    },
+    error => {
+      logger.error(
+        `MongoDB: Error creating empty settings collection - ${error}`
+      );
+      return error;
+    }
+  );
+};
+
 const getSettingsData = () => {
   // Create a model based on the schema
   const Settings = mongoose.model('Settings', SettingsSchema);
 
-  return Settings.find({}).then(
+  return Settings.findOne({}).then(
     response => {
-      logger.error(`MongoDB: Settings data found`);
+      if (response === null) {
+        // No settings data, create new collection
+        return createSettingsData(response2 => response2);
+      }
+      logger.info(`MongoDB: Settings data found`);
       return response;
     },
     error => {

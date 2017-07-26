@@ -10,6 +10,7 @@ const postBlacklist = require('./controller/blacklist').postBlacklist;
 
 const getGames = require('./controller/games').getGames;
 const getUser = require('./controller/user').getUser;
+const getSettings = require('./controller/settings').getSettings;
 
 const router = express.Router();
 
@@ -23,5 +24,6 @@ router.post('/blacklist', postBlacklist);
 
 router.get('/games', getGames);
 router.get('/user', getUser);
+router.get('/settings', getSettings);
 
 module.exports = router;
