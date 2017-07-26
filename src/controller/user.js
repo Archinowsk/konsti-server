@@ -22,7 +22,7 @@ const postUser = (req, res) => {
       status: 'error',
     });
     // Check for valid serial
-  } else if (!checkSerial(registrationData.serial)) {
+  } else if (!checkSerial(registrationData.serial.trim())) {
     logger.info('User: Serial does not match');
     res.json({
       code: 12,
@@ -31,11 +31,15 @@ const postUser = (req, res) => {
     });
   } else {
     logger.info('User: Serial match');
+
+    const username = registrationData.username.trim();
+    const password = registrationData.password.trim();
+
     // Check if user already exists
-    db.getUserData({ username: registrationData.username }).then(
+    db.getUserData({ username }).then(
       response => {
         if (response.length === 0) {
-          hashPassword(registrationData.password).then(
+          hashPassword(password).then(
             response2 => {
               registrationData.passwordHash = response2;
 
@@ -61,9 +65,7 @@ const postUser = (req, res) => {
             }
           );
         } else {
-          logger.info(
-            `User: Username "${registrationData.username}" is already registered`
-          );
+          logger.info(`User: Username "${username}" is already registered`);
           res.json({
             code: 11,
             message: 'Username in already registered',

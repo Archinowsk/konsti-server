@@ -47,7 +47,7 @@ const removeGames = () => {
 const storeUserData = userData => {
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
-
+  const username = userData.username.trim();
   let userGroup = 'user';
 
   if (userData.user_group) {
@@ -56,7 +56,7 @@ const storeUserData = userData => {
 
   // Example user data
   const user = new User({
-    username: userData.username,
+    username,
     password: userData.passwordHash,
     user_group: userGroup, // Options: 'user' and 'admin'
     favorited_games: [],
@@ -67,13 +67,11 @@ const storeUserData = userData => {
   // Save to database
   return user.save().then(
     response => {
-      logger.info(`MongoDB: User ${userData.username} saved to DB`);
+      logger.info(`MongoDB: User ${username} saved to DB`);
       return response;
     },
     error => {
-      logger.error(
-        `MongoDB: Error creating new user ${userData.username} - ${error}`
-      );
+      logger.error(`MongoDB: Error creating new user ${username} - ${error}`);
       return error;
     }
   );
@@ -168,22 +166,21 @@ const storeGamesData = games => {
 const getUserData = userData => {
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
+  const username = userData.username.trim();
 
   // TODO: Update to use findOne() instead of find()
   // return User.findOne({ username: userData.username }).then(
-  return User.find({ username: userData.username }).then(
+  return User.find({ username }).then(
     response => {
       if (response.length === 0) {
-        logger.info(`MongoDB: User "${userData.username}" not found`);
+        logger.info(`MongoDB: User "${username}" not found`);
       } else {
-        logger.info(`MongoDB: Found user "${userData.username}"`);
+        logger.info(`MongoDB: Found user "${username}"`);
       }
       return response;
     },
     error => {
-      logger.error(
-        `MongoDB: Error finding user ${userData.username} - ${error}`
-      );
+      logger.error(`MongoDB: Error finding user ${username} - ${error}`);
       return error;
     }
   );

@@ -5,7 +5,7 @@ const comparePasswordHash = require('../utils/bcrypt').comparePasswordHash;
 const config = require('../../config');
 
 const validateLogin = (loginData, hash) =>
-  comparePasswordHash(loginData.password, hash).then(response => {
+  comparePasswordHash(loginData.password.trim(), hash).then(response => {
     // Password matches hash
     if (response === true) {
       // logger.info(`Login: User "${loginData.username}" password match`);
@@ -50,7 +50,7 @@ function postLogin(req, res) {
               }
               if (response2 === true) {
                 logger.info(
-                  `Login: Password for user "${loginData.username}" matches`
+                  `Login: Password for user "${loginData.username.trim()}" matches`
                 );
                 res.json({
                   message: 'User login success',
