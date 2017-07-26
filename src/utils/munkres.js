@@ -2,16 +2,6 @@ const moment = require('moment');
 const munkres = require('munkres-js');
 const logger = require('./logger').logger;
 
-/*
-const runMunkres = signupMatrix => {
-  // const result = munkres([[400, 150, 400], [400, 450, 600], [300, 225, 300]]);
-  // => [ [ 0, 1 ], [ 1, 0 ], [ 2, 2 ] ]
-
-  // const result = munkres(signupMatrix);
-  // logger.info(result);
-};
-*/
-
 const assignPlayers = (players, games, startingTime) => {
   logger.info(
     `Munkres: received data for ${players.length} players and ${games.length} games`
@@ -21,6 +11,7 @@ const assignPlayers = (players, games, startingTime) => {
   const startingGames = [];
   const date = moment.utc(startingTime).format();
 
+  // Get games that start at defined time
   games.forEach(game => {
     const utcTime = moment.utc(game.date).format();
     if (utcTime === date) {
@@ -32,6 +23,7 @@ const assignPlayers = (players, games, startingTime) => {
 
   const signupWishes = [];
 
+  // Get signup wishes for all players
   players.forEach(player => {
     player.signed_games.forEach(signedGame => {
       signupWishes.push({
@@ -44,11 +36,13 @@ const assignPlayers = (players, games, startingTime) => {
 
   logger.info(`Found ${signupWishes.length} signup wishes`);
 
-  const startingGamesWishes = [];
+  // const startingGamesWishes = [];
+  const selectedPlayers = [];
   const selectedGames = [];
   let minAttendance = 0;
   let maxAttendance = 0;
 
+  // Get valid games from games that are starting and games that have wishes
   startingGames.forEach(startingGame => {
     for (let i = 0; i < signupWishes.length; i += 1) {
       if (startingGame.id === signupWishes[i].id) {
@@ -64,38 +58,48 @@ const assignPlayers = (players, games, startingTime) => {
     `Found ${selectedGames.length} games that have signup wishes and ${minAttendance}-${maxAttendance} available seats`
   );
 
-  // Find all wishes that match game ID and store them to same array
-  startingGames.forEach(startingGame => {
-    signupWishes.forEach(signupWish => {
-      if (startingGame.id === signupWish.id) {
-        startingGamesWishes.push(signupWish);
+  // Get users who have wishes for valid games
+  players.forEach(player => {
+    let match = false;
+    for (let i = 0; i < player.signed_games.length; i += 1) {
+      for (let j = 0; j < startingGames.length; j += 1) {
+        if (player.signed_games[i].id === startingGames[j].id) {
+          match = true;
+          break;
+        }
       }
-    });
+      // Player matched, break
+      if (match) {
+        selectedPlayers.push(player);
+        break;
+      }
+    }
   });
 
-  logger.info(
-    `Found ${startingGamesWishes.length} signup wishes for this starting time`
-  );
-
-  // Sort same game wishes to single array
+  logger.info(`Found ${selectedPlayers.length} players for this starting time`);
 
   // Create matrix for the sorting algorithm
   // Each available seat is possible result
+  // Sort same game wishes to single array
   const signupMatrix = [];
   let counter = 0;
 
+  // For each starting game...
   selectedGames.forEach(selectedGame => {
     const gameSignups = [];
 
-    players.forEach(player => {
+    // ... check if players have wishes that match with game id
+    selectedPlayers.forEach(player => {
       let match = false;
       for (let i = 0; i < player.signed_games.length; i += 1) {
+        // Player has wish that matches starting game
         if (selectedGame.id === player.signed_games[i].id) {
           gameSignups.push(player.signed_games[i].priority);
           match = true;
           break;
         }
       }
+      // Add "empty" value if no match
       if (!match) {
         gameSignups.push(9);
       }
@@ -108,14 +112,9 @@ const assignPlayers = (players, games, startingTime) => {
     }
   });
 
-  // Game signups for the selected time slot
+  const results = munkres(signupMatrix);
 
   logger.info(signupMatrix);
-
-  // NOTES
-  // Single array is priorities for one game
-
-  const results = munkres(signupMatrix);
   logger.info(results);
 
   const combinedResult = [];
@@ -135,7 +134,7 @@ const assignPlayers = (players, games, startingTime) => {
       if (selectedRow <= attendanceRange) {
         matchingGame = selectedGames[j];
         combinedResult.push({
-          username: players[selectedPlayer].username,
+          username: selectedPlayers[selectedPlayer].username,
           enteredGame: matchingGame.id,
         });
         break;

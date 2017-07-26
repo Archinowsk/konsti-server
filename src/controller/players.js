@@ -28,19 +28,17 @@ const postPlayers = (req, res) => {
   }
 
   return db.getUsersData().then(
-    response => {
+    users => {
       db.getGamesData().then(
-        response2 => {
-          assignPlayers(response, response2, startingTime).then(
-            response3 => {
-              // TODO: Store all results, not only one
-              storeMultiple(response3).then(
-                // db.storeSignupResultData(response3).then(
+        games => {
+          assignPlayers(users, games, startingTime).then(
+            assignResults => {
+              storeMultiple(assignResults).then(
                 () => {
                   res.json({
                     message: 'Players assign success',
                     status: 'success',
-                    results: response3,
+                    results: assignResults,
                   });
                 },
                 error => {
