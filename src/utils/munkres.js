@@ -112,6 +112,7 @@ const assignPlayers = (players, games, startingTime) => {
     }
   });
 
+  // Run the algorithm
   const results = munkres(signupMatrix);
 
   logger.info(signupMatrix);
@@ -119,19 +120,29 @@ const assignPlayers = (players, games, startingTime) => {
 
   const combinedResult = [];
 
+  // Build signup results
   for (let i = 0; i < results.length; i += 1) {
-    const matrixValue = signupMatrix[results[i][0]][results[i][1]];
+    // const matrixValue = signupMatrix[results[i][0]][results[i][1]];
+    // logger.info(`matrix value: ${matrixValue}`);
+
+    // Row determines the game
     const selectedRow = parseInt(results[i][0], 10);
-    const selectedPlayer = parseInt(results[i][1], 10);
-    logger.info(`matrix value: ${matrixValue}`);
-    logger.info(`selected player: ${selectedPlayer}`);
     logger.info(`selected row: ${selectedRow}`);
 
+    // Player id
+    const selectedPlayer = parseInt(results[i][1], 10);
+    logger.info(`selected player: ${selectedPlayer}`);
+
     let attendanceRange = 0;
+
+    // Figure what games the row numbers are
     for (let j = 0; j < selectedGames.length; j += 1) {
       let matchingGame;
       attendanceRange += selectedGames[j].max_attendance;
-      if (selectedRow <= attendanceRange) {
+
+      logger.info(`attendanceRange: ${attendanceRange}`);
+
+      if (selectedRow < attendanceRange) {
         matchingGame = selectedGames[j];
         combinedResult.push({
           username: selectedPlayers[selectedPlayer].username,
