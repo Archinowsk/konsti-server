@@ -14,7 +14,8 @@ function getRandomInt(min, max) {
 }
 
 function getRandomDate() {
-  const dates = ['2017-07-28', '2017-07-29', '2017-07-30'];
+  // const dates = ['2017-07-28', '2017-07-29', '2017-07-30'];
+  const dates = ['2017-07-28'];
   const randomIndex = Math.floor(Math.random() * dates.length);
   return dates[randomIndex];
 }
@@ -30,8 +31,8 @@ function getRandomTime() {
     '16:00',
     '17:00',
     '18:00',
-    '19:00',
-    '20:00',
+    // '19:00',
+    // '20:00',
   ];
   const randomIndex = Math.floor(Math.random() * times.length);
   return times[randomIndex];
