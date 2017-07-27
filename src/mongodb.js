@@ -347,10 +347,12 @@ const storeBlacklistData = blacklistData => {
 const storeSignupTime = signupTime => {
   // Create a model based on the schema
   const Settings = mongoose.model('Settings', SettingsSchema);
+  // Make sure that the string is in correct format
+  const formattedTime = moment.utc(signupTime).format();
 
   // Save to database
   return Settings.update({
-    $set: { signup_time: signupTime },
+    $set: { signup_time: formattedTime },
   }).then(
     response => {
       logger.info(`MongoDB: Signup time updated`);
