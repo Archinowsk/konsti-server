@@ -33,22 +33,27 @@ const postPlayers = (req, res) => {
         games => {
           assignPlayers(users, games, startingTime).then(
             assignResults => {
-              storeMultiple(assignResults).then(
+              db.storeAllSignupResults(assignResults, startingTime).then(
                 () => {
-                  res.json({
-                    message: 'Players assign success',
-                    status: 'success',
-                    results: assignResults,
-                  });
+                  storeMultiple(assignResults).then(
+                    () => {
+                      res.json({
+                        message: 'Players assign success',
+                        status: 'success',
+                        results: assignResults,
+                      });
+                    },
+                    error => {
+                      logger.error(`Players: ${error}`);
+                      res.json({
+                        message: 'Players assign failure',
+                        status: 'error',
+                        error,
+                      });
+                    }
+                  );
                 },
-                error => {
-                  logger.error(`Players: ${error}`);
-                  res.json({
-                    message: 'Players assign failure',
-                    status: 'error',
-                    error,
-                  });
-                }
+                error => {}
               );
             },
             error => {

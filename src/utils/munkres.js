@@ -147,31 +147,15 @@ const assignPlayers = (players, games, startingTime) => {
         combinedResult.push({
           username: selectedPlayers[selectedPlayer].username,
           enteredGame: matchingGame.id,
+          signedGames: selectedPlayers[selectedPlayer].signed_games,
         });
         break;
       }
     }
   }
 
-  /*
-  const signupMatrix = [
-    [3, 9, 9, 1, 9, 1],
-    [3, 9, 9, 1, 9, 1],
-    [3, 9, 9, 1, 9, 1],
-    [2, 3, 2, 3, 2, 3],
-    [2, 3, 2, 3, 2, 3],
-    [2, 3, 2, 3, 2, 3],
-    [1, 1, 9, 9, 9, 9],
-    [1, 1, 9, 9, 9, 9],
-    [1, 1, 9, 9, 9, 9],
-    [9, 2, 1, 2, 3, 2],
-    [9, 2, 1, 2, 3, 2],
-    [9, 2, 1, 2, 3, 2],
-    [9, 9, 3, 9, 1, 9],
-    [9, 9, 3, 9, 1, 9],
-    [9, 9, 3, 9, 1, 9],
-  ];
-  */
+  // TODO: Separate games that don't have enough players
+  // TODO: Run algorithm again after dropping those games
 
   return Promise.resolve(combinedResult);
 };

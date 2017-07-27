@@ -5,6 +5,7 @@ const logger = require('./utils/logger').logger;
 const UserSchema = require('./models/userSchema');
 const GameSchema = require('./models/gameSchema');
 const SettingsSchema = require('./models/settingsSchema');
+const ResultsSchema = require('./models/resultsSchema');
 const config = require('../config');
 
 const connectToDb = () => {
@@ -394,6 +395,32 @@ const storeSignupResultData = signupResultData => {
   );
 };
 
+const storeAllSignupResults = (signupResultData, startingTime) => {
+  // Store to separate "results" collection
+  const Results = mongoose.model('Results', ResultsSchema);
+  const formattedTime = moment.utc(startingTime);
+
+  // Example user data
+  const results = new Results({
+    result: signupResultData,
+    time: formattedTime,
+  });
+
+  // Save to database
+  return results.save().then(
+    response => {
+      logger.info(`MongoDB: Signup results stored to separate collection`);
+      return response;
+    },
+    error => {
+      logger.error(
+        `MongoDB: Error storing signup results to separate collection - ${error}`
+      );
+      return error;
+    }
+  );
+};
+
 const storeFavoriteGamesData = favoriteGamesData => {
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
@@ -434,4 +461,5 @@ module.exports = {
   removeUsers,
   removeGames,
   getSettingsData,
+  storeAllSignupResults,
 };
