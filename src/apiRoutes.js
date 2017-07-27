@@ -8,6 +8,7 @@ const postSignup = require('./controller/signup').postSignup;
 const postFavorite = require('./controller/favorite').postFavorite;
 const postBlacklist = require('./controller/blacklist').postBlacklist;
 const postSignupTime = require('./controller/signuptime').postSignupTime;
+const postFeedback = require('./controller/feedback').postFeedback;
 
 const getGames = require('./controller/games').getGames;
 const getUser = require('./controller/user').getUser;
@@ -24,6 +25,7 @@ router.post('/signup', postSignup);
 router.post('/favorite', postFavorite);
 router.post('/blacklist', postBlacklist);
 router.post('/signuptime', postSignupTime);
+router.post('/feedback', postFeedback);
 
 router.get('/games', getGames);
 router.get('/user', getUser);

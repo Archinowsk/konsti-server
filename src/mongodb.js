@@ -6,6 +6,8 @@ const UserSchema = require('./models/userSchema');
 const GameSchema = require('./models/gameSchema');
 const SettingsSchema = require('./models/settingsSchema');
 const ResultsSchema = require('./models/resultsSchema');
+const FeedbackSchema = require('./models/feedbackSchema');
+
 const config = require('../config');
 
 const connectToDb = () => {
@@ -446,6 +448,29 @@ const storeAllSignupResults = (signupResultData, startingTime) => {
   );
 };
 
+const storeFeedbackData = feedbackData => {
+  // Store to separate "results" collection
+  const Feedback = mongoose.model('Feedback', FeedbackSchema);
+
+  // Example user data
+  const feedback = new Feedback({
+    game_id: feedbackData.id,
+    feedback: feedbackData.feedback,
+  });
+
+  // Save to database
+  return feedback.save().then(
+    response => {
+      logger.info(`MongoDB: Feedback stored success`);
+      return response;
+    },
+    error => {
+      logger.error(`MongoDB: Feedback stored error - ${error}`);
+      return error;
+    }
+  );
+};
+
 const storeFavoriteGamesData = favoriteGamesData => {
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
@@ -488,4 +513,5 @@ module.exports = {
   getSettingsData,
   storeAllSignupResults,
   getResultsData,
+  storeFeedbackData,
 };
