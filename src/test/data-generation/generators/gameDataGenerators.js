@@ -2,6 +2,8 @@ const logger = require('../../../utils/logger').logger;
 const db = require('../../../mongodb');
 const getRandomInt = require('./randomVariableGenerators').getRandomInt;
 const getRandomString = require('./randomVariableGenerators').getRandomString;
+const getRandomDate = require('./randomVariableGenerators').getRandomDate;
+const getRandomTime = require('./randomVariableGenerators').getRandomTime;
 
 const createGames = count => {
   // Create games with randomized data
@@ -20,8 +22,8 @@ const createGames = count => {
       desc: getRandomString(30),
       notes: 'Test Note',
       loc: ['203/A'],
-      date: '2016-07-30',
-      time: '20:00',
+      date: getRandomDate(),
+      time: getRandomTime(),
       mins: 240,
       tags: ['Pöytäpelit', 'Ei sovellu lapsille'],
       people: [{ name: 'Test GM' }],
