@@ -330,11 +330,16 @@ const assignPlayers = (players, games, startingTime) => {
   const selectedPlayers = getSelectedPlayers(players, startingGames);
   let signupMatrix = getSignupMatrix(selectedGames, selectedPlayers);
 
+  const initialGamesCount = selectedGames.length;
+  const initialPlayerCount = selectedPlayers.length;
+  let removedGamesCount = 0; // eslint-disable-line no-unused-vars
+  let removedPlayerCount = 0;
+
   // Run the algorithm
   let results = munkres(signupMatrix);
 
-  logger.info(signupMatrix);
-  logger.info(results);
+  // logger.info(signupMatrix);
+  // logger.info(results);
 
   let gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames);
 
@@ -345,6 +350,7 @@ const assignPlayers = (players, games, startingTime) => {
       if (selectedGames[i].id === removedGame.id) {
         logger.info(`Removed game ${selectedGames[i].title}`);
         selectedGames.splice(i, 1);
+        removedGamesCount += 1;
         break;
       }
     }
@@ -363,12 +369,17 @@ const assignPlayers = (players, games, startingTime) => {
 
     logger.info(`Removed player ${removedPlayer.playerId}`);
     selectedPlayers.splice(removedPlayer.playerId, 1);
+    removedPlayerCount += 1;
 
     signupMatrix = getSignupMatrix(selectedGames, selectedPlayers);
     results = munkres(signupMatrix);
     priorities = getPriorities(results, signupMatrix);
     playersWithTooHighPriority = getPlayersWithTooHighPriority(priorities);
   }
+
+  logger.info(`Removed ${removedGamesCount}/${initialGamesCount} games`);
+
+  logger.info(`Removed ${removedPlayerCount}/${initialPlayerCount} players`);
 
   const signupResults = buildSignupResults(
     results,

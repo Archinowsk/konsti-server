@@ -43,23 +43,20 @@ const createTestUser = () => {
   });
 };
 
-const createUser = () =>
+const createUser = () => {
   // Create users with randomized data
+  // Save time by not hashing the password
+  const registrationData = {
+    username: getRandomString(10),
+    passwordHash: 'testPass',
+    user_group: 'user',
+    favorited_games: [],
+    signed_games: [{}],
+    entered_games: [],
+  };
 
-  hashPassword('test').then(response => {
-    const passwordHash = response;
-
-    const registrationData = {
-      username: getRandomString(10),
-      passwordHash,
-      user_group: 'user',
-      favorited_games: [],
-      signed_games: [{}],
-      entered_games: [],
-    };
-
-    return db.storeUserData(registrationData);
-  });
+  return db.storeUserData(registrationData);
+};
 
 const createUsers = count => {
   logger.info(`Generate data for ${count} users`);
