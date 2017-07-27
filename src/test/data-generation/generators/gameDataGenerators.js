@@ -22,6 +22,8 @@ const createGames = count => {
       desc: getRandomString(30),
       notes: 'Test Note',
       loc: ['203/A'],
+      // date: '2017-07-28',
+      // time: '20:00',
       date: getRandomDate(),
       time: getRandomTime(),
       mins: 240,
