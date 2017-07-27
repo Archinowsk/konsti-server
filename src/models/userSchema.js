@@ -6,7 +6,7 @@ const UserSchema = mongoose.Schema({
   user_group: String,
   favorited_games: [{}],
   signed_games: [{}],
-  entered_games: Array,
+  entered_games: [{}],
   created: { type: Date, default: Date.now },
 });
 

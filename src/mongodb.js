@@ -371,14 +371,17 @@ const storeSignupTime = signupTime => {
 };
 
 const storeSignupResultData = signupResultData => {
-  // TODO: Store old results
   // Create a model based on the schema
   const User = mongoose.model('User', UserSchema);
 
-  // Save to database
+  // Save to database, don't store duplicate ids
   return User.update(
-    { username: signupResultData.username },
-    { $set: { entered_games: { id: signupResultData.enteredGame } } }
+    {
+      username: signupResultData.username,
+      entered_games: { $ne: [{ id: signupResultData.enteredGame }] },
+    },
+    // { $set: { entered_games: { id: signupResultData.enteredGame } } }
+    { $push: { entered_games: { id: signupResultData.enteredGame } } }
   ).then(
     response => {
       logger.info(
