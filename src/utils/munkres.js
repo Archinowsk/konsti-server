@@ -146,7 +146,7 @@ const assignPlayers = (players, games, startingTime) => {
         matchingGame = selectedGames[j];
         combinedResult.push({
           username: selectedPlayers[selectedPlayer].username,
-          enteredGame: matchingGame.id,
+          enteredGame: { id: matchingGame.id },
           signedGames: selectedPlayers[selectedPlayer].signed_games,
         });
         break;

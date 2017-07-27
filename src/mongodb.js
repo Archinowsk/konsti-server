@@ -246,6 +246,28 @@ const getSettingsData = () => {
   );
 };
 
+const getResultsData = () => {
+  // Create a model based on the schema
+  const Results = mongoose.model('Results', ResultsSchema);
+
+  return Results.find({}).then(
+    response => {
+      /*
+      if (response === null) {
+        // No settings data, create new collection
+        return createSettingsData(response2 => response2);
+      }
+      */
+      logger.info(`MongoDB: Results data found`);
+      return response;
+    },
+    error => {
+      logger.error(`MongoDB: Error finding results data - ${error}`);
+      return error;
+    }
+  );
+};
+
 const getGamesData = () => {
   // Create a model based on the schema
   const Game = mongoose.model('Game', GameSchema);
@@ -378,10 +400,10 @@ const storeSignupResultData = signupResultData => {
   return User.update(
     {
       username: signupResultData.username,
-      entered_games: { $ne: [{ id: signupResultData.enteredGame }] },
+      entered_games: { $ne: [{ id: signupResultData.enteredGame.id }] },
     },
     // { $set: { entered_games: { id: signupResultData.enteredGame } } }
-    { $push: { entered_games: { id: signupResultData.enteredGame } } }
+    { $push: { entered_games: { id: signupResultData.enteredGame.id } } }
   ).then(
     response => {
       logger.info(
@@ -465,4 +487,5 @@ module.exports = {
   removeGames,
   getSettingsData,
   storeAllSignupResults,
+  getResultsData,
 };

@@ -12,6 +12,7 @@ const postSignupTime = require('./controller/signuptime').postSignupTime;
 const getGames = require('./controller/games').getGames;
 const getUser = require('./controller/user').getUser;
 const getSettings = require('./controller/settings').getSettings;
+const getResults = require('./controller/results').getResults;
 
 const router = express.Router();
 
@@ -27,5 +28,6 @@ router.post('/signuptime', postSignupTime);
 router.get('/games', getGames);
 router.get('/user', getUser);
 router.get('/settings', getSettings);
+router.get('/results', getResults);
 
 module.exports = router;
