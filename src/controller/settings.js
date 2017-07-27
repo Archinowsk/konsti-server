@@ -22,14 +22,18 @@ const getSettings = (req, res) => {
 
   return db.getSettingsData().then(
     response => {
-      const returnData = {
+      const gamesData = {
         blacklistedGames: response.blacklisted_games,
       };
+
+      // logger.info(response.blacklisted_games);
+      // logger.info(response.signup_time);
 
       res.json({
         message: 'Getting settings success',
         status: 'success',
-        games: returnData,
+        games: gamesData,
+        signupTime: response.signup_time,
       });
     },
     error => {

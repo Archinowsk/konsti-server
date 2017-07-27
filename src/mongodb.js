@@ -207,6 +207,7 @@ const createSettingsData = () => {
   const settings = new Settings({
     blacklisted_games: [],
     canceled_games: [],
+    signup_time: '-',
   });
 
   // Save to database
@@ -343,6 +344,25 @@ const storeBlacklistData = blacklistData => {
   );
 };
 
+const storeSignupTime = signupTime => {
+  // Create a model based on the schema
+  const Settings = mongoose.model('Settings', SettingsSchema);
+
+  // Save to database
+  return Settings.update({
+    $set: { signup_time: signupTime },
+  }).then(
+    response => {
+      logger.info(`MongoDB: Signup time updated`);
+      return response;
+    },
+    error => {
+      logger.error(`MongoDB: Error updating signup time - ${error}`);
+      return error;
+    }
+  );
+};
+
 const storeSignupResultData = signupResultData => {
   // TODO: Store old results
   // Create a model based on the schema
@@ -402,6 +422,7 @@ module.exports = {
   storeSignupData,
   storeFavoriteData,
   storeBlacklistData,
+  storeSignupTime,
   storeSignupResultData,
   storeFavoriteGamesData,
   removeUsers,
