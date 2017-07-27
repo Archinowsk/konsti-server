@@ -106,7 +106,11 @@ const getSignupMatrix = (selectedGames, selectedPlayers) => {
       for (let i = 0; i < player.signed_games.length; i += 1) {
         // Player has wish that matches starting game
         if (selectedGame.id === player.signed_games[i].id) {
-          gameSignups.push(player.signed_games[i].priority);
+          if (typeof player.signed_games[i].priority === 'undefined') {
+            gameSignups.push(9);
+          } else {
+            gameSignups.push(player.signed_games[i].priority);
+          }
           match = true;
           break;
         }
@@ -132,16 +136,9 @@ const checkMinAttendance = (results, selectedGames) => {
   const gameIds = [];
 
   for (let i = 0; i < results.length; i += 1) {
-    // const matrixValue = signupMatrix[results[i][0]][results[i][1]];
-    // logger.info(`matrix value: ${matrixValue}`);
-
     // Row determines the game
     const selectedRow = parseInt(results[i][0], 10);
     // logger.info(`selected row: ${selectedRow}`);
-
-    // Player id
-    // const selectedPlayer = parseInt(results[i][1], 10);
-    // logger.info(`selected player: ${selectedPlayer}`);
 
     // Figure what games the row numbers are
     let attendanceRange = 0;
@@ -159,10 +156,6 @@ const checkMinAttendance = (results, selectedGames) => {
   gameIds.forEach(x => {
     counts[x] = (counts[x] || 0) + 1;
   });
-
-  // logger.info('counts');
-  // logger.info(counts);
-  // logger.info(gameIds.length);
 
   // Find games with too few players
   const gamesWithTooFewPlayers = [];
@@ -193,7 +186,7 @@ const getRemovedGame = gamesWithTooFewPlayers => {
     return 0;
   });
 
-  logger.info('sortedGamesWithTooFewPlayers');
+  // logger.info('sortedGamesWithTooFewPlayers');
   // logger.info(sortedGamesWithTooFewPlayers);
 
   // Find games that are tied to the lowest player count
@@ -204,14 +197,16 @@ const getRemovedGame = gamesWithTooFewPlayers => {
       sortedGamesWithTooFewPlayers[0].players
     )
       tiedToLowest.push(sortedGamesWithTooFewPlayers[i]);
-    logger.info(sortedGamesWithTooFewPlayers[i].players);
+    // logger.info(sortedGamesWithTooFewPlayers[i].players);
   }
 
-  logger.info('tiedToLowest');
+  // logger.info('tiedToLowest');
 
+  /*
   for (let i = 0; i < tiedToLowest.length; i += 1) {
     logger.info(tiedToLowest[i].players);
   }
+  */
 
   const randomIndex = Math.floor(Math.random() * tiedToLowest.length);
   const removedGame = tiedToLowest[randomIndex].game;
@@ -335,10 +330,13 @@ const assignPlayers = (players, games, startingTime) => {
   let removedGamesCount = 0; // eslint-disable-line no-unused-vars
   let removedPlayerCount = 0;
 
-  // Run the algorithm
-  let results = munkres(signupMatrix);
+  logger.info(signupMatrix);
 
-  // logger.info(signupMatrix);
+  // Run the algorithm
+  logger.info('run munkres');
+  let results = munkres(signupMatrix);
+  logger.info('run munkres finished');
+
   // logger.info(results);
 
   let gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames);
@@ -378,7 +376,6 @@ const assignPlayers = (players, games, startingTime) => {
   }
 
   logger.info(`Removed ${removedGamesCount}/${initialGamesCount} games`);
-
   logger.info(`Removed ${removedPlayerCount}/${initialPlayerCount} players`);
 
   const signupResults = buildSignupResults(
