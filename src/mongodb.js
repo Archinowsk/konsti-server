@@ -207,7 +207,7 @@ const createSettingsData = () => {
   const settings = new Settings({
     blacklisted_games: [],
     canceled_games: [],
-    signup_time: '-',
+    signup_time: null,
   });
 
   // Save to database
@@ -348,7 +348,7 @@ const storeSignupTime = signupTime => {
   // Create a model based on the schema
   const Settings = mongoose.model('Settings', SettingsSchema);
   // Make sure that the string is in correct format
-  const formattedTime = moment.utc(signupTime).format();
+  const formattedTime = moment.utc(signupTime);
 
   // Save to database
   return Settings.update({
