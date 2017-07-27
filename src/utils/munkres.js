@@ -2,12 +2,7 @@ const moment = require('moment');
 const munkres = require('munkres-js');
 const logger = require('./logger').logger;
 
-const assignPlayers = (players, games, startingTime) => {
-  logger.info(
-    `Munkres: received data for ${players.length} players and ${games.length} games`
-  );
-  logger.info(`Assigning players for games starting at ${startingTime}`);
-
+const getStargingGames = (games, startingTime) => {
   const startingGames = [];
   const date = moment.utc(startingTime).format();
 
@@ -21,6 +16,10 @@ const assignPlayers = (players, games, startingTime) => {
 
   logger.info(`Found ${startingGames.length} games for this starting time`);
 
+  return startingGames;
+};
+
+const getSignupWishes = players => {
   const signupWishes = [];
 
   // Get signup wishes for all players
@@ -36,8 +35,10 @@ const assignPlayers = (players, games, startingTime) => {
 
   logger.info(`Found ${signupWishes.length} signup wishes`);
 
-  // const startingGamesWishes = [];
-  const selectedPlayers = [];
+  return signupWishes;
+};
+
+const getSelectedGames = (startingGames, signupWishes) => {
   const selectedGames = [];
   let minAttendance = 0;
   let maxAttendance = 0;
@@ -58,7 +59,14 @@ const assignPlayers = (players, games, startingTime) => {
     `Found ${selectedGames.length} games that have signup wishes and ${minAttendance}-${maxAttendance} available seats`
   );
 
+  return selectedGames;
+};
+
+const getSelectedPlayers = (players, startingGames) => {
   // Get users who have wishes for valid games
+
+  const selectedPlayers = [];
+
   players.forEach(player => {
     let match = false;
     for (let i = 0; i < player.signed_games.length; i += 1) {
@@ -78,6 +86,10 @@ const assignPlayers = (players, games, startingTime) => {
 
   logger.info(`Found ${selectedPlayers.length} players for this starting time`);
 
+  return selectedPlayers;
+};
+
+const getSignupMatrix = (selectedGames, selectedPlayers) => {
   // Create matrix for the sorting algorithm
   // Each available seat is possible result
   // Sort same game wishes to single array
@@ -112,13 +124,105 @@ const assignPlayers = (players, games, startingTime) => {
     }
   });
 
-  // Run the algorithm
-  const results = munkres(signupMatrix);
+  return signupMatrix;
+};
 
-  logger.info(signupMatrix);
-  logger.info(results);
+const checkMinAttendance = (results, selectedGames) => {
+  // Check that game min_attendance is fullfilled
+  const gameIds = [];
 
-  const combinedResult = [];
+  for (let i = 0; i < results.length; i += 1) {
+    // const matrixValue = signupMatrix[results[i][0]][results[i][1]];
+    // logger.info(`matrix value: ${matrixValue}`);
+
+    // Row determines the game
+    const selectedRow = parseInt(results[i][0], 10);
+    // logger.info(`selected row: ${selectedRow}`);
+
+    // Player id
+    // const selectedPlayer = parseInt(results[i][1], 10);
+    // logger.info(`selected player: ${selectedPlayer}`);
+
+    // Figure what games the row numbers are
+    let attendanceRange = 0;
+    for (let j = 0; j < selectedGames.length; j += 1) {
+      attendanceRange += selectedGames[j].max_attendance;
+      // Found game
+      if (selectedRow < attendanceRange) {
+        gameIds.push(selectedGames[j].id);
+        break;
+      }
+    }
+  }
+
+  const counts = {};
+  gameIds.forEach(x => {
+    counts[x] = (counts[x] || 0) + 1;
+  });
+
+  // logger.info('counts');
+  // logger.info(counts);
+  // logger.info(gameIds.length);
+
+  // Find games with too few players
+  const gamesWithTooFewPlayers = [];
+  selectedGames.forEach(selectedGame => {
+    if (counts[selectedGame.id] < selectedGame.min_attendance) {
+      gamesWithTooFewPlayers.push({
+        game: selectedGame,
+        players: counts[selectedGame.id],
+      });
+      logger.info(
+        `Too few people for game ${selectedGame.title} (${counts[
+          selectedGame.id
+        ]}/${selectedGame.min_attendance})`
+      );
+    }
+  });
+
+  return gamesWithTooFewPlayers;
+};
+
+const getRemovedGame = () => {
+  // Get games with least players
+  const sortedGamesWithTooFewPlayers = gamesWithTooFewPlayers.sort((a, b) => {
+    const keyA = a.players;
+    const keyB = b.players;
+    if (keyA < keyB) return -1;
+    if (keyA > keyB) return 1;
+    return 0;
+  });
+
+  logger.info('sortedGamesWithTooFewPlayers');
+  // logger.info(sortedGamesWithTooFewPlayers);
+
+  // Find games that are tied to the lowest player count
+  const tiedToLowest = [];
+  for (let i = 0; i < sortedGamesWithTooFewPlayers.length; i += 1) {
+    if (
+      sortedGamesWithTooFewPlayers[i].players ===
+      sortedGamesWithTooFewPlayers[0].players
+    )
+      tiedToLowest.push(sortedGamesWithTooFewPlayers[i]);
+    logger.info(sortedGamesWithTooFewPlayers[i].players);
+  }
+
+  logger.info('tiedToLowest');
+
+  for (let i = 0; i < tiedToLowest.length; i += 1) {
+    logger.info(tiedToLowest[i].players);
+  }
+
+  const randomIndex = Math.floor(Math.random() * tiedToLowest.length);
+  const removedGame = tiedToLowest[randomIndex].game;
+
+  logger.info(`Removing game ${removedGame.title}`);
+
+  return removedGame;
+};
+
+const buildSignupResults = (results, selectedGames, selectedPlayers) => {
+  const signupResults = [];
 
   // Build signup results
   for (let i = 0; i < results.length; i += 1) {
@@ -127,11 +231,11 @@ const assignPlayers = (players, games, startingTime) => {
 
     // Row determines the game
     const selectedRow = parseInt(results[i][0], 10);
-    logger.info(`selected row: ${selectedRow}`);
+    // logger.info(`selected row: ${selectedRow}`);
 
     // Player id
     const selectedPlayer = parseInt(results[i][1], 10);
-    logger.info(`selected player: ${selectedPlayer}`);
+    // logger.info(`selected player: ${selectedPlayer}`);
 
     let attendanceRange = 0;
 
@@ -140,11 +244,13 @@ const assignPlayers = (players, games, startingTime) => {
       let matchingGame;
       attendanceRange += selectedGames[j].max_attendance;
 
-      logger.info(`attendanceRange: ${attendanceRange}`);
+      // logger.info(`attendanceRange: ${attendanceRange}`);
 
+      // Found game
       if (selectedRow < attendanceRange) {
         matchingGame = selectedGames[j];
-        combinedResult.push({
+
+        signupResults.push({
           username: selectedPlayers[selectedPlayer].username,
           enteredGame: { id: matchingGame.id },
           signedGames: selectedPlayers[selectedPlayer].signed_games,
@@ -153,11 +259,57 @@ const assignPlayers = (players, games, startingTime) => {
       }
     }
   }
+  return signupResults;
+};
+
+const assignPlayers = (players, games, startingTime) => {
+  logger.info(
+    `Munkres: received data for ${players.length} players and ${games.length} games`
+  );
+
+  logger.info(`Assigning players for games starting at ${startingTime}`);
+
+  const startingGames = getStargingGames(games, startingTime);
+  const signupWishes = getSignupWishes(players);
+  const selectedGames = getSelectedGames(startingGames, signupWishes);
+  const selectedPlayers = getSelectedPlayers(players, startingGames);
+  const signupMatrix = getSignupMatrix(selectedGames, selectedPlayers);
+
+  // Run the algorithm
+  const results = munkres(signupMatrix);
+
+  logger.info(signupMatrix);
+  logger.info(results);
+
+  const gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames);
+
+  /*
+  if (gamesWithTooFewPlayers > 0) {
+    const removedGame = getRemovedGame();
+  } else {
+    const signupResults = buildSignupResults(
+      results,
+      selectedGames,
+      selectedPlayers
+    );
+
+    // TODO: Separate games that don't have enough players
+    // TODO: Run algorithm again after dropping those games
+
+    return Promise.resolve(signupResults);
+  }
+  */
+
+  const signupResults = buildSignupResults(
+    results,
+    selectedGames,
+    selectedPlayers
+  );
 
   // TODO: Separate games that don't have enough players
   // TODO: Run algorithm again after dropping those games
 
-  return Promise.resolve(combinedResult);
+  return Promise.resolve(signupResults);
 };
 
 module.exports = { assignPlayers };
