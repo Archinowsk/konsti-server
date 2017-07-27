@@ -183,7 +183,7 @@ const checkMinAttendance = (results, selectedGames) => {
   return gamesWithTooFewPlayers;
 };
 
-const getRemovedGame = () => {
+const getRemovedGame = gamesWithTooFewPlayers => {
   // Get games with least players
   const sortedGamesWithTooFewPlayers = gamesWithTooFewPlayers.sort((a, b) => {
     const keyA = a.players;
@@ -216,7 +216,7 @@ const getRemovedGame = () => {
   const randomIndex = Math.floor(Math.random() * tiedToLowest.length);
   const removedGame = tiedToLowest[randomIndex].game;
 
-  logger.info(`Removing game ${removedGame.title}`);
+  // logger.info(`Removing game ${removedGame.title}`);
 
   return removedGame;
 };
@@ -262,6 +262,61 @@ const buildSignupResults = (results, selectedGames, selectedPlayers) => {
   return signupResults;
 };
 
+const getPriorities = (results, signupMatrix) => {
+  // Show the priorities players were assigned to
+  const priorities = [];
+  for (let i = 0; i < results.length; i += 1) {
+    const matrixValue = signupMatrix[results[i][0]][results[i][1]];
+    const selectedPlayer = parseInt(results[i][1], 10);
+    priorities.push({ playerId: selectedPlayer, priorityValue: matrixValue });
+    logger.info(`Priority for player ${selectedPlayer}: ${matrixValue}`);
+  }
+  return priorities;
+};
+
+const getPlayersWithTooHighPriority = priorities => {
+  const playersWithTooHighPriority = [];
+
+  priorities.forEach(priority => {
+    if (priority.priorityValue === 9) {
+      playersWithTooHighPriority.push(priority);
+      logger.info(`Priority too high for player ${priority.playerId}`);
+    }
+  });
+
+  return playersWithTooHighPriority;
+};
+
+const getRemovedPlayer = playersWithTooHighPriority => {
+  const randomIndex = Math.floor(
+    Math.random() * playersWithTooHighPriority.length
+  );
+  const removedPlayer = playersWithTooHighPriority[randomIndex];
+
+  // logger.info(`Removing player ${removedPlayer.playerId}`);
+
+  return removedPlayer;
+};
+
+/*
+const mapUsernamesToIds = (results, selectedGames, selectedPlayers) => {
+  const updatedSelectedPlayers = [];
+
+  // Build signup results
+  for (let i = 0; i < results.length; i += 1) {
+    // Player id
+    const selectedPlayer = parseInt(results[i][1], 10);
+    const user = selectedPlayers[selectedPlayer];
+    updatedSelectedPlayers.push(user);
+  }
+  return updatedSelectedPlayers;
+};
+*/
+
+// ******* //
+// Main function
+// ******* //
+
 const assignPlayers = (players, games, startingTime) => {
   logger.info(
     `Munkres: received data for ${players.length} players and ${games.length} games`
@@ -273,41 +328,53 @@ const assignPlayers = (players, games, startingTime) => {
   const signupWishes = getSignupWishes(players);
   const selectedGames = getSelectedGames(startingGames, signupWishes);
   const selectedPlayers = getSelectedPlayers(players, startingGames);
-  const signupMatrix = getSignupMatrix(selectedGames, selectedPlayers);
+  let signupMatrix = getSignupMatrix(selectedGames, selectedPlayers);
 
   // Run the algorithm
-  const results = munkres(signupMatrix);
+  let results = munkres(signupMatrix);
 
   logger.info(signupMatrix);
   logger.info(results);
 
-  const gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames);
+  let gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames);
 
-  /*
-  if (gamesWithTooFewPlayers > 0) {
-    const removedGame = getRemovedGame();
-  } else {
-    const signupResults = buildSignupResults(
-      results,
-      selectedGames,
-      selectedPlayers
-    );
+  while (gamesWithTooFewPlayers.length > 0) {
+    const removedGame = getRemovedGame(gamesWithTooFewPlayers);
 
-    // TODO: Separate games that don't have enough players
-    // TODO: Run algorithm again after dropping those games
+    for (let i = 0; i < selectedGames.length; i += 1) {
+      if (selectedGames[i].id === removedGame.id) {
+        logger.info(`Removed game ${selectedGames[i].title}`);
+        selectedGames.splice(i, 1);
+        break;
+      }
+    }
 
-    return Promise.resolve(signupResults);
+    signupMatrix = getSignupMatrix(selectedGames, selectedPlayers);
+    results = munkres(signupMatrix);
+    gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames);
   }
-  */
+
+  // Map usernames back to player ids before altering players array
+  let priorities = getPriorities(results, signupMatrix);
+  let playersWithTooHighPriority = getPlayersWithTooHighPriority(priorities);
+
+  while (playersWithTooHighPriority.length > 0) {
+    const removedPlayer = getRemovedPlayer(playersWithTooHighPriority);
+
+    logger.info(`Removed player ${removedPlayer.playerId}`);
+    selectedPlayers.splice(removedPlayer.playerId, 1);
+
+    signupMatrix = getSignupMatrix(selectedGames, selectedPlayers);
+    results = munkres(signupMatrix);
+    priorities = getPriorities(results, signupMatrix);
+    playersWithTooHighPriority = getPlayersWithTooHighPriority(priorities);
+  }
 
   const signupResults = buildSignupResults(
     results,
     selectedGames,
     selectedPlayers
   );
-
-  // TODO: Separate games that don't have enough players
-  // TODO: Run algorithm again after dropping those games
 
   return Promise.resolve(signupResults);
 };
