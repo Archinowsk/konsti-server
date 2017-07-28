@@ -29,40 +29,65 @@ const postUser = (req, res) => {
       message: 'Invalid serial',
       status: 'error',
     });
+    // Check that serial is not used
   } else {
+    /*
+  else if (true) {
+    // asd
+  }
+  */
     logger.info('User: Serial match');
 
     const username = registrationData.username.trim();
     const password = registrationData.password.trim();
+    const serial = registrationData.serial.trim();
 
+    logger.info(registrationData);
     // Check if user already exists
     db.getUserData({ username }).then(
       response => {
+        // Username free
         if (response.length === 0) {
-          hashPassword(password).then(
-            response2 => {
-              registrationData.passwordHash = response2;
+          // Check if serial is used
+          db.getUserSerial({ serial }).then(
+            serialResponse => {
+              // Serial not used
+              if (serialResponse.length === 0) {
+                hashPassword(password).then(
+                  response2 => {
+                    registrationData.passwordHash = response2;
 
-              db.storeUserData(registrationData).then(
-                () => {
-                  res.json({
-                    message: 'User registration success',
-                    status: 'success',
-                    // data: response3,
-                  });
-                },
-                error => {
-                  logger.error(`User: ${error}`);
-                  res.json({
-                    message: 'User registration failed',
-                    status: 'error',
-                  });
-                }
-              );
+                    db.storeUserData(registrationData).then(
+                      () => {
+                        res.json({
+                          message: 'User registration success',
+                          status: 'success',
+                          // data: response3,
+                        });
+                      },
+                      error => {
+                        logger.error(`User: ${error}`);
+                        res.json({
+                          message: 'User registration failed',
+                          status: 'error',
+                        });
+                      }
+                    );
+                  },
+                  error => {
+                    logger.error(`User: ${error}`);
+                  }
+                );
+              } else {
+                logger.info('User: Serial used');
+                res.json({
+                  code: 12,
+                  message: 'Invalid serial',
+                  status: 'error',
+                });
+              }
             },
-            error => {
-              logger.error(`User: ${error}`);
-            }
+            error => {}
           );
         } else {
           logger.info(`User: Username "${username}" is already registered`);

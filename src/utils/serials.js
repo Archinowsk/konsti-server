@@ -15,7 +15,8 @@ const generateSerials = () => {
   } else {
     for (let i = 1; i <= process.argv[1]; i += 1) {
       const serialNumber = generator.generate(10);
-      logger.info(`Serial ${i}: ${serialNumber}`);
+      // logger.info(`Serial ${i}: ${serialNumber}`);
+      logger.info(`${serialNumber}`);
     }
   }
 };

@@ -70,11 +70,12 @@ const storeUserData = userData => {
     userGroup = userData.user_group;
   }
 
-  // Example user data
+  // User data
   const user = new User({
     username,
     password: userData.passwordHash,
     user_group: userGroup, // Options: 'user' and 'admin'
+    serial: userData.serial,
     favorited_games: [],
     signed_games: [],
     entered_games: [],
@@ -197,6 +198,32 @@ const getUserData = userData => {
     },
     error => {
       logger.error(`MongoDB: Error finding user ${username} - ${error}`);
+      return error;
+    }
+  );
+};
+
+const getUserSerial = serialData => {
+  // Create a model based on the schema
+  const User = mongoose.model('User', UserSchema);
+  // const username = userData.username.trim();
+  const serial = serialData.serial;
+  logger.info('serial');
+
+  logger.info(serial);
+  // TODO: Update to use findOne() instead of find()
+  // return User.findOne({ username: userData.username }).then(
+  return User.find({ serial }).then(
+    response => {
+      if (response.length === 0) {
+        logger.info(`MongoDB: Serial "${serial}" not found`);
+      } else {
+        logger.info(`MongoDB: Found Serial "${serial}"`);
+      }
+      return response;
+    },
+    error => {
+      logger.error(`MongoDB: Error finding Serial ${serial} - ${error}`);
       return error;
     }
   );
@@ -514,4 +541,5 @@ module.exports = {
   storeAllSignupResults,
   getResultsData,
   storeFeedbackData,
+  getUserSerial,
 };
