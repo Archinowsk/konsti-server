@@ -32,6 +32,6 @@ connect()
   .then(() => createTestUser())
   .then(() => createUsers(newUsersCount))
   .then(() => createGames(newGamesCount))
-  .then(() => createSignupData(newSignupsCount))
+  // .then(() => createSignupData(newSignupsCount))
   .then(() => process.exit())
   .catch(error => logger.error(error));
