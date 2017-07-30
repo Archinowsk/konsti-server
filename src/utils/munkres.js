@@ -264,7 +264,7 @@ const getPriorities = (results, signupMatrix) => {
     const matrixValue = signupMatrix[results[i][0]][results[i][1]];
     const selectedPlayer = parseInt(results[i][1], 10);
     priorities.push({ playerId: selectedPlayer, priorityValue: matrixValue });
-    logger.info(`Priority for player ${selectedPlayer}: ${matrixValue}`);
+    // logger.info(`Priority for player ${selectedPlayer}: ${matrixValue}`);
   }
   return priorities;
 };
