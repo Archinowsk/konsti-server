@@ -18,7 +18,7 @@ module.exports = {
   rules: {
     'prettier/prettier': ['warn', { trailingComma: 'es5', singleQuote: true }],
     'no-console': 'off', // Disallow the use of console
-    'linebreak-style': ['warn', 'windows'], // Enforce consistent linebreak style
+    'linebreak-style': ['warn', 'unix'], // Enforce consistent linebreak style
     'import/no-extraneous-dependencies': [
       'error',
       {
