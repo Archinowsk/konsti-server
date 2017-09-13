@@ -330,7 +330,7 @@ const assignPlayers = (players, games, startingTime) => {
   let removedGamesCount = 0; // eslint-disable-line no-unused-vars
   let removedPlayerCount = 0;
 
-  // logger.info(signupMatrix);
+  logger.info(signupMatrix);
 
   // Run the algorithm
   // logger.info('run munkres');
