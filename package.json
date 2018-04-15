@@ -11,15 +11,18 @@
     "node": ">=8.x.x"
   },
   "scripts": {
+    "eslint": "eslint src --fix",
+    "generate-data":
+      "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
+    "generate-serials":
+      "node -e \"require('./src/utils/serials.js').generateSerials();\"",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "start": "node src/server.js",
     "start-dev": "cross-env NODE_ENV=development node src/server.js",
     "start-prod": "cross-env NODE_ENV=production node src/server.js",
     "start-test": "cross-env NODE_ENV=testing node src/server.js",
-    "test": "mocha --reporter spec --compilers js:babel-core/register",
-    "eslint": "eslint src --fix",
-    "prettier": "prettier --write \"src/**/*.{js,json}\"",
-    "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
-    "generate-serials": "node -e \"require('./src/utils/serials.js').generateSerials();\""
+    "test": "mocha --reporter spec --compilers js:babel-core/register"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -57,14 +60,7 @@
     "prettier": "^1.12.0"
   },
   "lint-staged": {
-    "*.js": [
-      "npm run eslint",
-      "npm run prettier",
-      "git add"
-    ],
-    "*.json": [
-      "npm run prettier",
-      "git add"
-    ]
+    "*.js": ["npm run eslint", "npm run prettier", "git add"],
+    "*.json": ["npm run prettier", "git add"]
   }
 }
