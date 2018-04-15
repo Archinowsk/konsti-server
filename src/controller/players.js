@@ -53,7 +53,9 @@ const postPlayers = (req, res) => {
                     }
                   )
                 },
-                error => {}
+                error => {
+                  console.log(error)
+                }
               )
             },
             error => {

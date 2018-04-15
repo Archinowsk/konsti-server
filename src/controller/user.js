@@ -87,7 +87,9 @@ const postUser = (req, res) => {
                 })
               }
             },
-            error => {}
+            error => {
+              console.log(error)
+            }
           )
         } else {
           logger.info(`User: Username "${username}" is already registered`)

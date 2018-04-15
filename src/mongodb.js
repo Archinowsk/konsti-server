@@ -16,16 +16,9 @@ const connectToDb = () => {
 
   // Connect to MongoDB and create/use database
   return mongoose
-    .connect(config.db, {
-      useMongoClient: true,
-    })
+    .connect(config.db)
     .then(response => {
       logger.info('MongoDB: Connection succesful')
-      /*
-      const collections = response.getCollectionNames();
-      logger.info('collections');
-      logger.info(collections);
-      */
       return response
     })
     .catch(error => {
