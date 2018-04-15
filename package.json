@@ -58,12 +58,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint src --fix",
-      "prettier --write 'src/**/*.js'",
+      "npm run eslint",
+      "npm run prettier",
       "git add"
     ],
     "*.json": [
-      "prettier --write 'src/**/*.json'",
+      "npm run prettier",
       "git add"
     ]
   }
