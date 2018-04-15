@@ -1,6 +1,6 @@
-const moment = require('moment');
-const munkres = require('munkres-js');
-const logger = require('./logger').logger;
+const moment = require("moment");
+const munkres = require("munkres-js");
+const logger = require("./logger").logger;
 
 const getStargingGames = (games, startingTime) => {
   const startingGames = [];
@@ -28,7 +28,7 @@ const getSignupWishes = players => {
       signupWishes.push({
         username: player.username,
         id: signedGame.id,
-        priority: signedGame.priority,
+        priority: signedGame.priority
       });
     });
   });
@@ -106,7 +106,7 @@ const getSignupMatrix = (selectedGames, selectedPlayers) => {
       for (let i = 0; i < player.signed_games.length; i += 1) {
         // Player has wish that matches starting game
         if (selectedGame.id === player.signed_games[i].id) {
-          if (typeof player.signed_games[i].priority === 'undefined') {
+          if (typeof player.signed_games[i].priority === "undefined") {
             gameSignups.push(9);
           } else {
             gameSignups.push(player.signed_games[i].priority);
@@ -163,7 +163,7 @@ const checkMinAttendance = (results, selectedGames) => {
     if (counts[selectedGame.id] < selectedGame.min_attendance) {
       gamesWithTooFewPlayers.push({
         game: selectedGame,
-        players: counts[selectedGame.id],
+        players: counts[selectedGame.id]
       });
       logger.info(
         `Too few people for game ${selectedGame.title} (${counts[
@@ -248,7 +248,7 @@ const buildSignupResults = (results, selectedGames, selectedPlayers) => {
         signupResults.push({
           username: selectedPlayers[selectedPlayer].username,
           enteredGame: { id: matchingGame.id },
-          signedGames: selectedPlayers[selectedPlayer].signed_games,
+          signedGames: selectedPlayers[selectedPlayer].signed_games
         });
         break;
       }

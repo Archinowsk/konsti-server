@@ -1,6 +1,6 @@
-const logger = require('../../../utils/logger').logger;
-const db = require('../../../mongodb');
-const getRandomInt = require('./randomVariableGenerators').getRandomInt;
+const logger = require("../../../utils/logger").logger;
+const db = require("../../../mongodb");
+const getRandomInt = require("./randomVariableGenerators").getRandomInt;
 
 const getGames = () => db.getGamesData();
 const getUsers = () => db.getUsersData();
@@ -32,7 +32,7 @@ const signup = (games, user) => {
 
   return db.storeSignupData({
     username: user.username,
-    selectedGames: gamesWithPriorities,
+    selectedGames: gamesWithPriorities
   });
 
   // TODO: Different users: some sign for all three, some for one
@@ -52,7 +52,7 @@ const signupMultiple = (count, games, users) => {
 
 const createSignupData = count => {
   // Sign up users to games
-  logger.info('Generate signup data');
+  logger.info("Generate signup data");
 
   let games = [];
   let users = [];

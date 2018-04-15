@@ -1,5 +1,5 @@
-const generator = require('generate-serial-number');
-const logger = require('../utils/logger').logger;
+const generator = require("generate-serial-number");
+const logger = require("../utils/logger").logger;
 
 const checkSerial = serial => {
   const valid = generator.isValid(serial);
@@ -10,7 +10,7 @@ const isInt = n => n % 1 === 0;
 
 const generateSerials = () => {
   const count = process.argv[1];
-  if (count === 0 || typeof count === 'undefined' || !isInt(count)) {
+  if (count === 0 || typeof count === "undefined" || !isInt(count)) {
     logger.error('Give number parameter: "npm run generate-serials 10"');
   } else {
     for (let i = 1; i <= process.argv[1]; i += 1) {

@@ -1,20 +1,20 @@
-const logger = require('../utils/logger').logger;
-const db = require('../mongodb');
-const validateAuthHeader = require('../utils/authHeader');
+const logger = require("../utils/logger").logger;
+const db = require("../mongodb");
+const validateAuthHeader = require("../utils/authHeader");
 
 // Add blacklist data to server settings
 const postBlacklist = (req, res) => {
-  logger.info('API call: POST /api/blacklist');
+  logger.info("API call: POST /api/blacklist");
   const blacklistData = req.body.blacklistData;
 
   const authHeader = req.headers.authorization;
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  const validToken = validateAuthHeader(authHeader, "admin");
 
   if (!validToken) {
     res.json({
       code: 31,
-      message: 'Unauthorized',
-      status: 'error',
+      message: "Unauthorized",
+      status: "error"
     });
     return undefined;
   }
@@ -22,15 +22,15 @@ const postBlacklist = (req, res) => {
   return db.storeBlacklistData(blacklistData).then(
     () => {
       res.json({
-        message: 'Update blacklist success',
-        status: 'success',
+        message: "Update blacklist success",
+        status: "success"
       });
     },
     error => {
       res.json({
-        message: 'Update blacklist failure',
-        status: 'error',
-        error,
+        message: "Update blacklist failure",
+        status: "error",
+        error
       });
     }
   );

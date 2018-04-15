@@ -1,19 +1,19 @@
-const requestPromiseNative = require('request-promise-native');
+const requestPromiseNative = require("request-promise-native");
 
-const logger = require('../utils/logger').logger;
-const db = require('../mongodb');
-const validateAuthHeader = require('../utils/authHeader');
+const logger = require("../utils/logger").logger;
+const db = require("../mongodb");
+const validateAuthHeader = require("../utils/authHeader");
 
 const updateGames = () => {
-  logger.info('Games: GET games from Conbase');
+  logger.info("Games: GET games from Conbase");
 
   const options = {
     // uri: `http://archinowsk.kapsi.fi/games.json`,
     uri: `https://conbase.ropecon.fi/programs/export.json`,
     headers: {
-      'User-Agent': 'Request-Promise',
+      "User-Agent": "Request-Promise"
     },
-    json: true, // Automatically parses the JSON string in the response
+    json: true // Automatically parses the JSON string in the response
   };
 
   return requestPromiseNative(options).then(
@@ -27,7 +27,7 @@ const updateGames = () => {
       const games = [];
       response.forEach(game => {
         game.tags.forEach(tag => {
-          if (tag === 'Pöytäpelit') {
+          if (tag === "Pöytäpelit") {
             games.push(game);
           }
         });
@@ -43,16 +43,16 @@ const updateGames = () => {
 
 // Update games db from Conbase
 const postGames = (req, res) => {
-  logger.info('API call: POST /api/games');
+  logger.info("API call: POST /api/games");
 
   const authHeader = req.headers.authorization;
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  const validToken = validateAuthHeader(authHeader, "admin");
 
   if (!validToken) {
     res.json({
       code: 31,
-      message: 'Unauthorized',
-      status: 'error',
+      message: "Unauthorized",
+      status: "error"
     });
     return undefined;
   }
@@ -62,16 +62,16 @@ const postGames = (req, res) => {
       db.storeGamesData(response).then(
         response2 => {
           res.json({
-            message: 'Games db updated',
-            status: 'success',
-            data: response2,
+            message: "Games db updated",
+            status: "success",
+            data: response2
           });
         },
         error => {
           res.json({
-            message: 'Games db update failed',
-            status: 'error',
-            data: error,
+            message: "Games db update failed",
+            status: "error",
+            data: error
           });
           Promise.reject(error);
         }
@@ -84,21 +84,21 @@ const postGames = (req, res) => {
 
 // Get games from db
 const getGames = (req, res) => {
-  logger.info('API call: GET /api/games');
+  logger.info("API call: GET /api/games");
 
   db.getGamesData().then(
     response => {
       res.json({
-        message: 'Games downloaded',
-        status: 'success',
-        games: response,
+        message: "Games downloaded",
+        status: "success",
+        games: response
       });
     },
     error => {
       res.json({
-        message: 'Downloading games failed',
-        status: 'error',
-        response: error,
+        message: "Downloading games failed",
+        status: "error",
+        response: error
       });
     }
   );

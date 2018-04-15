@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const GameSchema = mongoose.Schema({
   id: Number,
@@ -15,7 +15,7 @@ const GameSchema = mongoose.Schema({
   max_attendance: Number,
   attributes: Array,
   table: String,
-  created: { type: Date, default: Date.now },
+  created: { type: Date, default: Date.now }
 });
 
 module.exports = GameSchema;

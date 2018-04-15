@@ -1,14 +1,14 @@
 // Load mongoose package
-const mongoose = require('mongoose');
-const moment = require('moment');
-const logger = require('./utils/logger').logger;
-const UserSchema = require('./models/userSchema');
-const GameSchema = require('./models/gameSchema');
-const SettingsSchema = require('./models/settingsSchema');
-const ResultsSchema = require('./models/resultsSchema');
-const FeedbackSchema = require('./models/feedbackSchema');
+const mongoose = require("mongoose");
+const moment = require("moment");
+const logger = require("./utils/logger").logger;
+const UserSchema = require("./models/userSchema");
+const GameSchema = require("./models/gameSchema");
+const SettingsSchema = require("./models/settingsSchema");
+const ResultsSchema = require("./models/resultsSchema");
+const FeedbackSchema = require("./models/feedbackSchema");
 
-const config = require('../config');
+const config = require("../config");
 
 const connectToDb = () => {
   // Use native Node promises
@@ -17,10 +17,10 @@ const connectToDb = () => {
   // Connect to MongoDB and create/use database
   return mongoose
     .connect(config.db, {
-      useMongoClient: true,
+      useMongoClient: true
     })
     .then(response => {
-      logger.info('MongoDB: Connection succesful');
+      logger.info("MongoDB: Connection succesful");
       /*
       const collections = response.getCollectionNames();
       logger.info('collections');
@@ -45,26 +45,26 @@ const gracefulExit = () => {
 };
 
 // If the Node process ends, close the Mongoose connection
-process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
+process.on("SIGINT", gracefulExit).on("SIGTERM", gracefulExit);
 
 const removeUsers = () => {
-  logger.info('MongoDB: remove ALL users from db');
-  const User = mongoose.model('User', UserSchema);
+  logger.info("MongoDB: remove ALL users from db");
+  const User = mongoose.model("User", UserSchema);
   return User.remove({});
 };
 
 const removeGames = () => {
-  logger.info('MongoDB: remove ALL games from db');
+  logger.info("MongoDB: remove ALL games from db");
 
-  const Game = mongoose.model('Game', GameSchema);
+  const Game = mongoose.model("Game", GameSchema);
   return Game.remove({});
 };
 
 const storeUserData = userData => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
   const username = userData.username.trim();
-  let userGroup = 'user';
+  let userGroup = "user";
 
   if (userData.user_group) {
     userGroup = userData.user_group;
@@ -78,7 +78,7 @@ const storeUserData = userData => {
     serial: userData.serial,
     favorited_games: [],
     signed_games: [],
-    entered_games: [],
+    entered_games: []
   });
 
   // Save to database
@@ -96,9 +96,9 @@ const storeUserData = userData => {
 
 // Store all games to db
 const storeGamesData = games => {
-  logger.info('MongoDB: Store games to DB');
+  logger.info("MongoDB: Store games to DB");
   // Create a model based on the schema
-  const Game = mongoose.model('Game', GameSchema);
+  const Game = mongoose.model("Game", GameSchema);
 
   const gameDocs = [];
 
@@ -113,15 +113,15 @@ const storeGamesData = games => {
 
     // Combine date and time
     let date = moment.utc(game.date);
-    const hours = game.time.substring(0, game.time.indexOf(':'));
-    date = moment(date).add(hours, 'hours');
+    const hours = game.time.substring(0, game.time.indexOf(":"));
+    date = moment(date).add(hours, "hours");
 
     // Parse min and max attendance number from string
     if (game.attendance) {
-      attendance = game.attendance.replace(/\s/g, '').replace('–', '-');
-      if (attendance.includes('-')) {
-        minAttendance = attendance.substring(0, attendance.indexOf('-'));
-        maxAttendance = attendance.substring(attendance.lastIndexOf('-') + 1);
+      attendance = game.attendance.replace(/\s/g, "").replace("–", "-");
+      if (attendance.includes("-")) {
+        minAttendance = attendance.substring(0, attendance.indexOf("-"));
+        maxAttendance = attendance.substring(attendance.lastIndexOf("-") + 1);
       } else if (isInt(attendance)) {
         minAttendance = attendance;
         maxAttendance = attendance;
@@ -153,7 +153,7 @@ const storeGamesData = games => {
       min_attendance: minAttendance,
       max_attendance: maxAttendance,
       attributes: game.attributes,
-      table: game.table,
+      table: game.table
     });
 
     gameDocs.push(gameDoc);
@@ -164,7 +164,7 @@ const storeGamesData = games => {
     () =>
       Game.create(gameDocs).then(
         response => {
-          logger.info('MonboDB: Games saved to DB succesfully');
+          logger.info("MonboDB: Games saved to DB succesfully");
           return response;
         },
         // TODO: Collect and return all errors, now only catches one
@@ -182,7 +182,7 @@ const storeGamesData = games => {
 
 const getUserData = userData => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
   const username = userData.username.trim();
 
   // TODO: Update to use findOne() instead of find()
@@ -205,10 +205,10 @@ const getUserData = userData => {
 
 const getUserSerial = serialData => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
   // const username = userData.username.trim();
   const serial = serialData.serial;
-  logger.info('serial');
+  logger.info("serial");
 
   logger.info(serial);
   // TODO: Update to use findOne() instead of find()
@@ -231,13 +231,13 @@ const getUserSerial = serialData => {
 
 const createSettingsData = () => {
   // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema);
+  const Settings = mongoose.model("Settings", SettingsSchema);
   logger.info('MongoDB: "Settings" collection not found, create empty');
   // Example user data
   const settings = new Settings({
     blacklisted_games: [],
     canceled_games: [],
-    signup_time: moment.utc('2000-01-01'),
+    signup_time: moment.utc("2000-01-01")
   });
 
   // Save to database
@@ -257,7 +257,7 @@ const createSettingsData = () => {
 
 const getSettingsData = () => {
   // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema);
+  const Settings = mongoose.model("Settings", SettingsSchema);
 
   return Settings.findOne({}).then(
     response => {
@@ -277,7 +277,7 @@ const getSettingsData = () => {
 
 const getResultsData = () => {
   // Create a model based on the schema
-  const Results = mongoose.model('Results', ResultsSchema);
+  const Results = mongoose.model("Results", ResultsSchema);
 
   return Results.find({}).then(
     response => {
@@ -299,7 +299,7 @@ const getResultsData = () => {
 
 const getGamesData = () => {
   // Create a model based on the schema
-  const Game = mongoose.model('Game', GameSchema);
+  const Game = mongoose.model("Game", GameSchema);
 
   return Game.find({}).then(
     response => {
@@ -315,7 +315,7 @@ const getGamesData = () => {
 
 const getUsersData = () => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
 
   return User.find({}).then(
     response => {
@@ -331,7 +331,7 @@ const getUsersData = () => {
 
 const storeSignupData = signupData => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
 
   // Save to database
   return User.update(
@@ -355,7 +355,7 @@ const storeSignupData = signupData => {
 
 const storeFavoriteData = favoriteData => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
 
   // Save to database
   return User.update(
@@ -379,11 +379,11 @@ const storeFavoriteData = favoriteData => {
 
 const storeBlacklistData = blacklistData => {
   // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema);
+  const Settings = mongoose.model("Settings", SettingsSchema);
 
   // Save to database
   return Settings.update({
-    $set: { blacklisted_games: blacklistData.blacklistedGames },
+    $set: { blacklisted_games: blacklistData.blacklistedGames }
   }).then(
     response => {
       logger.info(`MongoDB: Blacklist data updated`);
@@ -398,17 +398,17 @@ const storeBlacklistData = blacklistData => {
 
 const storeSignupTime = signupTime => {
   // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema);
+  const Settings = mongoose.model("Settings", SettingsSchema);
   // Make sure that the string is in correct format
   let formattedTime;
   if (signupTime === null) {
-    formattedTime = moment.utc('2000-01-01');
+    formattedTime = moment.utc("2000-01-01");
   } else {
     formattedTime = moment.utc(signupTime);
   }
   // Save to database
   return Settings.update({
-    $set: { signup_time: formattedTime },
+    $set: { signup_time: formattedTime }
   }).then(
     response => {
       logger.info(`MongoDB: Signup time updated`);
@@ -423,13 +423,13 @@ const storeSignupTime = signupTime => {
 
 const storeSignupResultData = signupResultData => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
 
   // Save to database, don't store duplicate ids
   return User.update(
     {
       username: signupResultData.username,
-      entered_games: { $ne: [{ id: signupResultData.enteredGame.id }] },
+      entered_games: { $ne: [{ id: signupResultData.enteredGame.id }] }
     },
     // { $set: { entered_games: { id: signupResultData.enteredGame } } }
     { $push: { entered_games: { id: signupResultData.enteredGame.id } } }
@@ -451,13 +451,13 @@ const storeSignupResultData = signupResultData => {
 
 const storeAllSignupResults = (signupResultData, startingTime) => {
   // Store to separate "results" collection
-  const Results = mongoose.model('Results', ResultsSchema);
+  const Results = mongoose.model("Results", ResultsSchema);
   const formattedTime = moment.utc(startingTime);
 
   // Example user data
   const results = new Results({
     result: signupResultData,
-    time: formattedTime,
+    time: formattedTime
   });
 
   // Save to database
@@ -477,12 +477,12 @@ const storeAllSignupResults = (signupResultData, startingTime) => {
 
 const storeFeedbackData = feedbackData => {
   // Store to separate "results" collection
-  const Feedback = mongoose.model('Feedback', FeedbackSchema);
+  const Feedback = mongoose.model("Feedback", FeedbackSchema);
 
   // Example user data
   const feedback = new Feedback({
     game_id: feedbackData.id,
-    feedback: feedbackData.feedback,
+    feedback: feedbackData.feedback
   });
 
   // Save to database
@@ -500,7 +500,7 @@ const storeFeedbackData = feedbackData => {
 
 const storeFavoriteGamesData = favoriteGamesData => {
   // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema);
+  const User = mongoose.model("User", UserSchema);
 
   // Save to database
   return User.update(
@@ -541,5 +541,5 @@ module.exports = {
   storeAllSignupResults,
   getResultsData,
   storeFeedbackData,
-  getUserSerial,
+  getUserSerial
 };

@@ -1,22 +1,22 @@
-const jwt = require('jsonwebtoken');
-const logger = require('../utils/logger').logger;
-const config = require('../../config');
+const jwt = require("jsonwebtoken");
+const logger = require("../utils/logger").logger;
+const config = require("../../config");
 
 const validateAuthHeader = (authHeader, userGroup) => {
   logger.info(`Auth: Require jwt token for "${userGroup}" user group`);
 
-  let jwtToken = '';
+  let jwtToken = "";
 
   if (authHeader) {
     // Strip 'bearer' from authHeader
-    jwtToken = authHeader.split('Bearer ')[1];
+    jwtToken = authHeader.split("Bearer ")[1];
   } else {
     logger.info(`Auth: No auth header`);
     return false;
   }
 
-  let jwtSecretKey = '';
-  if (userGroup === 'admin') {
+  let jwtSecretKey = "";
+  if (userGroup === "admin") {
     jwtSecretKey = config.jwtSecretKeyAdmin;
   } else {
     jwtSecretKey = config.jwtSecretKey;

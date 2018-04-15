@@ -1,7 +1,7 @@
 function getRandomString(length) {
-  let text = '';
+  let text = "";
   const possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
   for (let i = 0; i < length; i += 1)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -15,7 +15,7 @@ function getRandomInt(min, max) {
 
 function getRandomDate() {
   // const dates = ['2017-07-28', '2017-07-29', '2017-07-30'];
-  const dates = ['2017-07-28'];
+  const dates = ["2017-07-28"];
   const randomIndex = Math.floor(Math.random() * dates.length);
   return dates[randomIndex];
 }
@@ -28,8 +28,8 @@ function getRandomTime() {
     // '13:00',
     // '14:00',
     // '15:00',
-    '16:00',
-    '17:00',
+    "16:00",
+    "17:00"
     // '18:00',
     // '19:00',
     // '20:00',
@@ -42,5 +42,5 @@ module.exports = {
   getRandomString,
   getRandomInt,
   getRandomDate,
-  getRandomTime,
+  getRandomTime
 };

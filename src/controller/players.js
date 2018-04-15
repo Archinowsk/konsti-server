@@ -1,7 +1,7 @@
-const logger = require('../utils/logger').logger;
-const db = require('../mongodb');
-const assignPlayers = require('../utils/munkres').assignPlayers;
-const validateAuthHeader = require('../utils/authHeader');
+const logger = require("../utils/logger").logger;
+const db = require("../mongodb");
+const assignPlayers = require("../utils/munkres").assignPlayers;
+const validateAuthHeader = require("../utils/authHeader");
 
 const storeMultiple = signupData =>
   (function loop(i) {
@@ -12,17 +12,17 @@ const storeMultiple = signupData =>
 
 // Assign players to games
 const postPlayers = (req, res) => {
-  logger.info('API call: POST /api/players');
+  logger.info("API call: POST /api/players");
   const startingTime = req.body.startingTime;
 
   const authHeader = req.headers.authorization;
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  const validToken = validateAuthHeader(authHeader, "admin");
 
   if (!validToken) {
     res.json({
       code: 31,
-      message: 'Unauthorized',
-      status: 'error',
+      message: "Unauthorized",
+      status: "error"
     });
     return undefined;
   }
@@ -38,17 +38,17 @@ const postPlayers = (req, res) => {
                   storeMultiple(assignResults).then(
                     () => {
                       res.json({
-                        message: 'Players assign success',
-                        status: 'success',
-                        results: assignResults,
+                        message: "Players assign success",
+                        status: "success",
+                        results: assignResults
                       });
                     },
                     error => {
                       logger.error(`Players: ${error}`);
                       res.json({
-                        message: 'Players assign failure',
-                        status: 'error',
-                        error,
+                        message: "Players assign failure",
+                        status: "error",
+                        error
                       });
                     }
                   );
@@ -59,9 +59,9 @@ const postPlayers = (req, res) => {
             error => {
               logger.error(`Players: ${error}`);
               res.json({
-                message: 'Players assign failure',
-                status: 'error',
-                error,
+                message: "Players assign failure",
+                status: "error",
+                error
               });
             }
           );
@@ -69,9 +69,9 @@ const postPlayers = (req, res) => {
         error => {
           logger.error(`Players: ${error}`);
           res.json({
-            message: 'Players assign failure',
-            status: 'error',
-            error,
+            message: "Players assign failure",
+            status: "error",
+            error
           });
         }
       );
@@ -79,9 +79,9 @@ const postPlayers = (req, res) => {
     error => {
       logger.error(`Players: ${error}`);
       res.json({
-        message: 'Players assign failure',
-        status: 'error',
-        error,
+        message: "Players assign failure",
+        status: "error",
+        error
       });
     }
   );

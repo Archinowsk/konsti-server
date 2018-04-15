@@ -1,22 +1,22 @@
-const logger = require('../../../utils/logger').logger;
-const db = require('../../../mongodb');
-const getRandomString = require('./randomVariableGenerators').getRandomString;
-const hashPassword = require('../../../utils/bcrypt').hashPassword;
+const logger = require("../../../utils/logger").logger;
+const db = require("../../../mongodb");
+const getRandomString = require("./randomVariableGenerators").getRandomString;
+const hashPassword = require("../../../utils/bcrypt").hashPassword;
 
 const createAdminUser = () => {
   // Create admin user with predefined data
   logger.info(`Generate data for admin user "admin:test"`);
 
-  return hashPassword('test').then(response => {
+  return hashPassword("test").then(response => {
     const passwordHash = response;
 
     const registrationData = {
-      username: 'admin',
+      username: "admin",
       passwordHash,
-      user_group: 'admin',
+      user_group: "admin",
       favorited_games: [],
       signed_games: [{}],
-      entered_games: [],
+      entered_games: []
     };
 
     return db.storeUserData(registrationData);
@@ -27,16 +27,16 @@ const createTestUser = () => {
   // Create admin user with predefined data
   logger.info(`Generate data for user "test:test"`);
 
-  return hashPassword('test').then(response => {
+  return hashPassword("test").then(response => {
     const passwordHash = response;
 
     const registrationData = {
-      username: 'test',
+      username: "test",
       passwordHash,
-      user_group: 'user',
+      user_group: "user",
       favorited_games: [],
       signed_games: [{}],
-      entered_games: [],
+      entered_games: []
     };
 
     return db.storeUserData(registrationData);
@@ -48,11 +48,11 @@ const createUser = () => {
   // Save time by not hashing the password
   const registrationData = {
     username: getRandomString(10),
-    passwordHash: 'testPass',
-    user_group: 'user',
+    passwordHash: "testPass",
+    user_group: "user",
     favorited_games: [],
     signed_games: [{}],
-    entered_games: [],
+    entered_games: []
   };
 
   return db.storeUserData(registrationData);

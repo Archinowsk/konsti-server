@@ -1,16 +1,16 @@
-const logger = require('../../utils/logger').logger;
-const db = require('../../mongodb');
-const createUsers = require('./generators/userDataGenerators').createUsers;
-const createAdminUser = require('./generators/userDataGenerators')
+const logger = require("../../utils/logger").logger;
+const db = require("../../mongodb");
+const createUsers = require("./generators/userDataGenerators").createUsers;
+const createAdminUser = require("./generators/userDataGenerators")
   .createAdminUser;
-const createTestUser = require('./generators/userDataGenerators')
+const createTestUser = require("./generators/userDataGenerators")
   .createTestUser;
-const createGames = require('./generators/gameDataGenerators').createGames;
-const createSignupData = require('./generators/signupDataGenerators')
+const createGames = require("./generators/gameDataGenerators").createGames;
+const createSignupData = require("./generators/signupDataGenerators")
   .createSignupData;
-const config = require('../../../config');
+const config = require("../../../config");
 
-if (config.env !== 'development') {
+if (config.env !== "development") {
   logger.error(
     `Data cretion only allowed in dev environment, current env "${config.env}"`
   );

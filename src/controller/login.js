@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
-const logger = require('../utils/logger').logger;
-const db = require('../mongodb');
-const comparePasswordHash = require('../utils/bcrypt').comparePasswordHash;
-const config = require('../../config');
+const jwt = require("jsonwebtoken");
+const logger = require("../utils/logger").logger;
+const db = require("../mongodb");
+const comparePasswordHash = require("../utils/bcrypt").comparePasswordHash;
+const config = require("../../config");
 
 const validateLogin = (loginData, hash) =>
   comparePasswordHash(loginData.password.trim(), hash).then(response => {
@@ -16,14 +16,14 @@ const validateLogin = (loginData, hash) =>
   }, error => error);
 
 function postLogin(req, res) {
-  logger.info('API call: POST /api/login');
+  logger.info("API call: POST /api/login");
   const loginData = req.body.loginData;
 
   if (!loginData || !loginData.username || !loginData.password) {
-    logger.info('Login: validation failed');
+    logger.info("Login: validation failed");
     res.json({
-      message: 'Validation error',
-      status: 'error',
+      message: "Validation error",
+      status: "error"
     });
   } else {
     db.getUserData(loginData).then(
@@ -36,8 +36,8 @@ function postLogin(req, res) {
                 `Login: User "${response[0].username}" with "${response[0]
                   .user_group}" account`
               );
-              let jwtToken = '';
-              if (response[0].user_group === 'admin') {
+              let jwtToken = "";
+              if (response[0].user_group === "admin") {
                 jwtToken = jwt.sign(
                   { username: loginData.username },
                   config.jwtSecretKeyAdmin
@@ -53,10 +53,10 @@ function postLogin(req, res) {
                   `Login: Password for user "${loginData.username.trim()}" matches`
                 );
                 res.json({
-                  message: 'User login success',
-                  status: 'success',
+                  message: "User login success",
+                  status: "success",
                   jwtToken,
-                  userGroup: response[0].user_group,
+                  userGroup: response[0].user_group
                 });
               } else {
                 logger.info(
@@ -65,17 +65,17 @@ function postLogin(req, res) {
 
                 res.json({
                   code: 21,
-                  message: 'User login failed',
-                  status: 'error',
+                  message: "User login failed",
+                  status: "error"
                 });
               }
             },
             error => {
               logger.error(`Login: ${error}`);
               res.json({
-                message: 'User login error',
-                status: 'error',
-                error,
+                message: "User login error",
+                status: "error",
+                error
               });
             }
           );
@@ -83,17 +83,17 @@ function postLogin(req, res) {
         logger.info(`Login: User "${loginData.username}" not found`);
         res.json({
           code: 21,
-          message: 'User login error',
-          status: 'error',
+          message: "User login error",
+          status: "error"
         });
         return undefined;
       },
       error => {
         logger.error(`Login: ${error}`);
         res.json({
-          message: 'User login error',
-          status: 'error',
-          error,
+          message: "User login error",
+          status: "error",
+          error
         });
       }
     );
