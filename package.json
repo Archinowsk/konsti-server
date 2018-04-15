@@ -12,10 +12,8 @@
   },
   "scripts": {
     "eslint": "eslint src --fix",
-    "generate-data":
-      "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
-    "generate-serials":
-      "node -e \"require('./src/utils/serials.js').generateSerials();\"",
+    "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
+    "generate-serials": "node -e \"require('./src/utils/serials.js').generateSerials();\"",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "start": "node src/server.js",
@@ -60,7 +58,14 @@
     "prettier": "^1.12.0"
   },
   "lint-staged": {
-    "*.js": ["npm run eslint", "npm run prettier", "git add"],
-    "*.json": ["npm run prettier", "git add"]
+    "*.js": [
+      "npm run eslint",
+      "npm run prettier",
+      "git add"
+    ],
+    "*.json": [
+      "npm run prettier",
+      "git add"
+    ]
   }
 }
