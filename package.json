@@ -8,7 +8,7 @@
     "name": "Arttu Hanska"
   },
   "engines": {
-    "node": " 6.11.X"
+    "node": ">=8.x.x"
   },
   "scripts": {
     "start": "node src/server.js",
@@ -16,10 +16,8 @@
     "start-prod": "cross-env NODE_ENV=production node src/server.js",
     "start-test": "cross-env NODE_ENV=testing node src/server.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register",
-    "eslint": "eslint --ext .js,.jsx src",
-    "eslint-fix": "eslint  --fix --ext .js,.jsx src",
-    "prettier": "prettier --single-quote --trailing-comma es5 --write \"{src}/**/*.jsx\"",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "eslint": "eslint src",
+    "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
     "generate-serials": "node -e \"require('./src/utils/serials.js').generateSerials();\""
   },
@@ -47,12 +45,25 @@
   "devDependencies": {
     "cross-env": "^5.0.5",
     "eslint": "^4.4.1",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-prettier": "^2.2.0",
-    "eslint-plugin-react": "^7.2.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
     "prettier": "^1.5.3"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint src --fix",
+      "prettier --write 'src/**/*.js'",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write 'src/**/*.json'",
+      "git add"
+    ]
   }
 }
