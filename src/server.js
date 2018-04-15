@@ -1,24 +1,24 @@
-const path = require("path");
-const express = require("express");
-const bodyParser = require("body-parser");
+const path = require('path')
+const express = require('express')
+const bodyParser = require('body-parser')
 
 // const expressJWT = require('express-jwt');
 
-const config = require("../config");
+const config = require('../config')
 
-const logger = require("./utils/logger").logger;
-const stream = require("./utils/logger").stream;
+const logger = require('./utils/logger').logger
+const stream = require('./utils/logger').stream
 
-const db = require("./mongodb");
+const db = require('./mongodb')
 
-const COMPRESSED = ["/client.bundle"];
+const COMPRESSED = ['/client.bundle']
 
-const developmentEnv = config.env === "development";
+const developmentEnv = config.env === 'development'
 // const testingEnv = config.env === 'testing';
-const productionEnv = config.env === "productionEnv";
+const productionEnv = config.env === 'productionEnv'
 
 // TODO: Should be promise
-db.connectToDb();
+db.connectToDb()
 
 /*
 db.connectToDb().then(
@@ -32,32 +32,32 @@ db.connectToDb().then(
 );
 */
 
-const allowCORS = require("./middleware/cors");
-const apiRoutes = require("./apiRoutes");
+const allowCORS = require('./middleware/cors')
+const apiRoutes = require('./apiRoutes')
 
-const app = express();
+const app = express()
 
 if (productionEnv) {
   // Request gzip file if should be compressed
-  app.get("*.js", (req, res, next) => {
+  app.get('*.js', (req, res, next) => {
     COMPRESSED.forEach((value, index) => {
       if (req.url.startsWith(value[index])) {
-        req.url += ".gz";
-        res.set("Content-Encoding", "gzip");
+        req.url += '.gz'
+        res.set('Content-Encoding', 'gzip')
       }
-    }, this);
-    next();
-  });
+    }, this)
+    next()
+  })
 }
 
-logger.info(`Node environment: ${config.env}`);
+logger.info(`Node environment: ${config.env}`)
 
 // Set logger
-logger.info("Express: Overriding 'Express' logger");
-app.use(require("morgan")("dev", { stream }));
+logger.info("Express: Overriding 'Express' logger")
+app.use(require('morgan')('dev', { stream }))
 
 // Parse body and populate req.body - only accepts JSON
-app.use(bodyParser.json({ limit: "100kb" }));
+app.use(bodyParser.json({ limit: '100kb' }))
 
 /*
 app.use(
@@ -76,37 +76,37 @@ app.use(
 
 // Don't use CORS in testing
 if (developmentEnv || productionEnv) {
-  app.use(allowCORS);
+  app.use(allowCORS)
 }
 
-app.use("/api", apiRoutes);
+app.use('/api', apiRoutes)
 
 // Set static path
-const staticPath = path.join(__dirname, "../", "front");
-app.use(express.static(staticPath));
+const staticPath = path.join(__dirname, '../', 'front')
+app.use(express.static(staticPath))
 
 // Set static path for register description
 const registerInfoPath = path.join(
   __dirname,
-  "../",
-  "front",
-  "rekisteriseloste.txt"
-);
-app.use(express.static(registerInfoPath));
+  '../',
+  'front',
+  'rekisteriseloste.txt'
+)
+app.use(express.static(registerInfoPath))
 
 // Set static path for Azure Let's encrypt extension
-const letsEncryptPath = path.join(__dirname, "../", ".well-known");
-app.use(express.static(letsEncryptPath));
+const letsEncryptPath = path.join(__dirname, '../', '.well-known')
+app.use(express.static(letsEncryptPath))
 
 // No match, route to index
-app.get("/*", (req, res) => {
-  res.redirect("/");
-});
+app.get('/*', (req, res) => {
+  res.redirect('/')
+})
 
-app.set("port", process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000)
 
-const server = app.listen(app.get("port"), () => {
-  logger.info(`Express: Server started on port ${server.address().port}`);
-});
+const server = app.listen(app.get('port'), () => {
+  logger.info(`Express: Server started on port ${server.address().port}`)
+})
 
-module.exports = app;
+module.exports = app

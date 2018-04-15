@@ -16,7 +16,7 @@
     "start-prod": "cross-env NODE_ENV=production node src/server.js",
     "start-test": "cross-env NODE_ENV=testing node src/server.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register",
-    "eslint": "eslint src",
+    "eslint": "eslint src --fix",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
     "generate-serials": "node -e \"require('./src/utils/serials.js').generateSerials();\""
@@ -43,17 +43,18 @@
     "winston-daily-rotate-file": "^1.4.6"
   },
   "devDependencies": {
-    "cross-env": "^5.0.5",
-    "eslint": "^4.4.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
-    "prettier": "^1.5.3"
+    "prettier": "^1.12.0"
   },
   "lint-staged": {
     "*.js": [

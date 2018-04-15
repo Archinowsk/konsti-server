@@ -1,10 +1,10 @@
-const logger = require("../utils/logger").logger;
-const db = require("../mongodb");
+const logger = require('../utils/logger').logger
+const db = require('../mongodb')
 // const validateAuthHeader = require('../utils/authHeader');
 
 // Get settings
 const getResults = (req, res) => {
-  logger.info("API call: GET /api/results");
+  logger.info('API call: GET /api/results')
 
   /*
   const authHeader = req.headers.authorization;
@@ -29,20 +29,20 @@ const getResults = (req, res) => {
       */
 
       res.json({
-        message: "Getting results success",
-        status: "success",
-        results: response
-      });
+        message: 'Getting results success',
+        status: 'success',
+        results: response,
+      })
     },
     error => {
-      logger.error(`Settings: ${error}`);
+      logger.error(`Settings: ${error}`)
       res.json({
-        message: "Getting results failed",
-        status: "error",
-        error
-      });
+        message: 'Getting results failed',
+        status: 'error',
+        error,
+      })
     }
-  );
-};
+  )
+}
 
-module.exports = { getResults };
+module.exports = { getResults }

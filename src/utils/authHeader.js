@@ -1,35 +1,35 @@
-const jwt = require("jsonwebtoken");
-const logger = require("../utils/logger").logger;
-const config = require("../../config");
+const jwt = require('jsonwebtoken')
+const logger = require('../utils/logger').logger
+const config = require('../../config')
 
 const validateAuthHeader = (authHeader, userGroup) => {
-  logger.info(`Auth: Require jwt token for "${userGroup}" user group`);
+  logger.info(`Auth: Require jwt token for "${userGroup}" user group`)
 
-  let jwtToken = "";
+  let jwtToken = ''
 
   if (authHeader) {
     // Strip 'bearer' from authHeader
-    jwtToken = authHeader.split("Bearer ")[1];
+    jwtToken = authHeader.split('Bearer ')[1]
   } else {
-    logger.info(`Auth: No auth header`);
-    return false;
+    logger.info(`Auth: No auth header`)
+    return false
   }
 
-  let jwtSecretKey = "";
-  if (userGroup === "admin") {
-    jwtSecretKey = config.jwtSecretKeyAdmin;
+  let jwtSecretKey = ''
+  if (userGroup === 'admin') {
+    jwtSecretKey = config.jwtSecretKeyAdmin
   } else {
-    jwtSecretKey = config.jwtSecretKey;
+    jwtSecretKey = config.jwtSecretKey
   }
 
   try {
-    jwt.verify(jwtToken, jwtSecretKey);
-    logger.info(`Auth: Valid jwt token for "${userGroup}" user group`);
-    return true;
+    jwt.verify(jwtToken, jwtSecretKey)
+    logger.info(`Auth: Valid jwt token for "${userGroup}" user group`)
+    return true
   } catch (e) {
     // return authFail(res);
-    logger.info(`Auth: Invalid jwt token for "${userGroup}" user group`);
-    return false;
+    logger.info(`Auth: Invalid jwt token for "${userGroup}" user group`)
+    return false
   }
   /*
   if (!decoded || decoded.auth !== 'magic') {
@@ -38,6 +38,6 @@ const validateAuthHeader = (authHeader, userGroup) => {
     return privado(res, token);
   }
   */
-};
+}
 
-module.exports = validateAuthHeader;
+module.exports = validateAuthHeader

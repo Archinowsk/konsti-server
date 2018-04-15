@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const UserSchema = mongoose.Schema({
   username: String,
@@ -8,7 +8,7 @@ const UserSchema = mongoose.Schema({
   favorited_games: [{}],
   signed_games: [{}],
   entered_games: [{}],
-  created: { type: Date, default: Date.now }
-});
+  created: { type: Date, default: Date.now },
+})
 
-module.exports = UserSchema;
+module.exports = UserSchema
