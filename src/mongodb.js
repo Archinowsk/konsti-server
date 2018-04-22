@@ -10,22 +10,18 @@ const FeedbackSchema = require('./models/feedbackSchema')
 
 const config = require('../config')
 
-const connectToDb = () => {
+const connectToDb = async () => {
   // Use native Node promises
   mongoose.Promise = global.Promise
 
   // Connect to MongoDB and create/use database
-  return mongoose
-    .connect(config.db)
-    .then(response => {
-      logger.info('MongoDB: Connection succesful')
-      return response
-    })
-    .catch(error => {
-      logger.error(`MongoDB: Error connecting to DB: ${error}`)
-      // return error;
-      return Promise.reject(error)
-    })
+  try {
+    await mongoose.connect(config.db)
+    logger.info('MongoDB: Connection succesful')
+  } catch (error) {
+    logger.error(`MongoDB: Error connecting to DB: ${error}`)
+    process.exit()
+  }
 }
 
 const gracefulExit = () => {

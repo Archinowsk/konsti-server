@@ -17,20 +17,7 @@ const developmentEnv = config.env === 'development'
 // const testingEnv = config.env === 'testing';
 const productionEnv = config.env === 'productionEnv'
 
-// TODO: Should be promise
 db.connectToDb()
-
-/*
-db.connectToDb().then(
-  () => {
-    logger.info(response)
-  },
-  error => {
-    logger.error(error);
-    Promise.reject(error);
-  }
-);
-*/
 
 const allowCORS = require('./middleware/cors')
 const apiRoutes = require('./apiRoutes')
