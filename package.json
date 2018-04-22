@@ -11,6 +11,7 @@
     "node": ">=8.x.x"
   },
   "scripts": {
+    "docker-start": "docker-compose -f docker-compose.yml up --build",
     "eslint": "eslint src --fix",
     "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
     "generate-serials": "node -e \"require('./src/utils/serials.js').generateSerials();\"",
