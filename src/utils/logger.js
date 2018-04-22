@@ -1,55 +1,50 @@
-const winston = require('winston')
+const { createLogger, format, transports } = require('winston')
+const { combine, printf, colorize, timestamp, json } = format
 const fs = require('fs')
 const config = require('../../config')
 
 require('winston-daily-rotate-file')
 
-const logDir = config.logDir
+const { logDir } = config
+
 // Create logs directory if it does not exist
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir)
 }
 
-winston.emitErrs = true
-
-const logger = new winston.Logger({
+const logger = createLogger({
+  // format: winston.format.json(),
   transports: [
-    /*
-    new winston.transports.File({
-      level: 'error', // info, debug, warn, error
-      filename: `${logDir}/all-logs.log`,
-      handleExceptions: true,
-      json: true,
-      maxsize: 5242880, // 5MB
-      maxFiles: 5,
-      colorize: false,
-      timestamp: true,
-    }),
-    */
-    new winston.transports.DailyRotateFile({
-      // level: 'error', // info, debug, warn, error
+    new transports.DailyRotateFile({
       level: 'info', // info, debug, warn, error
-      filename: `${logDir}/log`,
-      datePattern: 'yyyy-MM-dd.',
-      prepend: true,
-      localTime: true,
-      handleExceptions: true,
-      json: true,
-      maxsize: 5242880, // 5MB
-      maxFiles: 5,
-      colorize: false,
-      timestamp: true,
+      filename: `${logDir}/%DATE%.log`,
+      datePattern: 'YYYY-MM-DD',
+      maxSize: '20m',
+      maxFiles: '14d',
+      zippedArchive: true,
+      // format: json(),
+      format: combine(
+        timestamp(),
+        json()
+        /*
+        printf(info => {
+          return `${info.timestamp} ${info.level}: ${info.message}`
+        })
+        */
+      ),
     }),
-    new winston.transports.Console({
-      timestamp() {
-        const date = new Date()
-        return date.toLocaleTimeString()
-      },
-      level: 'debug',
-      handleExceptions: true,
-      json: false,
-      colorize: true,
-      prettyPrint: true,
+
+    new transports.Console({
+      level: 'info',
+      format: combine(
+        colorize(),
+        timestamp({
+          format: 'HH:mm:ss',
+        }),
+        printf(info => {
+          return `${info.timestamp} ${info.level}: ${info.message}`
+        })
+      ),
     }),
   ],
   exitOnError: false,
