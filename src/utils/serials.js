@@ -1,5 +1,5 @@
 const generator = require('generate-serial-number')
-const logger = require('../utils/logger').logger
+const { logger } = require('../utils/logger')
 
 const checkSerial = serial => {
   const valid = generator.isValid(serial)

@@ -1,4 +1,4 @@
-const logger = require('../utils/logger').logger
+const { logger } = require('../utils/logger')
 const db = require('../db/mongodb')
 const validateAuthHeader = require('../utils/authHeader')
 

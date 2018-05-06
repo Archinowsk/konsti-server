@@ -1,4 +1,4 @@
-const logger = require('../utils/logger').logger
+const { logger } = require('../utils/logger')
 const config = require('../../config')
 
 const allowCrossDomain = (req, res, next) => {

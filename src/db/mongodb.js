@@ -1,7 +1,7 @@
 // Load mongoose package
 const mongoose = require('mongoose')
 const moment = require('moment')
-const logger = require('../utils/logger').logger
+const { logger } = require('../utils/logger')
 const UserSchema = require('./models/userSchema')
 const GameSchema = require('./models/gameSchema')
 const SettingsSchema = require('./models/settingsSchema')

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const logger = require('../utils/logger').logger
+const { logger } = require('../utils/logger')
 const db = require('../db/mongodb')
 const comparePasswordHash = require('../utils/bcrypt').comparePasswordHash
 const config = require('../../config')

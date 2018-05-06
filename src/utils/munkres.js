@@ -1,6 +1,6 @@
 const moment = require('moment')
 const munkres = require('munkres-js')
-const logger = require('./logger').logger
+const { logger } = require('./logger')
 
 const getStargingGames = (games, startingTime) => {
   const startingGames = []

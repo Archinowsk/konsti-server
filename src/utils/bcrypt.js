@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-// const logger = require('./logger').logger
+// const { logger } = require('./logger')
 
 const saltRounds = 10
 

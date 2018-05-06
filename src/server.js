@@ -6,8 +6,8 @@ const bodyParser = require('body-parser')
 
 const config = require('../config')
 
-const logger = require('./utils/logger').logger
-const stream = require('./utils/logger').stream
+const { logger } = require('./utils/logger')
+const { stream } = require('./utils/logger')
 
 const db = require('./db/mongodb')
 
