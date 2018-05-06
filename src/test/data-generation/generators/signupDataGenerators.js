@@ -43,12 +43,12 @@ const signupMultiple = (count, games, users) => {
   logger.info(`Signup: ${users.length} users`)
   logger.info(`Signup: Generate signup data for ${count} users`)
 
-  // TODO: Use Promise.all()
-  return (function loop(i) {
-    return new Promise(resolve =>
-      signup(games, users[i]).then(() => resolve())
-    ).then(() => i >= count || loop(i + 1))
-  })(1)
+  const promises = []
+  for (let i = 0; i < 10; i++) {
+    promises.push(signup(games, users[i]))
+  }
+
+  return Promise.all(promises)
 }
 
 const createSignupData = count => {

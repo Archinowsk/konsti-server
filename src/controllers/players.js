@@ -3,13 +3,21 @@ const db = require('../db/mongodb')
 const assignPlayers = require('../utils/munkres').assignPlayers
 const validateAuthHeader = require('../utils/authHeader')
 
-const storeMultiple = signupData =>
-  // TODO: Use Promise.all()
+const storeMultiple = signups => {
+  /*
   (function loop(i) {
     return new Promise(resolve =>
       db.storeSignupResultData(signupData[i - 1]).then(() => resolve())
     ).then(() => i >= signupData.length || loop(i + 1))
   })(1)
+  */
+
+  return Promise.all(
+    signups.map(async signup => {
+      return db.storeSignupResultData(signup)
+    })
+  )
+}
 
 // Assign players to games
 const postPlayers = (req, res) => {

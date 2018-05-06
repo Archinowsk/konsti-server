@@ -61,12 +61,12 @@ const createUser = () => {
 const createUsers = count => {
   logger.info(`Generate data for ${count} users`)
 
-  // TODO: Use Promise.all()
-  return (function loop(i) {
-    return new Promise(resolve => createUser().then(() => resolve())).then(
-      () => i >= count || loop(i + 1)
-    )
-  })(1)
+  const promises = []
+  for (let i = 0; i < 10; i++) {
+    promises.push(createUser())
+  }
+
+  return Promise.all(promises)
 }
 
 module.exports = { createUsers, createAdminUser, createTestUser }
