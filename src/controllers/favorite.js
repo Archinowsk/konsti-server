@@ -1,14 +1,14 @@
 const logger = require('../utils/logger').logger
-const db = require('../mongodb')
+const db = require('../db/mongodb')
 const validateAuthHeader = require('../utils/authHeader')
 
-// Add open signup time to server settings
-const postSignupTime = (req, res) => {
-  logger.info('API call: POST /api/signuptime')
-  const signupTime = req.body.signupTime
+// Add favorite data for user
+const postFavorite = (req, res) => {
+  logger.info('API call: POST /api/favorite')
+  const favoriteData = req.body.favoriteData
 
   const authHeader = req.headers.authorization
-  const validToken = validateAuthHeader(authHeader, 'admin')
+  const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
     res.json({
@@ -19,16 +19,16 @@ const postSignupTime = (req, res) => {
     return undefined
   }
 
-  return db.storeSignupTime(signupTime).then(
+  return db.storeFavoriteData(favoriteData).then(
     () => {
       res.json({
-        message: 'Signup time set success',
+        message: 'Update favorite success',
         status: 'success',
       })
     },
     error => {
       res.json({
-        message: 'Signup time set failure',
+        message: 'Update favorite failure',
         status: 'error',
         error,
       })
@@ -36,4 +36,4 @@ const postSignupTime = (req, res) => {
   )
 }
 
-module.exports = { postSignupTime }
+module.exports = { postFavorite }

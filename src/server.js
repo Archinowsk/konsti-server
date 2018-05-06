@@ -9,7 +9,7 @@ const config = require('../config')
 const logger = require('./utils/logger').logger
 const stream = require('./utils/logger').stream
 
-const db = require('./mongodb')
+const db = require('./db/mongodb')
 
 const COMPRESSED = ['/client.bundle']
 

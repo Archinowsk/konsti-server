@@ -1,10 +1,10 @@
 const logger = require('../utils/logger').logger
-const db = require('../mongodb')
+const db = require('../db/mongodb')
 // const validateAuthHeader = require('../utils/authHeader');
 
 // Get settings
-const getSettings = (req, res) => {
-  logger.info('API call: GET /api/settings')
+const getResults = (req, res) => {
+  logger.info('API call: GET /api/results')
 
   /*
   const authHeader = req.headers.authorization;
@@ -20,26 +20,24 @@ const getSettings = (req, res) => {
   }
   */
 
-  return db.getSettingsData().then(
+  return db.getResultsData().then(
     response => {
+      /*
       const gamesData = {
         blacklistedGames: response.blacklisted_games,
-      }
-
-      // logger.info(response.blacklisted_games);
-      // logger.info(response.signup_time);
+      };
+      */
 
       res.json({
-        message: 'Getting settings success',
+        message: 'Getting results success',
         status: 'success',
-        games: gamesData,
-        signupTime: response.signup_time,
+        results: response,
       })
     },
     error => {
       logger.error(`Settings: ${error}`)
       res.json({
-        message: 'Getting settings failed',
+        message: 'Getting results failed',
         status: 'error',
         error,
       })
@@ -47,4 +45,4 @@ const getSettings = (req, res) => {
   )
 }
 
-module.exports = { getSettings }
+module.exports = { getResults }

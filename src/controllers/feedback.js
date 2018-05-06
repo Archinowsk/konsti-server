@@ -1,5 +1,5 @@
 const logger = require('../utils/logger').logger
-const db = require('../mongodb')
+const db = require('../db/mongodb')
 const validateAuthHeader = require('../utils/authHeader')
 
 // Post feedback data

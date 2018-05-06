@@ -1,14 +1,14 @@
 // Load mongoose package
 const mongoose = require('mongoose')
 const moment = require('moment')
-const logger = require('./utils/logger').logger
+const logger = require('../utils/logger').logger
 const UserSchema = require('./models/userSchema')
 const GameSchema = require('./models/gameSchema')
 const SettingsSchema = require('./models/settingsSchema')
 const ResultsSchema = require('./models/resultsSchema')
 const FeedbackSchema = require('./models/feedbackSchema')
 
-const config = require('../config')
+const config = require('../../config')
 
 const connectToDb = async () => {
   // Use native Node promises

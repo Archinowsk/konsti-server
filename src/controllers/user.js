@@ -1,6 +1,6 @@
 const { checkSerial } = require('../utils/serials')
 const logger = require('../utils/logger').logger
-const db = require('../mongodb')
+const db = require('../db/mongodb')
 const hashPassword = require('../utils/bcrypt').hashPassword
 const validateAuthHeader = require('../utils/authHeader')
 

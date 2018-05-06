@@ -1,5 +1,5 @@
 const logger = require('../../../utils/logger').logger
-const db = require('../../../mongodb')
+const db = require('../../../db/mongodb')
 const getRandomString = require('./randomVariableGenerators').getRandomString
 const hashPassword = require('../../../utils/bcrypt').hashPassword
 

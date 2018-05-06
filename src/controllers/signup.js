@@ -1,11 +1,11 @@
 const logger = require('../utils/logger').logger
-const db = require('../mongodb')
+const db = require('../db/mongodb')
 const validateAuthHeader = require('../utils/authHeader')
 
-// Add favorite data for user
-const postFavorite = (req, res) => {
-  logger.info('API call: POST /api/favorite')
-  const favoriteData = req.body.favoriteData
+// Add signup data for user
+const postSignup = (req, res) => {
+  logger.info('API call: POST /api/signup')
+  const signupData = req.body.signupData
 
   const authHeader = req.headers.authorization
   const validToken = validateAuthHeader(authHeader, 'user')
@@ -19,16 +19,17 @@ const postFavorite = (req, res) => {
     return undefined
   }
 
-  return db.storeFavoriteData(favoriteData).then(
+  return db.storeSignupData(signupData).then(
     () => {
       res.json({
-        message: 'Update favorite success',
+        message: 'Signup success',
         status: 'success',
+        // response,
       })
     },
     error => {
       res.json({
-        message: 'Update favorite failure',
+        message: 'Signup failure',
         status: 'error',
         error,
       })
@@ -36,4 +37,4 @@ const postFavorite = (req, res) => {
   )
 }
 
-module.exports = { postFavorite }
+module.exports = { postSignup }

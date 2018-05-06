@@ -1,14 +1,14 @@
 const logger = require('../utils/logger').logger
-const db = require('../mongodb')
+const db = require('../db/mongodb')
 const validateAuthHeader = require('../utils/authHeader')
 
-// Add signup data for user
-const postSignup = (req, res) => {
-  logger.info('API call: POST /api/signup')
-  const signupData = req.body.signupData
+// Add open signup time to server settings
+const postSignupTime = (req, res) => {
+  logger.info('API call: POST /api/signuptime')
+  const signupTime = req.body.signupTime
 
   const authHeader = req.headers.authorization
-  const validToken = validateAuthHeader(authHeader, 'user')
+  const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
     res.json({
@@ -19,17 +19,16 @@ const postSignup = (req, res) => {
     return undefined
   }
 
-  return db.storeSignupData(signupData).then(
+  return db.storeSignupTime(signupTime).then(
     () => {
       res.json({
-        message: 'Signup success',
+        message: 'Signup time set success',
         status: 'success',
-        // response,
       })
     },
     error => {
       res.json({
-        message: 'Signup failure',
+        message: 'Signup time set failure',
         status: 'error',
         error,
       })
@@ -37,4 +36,4 @@ const postSignup = (req, res) => {
   )
 }
 
-module.exports = { postSignup }
+module.exports = { postSignupTime }
