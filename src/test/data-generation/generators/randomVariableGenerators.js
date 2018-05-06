@@ -1,4 +1,4 @@
-function getRandomString(length) {
+const getRandomString = length => {
   let text = ''
   const possible =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -9,18 +9,18 @@ function getRandomString(length) {
   return text
 }
 
-function getRandomInt(min, max) {
+const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function getRandomDate() {
+const getRandomDate = () => {
   // const dates = ['2017-07-28', '2017-07-29', '2017-07-30'];
   const dates = ['2017-07-28']
   const randomIndex = Math.floor(Math.random() * dates.length)
   return dates[randomIndex]
 }
 
-function getRandomTime() {
+const getRandomTime = () => {
   const times = [
     // '10:00',
     // '11:00',

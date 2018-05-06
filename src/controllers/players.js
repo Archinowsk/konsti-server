@@ -4,6 +4,7 @@ const assignPlayers = require('../utils/munkres').assignPlayers
 const validateAuthHeader = require('../utils/authHeader')
 
 const storeMultiple = signupData =>
+  // TODO: Use Promise.all()
   (function loop(i) {
     return new Promise(resolve =>
       db.storeSignupResultData(signupData[i - 1]).then(() => resolve())

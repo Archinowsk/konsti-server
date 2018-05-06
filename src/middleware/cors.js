@@ -1,7 +1,7 @@
 const logger = require('../utils/logger').logger
 const config = require('../../config')
 
-function allowCrossDomain(req, res, next) {
+const allowCrossDomain = (req, res, next) => {
   const allowedOrigins = config.allowedCorsOrigins
   const origin = req.headers.origin
 

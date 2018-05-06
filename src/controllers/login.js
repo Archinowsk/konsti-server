@@ -15,7 +15,7 @@ const validateLogin = (loginData, hash) =>
     return false
   }, error => error)
 
-function postLogin(req, res) {
+const postLogin = (req, res) => {
   logger.info('API call: POST /api/login')
   const loginData = req.body.loginData
 
