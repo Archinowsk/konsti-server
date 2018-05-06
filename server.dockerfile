@@ -7,12 +7,12 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package.json package-lock.json ./
 RUN npm install
+
 # If you are building your code for production
 # RUN npm install --only=production
 
-# Bundle app source
-# COPY . .
-COPY src .
+# Copy app source
+COPY . .
 
 # App binds to port 3000 so use the EXPOSE instruction to have it mapped by the docker daemon
 EXPOSE 3000
