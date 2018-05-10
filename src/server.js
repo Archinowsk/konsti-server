@@ -18,7 +18,7 @@ const productionEnv = config.env === 'productionEnv'
 db.connectToDb()
 
 const allowCORS = require('./middleware/cors')
-const apiRoutes = require('./api/routes')
+const apiRoutes = require('./api/apiRoutes')
 
 const app = express()
 
