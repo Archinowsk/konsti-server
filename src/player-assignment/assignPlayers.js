@@ -30,7 +30,7 @@ const assignPlayers = (players, games, startingTime) => {
 
   const initialGamesCount = selectedGames.length
   const initialPlayerCount = selectedPlayers.length
-  let removedGamesCount = 0 // eslint-disable-line no-unused-vars
+  let removedGamesCount = 0
   let removedPlayerCount = 0
 
   logger.info(signupMatrix)
