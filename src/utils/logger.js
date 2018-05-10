@@ -1,10 +1,9 @@
 const { createLogger, format, transports } = require('winston')
 const { combine, printf, colorize, timestamp, json } = format
 const fs = require('fs')
-const config = require('../../config')
-
 require('winston-daily-rotate-file')
 
+const config = require('../../config')
 const { logDir } = config
 
 // Create logs directory if it does not exist
@@ -13,7 +12,6 @@ if (!fs.existsSync(logDir)) {
 }
 
 const logger = createLogger({
-  // format: winston.format.json(),
   transports: [
     new transports.DailyRotateFile({
       level: 'info', // info, debug, warn, error
@@ -22,16 +20,7 @@ const logger = createLogger({
       maxSize: '20m',
       maxFiles: '14d',
       zippedArchive: true,
-      // format: json(),
-      format: combine(
-        timestamp(),
-        json()
-        /*
-        printf(info => {
-          return `${info.timestamp} ${info.level}: ${info.message}`
-        })
-        */
-      ),
+      format: combine(timestamp(), json()),
     }),
 
     new transports.Console({
