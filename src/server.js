@@ -6,15 +6,13 @@ const bodyParser = require('body-parser')
 
 const config = require('../config')
 
-const { logger } = require('./utils/logger')
-const { stream } = require('./utils/logger')
+const { logger, stream } = require('./utils/logger')
 
 const db = require('./db/mongodb')
 
 const COMPRESSED = ['/client.bundle']
 
-const developmentEnv = config.env === 'development'
-// const testingEnv = config.env === 'testing';
+// const developmentEnv = config.env === 'development'
 const productionEnv = config.env === 'productionEnv'
 
 db.connectToDb()
@@ -61,10 +59,7 @@ app.use(
 );
 */
 
-// Don't use CORS in testing
-if (developmentEnv || productionEnv) {
-  app.use(allowCORS)
-}
+app.use(allowCORS)
 
 app.use('/api', apiRoutes)
 

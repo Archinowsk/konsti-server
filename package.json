@@ -19,7 +19,6 @@
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "start": "cross-env NODE_ENV=production node src/server.js",
     "start-dev": "cross-env NODE_ENV=development node src/server.js",
-    "start-test": "cross-env NODE_ENV=testing node src/server.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register"
   },
   "dependencies": {
