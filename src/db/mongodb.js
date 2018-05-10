@@ -1,12 +1,12 @@
-// Load mongoose package
 const mongoose = require('mongoose')
 const moment = require('moment')
 const { logger } = require('../utils/logger')
-const UserSchema = require('./models/userSchema')
-const GameSchema = require('./models/gameSchema')
-const SettingsSchema = require('./models/settingsSchema')
-const ResultsSchema = require('./models/resultsSchema')
-const FeedbackSchema = require('./models/feedbackSchema')
+
+const User = require('./models/userSchema')
+const Game = require('./models/gameSchema')
+const Settings = require('./models/settingsSchema')
+const Results = require('./models/resultsSchema')
+const Feedback = require('./models/feedbackSchema')
 
 const config = require('../../config')
 
@@ -36,20 +36,15 @@ process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit)
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')
-  const User = mongoose.model('User', UserSchema)
   return User.remove({})
 }
 
 const removeGames = () => {
   logger.info('MongoDB: remove ALL games from db')
-
-  const Game = mongoose.model('Game', GameSchema)
   return Game.remove({})
 }
 
 const storeUserData = userData => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
   const username = userData.username.trim()
   let userGroup = 'user'
 
@@ -84,9 +79,6 @@ const storeUserData = userData => {
 // Store all games to db
 const storeGamesData = games => {
   logger.info('MongoDB: Store games to DB')
-  // Create a model based on the schema
-  const Game = mongoose.model('Game', GameSchema)
-
   const gameDocs = []
 
   let attendance
@@ -168,8 +160,6 @@ const storeGamesData = games => {
 }
 
 const getUserData = userData => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
   const username = userData.username.trim()
 
   // TODO: Update to use findOne() instead of find()
@@ -191,8 +181,6 @@ const getUserData = userData => {
 }
 
 const getUserSerial = serialData => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
   // const username = userData.username.trim();
   const serial = serialData.serial
   logger.info('serial')
@@ -217,8 +205,6 @@ const getUserSerial = serialData => {
 }
 
 const createSettingsData = () => {
-  // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema)
   logger.info('MongoDB: "Settings" collection not found, create empty')
   // Example user data
   const settings = new Settings({
@@ -243,9 +229,6 @@ const createSettingsData = () => {
 }
 
 const getSettingsData = () => {
-  // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema)
-
   return Settings.findOne({}).then(
     response => {
       if (response === null) {
@@ -263,9 +246,6 @@ const getSettingsData = () => {
 }
 
 const getResultsData = () => {
-  // Create a model based on the schema
-  const Results = mongoose.model('Results', ResultsSchema)
-
   return Results.find({}).then(
     response => {
       /*
@@ -285,9 +265,6 @@ const getResultsData = () => {
 }
 
 const getGamesData = () => {
-  // Create a model based on the schema
-  const Game = mongoose.model('Game', GameSchema)
-
   return Game.find({}).then(
     response => {
       logger.info(`MongoDB: Get all games`)
@@ -301,9 +278,6 @@ const getGamesData = () => {
 }
 
 const getUsersData = () => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
-
   return User.find({}).then(
     response => {
       logger.info(`MongoDB: Get all users`)
@@ -317,9 +291,6 @@ const getUsersData = () => {
 }
 
 const storeSignupData = signupData => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
-
   // Save to database
   return User.update(
     { username: signupData.username },
@@ -343,9 +314,6 @@ const storeSignupData = signupData => {
 }
 
 const storeFavoriteData = favoriteData => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
-
   // Save to database
   return User.update(
     { username: favoriteData.username },
@@ -369,9 +337,6 @@ const storeFavoriteData = favoriteData => {
 }
 
 const storeBlacklistData = blacklistData => {
-  // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema)
-
   // Save to database
   return Settings.update({
     $set: { blacklisted_games: blacklistData.blacklistedGames },
@@ -388,8 +353,6 @@ const storeBlacklistData = blacklistData => {
 }
 
 const storeSignupTime = signupTime => {
-  // Create a model based on the schema
-  const Settings = mongoose.model('Settings', SettingsSchema)
   // Make sure that the string is in correct format
   let formattedTime
   if (signupTime === null) {
@@ -413,9 +376,6 @@ const storeSignupTime = signupTime => {
 }
 
 const storeSignupResultData = signupResultData => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
-
   // Save to database, don't store duplicate ids
   return User.update(
     {
@@ -445,8 +405,6 @@ const storeSignupResultData = signupResultData => {
 }
 
 const storeAllSignupResults = (signupResultData, startingTime) => {
-  // Store to separate "results" collection
-  const Results = mongoose.model('Results', ResultsSchema)
   const formattedTime = moment.utc(startingTime)
 
   // Example user data
@@ -471,9 +429,6 @@ const storeAllSignupResults = (signupResultData, startingTime) => {
 }
 
 const storeFeedbackData = feedbackData => {
-  // Store to separate "results" collection
-  const Feedback = mongoose.model('Feedback', FeedbackSchema)
-
   // Example user data
   const feedback = new Feedback({
     game_id: feedbackData.id,
@@ -494,9 +449,6 @@ const storeFeedbackData = feedbackData => {
 }
 
 const storeFavoriteGamesData = favoriteGamesData => {
-  // Create a model based on the schema
-  const User = mongoose.model('User', UserSchema)
-
   // Save to database
   return User.update(
     { username: favoriteGamesData.username },

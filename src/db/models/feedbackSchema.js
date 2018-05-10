@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 
-const SettingsSchema = mongoose.Schema({
+const FeedbackSchema = mongoose.Schema({
   game_id: Number,
   feedback: String,
   created: { type: Date, default: Date.now },
 })
 
-module.exports = SettingsSchema
+const Feedback = mongoose.model('Feedback', FeedbackSchema)
+
+module.exports = Feedback

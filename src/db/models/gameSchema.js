@@ -18,4 +18,6 @@ const GameSchema = mongoose.Schema({
   created: { type: Date, default: Date.now },
 })
 
-module.exports = GameSchema
+const Game = mongoose.model('Game', GameSchema)
+
+module.exports = Game

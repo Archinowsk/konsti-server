@@ -6,4 +6,6 @@ const SettingsSchema = mongoose.Schema({
   signup_time: Date,
 })
 
-module.exports = SettingsSchema
+const Settings = mongoose.model('Settings', SettingsSchema)
+
+module.exports = Settings

@@ -5,4 +5,6 @@ const ResultsSchema = mongoose.Schema({
   time: Date,
 })
 
-module.exports = ResultsSchema
+const Results = mongoose.model('Results', ResultsSchema)
+
+module.exports = Results
