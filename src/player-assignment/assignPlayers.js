@@ -50,7 +50,6 @@ const assignPlayers = (players, games, startingTime) => {
       }
     }
 
-    // signupMatrix = getSignupMatrix(selectedGames, selectedPlayers)
     results = munkres(signupMatrix)
     gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames)
   }
