@@ -3,13 +3,13 @@ const requestPromiseNative = require('request-promise-native')
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
+const config = require('../../../config')
 
 const updateGames = () => {
   logger.info('Games: GET games from Conbase')
 
   const options = {
-    // uri: `http://archinowsk.kapsi.fi/games.json`,
-    uri: `https://conbase.ropecon.fi/programs/export.json`,
+    uri: config.dataUri,
     headers: {
       'User-Agent': 'Request-Promise',
     },

@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === 'production') {
   config.jwtSecretKey = process.env.JWT_SECRET_KEY
   config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN
   config.allowedCorsOrigins = ['https://konsti.ropecon.fi']
+  config.dataUri = 'https://conbase.ropecon.fi/programs/export.json'
 }
 
 // Variables for development environment
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === 'development') {
   config.jwtSecretKey = 'secret'
   config.jwtSecretKeyAdmin = 'admin secret'
   config.allowedCorsOrigins = ['http://localhost:8080']
+  config.dataUri = 'http://archinowsk.kapsi.fi/games.json'
 }
 
 module.exports = config
