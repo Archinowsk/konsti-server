@@ -33,8 +33,6 @@ const assignPlayers = (players, games, startingTime) => {
   let removedGamesCount = 0
   let removedPlayerCount = 0
 
-  logger.info(signupMatrix)
-
   // Run the algorithm
   let results = munkres(signupMatrix)
 
