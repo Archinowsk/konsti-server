@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken')
-const { logger } = require('../utils/logger')
-const db = require('../db/mongodb')
-const comparePasswordHash = require('../utils/bcrypt').comparePasswordHash
-const config = require('../../config')
+const { logger } = require('../../utils/logger')
+const db = require('../../db/mongodb')
+const comparePasswordHash = require('../../utils/bcrypt').comparePasswordHash
+const config = require('../../../config')
 
 const validateLogin = (loginData, hash) =>
   comparePasswordHash(loginData.password.trim(), hash).then(response => {

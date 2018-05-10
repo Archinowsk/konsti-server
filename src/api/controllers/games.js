@@ -1,8 +1,8 @@
 const requestPromiseNative = require('request-promise-native')
 
-const { logger } = require('../utils/logger')
-const db = require('../db/mongodb')
-const validateAuthHeader = require('../utils/authHeader')
+const { logger } = require('../../utils/logger')
+const db = require('../../db/mongodb')
+const validateAuthHeader = require('../../utils/authHeader')
 
 const updateGames = () => {
   logger.info('Games: GET games from Conbase')

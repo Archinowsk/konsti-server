@@ -1,7 +1,7 @@
-const { logger } = require('../utils/logger')
-const db = require('../db/mongodb')
-const assignPlayers = require('../utils/munkres').assignPlayers
-const validateAuthHeader = require('../utils/authHeader')
+const { logger } = require('../../utils/logger')
+const db = require('../../db/mongodb')
+const assignPlayers = require('../../utils/munkres').assignPlayers
+const validateAuthHeader = require('../../utils/authHeader')
 
 const storeMultiple = signups => {
   return Promise.all(

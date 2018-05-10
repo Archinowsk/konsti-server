@@ -1,6 +1,6 @@
-const { logger } = require('../utils/logger')
-const db = require('../db/mongodb')
-// const validateAuthHeader = require('../utils/authHeader');
+const { logger } = require('../../utils/logger')
+const db = require('../../db/mongodb')
+// const validateAuthHeader = require('../../utils/authHeader');
 
 // Get settings
 const getSettings = (req, res) => {

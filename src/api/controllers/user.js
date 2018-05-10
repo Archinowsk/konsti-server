@@ -1,8 +1,8 @@
-const { checkSerial } = require('../utils/serials')
-const { logger } = require('../utils/logger')
-const db = require('../db/mongodb')
-const hashPassword = require('../utils/bcrypt').hashPassword
-const validateAuthHeader = require('../utils/authHeader')
+const { checkSerial } = require('../../utils/serials')
+const { logger } = require('../../utils/logger')
+const db = require('../../db/mongodb')
+const hashPassword = require('../../utils/bcrypt').hashPassword
+const validateAuthHeader = require('../../utils/authHeader')
 
 // Register new user
 const postUser = (req, res) => {
