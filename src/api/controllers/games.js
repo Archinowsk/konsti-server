@@ -50,11 +50,10 @@ const postGames = (req, res) => {
 
   if (!validToken) {
     res.json({
-      code: 31,
+      code: 401,
       message: 'Unauthorized',
       status: 'error',
     })
-    return undefined
   }
 
   return updateGames().then(

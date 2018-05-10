@@ -89,7 +89,6 @@ const postLogin = (req, res) => {
           message: 'User login error',
           status: 'error',
         })
-        return undefined
       },
       error => {
         logger.error(`Login: ${error}`)
