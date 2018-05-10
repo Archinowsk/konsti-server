@@ -1,19 +1,16 @@
 const express = require('express')
 
-const postGames = require('./controllers/games').postGames
-const postUser = require('./controllers/user').postUser
-const postLogin = require('./controllers/login').postLogin
-const postPlayers = require('./controllers/players').postPlayers
-const postSignup = require('./controllers/signup').postSignup
-const postFavorite = require('./controllers/favorite').postFavorite
-const postBlacklist = require('./controllers/blacklist').postBlacklist
-const postSignupTime = require('./controllers/signuptime').postSignupTime
-const postFeedback = require('./controllers/feedback').postFeedback
-
-const getGames = require('./controllers/games').getGames
-const getUser = require('./controllers/user').getUser
-const getSettings = require('./controllers/settings').getSettings
-const getResults = require('./controllers/results').getResults
+const { postGames, getGames } = require('./controllers/games')
+const { postUser, getUser } = require('./controllers/user')
+const { postLogin } = require('./controllers/login')
+const { postPlayers } = require('./controllers/players')
+const { postSignup } = require('./controllers/signup')
+const { postFavorite } = require('./controllers/favorite')
+const { postBlacklist } = require('./controllers/blacklist')
+const { postSignupTime } = require('./controllers/signuptime')
+const { postFeedback } = require('./controllers/feedback')
+const { getSettings } = require('./controllers/settings')
+const { getResults } = require('./controllers/results')
 
 const router = express.Router()
 
