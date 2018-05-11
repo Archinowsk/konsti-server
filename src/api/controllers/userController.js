@@ -16,7 +16,7 @@ const postUser = async (req, res) => {
     !registrationData.password ||
     !registrationData.serial
   ) {
-    logger.info('User: validation failed')
+    logger.info('postUser(): validation failed')
     res.json({
       message: 'Validation error',
       status: 'error',
@@ -25,80 +25,81 @@ const postUser = async (req, res) => {
 
   // Check for valid serial
   if (!checkSerial(registrationData.serial.trim())) {
-    logger.info('User: Serial does not match')
+    logger.info('checkSerial(): Serial is not valid')
     res.json({
       code: 12,
       message: 'Invalid serial',
       status: 'error',
     })
+    return
   }
 
-  logger.info('User: Serial match')
+  logger.info('checkSerial(): Serial is valid')
 
   const username = registrationData.username.trim()
   const password = registrationData.password.trim()
   const serial = registrationData.serial.trim()
 
   // Check that serial is not used
-  logger.info(registrationData)
-
   let response = null
   try {
     // Check if user already exists
     response = await db.getUserData({ username })
+  } catch (error) {
+    logger.error(`db.getUserData(): ${error}`)
+  }
 
-    // Username free
-    if (response.length === 0) {
-      let serialResponse = null
+  // Username free
+  if (response.length === 0) {
+    let serialResponse = null
+    try {
+      // Check if serial is used
+      serialResponse = await db.getUserSerial({ serial })
+    } catch (error) {
+      logger.error(`db.getUserSerial(): ${error}`)
+    }
+
+    // Serial not used
+    if (serialResponse.length === 0) {
+      let response2 = null
       try {
-        // Check if serial is used
-        serialResponse = await db.getUserSerial({ serial })
+        response2 = await hashPassword(password)
+      } catch (error) {
+        logger.error(`hashPassword(): ${error}`)
+      }
 
-        // Serial not used
-        if (serialResponse.length === 0) {
-          let response2 = null
-          try {
-            response2 = await hashPassword(password)
+      if (response2) {
+        registrationData.passwordHash = response2
 
-            registrationData.passwordHash = response2
-
-            try {
-              await db.storeUserData(registrationData)
-              res.json({
-                message: 'User registration success',
-                status: 'success',
-              })
-            } catch (error) {
-              logger.error(`db.storeUserData(): ${error}`)
-              res.json({
-                message: 'User registration failed',
-                status: 'error',
-              })
-            }
-          } catch (error) {
-            logger.error(`hashPassword(): ${error}`)
-          }
-        } else {
-          logger.info('User: Serial used')
+        try {
+          await db.storeUserData(registrationData)
           res.json({
-            code: 12,
-            message: 'Invalid serial',
+            message: 'User registration success',
+            status: 'success',
+          })
+        } catch (error) {
+          logger.error(`db.storeUserData(): ${error}`)
+          res.json({
+            message: 'User registration failed',
             status: 'error',
           })
         }
-      } catch (error) {
-        logger.error(`db.getUserSerial(): ${error}`)
       }
     } else {
-      logger.info(`User: Username "${username}" is already registered`)
+      logger.info('User: Serial used')
       res.json({
-        code: 11,
-        message: 'Username in already registered',
+        code: 12,
+        message: 'Invalid serial',
         status: 'error',
       })
     }
-  } catch (error) {
-    logger.error(`db.getUserData(): ${error}`)
+  } else {
+    logger.info(`User: Username "${username}" is already registered`)
+    res.json({
+      code: 11,
+      message: 'Username in already registered',
+      status: 'error',
+    })
   }
 }
 
