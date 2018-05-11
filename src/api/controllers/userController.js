@@ -5,7 +5,7 @@ const hashPassword = require('../../utils/bcrypt').hashPassword
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Register new user
-const postUser = (req, res) => {
+const postUser = async (req, res) => {
   logger.info('API call: POST /api/user')
   const registrationData = req.body.registrationData
 
@@ -21,95 +21,89 @@ const postUser = (req, res) => {
       message: 'Validation error',
       status: 'error',
     })
-    // Check for valid serial
-  } else if (!checkSerial(registrationData.serial.trim())) {
+  }
+
+  // Check for valid serial
+  if (!checkSerial(registrationData.serial.trim())) {
     logger.info('User: Serial does not match')
     res.json({
       code: 12,
       message: 'Invalid serial',
       status: 'error',
     })
-    // Check that serial is not used
-  } else {
-    /*
-  else if (true) {
-    // asd
   }
-  */
-    logger.info('User: Serial match')
 
-    const username = registrationData.username.trim()
-    const password = registrationData.password.trim()
-    const serial = registrationData.serial.trim()
+  logger.info('User: Serial match')
 
-    logger.info(registrationData)
+  const username = registrationData.username.trim()
+  const password = registrationData.password.trim()
+  const serial = registrationData.serial.trim()
+
+  // Check that serial is not used
+  logger.info(registrationData)
+
+  let response = null
+  try {
     // Check if user already exists
-    db.getUserData({ username }).then(
-      response => {
-        // Username free
-        if (response.length === 0) {
-          // Check if serial is used
-          db.getUserSerial({ serial }).then(
-            serialResponse => {
-              // Serial not used
-              if (serialResponse.length === 0) {
-                hashPassword(password).then(
-                  response2 => {
-                    registrationData.passwordHash = response2
+    response = await db.getUserData({ username })
 
-                    db.storeUserData(registrationData).then(
-                      () => {
-                        res.json({
-                          message: 'User registration success',
-                          status: 'success',
-                          // data: response3,
-                        })
-                      },
-                      error => {
-                        logger.error(`User: ${error}`)
-                        res.json({
-                          message: 'User registration failed',
-                          status: 'error',
-                        })
-                      }
-                    )
-                  },
-                  error => {
-                    logger.error(`User: ${error}`)
-                  }
-                )
-              } else {
-                logger.info('User: Serial used')
-                res.json({
-                  code: 12,
-                  message: 'Invalid serial',
-                  status: 'error',
-                })
-              }
-            },
-            error => {
-              console.log(error)
+    // Username free
+    if (response.length === 0) {
+      let serialResponse = null
+      try {
+        // Check if serial is used
+        serialResponse = await db.getUserSerial({ serial })
+
+        // Serial not used
+        if (serialResponse.length === 0) {
+          let response2 = null
+          try {
+            response2 = await hashPassword(password)
+
+            registrationData.passwordHash = response2
+
+            try {
+              await db.storeUserData(registrationData)
+              res.json({
+                message: 'User registration success',
+                status: 'success',
+              })
+            } catch (error) {
+              logger.error(`db.storeUserData(): ${error}`)
+              res.json({
+                message: 'User registration failed',
+                status: 'error',
+              })
             }
-          )
+          } catch (error) {
+            logger.error(`hashPassword(): ${error}`)
+          }
         } else {
-          logger.info(`User: Username "${username}" is already registered`)
+          logger.info('User: Serial used')
           res.json({
-            code: 11,
-            message: 'Username in already registered',
+            code: 12,
+            message: 'Invalid serial',
             status: 'error',
-            // response,
           })
         }
-      },
-      error => {
-        logger.error(`User: ${error}`)
+      } catch (error) {
+        logger.error(`db.getUserSerial(): ${error}`)
       }
-    )
+    } else {
+      logger.info(`User: Username "${username}" is already registered`)
+      res.json({
+        code: 11,
+        message: 'Username in already registered',
+        status: 'error',
+      })
+    }
+  } catch (error) {
+    logger.error(`db.getUserData(): ${error}`)
   }
 }
 
 // Get user info
-const getUser = (req, res) => {
+const getUser = async (req, res) => {
   logger.info('API call: GET /api/user')
   const username = req.query.username
 
@@ -124,29 +118,29 @@ const getUser = (req, res) => {
     })
   }
 
-  return db.getUserData({ username }).then(
-    response => {
-      const returnData = {
-        enteredGames: response[0].entered_games,
-        favoritedGames: response[0].favorited_games,
-        signedGames: response[0].signed_games,
-      }
+  let response = null
+  try {
+    response = await db.getUserData({ username })
 
-      res.json({
-        message: 'Getting user data success',
-        status: 'success',
-        games: returnData,
-      })
-    },
-    error => {
-      logger.error(`User: ${error}`)
-      res.json({
-        message: 'Getting user data failed',
-        status: 'error',
-        error,
-      })
+    const returnData = {
+      enteredGames: response[0].entered_games,
+      favoritedGames: response[0].favorited_games,
+      signedGames: response[0].signed_games,
     }
-  )
+
+    res.json({
+      message: 'Getting user data success',
+      status: 'success',
+      games: returnData,
+    })
+  } catch (error) {
+    logger.error(`db.getUserData(): ${error}`)
+    res.json({
+      message: 'Getting user data failed',
+      status: 'error',
+      error,
+    })
+  }
 }
 
 module.exports = { postUser, getUser }
