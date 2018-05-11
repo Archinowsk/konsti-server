@@ -44,7 +44,7 @@ const removeGames = () => {
   return Game.remove({})
 }
 
-const storeUserData = userData => {
+const storeUserData = async userData => {
   const username = userData.username.trim()
   let userGroup = 'user'
 
@@ -64,20 +64,19 @@ const storeUserData = userData => {
   })
 
   // Save to database
-  return user.save().then(
-    response => {
-      logger.info(`MongoDB: User ${username} saved to DB`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error creating new user ${username} - ${error}`)
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await user.save()
+    logger.info(`MongoDB: User ${username} saved to DB`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error creating new user ${username} - ${error}`)
+    return error
+  }
 }
 
 // Store all games to db
-const storeGamesData = games => {
+const storeGamesData = async games => {
   logger.info('MongoDB: Store games to DB')
   const gameDocs = []
 
@@ -139,73 +138,68 @@ const storeGamesData = games => {
   })
 
   // Remove existing documents
-  return removeGames().then(
-    () =>
-      Game.create(gameDocs).then(
-        response => {
-          logger.info('MonboDB: Games saved to DB succesfully')
-          return response
-        },
-        // TODO: Collect and return all errors, now only catches one
-        error => {
-          logger.error(`Error saving game to db: ${error}`)
-          return Promise.reject(error)
-        }
-      ),
-    error => {
-      logger.error(`Error removing old db entries: ${error}`)
-      return Promise.reject(error)
-    }
-  )
+  try {
+    await removeGames()
+  } catch (error) {
+    logger.error(`Error removing old db entries: ${error}`)
+    return Promise.reject(error)
+  }
+
+  let response = null
+  try {
+    response = await Game.create(gameDocs)
+    logger.info('MonboDB: Games saved to DB succesfully')
+    return response
+  } catch (error) {
+    // TODO: Collect and return all errors, now only catches one
+    logger.error(`Error saving game to db: ${error}`)
+    return Promise.reject(error)
+  }
 }
 
-const getUserData = userData => {
+const getUserData = async userData => {
   const username = userData.username.trim()
 
-  // TODO: Update to use findOne() instead of find()
-  // return User.findOne({ username: userData.username }).then(
-  return User.find({ username }).then(
-    response => {
-      if (response.length === 0) {
-        logger.info(`MongoDB: User "${username}" not found`)
-      } else {
-        logger.info(`MongoDB: Found user "${username}"`)
-      }
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error finding user ${username} - ${error}`)
-      return error
-    }
-  )
+  let response = null
+  try {
+    // TODO: Update to use findOne() instead of find()
+    response = await User.find({ username })
+  } catch (error) {
+    logger.error(`MongoDB: Error finding user ${username} - ${error}`)
+    return error
+  }
+
+  if (response.length === 0) {
+    logger.info(`MongoDB: User "${username}" not found`)
+  } else {
+    logger.info(`MongoDB: Found user "${username}"`)
+  }
+  return response
 }
 
-const getUserSerial = serialData => {
-  // const username = userData.username.trim();
+const getUserSerial = async serialData => {
   const serial = serialData.serial
-  logger.info('serial')
 
-  logger.info(serial)
-  // TODO: Update to use findOne() instead of find()
-  // return User.findOne({ username: userData.username }).then(
-  return User.find({ serial }).then(
-    response => {
-      if (response.length === 0) {
-        logger.info(`MongoDB: Serial "${serial}" not found`)
-      } else {
-        logger.info(`MongoDB: Found Serial "${serial}"`)
-      }
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error finding Serial ${serial} - ${error}`)
-      return error
-    }
-  )
+  let response = null
+  try {
+    // TODO: Update to use findOne() instead of find()
+    response = await User.find({ serial })
+  } catch (error) {
+    logger.error(`MongoDB: Error finding Serial ${serial} - ${error}`)
+    return error
+  }
+
+  if (response.length === 0) {
+    logger.info(`MongoDB: Serial "${serial}" not found`)
+  } else {
+    logger.info(`MongoDB: Found Serial "${serial}"`)
+  }
+  return response
 }
 
-const createSettingsData = () => {
+const createSettingsData = async () => {
   logger.info('MongoDB: "Settings" collection not found, create empty')
+
   // Example user data
   const settings = new Settings({
     blacklisted_games: [],
@@ -214,145 +208,130 @@ const createSettingsData = () => {
   })
 
   // Save to database
-  return settings.save().then(
-    response => {
-      logger.info(`MongoDB: Empty settings collection saved to DB`)
-      return response
-    },
-    error => {
-      logger.error(
-        `MongoDB: Error creating empty settings collection - ${error}`
-      )
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await settings.save()
+    logger.info(`MongoDB: Empty settings collection saved to DB`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error creating empty settings collection - ${error}`)
+    return error
+  }
 }
 
-const getSettingsData = () => {
-  return Settings.findOne({}).then(
-    response => {
-      if (response === null) {
-        // No settings data, create new collection
-        return createSettingsData(response2 => response2)
-      }
-      logger.info(`MongoDB: Settings data found`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error finding settings data - ${error}`)
-      return error
-    }
-  )
+const getSettingsData = async () => {
+  let response = null
+  try {
+    response = await Settings.findOne({})
+  } catch (error) {
+    logger.error(`MongoDB: Error finding settings data - ${error}`)
+    return error
+  }
+
+  if (response === null) {
+    // No settings data, create new collection
+    return createSettingsData(response2 => response2)
+  }
+  logger.info(`MongoDB: Settings data found`)
+  return response
 }
 
-const getResultsData = () => {
-  return Results.find({}).then(
-    response => {
-      /*
-      if (response === null) {
-        // No settings data, create new collection
-        return createSettingsData(response2 => response2);
-      }
-      */
-      logger.info(`MongoDB: Results data found`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error finding results data - ${error}`)
-      return error
-    }
-  )
+const getResultsData = async () => {
+  let response = null
+  try {
+    response = await Results.find({})
+    logger.info(`MongoDB: Results data found`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error finding results data - ${error}`)
+    return error
+  }
 }
 
-const getGamesData = () => {
-  return Game.find({}).then(
-    response => {
-      logger.info(`MongoDB: Get all games`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error fetcing games - ${error}`)
-      return error
-    }
-  )
+const getGamesData = async () => {
+  let response = null
+  try {
+    response = await Game.find({})
+    logger.info(`MongoDB: Get all games`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error fetcing games - ${error}`)
+    return error
+  }
 }
 
-const getUsersData = () => {
-  return User.find({}).then(
-    response => {
-      logger.info(`MongoDB: Get all users`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error fetcing users - ${error}`)
-      return error
-    }
-  )
+const getUsersData = async () => {
+  let response = null
+  try {
+    response = await User.find({})
+    logger.info(`MongoDB: Get all users`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error fetcing users - ${error}`)
+    return error
+  }
 }
 
-const storeSignupData = signupData => {
+const storeSignupData = async signupData => {
   // Save to database
-  return User.update(
-    { username: signupData.username },
-    { $set: { signed_games: signupData.selectedGames } }
-  ).then(
-    response => {
-      logger.info(
-        `MongoDB: Signup data stored for user "${signupData.username}"`
-      )
-      return response
-    },
-    error => {
-      logger.error(
-        `MongoDB: Error storing signup data for user "${
-          signupData.username
-        }" - ${error}`
-      )
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await User.update(
+      { username: signupData.username },
+      { $set: { signed_games: signupData.selectedGames } }
+    )
+
+    logger.info(`MongoDB: Signup data stored for user "${signupData.username}"`)
+    return response
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error storing signup data for user "${
+        signupData.username
+      }" - ${error}`
+    )
+    return error
+  }
 }
 
-const storeFavoriteData = favoriteData => {
+const storeFavoriteData = async favoriteData => {
   // Save to database
-  return User.update(
-    { username: favoriteData.username },
-    { $set: { favorited_games: favoriteData.favoritedGames } }
-  ).then(
-    response => {
-      logger.info(
-        `MongoDB: Favorite data stored for user "${favoriteData.username}"`
-      )
-      return response
-    },
-    error => {
-      logger.error(
-        `MongoDB: Error storing favorite data for user "${
-          favoriteData.username
-        }" - ${error}`
-      )
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await User.update(
+      { username: favoriteData.username },
+      { $set: { favorited_games: favoriteData.favoritedGames } }
+    )
+
+    logger.info(
+      `MongoDB: Favorite data stored for user "${favoriteData.username}"`
+    )
+    return response
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error storing favorite data for user "${
+        favoriteData.username
+      }" - ${error}`
+    )
+    return error
+  }
 }
 
-const storeBlacklistData = blacklistData => {
+const storeBlacklistData = async blacklistData => {
   // Save to database
-  return Settings.update({
-    $set: { blacklisted_games: blacklistData.blacklistedGames },
-  }).then(
-    response => {
-      logger.info(`MongoDB: Blacklist data updated`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error updating blacklist data - ${error}`)
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await Settings.update({
+      $set: { blacklisted_games: blacklistData.blacklistedGames },
+    })
+    logger.info(`MongoDB: Blacklist data updated`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error updating blacklist data - ${error}`)
+    return error
+  }
 }
 
-const storeSignupTime = signupTime => {
+const storeSignupTime = async signupTime => {
   // Make sure that the string is in correct format
   let formattedTime
   if (signupTime === null) {
@@ -360,51 +339,49 @@ const storeSignupTime = signupTime => {
   } else {
     formattedTime = moment.utc(signupTime)
   }
+
   // Save to database
-  return Settings.update({
-    $set: { signup_time: formattedTime },
-  }).then(
-    response => {
-      logger.info(`MongoDB: Signup time updated`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Error updating signup time - ${error}`)
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await Settings.update({
+      $set: { signup_time: formattedTime },
+    })
+    logger.info(`MongoDB: Signup time updated`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error updating signup time - ${error}`)
+    return error
+  }
 }
 
-const storeSignupResultData = signupResultData => {
+const storeSignupResultData = async signupResultData => {
   // Save to database, don't store duplicate ids
-  return User.update(
-    {
-      username: signupResultData.username,
-      entered_games: { $ne: [{ id: signupResultData.enteredGame.id }] },
-    },
-    // { $set: { entered_games: { id: signupResultData.enteredGame } } }
-    { $push: { entered_games: { id: signupResultData.enteredGame.id } } }
-  ).then(
-    response => {
-      logger.info(
-        `MongoDB: Signup result data stored for user ${
-          signupResultData.username
-        }`
-      )
-      return response
-    },
-    error => {
-      logger.error(
-        `MongoDB: Error storing signup result data for user ${
-          signupResultData.username
-        } - ${error}`
-      )
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await User.update(
+      {
+        username: signupResultData.username,
+        entered_games: { $ne: [{ id: signupResultData.enteredGame.id }] },
+      },
+      // { $set: { entered_games: { id: signupResultData.enteredGame } } }
+      { $push: { entered_games: { id: signupResultData.enteredGame.id } } }
+    )
+
+    logger.info(
+      `MongoDB: Signup result data stored for user ${signupResultData.username}`
+    )
+    return response
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error storing signup result data for user ${
+        signupResultData.username
+      } - ${error}`
+    )
+    return error
+  }
 }
 
-const storeAllSignupResults = (signupResultData, startingTime) => {
+const storeAllSignupResults = async (signupResultData, startingTime) => {
   const formattedTime = moment.utc(startingTime)
 
   // Example user data
@@ -414,21 +391,20 @@ const storeAllSignupResults = (signupResultData, startingTime) => {
   })
 
   // Save to database
-  return results.save().then(
-    response => {
-      logger.info(`MongoDB: Signup results stored to separate collection`)
-      return response
-    },
-    error => {
-      logger.error(
-        `MongoDB: Error storing signup results to separate collection - ${error}`
-      )
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await results.save()
+    logger.info(`MongoDB: Signup results stored to separate collection`)
+    return response
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error storing signup results to separate collection - ${error}`
+    )
+    return error
+  }
 }
 
-const storeFeedbackData = feedbackData => {
+const storeFeedbackData = async feedbackData => {
   // Example user data
   const feedback = new Feedback({
     game_id: feedbackData.id,
@@ -436,39 +412,38 @@ const storeFeedbackData = feedbackData => {
   })
 
   // Save to database
-  return feedback.save().then(
-    response => {
-      logger.info(`MongoDB: Feedback stored success`)
-      return response
-    },
-    error => {
-      logger.error(`MongoDB: Feedback stored error - ${error}`)
-      return error
-    }
-  )
+  let response = null
+  try {
+    response = await feedback.save()
+    logger.info(`MongoDB: Feedback stored success`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Feedback stored error - ${error}`)
+    return error
+  }
 }
 
-const storeFavoriteGamesData = favoriteGamesData => {
+const storeFavoriteGamesData = async favoriteGamesData => {
   // Save to database
-  return User.update(
-    { username: favoriteGamesData.username },
-    { $set: { favorite_games: favoriteGamesData.enteredGames } }
-  ).then(
-    response => {
-      logger.info(
-        `MongoDB: Favorites data stored for user ${favoriteGamesData.username}`
-      )
-      return response
-    },
-    error => {
-      logger.error(
-        `MongoDB: Error storing favorites data for user ${
-          favoriteGamesData.username
-        } - ${error}`
-      )
-      return error
-    }
-  )
+  let response = null
+  try {
+    User.update(
+      { username: favoriteGamesData.username },
+      { $set: { favorite_games: favoriteGamesData.enteredGames } }
+    )
+
+    logger.info(
+      `MongoDB: Favorites data stored for user ${favoriteGamesData.username}`
+    )
+    return response
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error storing favorites data for user ${
+        favoriteGamesData.username
+      } - ${error}`
+    )
+    return error
+  }
 }
 
 module.exports = {
