@@ -3,11 +3,13 @@ const db = require('../../../db/mongodb')
 const getRandomString = require('./randomVariableGenerators').getRandomString
 const hashPassword = require('../../../utils/bcrypt').hashPassword
 
-const createAdminUser = () => {
+const createAdminUser = async () => {
   // Create admin user with predefined data
   logger.info(`Generate data for admin user "admin:test"`)
 
-  return hashPassword('test').then(response => {
+  let response = null
+  try {
+    response = await hashPassword('test')
     const passwordHash = response
 
     const registrationData = {
@@ -20,14 +22,18 @@ const createAdminUser = () => {
     }
 
     return db.storeUserData(registrationData)
-  })
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
-const createTestUser = () => {
+const createTestUser = async () => {
   // Create admin user with predefined data
   logger.info(`Generate data for user "test:test"`)
 
-  return hashPassword('test').then(response => {
+  let response = null
+  try {
+    response = await hashPassword('test')
     const passwordHash = response
 
     const registrationData = {
@@ -40,7 +46,9 @@ const createTestUser = () => {
     }
 
     return db.storeUserData(registrationData)
-  })
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 const createUser = () => {

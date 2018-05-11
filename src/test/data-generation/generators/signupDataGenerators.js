@@ -51,23 +51,25 @@ const signupMultiple = (count, games, users) => {
   return Promise.all(promises)
 }
 
-const createSignupData = count => {
+const createSignupData = async count => {
   // Sign up users to games
   logger.info('Generate signup data')
 
   let games = []
   let users = []
 
-  return getGames()
-    .then(response => {
-      games = response
-      return getUsers()
-    })
-    .then(response => {
-      users = response
-    })
-    .then(() => signupMultiple(count, games, users))
-    .catch(error => logger.error(error))
+  let response = null
+  try {
+    response = await getGames()
+    games = response
+
+    response = await getUsers()
+    users = response
+
+    await signupMultiple(count, games, users)
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 module.exports = { createSignupData }
