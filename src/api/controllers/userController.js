@@ -16,7 +16,7 @@ const postUser = async (req, res) => {
     !registrationData.password ||
     !registrationData.serial
   ) {
-    logger.info('postUser(): validation failed')
+    logger.info('User: validation failed')
     res.json({
       message: 'Validation error',
       status: 'error',
@@ -25,7 +25,7 @@ const postUser = async (req, res) => {
 
   // Check for valid serial
   if (!checkSerial(registrationData.serial.trim())) {
-    logger.info('checkSerial(): Serial is not valid')
+    logger.info('User: Serial is not valid')
     res.json({
       code: 12,
       message: 'Invalid serial',
@@ -34,7 +34,7 @@ const postUser = async (req, res) => {
     return
   }
 
-  logger.info('checkSerial(): Serial is valid')
+  logger.info('User: Serial is valid')
 
   const username = registrationData.username.trim()
   const password = registrationData.password.trim()
