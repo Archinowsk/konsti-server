@@ -1,49 +1,32 @@
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
-// const validateAuthHeader = require('../../utils/authHeader');
 
 // Get settings
-const getSettings = (req, res) => {
+const getSettings = async (req, res) => {
   logger.info('API call: GET /api/settings')
 
-  /*
-  const authHeader = req.headers.authorization;
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  let response = null
+  try {
+    response = await db.getSettingsData()
 
-  if (!validToken) {
-    res.json({
-      code: 401,
-      message: 'Unauthorized',
-      status: 'error',
-    });
-  }
-  */
-
-  return db.getSettingsData().then(
-    response => {
-      const gamesData = {
-        blacklistedGames: response.blacklisted_games,
-      }
-
-      // logger.info(response.blacklisted_games);
-      // logger.info(response.signup_time);
-
-      res.json({
-        message: 'Getting settings success',
-        status: 'success',
-        games: gamesData,
-        signupTime: response.signup_time,
-      })
-    },
-    error => {
-      logger.error(`Settings: ${error}`)
-      res.json({
-        message: 'Getting settings failed',
-        status: 'error',
-        error,
-      })
+    const gamesData = {
+      blacklistedGames: response.blacklisted_games,
     }
-  )
+
+    res.json({
+      message: 'Getting settings success',
+      status: 'success',
+      games: gamesData,
+      signupTime: response.signup_time,
+    })
+  } catch (error) {
+    logger.error(`Settings: ${error}`)
+    res.json({
+      message: 'Getting settings failed',
+      status: 'error',
+      error,
+    })
+  }
 }
 
 module.exports = { getSettings }

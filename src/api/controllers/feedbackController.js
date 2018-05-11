@@ -3,7 +3,7 @@ const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Post feedback data
-const postFeedback = (req, res) => {
+const postFeedback = async (req, res) => {
   logger.info('API call: POST /api/feedback')
   const feedbackData = req.body.feedbackData
 
@@ -18,21 +18,19 @@ const postFeedback = (req, res) => {
     })
   }
 
-  return db.storeFeedbackData(feedbackData).then(
-    () => {
-      res.json({
-        message: 'Post feedback success',
-        status: 'success',
-      })
-    },
-    error => {
-      res.json({
-        message: 'Post feedback failure',
-        status: 'error',
-        error,
-      })
-    }
-  )
+  try {
+    await db.storeFeedbackData(feedbackData)
+    res.json({
+      message: 'Post feedback success',
+      status: 'success',
+    })
+  } catch (error) {
+    res.json({
+      message: 'Post feedback failure',
+      status: 'error',
+      error,
+    })
+  }
 }
 
 module.exports = { postFeedback }

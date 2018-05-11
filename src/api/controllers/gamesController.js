@@ -1,11 +1,10 @@
 const requestPromiseNative = require('request-promise-native')
-
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 const config = require('../../../config')
 
-const updateGames = () => {
+const updateGames = async () => {
   logger.info('Games: GET games from Conbase')
 
   const options = {
@@ -16,33 +15,32 @@ const updateGames = () => {
     json: true, // Automatically parses the JSON string in the response
   }
 
-  return requestPromiseNative(options).then(
-    response => {
-      if (response.success === true) {
-        logger.info(`Games: GET Games success`)
-      }
+  let programItems = null
+  try {
+    programItems = await requestPromiseNative(options)
+  } catch (error) {
+    logger.error(`Games: requestPromiseNative(): ${error}`)
+    return Promise.reject(error)
+  }
 
-      // TODO: Filter roleplaying games in designated locations, i.e. not "hall 5"
+  // TODO: Filter roleplaying games in designated locations, i.e. not "hall 5"
 
-      const games = []
-      response.forEach(game => {
-        game.tags.forEach(tag => {
-          if (tag === 'Pöytäpelit') {
-            games.push(game)
-          }
-        })
+  if (programItems) {
+    const games = []
+
+    programItems.forEach(game => {
+      game.tags.forEach(tag => {
+        if (tag === 'Pöytäpelit') {
+          games.push(game)
+        }
       })
-      return games
-    },
-    error => {
-      logger.error(`Games: requestPromiseNative(): ${error}`)
-      return Promise.reject(error)
-    }
-  )
+    })
+    return games
+  }
 }
 
 // Update games db from Conbase
-const postGames = (req, res) => {
+const postGames = async (req, res) => {
   logger.info('API call: POST /api/games')
 
   const authHeader = req.headers.authorization
@@ -56,51 +54,47 @@ const postGames = (req, res) => {
     })
   }
 
-  return updateGames().then(
-    response =>
-      db.storeGamesData(response).then(
-        response2 => {
-          res.json({
-            message: 'Games db updated',
-            status: 'success',
-            data: response2,
-          })
-        },
-        error => {
-          res.json({
-            message: 'Games db update failed',
-            status: 'error',
-            data: error,
-          })
-          Promise.reject(error)
-        }
-      ),
-    error => {
-      logger.error(`Games: ${error}`)
-    }
-  )
+  let games = null
+  let response = null
+  try {
+    games = await updateGames()
+    response = await db.storeGamesData(games)
+
+    res.json({
+      message: 'Games db updated',
+      status: 'success',
+      data: response,
+    })
+  } catch (error) {
+    res.json({
+      message: 'Games db update failed',
+      status: 'error',
+      data: error,
+    })
+    Promise.reject(error)
+  }
 }
 
 // Get games from db
-const getGames = (req, res) => {
+const getGames = async (req, res) => {
   logger.info('API call: GET /api/games')
 
-  db.getGamesData().then(
-    response => {
-      res.json({
-        message: 'Games downloaded',
-        status: 'success',
-        games: response,
-      })
-    },
-    error => {
-      res.json({
-        message: 'Downloading games failed',
-        status: 'error',
-        response: error,
-      })
-    }
-  )
+  let games = null
+  try {
+    games = await db.getGamesData()
+
+    res.json({
+      message: 'Games downloaded',
+      status: 'success',
+      games: games,
+    })
+  } catch (error) {
+    res.json({
+      message: 'Downloading games failed',
+      status: 'error',
+      response: error,
+    })
+  }
 }
 
 module.exports = { postGames, getGames }

@@ -3,7 +3,7 @@ const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Add blacklist data to server settings
-const postBlacklist = (req, res) => {
+const postBlacklist = async (req, res) => {
   logger.info('API call: POST /api/blacklist')
   const blacklistData = req.body.blacklistData
 
@@ -18,21 +18,19 @@ const postBlacklist = (req, res) => {
     })
   }
 
-  return db.storeBlacklistData(blacklistData).then(
-    () => {
-      res.json({
-        message: 'Update blacklist success',
-        status: 'success',
-      })
-    },
-    error => {
-      res.json({
-        message: 'Update blacklist failure',
-        status: 'error',
-        error,
-      })
-    }
-  )
+  try {
+    await db.storeBlacklistData(blacklistData)
+    res.json({
+      message: 'Update blacklist success',
+      status: 'success',
+    })
+  } catch (error) {
+    res.json({
+      message: 'Update blacklist failure',
+      status: 'error',
+      error,
+    })
+  }
 }
 
 module.exports = { postBlacklist }

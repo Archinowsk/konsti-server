@@ -3,7 +3,7 @@ const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Add open signup time to server settings
-const postSignupTime = (req, res) => {
+const postSignupTime = async (req, res) => {
   logger.info('API call: POST /api/signuptime')
   const signupTime = req.body.signupTime
 
@@ -18,21 +18,19 @@ const postSignupTime = (req, res) => {
     })
   }
 
-  return db.storeSignupTime(signupTime).then(
-    () => {
-      res.json({
-        message: 'Signup time set success',
-        status: 'success',
-      })
-    },
-    error => {
-      res.json({
-        message: 'Signup time set failure',
-        status: 'error',
-        error,
-      })
-    }
-  )
+  try {
+    await db.storeSignupTime(signupTime)
+    res.json({
+      message: 'Signup time set success',
+      status: 'success',
+    })
+  } catch (error) {
+    res.json({
+      message: 'Signup time set failure',
+      status: 'error',
+      error,
+    })
+  }
 }
 
 module.exports = { postSignupTime }

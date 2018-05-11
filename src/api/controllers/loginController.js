@@ -4,8 +4,11 @@ const db = require('../../db/mongodb')
 const comparePasswordHash = require('../../utils/bcrypt').comparePasswordHash
 const config = require('../../../config')
 
-const validateLogin = (loginData, hash) =>
-  comparePasswordHash(loginData.password.trim(), hash).then(response => {
+const validateLogin = async (loginData, hash) => {
+  let response = null
+  try {
+    response = await comparePasswordHash(loginData.password.trim(), hash)
+
     // Password matches hash
     if (response === true) {
       // logger.info(`Login: User "${loginData.username}" password match`);
@@ -13,9 +16,12 @@ const validateLogin = (loginData, hash) =>
     }
     // logger.info(`Login: User "${loginData.username}" password doesn't match`);
     return false
-  }, error => error)
+  } catch (error) {
+    return error
+  }
+}
 
-const postLogin = (req, res) => {
+const postLogin = async (req, res) => {
   logger.info('API call: POST /api/login')
   const loginData = req.body.loginData
 
@@ -25,80 +31,78 @@ const postLogin = (req, res) => {
       message: 'Validation error',
       status: 'error',
     })
-  } else {
-    db.getUserData(loginData).then(
-      response => {
-        // User exists
-        if (response.length > 0) {
-          return validateLogin(loginData, response[0].password).then(
-            response2 => {
-              logger.info(
-                `Login: User "${response[0].username}" with "${
-                  response[0].user_group
-                }" account`
-              )
-              let jwtToken = ''
-              if (response[0].user_group === 'admin') {
-                jwtToken = jwt.sign(
-                  { username: loginData.username },
-                  config.jwtSecretKeyAdmin
-                )
-              } else {
-                jwtToken = jwt.sign(
-                  { username: loginData.username },
-                  config.jwtSecretKey
-                )
-              }
-              if (response2 === true) {
-                logger.info(
-                  `Login: Password for user "${loginData.username.trim()}" matches`
-                )
-                res.json({
-                  message: 'User login success',
-                  status: 'success',
-                  jwtToken,
-                  userGroup: response[0].user_group,
-                })
-              } else {
-                logger.info(
-                  `Login: Password for user "${
-                    loginData.username
-                  }" doesn't match`
-                )
+  }
 
-                res.json({
-                  code: 21,
-                  message: 'User login failed',
-                  status: 'error',
-                })
-              }
-            },
-            error => {
-              logger.error(`Login: ${error}`)
-              res.json({
-                message: 'User login error',
-                status: 'error',
-                error,
-              })
-            }
-          )
-        }
-        logger.info(`Login: User "${loginData.username}" not found`)
-        res.json({
-          code: 21,
-          message: 'User login error',
-          status: 'error',
-        })
-      },
-      error => {
-        logger.error(`Login: ${error}`)
-        res.json({
-          message: 'User login error',
-          status: 'error',
-          error,
-        })
-      }
+  let response = null
+  try {
+    response = await db.getUserData(loginData)
+  } catch (error) {
+    logger.error(`Login: ${error}`)
+    res.json({
+      message: 'User login error',
+      status: 'error',
+      error,
+    })
+  }
+
+  // User does not exist
+  if (!response) {
+    logger.info(`Login: User "${loginData.username}" not found`)
+    res.json({
+      code: 21,
+      message: 'User login error',
+      status: 'error',
+    })
+  }
+
+  // User exists
+  let response2 = null
+  try {
+    response2 = await validateLogin(loginData, response[0].password)
+
+    logger.info(
+      `Login: User "${response[0].username}" with "${
+        response[0].user_group
+      }" account`
     )
+
+    let jwtToken = ''
+    if (response[0].user_group === 'admin') {
+      jwtToken = jwt.sign(
+        { username: loginData.username },
+        config.jwtSecretKeyAdmin
+      )
+    } else {
+      jwtToken = jwt.sign({ username: loginData.username }, config.jwtSecretKey)
+    }
+    if (response2 === true) {
+      logger.info(
+        `Login: Password for user "${loginData.username.trim()}" matches`
+      )
+      res.json({
+        message: 'User login success',
+        status: 'success',
+        jwtToken,
+        userGroup: response[0].user_group,
+      })
+    } else {
+      logger.info(
+        `Login: Password for user "${loginData.username}" doesn't match`
+      )
+
+      res.json({
+        code: 21,
+        message: 'User login failed',
+        status: 'error',
+      })
+    }
+  } catch (error) {
+    logger.error(`Login: ${error}`)
+    res.json({
+      message: 'User login error',
+      status: 'error',
+      error,
+    })
   }
 }
 

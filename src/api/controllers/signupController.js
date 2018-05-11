@@ -3,7 +3,7 @@ const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Add signup data for user
-const postSignup = (req, res) => {
+const postSignup = async (req, res) => {
   logger.info('API call: POST /api/signup')
   const signupData = req.body.signupData
 
@@ -18,22 +18,20 @@ const postSignup = (req, res) => {
     })
   }
 
-  return db.storeSignupData(signupData).then(
-    () => {
-      res.json({
-        message: 'Signup success',
-        status: 'success',
-        // response,
-      })
-    },
-    error => {
-      res.json({
-        message: 'Signup failure',
-        status: 'error',
-        error,
-      })
-    }
-  )
+  try {
+    await db.storeSignupData(signupData)
+
+    res.json({
+      message: 'Signup success',
+      status: 'success',
+    })
+  } catch (error) {
+    res.json({
+      message: 'Signup failure',
+      status: 'error',
+      error,
+    })
+  }
 }
 
 module.exports = { postSignup }
