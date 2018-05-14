@@ -52,6 +52,7 @@ const postGames = async (req, res) => {
       message: 'Unauthorized',
       status: 'error',
     })
+    return
   }
 
   let games = null

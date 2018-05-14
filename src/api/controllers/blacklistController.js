@@ -16,6 +16,7 @@ const postBlacklist = async (req, res) => {
       message: 'Unauthorized',
       status: 'error',
     })
+    return
   }
 
   try {
