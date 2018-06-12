@@ -1,4 +1,4 @@
-// const { logger } = require('../../utils/logger')
+// const { logger } = require('../../../utils/logger')
 
 const getSignupMatrix = (selectedGames, selectedPlayers) => {
   // Create matrix for the sorting algorithm

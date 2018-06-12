@@ -1,4 +1,4 @@
-const { logger } = require('../../utils/logger')
+const { logger } = require('../../../utils/logger')
 
 const getSelectedPlayers = (players, startingGames) => {
   // Get users who have wishes for valid games

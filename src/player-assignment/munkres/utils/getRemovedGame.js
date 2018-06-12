@@ -1,4 +1,4 @@
-// const { logger } = require('../../utils/logger')
+// const { logger } = require('../../../utils/logger')
 
 const getRemovedGame = gamesWithTooFewPlayers => {
   // Get games with least players

@@ -1,4 +1,4 @@
-// const { logger } = require('../../utils/logger')
+// const { logger } = require('../../../utils/logger')
 
 const getPriorities = (results, signupMatrix) => {
   // Show the priorities players were assigned to

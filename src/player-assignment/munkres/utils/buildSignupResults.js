@@ -1,4 +1,4 @@
-// const { logger } = require('../../utils/logger')
+// const { logger } = require('../../../utils/logger')
 
 const buildSignupResults = (results, selectedGames, selectedPlayers) => {
   const signupResults = []

@@ -1,4 +1,4 @@
-const { logger } = require('../../utils/logger')
+const { logger } = require('../../../utils/logger')
 
 const checkMinAttendance = (results, selectedGames) => {
   // Check that game min_attendance is fullfilled
