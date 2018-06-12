@@ -44,6 +44,16 @@ const removeGames = () => {
   return Game.remove({})
 }
 
+const removeResults = () => {
+  logger.info('MongoDB: remove ALL results from db')
+  return Results.remove({})
+}
+
+const removeSettings = () => {
+  logger.info('MongoDB: remove ALL settings from db')
+  return Settings.remove({})
+}
+
 const storeUserData = async userData => {
   const username = userData.username.trim()
   let userGroup = 'user'
@@ -461,6 +471,8 @@ module.exports = {
   storeFavoriteGamesData,
   removeUsers,
   removeGames,
+  removeResults,
+  removeSettings,
   getSettingsData,
   storeAllSignupResults,
   getResultsData,

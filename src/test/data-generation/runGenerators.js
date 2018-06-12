@@ -9,28 +9,36 @@ const createSignupData = require('./generators/signupDataGenerators')
   .createSignupData
 const config = require('../../../config')
 
-if (config.env !== 'development') {
-  logger.error(
-    `Data cretion only allowed in dev environment, current env "${config.env}"`
-  )
+const generators = async () => {
+  if (config.env !== 'development') {
+    logger.error(
+      `Data cretion only allowed in dev environment, current env "${
+        config.env
+      }"`
+    )
+    process.exit()
+  }
+
+  const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
+  const newGamesCount = 15 // How many games are availale for signup - minimum is 3
+  const newSignupsCount = 10 // How many players will sign up for three games
+
+  try {
+    await db.connectToDb()
+    await db.removeUsers()
+    await db.removeGames()
+    await db.removeResults()
+    await db.removeSettings()
+    await createAdminUser()
+    await createTestUser()
+    await createUsers(newUsersCount)
+    await createGames(newGamesCount)
+    await createSignupData(newSignupsCount)
+  } catch (error) {
+    logger.error(error)
+  }
+
   process.exit()
 }
 
-const connect = () => db.connectToDb()
-const removeUsers = () => db.removeUsers()
-const removeGames = () => db.removeGames()
-
-const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
-const newGamesCount = 15 // How many games are availale for signup - minimum is 3
-const newSignupsCount = 10 // How many players will sign up for three games
-
-connect()
-  .then(() => removeUsers())
-  .then(() => removeGames())
-  .then(() => createAdminUser())
-  .then(() => createTestUser())
-  .then(() => createUsers(newUsersCount))
-  .then(() => createGames(newGamesCount))
-  .then(() => createSignupData(newSignupsCount))
-  .then(() => process.exit())
-  .catch(error => logger.error(error))
+generators()
