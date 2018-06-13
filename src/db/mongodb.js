@@ -25,7 +25,7 @@ const connectToDb = async () => {
 const gracefulExit = () => {
   mongoose.connection.close(() => {
     logger.info(`MongoDB: ${config.db} is disconnected through app termination`)
-    process.exit(0)
+    process.exit()
   })
 }
 
