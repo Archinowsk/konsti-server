@@ -22,7 +22,6 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  // const strategy = 'group'
   const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
   const newGamesCount = 15 // How many games are availale for signup - minimum is 3
   const newSignupsCount = 10 // How many players will sign up for three games
