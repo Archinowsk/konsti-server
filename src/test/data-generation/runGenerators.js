@@ -6,6 +6,13 @@ const groupGenerator = require('./groupGenerator')
 const config = require('../../../config')
 
 const runGenerators = async () => {
+  const strategy = process.argv[2]
+
+  if (!strategy && strategy !== 'munkres' && strategy !== 'group') {
+    logger.error('Give strategy parameter, possible: "munkres", "group"')
+    process.exit()
+  }
+
   if (config.env !== 'development') {
     logger.error(
       `Data cretion only allowed in dev environment, current env "${
@@ -15,7 +22,7 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  const strategy = 'group'
+  // const strategy = 'group'
   const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
   const newGamesCount = 15 // How many games are availale for signup - minimum is 3
   const newSignupsCount = 10 // How many players will sign up for three games
