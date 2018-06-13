@@ -20,7 +20,7 @@ const postSignup = async (req, res) => {
   }
 
   try {
-    await db.storeSignupData(signupData)
+    await db.user.storeSignupData(signupData)
 
     res.json({
       message: 'Signup success',

@@ -44,9 +44,9 @@ const postUser = async (req, res) => {
   let response = null
   try {
     // Check if user already exists
-    response = await db.getUserData({ username })
+    response = await db.user.getUserData({ username })
   } catch (error) {
-    logger.error(`db.getUserData(): ${error}`)
+    logger.error(`db.user.getUserData(): ${error}`)
   }
 
   // Username free
@@ -54,9 +54,9 @@ const postUser = async (req, res) => {
     let serialResponse = null
     try {
       // Check if serial is used
-      serialResponse = await db.getUserSerial({ serial })
+      serialResponse = await db.user.getUserSerial({ serial })
     } catch (error) {
-      logger.error(`db.getUserSerial(): ${error}`)
+      logger.error(`db.user.getUserSerial(): ${error}`)
     }
 
     // Serial not used
@@ -72,13 +72,13 @@ const postUser = async (req, res) => {
         registrationData.passwordHash = response2
 
         try {
-          await db.storeUserData(registrationData)
+          await db.user.storeUserData(registrationData)
           res.json({
             message: 'User registration success',
             status: 'success',
           })
         } catch (error) {
-          logger.error(`db.storeUserData(): ${error}`)
+          logger.error(`db.user.storeUserData(): ${error}`)
           res.json({
             message: 'User registration failed',
             status: 'error',
@@ -122,7 +122,7 @@ const getUser = async (req, res) => {
 
   let response = null
   try {
-    response = await db.getUserData({ username })
+    response = await db.user.getUserData({ username })
 
     const returnData = {
       enteredGames: response[0].entered_games,
@@ -136,7 +136,7 @@ const getUser = async (req, res) => {
       games: returnData,
     })
   } catch (error) {
-    logger.error(`db.getUserData(): ${error}`)
+    logger.error(`db.user.getUserData(): ${error}`)
     res.json({
       message: 'Getting user data failed',
       status: 'error',

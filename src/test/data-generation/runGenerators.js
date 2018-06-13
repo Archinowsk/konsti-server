@@ -22,19 +22,19 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
-  const newGamesCount = 15 // How many games are availale for signup - minimum is 3
-  const newSignupsCount = 10 // How many players will sign up for three games
+  const newUsersCount = 20 // How many players exist overall, add +2 for test accounts
+  const newGamesCount = 5 // How many games are availale for signup - minimum is 3
+  const newSignupsCount = 20 // How many players will sign up for three games
 
   try {
     await db.connectToDb()
 
     logger.info(`MongoDB: Clean old data`)
 
-    await db.removeUsers()
-    await db.removeGames()
-    await db.removeResults()
-    await db.removeSettings()
+    await db.user.removeUsers()
+    await db.game.removeGames()
+    await db.results.removeResults()
+    await db.settings.removeSettings()
   } catch (error) {
     logger.error(error)
   }

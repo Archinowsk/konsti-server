@@ -3,7 +3,7 @@ const groupAssignPlayers = require('./group/groupAssignPlayers')
 const munkresAssignPlayers = require('./munkres/munkresAssignPlayers')
 
 const assignPlayers = (players, games, startingTime) => {
-  const strategy = 'group'
+  const strategy = 'munkres'
 
   logger.info(
     `Received data for ${players.length} players and ${games.length} games`

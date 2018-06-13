@@ -20,7 +20,7 @@ const postFavorite = async (req, res) => {
   }
 
   try {
-    await db.storeFavoriteData(favoriteData)
+    await db.user.storeFavoriteData(favoriteData)
     res.json({
       message: 'Update favorite success',
       status: 'success',

@@ -35,7 +35,7 @@ const postLogin = async (req, res) => {
 
   let response = null
   try {
-    response = await db.getUserData(loginData)
+    response = await db.user.getUserData(loginData)
   } catch (error) {
     logger.error(`Login: ${error}`)
     res.json({

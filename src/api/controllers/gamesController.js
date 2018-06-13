@@ -59,7 +59,7 @@ const postGames = async (req, res) => {
   let response = null
   try {
     games = await updateGames()
-    response = await db.storeGamesData(games)
+    response = await db.game.storeGamesData(games)
 
     res.json({
       message: 'Games db updated',
@@ -82,7 +82,7 @@ const getGames = async (req, res) => {
 
   let games = null
   try {
-    games = await db.getGamesData()
+    games = await db.game.getGamesData()
 
     res.json({
       message: 'Games downloaded',

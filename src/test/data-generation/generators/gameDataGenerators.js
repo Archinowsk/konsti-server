@@ -41,7 +41,7 @@ const createGames = count => {
     games.push(gameData)
   }
 
-  return db.storeGamesData(games)
+  return db.game.storeGamesData(games)
 }
 
 module.exports = { createGames }
