@@ -25,7 +25,6 @@ const saveUser = async userData => {
     entered_games: [],
   })
 
-  // Save to database
   let response = null
   try {
     response = await user.save()
@@ -90,7 +89,6 @@ const getUsers = async () => {
 }
 
 const saveSignup = async signupData => {
-  // Save to database
   let response = null
   try {
     response = await User.update(
@@ -111,7 +109,6 @@ const saveSignup = async signupData => {
 }
 
 const saveFavorite = async favoriteData => {
-  // Save to database
   let response = null
   try {
     response = await User.update(
@@ -134,7 +131,6 @@ const saveFavorite = async favoriteData => {
 }
 
 const saveSignupResult = async signupResultData => {
-  // Save to database, don't store duplicate ids
   let response = null
   try {
     response = await User.update(

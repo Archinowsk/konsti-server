@@ -23,8 +23,7 @@ const updateGames = async () => {
     return Promise.reject(error)
   }
 
-  // TODO: Filter roleplaying games in designated locations, i.e. not "hall 5"
-
+  // TODO: Filter games in designated locations, i.e. not "hall 5"
   if (programItems) {
     const games = []
 

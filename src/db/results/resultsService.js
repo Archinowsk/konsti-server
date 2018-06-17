@@ -21,13 +21,11 @@ const getResults = async () => {
 const saveAllSignupResults = async (signupResultData, startingTime) => {
   const formattedTime = moment.utc(startingTime)
 
-  // Example user data
   const results = new Results({
     result: signupResultData,
     time: formattedTime,
   })
 
-  // Save to database
   let response = null
   try {
     response = await results.save()

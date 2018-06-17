@@ -10,14 +10,12 @@ const removeSettings = () => {
 const createSettings = async () => {
   logger.info('MongoDB: "Settings" collection not found, create empty')
 
-  // Example user data
   const settings = new Settings({
     blacklisted_games: [],
     canceled_games: [],
     signup_time: moment.utc('2000-01-01'),
   })
 
-  // Save to database
   let response = null
   try {
     response = await settings.save()
@@ -47,7 +45,6 @@ const getSettings = async () => {
 }
 
 const saveBlacklist = async blacklistData => {
-  // Save to database
   let response = null
   try {
     response = await Settings.update({
@@ -70,7 +67,6 @@ const saveSignupTime = async signupTime => {
     formattedTime = moment.utc(signupTime)
   }
 
-  // Save to database
   let response = null
   try {
     response = await Settings.update({
