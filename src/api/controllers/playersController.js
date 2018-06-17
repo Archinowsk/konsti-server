@@ -1,10 +1,11 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const assignPlayers = require('../../player-assignment/assignPlayers')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Assign players to games
-const postPlayers = async (req, res) => {
+const postPlayers = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/players')
   const startingTime = req.body.startingTime
 
@@ -20,14 +21,18 @@ const postPlayers = async (req, res) => {
     return
   }
 
-  let users = null
-  let games = null
-  let assignResults = null
+  let users: Array<Object> = []
+  let games: Array<Object> = []
+  let assignResults: Array<Object> | null = []
 
   try {
     users = await db.user.getUsers()
     games = await db.game.getGames()
-    assignResults = await assignPlayers(users, games, startingTime)
+
+    assignResults = assignPlayers(users, games, startingTime)
+
+    if (!assignResults) throw new Error('No assign results')
+
     await db.results.saveAllSignupResults(assignResults, startingTime)
     await Promise.all(
       assignResults.map(assignResult => {

@@ -1,3 +1,4 @@
+/* @flow */
 const munkres = require('munkres-js')
 const { logger } = require('../../utils/logger')
 
@@ -13,7 +14,11 @@ const getPlayersWithTooHighPriority = require('./utils/getPlayersWithTooHighPrio
 const getRemovedPlayer = require('./utils/getRemovedPlayer')
 const buildSignupResults = require('./utils/buildSignupResults')
 
-const munkresAssignPlayers = (players, games, startingTime) => {
+const munkresAssignPlayers = (
+  players: Array<Object>,
+  games: Array<Object>,
+  startingTime: Date
+) => {
   logger.info(`Munkres strategy`)
 
   const startingGames = getStartingGames(games, startingTime)
@@ -73,7 +78,9 @@ const munkresAssignPlayers = (players, games, startingTime) => {
     selectedPlayers
   )
 
-  return Promise.resolve(signupResults)
+  // TODO: Should this be a promise?
+  // return Promise.resolve(signupResults)
+  return signupResults
 }
 
 module.exports = munkresAssignPlayers

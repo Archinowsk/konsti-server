@@ -1,3 +1,4 @@
+/* @flow */
 const jwt = require('jsonwebtoken')
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
@@ -21,7 +22,7 @@ const validateLogin = async (loginData, hash) => {
   }
 }
 
-const postLogin = async (req, res) => {
+const postLogin = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/login')
   const loginData = req.body.loginData
 
@@ -33,7 +34,16 @@ const postLogin = async (req, res) => {
     })
   }
 
-  let response = null
+  // TODO: Move to user type
+  let response: Object = {
+    favorited_games: [],
+    signed_games: [],
+    entered_games: [],
+    username: '',
+    password: '',
+    user_group: '',
+    serial: '',
+  }
   try {
     response = await db.user.getUser(loginData)
   } catch (error) {
@@ -55,19 +65,20 @@ const postLogin = async (req, res) => {
     })
   }
 
+  logger.info('LOGIN RESPONSE')
+  logger.info(response)
+
   // User exists
   let response2 = null
   try {
-    response2 = await validateLogin(loginData, response[0].password)
+    response2 = await validateLogin(loginData, response.password)
 
     logger.info(
-      `Login: User "${response[0].username}" with "${
-        response[0].user_group
-      }" account`
+      `Login: User "${response.username}" with "${response.user_group}" account`
     )
 
     let jwtToken = ''
-    if (response[0].user_group === 'admin') {
+    if (response.user_group === 'admin') {
       jwtToken = jwt.sign(
         { username: loginData.username },
         config.jwtSecretKeyAdmin
@@ -83,7 +94,7 @@ const postLogin = async (req, res) => {
         message: 'User login success',
         status: 'success',
         jwtToken,
-        userGroup: response[0].user_group,
+        userGroup: response.user_group,
       })
     } else {
       logger.info(

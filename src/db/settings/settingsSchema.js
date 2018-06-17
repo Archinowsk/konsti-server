@@ -1,3 +1,4 @@
+/* @flow */
 const mongoose = require('mongoose')
 
 const SettingsSchema = mongoose.Schema({

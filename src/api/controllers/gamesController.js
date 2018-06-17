@@ -1,3 +1,4 @@
+/* @flow */
 const requestPromiseNative = require('request-promise-native')
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
@@ -23,10 +24,10 @@ const updateGames = async () => {
     return Promise.reject(error)
   }
 
+  const games = []
+
   // TODO: Filter games in designated locations, i.e. not "hall 5"
   if (programItems) {
-    const games = []
-
     programItems.forEach(game => {
       game.tags.forEach(tag => {
         if (tag === 'Pöytäpelit') {
@@ -34,12 +35,12 @@ const updateGames = async () => {
         }
       })
     })
-    return games
   }
+  return games
 }
 
 // Update games db from Conbase
-const postGames = async (req, res) => {
+const postGames = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/games')
 
   const authHeader = req.headers.authorization
@@ -54,7 +55,7 @@ const postGames = async (req, res) => {
     return
   }
 
-  let games = null
+  let games: Array<Object> = []
   let response = null
   try {
     games = await updateGames()
@@ -76,7 +77,7 @@ const postGames = async (req, res) => {
 }
 
 // Get games from db
-const getGames = async (req, res) => {
+const getGames = async (req: Object, res: Object) => {
   logger.info('API call: GET /api/games')
 
   let games = null

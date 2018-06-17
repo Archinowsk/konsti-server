@@ -1,15 +1,19 @@
+/* @flow */
 // const { logger } = require('../../../utils/logger')
 
-const getSignupMatrix = (selectedGames, selectedPlayers) => {
+const getSignupMatrix = (
+  selectedGames: Array<Object>,
+  selectedPlayers: Array<Object>
+) => {
   // Create matrix for the sorting algorithm
   // Each available seat is possible result
   // Sort same game wishes to single array
-  const signupMatrix = []
+  const signupMatrix: Array<any> = []
   let counter = 0
 
   // For each starting game...
   selectedGames.forEach(selectedGame => {
-    const gameSignups = []
+    const gameSignups: Array<number> = []
 
     // ... check if players have wishes that match with game id
     selectedPlayers.forEach(player => {

@@ -1,3 +1,4 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const User = require('./userSchema')
 
@@ -6,7 +7,7 @@ const removeUsers = () => {
   return User.remove({})
 }
 
-const saveUser = async userData => {
+const saveUser = async (userData: Object) => {
   const username = userData.username.trim()
   let userGroup = 'user'
 
@@ -36,19 +37,18 @@ const saveUser = async userData => {
   }
 }
 
-const getUser = async userData => {
+const getUser = async (userData: Object) => {
   const username = userData.username.trim()
 
   let response = null
   try {
-    // TODO: Update to use findOne() instead of find()
-    response = await User.find({ username })
+    response = await User.findOne({ username })
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
     return error
   }
 
-  if (response.length === 0) {
+  if (!response) {
     logger.info(`MongoDB: User "${username}" not found`)
   } else {
     logger.info(`MongoDB: Found user "${username}"`)
@@ -56,19 +56,18 @@ const getUser = async userData => {
   return response
 }
 
-const getSerial = async serialData => {
+const getSerial = async (serialData: Object) => {
   const serial = serialData.serial
 
   let response = null
   try {
-    // TODO: Update to use findOne() instead of find()
-    response = await User.find({ serial })
+    response = await User.findOne({ serial })
   } catch (error) {
     logger.error(`MongoDB: Error finding Serial ${serial} - ${error}`)
     return error
   }
 
-  if (response.length === 0) {
+  if (!response) {
     logger.info(`MongoDB: Serial "${serial}" not found`)
   } else {
     logger.info(`MongoDB: Found Serial "${serial}"`)
@@ -88,7 +87,7 @@ const getUsers = async () => {
   }
 }
 
-const saveSignup = async signupData => {
+const saveSignup = async (signupData: Object) => {
   let response = null
   try {
     response = await User.update(
@@ -108,7 +107,7 @@ const saveSignup = async signupData => {
   }
 }
 
-const saveFavorite = async favoriteData => {
+const saveFavorite = async (favoriteData: Object) => {
   let response = null
   try {
     response = await User.update(
@@ -130,7 +129,7 @@ const saveFavorite = async favoriteData => {
   }
 }
 
-const saveSignupResult = async signupResultData => {
+const saveSignupResult = async (signupResultData: Object) => {
   let response = null
   try {
     response = await User.update(

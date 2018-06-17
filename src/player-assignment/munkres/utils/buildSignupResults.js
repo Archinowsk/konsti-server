@@ -1,6 +1,11 @@
+/* @flow */
 // const { logger } = require('../../../utils/logger')
 
-const buildSignupResults = (results, selectedGames, selectedPlayers) => {
+const buildSignupResults = (
+  results: Array<Object>,
+  selectedGames: Array<Object>,
+  selectedPlayers: Array<Object>
+) => {
   const signupResults = []
 
   // Build signup results

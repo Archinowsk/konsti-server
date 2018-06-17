@@ -1,6 +1,7 @@
+/* @flow */
 // const { logger } = require('../../../utils/logger')
 
-const getRemovedGame = gamesWithTooFewPlayers => {
+const getRemovedGame = (gamesWithTooFewPlayers: Array<Object>) => {
   // Get games with least players
   const sortedGamesWithTooFewPlayers = gamesWithTooFewPlayers.sort((a, b) => {
     const keyA = a.players

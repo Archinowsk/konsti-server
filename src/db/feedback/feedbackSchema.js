@@ -1,3 +1,4 @@
+/* @flow */
 const mongoose = require('mongoose')
 
 const FeedbackSchema = mongoose.Schema({

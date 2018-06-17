@@ -1,3 +1,4 @@
+/* @flow */
 const moment = require('moment')
 const { logger } = require('../../utils/logger')
 const Game = require('./gameSchema')
@@ -8,7 +9,7 @@ const removeGames = () => {
 }
 
 // Save all games to db
-const saveGames = async games => {
+const saveGames = async (games: Array<Object>) => {
   logger.info('MongoDB: Store games to DB')
   const gameDocs = []
 

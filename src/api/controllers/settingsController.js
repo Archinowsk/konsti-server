@@ -1,8 +1,9 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 
 // Get settings
-const getSettings = async (req, res) => {
+const getSettings = async (req: Object, res: Object) => {
   logger.info('API call: GET /api/settings')
 
   let response = null

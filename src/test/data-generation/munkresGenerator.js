@@ -1,3 +1,4 @@
+/* @flow */
 const createUsers = require('./generators/userDataGenerators').createUsers
 const createAdminUser = require('./generators/userDataGenerators')
   .createAdminUser
@@ -7,9 +8,9 @@ const createSignupData = require('./generators/signupDataGenerators')
   .createSignupData
 
 const munkresGenerator = async (
-  newUsersCount,
-  newGamesCount,
-  newSignupsCount
+  newUsersCount: number,
+  newGamesCount: number,
+  newSignupsCount: number
 ) => {
   await createAdminUser()
   await createTestUser()

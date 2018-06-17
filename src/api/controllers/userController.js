@@ -1,3 +1,4 @@
+/* @flow */
 const { checkSerial } = require('../../utils/serials')
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
@@ -5,7 +6,7 @@ const hashPassword = require('../../utils/bcrypt').hashPassword
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Register new user
-const postUser = async (req, res) => {
+const postUser = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/user')
   const registrationData = req.body.registrationData
 
@@ -50,7 +51,7 @@ const postUser = async (req, res) => {
   }
 
   // Username free
-  if (response.length === 0) {
+  if (!response) {
     let serialResponse = null
     try {
       // Check if serial is used
@@ -60,7 +61,7 @@ const postUser = async (req, res) => {
     }
 
     // Serial not used
-    if (serialResponse.length === 0) {
+    if (!serialResponse) {
       let response2 = null
       try {
         response2 = await hashPassword(password)
@@ -104,7 +105,7 @@ const postUser = async (req, res) => {
 }
 
 // Get user info
-const getUser = async (req, res) => {
+const getUser = async (req: Object, res: Object) => {
   logger.info('API call: GET /api/user')
   const username = req.query.username
 
@@ -125,9 +126,9 @@ const getUser = async (req, res) => {
     response = await db.user.getUser({ username })
 
     const returnData = {
-      enteredGames: response[0].entered_games,
-      favoritedGames: response[0].favorited_games,
-      signedGames: response[0].signed_games,
+      enteredGames: response.entered_games,
+      favoritedGames: response.favorited_games,
+      signedGames: response.signed_games,
     }
 
     res.json({

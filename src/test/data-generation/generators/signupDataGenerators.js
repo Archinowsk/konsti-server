@@ -1,3 +1,4 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 const db = require('../../../db/mongodb')
 const getRandomInt = require('./randomVariableGenerators').getRandomInt
@@ -22,7 +23,7 @@ const signup = (games, user) => {
     }
   }
 
-  logger.info(`Signup: selected games: ${randomGames}`)
+  logger.info(`Signup: selected games: ${randomGames.toString()}`)
 
   const gamesWithPriorities = []
 
@@ -51,7 +52,7 @@ const signupMultiple = (count, games, users) => {
   return Promise.all(promises)
 }
 
-const createSignupData = async count => {
+const createSignupData = async (count: number) => {
   // Sign up users to games
   logger.info('Generate signup data')
 

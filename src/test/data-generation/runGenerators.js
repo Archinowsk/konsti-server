@@ -1,3 +1,4 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const munkresGenerator = require('./munkresGenerator')

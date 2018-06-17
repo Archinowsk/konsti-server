@@ -1,9 +1,10 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Add signup data for user
-const postSignup = async (req, res) => {
+const postSignup = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/signup')
   const signupData = req.body.signupData
 

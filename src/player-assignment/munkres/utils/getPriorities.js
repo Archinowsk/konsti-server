@@ -1,6 +1,7 @@
+/* @flow */
 // const { logger } = require('../../../utils/logger')
 
-const getPriorities = (results, signupMatrix) => {
+const getPriorities = (results: Array<Object>, signupMatrix: Array<Object>) => {
   // Show the priorities players were assigned to
   const priorities = []
   for (let i = 0; i < results.length; i += 1) {

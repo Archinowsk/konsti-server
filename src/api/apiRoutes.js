@@ -1,3 +1,4 @@
+/* @flow */
 const express = require('express')
 
 const { postGames, getGames } = require('./controllers/gamesController')

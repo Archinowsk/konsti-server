@@ -1,3 +1,4 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 const db = require('../../../db/mongodb')
 const getRandomInt = require('./randomVariableGenerators').getRandomInt
@@ -5,7 +6,7 @@ const getRandomString = require('./randomVariableGenerators').getRandomString
 const getRandomDate = require('./randomVariableGenerators').getRandomDate
 const getRandomTime = require('./randomVariableGenerators').getRandomTime
 
-const createGames = count => {
+const createGames = (count: number) => {
   // Create games with randomized data
   logger.info(`Generate data for ${count} games`)
 

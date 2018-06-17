@@ -1,7 +1,8 @@
+/* @flow */
 const moment = require('moment')
 const { logger } = require('../../../utils/logger')
 
-const getStartingGames = (games, startingTime) => {
+const getStartingGames = (games: Array<Object>, startingTime: Date) => {
   const startingGames = []
   const date = moment.utc(startingTime).format()
 

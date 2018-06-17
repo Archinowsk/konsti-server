@@ -1,3 +1,4 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 const db = require('../../../db/mongodb')
 const getRandomString = require('./randomVariableGenerators').getRandomString
@@ -66,7 +67,7 @@ const createUser = () => {
   return db.user.saveUser(registrationData)
 }
 
-const createUsers = count => {
+const createUsers = (count: number) => {
   logger.info(`Generate data for ${count} users`)
 
   const promises = []

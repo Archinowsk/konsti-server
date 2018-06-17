@@ -1,6 +1,11 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 
-const groupGenerator = (newUsersCount, newGamesCount, newSignupsCount) => {
+const groupGenerator = (
+  newUsersCount: number,
+  newGamesCount: number,
+  newSignupsCount: number
+) => {
   logger.info('IMPLEMENT: group strategy')
 }
 

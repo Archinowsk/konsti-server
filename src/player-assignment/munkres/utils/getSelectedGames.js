@@ -1,6 +1,10 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 
-const getSelectedGames = (startingGames, signupWishes) => {
+const getSelectedGames = (
+  startingGames: Array<Object>,
+  signupWishes: Array<Object>
+) => {
   const selectedGames = []
   let minAttendance = 0
   let maxAttendance = 0

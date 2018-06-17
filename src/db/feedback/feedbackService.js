@@ -1,7 +1,8 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const Feedback = require('./feedbackSchema')
 
-const saveFeedback = async feedbackData => {
+const saveFeedback = async (feedbackData: Object) => {
   const feedback = new Feedback({
     game_id: feedbackData.id,
     feedback: feedbackData.feedback,

@@ -1,7 +1,8 @@
+/* @flow */
 const { logger } = require('../utils/logger')
 const config = require('../../config')
 
-const allowCrossDomain = (req, res, next) => {
+const allowCrossDomain = (req: Object, res: Object, next: Function) => {
   const allowedOrigins = config.allowedCorsOrigins
   const origin = req.headers.origin
 

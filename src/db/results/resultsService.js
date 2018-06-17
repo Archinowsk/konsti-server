@@ -1,3 +1,4 @@
+/* @flow */
 const moment = require('moment')
 const { logger } = require('../../utils/logger')
 const Results = require('./resultsSchema')
@@ -18,7 +19,10 @@ const getResults = async () => {
   }
 }
 
-const saveAllSignupResults = async (signupResultData, startingTime) => {
+const saveAllSignupResults = async (
+  signupResultData: Array<Object>,
+  startingTime: Date
+) => {
   const formattedTime = moment.utc(startingTime)
 
   const results = new Results({

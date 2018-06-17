@@ -1,3 +1,4 @@
+/* @flow */
 const moment = require('moment')
 const { logger } = require('../../utils/logger')
 const Settings = require('./settingsSchema')
@@ -38,13 +39,13 @@ const getSettings = async () => {
 
   if (response === null) {
     // No settings data, create new collection
-    return createSettings(response2 => response2)
+    return createSettings()
   }
   logger.info(`MongoDB: Settings data found`)
   return response
 }
 
-const saveBlacklist = async blacklistData => {
+const saveBlacklist = async (blacklistData: Object) => {
   let response = null
   try {
     response = await Settings.update({
@@ -58,7 +59,7 @@ const saveBlacklist = async blacklistData => {
   }
 }
 
-const saveSignupTime = async signupTime => {
+const saveSignupTime = async (signupTime: Date) => {
   // Make sure that the string is in correct format
   let formattedTime
   if (signupTime === null) {

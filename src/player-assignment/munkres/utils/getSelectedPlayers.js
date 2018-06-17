@@ -1,6 +1,10 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 
-const getSelectedPlayers = (players, startingGames) => {
+const getSelectedPlayers = (
+  players: Array<Object>,
+  startingGames: Array<Object>
+) => {
   // Get users who have wishes for valid games
   const selectedPlayers = []
 

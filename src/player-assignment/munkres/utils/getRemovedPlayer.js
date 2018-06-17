@@ -1,6 +1,7 @@
+/* @flow */
 // const { logger } = require('../../../utils/logger')
 
-const getRemovedPlayer = playersWithTooHighPriority => {
+const getRemovedPlayer = (playersWithTooHighPriority: Array<Object>) => {
   const randomIndex = Math.floor(
     Math.random() * playersWithTooHighPriority.length
   )

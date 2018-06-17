@@ -1,9 +1,10 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Add favorite data for user
-const postFavorite = async (req, res) => {
+const postFavorite = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/favorite')
   const favoriteData = req.body.favoriteData
 

@@ -1,9 +1,10 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Add blacklist data to server settings
-const postBlacklist = async (req, res) => {
+const postBlacklist = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/blacklist')
   const blacklistData = req.body.blacklistData
 

@@ -1,9 +1,10 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Post feedback data
-const postFeedback = async (req, res) => {
+const postFeedback = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/feedback')
   const feedbackData = req.body.feedbackData
 

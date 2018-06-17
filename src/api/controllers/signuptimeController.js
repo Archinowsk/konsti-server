@@ -1,9 +1,10 @@
+/* @flow */
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
 const validateAuthHeader = require('../../utils/authHeader')
 
 // Add open signup time to server settings
-const postSignupTime = async (req, res) => {
+const postSignupTime = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/signuptime')
   const signupTime = req.body.signupTime
 

@@ -1,15 +1,22 @@
+/* @flow */
 const { logger } = require('../utils/logger')
 const groupAssignPlayers = require('./group/groupAssignPlayers')
 const munkresAssignPlayers = require('./munkres/munkresAssignPlayers')
 
-const assignPlayers = (players, games, startingTime) => {
+const assignPlayers = (
+  players: Array<Object>,
+  games: Array<Object>,
+  startingTime: Date
+) => {
   const strategy = 'munkres'
 
   logger.info(
     `Received data for ${players.length} players and ${games.length} games`
   )
 
-  logger.info(`Assigning players for games starting at ${startingTime}`)
+  logger.info(
+    `Assigning players for games starting at ${startingTime.toString()}`
+  )
 
   logger.info(`Assign strategy: ${strategy}`)
 

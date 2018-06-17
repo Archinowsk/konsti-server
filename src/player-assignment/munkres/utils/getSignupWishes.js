@@ -1,6 +1,7 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 
-const getSignupWishes = players => {
+const getSignupWishes = (players: Array<Object>) => {
   const signupWishes = []
 
   // Get signup wishes for all players

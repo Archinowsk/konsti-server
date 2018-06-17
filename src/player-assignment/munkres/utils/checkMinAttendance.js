@@ -1,6 +1,10 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 
-const checkMinAttendance = (results, selectedGames) => {
+const checkMinAttendance = (
+  results: Array<Object>,
+  selectedGames: Array<Object>
+) => {
   // Check that game min_attendance is fullfilled
   const gameIds = []
 

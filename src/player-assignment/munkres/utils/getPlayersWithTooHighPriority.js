@@ -1,6 +1,7 @@
+/* @flow */
 const { logger } = require('../../../utils/logger')
 
-const getPlayersWithTooHighPriority = priorities => {
+const getPlayersWithTooHighPriority = (priorities: Array<Object>) => {
   const playersWithTooHighPriority = []
 
   priorities.forEach(priority => {

@@ -1,4 +1,5 @@
-const getRandomString = length => {
+/* @flow */
+const getRandomString = (length: number) => {
   let text = ''
   const possible =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -9,7 +10,7 @@ const getRandomString = length => {
   return text
 }
 
-const getRandomInt = (min, max) => {
+const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
