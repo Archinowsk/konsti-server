@@ -13,9 +13,10 @@
   "scripts": {
     "docker-start": "docker-compose -f docker-compose.yml up --build",
     "eslint": "eslint src --fix",
+    "flow": "flow",
     "generate-data": "cross-env NODE_ENV=development node src/test/data-generation/runGenerators.js",
     "generate-serials": "node --eval \"require('./src/utils/serials.js').generateSerials()\"",
-    "precommit": "lint-staged",
+    "precommit": "npm run flow check && lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "start": "cross-env NODE_ENV=production node src/server.js",
     "start-dev": "cross-env NODE_ENV=development node src/server.js",
@@ -48,6 +49,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
+    "flow-bin": "^0.74.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.5"
