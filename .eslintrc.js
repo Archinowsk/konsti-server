@@ -1,6 +1,13 @@
 module.exports = {
-  extends: ['standard', 'prettier', 'prettier/standard'],
-  plugins: ['prettier', 'standard'],
+  extends: [
+    'standard',
+    'plugin:flowtype/recommended',
+    'prettier',
+    'prettier/flowtype',
+    'prettier/standard',
+  ],
+  plugins: ['flowtype', 'flowtype-errors', 'prettier', 'standard'],
+  parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
     impliedStrict: true,
@@ -10,5 +17,6 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
+    'flowtype-errors/show-errors': 'error',
   },
 }
