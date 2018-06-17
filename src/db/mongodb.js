@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 const { logger } = require('../utils/logger')
 const config = require('../../config')
 
-const user = require('./user/userController')
-const feedback = require('./feedback/feedbackController')
-const game = require('./game/gameController')
-const results = require('./results/resultsController')
-const settings = require('./settings/settingsController')
+const user = require('./user/userService')
+const feedback = require('./feedback/feedbackService')
+const game = require('./game/gameService')
+const results = require('./results/resultsService')
+const settings = require('./settings/settingsService')
 
 const connectToDb = async () => {
   // Use native Node promises
