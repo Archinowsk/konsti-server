@@ -20,7 +20,7 @@ const postFeedback = async (req, res) => {
   }
 
   try {
-    await db.feedback.storeFeedbackData(feedbackData)
+    await db.feedback.saveFeedback(feedbackData)
     res.json({
       message: 'Post feedback success',
       status: 'success',

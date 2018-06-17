@@ -20,7 +20,7 @@ const postBlacklist = async (req, res) => {
   }
 
   try {
-    await db.settings.storeBlacklistData(blacklistData)
+    await db.settings.saveBlacklist(blacklistData)
     res.json({
       message: 'Update blacklist success',
       status: 'success',

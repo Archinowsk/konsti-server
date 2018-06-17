@@ -7,7 +7,7 @@ const getSettings = async (req, res) => {
 
   let response = null
   try {
-    response = await db.settings.getSettingsData()
+    response = await db.settings.getSettings()
 
     const gamesData = {
       blacklistedGames: response.blacklisted_games,

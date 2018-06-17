@@ -1,25 +1,23 @@
 const { logger } = require('../../utils/logger')
 const Feedback = require('./feedbackSchema')
 
-const storeFeedbackData = async feedbackData => {
-  // Example user data
+const saveFeedback = async feedbackData => {
   const feedback = new Feedback({
     game_id: feedbackData.id,
     feedback: feedbackData.feedback,
   })
 
-  // Save to database
   let response = null
   try {
     response = await feedback.save()
-    logger.info(`MongoDB: Feedback stored success`)
+    logger.info(`MongoDB: Feedback saved successfully`)
     return response
   } catch (error) {
-    logger.error(`MongoDB: Feedback stored error - ${error}`)
+    logger.error(`MongoDB: Feedback save error - ${error}`)
     return error
   }
 }
 
 module.exports = {
-  storeFeedbackData,
+  saveFeedback,
 }

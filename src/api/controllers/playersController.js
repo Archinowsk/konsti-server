@@ -25,13 +25,13 @@ const postPlayers = async (req, res) => {
   let assignResults = null
 
   try {
-    users = await db.user.getUsersData()
-    games = await db.game.getGamesData()
+    users = await db.user.getUsers()
+    games = await db.game.getGames()
     assignResults = await assignPlayers(users, games, startingTime)
-    await db.results.storeAllSignupResults(assignResults, startingTime)
+    await db.results.saveAllSignupResults(assignResults, startingTime)
     await Promise.all(
       assignResults.map(assignResult => {
-        return db.user.storeSignupResultData(assignResult)
+        return db.user.saveSignupResult(assignResult)
       })
     )
     res.json({

@@ -20,7 +20,7 @@ const postSignupTime = async (req, res) => {
   }
 
   try {
-    await db.settings.storeSignupTime(signupTime)
+    await db.settings.saveSignupTime(signupTime)
     res.json({
       message: 'Signup time set success',
       status: 'success',

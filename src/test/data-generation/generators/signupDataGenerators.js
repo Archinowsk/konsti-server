@@ -2,8 +2,8 @@ const { logger } = require('../../../utils/logger')
 const db = require('../../../db/mongodb')
 const getRandomInt = require('./randomVariableGenerators').getRandomInt
 
-const getGames = () => db.game.getGamesData()
-const getUsers = () => db.user.getUsersData()
+const getGames = () => db.game.getGames()
+const getUsers = () => db.user.getUsers()
 
 const signup = (games, user) => {
   // let randomIndex = getRandomInt(0, users.length - 1);
@@ -30,7 +30,7 @@ const signup = (games, user) => {
     gamesWithPriorities.push({ id: randomGame, priority: index + 1 })
   })
 
-  return db.user.storeSignupData({
+  return db.user.saveSignup({
     username: user.username,
     selectedGames: gamesWithPriorities,
   })

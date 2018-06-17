@@ -6,7 +6,7 @@ const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')
   return Results.remove({})
 }
-const getResultsData = async () => {
+const getResults = async () => {
   let response = null
   try {
     response = await Results.find({})
@@ -18,7 +18,7 @@ const getResultsData = async () => {
   }
 }
 
-const storeAllSignupResults = async (signupResultData, startingTime) => {
+const saveAllSignupResults = async (signupResultData, startingTime) => {
   const formattedTime = moment.utc(startingTime)
 
   // Example user data
@@ -43,6 +43,6 @@ const storeAllSignupResults = async (signupResultData, startingTime) => {
 
 module.exports = {
   removeResults,
-  storeAllSignupResults,
-  getResultsData,
+  saveAllSignupResults,
+  getResults,
 }

@@ -7,8 +7,8 @@ const removeGames = () => {
   return Game.remove({})
 }
 
-// Store all games to db
-const storeGamesData = async games => {
+// Save all games to db
+const saveGames = async games => {
   logger.info('MongoDB: Store games to DB')
   const gameDocs = []
 
@@ -89,7 +89,7 @@ const storeGamesData = async games => {
   }
 }
 
-const getGamesData = async () => {
+const getGames = async () => {
   let response = null
   try {
     response = await Game.find({})
@@ -102,7 +102,7 @@ const getGamesData = async () => {
 }
 
 module.exports = {
-  storeGamesData,
-  getGamesData,
+  saveGames,
+  getGames,
   removeGames,
 }

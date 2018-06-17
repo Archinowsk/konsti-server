@@ -6,7 +6,7 @@ const removeUsers = () => {
   return User.remove({})
 }
 
-const storeUserData = async userData => {
+const saveUser = async userData => {
   const username = userData.username.trim()
   let userGroup = 'user'
 
@@ -37,7 +37,7 @@ const storeUserData = async userData => {
   }
 }
 
-const getUserData = async userData => {
+const getUser = async userData => {
   const username = userData.username.trim()
 
   let response = null
@@ -57,7 +57,7 @@ const getUserData = async userData => {
   return response
 }
 
-const getUserSerial = async serialData => {
+const getSerial = async serialData => {
   const serial = serialData.serial
 
   let response = null
@@ -77,7 +77,7 @@ const getUserSerial = async serialData => {
   return response
 }
 
-const getUsersData = async () => {
+const getUsers = async () => {
   let response = null
   try {
     response = await User.find({})
@@ -89,7 +89,7 @@ const getUsersData = async () => {
   }
 }
 
-const storeSignupData = async signupData => {
+const saveSignup = async signupData => {
   // Save to database
   let response = null
   try {
@@ -110,7 +110,7 @@ const storeSignupData = async signupData => {
   }
 }
 
-const storeFavoriteData = async favoriteData => {
+const saveFavorite = async favoriteData => {
   // Save to database
   let response = null
   try {
@@ -133,7 +133,7 @@ const storeFavoriteData = async favoriteData => {
   }
 }
 
-const storeSignupResultData = async signupResultData => {
+const saveSignupResult = async signupResultData => {
   // Save to database, don't store duplicate ids
   let response = null
   try {
@@ -160,37 +160,13 @@ const storeSignupResultData = async signupResultData => {
   }
 }
 
-const storeFavoriteGamesData = async favoriteGamesData => {
-  // Save to database
-  let response = null
-  try {
-    User.update(
-      { username: favoriteGamesData.username },
-      { $set: { favorite_games: favoriteGamesData.enteredGames } }
-    )
-
-    logger.info(
-      `MongoDB: Favorites data stored for user ${favoriteGamesData.username}`
-    )
-    return response
-  } catch (error) {
-    logger.error(
-      `MongoDB: Error storing favorites data for user ${
-        favoriteGamesData.username
-      } - ${error}`
-    )
-    return error
-  }
-}
-
 module.exports = {
-  storeUserData,
-  getUserData,
-  getUsersData,
-  storeSignupData,
-  storeFavoriteData,
-  storeSignupResultData,
-  storeFavoriteGamesData,
+  saveUser,
+  getUser,
+  getUsers,
+  saveSignup,
+  saveFavorite,
+  saveSignupResult,
   removeUsers,
-  getUserSerial,
+  getSerial,
 }

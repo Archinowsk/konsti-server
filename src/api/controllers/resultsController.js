@@ -7,7 +7,7 @@ const getResults = async (req, res) => {
 
   let response = null
   try {
-    response = await db.results.getResultsData()
+    response = await db.results.getResults()
     res.json({
       message: 'Getting results success',
       status: 'success',

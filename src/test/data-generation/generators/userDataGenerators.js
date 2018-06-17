@@ -21,7 +21,7 @@ const createAdminUser = async () => {
       entered_games: [],
     }
 
-    return db.user.storeUserData(registrationData)
+    return db.user.saveUser(registrationData)
   } catch (error) {
     logger.error(error)
   }
@@ -45,7 +45,7 @@ const createTestUser = async () => {
       entered_games: [],
     }
 
-    return db.user.storeUserData(registrationData)
+    return db.user.saveUser(registrationData)
   } catch (error) {
     logger.error(error)
   }
@@ -63,7 +63,7 @@ const createUser = () => {
     entered_games: [],
   }
 
-  return db.user.storeUserData(registrationData)
+  return db.user.saveUser(registrationData)
 }
 
 const createUsers = count => {

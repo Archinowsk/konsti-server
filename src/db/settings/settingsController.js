@@ -7,7 +7,7 @@ const removeSettings = () => {
   return Settings.remove({})
 }
 
-const createSettingsData = async () => {
+const createSettings = async () => {
   logger.info('MongoDB: "Settings" collection not found, create empty')
 
   // Example user data
@@ -29,7 +29,7 @@ const createSettingsData = async () => {
   }
 }
 
-const getSettingsData = async () => {
+const getSettings = async () => {
   let response = null
   try {
     response = await Settings.findOne({})
@@ -40,13 +40,13 @@ const getSettingsData = async () => {
 
   if (response === null) {
     // No settings data, create new collection
-    return createSettingsData(response2 => response2)
+    return createSettings(response2 => response2)
   }
   logger.info(`MongoDB: Settings data found`)
   return response
 }
 
-const storeBlacklistData = async blacklistData => {
+const saveBlacklist = async blacklistData => {
   // Save to database
   let response = null
   try {
@@ -61,7 +61,7 @@ const storeBlacklistData = async blacklistData => {
   }
 }
 
-const storeSignupTime = async signupTime => {
+const saveSignupTime = async signupTime => {
   // Make sure that the string is in correct format
   let formattedTime
   if (signupTime === null) {
@@ -85,8 +85,8 @@ const storeSignupTime = async signupTime => {
 }
 
 module.exports = {
-  storeBlacklistData,
-  storeSignupTime,
+  saveBlacklist,
+  saveSignupTime,
   removeSettings,
-  getSettingsData,
+  getSettings,
 }
