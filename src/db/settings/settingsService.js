@@ -1,7 +1,7 @@
 /* @flow */
-const moment = require('moment')
-const { logger } = require('../../utils/logger')
-const Settings = require('./settingsSchema')
+import moment from 'moment'
+import { logger } from '../../utils/logger'
+import Settings from './settingsSchema'
 
 const removeSettings = () => {
   logger.info('MongoDB: remove ALL settings from db')
@@ -81,9 +81,11 @@ const saveSignupTime = async (signupTime: Date) => {
   }
 }
 
-module.exports = {
+const settings = {
   saveBlacklist,
   saveSignupTime,
   removeSettings,
   getSettings,
 }
+
+export default settings

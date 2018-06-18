@@ -1,5 +1,5 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
+import { logger } from '../../utils/logger'
 
 const groupAssignPlayers = (
   players: Array<Object>,
@@ -14,4 +14,4 @@ const groupAssignPlayers = (
   return signupResults
 }
 
-module.exports = groupAssignPlayers
+export default groupAssignPlayers

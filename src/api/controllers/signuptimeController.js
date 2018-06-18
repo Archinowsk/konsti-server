@@ -1,7 +1,7 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
-const validateAuthHeader = require('../../utils/authHeader')
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
+import validateAuthHeader from '../../utils/authHeader'
 
 // Add open signup time to server settings
 const postSignupTime = async (req: Object, res: Object) => {
@@ -35,4 +35,4 @@ const postSignupTime = async (req: Object, res: Object) => {
   }
 }
 
-module.exports = { postSignupTime }
+export { postSignupTime }

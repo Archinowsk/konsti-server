@@ -1,5 +1,5 @@
 /* @flow */
-const { logger } = require('../../../utils/logger')
+import { logger } from '../../../utils/logger'
 
 const getPlayersWithTooHighPriority = (priorities: Array<Object>) => {
   const playersWithTooHighPriority = []
@@ -14,4 +14,4 @@ const getPlayersWithTooHighPriority = (priorities: Array<Object>) => {
   return playersWithTooHighPriority
 }
 
-module.exports = getPlayersWithTooHighPriority
+export default getPlayersWithTooHighPriority

@@ -1,6 +1,6 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
-const Feedback = require('./feedbackSchema')
+import { logger } from '../../utils/logger'
+import Feedback from './feedbackSchema'
 
 const saveFeedback = async (feedbackData: Object) => {
   const feedback = new Feedback({
@@ -19,6 +19,7 @@ const saveFeedback = async (feedbackData: Object) => {
   }
 }
 
-module.exports = {
+const feedback = {
   saveFeedback,
 }
+export default feedback

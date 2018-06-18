@@ -1,5 +1,5 @@
 /* @flow */
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const ResultsSchema = mongoose.Schema({
   result: Array,
@@ -8,4 +8,4 @@ const ResultsSchema = mongoose.Schema({
 
 const Results = mongoose.model('Results', ResultsSchema)
 
-module.exports = Results
+export default Results

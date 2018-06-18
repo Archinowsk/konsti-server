@@ -1,7 +1,7 @@
 /* @flow */
-const { logger } = require('../utils/logger')
-const groupAssignPlayers = require('./group/groupAssignPlayers')
-const munkresAssignPlayers = require('./munkres/munkresAssignPlayers')
+import { logger } from '../utils/logger'
+import groupAssignPlayers from './group/groupAssignPlayers'
+import munkresAssignPlayers from './munkres/munkresAssignPlayers'
 
 const assignPlayers = (
   players: Array<Object>,
@@ -30,4 +30,4 @@ const assignPlayers = (
   return result
 }
 
-module.exports = assignPlayers
+export default assignPlayers

@@ -1,5 +1,5 @@
 /* @flow */
-const { logger } = require('../../../utils/logger')
+import { logger } from '../../../utils/logger'
 
 const getSignupWishes = (players: Array<Object>) => {
   const signupWishes = []
@@ -20,4 +20,4 @@ const getSignupWishes = (players: Array<Object>) => {
   return signupWishes
 }
 
-module.exports = getSignupWishes
+export default getSignupWishes

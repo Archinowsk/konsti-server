@@ -1,9 +1,9 @@
 /* @flow */
-const requestPromiseNative = require('request-promise-native')
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
-const validateAuthHeader = require('../../utils/authHeader')
-const config = require('../../../config')
+import requestPromiseNative from 'request-promise-native'
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
+import validateAuthHeader from '../../utils/authHeader'
+import config from '../../../config'
 
 const updateGames = async () => {
   logger.info('Games: GET games from Conbase')
@@ -98,4 +98,4 @@ const getGames = async (req: Object, res: Object) => {
   }
 }
 
-module.exports = { postGames, getGames }
+export { postGames, getGames }

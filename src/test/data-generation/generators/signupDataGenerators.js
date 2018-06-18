@@ -1,7 +1,7 @@
 /* @flow */
-const { logger } = require('../../../utils/logger')
-const db = require('../../../db/mongodb')
-const getRandomInt = require('./randomVariableGenerators').getRandomInt
+import { logger } from '../../../utils/logger'
+import db from '../../../db/mongodb'
+import { getRandomInt } from './randomVariableGenerators'
 
 const getGames = () => db.game.getGames()
 const getUsers = () => db.user.getUsers()
@@ -73,4 +73,4 @@ const createSignupData = async (count: number) => {
   }
 }
 
-module.exports = { createSignupData }
+export { createSignupData }

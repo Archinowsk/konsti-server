@@ -1,11 +1,11 @@
 /* @flow */
 import type { User } from '../../types/user.type'
 
-const jwt = require('jsonwebtoken')
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
-const comparePasswordHash = require('../../utils/bcrypt').comparePasswordHash
-const config = require('../../../config')
+import jwt from 'jsonwebtoken'
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
+import { comparePasswordHash } from '../../utils/bcrypt'
+import config from '../../../config'
 
 const validateLogin = async (loginData, hash) => {
   let response = null
@@ -68,9 +68,6 @@ const postLogin = async (req: Object, res: Object) => {
     })
   }
 
-  logger.info('LOGIN RESPONSE')
-  logger.info(response)
-
   // User exists
   let response2 = null
   try {
@@ -120,4 +117,4 @@ const postLogin = async (req: Object, res: Object) => {
   }
 }
 
-module.exports = { postLogin }
+export { postLogin }

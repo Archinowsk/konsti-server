@@ -1,5 +1,5 @@
 /* @flow */
-// const { logger } = require('../../../utils/logger')
+// import { logger } from '../../../utils/logger'
 
 const getRemovedGame = (gamesWithTooFewPlayers: Array<Object>) => {
   // Get games with least players
@@ -41,4 +41,4 @@ const getRemovedGame = (gamesWithTooFewPlayers: Array<Object>) => {
   return removedGame
 }
 
-module.exports = getRemovedGame
+export default getRemovedGame

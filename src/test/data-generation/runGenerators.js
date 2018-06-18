@@ -1,10 +1,10 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
-const munkresGenerator = require('./munkresGenerator')
-const groupGenerator = require('./groupGenerator')
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
+import munkresGenerator from './munkresGenerator'
+import groupGenerator from './groupGenerator'
 
-const config = require('../../../config')
+import config from '../../../config'
 
 const runGenerators = async () => {
   const strategy = process.argv[2]

@@ -1,7 +1,7 @@
 /* @flow */
-const moment = require('moment')
-const { logger } = require('../../utils/logger')
-const Results = require('./resultsSchema')
+import moment from 'moment'
+import { logger } from '../../utils/logger'
+import Results from './resultsSchema'
 
 const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')
@@ -43,8 +43,6 @@ const saveAllSignupResults = async (
   }
 }
 
-module.exports = {
-  removeResults,
-  saveAllSignupResults,
-  getResults,
-}
+const results = { removeResults, saveAllSignupResults, getResults }
+
+export default results

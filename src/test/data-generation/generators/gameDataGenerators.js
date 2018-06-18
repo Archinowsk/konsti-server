@@ -1,10 +1,12 @@
 /* @flow */
-const { logger } = require('../../../utils/logger')
-const db = require('../../../db/mongodb')
-const getRandomInt = require('./randomVariableGenerators').getRandomInt
-const getRandomString = require('./randomVariableGenerators').getRandomString
-const getRandomDate = require('./randomVariableGenerators').getRandomDate
-const getRandomTime = require('./randomVariableGenerators').getRandomTime
+import { logger } from '../../../utils/logger'
+import db from '../../../db/mongodb'
+import {
+  getRandomInt,
+  getRandomString,
+  getRandomDate,
+  getRandomTime,
+} from './randomVariableGenerators'
 
 const createGames = (count: number) => {
   // Create games with randomized data
@@ -45,4 +47,4 @@ const createGames = (count: number) => {
   return db.game.saveGames(games)
 }
 
-module.exports = { createGames }
+export { createGames }

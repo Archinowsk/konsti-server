@@ -1,9 +1,9 @@
 /* @flow */
-const { checkSerial } = require('../../utils/serials')
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
-const hashPassword = require('../../utils/bcrypt').hashPassword
-const validateAuthHeader = require('../../utils/authHeader')
+import { checkSerial } from '../../utils/serials'
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
+import { hashPassword } from '../../utils/bcrypt'
+import validateAuthHeader from '../../utils/authHeader'
 
 // Register new user
 const postUser = async (req: Object, res: Object) => {
@@ -146,4 +146,4 @@ const getUser = async (req: Object, res: Object) => {
   }
 }
 
-module.exports = { postUser, getUser }
+export { postUser, getUser }

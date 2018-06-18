@@ -1,5 +1,5 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
+import { logger } from '../../utils/logger'
 
 const groupGenerator = (
   newUsersCount: number,
@@ -9,4 +9,4 @@ const groupGenerator = (
   logger.info('IMPLEMENT: group strategy')
 }
 
-module.exports = groupGenerator
+export default groupGenerator

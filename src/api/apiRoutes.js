@@ -1,17 +1,17 @@
 /* @flow */
-const express = require('express')
+import express from 'express'
 
-const { postGames, getGames } = require('./controllers/gamesController')
-const { postUser, getUser } = require('./controllers/userController')
-const { postLogin } = require('./controllers/loginController')
-const { postPlayers } = require('./controllers/playersController')
-const { postSignup } = require('./controllers/signupController')
-const { postFavorite } = require('./controllers/favoriteController')
-const { postBlacklist } = require('./controllers/blacklistController')
-const { postSignupTime } = require('./controllers/signuptimeController')
-const { postFeedback } = require('./controllers/feedbackController')
-const { getSettings } = require('./controllers/settingsController')
-const { getResults } = require('./controllers/resultsController')
+import { postGames, getGames } from './controllers/gamesController'
+import { postUser, getUser } from './controllers/userController'
+import { postLogin } from './controllers/loginController'
+import { postPlayers } from './controllers/playersController'
+import { postSignup } from './controllers/signupController'
+import { postFavorite } from './controllers/favoriteController'
+import { postBlacklist } from './controllers/blacklistController'
+import { postSignupTime } from './controllers/signuptimeController'
+import { postFeedback } from './controllers/feedbackController'
+import { getSettings } from './controllers/settingsController'
+import { getResults } from './controllers/resultsController'
 
 const router = express.Router()
 
@@ -30,4 +30,4 @@ router.get('/user', getUser)
 router.get('/settings', getSettings)
 router.get('/results', getResults)
 
-module.exports = router
+export default router

@@ -1,13 +1,13 @@
 /* @flow */
-const mongoose = require('mongoose')
-const { logger } = require('../utils/logger')
-const config = require('../../config')
+import mongoose from 'mongoose'
+import { logger } from '../utils/logger'
+import config from '../../config'
 
-const user = require('./user/userService')
-const feedback = require('./feedback/feedbackService')
-const game = require('./game/gameService')
-const results = require('./results/resultsService')
-const settings = require('./settings/settingsService')
+import user from './user/userService'
+import feedback from './feedback/feedbackService'
+import game from './game/gameService'
+import results from './results/resultsService'
+import settings from './settings/settingsService'
 
 const connectToDb = async () => {
   // Use native Node promises
@@ -34,7 +34,7 @@ const gracefulExit = () => {
 process.on('SIGINT', gracefulExit)
 process.on('SIGTERM', gracefulExit)
 
-module.exports = {
+const db = {
   connectToDb,
   user,
   feedback,
@@ -42,3 +42,5 @@ module.exports = {
   results,
   settings,
 }
+
+export default db

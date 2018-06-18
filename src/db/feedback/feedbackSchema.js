@@ -1,5 +1,5 @@
 /* @flow */
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const FeedbackSchema = mongoose.Schema({
   game_id: Number,
@@ -9,4 +9,4 @@ const FeedbackSchema = mongoose.Schema({
 
 const Feedback = mongoose.model('Feedback', FeedbackSchema)
 
-module.exports = Feedback
+export default Feedback

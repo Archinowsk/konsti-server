@@ -1,5 +1,5 @@
 /* @flow */
-// const { logger } = require('../../../utils/logger')
+// import { logger } from '../../../utils/logger'
 
 const getSignupMatrix = (
   selectedGames: Array<Object>,
@@ -46,4 +46,4 @@ const getSignupMatrix = (
   return signupMatrix
 }
 
-module.exports = getSignupMatrix
+export default getSignupMatrix

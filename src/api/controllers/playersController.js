@@ -1,8 +1,8 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
-const assignPlayers = require('../../player-assignment/assignPlayers')
-const validateAuthHeader = require('../../utils/authHeader')
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
+import assignPlayers from '../../player-assignment/assignPlayers'
+import validateAuthHeader from '../../utils/authHeader'
 
 // Assign players to games
 const postPlayers = async (req: Object, res: Object) => {
@@ -54,4 +54,4 @@ const postPlayers = async (req: Object, res: Object) => {
   }
 }
 
-module.exports = { postPlayers }
+export { postPlayers }

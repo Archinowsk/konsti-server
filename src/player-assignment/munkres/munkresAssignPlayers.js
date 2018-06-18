@@ -1,18 +1,18 @@
 /* @flow */
-const munkres = require('munkres-js')
-const { logger } = require('../../utils/logger')
+import munkres from 'munkres-js'
+import { logger } from '../../utils/logger'
 
-const getStartingGames = require('./utils/getStartingGames')
-const getSignupWishes = require('./utils/getSignupWishes')
-const getSelectedGames = require('./utils/getSelectedGames')
-const getSelectedPlayers = require('./utils/getSelectedPlayers')
-const getSignupMatrix = require('./utils/getSignupMatrix')
-const checkMinAttendance = require('./utils/checkMinAttendance')
-const getRemovedGame = require('./utils/getRemovedGame')
-const getPriorities = require('./utils/getPriorities')
-const getPlayersWithTooHighPriority = require('./utils/getPlayersWithTooHighPriority')
-const getRemovedPlayer = require('./utils/getRemovedPlayer')
-const buildSignupResults = require('./utils/buildSignupResults')
+import getStartingGames from './utils/getStartingGames'
+import getSignupWishes from './utils/getSignupWishes'
+import getSelectedGames from './utils/getSelectedGames'
+import getSelectedPlayers from './utils/getSelectedPlayers'
+import getSignupMatrix from './utils/getSignupMatrix'
+import checkMinAttendance from './utils/checkMinAttendance'
+import getRemovedGame from './utils/getRemovedGame'
+import getPriorities from './utils/getPriorities'
+import getPlayersWithTooHighPriority from './utils/getPlayersWithTooHighPriority'
+import getRemovedPlayer from './utils/getRemovedPlayer'
+import buildSignupResults from './utils/buildSignupResults'
 
 const munkresAssignPlayers = (
   players: Array<Object>,
@@ -83,4 +83,4 @@ const munkresAssignPlayers = (
   return signupResults
 }
 
-module.exports = munkresAssignPlayers
+export default munkresAssignPlayers

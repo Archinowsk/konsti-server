@@ -1,5 +1,5 @@
 /* @flow */
-// const { logger } = require('../../../utils/logger')
+// import { logger } from '../../../utils/logger'
 
 const getPriorities = (results: Array<Object>, signupMatrix: Array<Object>) => {
   // Show the priorities players were assigned to
@@ -13,4 +13,4 @@ const getPriorities = (results: Array<Object>, signupMatrix: Array<Object>) => {
   return priorities
 }
 
-module.exports = getPriorities
+export default getPriorities

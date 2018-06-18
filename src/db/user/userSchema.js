@@ -1,5 +1,5 @@
 /* @flow */
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const UserSchema = mongoose.Schema({
   username: String,
@@ -14,4 +14,4 @@ const UserSchema = mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema)
 
-module.exports = User
+export default User

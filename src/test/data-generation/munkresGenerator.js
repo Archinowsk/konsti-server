@@ -1,11 +1,11 @@
 /* @flow */
-const createUsers = require('./generators/userDataGenerators').createUsers
-const createAdminUser = require('./generators/userDataGenerators')
-  .createAdminUser
-const createTestUser = require('./generators/userDataGenerators').createTestUser
-const createGames = require('./generators/gameDataGenerators').createGames
-const createSignupData = require('./generators/signupDataGenerators')
-  .createSignupData
+import {
+  createUsers,
+  createAdminUser,
+  createTestUser,
+} from './generators/userDataGenerators'
+import { createGames } from './generators/gameDataGenerators'
+import { createSignupData } from './generators/signupDataGenerators'
 
 const munkresGenerator = async (
   newUsersCount: number,
@@ -19,4 +19,4 @@ const munkresGenerator = async (
   await createSignupData(newSignupsCount)
 }
 
-module.exports = munkresGenerator
+export default munkresGenerator

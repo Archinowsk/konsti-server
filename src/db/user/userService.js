@@ -1,6 +1,6 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
-const User = require('./userSchema')
+import { logger } from '../../utils/logger'
+import User from './userSchema'
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')
@@ -155,7 +155,7 @@ const saveSignupResult = async (signupResultData: Object) => {
   }
 }
 
-module.exports = {
+const user = {
   saveUser,
   getUser,
   getUsers,
@@ -165,3 +165,5 @@ module.exports = {
   removeUsers,
   getSerial,
 }
+
+export default user

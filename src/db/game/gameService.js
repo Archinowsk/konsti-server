@@ -1,7 +1,7 @@
 /* @flow */
-const moment = require('moment')
-const { logger } = require('../../utils/logger')
-const Game = require('./gameSchema')
+import moment from 'moment'
+import { logger } from '../../utils/logger'
+import Game from './gameSchema'
 
 const removeGames = () => {
   logger.info('MongoDB: remove ALL games from db')
@@ -102,8 +102,6 @@ const getGames = async () => {
   }
 }
 
-module.exports = {
-  saveGames,
-  getGames,
-  removeGames,
-}
+const game = { saveGames, getGames, removeGames }
+
+export default game

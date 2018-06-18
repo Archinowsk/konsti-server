@@ -1,15 +1,19 @@
 /* @flow */
-const path = require('path')
-const express = require('express')
-const bodyParser = require('body-parser')
+import path from 'path'
+import express from 'express'
+import bodyParser from 'body-parser'
+import morgan from 'morgan'
 
-// const expressJWT = require('express-jwt');
+// import expressJWT from 'express-jwt'
 
-const config = require('../config')
+import config from '../config'
 
-const { logger, stream } = require('./utils/logger')
+import { logger, stream } from './utils/logger'
 
-const db = require('./db/mongodb')
+import db from './db/mongodb'
+
+import allowCORS from './middleware/cors'
+import apiRoutes from './api/apiRoutes'
 
 const COMPRESSED = ['/client.bundle']
 
@@ -17,9 +21,6 @@ const COMPRESSED = ['/client.bundle']
 const productionEnv = config.env === 'productionEnv'
 
 db.connectToDb()
-
-const allowCORS = require('./middleware/cors')
-const apiRoutes = require('./api/apiRoutes')
 
 const app = express()
 
@@ -40,7 +41,7 @@ logger.info(`Node environment: ${config.env}`)
 
 // Set logger
 logger.info("Express: Overriding 'Express' logger")
-app.use(require('morgan')('dev', { stream }))
+app.use(morgan('dev', { stream }))
 
 // Parse body and populate req.body - only accepts JSON
 app.use(bodyParser.json({ limit: '100kb' }))
@@ -92,4 +93,4 @@ const server = app.listen(app.get('port'), () => {
   logger.info(`Express: Server started on port ${server.address().port}`)
 })
 
-module.exports = app
+export default app

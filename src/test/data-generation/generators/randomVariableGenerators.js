@@ -39,9 +39,4 @@ const getRandomTime = () => {
   return times[randomIndex]
 }
 
-module.exports = {
-  getRandomString,
-  getRandomInt,
-  getRandomDate,
-  getRandomTime,
-}
+export { getRandomString, getRandomInt, getRandomDate, getRandomTime }

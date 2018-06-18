@@ -1,5 +1,5 @@
 /* @flow */
-const { logger } = require('../../../utils/logger')
+import { logger } from '../../../utils/logger'
 
 const checkMinAttendance = (
   results: Array<Object>,
@@ -49,4 +49,4 @@ const checkMinAttendance = (
   return gamesWithTooFewPlayers
 }
 
-module.exports = checkMinAttendance
+export default checkMinAttendance

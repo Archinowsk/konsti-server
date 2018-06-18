@@ -1,7 +1,7 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
-const validateAuthHeader = require('../../utils/authHeader')
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
+import validateAuthHeader from '../../utils/authHeader'
 
 // Add signup data for user
 const postSignup = async (req: Object, res: Object) => {
@@ -36,4 +36,4 @@ const postSignup = async (req: Object, res: Object) => {
   }
 }
 
-module.exports = { postSignup }
+export { postSignup }

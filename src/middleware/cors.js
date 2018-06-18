@@ -1,6 +1,6 @@
 /* @flow */
-const { logger } = require('../utils/logger')
-const config = require('../../config')
+import { logger } from '../utils/logger'
+import config from '../../config'
 
 const allowCrossDomain = (req: Object, res: Object, next: Function) => {
   const allowedOrigins = config.allowedCorsOrigins
@@ -20,4 +20,4 @@ const allowCrossDomain = (req: Object, res: Object, next: Function) => {
   return next()
 }
 
-module.exports = allowCrossDomain
+export default allowCrossDomain

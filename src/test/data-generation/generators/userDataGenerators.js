@@ -1,8 +1,8 @@
 /* @flow */
-const { logger } = require('../../../utils/logger')
-const db = require('../../../db/mongodb')
-const getRandomString = require('./randomVariableGenerators').getRandomString
-const hashPassword = require('../../../utils/bcrypt').hashPassword
+import { logger } from '../../../utils/logger'
+import db from '../../../db/mongodb'
+import { getRandomString } from './randomVariableGenerators'
+import { hashPassword } from '../../../utils/bcrypt'
 
 const createAdminUser = async () => {
   // Create admin user with predefined data
@@ -78,4 +78,4 @@ const createUsers = (count: number) => {
   return Promise.all(promises)
 }
 
-module.exports = { createUsers, createAdminUser, createTestUser }
+export { createUsers, createAdminUser, createTestUser }

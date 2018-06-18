@@ -1,5 +1,5 @@
 /* @flow */
-// const { logger } = require('../../../utils/logger')
+// import { logger } from '../../../utils/logger'
 
 const getRemovedPlayer = (playersWithTooHighPriority: Array<Object>) => {
   const randomIndex = Math.floor(
@@ -12,4 +12,4 @@ const getRemovedPlayer = (playersWithTooHighPriority: Array<Object>) => {
   return removedPlayer
 }
 
-module.exports = getRemovedPlayer
+export default getRemovedPlayer

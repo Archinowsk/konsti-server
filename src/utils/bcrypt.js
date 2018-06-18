@@ -1,5 +1,5 @@
-const bcrypt = require('bcryptjs')
-const { logger } = require('./logger')
+import bcrypt from 'bcryptjs'
+import { logger } from './logger'
 
 const saltRounds = 10
 
@@ -23,4 +23,4 @@ const comparePasswordHash = async (password, hash) => {
   }
 }
 
-module.exports = { hashPassword, comparePasswordHash }
+export { hashPassword, comparePasswordHash }

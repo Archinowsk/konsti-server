@@ -1,6 +1,6 @@
 /* @flow */
-const moment = require('moment')
-const { logger } = require('../../../utils/logger')
+import moment from 'moment'
+import { logger } from '../../../utils/logger'
 
 const getStartingGames = (games: Array<Object>, startingTime: Date) => {
   const startingGames = []
@@ -19,4 +19,4 @@ const getStartingGames = (games: Array<Object>, startingTime: Date) => {
   return startingGames
 }
 
-module.exports = getStartingGames
+export default getStartingGames

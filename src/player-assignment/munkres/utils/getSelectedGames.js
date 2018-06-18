@@ -1,5 +1,5 @@
 /* @flow */
-const { logger } = require('../../../utils/logger')
+import { logger } from '../../../utils/logger'
 
 const getSelectedGames = (
   startingGames: Array<Object>,
@@ -30,4 +30,4 @@ const getSelectedGames = (
   return selectedGames
 }
 
-module.exports = getSelectedGames
+export default getSelectedGames

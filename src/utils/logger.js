@@ -1,9 +1,9 @@
-const { createLogger, format, transports } = require('winston')
-const { combine, printf, colorize, timestamp, json } = format
-const fs = require('fs')
-require('winston-daily-rotate-file')
+import { createLogger, format, transports } from 'winston'
+import fs from 'fs'
+import 'winston-daily-rotate-file'
+import config from '../../config'
 
-const config = require('../../config')
+const { combine, printf, colorize, timestamp, json } = format
 const { logDir } = config
 
 // Create logs directory if it does not exist
@@ -43,4 +43,4 @@ const stream = {
   write: message => logger.info(message.slice(0, -1)), // Slice to remove line break
 }
 
-module.exports = { logger, stream }
+export { logger, stream }

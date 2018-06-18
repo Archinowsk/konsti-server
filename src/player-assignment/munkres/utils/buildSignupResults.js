@@ -1,5 +1,5 @@
 /* @flow */
-// const { logger } = require('../../../utils/logger')
+// import { logger } from '../../../utils/logger'
 
 const buildSignupResults = (
   results: Array<Object>,
@@ -46,4 +46,4 @@ const buildSignupResults = (
   return signupResults
 }
 
-module.exports = buildSignupResults
+export default buildSignupResults

@@ -1,5 +1,5 @@
 /* @flow */
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const SettingsSchema = mongoose.Schema({
   blacklisted_games: Array,
@@ -9,4 +9,4 @@ const SettingsSchema = mongoose.Schema({
 
 const Settings = mongoose.model('Settings', SettingsSchema)
 
-module.exports = Settings
+export default Settings

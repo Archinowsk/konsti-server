@@ -1,5 +1,5 @@
-const generator = require('generate-serial-number')
-const { logger } = require('../utils/logger')
+import generator from 'generate-serial-number'
+import { logger } from '../utils/logger'
 
 const checkSerial = serial => {
   const valid = generator.isValid(serial)
@@ -34,4 +34,4 @@ const generate = () => {
 };
 */
 
-module.exports = { checkSerial, generateSerials }
+export { checkSerial, generateSerials }

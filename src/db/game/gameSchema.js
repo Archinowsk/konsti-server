@@ -1,5 +1,5 @@
 /* @flow */
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const GameSchema = mongoose.Schema({
   id: Number,
@@ -21,4 +21,4 @@ const GameSchema = mongoose.Schema({
 
 const Game = mongoose.model('Game', GameSchema)
 
-module.exports = Game
+export default Game

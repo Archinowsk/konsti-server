@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken')
-const { logger } = require('../utils/logger')
-const config = require('../../config')
+import jwt from 'jsonwebtoken'
+import { logger } from '../utils/logger'
+import config from '../../config'
 
 const validateAuthHeader = (authHeader, userGroup) => {
   logger.info(`Auth: Require jwt token for "${userGroup}" user group`)
@@ -40,4 +40,4 @@ const validateAuthHeader = (authHeader, userGroup) => {
   */
 }
 
-module.exports = validateAuthHeader
+export default validateAuthHeader

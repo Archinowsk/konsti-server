@@ -1,6 +1,6 @@
 /* @flow */
-const { logger } = require('../../utils/logger')
-const db = require('../../db/mongodb')
+import { logger } from '../../utils/logger'
+import db from '../../db/mongodb'
 
 // Get settings
 const getSettings = async (req: Object, res: Object) => {
@@ -30,4 +30,4 @@ const getSettings = async (req: Object, res: Object) => {
   }
 }
 
-module.exports = { getSettings }
+export { getSettings }
