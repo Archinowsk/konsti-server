@@ -12,15 +12,15 @@
   },
   "scripts": {
     "docker-start": "docker-compose -f docker-compose.yml up --build",
+    "build": "babel src -d lib",
     "eslint": "eslint src --fix",
     "flow": "flow",
-    "flow-remove": "flow-remove-types src/ -d lib/",
-    "generate-data": "cross-env NODE_ENV=development node lib/test/data-generation/runGenerators.js",
-    "generate-serials": "node --eval \"require('./lib/utils/serials.js').generateSerials()\"",
+    "generate-data": "cross-env NODE_ENV=development babel-node src/test/data-generation/runGenerators.js",
+    "generate-serials": "babel-node --eval \"require('./src/utils/serials.js').generateSerials()\"",
     "precommit": "npm run flow check && lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
-    "start": "npm run flow-remove && cross-env NODE_ENV=production node lib/server.js",
-    "start-dev": "npm run flow-remove && cross-env NODE_ENV=development node lib/server.js",
+    "start": "npm run build && cross-env NODE_ENV=production node lib/server.js",
+    "start-dev": "npm run build && cross-env NODE_ENV=development node lib/server.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register"
   },
   "dependencies": {
@@ -41,6 +41,11 @@
     "winston-daily-rotate-file": "^3.2.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/node": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/preset-flow": "^7.0.0-beta.51",
     "babel-eslint": "^8.2.3",
     "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
@@ -54,7 +59,6 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "flow-bin": "^0.74.0",
-    "flow-remove-types": "^1.2.3",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.5"

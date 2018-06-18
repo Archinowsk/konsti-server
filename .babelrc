@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "useBuiltIns": "entry",
+        "debug": false,
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-flow"
+  ]
+}

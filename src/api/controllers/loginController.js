@@ -1,4 +1,6 @@
 /* @flow */
+import type { User } from '../../types/user.type'
+
 const jwt = require('jsonwebtoken')
 const { logger } = require('../../utils/logger')
 const db = require('../../db/mongodb')
@@ -34,16 +36,17 @@ const postLogin = async (req: Object, res: Object) => {
     })
   }
 
-  // TODO: Move to user type
-  let response: Object = {
-    favorited_games: [],
-    signed_games: [],
-    entered_games: [],
+  let response: User = {
+    favorited_games: [Object],
+    signed_games: [Object],
+    entered_games: [Object],
     username: '',
     password: '',
     user_group: '',
     serial: '',
+    created: null,
   }
+
   try {
     response = await db.user.getUser(loginData)
   } catch (error) {
