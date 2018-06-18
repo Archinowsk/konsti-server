@@ -1,9 +1,9 @@
 {
-  "name": "ropecon-rpg-signup",
+  "name": "konsti-server",
   "version": "0.0.1",
   "private": true,
   "main": "server.js",
-  "description": "Ropecon RPG Signup",
+  "description": "Konsti signup tool server",
   "author": {
     "name": "Arttu Hanska"
   },
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "docker-start": "docker-compose -f docker-compose.yml up --build",
-    "build": "babel src -d lib",
+    "build": "rimraf lib && babel src -d lib",
     "eslint": "eslint src --fix",
     "flow": "flow check",
     "generate-data": "cross-env NODE_ENV=development babel-node src/test/data-generation/runGenerators.js",
@@ -61,7 +61,8 @@
     "flow-bin": "^0.74.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
-    "prettier": "^1.13.5"
+    "prettier": "^1.13.5",
+    "rimraf": "^2.6.2"
   },
   "lint-staged": {
     "*.js": [
