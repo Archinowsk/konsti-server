@@ -11,10 +11,11 @@
     "node": ">=8.x.x"
   },
   "scripts": {
-    "docker-start": "docker-compose -f docker-compose.yml up --build",
     "build": "rimraf lib && babel src -d lib",
+    "docker-start": "docker-compose -f docker-compose.yml up --build",
     "eslint": "eslint src --fix",
     "flow": "flow check",
+    "flow-typed-install": "flow-typed install --skip --overwrite --ignoreDeps peer bundle",
     "generate-data": "cross-env NODE_ENV=development babel-node src/test/data-generation/runGenerators.js",
     "generate-serials": "babel-node --eval \"require('./src/utils/serials.js').generateSerials()\"",
     "precommit": "npm run flow && lint-staged",
@@ -59,6 +60,7 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "flow-bin": "^0.74.0",
+    "flow-typed": "^2.4.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.5",

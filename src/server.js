@@ -26,7 +26,7 @@ const app = express()
 
 if (productionEnv) {
   // Request gzip file if should be compressed
-  app.get('*.js', (req, res, next) => {
+  app.get('*.js', (req: Object, res: Object, next: Function) => {
     COMPRESSED.forEach((value, index) => {
       if (req.url.startsWith(value[index])) {
         req.url += '.gz'
@@ -83,13 +83,14 @@ const letsEncryptPath = path.join(__dirname, '../', '.well-known')
 app.use(express.static(letsEncryptPath))
 
 // No match, route to index
-app.get('/*', (req, res) => {
+app.get('/*', (req: Object, res: Object) => {
   res.redirect('/')
 })
 
 app.set('port', process.env.PORT || 3000)
 
 const server = app.listen(app.get('port'), () => {
+  if (!server) return
   logger.info(`Express: Server started on port ${server.address().port}`)
 })
 

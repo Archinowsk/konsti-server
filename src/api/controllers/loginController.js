@@ -1,11 +1,11 @@
 /* @flow */
-import type { User } from '../../types/user.type'
 
 import jwt from 'jsonwebtoken'
 import { logger } from '../../utils/logger'
 import db from '../../db/mongodb'
 import { comparePasswordHash } from '../../utils/bcrypt'
 import config from '../../../config'
+import type { User } from '../../types/user.types'
 
 const validateLogin = async (loginData, hash) => {
   let response = null
