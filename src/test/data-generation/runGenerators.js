@@ -9,7 +9,7 @@ import config from '../../../config'
 const runGenerators = async () => {
   const strategy = process.argv[2]
 
-  if (!strategy && strategy !== 'munkres' && strategy !== 'group') {
+  if (!strategy || (strategy !== 'munkres' && strategy !== 'group')) {
     logger.error('Give strategy parameter, possible: "munkres", "group"')
     process.exit()
   }
