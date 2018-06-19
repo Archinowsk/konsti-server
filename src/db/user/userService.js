@@ -9,22 +9,24 @@ const removeUsers = () => {
 
 const saveUser = async (userData: Object) => {
   const username = userData.username.trim()
-  let userGroup = 'user'
 
+  /*
+  let userGroup = 'user'
   if (userData.user_group) {
     userGroup = userData.user_group
   }
+  */
 
   // User data
   const user = new User({
     username,
     password: userData.passwordHash,
-    user_group: userGroup, // Options: 'user' and 'admin'
+    user_group: userData.userGroup || 'user', // Options: 'user' and 'admin'
     serial: userData.serial,
-    group: userData.group || 0,
-    favorited_games: [],
-    signed_games: [],
-    entered_games: [],
+    player_group: userData.playerGroup || 0,
+    favorited_games: userData.favoritedGames || [],
+    signed_games: userData.signedGames || [],
+    entered_games: userData.enteredGames || [],
   })
 
   let response = null

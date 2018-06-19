@@ -16,10 +16,10 @@ const createAdminUser = async () => {
     const registrationData = {
       username: 'admin',
       passwordHash,
-      user_group: 'admin',
-      favorited_games: [],
-      signed_games: [{}],
-      entered_games: [],
+      userGroup: 'admin',
+      favoritedGames: [],
+      signedGames: [{}],
+      enteredGames: [],
     }
 
     return db.user.saveUser(registrationData)
@@ -40,10 +40,10 @@ const createTestUser = async () => {
     const registrationData = {
       username: 'test',
       passwordHash,
-      user_group: 'user',
-      favorited_games: [],
-      signed_games: [{}],
-      entered_games: [],
+      userGroup: 'user',
+      favoritedGames: [],
+      signedGames: [{}],
+      enteredGames: [],
     }
 
     return db.user.saveUser(registrationData)
@@ -58,10 +58,11 @@ const createUser = () => {
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass',
-    user_group: 'user',
-    favorited_games: [],
-    signed_games: [{}],
-    entered_games: [],
+    userGroup: 'user',
+    playerGroup: 1,
+    favoritedGames: [],
+    signedGames: [{}],
+    enteredGames: [],
   }
 
   return db.user.saveUser(registrationData)

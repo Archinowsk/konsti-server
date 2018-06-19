@@ -4,7 +4,7 @@ export type User = {
   password: string,
   user_group: string,
   serial: string,
-  group: number,
+  player_group: number,
   favorited_games: [{}],
   signed_games: [{}],
   entered_games: [{}],
