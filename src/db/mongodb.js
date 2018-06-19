@@ -1,7 +1,7 @@
 /* @flow */
 import mongoose from 'mongoose'
 import { logger } from '../utils/logger'
-import config from '../../config'
+import config from '../config'
 
 import user from './user/userService'
 import feedback from './feedback/feedbackService'

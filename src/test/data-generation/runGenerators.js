@@ -4,7 +4,7 @@ import db from '../../db/mongodb'
 import munkresGenerator from './munkresGenerator'
 import groupGenerator from './groupGenerator'
 
-import config from '../../../config'
+import config from '../../config'
 
 const runGenerators = async () => {
   const strategy = process.argv[2]

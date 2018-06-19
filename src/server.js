@@ -6,7 +6,7 @@ import morgan from 'morgan'
 
 // import expressJWT from 'express-jwt'
 
-import config from '../config'
+import config from './config'
 
 import { logger, stream } from './utils/logger'
 
