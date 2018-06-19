@@ -8,7 +8,7 @@ const getResults = async (req: Object, res: Object) => {
 
   let response = null
   try {
-    response = await db.results.getResults()
+    response = await db.results.findResults()
     res.json({
       message: 'Getting results success',
       status: 'success',

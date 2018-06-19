@@ -90,11 +90,11 @@ const saveGames = async (games: Array<Object>) => {
   }
 }
 
-const getGames = async () => {
+const findGames = async () => {
   let response = null
   try {
     response = await Game.find({})
-    logger.info(`MongoDB: Get all games`)
+    logger.info(`MongoDB: Find all games`)
     return response
   } catch (error) {
     logger.error(`MongoDB: Error fetcing games - ${error}`)
@@ -102,6 +102,6 @@ const getGames = async () => {
   }
 }
 
-const game = { saveGames, getGames, removeGames }
+const game = { saveGames, findGames, removeGames }
 
 export default game

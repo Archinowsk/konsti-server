@@ -37,7 +37,7 @@ const saveUser = async (userData: Object) => {
   }
 }
 
-const getUser = async (userData: Object) => {
+const findUser = async (userData: Object) => {
   const username = userData.username.trim()
 
   let response = null
@@ -56,7 +56,7 @@ const getUser = async (userData: Object) => {
   return response
 }
 
-const getSerial = async (serialData: Object) => {
+const findSerial = async (serialData: Object) => {
   const serial = serialData.serial
 
   let response = null
@@ -75,11 +75,11 @@ const getSerial = async (serialData: Object) => {
   return response
 }
 
-const getUsers = async () => {
+const findUsers = async () => {
   let response = null
   try {
     response = await User.find({})
-    logger.info(`MongoDB: Get all users`)
+    logger.info(`MongoDB: Find all users`)
     return response
   } catch (error) {
     logger.error(`MongoDB: Error fetcing users - ${error}`)
@@ -156,14 +156,14 @@ const saveSignupResult = async (signupResultData: Object) => {
 }
 
 const user = {
-  saveUser,
-  getUser,
-  getUsers,
-  saveSignup,
-  saveFavorite,
-  saveSignupResult,
+  findSerial,
+  findUser,
+  findUsers,
   removeUsers,
-  getSerial,
+  saveFavorite,
+  saveSignup,
+  saveSignupResult,
+  saveUser,
 }
 
 export default user

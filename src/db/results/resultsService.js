@@ -7,7 +7,7 @@ const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')
   return Results.remove({})
 }
-const getResults = async () => {
+const findResults = async () => {
   let response = null
   try {
     response = await Results.find({})
@@ -43,6 +43,6 @@ const saveAllSignupResults = async (
   }
 }
 
-const results = { removeResults, saveAllSignupResults, getResults }
+const results = { removeResults, saveAllSignupResults, findResults }
 
 export default results

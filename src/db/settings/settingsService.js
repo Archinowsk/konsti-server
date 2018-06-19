@@ -28,7 +28,7 @@ const createSettings = async () => {
   }
 }
 
-const getSettings = async () => {
+const findSettings = async () => {
   let response = null
   try {
     response = await Settings.findOne({})
@@ -82,10 +82,10 @@ const saveSignupTime = async (signupTime: Date) => {
 }
 
 const settings = {
+  findSettings,
+  removeSettings,
   saveBlacklist,
   saveSignupTime,
-  removeSettings,
-  getSettings,
 }
 
 export default settings

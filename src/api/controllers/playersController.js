@@ -26,8 +26,8 @@ const postPlayers = async (req: Object, res: Object) => {
   let assignResults: Array<Object> | null = []
 
   try {
-    users = await db.user.getUsers()
-    games = await db.game.getGames()
+    users = await db.user.findUsers()
+    games = await db.game.findGames()
 
     assignResults = assignPlayers(users, games, startingTime)
 

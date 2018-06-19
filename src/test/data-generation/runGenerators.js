@@ -29,9 +29,12 @@ const runGenerators = async () => {
 
   try {
     await db.connectToDb()
+  } catch (error) {
+    logger.error(error)
+  }
 
+  try {
     logger.info(`MongoDB: Clean old data`)
-
     await db.user.removeUsers()
     await db.game.removeGames()
     await db.results.removeResults()

@@ -45,9 +45,9 @@ const postUser = async (req: Object, res: Object) => {
   let response = null
   try {
     // Check if user already exists
-    response = await db.user.getUser({ username })
+    response = await db.user.findUser({ username })
   } catch (error) {
-    logger.error(`db.user.getUser(): ${error}`)
+    logger.error(`db.user.findUser(): ${error}`)
   }
 
   // Username free
@@ -55,9 +55,9 @@ const postUser = async (req: Object, res: Object) => {
     let serialResponse = null
     try {
       // Check if serial is used
-      serialResponse = await db.user.getSerial({ serial })
+      serialResponse = await db.user.findSerial({ serial })
     } catch (error) {
-      logger.error(`db.user.getSerial(): ${error}`)
+      logger.error(`db.user.findSerial(): ${error}`)
     }
 
     // Serial not used
@@ -123,7 +123,7 @@ const getUser = async (req: Object, res: Object) => {
 
   let response = null
   try {
-    response = await db.user.getUser({ username })
+    response = await db.user.findUser({ username })
 
     const returnData = {
       enteredGames: response.entered_games,
@@ -137,7 +137,7 @@ const getUser = async (req: Object, res: Object) => {
       games: returnData,
     })
   } catch (error) {
-    logger.error(`db.user.getUser(): ${error}`)
+    logger.error(`db.user.findUser(): ${error}`)
     res.json({
       message: 'Getting user data failed',
       status: 'error',

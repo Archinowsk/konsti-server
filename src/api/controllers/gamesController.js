@@ -82,7 +82,7 @@ const getGames = async (req: Object, res: Object) => {
 
   let games = null
   try {
-    games = await db.game.getGames()
+    games = await db.game.findGames()
 
     res.json({
       message: 'Games downloaded',

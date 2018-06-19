@@ -48,7 +48,7 @@ const postLogin = async (req: Object, res: Object) => {
   }
 
   try {
-    response = await db.user.getUser(loginData)
+    response = await db.user.findUser(loginData)
   } catch (error) {
     logger.error(`Login: ${error}`)
     res.json({

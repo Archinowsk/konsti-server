@@ -3,9 +3,6 @@ import { logger } from '../../../utils/logger'
 import db from '../../../db/mongodb'
 import { getRandomInt } from './randomVariableGenerators'
 
-const getGames = () => db.game.getGames()
-const getUsers = () => db.user.getUsers()
-
 const signup = (games, user) => {
   // let randomIndex = getRandomInt(0, users.length - 1);
   // const randomUser = users[randomIndex].username;
@@ -61,10 +58,10 @@ const createSignupData = async (count: number) => {
 
   let response = null
   try {
-    response = await getGames()
+    response = await db.game.findGames()
     games = response
 
-    response = await getUsers()
+    response = await db.user.findUsers()
     users = response
 
     await signupMultiple(count, games, users)
