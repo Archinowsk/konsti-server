@@ -4,12 +4,12 @@ import mongoose from 'mongoose'
 const UserSchema = mongoose.Schema({
   username: String,
   password: String,
-  user_group: String,
+  userGroup: String,
   serial: String,
-  player_group: Number,
-  favorited_games: [{}],
-  signed_games: [{}],
-  entered_games: [{}],
+  playerGroup: Number,
+  favoritedGames: [{}],
+  signedGames: [{}],
+  enteredGames: [{}],
   created: { type: Date, default: Date.now },
 })
 

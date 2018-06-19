@@ -37,14 +37,14 @@ const postLogin = async (req: Object, res: Object) => {
   }
 
   let response: User = {
-    favorited_games: [Object],
-    signed_games: [Object],
-    entered_games: [Object],
+    favoritedGames: [Object],
+    signedGames: [Object],
+    enteredGames: [Object],
     username: '',
     password: '',
-    user_group: '',
+    userGroup: '',
     serial: '',
-    player_group: 0,
+    playerGroup: 0,
     created: null,
   }
 
@@ -75,11 +75,11 @@ const postLogin = async (req: Object, res: Object) => {
     response2 = await validateLogin(loginData, response.password)
 
     logger.info(
-      `Login: User "${response.username}" with "${response.user_group}" account`
+      `Login: User "${response.username}" with "${response.userGroup}" account`
     )
 
     let jwtToken = ''
-    if (response.user_group === 'admin') {
+    if (response.userGroup === 'admin') {
       jwtToken = jwt.sign(
         { username: loginData.username },
         config.jwtSecretKeyAdmin
@@ -95,7 +95,7 @@ const postLogin = async (req: Object, res: Object) => {
         message: 'User login success',
         status: 'success',
         jwtToken,
-        userGroup: response.user_group,
+        userGroup: response.userGroup,
       })
     } else {
       logger.info(

@@ -61,8 +61,8 @@ const saveGames = async (games: Array<Object>) => {
       mins: game.mins,
       tags: game.tags,
       people,
-      min_attendance: minAttendance,
-      max_attendance: maxAttendance,
+      minAttendance: minAttendance,
+      maxAttendance: maxAttendance,
       attributes: game.attributes,
       table: game.table,
     })

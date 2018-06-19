@@ -12,9 +12,9 @@ const createSettings = async () => {
   logger.info('MongoDB: "Settings" collection not found, create empty')
 
   const settings = new Settings({
-    blacklisted_games: [],
-    canceled_games: [],
-    signup_time: moment.utc('2000-01-01'),
+    blacklistedGames: [],
+    canceledGames: [],
+    signupTime: moment.utc('2000-01-01'),
   })
 
   let response = null
@@ -49,7 +49,7 @@ const saveBlacklist = async (blacklistData: Object) => {
   let response = null
   try {
     response = await Settings.update({
-      $set: { blacklisted_games: blacklistData.blacklistedGames },
+      $set: { blacklistedGames: blacklistData.blacklistedGames },
     })
     logger.info(`MongoDB: Blacklist data updated`)
     return response
@@ -71,7 +71,7 @@ const saveSignupTime = async (signupTime: Date) => {
   let response = null
   try {
     response = await Settings.update({
-      $set: { signup_time: formattedTime },
+      $set: { signupTime: formattedTime },
     })
     logger.info(`MongoDB: Signup time updated`)
     return response

@@ -126,9 +126,9 @@ const getUser = async (req: Object, res: Object) => {
     response = await db.user.findUser({ username })
 
     const returnData = {
-      enteredGames: response.entered_games,
-      favoritedGames: response.favorited_games,
-      signedGames: response.signed_games,
+      enteredGames: response.enteredGames,
+      favoritedGames: response.favoritedGames,
+      signedGames: response.signedGames,
     }
 
     res.json({

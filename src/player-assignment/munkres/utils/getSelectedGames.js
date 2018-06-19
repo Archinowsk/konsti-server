@@ -14,8 +14,8 @@ const getSelectedGames = (
     for (let i = 0; i < signupWishes.length; i += 1) {
       if (startingGame.id === signupWishes[i].id) {
         selectedGames.push(startingGame)
-        minAttendance += startingGame.min_attendance
-        maxAttendance += startingGame.max_attendance
+        minAttendance += startingGame.minAttendance
+        maxAttendance += startingGame.maxAttendance
         break
       }
     }

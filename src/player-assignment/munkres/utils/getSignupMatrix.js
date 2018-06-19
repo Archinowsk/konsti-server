@@ -18,13 +18,13 @@ const getSignupMatrix = (
     // ... check if players have wishes that match with game id
     selectedPlayers.forEach(player => {
       let match = false
-      for (let i = 0; i < player.signed_games.length; i += 1) {
+      for (let i = 0; i < player.signedGames.length; i += 1) {
         // Player has wish that matches starting game
-        if (selectedGame.id === player.signed_games[i].id) {
-          if (typeof player.signed_games[i].priority === 'undefined') {
+        if (selectedGame.id === player.signedGames[i].id) {
+          if (typeof player.signedGames[i].priority === 'undefined') {
             gameSignups.push(9)
           } else {
-            gameSignups.push(player.signed_games[i].priority)
+            gameSignups.push(player.signedGames[i].priority)
           }
           match = true
           break
@@ -36,7 +36,7 @@ const getSignupMatrix = (
       }
     })
     // Add one matrix row for each attendance seat
-    for (let j = 0; j < selectedGame.max_attendance; j += 1) {
+    for (let j = 0; j < selectedGame.maxAttendance; j += 1) {
       // Copy array, don't add reference
       signupMatrix[counter] = gameSignups.slice()
       counter += 1

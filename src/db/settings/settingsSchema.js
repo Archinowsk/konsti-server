@@ -2,9 +2,9 @@
 import mongoose from 'mongoose'
 
 const SettingsSchema = mongoose.Schema({
-  blacklisted_games: Array,
-  canceled_games: Array,
-  signup_time: Date,
+  blacklistedGames: Array,
+  canceledGames: Array,
+  signupTime: Date,
 })
 
 const Settings = mongoose.model('Settings', SettingsSchema)

@@ -26,7 +26,7 @@ const buildSignupResults = (
     // Figure what games the row numbers are
     for (let j = 0; j < selectedGames.length; j += 1) {
       let matchingGame
-      attendanceRange += selectedGames[j].max_attendance
+      attendanceRange += selectedGames[j].maxAttendance
 
       // logger.info(`attendanceRange: ${attendanceRange}`);
 
@@ -37,7 +37,7 @@ const buildSignupResults = (
         signupResults.push({
           username: selectedPlayers[selectedPlayer].username,
           enteredGame: { id: matchingGame.id },
-          signedGames: selectedPlayers[selectedPlayer].signed_games,
+          signedGames: selectedPlayers[selectedPlayer].signedGames,
         })
         break
       }

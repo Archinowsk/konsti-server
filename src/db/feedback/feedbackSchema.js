@@ -2,7 +2,7 @@
 import mongoose from 'mongoose'
 
 const FeedbackSchema = mongoose.Schema({
-  game_id: Number,
+  gameId: Number,
   feedback: String,
   created: { type: Date, default: Date.now },
 })

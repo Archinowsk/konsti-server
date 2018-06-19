@@ -11,14 +11,14 @@ const getSettings = async (req: Object, res: Object) => {
     response = await db.settings.findSettings()
 
     const gamesData = {
-      blacklistedGames: response.blacklisted_games,
+      blacklistedGames: response.blacklistedGames,
     }
 
     res.json({
       message: 'Getting settings success',
       status: 'success',
       games: gamesData,
-      signupTime: response.signup_time,
+      signupTime: response.signupTime,
     })
   } catch (error) {
     logger.error(`Settings: ${error}`)

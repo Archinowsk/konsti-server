@@ -5,7 +5,7 @@ const checkMinAttendance = (
   results: Array<Object>,
   selectedGames: Array<Object>
 ) => {
-  // Check that game min_attendance is fullfilled
+  // Check that game minAttendance is fullfilled
   const gameIds = []
 
   for (let i = 0; i < results.length; i += 1) {
@@ -16,7 +16,7 @@ const checkMinAttendance = (
     // Figure what games the row numbers are
     let attendanceRange = 0
     for (let j = 0; j < selectedGames.length; j += 1) {
-      attendanceRange += selectedGames[j].max_attendance
+      attendanceRange += selectedGames[j].maxAttendance
       // Found game
       if (selectedRow < attendanceRange) {
         gameIds.push(selectedGames[j].id)
@@ -33,7 +33,7 @@ const checkMinAttendance = (
   // Find games with too few players
   const gamesWithTooFewPlayers = []
   selectedGames.forEach(selectedGame => {
-    if (counts[selectedGame.id] < selectedGame.min_attendance) {
+    if (counts[selectedGame.id] < selectedGame.minAttendance) {
       gamesWithTooFewPlayers.push({
         game: selectedGame,
         players: counts[selectedGame.id],
@@ -41,7 +41,7 @@ const checkMinAttendance = (
       logger.info(
         `Too few people for game ${selectedGame.title} (${
           counts[selectedGame.id]
-        }/${selectedGame.min_attendance})`
+        }/${selectedGame.minAttendance})`
       )
     }
   })

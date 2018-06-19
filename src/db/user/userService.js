@@ -12,8 +12,8 @@ const saveUser = async (userData: Object) => {
 
   /*
   let userGroup = 'user'
-  if (userData.user_group) {
-    userGroup = userData.user_group
+  if (userData.userGroup) {
+    userGroup = userData.userGroup
   }
   */
 
@@ -21,12 +21,12 @@ const saveUser = async (userData: Object) => {
   const user = new User({
     username,
     password: userData.passwordHash,
-    user_group: userData.userGroup || 'user', // Options: 'user' and 'admin'
+    userGroup: userData.userGroup || 'user', // Options: 'user' and 'admin'
     serial: userData.serial,
-    player_group: userData.playerGroup || 0,
-    favorited_games: userData.favoritedGames || [],
-    signed_games: userData.signedGames || [],
-    entered_games: userData.enteredGames || [],
+    playerGroup: userData.playerGroup || 0,
+    favoritedGames: userData.favoritedGames || [],
+    signedGames: userData.signedGames || [],
+    enteredGames: userData.enteredGames || [],
   })
 
   let response = null
@@ -95,7 +95,7 @@ const saveSignup = async (signupData: Object) => {
   try {
     response = await User.update(
       { username: signupData.username },
-      { $set: { signed_games: signupData.selectedGames } }
+      { $set: { signedGames: signupData.selectedGames } }
     )
 
     logger.info(`MongoDB: Signup data stored for user "${signupData.username}"`)
@@ -115,7 +115,7 @@ const saveFavorite = async (favoriteData: Object) => {
   try {
     response = await User.update(
       { username: favoriteData.username },
-      { $set: { favorited_games: favoriteData.favoritedGames } }
+      { $set: { favoritedGames: favoriteData.favoritedGames } }
     )
 
     logger.info(
@@ -138,10 +138,10 @@ const saveSignupResult = async (signupResultData: Object) => {
     response = await User.update(
       {
         username: signupResultData.username,
-        entered_games: { $ne: [{ id: signupResultData.enteredGame.id }] },
+        enteredGames: { $ne: [{ id: signupResultData.enteredGame.id }] },
       },
-      // { $set: { entered_games: { id: signupResultData.enteredGame } } }
-      { $push: { entered_games: { id: signupResultData.enteredGame.id } } }
+      // { $set: { enteredGames: { id: signupResultData.enteredGame } } }
+      { $push: { enteredGames: { id: signupResultData.enteredGame.id } } }
     )
 
     logger.info(
