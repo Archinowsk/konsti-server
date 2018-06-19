@@ -1,7 +1,7 @@
 /* @flow */
+import faker from 'faker'
 import { logger } from '../../../utils/logger'
 import db from '../../../db/mongodb'
-import { getRandomString } from './randomVariableGenerators'
 import { hashPassword } from '../../../utils/bcrypt'
 
 const createAdminUser = async () => {
@@ -56,7 +56,7 @@ const createUser = () => {
   // Create users with randomized data
   // Save time by not hashing the password
   const registrationData = {
-    username: getRandomString(10),
+    username: faker.internet.userName(),
     passwordHash: 'testPass',
     user_group: 'user',
     favorited_games: [],

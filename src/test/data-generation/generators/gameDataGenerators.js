@@ -1,9 +1,9 @@
 /* @flow */
+import faker from 'faker'
 import { logger } from '../../../utils/logger'
 import db from '../../../db/mongodb'
 import {
   getRandomInt,
-  getRandomString,
   getRandomDate,
   getRandomTime,
 } from './randomVariableGenerators'
@@ -21,8 +21,8 @@ const createGames = (count: number) => {
 
     const gameData = {
       id: getRandomInt(100, 10000),
-      title: getRandomString(20),
-      desc: getRandomString(30),
+      title: faker.lorem.words(),
+      desc: faker.lorem.sentence(),
       notes: 'Test Note',
       loc: ['203/A'],
       // date: '2017-07-28',

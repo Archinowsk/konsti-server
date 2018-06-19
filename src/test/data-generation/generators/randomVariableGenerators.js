@@ -1,15 +1,4 @@
 /* @flow */
-const getRandomString = (length: number) => {
-  let text = ''
-  const possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
-  for (let i = 0; i < length; i += 1)
-    text += possible.charAt(Math.floor(Math.random() * possible.length))
-
-  return text
-}
-
 const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
@@ -39,4 +28,4 @@ const getRandomTime = () => {
   return times[randomIndex]
 }
 
-export { getRandomString, getRandomInt, getRandomDate, getRandomTime }
+export { getRandomInt, getRandomDate, getRandomTime }
