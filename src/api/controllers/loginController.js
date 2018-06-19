@@ -44,6 +44,7 @@ const postLogin = async (req: Object, res: Object) => {
     password: '',
     user_group: '',
     serial: '',
+    group: 0,
     created: null,
   }
 

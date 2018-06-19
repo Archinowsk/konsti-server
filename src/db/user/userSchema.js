@@ -6,6 +6,7 @@ const UserSchema = mongoose.Schema({
   password: String,
   user_group: String,
   serial: String,
+  group: Number,
   favorited_games: [{}],
   signed_games: [{}],
   entered_games: [{}],

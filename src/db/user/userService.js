@@ -21,6 +21,7 @@ const saveUser = async (userData: Object) => {
     password: userData.passwordHash,
     user_group: userGroup, // Options: 'user' and 'admin'
     serial: userData.serial,
+    group: userData.group || 0,
     favorited_games: [],
     signed_games: [],
     entered_games: [],
