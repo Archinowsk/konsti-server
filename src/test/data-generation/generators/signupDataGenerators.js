@@ -35,16 +35,19 @@ const signup = (games, user) => {
   // TODO: Different users: some sign for all three, some for one
 }
 
-const signupMultiple = (games, users) => {
-  logger.info(`Signup: ${games.length} games`)
-  logger.info(`Signup: ${users.length} users`)
-  logger.info(`Signup: Generate signup data for ${users.length} users`)
-
+const signupMultiple = (games, users, inGroup) => {
   const promises = []
-  for (let i = 0; i < users.length; i++) {
-    promises.push(signup(games, users[i]))
-  }
 
+  // TODO: Assign same signup data for group members
+  if (inGroup) {
+    for (let i = 0; i < users.length; i++) {
+      promises.push(signup(games, users[i]))
+    }
+  } else {
+    for (let i = 0; i < users.length; i++) {
+      promises.push(signup(games, users[i]))
+    }
+  }
   return Promise.all(promises)
 }
 
@@ -57,10 +60,30 @@ const createSignupData = async () => {
   try {
     games = await db.game.findGames()
     users = await db.user.findUsers()
-    await signupMultiple(games, users)
   } catch (error) {
     logger.error(error)
   }
+
+  logger.info(`Signup: ${games.length} games`)
+  logger.info(`Signup: ${users.length} users`)
+  logger.info(`Signup: Generate signup data for ${users.length} users`)
+
+  // Group all unique group numbers
+  const groupedUsers = users.reduce((acc, user) => {
+    ;(acc[user['playerGroup']] = acc[user['playerGroup']] || []).push(user)
+    return acc
+  }, {})
+
+  logger.info(`Grouped users: ${JSON.stringify(groupedUsers, null, 2)}`)
+
+  // Get users who are not in a group
+  const individualUsers = groupedUsers['0']
+  const group2 = groupedUsers['2']
+  const group3 = groupedUsers['3']
+
+  await signupMultiple(games, individualUsers)
+  await signupMultiple(games, group2, true)
+  await signupMultiple(games, group3, true)
 }
 
 export { createSignupData }
