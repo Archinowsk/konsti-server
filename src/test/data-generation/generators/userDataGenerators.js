@@ -18,7 +18,7 @@ const createAdminUser = async () => {
       passwordHash,
       userGroup: 'admin',
       favoritedGames: [],
-      signedGames: [{}],
+      signedGames: [],
       enteredGames: [],
     }
 
@@ -42,7 +42,7 @@ const createTestUser = async () => {
       passwordHash,
       userGroup: 'user',
       favoritedGames: [],
-      signedGames: [{}],
+      signedGames: [],
       enteredGames: [],
     }
 
@@ -61,7 +61,7 @@ const createUser = () => {
     userGroup: 'user',
     playerGroup: 1,
     favoritedGames: [],
-    signedGames: [{}],
+    signedGames: [],
     enteredGames: [],
   }
 

@@ -2,6 +2,7 @@
 import { logger } from '../../../utils/logger'
 
 const getSignupWishes = (players: Array<Object>) => {
+  logger.info('Get signup wishes')
   const signupWishes = []
 
   // Get signup wishes for all players

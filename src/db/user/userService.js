@@ -10,13 +10,6 @@ const removeUsers = () => {
 const saveUser = async (userData: Object) => {
   const username = userData.username.trim()
 
-  /*
-  let userGroup = 'user'
-  if (userData.userGroup) {
-    userGroup = userData.userGroup
-  }
-  */
-
   // User data
   const user = new User({
     username,

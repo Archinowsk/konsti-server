@@ -5,6 +5,7 @@ const getSelectedGames = (
   startingGames: Array<Object>,
   signupWishes: Array<Object>
 ) => {
+  logger.info('Get selected games')
   const selectedGames = []
   let minAttendance = 0
   let maxAttendance = 0

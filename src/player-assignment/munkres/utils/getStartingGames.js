@@ -3,6 +3,7 @@ import moment from 'moment'
 import { logger } from '../../../utils/logger'
 
 const getStartingGames = (games: Array<Object>, startingTime: Date) => {
+  logger.info('Get starting games')
   const startingGames = []
   const date = moment.utc(startingTime).format()
 

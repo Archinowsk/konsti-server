@@ -1,10 +1,11 @@
 /* @flow */
-// import { logger } from '../../../utils/logger'
+import { logger } from '../../../utils/logger'
 
 const getSignupMatrix = (
   selectedGames: Array<Object>,
   selectedPlayers: Array<Object>
 ) => {
+  logger.info('Generate signup matrix')
   // Create matrix for the sorting algorithm
   // Each available seat is possible result
   // Sort same game wishes to single array
