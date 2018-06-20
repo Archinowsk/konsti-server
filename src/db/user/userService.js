@@ -25,7 +25,7 @@ const saveUser = async (userData: Object) => {
   let response = null
   try {
     response = await user.save()
-    logger.info(`MongoDB: User ${username} saved to DB`)
+    logger.info(`MongoDB: User "${username}" saved to DB`)
     return response
   } catch (error) {
     logger.error(`MongoDB: Error creating new user ${username} - ${error}`)

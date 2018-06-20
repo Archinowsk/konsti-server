@@ -21,7 +21,7 @@ const signup = (games, user) => {
   }
 
   logger.info(
-    `Signup: selected games: ${randomGames.toString()} for ${user.username}`
+    `Signup: selected games: ${randomGames.toString()} for "${user.username}"`
   )
 
   const gamesWithPriorities = []

@@ -81,7 +81,7 @@ const saveGames = async (games: Array<Object>) => {
   let response = null
   try {
     response = await Game.create(gameDocs)
-    logger.info('MonboDB: Games saved to DB succesfully')
+    logger.info('MongoDB: Games saved to DB succesfully')
     return response
   } catch (error) {
     // TODO: Collect and return all errors, now only catches one

@@ -40,7 +40,7 @@ const createGames = (count: number) => {
       ],
       table: '209/1',
     }
-    logger.info(`Stored game ${gameData.title}`)
+    logger.info(`Stored game "${gameData.title}"`)
     games.push(gameData)
   }
 
