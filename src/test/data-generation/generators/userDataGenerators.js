@@ -52,14 +52,25 @@ const createTestUser = async () => {
   }
 }
 
-const createUser = () => {
+const createUsersInGroup = (count: number, group: number) => {
+  logger.info(`Generate data for ${count} users in group ${group}`)
+
+  const promises = []
+  for (let i = 0; i < count; i++) {
+    promises.push(createUser(group))
+  }
+
+  return Promise.all(promises)
+}
+
+const createUser = group => {
   // Create users with randomized data
   // Save time by not hashing the password
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass',
     userGroup: 'user',
-    playerGroup: 1,
+    playerGroup: group || 0,
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
@@ -72,11 +83,11 @@ const createUsers = (count: number) => {
   logger.info(`Generate data for ${count} users`)
 
   const promises = []
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < count; i++) {
     promises.push(createUser())
   }
 
   return Promise.all(promises)
 }
 
-export { createUsers, createAdminUser, createTestUser }
+export { createUsers, createAdminUser, createTestUser, createUsersInGroup }

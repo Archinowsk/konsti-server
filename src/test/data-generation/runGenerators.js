@@ -23,8 +23,12 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  const newUsersCount = 20 // How many players exist overall, add +2 for test accounts
+  // Total users: newUsersCount + 2 + groupSize * numberOfGroups
+
+  const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
   const newGamesCount = 5 // How many games are availale for signup - minimum is 3
+  const groupSize = 3 // How many new users will be in each group
+  const numberOfGroups = 2 // How many groups are created
   const newSignupsCount = 20 // How many players will sign up for three games
 
   try {
@@ -49,7 +53,13 @@ const runGenerators = async () => {
     if (strategy === 'munkres') {
       await munkresGenerator(newUsersCount, newGamesCount, newSignupsCount)
     } else if (strategy === 'group') {
-      await groupGenerator(newUsersCount, newGamesCount, newSignupsCount)
+      await groupGenerator(
+        newUsersCount,
+        newGamesCount,
+        newSignupsCount,
+        groupSize,
+        numberOfGroups
+      )
     }
   } catch (error) {
     logger.error(error)
