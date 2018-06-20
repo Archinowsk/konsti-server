@@ -78,8 +78,6 @@ const munkresAssignPlayers = (
     selectedPlayers
   )
 
-  // TODO: Should this be a promise?
-  // return Promise.resolve(signupResults)
   return signupResults
 }
 
