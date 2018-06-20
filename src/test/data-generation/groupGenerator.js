@@ -11,7 +11,6 @@ import { createSignupData } from './generators/signupDataGenerators'
 const groupGenerator = async (
   newUsersCount: number,
   newGamesCount: number,
-  newSignupsCount: number,
   groupSize: number,
   numberOfGroups: number
 ) => {
@@ -22,7 +21,7 @@ const groupGenerator = async (
   await createUsersInGroup(groupSize, 3)
   await createGames(newGamesCount)
   // TODO: All group members must have same signup data
-  await createSignupData(newSignupsCount)
+  await createSignupData()
 }
 
 export default groupGenerator

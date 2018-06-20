@@ -4,9 +4,6 @@ import db from '../../../db/mongodb'
 import { getRandomInt } from './randomVariableGenerators'
 
 const signup = (games, user) => {
-  // let randomIndex = getRandomInt(0, users.length - 1);
-  // const randomUser = users[randomIndex].username;
-  // logger.info(`Signup: selected user: ${randomUser}`);
   const randomGames = []
   let randomIndex
 
@@ -38,35 +35,29 @@ const signup = (games, user) => {
   // TODO: Different users: some sign for all three, some for one
 }
 
-const signupMultiple = (count, games, users) => {
+const signupMultiple = (games, users) => {
   logger.info(`Signup: ${games.length} games`)
   logger.info(`Signup: ${users.length} users`)
-  logger.info(`Signup: Generate signup data for ${count} users`)
+  logger.info(`Signup: Generate signup data for ${users.length} users`)
 
   const promises = []
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < users.length; i++) {
     promises.push(signup(games, users[i]))
   }
 
   return Promise.all(promises)
 }
 
-const createSignupData = async (count: number) => {
-  // Sign up users to games
+const createSignupData = async () => {
   logger.info('Generate signup data')
 
   let games = []
   let users = []
 
-  let response = null
   try {
-    response = await db.game.findGames()
-    games = response
-
-    response = await db.user.findUsers()
-    users = response
-
-    await signupMultiple(count, games, users)
+    games = await db.game.findGames()
+    users = await db.user.findUsers()
+    await signupMultiple(games, users)
   } catch (error) {
     logger.error(error)
   }

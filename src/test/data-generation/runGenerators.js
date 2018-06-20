@@ -29,7 +29,6 @@ const runGenerators = async () => {
   const newGamesCount = 5 // How many games are availale for signup - minimum is 3
   const groupSize = 3 // How many new users will be in each group
   const numberOfGroups = 2 // How many groups are created
-  const newSignupsCount = 20 // How many players will sign up for three games
 
   try {
     await db.connectToDb()
@@ -51,12 +50,11 @@ const runGenerators = async () => {
 
   try {
     if (strategy === 'munkres') {
-      await munkresGenerator(newUsersCount, newGamesCount, newSignupsCount)
+      await munkresGenerator(newUsersCount, newGamesCount)
     } else if (strategy === 'group') {
       await groupGenerator(
         newUsersCount,
         newGamesCount,
-        newSignupsCount,
         groupSize,
         numberOfGroups
       )
