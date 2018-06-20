@@ -28,8 +28,9 @@ const postPlayers = async (req: Object, res: Object) => {
   try {
     users = await db.user.findUsers()
     games = await db.game.findGames()
+    const strategy = 'munkres'
 
-    assignResults = assignPlayers(users, games, startingTime)
+    assignResults = assignPlayers(users, games, startingTime, strategy)
 
     if (!assignResults) throw new Error('No assign results')
 

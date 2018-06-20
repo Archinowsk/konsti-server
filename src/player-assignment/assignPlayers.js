@@ -6,10 +6,9 @@ import munkresAssignPlayers from './munkres/munkresAssignPlayers'
 const assignPlayers = (
   players: Array<Object>,
   games: Array<Object>,
-  startingTime: Date
+  startingTime: Date,
+  strategy: string
 ) => {
-  const strategy = 'munkres'
-
   logger.info(
     `Received data for ${players.length} players and ${games.length} games`
   )

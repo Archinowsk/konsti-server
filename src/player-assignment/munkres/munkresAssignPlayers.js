@@ -2,10 +2,10 @@
 import munkres from 'munkres-js'
 import { logger } from '../../utils/logger'
 
-import getStartingGames from './utils/getStartingGames'
-import getSignupWishes from './utils/getSignupWishes'
-import getSelectedGames from './utils/getSelectedGames'
-import getSelectedPlayers from './utils/getSelectedPlayers'
+import getStartingGames from '../utils/getStartingGames'
+import getSignupWishes from '../utils/getSignupWishes'
+import getSelectedGames from '../utils/getSelectedGames'
+import getSelectedPlayers from '../utils/getSelectedPlayers'
 import getSignupMatrix from './utils/getSignupMatrix'
 import checkMinAttendance from './utils/checkMinAttendance'
 import getRemovedGame from './utils/getRemovedGame'
@@ -19,8 +19,6 @@ const munkresAssignPlayers = (
   games: Array<Object>,
   startingTime: Date
 ) => {
-  logger.info(`Munkres strategy`)
-
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const selectedGames = getSelectedGames(startingGames, signupWishes)
@@ -42,7 +40,7 @@ const munkresAssignPlayers = (
 
     for (let i = 0; i < selectedGames.length; i += 1) {
       if (selectedGames[i].id === removedGame.id) {
-        logger.info(`Removed game ${selectedGames[i].title}`)
+        logger.info(`Removed game "${selectedGames[i].title}"`)
         selectedGames.splice(i, 1)
         removedGamesCount += 1
         break

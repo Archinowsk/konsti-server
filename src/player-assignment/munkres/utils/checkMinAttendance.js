@@ -39,7 +39,7 @@ const checkMinAttendance = (
         players: counts[selectedGame.id],
       })
       logger.info(
-        `Too few people for game ${selectedGame.title} (${
+        `Too few people for game "${selectedGame.title}" (${
           counts[selectedGame.id]
         }/${selectedGame.minAttendance})`
       )

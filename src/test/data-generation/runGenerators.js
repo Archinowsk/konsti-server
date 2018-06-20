@@ -16,7 +16,7 @@ const runGenerators = async () => {
 
   if (config.env !== 'development') {
     logger.error(
-      `Data cretion only allowed in dev environment, current env "${
+      `Data creation only allowed in dev environment, current env "${
         config.env
       }"`
     )

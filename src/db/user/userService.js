@@ -138,7 +138,9 @@ const saveSignupResult = async (signupResultData: Object) => {
     )
 
     logger.info(
-      `MongoDB: Signup result data stored for user ${signupResultData.username}`
+      `MongoDB: Signup result data stored for user "${
+        signupResultData.username
+      }"`
     )
     return response
   } catch (error) {
