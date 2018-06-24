@@ -2,20 +2,20 @@
 // flow-typed version: da30fe6876/morgan_v1.x.x/flow_>=v0.25.x
 
 /* @flow */
-import type { Middleware, $Request, $Response } from 'express'
+import type { Middleware, $Request, $Response } from "express";
 
-declare module 'morgan' {
+declare module "morgan" {
   declare type FormatFn = (
     tokens: TokenIndexer,
     req: $Request,
     res: $Response
-  ) => string
+  ) => string;
 
   declare type TokenCallbackFn = (
     req: $Request,
     res: $Response,
     arg?: string | number | boolean
-  ) => string
+  ) => string;
 
   declare interface TokenIndexer {
     [tokenName: string]: TokenCallbackFn;
@@ -38,21 +38,21 @@ declare module 'morgan' {
      * @param format
      * @param options
      */
-    (format: 'combined', options?: Options): Middleware;
+    (format: "combined", options?: Options): Middleware;
     /***
      * Standard Apache common log output.
      * :remote-addr - :remote-user [:date] ":method :url HTTP/:http-version" :status :res[content-length]
      * @param format
      * @param options
      */
-    (format: 'common', options?: Options): Middleware;
+    (format: "common", options?: Options): Middleware;
     /**
      * Concise output colored by response status for development use. The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
      * :method :url :status :response-time ms - :res[content-length]
      * @param format
      * @param options
      */
-    (format: 'dev', options?: Options): Middleware;
+    (format: "dev", options?: Options): Middleware;
 
     /***
      * Shorter than default, also including response time.
@@ -60,7 +60,7 @@ declare module 'morgan' {
      * @param format
      * @param options
      */
-    (format: 'short', options?: Options): Middleware;
+    (format: "short", options?: Options): Middleware;
 
     /***
      * The minimal output.
@@ -68,7 +68,7 @@ declare module 'morgan' {
      * @param format
      * @param options
      */
-    (format: 'tiny', options?: Options): Middleware;
+    (format: "tiny", options?: Options): Middleware;
 
     /***
      * Create a new morgan logger middleware function using the given format and options. The format argument may be a
@@ -101,22 +101,22 @@ declare module 'morgan' {
   /**
    * Define a custom token which can be used in custom morgan logging formats.
    */
-  declare function token(name: string, callback: TokenCallbackFn): Morgan
+  declare function token(name: string, callback: TokenCallbackFn): Morgan;
 
   /**
    * Define a named custom format by specifying a format string in token notation
    */
-  declare function format(name: string, fmt: string): Morgan
+  declare function format(name: string, fmt: string): Morgan;
 
   /**
    * Define a named custom format by specifying a format function
    */
-  declare function format(name: string, fmt: FormatFn): Morgan
+  declare function format(name: string, fmt: FormatFn): Morgan;
 
   /**
    * Compile a format string in token notation into a format function
    */
-  declare function compile(format: string): FormatFn
+  declare function compile(format: string): FormatFn;
 
   declare interface StreamOptions {
     /**
@@ -151,5 +151,5 @@ declare module 'morgan' {
     stream?: StreamOptions;
   }
 
-  declare module.exports: Morgan
+  declare module.exports: Morgan;
 }
