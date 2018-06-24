@@ -3,10 +3,11 @@ import { logger } from '../../../utils/logger'
 import db from '../../../db/mongodb'
 import { getRandomInt } from './randomVariableGenerators'
 
-const signup = (games, user) => {
+const getRandomSignup = (games, user) => {
   const randomGames = []
   let randomIndex
 
+  // Select three random games
   for (let i = 0; i < 3; i += 1) {
     randomIndex = getRandomInt(0, games.length - 1)
     const randomGame = games[randomIndex].id
@@ -17,37 +18,65 @@ const signup = (games, user) => {
     }
   }
 
-  logger.info(
-    `Signup: selected games: ${randomGames.toString()} for "${user.username}"`
-  )
-
+  // Save random games with priorities
   const gamesWithPriorities = []
-
   randomGames.forEach((randomGame, index) => {
     gamesWithPriorities.push({ id: randomGame, priority: index + 1 })
   })
 
+  return {
+    randomGames,
+    gamesWithPriorities,
+  }
+}
+
+const signup = (games, user) => {
+  const signup = getRandomSignup(games, user)
+
+  logger.info(
+    `Signup: Selected games: ${signup.randomGames.toString()} for "${
+      user.username
+    }"`
+  )
+
   return db.user.saveSignup({
     username: user.username,
-    selectedGames: gamesWithPriorities,
+    selectedGames: signup.gamesWithPriorities,
   })
 
   // TODO: Different users: some sign for all three, some for one
 }
 
-const signupMultiple = (games, users, inGroup) => {
+const signupMultiple = (games: Array<Object>, users: Array<Object>) => {
   const promises = []
 
-  // TODO: Assign same signup data for group members
-  if (inGroup) {
-    for (let i = 0; i < users.length; i++) {
-      promises.push(signup(games, users[i]))
-    }
-  } else {
-    for (let i = 0; i < users.length; i++) {
-      promises.push(signup(games, users[i]))
-    }
+  for (let i = 0; i < users.length; i++) {
+    promises.push(signup(games, users[i]))
   }
+
+  return Promise.all(promises)
+}
+
+const signupGroup = async (games: Array<Object>, users: Array<Object>) => {
+  // Generate random signup data for the first user
+  const signup = getRandomSignup(games, users[0])
+
+  // Assign same signup data for group members
+  const promises = []
+  for (let i = 0; i < users.length; i++) {
+    logger.info(
+      `Signup: Selected games: ${signup.randomGames.toString()} for "${
+        users[i].username
+      }"`
+    )
+    let signupData = {
+      username: users[i].username,
+      selectedGames: signup.gamesWithPriorities,
+    }
+
+    promises.push(db.user.saveSignup(signupData))
+  }
+
   return Promise.all(promises)
 }
 
@@ -74,16 +103,18 @@ const createSignupData = async () => {
     return acc
   }, {})
 
-  logger.info(`Grouped users: ${JSON.stringify(groupedUsers, null, 2)}`)
+  for (const [key, value] of Object.entries(groupedUsers)) {
+    // $FlowFixMe
+    let array = [...value]
 
-  // Get users who are not in a group
-  const individualUsers = groupedUsers['0']
-  const group2 = groupedUsers['2']
-  const group3 = groupedUsers['3']
-
-  await signupMultiple(games, individualUsers)
-  await signupMultiple(games, group2, true)
-  await signupMultiple(games, group3, true)
+    if (key === '0') {
+      logger.info('SIGNUP INDIVIDUAL USERS')
+      await signupMultiple(games, array)
+    } else {
+      logger.info(`SIGNUP GROUP ${key}`)
+      await signupGroup(games, array)
+    }
+  }
 }
 
 export { createSignupData }

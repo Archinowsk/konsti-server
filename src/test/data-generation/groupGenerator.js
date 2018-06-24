@@ -17,10 +17,12 @@ const groupGenerator = async (
   await createAdminUser()
   await createTestUser()
   await createUsers(newUsersCount)
-  await createUsersInGroup(groupSize, 2)
-  await createUsersInGroup(groupSize, 3)
+
+  for (let i = 0; i < numberOfGroups; i++) {
+    await createUsersInGroup(groupSize, i + 1)
+  }
+
   await createGames(newGamesCount)
-  // TODO: All group members must have same signup data
   await createSignupData()
 }
 
