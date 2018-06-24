@@ -23,7 +23,7 @@ const groupGenerator = async (
   }
 
   await createGames(newGamesCount)
-  await createSignupData()
+  await createSignupData('group')
 }
 
 export default groupGenerator

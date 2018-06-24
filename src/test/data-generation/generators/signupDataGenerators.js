@@ -80,7 +80,7 @@ const signupGroup = async (games: Array<Object>, users: Array<Object>) => {
   return Promise.all(promises)
 }
 
-const createSignupData = async () => {
+const createSignupData = async (strategy: string) => {
   logger.info('Generate signup data')
 
   let games = []
@@ -97,22 +97,26 @@ const createSignupData = async () => {
   logger.info(`Signup: ${users.length} users`)
   logger.info(`Signup: Generate signup data for ${users.length} users`)
 
-  // Group all unique group numbers
-  const groupedUsers = users.reduce((acc, user) => {
-    ;(acc[user['playerGroup']] = acc[user['playerGroup']] || []).push(user)
-    return acc
-  }, {})
+  if (strategy === 'munkres') {
+    await signupMultiple(games, users)
+  } else if (strategy === 'group') {
+    // Group all unique group numbers
+    const groupedUsers = users.reduce((acc, user) => {
+      ;(acc[user['playerGroup']] = acc[user['playerGroup']] || []).push(user)
+      return acc
+    }, {})
 
-  for (const [key, value] of Object.entries(groupedUsers)) {
-    // $FlowFixMe
-    let array = [...value]
+    for (const [key, value] of Object.entries(groupedUsers)) {
+      // $FlowFixMe
+      let array = [...value]
 
-    if (key === '0') {
-      logger.info('SIGNUP INDIVIDUAL USERS')
-      await signupMultiple(games, array)
-    } else {
-      logger.info(`SIGNUP GROUP ${key}`)
-      await signupGroup(games, array)
+      if (key === '0') {
+        logger.info('SIGNUP INDIVIDUAL USERS')
+        await signupMultiple(games, array)
+      } else {
+        logger.info(`SIGNUP GROUP ${key}`)
+        await signupGroup(games, array)
+      }
     }
   }
 }

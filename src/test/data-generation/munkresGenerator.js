@@ -15,7 +15,7 @@ const munkresGenerator = async (
   await createTestUser()
   await createUsers(newUsersCount)
   await createGames(newGamesCount)
-  await createSignupData()
+  await createSignupData('munkres')
 }
 
 export default munkresGenerator
