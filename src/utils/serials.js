@@ -15,23 +15,9 @@ const generateSerials = () => {
   } else {
     for (let i = 1; i <= process.argv[1]; i += 1) {
       const serialNumber = generator.generate(10)
-      // logger.info(`Serial ${i}: ${serialNumber}`);
       logger.info(`${serialNumber}`)
     }
   }
 }
-
-/*
-const generate = () => {
-  // https://github.com/hachi-eiji/generate-serial-number
-  const serialNumber = generator.generate(10); // '8380289275'
-  const checkSum = generator.checkSum(serialNumber);
-  const valid = generator.isValid('123399aaa');
-
-  logger.info(`serialNumber: ${serialNumber}`);
-  logger.info(`checkSum: ${checkSum}`);
-  logger.info(`valid: ${valid}`);
-};
-*/
 
 export { checkSerial, generateSerials }

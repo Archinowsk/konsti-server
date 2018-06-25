@@ -27,17 +27,9 @@ const validateAuthHeader = (authHeader, userGroup) => {
     logger.info(`Auth: Valid jwt token for "${userGroup}" user group`)
     return true
   } catch (e) {
-    // return authFail(res);
     logger.info(`Auth: Invalid jwt token for "${userGroup}" user group`)
     return false
   }
-  /*
-  if (!decoded || decoded.auth !== 'magic') {
-    return authFail(res);
-  } else {
-    return privado(res, token);
-  }
-  */
 }
 
 export default validateAuthHeader

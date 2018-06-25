@@ -8,7 +8,6 @@ const allowCrossDomain = (req: Object, res: Object, next: Function) => {
 
   if (typeof origin !== 'undefined') {
     if (allowedOrigins.indexOf(origin) > -1) {
-      // logger.info(`CORS: Allow from ${origin}`);
       res.setHeader('Access-Control-Allow-Origin', origin)
     } else {
       logger.info(`CORS: Block from ${origin}`)

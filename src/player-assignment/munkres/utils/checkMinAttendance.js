@@ -11,7 +11,6 @@ const checkMinAttendance = (
   for (let i = 0; i < results.length; i += 1) {
     // Row determines the game
     const selectedRow = parseInt(results[i][0], 10)
-    // logger.info(`selected row: ${selectedRow}`);
 
     // Figure what games the row numbers are
     let attendanceRange = 0

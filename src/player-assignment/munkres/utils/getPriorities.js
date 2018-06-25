@@ -1,5 +1,4 @@
 /* @flow */
-// import { logger } from '../../../utils/logger'
 
 const getPriorities = (results: Array<Object>, signupMatrix: Array<Object>) => {
   // Show the priorities players were assigned to
@@ -8,7 +7,6 @@ const getPriorities = (results: Array<Object>, signupMatrix: Array<Object>) => {
     const matrixValue = signupMatrix[results[i][0]][results[i][1]]
     const selectedPlayer = parseInt(results[i][1], 10)
     priorities.push({ playerId: selectedPlayer, priorityValue: matrixValue })
-    // logger.info(`Priority for player ${selectedPlayer}: ${matrixValue}`);
   }
   return priorities
 }

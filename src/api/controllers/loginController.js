@@ -14,10 +14,8 @@ const validateLogin = async (loginData, hash) => {
 
     // Password matches hash
     if (response === true) {
-      // logger.info(`Login: User "${loginData.username}" password match`);
       return true
     }
-    // logger.info(`Login: User "${loginData.username}" password doesn't match`);
     return false
   } catch (error) {
     return error
