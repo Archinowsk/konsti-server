@@ -38,7 +38,7 @@ const testAssignPlayers = async () => {
 
   const result = await assignPlayers(users, games, startingTime, strategy)
 
-  logger.info(`Result: ${JSON.stringify(result)}`)
+  logger.info(`Result: ${JSON.stringify(result, null, 2)}`)
 
   process.exit()
 }
