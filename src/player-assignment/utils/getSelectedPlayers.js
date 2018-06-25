@@ -1,13 +1,15 @@
 /* @flow */
 import { logger } from '../../utils/logger'
+import type { User } from '../../types/user.types'
+import type { Game } from '../../types/game.types'
 
 const getSelectedPlayers = (
-  players: Array<Object>,
-  startingGames: Array<Object>
+  players: Array<User>,
+  startingGames: Array<Game>
 ) => {
   logger.info('Get selected players')
   // Get users who have wishes for valid games
-  const selectedPlayers = []
+  const selectedPlayers: Array<User> = []
 
   players.forEach(player => {
     let match = false

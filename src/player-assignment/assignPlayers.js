@@ -2,10 +2,12 @@
 import { logger } from '../utils/logger'
 import groupAssignPlayers from './group/groupAssignPlayers'
 import munkresAssignPlayers from './munkres/munkresAssignPlayers'
+import type { User } from '../types/user.types'
+import type { Game } from '../types/game.types'
 
 const assignPlayers = (
-  players: Array<Object>,
-  games: Array<Object>,
+  players: Array<User>,
+  games: Array<Game>,
   startingTime: Date,
   strategy: string
 ) => {

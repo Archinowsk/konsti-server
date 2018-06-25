@@ -35,9 +35,9 @@ const postLogin = async (req: Object, res: Object) => {
   }
 
   let response: User = {
-    favoritedGames: [Object],
-    signedGames: [Object],
-    enteredGames: [Object],
+    favoritedGames: [],
+    signedGames: [],
+    enteredGames: [],
     username: '',
     password: '',
     userGroup: '',
