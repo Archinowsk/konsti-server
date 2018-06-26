@@ -1,5 +1,5 @@
-// flow-typed signature: 7ef9c0d49ad5918f0fadceb9fa219676
-// flow-typed version: 72e01bcf2b/winston_v3.x.x/flow_>=v0.34.x
+// flow-typed signature: d7328a4bd890cdb98a4b5f882971e7f0
+// flow-typed version: 4dddd13adb/winston_v3.x.x/flow_>=v0.34.x
 
 declare type $winstonLevels = {
   [string]: number
@@ -66,6 +66,7 @@ declare type $winstonConfigSubModule = {
 declare type $winstonFormatSubModule = {
   combine: (...args: Array<$winstonFormat>) => $winstonFormat,
   json: () => $winstonFormat,
+  label: (config?: Object) => $winstonFormat,
   prettyPrint: () => $winstonFormat,
   simple: () => $winstonFormat,
   timestamp: () => $winstonFormat
