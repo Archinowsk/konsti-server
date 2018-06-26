@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import { logger } from './logger'
+import { logger } from '~/utils/logger'
 
 const saltRounds = 10
 

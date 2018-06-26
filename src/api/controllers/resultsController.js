@@ -1,6 +1,6 @@
 /* @flow */
-import { logger } from '../../utils/logger'
-import db from '../../db/mongodb'
+import { logger } from '~/utils/logger'
+import db from '~/db/mongodb'
 
 // Get settings
 const getResults = async (req: Object, res: Object) => {

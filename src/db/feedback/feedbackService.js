@@ -1,6 +1,6 @@
 /* @flow */
-import { logger } from '../../utils/logger'
-import Feedback from './feedbackSchema'
+import { logger } from '~/utils/logger'
+import Feedback from '~/db/feedback/feedbackSchema'
 
 const saveFeedback = async (feedbackData: Object) => {
   const feedback = new Feedback({

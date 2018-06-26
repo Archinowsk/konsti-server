@@ -1,7 +1,7 @@
 /* @flow */
 import moment from 'moment'
-import { logger } from '../../utils/logger'
-import Game from './gameSchema'
+import { logger } from '~/utils/logger'
+import Game from '~/db/game/gameSchema'
 
 const removeGames = () => {
   logger.info('MongoDB: remove ALL games from db')

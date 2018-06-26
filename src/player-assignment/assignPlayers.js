@@ -1,9 +1,9 @@
 /* @flow */
-import { logger } from '../utils/logger'
-import groupAssignPlayers from './group/groupAssignPlayers'
-import munkresAssignPlayers from './munkres/munkresAssignPlayers'
-import type { User } from '../flow/user.flow'
-import type { Game } from '../flow/game.flow'
+import { logger } from '~/utils/logger'
+import groupAssignPlayers from '~/player-assignment/group/groupAssignPlayers'
+import munkresAssignPlayers from '~/player-assignment/munkres/munkresAssignPlayers'
+import type { User } from '~/flow/user.flow'
+import type { Game } from '~/flow/game.flow'
 
 const assignPlayers = (
   players: Array<User>,

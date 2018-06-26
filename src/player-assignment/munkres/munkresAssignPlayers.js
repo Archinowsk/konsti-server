@@ -1,18 +1,18 @@
 /* @flow */
 import munkres from 'munkres-js'
-import { logger } from '../../utils/logger'
+import { logger } from '~/utils/logger'
 
-import getStartingGames from '../utils/getStartingGames'
-import getSignupWishes from '../utils/getSignupWishes'
-import getSelectedGames from '../utils/getSelectedGames'
-import getSelectedPlayers from '../utils/getSelectedPlayers'
-import getSignupMatrix from './utils/getSignupMatrix'
-import checkMinAttendance from './utils/checkMinAttendance'
-import getRemovedGame from './utils/getRemovedGame'
-import getPriorities from './utils/getPriorities'
-import getPlayersWithTooHighPriority from './utils/getPlayersWithTooHighPriority'
-import getRemovedPlayer from './utils/getRemovedPlayer'
-import buildSignupResults from './utils/buildSignupResults'
+import getStartingGames from '~/player-assignment/utils/getStartingGames'
+import getSignupWishes from '~/player-assignment/utils/getSignupWishes'
+import getSelectedGames from '~/player-assignment/utils/getSelectedGames'
+import getSelectedPlayers from '~/player-assignment/utils/getSelectedPlayers'
+import getSignupMatrix from '~/player-assignment/munkres/utils/getSignupMatrix'
+import checkMinAttendance from '~/player-assignment/munkres/utils/checkMinAttendance'
+import getRemovedGame from '~/player-assignment/munkres/utils/getRemovedGame'
+import getPriorities from '~/player-assignment/munkres/utils/getPriorities'
+import getPlayersWithTooHighPriority from '~/player-assignment/munkres/utils/getPlayersWithTooHighPriority'
+import getRemovedPlayer from '~/player-assignment/munkres/utils/getRemovedPlayer'
+import buildSignupResults from '~/player-assignment/munkres/utils/buildSignupResults'
 
 const munkresAssignPlayers = (
   players: Array<Object>,

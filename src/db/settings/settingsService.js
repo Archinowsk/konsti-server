@@ -1,7 +1,7 @@
 /* @flow */
 import moment from 'moment'
-import { logger } from '../../utils/logger'
-import Settings from './settingsSchema'
+import { logger } from '~/utils/logger'
+import Settings from '~/db/settings/settingsSchema'
 
 const removeSettings = () => {
   logger.info('MongoDB: remove ALL settings from db')

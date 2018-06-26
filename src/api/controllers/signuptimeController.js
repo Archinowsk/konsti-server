@@ -1,7 +1,7 @@
 /* @flow */
-import { logger } from '../../utils/logger'
-import db from '../../db/mongodb'
-import validateAuthHeader from '../../utils/authHeader'
+import { logger } from '~/utils/logger'
+import db from '~/db/mongodb'
+import validateAuthHeader from '~/utils/authHeader'
 
 // Add open signup time to server settings
 const postSignupTime = async (req: Object, res: Object) => {

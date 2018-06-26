@@ -1,7 +1,7 @@
 /* @flow */
-import { logger } from '../../utils/logger'
-import type { User } from '../../flow/user.flow'
-import type { Game } from '../../flow/game.flow'
+import { logger } from '~/utils/logger'
+import type { User } from '~/flow/user.flow'
+import type { Game } from '~/flow/game.flow'
 
 const getSelectedPlayers = (
   players: Array<User>,

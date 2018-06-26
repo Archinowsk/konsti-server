@@ -6,14 +6,11 @@ import morgan from 'morgan'
 
 // import expressJWT from 'express-jwt'
 
-import config from './config'
-
-import { logger, stream } from './utils/logger'
-
-import db from './db/mongodb'
-
-import allowCORS from './middleware/cors'
-import apiRoutes from './api/apiRoutes'
+import config from '~/config'
+import { logger, stream } from '~/utils/logger'
+import db from '~/db/mongodb'
+import allowCORS from '~/middleware/cors'
+import apiRoutes from '~/api/apiRoutes'
 
 const COMPRESSED = ['/client.bundle']
 

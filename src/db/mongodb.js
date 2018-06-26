@@ -1,13 +1,13 @@
 /* @flow */
 import mongoose from 'mongoose'
-import { logger } from '../utils/logger'
-import config from '../config'
+import { logger } from '~/utils/logger'
+import config from '~/config'
 
-import user from './user/userService'
-import feedback from './feedback/feedbackService'
-import game from './game/gameService'
-import results from './results/resultsService'
-import settings from './settings/settingsService'
+import user from '~/db/user/userService'
+import feedback from '~/db/feedback/feedbackService'
+import game from '~/db/game/gameService'
+import results from '~/db/results/resultsService'
+import settings from '~/db/settings/settingsService'
 
 const connectToDb = async () => {
   // Use native Node promises

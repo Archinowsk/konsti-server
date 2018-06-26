@@ -1,11 +1,11 @@
 /* @flow */
-import { logger } from '../../utils/logger'
-import getStartingGames from '../utils/getStartingGames'
-import getSignupWishes from '../utils/getSignupWishes'
-import getSelectedGames from '../utils/getSelectedGames'
-import getSelectedPlayers from '../utils/getSelectedPlayers'
-import type { User } from '../../flow/user.flow'
-import type { Game } from '../../flow/game.flow'
+import { logger } from '~/utils/logger'
+import getStartingGames from '~/player-assignment/utils/getStartingGames'
+import getSignupWishes from '~/player-assignment/utils/getSignupWishes'
+import getSelectedGames from '~/player-assignment/utils/getSelectedGames'
+import getSelectedPlayers from '~/player-assignment/utils/getSelectedPlayers'
+import type { User } from '~/flow/user.flow'
+import type { Game } from '~/flow/game.flow'
 
 const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min

@@ -1,17 +1,17 @@
 /* @flow */
 import express from 'express'
 
-import { postGames, getGames } from './controllers/gamesController'
-import { postUser, getUser } from './controllers/userController'
-import { postLogin } from './controllers/loginController'
-import { postPlayers } from './controllers/playersController'
-import { postSignup } from './controllers/signupController'
-import { postFavorite } from './controllers/favoriteController'
-import { postBlacklist } from './controllers/blacklistController'
-import { postSignupTime } from './controllers/signuptimeController'
-import { postFeedback } from './controllers/feedbackController'
-import { getSettings } from './controllers/settingsController'
-import { getResults } from './controllers/resultsController'
+import { postGames, getGames } from '~/api/controllers/gamesController'
+import { postUser, getUser } from '~/api/controllers/userController'
+import { postLogin } from '~/api/controllers/loginController'
+import { postPlayers } from '~/api/controllers/playersController'
+import { postSignup } from '~/api/controllers/signupController'
+import { postFavorite } from '~/api/controllers/favoriteController'
+import { postBlacklist } from '~/api/controllers/blacklistController'
+import { postSignupTime } from '~/api/controllers/signuptimeController'
+import { postFeedback } from '~/api/controllers/feedbackController'
+import { getSettings } from '~/api/controllers/settingsController'
+import { getResults } from '~/api/controllers/resultsController'
 
 const router = express.Router()
 

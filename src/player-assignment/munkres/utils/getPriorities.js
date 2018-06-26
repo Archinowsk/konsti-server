@@ -1,5 +1,4 @@
 /* @flow */
-
 const getPriorities = (results: Array<Object>, signupMatrix: Array<Object>) => {
   // Show the priorities players were assigned to
   const priorities = []
