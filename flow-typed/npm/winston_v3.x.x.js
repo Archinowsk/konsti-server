@@ -1,5 +1,5 @@
-// flow-typed signature: d7328a4bd890cdb98a4b5f882971e7f0
-// flow-typed version: 4dddd13adb/winston_v3.x.x/flow_>=v0.34.x
+// flow-typed signature: e63d2bb2f74c9d8d145930c63606f048
+// flow-typed version: 538388dcea/winston_v3.x.x/flow_>=v0.34.x
 
 declare type $winstonLevels = {
   [string]: number
@@ -69,7 +69,10 @@ declare type $winstonFormatSubModule = {
   label: (config?: Object) => $winstonFormat,
   prettyPrint: () => $winstonFormat,
   simple: () => $winstonFormat,
-  timestamp: () => $winstonFormat
+  timestamp: () => $winstonFormat,
+  colorize: () => $winstonFormat,
+  logstash: () => $winstonFormat,
+  printf: ((args: $winstonInfo<Object>) => string) => $winstonFormat
 };
 
 declare type $winstonDefaultLogger = $winstonLogger<$winstonNpmLogLevels>;
