@@ -19,7 +19,7 @@ const logger = createLogger({
       datePattern: 'YYYY-MM-DD',
       maxSize: '20m',
       maxFiles: '14d',
-      zippedArchive: true,
+      zippedArchive: false,
       format: combine(timestamp(), json()),
     }),
 
