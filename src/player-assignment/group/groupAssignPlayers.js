@@ -10,6 +10,7 @@ import type { Game } from '~/flow/game.flow'
 const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
+
 const groupAssignPlayers = (
   players: Array<User>,
   games: Array<Game>,
@@ -20,7 +21,6 @@ const groupAssignPlayers = (
   const selectedGames = getSelectedGames(startingGames, signupWishes)
   let selectedPlayers = getSelectedPlayers(players, startingGames)
 
-  // let remainingPlayers = selectedPlayers
   const signupResults = []
 
   logger.info(`Selected games: ${selectedGames.length}`)
@@ -37,13 +37,21 @@ const groupAssignPlayers = (
         }
       }
     }
+
     logger.info(
       `Found ${matchingPlayers.length} players for game "${
         selectedGames[i].title
-      }", ${selectedGames[i].minAttendance} required`
+      }", ${selectedGames[i].minAttendance}-${
+        selectedGames[i].maxAttendance
+      } required`
     )
 
-    for (let h = 0; h < selectedGames[i].minAttendance; h++) {
+    const maximumPlayers = Math.min(
+      selectedGames[i].maxAttendance,
+      matchingPlayers.length
+    )
+
+    for (let h = 0; h < maximumPlayers; h++) {
       // Randomize player to enter the game
       let playerNumber = getRandomInt(0, matchingPlayers.length - 1)
       logger.info(`Selected player: ${matchingPlayers[playerNumber].username}`)
