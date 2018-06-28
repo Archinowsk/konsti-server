@@ -1,8 +1,8 @@
 /* @flow */
-import { logger } from '~/utils/logger'
-import db from '~/db/mongodb'
-import assignPlayers from '~/player-assignment/assignPlayers'
-import validateAuthHeader from '~/utils/authHeader'
+import { logger } from '/utils/logger'
+import db from '/db/mongodb'
+import assignPlayers from '/player-assignment/assignPlayers'
+import validateAuthHeader from '/utils/authHeader'
 
 // Assign players to games
 const postPlayers = async (req: Object, res: Object) => {

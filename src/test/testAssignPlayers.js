@@ -1,7 +1,7 @@
-import { logger } from '~/utils/logger'
-import assignPlayers from '~/player-assignment/assignPlayers'
-import db from '~/db/mongodb'
-import config from '~/config'
+import { logger } from '/utils/logger'
+import assignPlayers from '/player-assignment/assignPlayers'
+import db from '/db/mongodb'
+import config from '/config'
 
 const testAssignPlayers = async () => {
   const strategy = process.argv[2]

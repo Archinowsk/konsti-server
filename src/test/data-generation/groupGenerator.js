@@ -4,9 +4,9 @@ import {
   createAdminUser,
   createTestUser,
   createUsersInGroup,
-} from '~/test/data-generation/generators/userDataGenerators'
-import { createGames } from '~/test/data-generation/generators/gameDataGenerators'
-import { createSignupData } from '~/test/data-generation/generators/signupDataGenerators'
+} from '/test/data-generation/generators/userDataGenerators'
+import { createGames } from '/test/data-generation/generators/gameDataGenerators'
+import { createSignupData } from '/test/data-generation/generators/signupDataGenerators'
 
 const groupGenerator = async (
   newUsersCount: number,

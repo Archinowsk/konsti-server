@@ -13,10 +13,9 @@
   ],
   "plugins": [
     [
-      "babel-plugin-root-import",
+      "babel-plugin-module-resolver",
       {
-        "rootPathSuffix": "src",
-        "rootPathPrefix": "~"
+        "root": ["./src"]
       }
     ]
   ]

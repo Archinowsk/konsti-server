@@ -3,9 +3,9 @@ import {
   createUsers,
   createAdminUser,
   createTestUser,
-} from '~/test/data-generation/generators/userDataGenerators'
-import { createGames } from '~/test/data-generation/generators/gameDataGenerators'
-import { createSignupData } from '~/test/data-generation/generators/signupDataGenerators'
+} from '/test/data-generation/generators/userDataGenerators'
+import { createGames } from '/test/data-generation/generators/gameDataGenerators'
+import { createSignupData } from '/test/data-generation/generators/signupDataGenerators'
 
 const munkresGenerator = async (
   newUsersCount: number,

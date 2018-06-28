@@ -1,9 +1,9 @@
 /* @flow */
 import requestPromiseNative from 'request-promise-native'
-import { logger } from '~/utils/logger'
-import db from '~/db/mongodb'
-import validateAuthHeader from '~/utils/authHeader'
-import config from '~/config'
+import { logger } from '/utils/logger'
+import db from '/db/mongodb'
+import validateAuthHeader from '/utils/authHeader'
+import config from '/config'
 
 const updateGames = async () => {
   logger.info('Games: GET games from Conbase')

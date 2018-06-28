@@ -1,7 +1,7 @@
 /* @flow */
-import { logger } from '~/utils/logger'
-import db from '~/db/mongodb'
-import { getRandomInt } from '~/test/data-generation/generators/randomVariableGenerators'
+import { logger } from '/utils/logger'
+import db from '/db/mongodb'
+import { getRandomInt } from '/test/data-generation/generators/randomVariableGenerators'
 
 const getRandomSignup = (games, user) => {
   const randomGames = []

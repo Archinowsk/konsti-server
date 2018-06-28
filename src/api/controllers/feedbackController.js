@@ -1,7 +1,7 @@
 /* @flow */
-import { logger } from '~/utils/logger'
-import db from '~/db/mongodb'
-import validateAuthHeader from '~/utils/authHeader'
+import { logger } from '/utils/logger'
+import db from '/db/mongodb'
+import validateAuthHeader from '/utils/authHeader'
 
 // Post feedback data
 const postFeedback = async (req: Object, res: Object) => {

@@ -1,5 +1,5 @@
 /* @flow */
-import { logger } from '~/utils/logger'
+import { logger } from '/utils/logger'
 
 const getSignupWishes = (players: Array<Object>) => {
   logger.info('Get signup wishes')
