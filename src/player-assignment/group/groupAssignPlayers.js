@@ -26,6 +26,33 @@ const groupAssignPlayers = (
   logger.info(`Selected games: ${selectedGames.length}`)
   logger.info(`Selected players: ${selectedPlayers.length}`)
 
+  /*
+  // Group all unique group numbers
+  const groupedUsers = selectedPlayers.reduce((acc, player) => {
+    acc[player['playerGroup']] = acc[player['playerGroup']] || []
+    acc[player['playerGroup']].push(player)
+    return acc
+  }, {})
+
+  const playersArray = [[]]
+  for (const [key: String, value: Array<User>] of Object.entries(
+    groupedUsers
+  )) {
+    console.log(typeof value)
+    console.log(Array.isArray(value))
+
+    if (Array.isArray(value)) {
+      if (key === '0') {
+        players.push(value)
+      } else {
+        players.push(value)
+      }
+    }
+  }
+
+  console.log(playersArray)
+  */
+
   let matchingPlayers = []
 
   for (let i = 0; i < selectedGames.length; i++) {
