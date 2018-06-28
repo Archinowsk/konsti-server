@@ -18,7 +18,7 @@
     "flow-typed-install": "flow-typed install --skip --overwrite --ignoreDeps peer bundle",
     "generate-data": "cross-env NODE_ENV=development babel-node src/test/data-generation/runGenerators.js",
     "generate-serials": "npm run build && node --eval \"require('./lib/utils/serials.js').generateSerials()\"",
-    "precommit": "npm run flow && lint-staged",
+    "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "start": "npm run build && cross-env NODE_ENV=production node lib/server.js",
     "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js",
