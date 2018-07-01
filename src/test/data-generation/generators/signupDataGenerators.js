@@ -2,8 +2,10 @@
 import { logger } from '/utils/logger'
 import db from '/db/mongodb'
 import { getRandomInt } from '/test/data-generation/generators/randomVariableGenerators'
+import type { User } from '/flow//user.flow'
+import type { Game } from '/flow/game.flow'
 
-const getRandomSignup = (games, user) => {
+const getRandomSignup = (games: Array<Game>, user: User) => {
   const randomGames = []
   let randomIndex
 
@@ -30,7 +32,7 @@ const getRandomSignup = (games, user) => {
   }
 }
 
-const signup = (games, user) => {
+const signup = (games: Array<Game>, user: User) => {
   const signup = getRandomSignup(games, user)
 
   logger.info(
@@ -47,7 +49,7 @@ const signup = (games, user) => {
   // TODO: Different users: some sign for all three, some for one
 }
 
-const signupMultiple = (games: Array<Object>, users: Array<Object>) => {
+const signupMultiple = (games: Array<Game>, users: Array<User>) => {
   const promises = []
 
   for (let i = 0; i < users.length; i++) {
@@ -57,7 +59,7 @@ const signupMultiple = (games: Array<Object>, users: Array<Object>) => {
   return Promise.all(promises)
 }
 
-const signupGroup = async (games: Array<Object>, users: Array<Object>) => {
+const signupGroup = async (games: Array<Game>, users: Array<User>) => {
   // Generate random signup data for the first user
   const signup = getRandomSignup(games, users[0])
 
@@ -83,8 +85,8 @@ const signupGroup = async (games: Array<Object>, users: Array<Object>) => {
 const createSignupData = async (strategy: string) => {
   logger.info('Generate signup data')
 
-  let games = []
-  let users = []
+  let games: Array<Game> = []
+  let users: Array<User> = []
 
   try {
     games = await db.game.findGames()
@@ -107,10 +109,11 @@ const createSignupData = async (strategy: string) => {
       return acc
     }, {})
 
-    for (const [key, value] of Object.entries(groupedUsers)) {
+    for (const [key: String, value: Array<User>] of Object.entries(
+      groupedUsers
+    )) {
       // $FlowFixMe
       let array = [...value]
-
       if (key === '0') {
         logger.info('SIGNUP INDIVIDUAL USERS')
         await signupMultiple(games, array)

@@ -7,8 +7,36 @@ import getSelectedPlayers from '/player-assignment/utils/getSelectedPlayers'
 import type { User } from '/flow/user.flow'
 import type { Game } from '/flow/game.flow'
 
-const getRandomInt = (min: number, max: number) => {
+type UserArray = Array<User>
+
+const getRandomInt = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+const getPlayerGroups = (players: Array<User>): Array<UserArray> => {
+  // Group all unique group numbers
+  const groupedUsers = players.reduce((acc, player) => {
+    acc[player['playerGroup']] = acc[player['playerGroup']] || []
+    acc[player['playerGroup']].push(player)
+    return acc
+  }, {})
+
+  const playersArray = []
+  for (const [key, value] of Object.entries(groupedUsers)) {
+    if (Array.isArray(value)) {
+      if (key === '0') {
+        // Loop array and add players individually
+        for (let i = 0; i < value.length; i++) {
+          playersArray.push([value[i]])
+        }
+      } else {
+        playersArray.push(value)
+      }
+    }
+  }
+
+  // $FlowFixMe
+  return playersArray
 }
 
 const groupAssignPlayers = (
@@ -19,92 +47,98 @@ const groupAssignPlayers = (
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const selectedGames = getSelectedGames(startingGames, signupWishes)
-  let selectedPlayers = getSelectedPlayers(players, startingGames)
+  const selectedPlayers = getSelectedPlayers(players, startingGames)
 
   const signupResults = []
 
   logger.info(`Selected games: ${selectedGames.length}`)
   logger.info(`Selected players: ${selectedPlayers.length}`)
 
-  /*
-  // Group all unique group numbers
-  const groupedUsers = selectedPlayers.reduce((acc, player) => {
-    acc[player['playerGroup']] = acc[player['playerGroup']] || []
-    acc[player['playerGroup']].push(player)
-    return acc
-  }, {})
+  let playerGroups = getPlayerGroups(selectedPlayers)
 
-  const playersArray = [[]]
-  for (const [key: String, value: Array<User>] of Object.entries(
-    groupedUsers
-  )) {
-    console.log(typeof value)
-    console.log(Array.isArray(value))
+  let matchingGroups = []
 
-    if (Array.isArray(value)) {
-      if (key === '0') {
-        players.push(value)
+  selectedGames.forEach(selectedGame => {
+    playerGroups.forEach(playerGroup => {
+      // Get players with specific game signup
+      // Always use first player in group
+      playerGroup[0].signedGames.forEach(signedGame => {
+        if (signedGame.id === selectedGame.id) {
+          matchingGroups.push(playerGroup)
+        }
+      })
+    })
+
+    const maxPlayers = matchingGroups.reduce(
+      (acc, matchingGroup) => acc + matchingGroup.length,
+      0
+    )
+
+    logger.info(
+      `Found ${
+        matchingGroups.length
+      } groups with ${maxPlayers} players for game "${selectedGame.title}", ${
+        selectedGame.minAttendance
+      }-${selectedGame.maxAttendance} players required`
+    )
+
+    const maximumPlayers = Math.min(
+      selectedGame.maxAttendance,
+      matchingGroups.length
+    )
+
+    let numberOfPlayers = 0
+    let counter = 0
+    const counterLimit = 10
+    while (numberOfPlayers < maximumPlayers) {
+      // Randomize player to enter the game
+      let groupNumber = getRandomInt(0, matchingGroups.length - 1)
+      const selectedGroup = matchingGroups[groupNumber]
+
+      if (selectedGroup.length === 1) {
+        logger.info(`Selected player: ${selectedGroup[0].username} `)
       } else {
-        players.push(value)
+        logger.info(
+          `Selected group ${selectedGroup[0].playerGroup} with ${
+            selectedGroup.length
+          } players`
+        )
       }
-    }
-  }
 
-  console.log(playersArray)
-  */
+      if (numberOfPlayers + selectedGroup.length <= maximumPlayers) {
+        numberOfPlayers += selectedGroup.length
 
-  let matchingPlayers = []
+        logger.info(`Seats remaining: ${maximumPlayers - numberOfPlayers}`)
 
-  for (let i = 0; i < selectedGames.length; i++) {
-    for (let j = 0; j < selectedPlayers.length; j++) {
-      for (let k = 0; k < selectedPlayers[j].signedGames.length; k++) {
-        // Get players with specific game signup
-        if (selectedPlayers[j].signedGames[k].id === selectedGames[i].id) {
-          matchingPlayers.push(selectedPlayers[j])
+        // Store results for selected groups members
+        selectedGroup.forEach(groupMember => {
+          signupResults.push({
+            username: groupMember.username,
+            enteredGame: selectedGame.id,
+            signedGames: groupMember.signedGames,
+          })
+        })
+
+        // Remove selected groups from groups array
+        playerGroups = playerGroups.filter(
+          remainingGroup =>
+            remainingGroup[0].username !== selectedGroup[0].username
+        )
+
+        // Remove matched player from matching players array
+        matchingGroups.splice(groupNumber, 1)
+      } else {
+        counter += 1
+        logger.info(`No match, increase counter: ${counter}/${counterLimit}`)
+        if (counter >= counterLimit) {
+          logger.info(`Limit reached, stop loop`)
+          break
         }
       }
     }
 
-    logger.info(
-      `Found ${matchingPlayers.length} players for game "${
-        selectedGames[i].title
-      }", ${selectedGames[i].minAttendance}-${
-        selectedGames[i].maxAttendance
-      } required`
-    )
-
-    const maximumPlayers = Math.min(
-      selectedGames[i].maxAttendance,
-      matchingPlayers.length
-    )
-
-    for (let h = 0; h < maximumPlayers; h++) {
-      // Randomize player to enter the game
-      let playerNumber = getRandomInt(0, matchingPlayers.length - 1)
-      logger.info(`Selected player: ${matchingPlayers[playerNumber].username}`)
-
-      // Store results for selected player
-      signupResults.push({
-        username: matchingPlayers[playerNumber].username,
-        enteredGame: selectedGames[i].id,
-        signedGames: matchingPlayers[playerNumber].signedGames,
-      })
-
-      // Remove selected player from players array
-      selectedPlayers = selectedPlayers.filter(
-        remainingPlayer =>
-          remainingPlayer.username !== matchingPlayers[playerNumber].username
-      )
-
-      // Remove matched player from matching players array
-      matchingPlayers.splice(playerNumber, 1)
-
-      // logger.info(`Players remaining: ${matchingPlayers.length}`)
-      // logger.info(`Players remaining: ${selectedPlayers.length}`)
-    }
-
-    matchingPlayers = []
-  }
+    matchingGroups = []
+  })
 
   return signupResults
 }
