@@ -16,4 +16,7 @@ suppress_comment= \\(.\\|\n\\)*\\$FlowIgnoreMe
 # Root import
 module.name_mapper='^/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 
+# Report warnings
+# include_warnings=true
+
 [strict]
