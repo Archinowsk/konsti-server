@@ -2,6 +2,9 @@
 logs
 *.log
 
+# Statistics data files
+datafiles
+
 # Dependency directories
 node_modules
 

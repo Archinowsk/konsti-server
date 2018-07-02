@@ -23,6 +23,7 @@
     "start": "npm run build && cross-env NODE_ENV=production node lib/server.js",
     "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node lib/server.js",
+    "starting-time-stats": "babel-node src/statistics/startingTimeStats.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register"
   },
   "dependencies": {
