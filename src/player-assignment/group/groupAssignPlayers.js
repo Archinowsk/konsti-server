@@ -9,6 +9,14 @@ import type { Game } from '/flow/game.flow'
 
 type UserArray = Array<User>
 
+type signedGame = { id: number, priority: number }
+
+type signupResult = {
+  username: string,
+  enteredGame: { id: number },
+  signedGames: Array<signedGame>,
+}
+
 const getRandomInt = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
@@ -39,24 +47,13 @@ const getPlayerGroups = (players: Array<User>): Array<UserArray> => {
   return playersArray
 }
 
-const groupAssignPlayers = (
-  players: Array<User>,
-  games: Array<Game>,
-  startingTime: Date
-) => {
-  const startingGames = getStartingGames(games, startingTime)
-  const signupWishes = getSignupWishes(players)
-  const selectedGames = getSelectedGames(startingGames, signupWishes)
-  const selectedPlayers = getSelectedPlayers(players, startingGames)
-
+const runAssignment = (
+  playerGroups: Array<UserArray>,
+  selectedGames: Array<Game>
+): { score: number, signupResults: Array<signupResult> } => {
   const signupResults = []
-
-  logger.info(`Selected games: ${selectedGames.length}`)
-  logger.info(`Selected players: ${selectedPlayers.length}`)
-
-  let playerGroups = getPlayerGroups(selectedPlayers)
-
   let matchingGroups = []
+  let score = 0
 
   selectedGames.forEach(selectedGame => {
     playerGroups.forEach(playerGroup => {
@@ -74,6 +71,7 @@ const groupAssignPlayers = (
       0
     )
 
+    /*
     logger.info(
       `Found ${
         matchingGroups.length
@@ -81,11 +79,9 @@ const groupAssignPlayers = (
         selectedGame.minAttendance
       }-${selectedGame.maxAttendance} players required`
     )
+    */
 
-    const maximumPlayers = Math.min(
-      selectedGame.maxAttendance,
-      matchingGroups.length
-    )
+    const maximumPlayers = Math.min(selectedGame.maxAttendance, maxPlayers)
 
     let numberOfPlayers = 0
     let counter = 0
@@ -95,6 +91,7 @@ const groupAssignPlayers = (
       let groupNumber = getRandomInt(0, matchingGroups.length - 1)
       const selectedGroup = matchingGroups[groupNumber]
 
+      /*
       if (selectedGroup.length === 1) {
         logger.info(`Selected player: ${selectedGroup[0].username} `)
       } else {
@@ -104,17 +101,19 @@ const groupAssignPlayers = (
           } players`
         )
       }
+      */
 
       if (numberOfPlayers + selectedGroup.length <= maximumPlayers) {
         numberOfPlayers += selectedGroup.length
 
-        logger.info(`Seats remaining: ${maximumPlayers - numberOfPlayers}`)
+        // logger.info(`Seats remaining: ${maximumPlayers - numberOfPlayers}`)
 
         // Store results for selected groups members
         selectedGroup.forEach(groupMember => {
+          score += 1
           signupResults.push({
             username: groupMember.username,
-            enteredGame: selectedGame.id,
+            enteredGame: { id: selectedGame.id },
             signedGames: groupMember.signedGames,
           })
         })
@@ -129,9 +128,9 @@ const groupAssignPlayers = (
         matchingGroups.splice(groupNumber, 1)
       } else {
         counter += 1
-        logger.info(`No match, increase counter: ${counter}/${counterLimit}`)
+        // logger.info(`No match, increase counter: ${counter}/${counterLimit}`)
         if (counter >= counterLimit) {
-          logger.info(`Limit reached, stop loop`)
+          // logger.info(`Limit reached, stop loop`)
           break
         }
       }
@@ -140,7 +139,56 @@ const groupAssignPlayers = (
     matchingGroups = []
   })
 
-  return signupResults
+  return {
+    score,
+    signupResults,
+  }
+}
+
+const assignGroups = (
+  selectedPlayers: Array<User>,
+  selectedGames: Array<Game>
+) => {
+  const playerGroups = getPlayerGroups(selectedPlayers)
+  const rounds = 10000
+  let bestScore = 0
+  let result = null
+  let bestResult = null
+
+  for (let i = 0; i < rounds; i++) {
+    result = runAssignment(playerGroups, selectedGames)
+    if (result.score > bestScore) {
+      bestScore = result.score
+      bestResult = result.signupResults
+      logger.info(`New best score: ${bestScore}`)
+    }
+  }
+
+  logger.info(
+    `Final score: ${bestScore}/${selectedPlayers.length} (${(bestScore /
+      selectedPlayers.length) *
+      100}%)`
+  )
+
+  return bestResult
+}
+
+const groupAssignPlayers = (
+  players: Array<User>,
+  games: Array<Game>,
+  startingTime: Date
+) => {
+  const startingGames = getStartingGames(games, startingTime)
+  const signupWishes = getSignupWishes(players)
+  const selectedGames = getSelectedGames(startingGames, signupWishes)
+  const selectedPlayers = getSelectedPlayers(players, startingGames)
+
+  logger.info(`Selected games: ${selectedGames.length}`)
+  logger.info(`Selected players: ${selectedPlayers.length}`)
+
+  const result = assignGroups(selectedPlayers, selectedGames)
+
+  return result
 }
 
 export default groupAssignPlayers

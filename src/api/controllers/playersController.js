@@ -3,6 +3,8 @@ import { logger } from '/utils/logger'
 import db from '/db/mongodb'
 import assignPlayers from '/player-assignment/assignPlayers'
 import validateAuthHeader from '/utils/authHeader'
+import type { User } from '/flow/user.flow'
+import type { Game } from '/flow/game.flow'
 
 // Assign players to games
 const postPlayers = async (req: Object, res: Object) => {
@@ -21,13 +23,14 @@ const postPlayers = async (req: Object, res: Object) => {
     return
   }
 
-  let users: Array<Object> = []
-  let games: Array<Object> = []
+  let users: Array<User> = []
+  let games: Array<Game> = []
   let assignResults: Array<Object> | null = []
 
   try {
     users = await db.user.findUsers()
     games = await db.game.findGames()
+
     const strategy = 'munkres'
 
     assignResults = assignPlayers(users, games, startingTime, strategy)

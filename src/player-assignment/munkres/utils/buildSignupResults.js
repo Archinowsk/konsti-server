@@ -1,9 +1,20 @@
 /* @flow */
+import type { User } from '/flow/user.flow'
+import type { Game } from '/flow/game.flow'
+
+type signedGame = { id: number, priority: number }
+
+type signupResult = {
+  username: string,
+  enteredGame: { id: number },
+  signedGames: Array<signedGame>,
+}
+
 const buildSignupResults = (
-  results: Array<Object>,
-  selectedGames: Array<Object>,
-  selectedPlayers: Array<Object>
-) => {
+  results: Array<Array<number>>,
+  selectedGames: Array<Game>,
+  selectedPlayers: Array<User>
+): Array<signupResult> => {
   const signupResults = []
 
   // Build signup results
@@ -18,16 +29,13 @@ const buildSignupResults = (
 
     // Figure what games the row numbers are
     for (let j = 0; j < selectedGames.length; j += 1) {
-      let matchingGame
       attendanceRange += selectedGames[j].maxAttendance
 
       // Found game
       if (selectedRow < attendanceRange) {
-        matchingGame = selectedGames[j]
-
         signupResults.push({
           username: selectedPlayers[selectedPlayer].username,
-          enteredGame: { id: matchingGame.id },
+          enteredGame: { id: selectedGames[j].id },
           signedGames: selectedPlayers[selectedPlayer].signedGames,
         })
         break

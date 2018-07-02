@@ -36,9 +36,10 @@ const testAssignPlayers = async () => {
   }
   const startingTime = '2017-07-28T16:00:00.000Z'
 
-  const result = await assignPlayers(users, games, startingTime, strategy)
+  await assignPlayers(users, games, startingTime, strategy)
 
-  logger.info(`Result: ${JSON.stringify(result, null, 2)}`)
+  // const result = await assignPlayers(users, games, startingTime, strategy)
+  // logger.info(`Result: ${JSON.stringify(result, null, 2)}`)
 
   process.exit()
 }
