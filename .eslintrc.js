@@ -6,7 +6,7 @@ module.exports = {
     'prettier/flowtype',
     'prettier/standard',
   ],
-  plugins: ['flowtype', 'flowtype-errors', 'prettier', 'standard'],
+  plugins: ['flowtype', /*'flowtype-errors',*/ 'prettier', 'standard'],
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
@@ -17,6 +17,6 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
-    'flowtype-errors/show-errors': 'error',
+    // 'flowtype-errors/show-errors': 'error',
   },
 }
