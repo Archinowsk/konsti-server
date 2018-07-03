@@ -6,7 +6,6 @@
 [libs]
 
 [lints]
-deprecated-call-syntax=off
 
 [options]
 # Comments

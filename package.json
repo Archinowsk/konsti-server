@@ -23,7 +23,8 @@
     "start": "npm run build && cross-env NODE_ENV=production node lib/server.js",
     "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node lib/server.js",
-    "starting-time-stats": "babel-node src/statistics/startingTimeStats.js",
+    "stats:users": "babel-node src/statistics/getUserStats.js",
+    "stats:games": "babel-node src/statistics/getGameStats.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register"
   },
   "dependencies": {
@@ -35,7 +36,7 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
-    "mongoose": "^5.1.7",
+    "mongoose": "^5.2.0",
     "morgan": "^1.9.0",
     "munkres-js": "^1.2.2",
     "request": "^2.87.0",
