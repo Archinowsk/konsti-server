@@ -1,8 +1,8 @@
 /* @flow */
 import fs from 'fs'
-import logger from '/utils/logger'
+import { logger } from '/utils/logger'
 
-const getStartingTimeStats = () => {
+const getUserStats = () => {
   const userData = JSON.parse(
     fs.readFileSync('src/statistics/datafiles/users.json', 'utf8')
   )
@@ -11,4 +11,4 @@ const getStartingTimeStats = () => {
   logger.info(userData[100].username)
 }
 
-getStartingTimeStats()
+getUserStats()
