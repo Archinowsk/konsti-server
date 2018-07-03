@@ -7,8 +7,16 @@ const getUserStats = () => {
     fs.readFileSync('src/statistics/datafiles/users.json', 'utf8')
   )
 
-  logger.info(userData.length)
-  logger.info(userData[100].username)
+  logger.info(`Loaded ${userData.length} users`)
+
+  const enteredGames = userData.reduce((acc, user) => {
+    user.entered_games.forEach(game => {
+      acc[game.id] = ++acc[game.id] || 1
+    })
+    return acc
+  }, {})
+
+  console.log(enteredGames['8334'])
 }
 
 getUserStats()

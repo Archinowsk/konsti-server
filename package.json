@@ -21,11 +21,12 @@
     "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "start": "npm run build && cross-env NODE_ENV=production node lib/server.js",
-    "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node lib/server.js",
-    "stats:users": "babel-node src/statistics/getUserStats.js",
     "stats:games": "babel-node src/statistics/getGameStats.js",
-    "test": "mocha --reporter spec --compilers js:babel-core/register"
+    "stats:results": "babel-node src/statistics/getResultsStats.js",
+    "stats:users": "babel-node src/statistics/getUserStats.js",
+    "test": "mocha --reporter spec --compilers js:babel-core/register",
+    "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
