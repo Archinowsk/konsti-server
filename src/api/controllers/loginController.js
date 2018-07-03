@@ -1,7 +1,7 @@
 /* @flow */
 
 import jwt from 'jsonwebtoken'
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import db from '/db/mongodb'
 import { comparePasswordHash } from '/utils/bcrypt'
 import config from '/config'

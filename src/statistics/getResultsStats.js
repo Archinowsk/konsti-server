@@ -1,6 +1,6 @@
 /* @flow */
 import fs from 'fs'
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 
 const getResultsStats = () => {
   const resultData = JSON.parse(

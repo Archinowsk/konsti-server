@@ -39,8 +39,8 @@ const logger = createLogger({
   exitOnError: false,
 })
 
-const stream = {
+export const stream = {
   write: message => logger.info(message.slice(0, -1)), // Slice to remove line break
 }
 
-export { logger, stream }
+export default logger

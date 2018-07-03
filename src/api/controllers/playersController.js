@@ -1,5 +1,5 @@
 /* @flow */
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import db from '/db/mongodb'
 import assignPlayers from '/player-assignment/assignPlayers'
 import validateAuthHeader from '/utils/authHeader'

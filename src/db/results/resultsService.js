@@ -1,6 +1,6 @@
 /* @flow */
 import moment from 'moment'
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import Results from '/db/results/resultsSchema'
 
 const removeResults = () => {

@@ -1,4 +1,4 @@
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import assignPlayers from '/player-assignment/assignPlayers'
 import db from '/db/mongodb'
 import config from '/config'

@@ -1,5 +1,5 @@
 /* @flow */
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import db from '/db/mongodb'
 import { getRandomInt } from '/test/data-generation/generators/randomVariableGenerators'
 import type { User } from '/flow//user.flow'

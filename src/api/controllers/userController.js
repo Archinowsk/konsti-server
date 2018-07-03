@@ -1,6 +1,6 @@
 /* @flow */
 import { checkSerial } from '/utils/serials'
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import db from '/db/mongodb'
 import { hashPassword } from '/utils/bcrypt'
 import validateAuthHeader from '/utils/authHeader'

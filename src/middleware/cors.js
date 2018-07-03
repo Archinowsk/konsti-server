@@ -1,5 +1,5 @@
 /* @flow */
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import config from '/config'
 
 const allowCrossDomain = (req: Object, res: Object, next: Function) => {

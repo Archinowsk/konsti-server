@@ -1,5 +1,5 @@
 /* @flow */
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import groupAssignPlayers from '/player-assignment/group/groupAssignPlayers'
 import munkresAssignPlayers from '/player-assignment/munkres/munkresAssignPlayers'
 import type { User } from '/flow/user.flow'

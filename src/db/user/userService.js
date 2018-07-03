@@ -1,5 +1,5 @@
 /* @flow */
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import User from '/db/user/userSchema'
 
 const removeUsers = () => {

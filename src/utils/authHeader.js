@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import config from '/config'
 
 const validateAuthHeader = (authHeader, userGroup) => {

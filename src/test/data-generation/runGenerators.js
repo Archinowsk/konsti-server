@@ -1,5 +1,5 @@
 /* @flow */
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import db from '/db/mongodb'
 import munkresGenerator from '/test/data-generation/munkresGenerator'
 import groupGenerator from '/test/data-generation/groupGenerator'

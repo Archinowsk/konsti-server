@@ -1,6 +1,6 @@
 /* @flow */
 import munkres from 'munkres-js'
-import { logger } from '/utils/logger'
+import logger from '/utils/logger'
 import getStartingGames from '/player-assignment/utils/getStartingGames'
 import getSignupWishes from '/player-assignment/utils/getSignupWishes'
 import getSelectedGames from '/player-assignment/utils/getSelectedGames'
