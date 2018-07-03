@@ -20,8 +20,8 @@
     "generate-serials": "npm run build && node --eval \"require('./lib/utils/serials.js').generateSerials()\"",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
-    "start": "npm run build && cross-env NODE_ENV=production node lib/server.js",
-    "start-dev": "npm run build && cross-env NODE_ENV=development node lib/server.js",
+    "start": "npm run build && cross-env NODE_ENV=production node -r esm lib/server.js",
+    "start-dev": "npm run build && cross-env NODE_ENV=development node -r esm lib/server.js",
     "stats:games": "babel-node src/statistics/getGameStats.js",
     "stats:results": "babel-node src/statistics/getResultsStats.js",
     "stats:users": "babel-node src/statistics/getUserStats.js",
@@ -31,6 +31,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "esm": "^3.0.62",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
     "generate-serial-number": "0.0.3",
