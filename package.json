@@ -75,12 +75,12 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run eslint",
-      "npm run prettier",
+      "eslint --fix",
+      "prettier --write",
       "git add"
     ],
     "*.json": [
-      "npm run prettier",
+      "prettier --write",
       "git add"
     ]
   }
