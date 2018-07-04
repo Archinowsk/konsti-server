@@ -1,5 +1,5 @@
-// flow-typed signature: 5498aaa7118a6e051f13547508c7c9cc
-// flow-typed version: 10d0995436/jsonwebtoken_v8.2.x/flow_>=v0.56.x
+// flow-typed signature: d7382011d88fbc64e5b26b0195b82b8b
+// flow-typed version: ee6ed3a599/jsonwebtoken_v8.3.x/flow_>=v0.56.x
 
 declare module "jsonwebtoken" {
 
@@ -124,6 +124,10 @@ declare module "jsonwebtoken" {
     (jwt: string, secretOrPrivateKey: Key, options: VerifyOptionsWithAlgorithm): Payload;
 
     (jwt: string, secretOrPrivateKey: Key, options: VerifyOptionsWithAlgorithm, callback: VerifyCallback): Payload;
+
+    (jwt: string, getKey: (header: {kid: ?string}, callback: (err: ?Error, key?: string) => any) => any, callback: VerifyCallback): Payload;
+
+    (jwt: string, getKey: (header: {kid: ?string}, callback: (err: ?Error, key?: string) => any) => any, options: VerifyOptionsWithAlgorithm, callback: VerifyCallback): Payload;
   }
 
   declare class TokenExpiredError extends Error {
