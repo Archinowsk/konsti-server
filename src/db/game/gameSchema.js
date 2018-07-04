@@ -16,6 +16,7 @@ const GameSchema = mongoose.Schema({
   maxAttendance: Number,
   attributes: Array,
   table: String,
+  // $FlowFixMe
   created: { type: Date, default: Date.now },
 })
 

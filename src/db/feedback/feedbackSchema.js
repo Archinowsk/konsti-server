@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 const FeedbackSchema = mongoose.Schema({
   gameId: Number,
   feedback: String,
+  // $FlowFixMe
   created: { type: Date, default: Date.now },
 })
 

@@ -24,10 +24,15 @@ const connectToDb = async () => {
 }
 
 const gracefulExit = () => {
-  mongoose.connection.close(() => {
-    logger.info(`MongoDB: ${config.db} is disconnected through app termination`)
-    process.exit()
-  })
+  mongoose.connection.close(
+    // $FlowFixMe
+    () => {
+      logger.info(
+        `MongoDB: ${config.db} is disconnected through app termination`
+      )
+      process.exit()
+    }
+  )
 }
 
 // If the Node process ends, close the Mongoose connection

@@ -10,6 +10,7 @@ const UserSchema = mongoose.Schema({
   favoritedGames: [{}],
   signedGames: [{}],
   enteredGames: [{}],
+  // $FlowFixMe
   created: { type: Date, default: Date.now },
 })
 
