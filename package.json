@@ -76,11 +76,11 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "prettier --write",
+      "prettier --parser flow --write",
       "git add"
     ],
     "*.json": [
-      "prettier --write",
+      "prettier --parser json --write",
       "git add"
     ]
   }
