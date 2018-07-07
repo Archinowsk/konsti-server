@@ -15,8 +15,12 @@ if (process.env.NODE_ENV === 'production') {
   config.db = process.env.CUSTOMCONNSTR_CosmosDBConnString
   config.jwtSecretKey = process.env.JWT_SECRET_KEY
   config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN
-  config.allowedCorsOrigins = ['https://konsti.ropecon.fi']
-  config.dataUri = 'https://conbase.ropecon.fi/programs/export.json'
+  config.allowedCorsOrigins = [
+    'https://konsti.ropecon.fi',
+    'http://localhost:8080',
+    'http://konsti-env.g3npfaaku5.eu-west-1.elasticbeanstalk.com',
+  ]
+  config.dataUri = 'http://archinowsk.kapsi.fi/games.json'
 }
 
 // Variables for development environment

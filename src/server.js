@@ -63,21 +63,12 @@ app.use(allowCORS)
 app.use('/api', apiRoutes)
 
 // Set static path
-const staticPath = path.join(__dirname, '../', 'front')
+const staticPath = path.join(__dirname, 'front')
 app.use(express.static(staticPath))
 
 // Set static path for register description
-const registerInfoPath = path.join(
-  __dirname,
-  '../',
-  'front',
-  'rekisteriseloste.txt'
-)
+const registerInfoPath = path.join(__dirname, 'front', 'rekisteriseloste.txt')
 app.use(express.static(registerInfoPath))
-
-// Set static path for Azure Let's encrypt extension
-const letsEncryptPath = path.join(__dirname, '../', '.well-known')
-app.use(express.static(letsEncryptPath))
 
 // No match, route to index
 app.get('/*', (req: Object, res: Object) => {
