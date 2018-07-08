@@ -16,3 +16,9 @@ node_modules
 
 # Transpiled files
 lib
+
+# Front end files
+front
+
+# Zip files
+*.zip

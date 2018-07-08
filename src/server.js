@@ -63,11 +63,16 @@ app.use(allowCORS)
 app.use('/api', apiRoutes)
 
 // Set static path
-const staticPath = path.join(__dirname, 'front')
+const staticPath = path.join(__dirname, '../', 'front')
 app.use(express.static(staticPath))
 
 // Set static path for register description
-const registerInfoPath = path.join(__dirname, 'front', 'rekisteriseloste.txt')
+const registerInfoPath = path.join(
+  __dirname,
+  '../',
+  'front',
+  'rekisteriseloste.txt'
+)
 app.use(express.static(registerInfoPath))
 
 // No match, route to index

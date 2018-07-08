@@ -20,8 +20,8 @@
     "generate-serials": "npm run build && node -r esm --eval \"require('./lib/utils/serials.js').generateSerials()\"",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
-    "start": "npm install && node -r esm server.js",
-    "start-prod": "cross-env NODE_ENV=production node -r esm lib/server.js",
+    "start": "npm run build && node -r esm lib/server.js",
+    "start-prod": "npm run build && cross-env NODE_ENV=production node -r esm lib/server.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node -r esm lib/server.js",
     "stats:games": "babel-node src/statistics/getGameStats.js",
     "stats:results": "babel-node src/statistics/getResultsStats.js",
@@ -30,6 +30,12 @@
     "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js"
   },
   "dependencies": {
+    "@babel/cli": "7.0.0-beta.52",
+    "@babel/core": "7.0.0-beta.52",
+    "@babel/node": "7.0.0-beta.52",
+    "@babel/preset-env": "7.0.0-beta.52",
+    "@babel/preset-flow": "7.0.0-beta.52",
+    "babel-plugin-module-resolver": "3.1.1",
     "bcryptjs": "2.4.3",
     "body-parser": "1.18.3",
     "esm": "3.0.64",
@@ -44,17 +50,12 @@
     "munkres-js": "1.2.2",
     "request": "2.87.0",
     "request-promise-native": "1.0.5",
+    "rimraf": "2.6.2",
     "winston": "3.0.0",
     "winston-daily-rotate-file": "3.2.3"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.52",
-    "@babel/core": "7.0.0-beta.52",
-    "@babel/node": "7.0.0-beta.52",
-    "@babel/preset-env": "7.0.0-beta.52",
-    "@babel/preset-flow": "7.0.0-beta.52",
     "babel-eslint": "8.2.5",
-    "babel-plugin-module-resolver": "3.1.1",
     "cross-env": "5.2.0",
     "eslint": "5.0.1",
     "eslint-config-prettier": "2.9.0",
@@ -71,8 +72,7 @@
     "flow-typed": "2.5.1",
     "husky": "0.14.3",
     "lint-staged": "7.2.0",
-    "prettier": "1.13.7",
-    "rimraf": "2.6.2"
+    "prettier": "1.13.7"
   },
   "lint-staged": {
     "*.js": [

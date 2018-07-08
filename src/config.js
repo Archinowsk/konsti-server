@@ -12,7 +12,7 @@ config.logDir = './logs'
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
   config.env = 'production'
-  config.db = process.env.CUSTOMCONNSTR_CosmosDBConnString
+  config.db = process.env.CONN_STRING
   config.jwtSecretKey = process.env.JWT_SECRET_KEY
   config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN
   config.allowedCorsOrigins = [
