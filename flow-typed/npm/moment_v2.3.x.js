@@ -1,5 +1,5 @@
-// flow-typed signature: 5b8275c24b6fbd6b0d7c78bb212b0202
-// flow-typed version: 886cf7c002/moment_v2.3.x/flow_>=v0.63.x
+// flow-typed signature: 69e70f2ee3f62f451639901fdfbb5644
+// flow-typed version: d643daffb3/moment_v2.3.x/flow_>=v0.63.x
 
 type moment$MomentOptions = {
   y?: number | string,
@@ -104,6 +104,8 @@ declare class moment$MomentDuration {
   days(): number,
   asDays(): number,
   months(): number,
+  asWeeks(): number,
+  weeks(): number,
   asMonths(): number,
   years(): number,
   asYears(): number,
