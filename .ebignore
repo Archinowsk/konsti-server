@@ -1,3 +1,5 @@
+# .ebignore is the same as .gitignore but does not include /front
+
 # Logs
 logs
 *.log
@@ -16,9 +18,6 @@ node_modules
 
 # Transpiled files
 lib
-
-# Front end files
-front
 
 # Zip files
 *.zip

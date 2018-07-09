@@ -12,6 +12,8 @@
   },
   "scripts": {
     "build": "rimraf lib && babel src -d lib",
+    "build-front": "cd ../konsti-client && npm run build",
+    "copy-front": "rimraf front && ncp ../konsti-client/build ./front",
     "docker-start": "docker-compose -f docker-compose.yml up --build",
     "eslint": "eslint src --fix",
     "flow": "flow check",
@@ -19,17 +21,16 @@
     "generate-data": "cross-env NODE_ENV=development babel-node src/test/data-generation/runGenerators.js",
     "generate-serials": "npm run build && node -r esm --eval \"require('./lib/utils/serials.js').generateSerials()\"",
     "precommit": "lint-staged",
+    "prepare-deploy": "npm run build-front && npm run copy-front && npm run build",
     "prettier": "prettier --write \"src/**/*.{js,json}\"",
     "start": "npm run build && node -r esm lib/server.js",
-    "start-prod": "npm run build && cross-env NODE_ENV=production node -r esm lib/server.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node -r esm lib/server.js",
+    "start-prod": "npm run build && cross-env NODE_ENV=production node -r esm lib/server.js",
     "stats:games": "babel-node src/statistics/getGameStats.js",
     "stats:results": "babel-node src/statistics/getResultsStats.js",
     "stats:users": "babel-node src/statistics/getUserStats.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register",
-    "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js",
-    "prepare-deploy": "npm run build && npm run copy-front",
-    "copy-front": "rimraf front && ncp ../konsti-client/build ./front"
+    "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js"
   },
   "dependencies": {
     "@babel/cli": "7.0.0-beta.52",
