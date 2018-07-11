@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === 'production') {
     'https://konsti.ropecon.fi',
     'http://localhost:8080',
     'http://konsti-env.g3npfaaku5.eu-west-1.elasticbeanstalk.com',
+    'http://awseb-e-x-awsebloa-1hrdkdgbzl6v4-2140903285.eu-west-1.elb.amazonaws.com/',
   ]
   config.dataUri = 'http://archinowsk.kapsi.fi/games.json'
 }

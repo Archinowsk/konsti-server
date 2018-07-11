@@ -14,6 +14,7 @@
     "build": "rimraf lib && babel src -d lib",
     "build-front": "cd ../konsti-client && npm run build",
     "copy-front": "rimraf front && ncp ../konsti-client/build ./front",
+    "deploy": "npm run prepare-deploy && eb deploy",
     "docker-start": "docker-compose -f docker-compose.yml up --build",
     "eslint": "eslint src --fix",
     "flow": "flow check",
