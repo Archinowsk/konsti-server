@@ -42,7 +42,7 @@
     "babel-plugin-module-resolver": "3.1.1",
     "bcryptjs": "2.4.3",
     "body-parser": "1.18.3",
-    "esm": "3.0.66",
+    "esm": "3.0.69",
     "express": "4.16.3",
     "express-jwt": "5.3.1",
     "generate-serial-number": "0.0.3",
@@ -56,10 +56,10 @@
     "request-promise-native": "1.0.5",
     "rimraf": "2.6.2",
     "winston": "3.0.0",
-    "winston-daily-rotate-file": "3.2.3"
+    "winston-daily-rotate-file": "3.3.0"
   },
   "devDependencies": {
-    "babel-eslint": "8.2.5",
+    "babel-eslint": "8.2.6",
     "cross-env": "5.2.0",
     "eslint": "5.1.0",
     "eslint-config-prettier": "2.9.0",
