@@ -15,12 +15,7 @@ if (process.env.NODE_ENV === 'production') {
   config.db = process.env.CONN_STRING
   config.jwtSecretKey = process.env.JWT_SECRET_KEY
   config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN
-  config.allowedCorsOrigins = [
-    'https://konsti.ropecon.fi',
-    'http://localhost:8080',
-    'http://konsti-env.g3npfaaku5.eu-west-1.elasticbeanstalk.com',
-    'http://awseb-e-x-awsebloa-1hrdkdgbzl6v4-2140903285.eu-west-1.elb.amazonaws.com/',
-  ]
+  config.allowedCorsOrigins = ['https://konsti.ropecon.fi']
   config.dataUri = 'http://archinowsk.kapsi.fi/games.json'
 }
 
