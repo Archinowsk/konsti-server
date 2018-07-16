@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 // Variables for development environment
 if (process.env.NODE_ENV === 'development') {
   config.env = 'development'
-  config.db = 'mongodb://localhost:27017/ropecon-rpg-signup'
+  config.db = 'mongodb://localhost:27017/konsti'
   config.jwtSecretKey = 'secret'
   config.jwtSecretKeyAdmin = 'admin secret'
   config.allowedCorsOrigins = ['http://localhost:8080']
