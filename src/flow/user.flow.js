@@ -1,6 +1,6 @@
 // @flow
 export type SignupData = {
-  id: number,
+  id: string,
   priority: number,
 }
 

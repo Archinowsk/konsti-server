@@ -9,11 +9,11 @@ import type { Game } from '/flow/game.flow'
 
 type UserArray = Array<User>
 
-type signedGame = { id: number, priority: number }
+type signedGame = { id: string, priority: number }
 
 type signupResult = {
   username: string,
-  enteredGame: { id: number },
+  enteredGame: { id: string },
   signedGames: Array<signedGame>,
 }
 

@@ -9,7 +9,7 @@ const getStartingGames = (games: Array<Object>, startingTime: Date) => {
 
   // Get games that start at defined time
   games.forEach(game => {
-    const utcTime = moment.utc(game.date).format()
+    const utcTime = moment.utc(game.startTime).format()
     if (utcTime === date) {
       startingGames.push(game)
     }

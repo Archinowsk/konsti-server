@@ -21,7 +21,7 @@
     "eslint": "eslint src --fix",
     "flow": "flow check",
     "flow-typed-install": "flow-typed install --skip --overwrite --ignoreDeps peer bundle",
-    "generate-data": "cross-env NODE_ENV=development babel-node src/test/data-generation/runGenerators.js",
+    "generate-data": "npm run build && cross-env NODE_ENV=development node -r esm lib/test/data-generation/runGenerators.js",
     "generate-serials": "npm run build && node -r esm --eval \"require('./lib/utils/serials.js').generateSerials()\"",
     "precommit": "lint-staged",
     "prepare-deploy-prod": "npm run build-front-prod && npm run copy-front && npm run build",

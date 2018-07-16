@@ -6,7 +6,7 @@ import validateAuthHeader from '/utils/authHeader'
 import config from '/config'
 
 const updateGames = async () => {
-  logger.info('Games: GET games from Conbase')
+  logger.info('Games: GET games from remote server')
 
   const options = {
     uri: config.dataUri,
@@ -29,11 +29,9 @@ const updateGames = async () => {
   // TODO: Filter games in designated locations, i.e. not "hall 5"
   if (programItems) {
     programItems.forEach(game => {
-      game.tags.forEach(tag => {
-        if (tag === 'Pöytäpelit') {
-          games.push(game)
-        }
-      })
+      if (game.category_title === 'Roolipeli') {
+        games.push(game)
+      }
     })
   }
   return games

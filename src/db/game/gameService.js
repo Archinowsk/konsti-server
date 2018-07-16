@@ -1,7 +1,7 @@
 /* @flow */
-import moment from 'moment'
 import logger from '/utils/logger'
 import Game from '/db/game/gameSchema'
+import type { KompassiGame } from '/flow/game.flow'
 
 const removeGames = () => {
   logger.info('MongoDB: remove ALL games from db')
@@ -9,62 +9,34 @@ const removeGames = () => {
 }
 
 // Save all games to db
-const saveGames = async (games: Array<Object>) => {
+const saveGames = async (games: Array<KompassiGame>) => {
   logger.info('MongoDB: Store games to DB')
   const gameDocs = []
 
-  let attendance
-  let minAttendance = 0
-  let maxAttendance = 0
-
-  const isInt = n => n % 1 === 0
-
   games.forEach(game => {
-    const people = []
-
-    // Combine date and time
-    let date = moment.utc(game.date)
-    const hours = game.time.substring(0, game.time.indexOf(':'))
-    date = moment(date).add(hours, 'hours')
-
-    // Parse min and max attendance number from string
-    if (game.attendance) {
-      attendance = game.attendance.replace(/\s/g, '').replace('–', '-')
-      if (attendance.includes('-')) {
-        minAttendance = attendance.substring(0, attendance.indexOf('-'))
-        maxAttendance = attendance.substring(attendance.lastIndexOf('-') + 1)
-      } else if (isInt(attendance)) {
-        minAttendance = attendance
-        maxAttendance = attendance
-      } else {
-        logger.error(
-          `Game "${game.title}" has invalid attendance ${attendance}`
-        )
-      }
-    } else {
-      logger.error(`Game "${game.title}" is missing attendance`)
-    }
-
-    // Get names without Conbase ids
-    game.people.forEach(person => {
-      people.push(person.name)
-    })
-
     const gameDoc = new Game({
-      id: game.id,
+      id: game.identifier,
       title: game.title,
-      description: game.desc,
-      notes: game.notes,
-      location: game.loc[0],
-      date,
-      // time: game.time,
-      mins: game.mins,
+      description: game.description,
+      location: game.room_name,
+      startTime: game.start_time,
+      mins: game.length,
       tags: game.tags,
-      people,
-      minAttendance: minAttendance,
-      maxAttendance: maxAttendance,
-      attributes: game.attributes,
-      table: game.table,
+      genres: game.genres,
+      styles: game.styles,
+      language: game.language,
+      endTime: game.end_time,
+      people: game.formatted_hosts,
+      minAttendance: game.min_players,
+      maxAttendance: game.max_players,
+      gameSystem: game.rpg_system,
+      noLanguage: game.no_language,
+      englishOk: game.english_ok,
+      childrenFriendly: game.children_friendly,
+      ageRestricted: game.age_restricted,
+      beginnerFriendly: game.beginner_friendly,
+      intendedForExperiencedParticipants:
+        game.intended_for_experienced_participants,
     })
 
     gameDocs.push(gameDoc)
