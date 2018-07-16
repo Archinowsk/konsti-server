@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
   config.db = process.env.CONN_STRING
   config.jwtSecretKey = process.env.JWT_SECRET_KEY
   config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN
-  config.allowedCorsOrigins = ['https://konsti.ropecon.fi']
+  config.allowedCorsOrigins = process.env.CORS_WHITELIST.split(';')
   config.dataUri = process.env.GAME_DATA_URI
 }
 
@@ -26,7 +26,8 @@ if (process.env.NODE_ENV === 'development') {
   config.jwtSecretKey = 'secret'
   config.jwtSecretKeyAdmin = 'admin secret'
   config.allowedCorsOrigins = ['http://localhost:8080']
-  config.dataUri = 'http://archinowsk.kapsi.fi/games.json'
+  config.dataUri =
+    'https://kompassi.eu/api/v1/events/ropecon2018/programme/ropecon'
 }
 
 module.exports = config
