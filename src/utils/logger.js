@@ -18,7 +18,7 @@ const logger = createLogger({
       filename: `${logDir}/%DATE%.log`,
       datePattern: 'YYYY-MM-DD',
       maxSize: '20m',
-      maxFiles: '14d',
+      // maxFiles: '14d',
       zippedArchive: false,
       format: combine(timestamp(), json()),
     }),
