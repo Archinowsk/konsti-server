@@ -4,11 +4,16 @@ import 'winston-daily-rotate-file'
 import config from '/config'
 
 const { combine, printf, colorize, timestamp, json } = format
-const { logDir } = config
+const { logDir, debug } = config
 
 // Create logs directory if it does not exist
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir)
+}
+
+const loggerLevel = () => {
+  if (debug) return 'debug'
+  else return 'info'
 }
 
 const logger = createLogger({
@@ -24,7 +29,7 @@ const logger = createLogger({
     }),
 
     new transports.Console({
-      level: 'info',
+      level: loggerLevel(),
       format: combine(
         colorize(),
         timestamp({

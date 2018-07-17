@@ -25,7 +25,7 @@ const runGenerators = async () => {
 
   // Total users: newUsersCount + 2 + groupSize * numberOfGroups
 
-  const newUsersCount = 20 // How many players exist overall, add +2 for test accounts
+  const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
   const newGamesCount = 10 // How many games are availale for signup - minimum is 3
   const groupSize = 3 // How many new users will be in each group
   const numberOfGroups = 6 // How many groups are created

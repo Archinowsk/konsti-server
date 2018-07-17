@@ -5,6 +5,7 @@ config.appName = 'Ropecon RPG Signup'
 
 // Server settings
 config.port = process.env.PORT || 3000
+config.debug = false
 
 // Logging
 config.logDir = './logs'
@@ -17,6 +18,8 @@ if (process.env.NODE_ENV === 'production') {
   config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN
   config.allowedCorsOrigins = process.env.CORS_WHITELIST.split(';')
   config.dataUri = process.env.GAME_DATA_URI
+  config.debug = process.env.DEBUG
+  config.ASSIGNMENT_ROUNDS = 10000
 }
 
 // Variables for development environment
@@ -28,6 +31,8 @@ if (process.env.NODE_ENV === 'development') {
   config.allowedCorsOrigins = ['http://localhost:8080']
   config.dataUri =
     'https://kompassi.eu/api/v1/events/ropecon2018/programme/ropecon'
+  config.debug = true
+  config.ASSIGNMENT_ROUNDS = 1
 }
 
 module.exports = config

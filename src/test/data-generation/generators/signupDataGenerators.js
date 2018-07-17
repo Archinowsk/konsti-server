@@ -52,8 +52,10 @@ const signup = (games: Array<Game>, user: User) => {
 const signupMultiple = (games: Array<Game>, users: Array<User>) => {
   const promises = []
 
-  for (let i = 0; i < users.length; i++) {
-    promises.push(signup(games, users[i]))
+  for (let user of users) {
+    if (user.username !== 'admin' && user.username !== 'test') {
+      promises.push(signup(games, user))
+    }
   }
 
   return Promise.all(promises)

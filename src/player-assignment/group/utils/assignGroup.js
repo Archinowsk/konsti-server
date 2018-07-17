@@ -1,21 +1,25 @@
 /* @flow */
 import logger from '/utils/logger'
-import getPlayerGroups from '/player-assignment/group/utils/getPlayerGroups'
 import runAssignment from '/player-assignment/group/utils/runAssignment'
+import config from '/config'
 import type { User } from '/flow/user.flow'
 import type { Game } from '/flow/game.flow'
 
+type UserArray = Array<User>
+
 const assignGroups = (
   selectedPlayers: Array<User>,
-  selectedGames: Array<Game>
+  selectedGames: Array<Game>,
+  playerGroups: Array<UserArray>
 ) => {
-  const playerGroups = getPlayerGroups(selectedPlayers)
-  const rounds = 10000
+  const { ASSIGNMENT_ROUNDS } = config
+
   let bestScore = 0
   let result = null
   let bestResult = null
 
-  for (let i = 0; i < rounds; i++) {
+  // Run assignment ASSIGNMENT_ROUNDS times
+  for (let i = 0; i < ASSIGNMENT_ROUNDS; i++) {
     result = runAssignment(playerGroups, selectedGames)
     if (result.score > bestScore) {
       bestScore = result.score
@@ -25,9 +29,11 @@ const assignGroups = (
   }
 
   logger.info(
-    `Final score: ${bestScore}/${selectedPlayers.length} (${(bestScore /
-      selectedPlayers.length) *
-      100}%)`
+    `Final result - Players: ${bestScore}/${
+      selectedPlayers.length
+    } (${Math.round(
+      (bestScore / selectedPlayers.length) * 100
+    )}%), Games: <TODO>`
   )
 
   return bestResult

@@ -14,11 +14,11 @@ const createGames = (count: number) => {
   const games = []
 
   for (let i = 0; i < count; i += 1) {
-    const minAttendance = getRandomInt(3, 4)
-    const maxAttendance = getRandomInt(5, 6)
+    const minAttendance = getRandomInt(5, 5)
+    const maxAttendance = getRandomInt(5, 5)
 
     const gameData = {
-      title: faker.lorem.words(),
+      title: faker.random.words(3),
       description: faker.lorem.sentence(),
       category_title: 'Roolipeli',
       formatted_hosts: 'Test GM',
