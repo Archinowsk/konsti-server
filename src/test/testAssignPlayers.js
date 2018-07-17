@@ -27,14 +27,20 @@ const testAssignPlayers = async () => {
   }
 
   let users = []
-  let games = []
   try {
     users = await db.user.findUsers()
+  } catch (error) {
+    logger.error(error)
+  }
+
+  let games = []
+  try {
     games = await db.game.findGames()
   } catch (error) {
     logger.error(error)
   }
-  const startingTime = '2017-07-28T16:00:00.000Z'
+
+  const startingTime = '2018-07-27T14:00:00Z'
 
   await assignPlayers(users, games, startingTime, strategy)
 

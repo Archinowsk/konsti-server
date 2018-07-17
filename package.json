@@ -30,11 +30,11 @@
     "start": "npm run build && node -r esm lib/server.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node -r esm lib/server.js",
     "start-prod": "npm run build && cross-env NODE_ENV=production node -r esm lib/server.js",
-    "stats:games": "babel-node src/statistics/getGameStats.js",
-    "stats:results": "babel-node src/statistics/getResultsStats.js",
-    "stats:users": "babel-node src/statistics/getUserStats.js",
+    "stats:games": "npm run build && node -r esm lib/statistics/getGameStats.js",
+    "stats:results": "npm run build && node -r esm lib/statistics/getResultsStats.js",
+    "stats:users": "npm run build && node -r esm lib/statistics/getUserStats.js",
     "test": "mocha --reporter spec --compilers js:babel-core/register",
-    "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js"
+    "test-assign": "npm run build && cross-env NODE_ENV=development node -r esm lib/test/testAssignPlayers.js"
   },
   "dependencies": {
     "@babel/cli": "7.0.0-beta.54",

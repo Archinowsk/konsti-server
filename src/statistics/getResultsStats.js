@@ -11,7 +11,7 @@ const getResultsStats = () => {
 
   // Signup by starting time
   const signupsByTime = resultData.reduce((acc, results) => {
-    acc[results.startTime] = results.result.length
+    acc[results.time] = results.result.length
     return acc
   }, {})
 

@@ -3,29 +3,15 @@ const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-const getRandomDate = () => {
-  // const dates = ['2017-07-28', '2017-07-29', '2017-07-30'];
-  const dates = ['2017-07-28']
+const getRandomStartingTime = () => {
+  const dates = [
+    '2018-07-27T14:00:00Z',
+    '2018-07-27T15:00:00Z',
+    // '2018-07-27T16:00:00Z',
+    // '2018-07-27T17:00:00Z',
+  ]
   const randomIndex = Math.floor(Math.random() * dates.length)
   return dates[randomIndex]
 }
 
-const getRandomTime = () => {
-  const times = [
-    // '10:00',
-    // '11:00',
-    // '12:00',
-    // '13:00',
-    // '14:00',
-    // '15:00',
-    '16:00',
-    '17:00',
-    // '18:00',
-    // '19:00',
-    // '20:00',
-  ]
-  const randomIndex = Math.floor(Math.random() * times.length)
-  return times[randomIndex]
-}
-
-export { getRandomInt, getRandomDate, getRandomTime }
+export { getRandomInt, getRandomStartingTime }

@@ -4,8 +4,7 @@ import logger from '/utils/logger'
 import db from '/db/mongodb'
 import {
   getRandomInt,
-  // getRandomDate,
-  // getRandomTime,
+  getRandomStartingTime,
 } from '/test/data-generation/generators/randomVariableGenerators'
 
 const createGames = (count: number) => {
@@ -25,7 +24,7 @@ const createGames = (count: number) => {
       formatted_hosts: 'Test GM',
       room_name: 'Ropetaverna',
       length: 60,
-      start_time: '2018-07-27T14:00:00Z',
+      start_time: getRandomStartingTime(),
       end_time: '2018-07-27T15:00:00Z',
       language: 'fi',
       rpg_system: 'Test gamesystem',
