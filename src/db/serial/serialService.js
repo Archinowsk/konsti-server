@@ -40,10 +40,11 @@ const findSerial = async (serial: string) => {
 
   if (!response) {
     logger.info(`MongoDB: Serial "${serial}" not found`)
+    return false
   } else {
     logger.info(`MongoDB: Found serial "${serial}"`)
+    return true
   }
-  return response
 }
 
 const serial = { removeSerials, findSerial, saveSerials }

@@ -1,5 +1,4 @@
 /* @flow */
-import { checkSerial } from '/utils/serials'
 import logger from '/utils/logger'
 import db from '/db/mongodb'
 import { hashPassword } from '/utils/bcrypt'
@@ -24,8 +23,15 @@ const postUser = async (req: Object, res: Object) => {
     })
   }
 
+  let serialFound = false
+  try {
+    serialFound = await db.serial.findSerial(registrationData.serial.trim())
+  } catch (error) {
+    logger.error(`Error finding serial: ${error}`)
+  }
+
   // Check for valid serial
-  if (!checkSerial(registrationData.serial.trim())) {
+  if (!serialFound) {
     logger.info('User: Serial is not valid')
     res.json({
       code: 12,
