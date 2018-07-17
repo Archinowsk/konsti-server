@@ -8,6 +8,7 @@ import feedback from '/db/feedback/feedbackService'
 import game from '/db/game/gameService'
 import results from '/db/results/resultsService'
 import settings from '/db/settings/settingsService'
+import serial from '/db/serial/serialService'
 
 const connectToDb = async () => {
   // Use native Node promises
@@ -46,6 +47,7 @@ const db = {
   game,
   results,
   settings,
+  serial,
 }
 
 export default db
