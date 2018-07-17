@@ -20,6 +20,8 @@ const runAssignment = (
   let matchingGroups = []
   let selectedGroups = []
   let score = 0
+  let players = 0
+  let games = 0
 
   for (let selectedGame of selectedGames) {
     for (let playerGroup of playerGroups) {
@@ -86,7 +88,21 @@ const runAssignment = (
 
         // Store results for selected groups members
         for (let groupMember of selectedGroup) {
-          score += 1
+          let signedGame = groupMember.signedGames.filter(
+            game => game.id === selectedGame.id
+          )
+
+          // Increase score based on priority of the entered game
+          if (signedGame[0].priority === 1) {
+            score += 3
+          } else if (signedGame[0].priority === 2) {
+            score += 2
+          } else if (signedGame[0].priority === 3) {
+            score += 1
+          }
+
+          players += 1
+
           signupResults.push({
             username: groupMember.username,
             enteredGame: { id: selectedGame.id },
@@ -136,6 +152,8 @@ const runAssignment = (
         }
         return remainingGroup
       })
+
+      games += 1
     }
 
     logger.debug(`${playerGroups.length} player groups remaining`)
@@ -150,6 +168,8 @@ const runAssignment = (
   return {
     score,
     signupResults,
+    players,
+    games,
   }
 }
 

@@ -15,6 +15,8 @@ const assignGroups = (
   const { ASSIGNMENT_ROUNDS } = config
 
   let bestScore = 0
+  let players = 0
+  let games = 0
   let result = null
   let bestResult = null
 
@@ -24,16 +26,20 @@ const assignGroups = (
     if (result.score > bestScore) {
       bestScore = result.score
       bestResult = result.signupResults
+      players = result.players
+      games = result.games
       logger.info(`New best score: ${bestScore}`)
     }
   }
 
   logger.info(
-    `Final result - Players: ${bestScore}/${
+    `Final result - Players: score ${bestScore}, number ${players}/${
       selectedPlayers.length
     } (${Math.round(
-      (bestScore / selectedPlayers.length) * 100
-    )}%), Games: <TODO>`
+      (players / selectedPlayers.length) * 100
+    )}%), Games: ${games}/${selectedGames.length} (${Math.round(
+      (games / selectedGames.length) * 100
+    )}%)`
   )
 
   return bestResult
