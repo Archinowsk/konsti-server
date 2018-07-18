@@ -1,6 +1,7 @@
 /* @flow */
 import logger from '/utils/logger'
 import getRandomInt from '/player-assignment/utils/getRandomInt'
+import shuffleArray from '/utils/shuffleArray'
 import type { User } from '/flow/user.flow'
 import type { Game } from '/flow/game.flow'
 
@@ -11,11 +12,17 @@ type SignupResult = {
   enteredGame: { id: string },
   signedGames: Array<SignedGame>,
 }
+type Result = {
+  score: number,
+  signupResults: Array<SignupResult>,
+  players: number,
+  games: number,
+}
 
 const runAssignment = (
   playerGroups: Array<UserArray>,
   selectedGames: Array<Game>
-): { score: number, signupResults: Array<SignupResult> } => {
+): Result => {
   const signupResults = []
   let matchingGroups = []
   let selectedGroups = []
@@ -23,7 +30,10 @@ const runAssignment = (
   let players = 0
   let games = 0
 
-  for (let selectedGame of selectedGames) {
+  // Shuffle games order
+  const shuffledGames = shuffleArray(selectedGames)
+
+  for (let selectedGame of shuffledGames) {
     for (let playerGroup of playerGroups) {
       // Get groups with specific game signup
       // Always use first player in group
@@ -86,30 +96,6 @@ const runAssignment = (
       if (numberOfPlayers + selectedGroup.length <= maximumPlayers) {
         numberOfPlayers += selectedGroup.length
 
-        // Store results for selected groups members
-        for (let groupMember of selectedGroup) {
-          let signedGame = groupMember.signedGames.filter(
-            game => game.id === selectedGame.id
-          )
-
-          // Increase score based on priority of the entered game
-          if (signedGame[0].priority === 1) {
-            score += 3
-          } else if (signedGame[0].priority === 2) {
-            score += 2
-          } else if (signedGame[0].priority === 3) {
-            score += 1
-          }
-
-          players += 1
-
-          signupResults.push({
-            username: groupMember.username,
-            enteredGame: { id: selectedGame.id },
-            signedGames: groupMember.signedGames,
-          })
-        }
-
         selectedGroups.push(selectedGroup)
 
         // Remove selected group from MATCHING groups array
@@ -134,6 +120,7 @@ const runAssignment = (
 
     // Check if game has enough signups
     if (numberOfPlayers < selectedGame.minAttendance) {
+      // Not enought signups, game will not happen
       logger.debug(
         `Not enough signups for game "${
           selectedGame.title
@@ -141,9 +128,35 @@ const runAssignment = (
           selectedGame.minAttendance
         }-${selectedGame.maxAttendance})`
       )
-    }
-    // Game will happen, remove selected groups from ALL groups array
-    else {
+    } else {
+      // Enough signups, game will happen
+      // Store results for selected groups
+      for (let selectedGroup of selectedGroups) {
+        for (let groupMember of selectedGroup) {
+          let signedGame = groupMember.signedGames.filter(
+            game => game.id === selectedGame.id
+          )
+
+          // Increase score based on priority of the entered game
+          if (signedGame[0].priority === 1) {
+            score += 3
+          } else if (signedGame[0].priority === 2) {
+            score += 2
+          } else if (signedGame[0].priority === 3) {
+            score += 1
+          }
+
+          players += 1
+
+          signupResults.push({
+            username: groupMember.username,
+            enteredGame: { id: selectedGame.id },
+            signedGames: groupMember.signedGames,
+          })
+        }
+      }
+
+      // Remove selected groups from ALL groups array
       playerGroups = playerGroups.filter(remainingGroup => {
         for (let selectedGroup of selectedGroups) {
           if (remainingGroup[0].username === selectedGroup[0].username) {
