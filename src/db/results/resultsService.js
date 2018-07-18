@@ -23,7 +23,7 @@ const saveAllSignupResults = async (
   signupResultData: Array<Object>,
   startingTime: Date
 ) => {
-  const formattedTime = moment.utc(startingTime)
+  const formattedTime = moment(startingTime)
 
   const results = new Results({
     result: signupResultData,
