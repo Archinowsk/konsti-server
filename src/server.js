@@ -1,6 +1,7 @@
 /* @flow */
 import path from 'path'
 import express from 'express'
+import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 
@@ -20,6 +21,8 @@ const productionEnv = config.env === 'productionEnv'
 db.connectToDb()
 
 const app = express()
+
+app.use(helmet())
 
 if (productionEnv) {
   // Request gzip file if should be compressed
