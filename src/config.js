@@ -1,7 +1,7 @@
 const config = {}
 
 // App info
-config.appName = 'Ropecon RPG Signup'
+config.appName = 'Konsti'
 
 // Server settings
 config.port = process.env.PORT || 3000
