@@ -27,7 +27,7 @@ const saveAllSignupResults = async (
 
   const results = new Results({
     result: signupResultData,
-    time: formattedTime,
+    startTime: formattedTime,
   })
 
   let response = null

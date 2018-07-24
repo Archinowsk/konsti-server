@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 
 const ResultsSchema = mongoose.Schema({
   result: Array,
-  time: Date,
+  startTime: Date,
 })
 
 const Results = mongoose.model('Results', ResultsSchema)
