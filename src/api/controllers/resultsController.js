@@ -2,7 +2,7 @@
 import logger from '/utils/logger'
 import db from '/db/mongodb'
 
-// Get settings
+// Get results
 const getResults = async (req: Object, res: Object) => {
   logger.info('API call: GET /api/results')
 
@@ -15,7 +15,7 @@ const getResults = async (req: Object, res: Object) => {
       results: response,
     })
   } catch (error) {
-    logger.error(`Settings: ${error}`)
+    logger.error(`Results: ${error}`)
     res.json({
       message: 'Getting results failed',
       status: 'error',

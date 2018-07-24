@@ -37,7 +37,7 @@ const updateGames = async () => {
   return games
 }
 
-// Update games db from Conbase
+// Update games db from master data
 const postGames = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/games')
 
