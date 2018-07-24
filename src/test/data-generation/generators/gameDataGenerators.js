@@ -36,7 +36,7 @@ const createGames = (count: number) => {
       intended_for_experienced_participants: false,
       min_players: minAttendance,
       max_players: maxAttendance,
-      identifier: faker.random.word(),
+      identifier: faker.random.number().toString(),
       tags: ['aloittelijaystävällinen', 'pöytäpelit'],
       genres: ['scifi'],
       styles: ['light', 'rules_light'],
