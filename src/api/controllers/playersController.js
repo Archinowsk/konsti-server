@@ -3,6 +3,7 @@ import logger from '/utils/logger'
 import db from '/db/mongodb'
 import assignPlayers from '/player-assignment/assignPlayers'
 import validateAuthHeader from '/utils/authHeader'
+import config from '/config'
 import type { User } from '/flow/user.flow'
 import type { Game } from '/flow/game.flow'
 
@@ -23,33 +24,63 @@ const postPlayers = async (req: Object, res: Object) => {
     return
   }
 
+  const strategy = config.assignmentStrategy
+
   let users: Array<User> = []
   let games: Array<Game> = []
   let assignResults: Array<Object> | null = []
 
   try {
-    users = await db.user.findUsers()
-    games = await db.game.findGames()
+    try {
+      users = await db.user.findUsers()
+    } catch (error) {
+      logger.error(`findUsers error: ${error}`)
+      throw new Error('No assign results')
+    }
 
-    const strategy = 'munkres'
+    try {
+      games = await db.game.findGames()
+    } catch (error) {
+      logger.error(`findGames error: ${error}`)
+      throw new Error('No assign results')
+    }
 
-    assignResults = assignPlayers(users, games, startingTime, strategy)
+    try {
+      assignResults = assignPlayers(users, games, startingTime, strategy)
+    } catch (error) {
+      logger.error(`assignPlayers error: ${error}`)
+      throw new Error('No assign results')
+    }
 
-    if (!assignResults) throw new Error('No assign results')
+    if (assignResults) {
+      try {
+        await db.results.saveAllSignupResults(assignResults, startingTime)
+      } catch (error) {
+        logger.error(`saveAllSignupResults error: ${error}`)
+        throw new Error('No assign results')
+      }
 
-    await db.results.saveAllSignupResults(assignResults, startingTime)
-    await Promise.all(
-      assignResults.map(assignResult => {
-        return db.user.saveSignupResult(assignResult)
+      try {
+        await Promise.all(
+          assignResults.map(assignResult => {
+            return db.user.saveSignupResult(assignResult)
+          })
+        )
+      } catch (error) {
+        logger.error(`saveSignupResult error: ${error}`)
+        throw new Error('No assign results')
+      }
+
+      res.json({
+        message: 'Players assign success',
+        status: 'success',
+        results: assignResults,
       })
-    )
-    res.json({
-      message: 'Players assign success',
-      status: 'success',
-      results: assignResults,
-    })
+    } else {
+      throw new Error('No matching assignments')
+    }
   } catch (error) {
-    logger.error(`Player assign: ${error}`)
+    logger.error(`Player assign error: ${error}`)
     res.json({
       message: 'Players assign failure',
       status: 'error',

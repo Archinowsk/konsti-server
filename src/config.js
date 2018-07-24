@@ -10,6 +10,9 @@ config.debug = false
 // Logging
 config.logDir = './logs'
 
+// App settings
+config.assignmentStrategy = 'group' // 'munkres', 'group'
+
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
   config.env = 'production'
