@@ -6,8 +6,8 @@ const getRandomInt = (min: number, max: number) => {
 const getRandomStartingTime = () => {
   const startingTimes = [
     // '2018-07-27T14:00:00Z',
-    '2018-07-27T15:00:00Z',
-    '2018-07-27T16:00:00Z',
+    '2018-07-27T15:00:00.000Z',
+    '2018-07-27T16:00:00.000Z',
     // '2018-07-27T17:00:00Z',
     // '2018-07-27T18:00:00Z',
   ]

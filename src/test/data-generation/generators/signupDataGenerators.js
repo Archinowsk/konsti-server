@@ -12,7 +12,7 @@ const getRandomSignup = (games: Array<Game>, user: User) => {
   // Select three random games
   for (let i = 0; i < 3; i += 1) {
     randomIndex = getRandomInt(0, games.length - 1)
-    const randomGame = games[randomIndex].id
+    const randomGame = games[randomIndex]
     if (randomGames.includes(randomGame)) {
       i -= 1
     } else {
@@ -23,7 +23,11 @@ const getRandomSignup = (games: Array<Game>, user: User) => {
   // Save random games with priorities
   const gamesWithPriorities = []
   randomGames.forEach((randomGame, index) => {
-    gamesWithPriorities.push({ id: randomGame, priority: index + 1 })
+    gamesWithPriorities.push({
+      id: randomGame.id,
+      priority: index + 1,
+      time: randomGame.startTime,
+    })
   })
 
   return {
@@ -35,11 +39,13 @@ const getRandomSignup = (games: Array<Game>, user: User) => {
 const signup = (games: Array<Game>, user: User) => {
   const signup = getRandomSignup(games, user)
 
+  /*
   logger.info(
     `Signup: Selected games: ${signup.randomGames.toString()} for "${
       user.username
     }"`
   )
+  */
 
   return db.user.saveSignup({
     username: user.username,
@@ -68,11 +74,14 @@ const signupGroup = async (games: Array<Game>, users: Array<User>) => {
   // Assign same signup data for group members
   const promises = []
   for (let i = 0; i < users.length; i++) {
+    /*
     logger.info(
       `Signup: Selected games: ${signup.randomGames.toString()} for "${
         users[i].username
       }"`
     )
+    */
+
     let signupData = {
       username: users[i].username,
       selectedGames: signup.gamesWithPriorities,
