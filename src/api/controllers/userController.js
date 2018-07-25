@@ -127,14 +127,46 @@ const getUser = async (req: Object, res: Object) => {
     return
   }
 
-  let response = null
+  let user = null
+  let games = null
   try {
-    response = await db.user.findUser({ username })
+    user = await db.user.findUser({ username })
+    games = await db.game.findGames()
+
+    const arrayToObject = array =>
+      array.reduce((obj, item) => {
+        obj = item
+        return obj
+      }, {})
+
+    let enteredGames = []
+    if (user && user.enteredGames) {
+      enteredGames = user.enteredGames.map(enteredGame => {
+        const game = games.filter(game => enteredGame.id === game.id)
+        return { ...enteredGame, details: arrayToObject(game) }
+      })
+    }
+
+    let favoritedGames = []
+    if (user && user.favoritedGames) {
+      favoritedGames = user.favoritedGames.map(favoritedGame => {
+        const game = games.filter(game => favoritedGame.id === game.id)
+        return { ...favoritedGame, details: arrayToObject(game) }
+      })
+    }
+
+    let signedGames = []
+    if (user && user.signedGames) {
+      signedGames = user.signedGames.map(signedGame => {
+        const game = games.filter(game => signedGame.id === game.id)
+        return { ...signedGame, details: arrayToObject(game) }
+      })
+    }
 
     const returnData = {
-      enteredGames: response.enteredGames,
-      favoritedGames: response.favoritedGames,
-      signedGames: response.signedGames,
+      enteredGames,
+      favoritedGames,
+      signedGames,
     }
 
     res.json({
