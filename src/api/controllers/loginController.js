@@ -94,6 +94,7 @@ const postLogin = async (req: Object, res: Object) => {
         status: 'success',
         jwtToken,
         userGroup: response.userGroup,
+        serial: response.serial,
       })
     } else {
       logger.info(
