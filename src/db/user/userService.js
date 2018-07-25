@@ -84,23 +84,23 @@ const findUsers = async () => {
 }
 
 const saveSignup = async (signupData: Object) => {
-  let response = null
-  try {
-    response = await User.update(
-      { username: signupData.username },
-      { $set: { signedGames: signupData.selectedGames } }
-    )
+  const { selectedGames, username } = signupData
 
-    logger.info(`MongoDB: Signup data stored for user "${signupData.username}"`)
-    return response
+  let signupResponse = null
+  try {
+    signupResponse = await User.update(
+      { username: username },
+      { $set: { signedGames: selectedGames } }
+    )
   } catch (error) {
     logger.error(
-      `MongoDB: Error storing signup data for user "${
-        signupData.username
-      }" - ${error}`
+      `MongoDB: Error storing signup data for user "${username}" - ${error}`
     )
     return error
   }
+
+  logger.info(`MongoDB: Signup data stored for user "${username}"`)
+  return signupResponse
 }
 
 const saveFavorite = async (favoriteData: Object) => {
