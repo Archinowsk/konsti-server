@@ -22,10 +22,27 @@ const postSignup = async (req: Object, res: Object) => {
 
   try {
     await db.user.saveSignup(signupData)
+    const user = await db.user.findUser(signupData)
+    const games = await db.game.findGames()
+
+    const arrayToObject = array =>
+      array.reduce((obj, item) => {
+        obj = item
+        return obj
+      }, {})
+
+    let signedGames = []
+    if (user && user.signedGames) {
+      signedGames = user.signedGames.map(signedGame => {
+        const game = games.filter(game => signedGame.id === game.id)
+        return { ...signedGame, details: arrayToObject(game) }
+      })
+    }
 
     res.json({
       message: 'Signup success',
       status: 'success',
+      signedGames,
     })
   } catch (error) {
     res.json({
