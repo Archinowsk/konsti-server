@@ -1,6 +1,20 @@
+Registration
+
 11: Username not free
 12: Serial not valid
 
+Login
+
 21: Login failed, username and password don't match
+
+Groups
+
+30: Generic group error
+31: Invalid group code
+32: Group does not exist
+33: Trying to join own group
+34: Own group already exists
+
+HTTP
 
 401: Unauthorized, invalid jtw token
