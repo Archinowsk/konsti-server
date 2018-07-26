@@ -159,7 +159,7 @@ const saveSignup = async (signupData: Object) => {
   return signupResponse
 }
 
-const saveGroup = async (groupCode: string, username: string) => {
+const saveGroup = async (groupCode: number, username: string) => {
   let response = null
   try {
     response = await User.update(
