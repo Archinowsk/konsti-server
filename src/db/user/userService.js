@@ -164,7 +164,7 @@ const saveGroup = async (groupCode: string, username: string) => {
   try {
     response = await User.update(
       { username: username },
-      { $set: { playerGroup: groupCode } }
+      { $set: { playerGroup: parseInt(groupCode, 10) } }
     )
   } catch (error) {
     logger.error(
@@ -173,7 +173,11 @@ const saveGroup = async (groupCode: string, username: string) => {
     return error
   }
 
-  logger.info(`MongoDB: Group "${groupCode}" stored for user "${username}"`)
+  if (groupCode === 0) {
+    logger.info(`MongoDB: User "${username}" left group`)
+  } else {
+    logger.info(`MongoDB: Group "${groupCode}" stored for user "${username}"`)
+  }
   return response
 }
 
