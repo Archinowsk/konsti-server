@@ -2,6 +2,7 @@
 import logger from '/utils/logger'
 import db from '/db/mongodb'
 import validateAuthHeader from '/utils/authHeader'
+import arrayToObject from '/utils/arrayToObject'
 
 // Add signup data for user
 const postSignup = async (req: Object, res: Object) => {
@@ -40,12 +41,6 @@ const postSignup = async (req: Object, res: Object) => {
 
     await db.user.saveSignup(modifiedSignupData)
     const games = await db.game.findGames()
-
-    const arrayToObject = array =>
-      array.reduce((obj, item) => {
-        obj = item
-        return obj
-      }, {})
 
     let signedGames = []
     if (mergedSelectedGames) {

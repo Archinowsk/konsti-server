@@ -3,6 +3,7 @@ import logger from '/utils/logger'
 import db from '/db/mongodb'
 import { hashPassword } from '/utils/bcrypt'
 import validateAuthHeader from '/utils/authHeader'
+import arrayToObject from '/utils/arrayToObject'
 
 // Register new user
 const postUser = async (req: Object, res: Object) => {
@@ -130,12 +131,6 @@ const getUser = async (req: Object, res: Object) => {
   try {
     const user = await db.user.findUser({ username })
     const games = await db.game.findGames()
-
-    const arrayToObject = array =>
-      array.reduce((obj, item) => {
-        obj = item
-        return obj
-      }, {})
 
     let enteredGames = []
     let favoritedGames = []
