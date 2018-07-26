@@ -14,7 +14,7 @@ const createSettings = async () => {
   const settings = new Settings({
     blacklistedGames: [],
     canceledGames: [],
-    signupTime: moment('2000-01-01'),
+    signupTime: moment('2018-07-27T15:00:00.000Z'),
   })
 
   let response = null
@@ -63,7 +63,7 @@ const saveSignupTime = async (signupTime: Date) => {
   // Make sure that the string is in correct format
   let formattedTime
   if (signupTime === null) {
-    formattedTime = moment('2000-01-01')
+    formattedTime = moment('2018-07-27T15:00:00.000Z')
   } else {
     formattedTime = moment(signupTime)
   }
