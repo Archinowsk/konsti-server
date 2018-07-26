@@ -96,4 +96,4 @@ const getGames = async (req: Object, res: Object) => {
   }
 }
 
-export { postGames, getGames }
+export { postGames, getGames, updateGames }

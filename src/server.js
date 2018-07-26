@@ -4,6 +4,7 @@ import express from 'express'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
+import schedule from 'node-schedule'
 
 // import expressJWT from 'express-jwt'
 
@@ -13,12 +14,22 @@ import db from '/db/mongodb'
 import allowCORS from '/middleware/cors'
 import apiRoutes from '/api/apiRoutes'
 
+import { updateGames } from '/api/controllers/gamesController'
+
 const COMPRESSED = ['/client.bundle']
 
 // const developmentEnv = config.env === 'development'
 const productionEnv = config.env === 'productionEnv'
 
 db.connectToDb()
+
+if (productionEnv) {
+  // Update games from master data every 5 minutes
+  schedule.scheduleJob('*/5 * * * *', async () => {
+    const games = await updateGames()
+    await db.game.saveGames(games)
+  })
+}
 
 const app = express()
 
