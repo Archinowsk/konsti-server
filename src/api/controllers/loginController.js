@@ -95,6 +95,7 @@ const postLogin = async (req: Object, res: Object) => {
         jwtToken,
         userGroup: response.userGroup,
         serial: response.serial,
+        playerGroup: response.playerGroup,
       })
     } else {
       logger.info(
