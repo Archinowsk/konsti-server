@@ -12,7 +12,7 @@ import { postSignupTime } from '/api/controllers/signuptimeController'
 import { postFeedback } from '/api/controllers/feedbackController'
 import { getSettings } from '/api/controllers/settingsController'
 import { getResults } from '/api/controllers/resultsController'
-import { postGroup } from '/api/controllers/groupController'
+import { postGroup, getGroup } from '/api/controllers/groupController'
 
 const router = express.Router()
 
@@ -31,5 +31,6 @@ router.get('/games', getGames)
 router.get('/user', getUser)
 router.get('/settings', getSettings)
 router.get('/results', getResults)
+router.get('/group', getGroup)
 
 export default router

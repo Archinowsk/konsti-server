@@ -71,6 +71,25 @@ const findSerial = async (serialData: Object) => {
   return response
 }
 
+const findGroupMembers = async (playerGroup: string) => {
+  let response = null
+  try {
+    response = await User.find({ playerGroup: parseInt(playerGroup, 10) })
+  } catch (error) {
+    logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
+    return error
+  }
+
+  if (!response || response.length === 0) {
+    logger.info(`MongoDB: group "${playerGroup}" not found`)
+  } else {
+    logger.info(
+      `MongoDB: Found group "${playerGroup}" with ${response.length} members`
+    )
+  }
+  return response
+}
+
 const findGroup = async (playerGroup: string, username: string) => {
   let response = null
   if (username) {
@@ -211,13 +230,14 @@ const saveSignupResult = async (signupResultData: Object) => {
 const user = {
   findSerial,
   findUser,
+  findGroup,
   findUsers,
   removeUsers,
   saveFavorite,
   saveSignup,
   saveSignupResult,
   saveUser,
-  findGroup,
+  findGroupMembers,
   saveGroup,
 }
 

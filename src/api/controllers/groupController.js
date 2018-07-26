@@ -3,7 +3,6 @@ import logger from '/utils/logger'
 import db from '/db/mongodb'
 import validateAuthHeader from '/utils/authHeader'
 
-// Add blacklist data to server settings
 const postGroup = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/group')
   const groupData = req.body.groupData
@@ -126,4 +125,52 @@ const postGroup = async (req: Object, res: Object) => {
   }
 }
 
-export { postGroup }
+// Get group members
+const getGroup = async (req: Object, res: Object) => {
+  logger.info('API call: GET /api/group')
+
+  const groupCode = req.query.groupCode
+
+  const authHeader = req.headers.authorization
+  const validToken = validateAuthHeader(authHeader, 'user')
+
+  if (!validToken) {
+    res.json({
+      code: 401,
+      message: 'Unauthorized',
+      status: 'error',
+    })
+    return
+  }
+
+  let findGroupResults = null
+  try {
+    findGroupResults = await db.user.findGroupMembers(groupCode)
+
+    const returnData = []
+    for (let result of findGroupResults) {
+      returnData.push({
+        playerGroup: result.playerGroup,
+        signedGames: result.signedGames,
+        enteredGames: result.signedGames,
+        serial: result.serial,
+        username: result.username,
+      })
+    }
+
+    res.json({
+      message: 'Getting group members success',
+      status: 'success',
+      results: returnData,
+    })
+  } catch (error) {
+    logger.error(`Results: ${error}`)
+    res.json({
+      message: 'Getting group members failed',
+      status: 'error',
+      error,
+    })
+  }
+}
+
+export { postGroup, getGroup }
