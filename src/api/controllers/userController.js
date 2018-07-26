@@ -127,11 +127,9 @@ const getUser = async (req: Object, res: Object) => {
     return
   }
 
-  let user = null
-  let games = null
   try {
-    user = await db.user.findUser({ username })
-    games = await db.game.findGames()
+    const user = await db.user.findUser({ username })
+    const games = await db.game.findGames()
 
     const arrayToObject = array =>
       array.reduce((obj, item) => {
@@ -140,27 +138,30 @@ const getUser = async (req: Object, res: Object) => {
       }, {})
 
     let enteredGames = []
-    if (user && user.enteredGames) {
-      enteredGames = user.enteredGames.map(enteredGame => {
-        const game = games.filter(game => enteredGame.id === game.id)
-        return { ...enteredGame, details: arrayToObject(game) }
-      })
-    }
-
     let favoritedGames = []
-    if (user && user.favoritedGames) {
-      favoritedGames = user.favoritedGames.map(favoritedGame => {
-        const game = games.filter(game => favoritedGame.id === game.id)
-        return { ...favoritedGame, details: arrayToObject(game) }
-      })
-    }
-
     let signedGames = []
-    if (user && user.signedGames) {
-      signedGames = user.signedGames.map(signedGame => {
-        const game = games.filter(game => signedGame.id === game.id)
-        return { ...signedGame, details: arrayToObject(game) }
-      })
+
+    if (games) {
+      if (user && user.enteredGames) {
+        enteredGames = user.enteredGames.map(enteredGame => {
+          const game = games.filter(game => enteredGame.id === game.id)
+          return { ...enteredGame, details: arrayToObject(game) }
+        })
+      }
+
+      if (user && user.favoritedGames && games) {
+        favoritedGames = user.favoritedGames.map(favoritedGame => {
+          const game = games.filter(game => favoritedGame.id === game.id)
+          return { ...favoritedGame, details: arrayToObject(game) }
+        })
+      }
+
+      if (user && user.signedGames && games) {
+        signedGames = user.signedGames.map(signedGame => {
+          const game = games.filter(game => signedGame.id === game.id)
+          return { ...signedGame, details: arrayToObject(game) }
+        })
+      }
     }
 
     const returnData = {
