@@ -40,7 +40,7 @@ const testAssignPlayers = async () => {
     logger.error(error)
   }
 
-  const startingTime = '2018-07-27T14:00:00Z'
+  const startingTime = '2018-07-27T15:00:00.000Z'
 
   await assignPlayers(users, games, startingTime, strategy)
 

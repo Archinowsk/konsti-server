@@ -17,20 +17,53 @@ const groupAssignPlayers = (
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const selectedGames = getSelectedGames(startingGames, signupWishes)
-  const selectedPlayers = getSelectedPlayers(players, startingGames)
+
+  // Individual user is a group of one
+  const selectedGroupLeaders = getSelectedPlayers(players, startingGames)
+  const selectedPlayers = selectedGroupLeaders.slice()
+
+  for (let selectedGroupLeader of selectedGroupLeaders) {
+    // Group leader has multiple users in group
+    if (selectedGroupLeader.playerGroup !== 0) {
+      for (let player of players) {
+        // Player is in the group
+        if (
+          player.playerGroup === selectedGroupLeader.playerGroup &&
+          player.username !== selectedGroupLeader.username
+        ) {
+          player.signedGames = selectedGroupLeader.signedGames
+          selectedPlayers.push(player)
+        }
+      }
+    }
+  }
 
   // Group individual users to groups
   // Single user is size 1 group
-  const playerGroups = getPlayerGroups(selectedPlayers)
+  const selectedPlayerGroups = getPlayerGroups(selectedPlayers)
+
+  let numberOfIndividuals = 0
+  let numberOfGroups = 0
+  for (let selectedPlayerGroup of selectedPlayerGroups) {
+    if (selectedPlayerGroup.length > 1) {
+      numberOfGroups += 1
+    } else {
+      numberOfIndividuals += 1
+    }
+  }
 
   logger.info(`Selected games: ${selectedGames.length}`)
   logger.info(
-    `Selected players: ${selectedPlayers.length} in ${
-      playerGroups.length
-    } groups`
+    `Selected players: ${
+      selectedPlayers.length
+    } (${numberOfIndividuals} individual, ${numberOfGroups} groups)`
   )
 
-  const result = assignGroups(selectedPlayers, selectedGames, playerGroups)
+  const result = assignGroups(
+    selectedPlayers,
+    selectedGames,
+    selectedPlayerGroups
+  )
 
   return result
 }
