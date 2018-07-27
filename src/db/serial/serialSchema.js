@@ -2,7 +2,8 @@
 import mongoose from 'mongoose'
 
 const SerialSchema = mongoose.Schema({
-  serial: String,
+  // $FlowFixMe
+  serial: { type: String, unique: true },
 })
 
 const Serial = mongoose.model('Serial', SerialSchema)
