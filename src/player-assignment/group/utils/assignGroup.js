@@ -32,17 +32,17 @@ const assignGroups = (
     }
   }
 
-  logger.info(
-    `Final result - Players: score ${bestScore}, number ${players}/${
-      selectedPlayers.length
-    } (${Math.round(
-      (players / selectedPlayers.length) * 100
-    )}%), Games: ${games}/${selectedGames.length} (${Math.round(
-      (games / selectedGames.length) * 100
-    )}%)`
-  )
+  const returnMessage = `Final result - Players: score ${bestScore}, number ${players}/${
+    selectedPlayers.length
+  } (${Math.round(
+    (players / selectedPlayers.length) * 100
+  )}%), Games: ${games}/${selectedGames.length} (${Math.round(
+    (games / selectedGames.length) * 100
+  )}%)`
 
-  return bestResult
+  logger.info(returnMessage)
+
+  return { results: bestResult, message: returnMessage }
 }
 
 export default assignGroups

@@ -46,15 +46,20 @@ const postPlayers = async (req: Object, res: Object) => {
     }
 
     try {
+      /* $FlowFixMe */
       assignResults = assignPlayers(users, games, startingTime, strategy)
     } catch (error) {
       logger.error(`assignPlayers error: ${error}`)
       throw new Error('No assign results')
     }
 
-    if (assignResults) {
+    if (assignResults && assignResults.results) {
       try {
-        await db.results.saveAllSignupResults(assignResults, startingTime)
+        await db.results.saveAllSignupResults(
+          /* $FlowFixMe */
+          assignResults.results,
+          startingTime
+        )
       } catch (error) {
         logger.error(`saveAllSignupResults error: ${error}`)
         throw new Error('No assign results')
@@ -62,7 +67,8 @@ const postPlayers = async (req: Object, res: Object) => {
 
       try {
         await Promise.all(
-          assignResults.map(assignResult => {
+          /* $FlowFixMe */
+          assignResults.results.map(assignResult => {
             return db.user.saveSignupResult(assignResult)
           })
         )
