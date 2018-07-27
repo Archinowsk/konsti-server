@@ -78,6 +78,21 @@ const postPlayers = async (req: Object, res: Object) => {
         throw new Error('No assign results')
       }
 
+      // Remove overlapping signups
+      if (assignResults.newSignupData) {
+        try {
+          await Promise.all(
+            /* $FlowFixMe */
+            assignResults.newSignupData.map(newSignupData => {
+              return db.user.updateUserSignedGames(newSignupData)
+            })
+          )
+        } catch (error) {
+          logger.error(`updateUserSignedGames error: ${error}`)
+          throw new Error('No assign results')
+        }
+      }
+
       res.json({
         message: 'Players assign success',
         status: 'success',

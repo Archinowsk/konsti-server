@@ -52,6 +52,31 @@ const findUser = async (userData: Object) => {
   return response
 }
 
+const updateUserSignedGames = async (userData: Object) => {
+  const { username, signedGames } = userData
+
+  let response = null
+  try {
+    // response = await User.findOne({ username })
+    response = await User.update(
+      { username: username },
+      { $set: { signedGames: signedGames } }
+    )
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error updating user ${username} signed games - ${error}`
+    )
+    return error
+  }
+
+  if (!response) {
+    logger.info(`MongoDB: User "${username}" not found`)
+  } else {
+    logger.info(`MongoDB: User "${username}" signed games updated`)
+  }
+  return response
+}
+
 const findSerial = async (serialData: Object) => {
   const serial = serialData.serial
 
@@ -241,6 +266,7 @@ const user = {
   saveSignup,
   saveSignupResult,
   saveUser,
+  updateUserSignedGames,
   findGroupMembers,
   saveGroup,
 }
