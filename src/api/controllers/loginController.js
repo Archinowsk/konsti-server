@@ -32,6 +32,7 @@ const postLogin = async (req: Object, res: Object) => {
       message: 'Validation error',
       status: 'error',
     })
+    return
   }
 
   let response: User = {
@@ -55,6 +56,7 @@ const postLogin = async (req: Object, res: Object) => {
       status: 'error',
       error,
     })
+    return
   }
 
   // User does not exist
@@ -65,6 +67,7 @@ const postLogin = async (req: Object, res: Object) => {
       message: 'User login error',
       status: 'error',
     })
+    return
   }
 
   // User exists
@@ -97,6 +100,7 @@ const postLogin = async (req: Object, res: Object) => {
         serial: response.serial,
         playerGroup: response.playerGroup,
       })
+      return
     } else {
       logger.info(
         `Login: Password for user "${loginData.username}" doesn't match`
@@ -107,6 +111,7 @@ const postLogin = async (req: Object, res: Object) => {
         message: 'User login failed',
         status: 'error',
       })
+      return
     }
   } catch (error) {
     logger.error(`Login: ${error}`)
@@ -115,6 +120,7 @@ const postLogin = async (req: Object, res: Object) => {
       status: 'error',
       error,
     })
+    // return
   }
 }
 

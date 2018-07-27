@@ -26,12 +26,14 @@ const postSignupTime = async (req: Object, res: Object) => {
       message: 'Signup time set success',
       status: 'success',
     })
+    return
   } catch (error) {
     res.json({
       message: 'Signup time set failure',
       status: 'error',
       error,
     })
+    // return
   }
 }
 

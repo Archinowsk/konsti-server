@@ -22,6 +22,7 @@ const postUser = async (req: Object, res: Object) => {
       message: 'Validation error',
       status: 'error',
     })
+    return
   }
 
   let serialFound = false
@@ -85,12 +86,14 @@ const postUser = async (req: Object, res: Object) => {
             message: 'User registration success',
             status: 'success',
           })
+          return
         } catch (error) {
           logger.error(`db.user.saveUser(): ${error}`)
           res.json({
             message: 'User registration failed',
             status: 'error',
           })
+          // return
         }
       }
     } else {
@@ -100,6 +103,7 @@ const postUser = async (req: Object, res: Object) => {
         message: 'Invalid serial',
         status: 'error',
       })
+      // return
     }
   } else {
     logger.info(`User: Username "${username}" is already registered`)
@@ -108,6 +112,7 @@ const postUser = async (req: Object, res: Object) => {
       message: 'Username in already registered',
       status: 'error',
     })
+    // return
   }
 }
 
@@ -170,6 +175,7 @@ const getUser = async (req: Object, res: Object) => {
       status: 'success',
       games: returnData,
     })
+    return
   } catch (error) {
     logger.error(`db.user.findUser(): ${error}`)
     res.json({
@@ -177,6 +183,7 @@ const getUser = async (req: Object, res: Object) => {
       status: 'error',
       error,
     })
+    // return
   }
 }
 
