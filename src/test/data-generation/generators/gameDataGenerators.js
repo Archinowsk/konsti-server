@@ -1,5 +1,6 @@
 /* @flow */
 import faker from 'faker'
+import moment from 'moment'
 import logger from '/utils/logger'
 import db from '/db/mongodb'
 import {
@@ -17,15 +18,20 @@ const createGames = (count: number) => {
     const minAttendance = getRandomInt(5, 5)
     const maxAttendance = getRandomInt(5, 5)
 
+    const startTime = getRandomStartingTime()
+    const length = 180
+
     const gameData = {
       title: faker.random.words(3),
       description: faker.lorem.sentence(),
       category_title: 'Roolipeli',
       formatted_hosts: 'Test GM',
       room_name: 'Ropetaverna',
-      length: 60,
-      start_time: getRandomStartingTime(),
-      end_time: '2018-07-27T15:00:00Z',
+      length,
+      start_time: startTime,
+      end_time: moment(startTime)
+        .add(length, 'minutes')
+        .format(),
       language: 'fi',
       rpg_system: 'Test gamesystem',
       no_language: false,
