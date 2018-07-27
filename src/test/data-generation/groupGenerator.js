@@ -1,4 +1,5 @@
 /* @flow */
+import faker from 'faker'
 import {
   createUsers,
   createAdminUser,
@@ -19,7 +20,8 @@ const groupGenerator = async (
   await createUsers(newUsersCount)
 
   for (let i = 0; i < numberOfGroups; i++) {
-    await createUsersInGroup(groupSize, i + 1)
+    let randomGroupId = faker.random.number()
+    await createUsersInGroup(groupSize, randomGroupId)
   }
 
   await createGames(newGamesCount)

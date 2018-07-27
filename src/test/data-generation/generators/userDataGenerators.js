@@ -59,26 +59,39 @@ const createUsersInGroup = (count: number, groupId: number) => {
 
   const promises = []
   for (let i = 0; i < count; i++) {
-    promises.push(createUser(groupId))
+    promises.push(createUser(groupId, i))
   }
 
   return Promise.all(promises)
 }
 
-const createUser = groupId => {
+const createUser = (groupId, index) => {
   // Create users with randomized data
   // Save time by not hashing the password
-  const registrationData = {
-    username: faker.internet.userName(),
-    passwordHash: 'testPass',
-    userGroup: 'user',
-    serial: faker.random.number(10000000),
-    playerGroup: groupId || 0,
-    favoritedGames: [],
-    signedGames: [],
-    enteredGames: [],
+  let registrationData = null
+  if (index === 0) {
+    registrationData = {
+      username: faker.internet.userName(),
+      passwordHash: 'testPass',
+      userGroup: 'user',
+      serial: groupId,
+      playerGroup: groupId || 0,
+      favoritedGames: [],
+      signedGames: [],
+      enteredGames: [],
+    }
+  } else {
+    registrationData = {
+      username: faker.internet.userName(),
+      passwordHash: 'testPass',
+      userGroup: 'user',
+      serial: faker.random.number(),
+      playerGroup: groupId || 0,
+      favoritedGames: [],
+      signedGames: [],
+      enteredGames: [],
+    }
   }
-
   return db.user.saveUser(registrationData)
 }
 
