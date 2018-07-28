@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
   config.allowedCorsOrigins = process.env.CORS_WHITELIST.split(';')
   config.dataUri = process.env.GAME_DATA_URI
   config.debug = process.env.DEBUG
-  config.ASSIGNMENT_ROUNDS = 10000
+  config.ASSIGNMENT_ROUNDS = 300
 }
 
 // Variables for development environment
