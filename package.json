@@ -45,7 +45,7 @@
     "babel-plugin-module-resolver": "3.1.1",
     "bcryptjs": "2.4.3",
     "body-parser": "1.18.3",
-    "esm": "3.0.77",
+    "esm": "3.0.79",
     "express": "4.16.3",
     "express-jwt": "5.3.1",
     "generate-serial-number": "0.0.3",
