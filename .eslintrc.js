@@ -6,6 +6,7 @@ module.exports = {
     // 'plugin:node/recommended',
     // 'plugin:promise/recommended',
     // 'plugin:unicorn/recommended',
+    'plugin:eslint-comments/recommended',
     'prettier',
     'prettier/flowtype',
     'prettier/standard',
