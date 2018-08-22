@@ -39,11 +39,11 @@
     "test-assign": "npm run build && cross-env NODE_ENV=development node -r esm lib/test/testAssignPlayers.js"
   },
   "dependencies": {
-    "@babel/cli": "7.0.0-rc.1",
-    "@babel/core": "7.0.0-rc.1",
-    "@babel/node": "7.0.0-rc.1",
-    "@babel/preset-env": "7.0.0-rc.1",
-    "@babel/preset-flow": "7.0.0-rc.1",
+    "@babel/cli": "7.0.0-rc.2",
+    "@babel/core": "7.0.0-rc.2",
+    "@babel/node": "7.0.0-rc.2",
+    "@babel/preset-env": "7.0.0-rc.2",
+    "@babel/preset-flow": "7.0.0-rc.2",
     "babel-plugin-module-resolver": "3.1.1",
     "bcryptjs": "2.4.3",
     "body-parser": "1.18.3",
@@ -63,7 +63,7 @@
     "request-promise-native": "1.0.5",
     "rimraf": "2.6.2",
     "winston": "3.0.0",
-    "winston-daily-rotate-file": "3.3.1"
+    "winston-daily-rotate-file": "3.3.2"
   },
   "devDependencies": {
     "babel-eslint": "8.2.6",
