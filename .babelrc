@@ -16,7 +16,9 @@
     [
       "babel-plugin-module-resolver",
       {
-        "root": ["./src"]
+        "root": [
+          "./src"
+        ]
       }
     ]
   ]
