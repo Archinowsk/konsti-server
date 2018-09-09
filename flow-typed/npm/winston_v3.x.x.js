@@ -1,5 +1,5 @@
-// flow-typed signature: e63d2bb2f74c9d8d145930c63606f048
-// flow-typed version: 538388dcea/winston_v3.x.x/flow_>=v0.34.x
+// flow-typed signature: 671196063313bbc8b3a9276886664117
+// flow-typed version: 2d80ca911c/winston_v3.x.x/flow_>=v0.34.x
 
 declare type $winstonLevels = {
   [string]: number
@@ -15,6 +15,7 @@ declare type $winstonNpmLogLevels = {
 };
 
 declare type $winstonInfo<T: $winstonLevels> = {
+  [optionName: string]: any,
   level: $Keys<T>,
   message: string
 };
@@ -51,7 +52,7 @@ declare type $winstonLoggerConfig<T: $winstonLevels> = {
 };
 
 declare type $winstonLogger<T: $winstonLevels> = {
-  [$Keys<T>]: (message: string) => void,
+  [$Keys<T>]: (message: string, meta?: Object) => void,
   add: $winstonTransport => void,
   clear: () => void,
   configure: ($winstonLoggerConfig<T>) => void,

@@ -1,5 +1,5 @@
-// flow-typed signature: 69e70f2ee3f62f451639901fdfbb5644
-// flow-typed version: d643daffb3/moment_v2.3.x/flow_>=v0.63.x
+// flow-typed signature: 23b485a16704a8a3278548e2215855e9
+// flow-typed version: e9374c5fe9/moment_v2.3.x/flow_>=v0.25.x
 
 type moment$MomentOptions = {
   y?: number | string,
