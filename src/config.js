@@ -9,6 +9,7 @@ config.debug = false
 
 // Logging
 config.logDir = './logs'
+config.enableAccessLog = false
 
 // App settings
 config.assignmentStrategy = 'group' // 'munkres', 'group'

@@ -50,9 +50,11 @@ if (productionEnv) {
 
 logger.info(`Node environment: ${config.env}`)
 
-// Set logger
-logger.info("Express: Overriding 'Express' logger")
-app.use(morgan('dev', { stream }))
+if (config.enableAccessLog) {
+  // Set logger
+  logger.info("Express: Overriding 'Express' logger")
+  app.use(morgan('dev', { stream }))
+}
 
 // Parse body and populate req.body - only accepts JSON
 app.use(bodyParser.json({ limit: '100kb' }))
