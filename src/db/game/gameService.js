@@ -5,7 +5,7 @@ import type { KompassiGame } from '/flow/game.flow'
 
 const removeGames = () => {
   logger.info('MongoDB: remove ALL games from db')
-  return Game.remove({})
+  return Game.deleteMany({})
 }
 
 // Save all games to db

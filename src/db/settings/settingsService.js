@@ -5,7 +5,7 @@ import Settings from '/db/settings/settingsSchema'
 
 const removeSettings = () => {
   logger.info('MongoDB: remove ALL settings from db')
-  return Settings.remove({})
+  return Settings.deleteMany({})
 }
 
 const createSettings = async () => {

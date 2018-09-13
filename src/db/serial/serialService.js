@@ -4,7 +4,7 @@ import Serial from '/db/serial/serialSchema'
 
 const removeSerials = () => {
   logger.info('MongoDB: remove ALL serials from db')
-  return Serial.remove({})
+  return Serial.deleteMany({})
 }
 
 const saveSerials = async (serials: Array<string>) => {

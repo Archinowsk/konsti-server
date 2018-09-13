@@ -5,7 +5,7 @@ import Results from '/db/results/resultsSchema'
 
 const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')
-  return Results.remove({})
+  return Results.deleteMany({})
 }
 const findResults = async () => {
   let response = null

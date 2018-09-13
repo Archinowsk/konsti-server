@@ -4,7 +4,7 @@ import User from '/db/user/userSchema'
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')
-  return User.remove({})
+  return User.deleteMany({})
 }
 
 const saveUser = async (userData: Object) => {
