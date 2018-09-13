@@ -37,7 +37,7 @@ const postGroup = async (req: Object, res: Object) => {
           })
           return
         } else {
-          const saveGroupResponse = await db.user.saveGroup(0, username)
+          const saveGroupResponse = await db.user.saveGroup('0', username)
 
           if (saveGroupResponse) {
             res.json({
@@ -94,7 +94,7 @@ const postGroup = async (req: Object, res: Object) => {
     else {
       // Leave group
       if (leaveGroup) {
-        const saveGroupResponse = await db.user.saveGroup(0, username)
+        const saveGroupResponse = await db.user.saveGroup('0', username)
 
         if (saveGroupResponse) {
           res.json({
