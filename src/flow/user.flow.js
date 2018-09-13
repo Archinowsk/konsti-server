@@ -9,7 +9,7 @@ export type User = {
   password: string,
   userGroup: string,
   serial: string,
-  playerGroup: number,
+  playerGroup: string,
   favoritedGames: Array<SignupData>,
   signedGames: Array<SignupData>,
   enteredGames: Array<SignupData>,

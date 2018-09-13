@@ -16,7 +16,7 @@ const saveUser = async (userData: Object) => {
     password: userData.passwordHash,
     userGroup: userData.userGroup || 'user', // Options: 'user' and 'admin'
     serial: userData.serial,
-    playerGroup: userData.playerGroup || 0,
+    playerGroup: userData.playerGroup || '0',
     favoritedGames: userData.favoritedGames || [],
     signedGames: userData.signedGames || [],
     enteredGames: userData.enteredGames || [],
@@ -99,7 +99,7 @@ const findSerial = async (serialData: Object) => {
 const findGroupMembers = async (playerGroup: string) => {
   let response = null
   try {
-    response = await User.find({ playerGroup: parseInt(playerGroup, 10) })
+    response = await User.find({ playerGroup })
   } catch (error) {
     logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
     return error
@@ -184,12 +184,12 @@ const saveSignup = async (signupData: Object) => {
   return signupResponse
 }
 
-const saveGroup = async (groupCode: number, username: string) => {
+const saveGroup = async (groupCode: string, username: string) => {
   let response = null
   try {
     response = await User.update(
       { username: username },
-      { $set: { playerGroup: parseInt(groupCode, 10) } }
+      { $set: { playerGroup: groupCode } }
     )
   } catch (error) {
     logger.error(
@@ -198,7 +198,7 @@ const saveGroup = async (groupCode: number, username: string) => {
     return error
   }
 
-  if (groupCode === 0) {
+  if (groupCode === '0') {
     logger.info(`MongoDB: User "${username}" left group`)
   } else {
     logger.info(`MongoDB: Group "${groupCode}" stored for user "${username}"`)

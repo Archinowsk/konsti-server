@@ -25,7 +25,7 @@ const groupAssignPlayers = (
 
   for (let selectedGroupLeader of selectedGroupLeaders) {
     // Group leader has multiple users in group
-    if (selectedGroupLeader.playerGroup !== 0) {
+    if (selectedGroupLeader.playerGroup !== '0') {
       for (let player of players) {
         // Player is in the group
         if (
