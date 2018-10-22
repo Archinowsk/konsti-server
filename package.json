@@ -22,7 +22,7 @@
     "list-rules": "eslint-index .eslintrc.js",
     "table-rules": "eslint-index .eslintrc.js --format table",
     "flow": "flow check",
-    "flow-typed-install": "flow-typed install --skip --overwrite --ignoreDeps peer bundle",
+    "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundle",
     "generate-data": "npm run build && cross-env NODE_ENV=development node -r esm lib/test/data-generation/runGenerators.js",
     "generate-serials": "npm run build && cross-env NODE_ENV=development node -r esm lib/utils/generateSerials.js",
     "prepare-deploy-prod": "npm run build-front-prod && npm run copy-front && npm run build",
