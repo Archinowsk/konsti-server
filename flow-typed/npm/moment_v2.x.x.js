@@ -1,5 +1,5 @@
-// flow-typed signature: dc2b339b282072e69ac231874e679100
-// flow-typed version: b349492ee1/moment_v2.x.x/flow_>=v0.25.x
+// flow-typed signature: a2d02e31442162a5c0b44f661019d014
+// flow-typed version: 7f7aca1718/moment_v2.x.x/flow_>=v0.25.x
 
 type moment$MomentOptions = {
   y?: number | string,
@@ -123,7 +123,15 @@ declare class moment$Moment {
   static ISO_8601: string;
   static (): moment$Moment;
   static (
-    initDate: moment$MomentOptions | number | Date | Array<number> | moment$Moment | string
+    initDate:
+      | moment$MomentOptions
+      | number
+      | Date
+      | Array<number>
+      | moment$Moment
+      | string
+      | null
+      | void
   ): moment$Moment;
   static (string: string, format: string | Array<string>): moment$Moment;
   static (
@@ -145,7 +153,15 @@ declare class moment$Moment {
   static unix(seconds: number): moment$Moment;
   static utc(): moment$Moment;
   static utc(
-    initDate: moment$MomentOptions | number | Date | Array<number> | moment$Moment | string
+    initDate:
+      | moment$MomentOptions
+      | number
+      | Date
+      | Array<number>
+      | moment$Moment
+      | string
+      | null
+      | void
   ): moment$Moment;
   static utc(string: string, format: string | Array<string>): moment$Moment;
   static utc(
@@ -165,7 +181,7 @@ declare class moment$Moment {
     strict: boolean
   ): moment$Moment;
   static parseZone(): moment$Moment;
-  static parseZone(rawDate: string): moment$Moment;
+  static parseZone(rawDate: string | null | void): moment$Moment;
   static parseZone(
     rawDate: string,
     format: string | Array<string>
