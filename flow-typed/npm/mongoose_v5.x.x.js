@@ -1,5 +1,5 @@
-// flow-typed signature: 644e19188830a0837590b068e0aacd95
-// flow-typed version: 511b983940/mongoose_v5.x.x/flow_>=v0.50.x
+// flow-typed signature: 75bb13ef37ff8ca612e2e266c22b45c8
+// flow-typed version: aeb7115aaa/mongoose_v5.x.x/flow_>=v0.50.x
 
 /*** FIX broken globals import 'bson' (((( ***/
 // import 'bson';
@@ -65,7 +65,8 @@ type SchemaOpts<Doc> = {
   read?: string,
   safe?: boolean,
   shardKey?: boolean,
-  strict?: boolean,
+  strict?: boolean | 'throw',
+  strictQuery?: boolean | 'throw',
   toJSON?: ToObjectOpts<Doc>,
   toObject?: ToObjectOpts<Doc>,
   typeKey?: string,
