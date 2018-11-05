@@ -1,5 +1,5 @@
-// flow-typed signature: 0bdb2bc23b17b828e864a3832a54452b
-// flow-typed version: 993b1aeb31/moment_v2.x.x/flow_>=v0.25.x
+// flow-typed signature: 38bb4dcbbc62bc51ed5857b925f7e955
+// flow-typed version: 0cd8e983b3/moment_v2.x.x/flow_>=v0.25.x
 
 type moment$MomentOptions = {
   y?: number | string,
@@ -132,7 +132,11 @@ declare class moment$Moment {
       | string
       | null
       | void
+      | []
+      | {}
   ): moment$Moment;
+  static (array: []): moment$Moment;
+  static (object: {}): moment$Moment;
   static (string: ?string, format: string | Array<string>): moment$Moment;
   static (
     string: ?string,
