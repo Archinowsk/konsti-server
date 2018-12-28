@@ -8,10 +8,6 @@
 [lints]
 
 [options]
-# Comments
-suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
-suppress_comment= \\(.\\|\n\\)*\\$FlowIgnoreMe
-
 # Root import
 module.name_mapper='^/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 
