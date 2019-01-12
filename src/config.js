@@ -1,10 +1,27 @@
-const config = {}
+/* @flow */
+type Config = {
+  appName: string,
+  port: number,
+  debug: boolean,
+  logDir: string,
+  enableAccessLog: boolean,
+  assignmentStrategy: string,
+  env: string,
+  db: string,
+  jwtSecretKey: string,
+  jwtSecretKeyAdmin: string,
+  allowedCorsOrigins: Array<string>,
+  dataUri: string,
+  ASSIGNMENT_ROUNDS: number,
+}
+
+const config: Config = {}
 
 // App info
 config.appName = 'Konsti'
 
 // Server settings
-config.port = process.env.PORT || 3000
+config.port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000
 config.debug = false
 
 // Logging
@@ -17,12 +34,14 @@ config.assignmentStrategy = 'group' // 'munkres', 'group'
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
   config.env = 'production'
-  config.db = process.env.CONN_STRING
-  config.jwtSecretKey = process.env.JWT_SECRET_KEY
-  config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN
-  config.allowedCorsOrigins = process.env.CORS_WHITELIST.split(';')
-  config.dataUri = process.env.GAME_DATA_URI
-  config.debug = process.env.DEBUG
+  config.db = process.env.CONN_STRING || ''
+  config.jwtSecretKey = process.env.JWT_SECRET_KEY || ''
+  config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN || ''
+  config.allowedCorsOrigins = process.env.CORS_WHITELIST
+    ? process.env.CORS_WHITELIST.split(';')
+    : []
+  config.dataUri = process.env.GAME_DATA_URI || ''
+  config.debug = process.env.DEBUG === 'true' || false
   config.ASSIGNMENT_ROUNDS = 300
 }
 
