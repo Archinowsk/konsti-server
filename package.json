@@ -65,7 +65,6 @@
     "winston-daily-rotate-file": "3.6.0"
   },
   "devDependencies": {
-    "@babel/register": "7.0.0",
     "babel-eslint": "10.0.1",
     "cross-env": "5.2.0",
     "eslint": "5.12.0",
