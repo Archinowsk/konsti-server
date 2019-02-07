@@ -1,3 +1,5 @@
+/* @flow */
+/* $FlowFixMe */
 import { createLogger, format, transports } from 'winston'
 import fs from 'fs'
 import 'winston-daily-rotate-file'
@@ -45,7 +47,7 @@ const logger = createLogger({
 })
 
 export const stream = {
-  write: message => logger.info(message.slice(0, -1)), // Slice to remove line break
+  write: (message: string) => logger.info(message.slice(0, -1)), // Slice to remove line break
 }
 
 export default logger

@@ -1,8 +1,9 @@
+/* @flow */
 import generator from 'generate-serial-number'
 import logger from '/utils/logger'
 import db from '/db/mongodb'
 
-const isInt = n => n % 1 === 0
+const isInt = n => parseInt(n, 10) % 1 === 0
 
 const generateSerials = async () => {
   const serials = []
@@ -10,7 +11,7 @@ const generateSerials = async () => {
   if (!count || !isInt(count)) {
     logger.error('Give number parameter: "npm run generate-serials 10"')
   } else {
-    for (let i = 1; i <= count; i += 1) {
+    for (let i = 1; i <= parseInt(count, 10); i += 1) {
       const serial = generator.generate(10)
       serials.push(serial)
       logger.info(`${serial}`)

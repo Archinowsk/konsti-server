@@ -1,9 +1,10 @@
+/* @flow */
 import bcrypt from 'bcryptjs'
 import logger from '/utils/logger'
 
 const saltRounds = 10
 
-const hashPassword = async password => {
+const hashPassword = async (password: string) => {
   let response = null
   try {
     response = await bcrypt.hash(password, saltRounds)
@@ -13,7 +14,7 @@ const hashPassword = async password => {
   }
 }
 
-const comparePasswordHash = async (password, hash) => {
+const comparePasswordHash = async (password: string, hash: string) => {
   let response = null
   try {
     response = await bcrypt.compare(password, hash)

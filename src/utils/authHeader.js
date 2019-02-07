@@ -1,8 +1,9 @@
+/* @flow */
 import jwt from 'jsonwebtoken'
 import logger from '/utils/logger'
 import config from '/config'
 
-const validateAuthHeader = (authHeader, userGroup) => {
+const validateAuthHeader = (authHeader: string, userGroup: string) => {
   logger.info(`Auth: Require jwt token for "${userGroup}" user group`)
 
   let jwtToken = ''

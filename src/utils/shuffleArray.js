@@ -1,5 +1,7 @@
-const shuffleArray = array => {
+/* @flow */
+const shuffleArray = (array: Array<any>) => {
   // Don't mutate input array
+  /* $FlowFixMe */
   const shuffledArray = array.slice()
 
   for (let i = shuffledArray.length - 1; i > 0; i--) {
