@@ -1,6 +1,4 @@
-/* @flow */
 import fs from 'fs'
-import logger from '/utils/logger'
 import { getYear } from './statsUtil'
 
 const getUserStats = () => {
@@ -10,7 +8,7 @@ const getUserStats = () => {
     fs.readFileSync(`src/statistics/datafiles/${year}/users.json`, 'utf8')
   )
 
-  logger.info(`Loaded ${userData.length} users`)
+  console.info(`Loaded ${userData.length} users`)
 
   const enteredGames = userData.reduce((acc, user) => {
     user.entered_games.forEach(game => {

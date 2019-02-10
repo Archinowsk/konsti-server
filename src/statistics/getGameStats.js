@@ -1,6 +1,4 @@
-/* @flow */
 import fs from 'fs'
-import logger from '/utils/logger'
 import { getYear } from './statsUtil'
 
 const getGameStats = () => {
@@ -10,8 +8,8 @@ const getGameStats = () => {
     fs.readFileSync(`src/statistics/datafiles/${year}/games.json`, 'utf8')
   )
 
-  logger.info(gameData.length)
-  logger.info(gameData[100].title)
+  console.info(gameData.length)
+  console.info(gameData[100].title)
 }
 
 getGameStats()

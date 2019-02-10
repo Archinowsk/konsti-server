@@ -31,9 +31,10 @@
     "start": "npm run build && node -r esm lib/server.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node -r esm lib/server.js",
     "start-prod": "npm run build && cross-env NODE_ENV=production node -r esm lib/server.js",
-    "stats:games": "npm run build && node -r esm lib/statistics/getGameStats.js",
-    "stats:results": "npm run build && node -r esm lib/statistics/getResultsStats.js",
-    "stats:users": "npm run build && node -r esm lib/statistics/getUserStats.js",
+    "stats:games": "node -r esm src/statistics/getGameStats.js",
+    "stats:results": "node -r esm src/statistics/getResultsStats.js",
+    "stats:users": "node -r esm src/statistics/getUserStats.js",
+    "stats:fix": "node -r esm src/statistics/dataFixer.js",
     "test": "mocha --reporter spec --compilers js:@babel/register",
     "test-assign": "npm run build && cross-env NODE_ENV=development node -r esm lib/test/testAssignPlayers.js"
   },

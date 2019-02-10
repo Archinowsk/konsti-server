@@ -1,6 +1,4 @@
-/* @flow */
 import fs from 'fs'
-import logger from '/utils/logger'
 import { getYear } from './statsUtil'
 
 const getResultsStats = () => {
@@ -10,11 +8,11 @@ const getResultsStats = () => {
     fs.readFileSync(`src/statistics/datafiles/${year}/results.json`, 'utf8')
   )
 
-  logger.info(`Loaded ${resultData.length} results`)
+  console.info(`Loaded ${resultData.length} results`)
 
   // Signup by starting time
   const signupsByTime = resultData.reduce((acc, results) => {
-    acc[results.time] = results.result.length
+    acc[results.startTime] = results.result.length
     return acc
   }, {})
 
