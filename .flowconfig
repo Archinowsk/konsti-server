@@ -12,7 +12,7 @@
 module.name_mapper='^/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 
 # Report warnings
-# include_warnings=true
+include_warnings=true
 
 [strict]
 
