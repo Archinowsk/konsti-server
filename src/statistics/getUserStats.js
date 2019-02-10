@@ -1,10 +1,13 @@
 /* @flow */
 import fs from 'fs'
 import logger from '/utils/logger'
+import { getYear } from './statsUtil'
 
 const getUserStats = () => {
+  const year = getYear()
+
   const userData = JSON.parse(
-    fs.readFileSync('src/statistics/datafiles/users.json', 'utf8')
+    fs.readFileSync(`src/statistics/datafiles/${year}/users.json`, 'utf8')
   )
 
   logger.info(`Loaded ${userData.length} users`)
