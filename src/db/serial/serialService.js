@@ -1,6 +1,6 @@
 /* @flow */
-import logger from '/utils/logger'
-import Serial from '/db/serial/serialSchema'
+import logger from 'utils/logger'
+import Serial from 'db/serial/serialSchema'
 
 const removeSerials = () => {
   logger.info('MongoDB: remove ALL serials from db')

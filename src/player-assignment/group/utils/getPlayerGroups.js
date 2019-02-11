@@ -1,5 +1,5 @@
 /* @flow */
-import type { User } from '/flow/user.flow'
+import type { User } from 'flow/user.flow'
 
 type UserArray = Array<User>
 

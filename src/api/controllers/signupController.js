@@ -1,8 +1,8 @@
 /* @flow */
-import logger from '/utils/logger'
-import db from '/db/mongodb'
-import validateAuthHeader from '/utils/authHeader'
-import arrayToObject from '/utils/arrayToObject'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
+import validateAuthHeader from 'utils/authHeader'
+import arrayToObject from 'utils/arrayToObject'
 
 // Add signup data for user
 const postSignup = async (req: Object, res: Object) => {

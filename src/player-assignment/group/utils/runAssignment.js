@@ -1,9 +1,9 @@
 /* @flow */
-import logger from '/utils/logger'
-import getRandomInt from '/player-assignment/utils/getRandomInt'
-import shuffleArray from '/utils/shuffleArray'
-import type { User } from '/flow/user.flow'
-import type { Game } from '/flow/game.flow'
+import logger from 'utils/logger'
+import getRandomInt from 'player-assignment/utils/getRandomInt'
+import shuffleArray from 'utils/shuffleArray'
+import type { User } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 
 type UserArray = Array<User>
 type SignedGame = { id: string, priority: number }

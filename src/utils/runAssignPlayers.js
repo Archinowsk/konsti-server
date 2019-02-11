@@ -2,12 +2,12 @@
 
 /*
 import moment from 'moment'
-import logger from '/utils/logger'
-import db from '/db/mongodb'
-import assignPlayers from '/player-assignment/assignPlayers'
-import config from '/config'
-import type { User } from '/flow/user.flow'
-import type { Game } from '/flow/game.flow'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
+import assignPlayers from 'player-assignment/assignPlayers'
+import config from 'config'
+import type { User } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 */
 
 const runAssignPlayers = async () => {

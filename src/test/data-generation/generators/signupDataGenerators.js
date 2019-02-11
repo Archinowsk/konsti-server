@@ -1,9 +1,9 @@
 /* @flow */
-import logger from '/utils/logger'
-import db from '/db/mongodb'
-import { getRandomInt } from '/test/data-generation/generators/randomVariableGenerators'
-import type { User } from '/flow//user.flow'
-import type { Game } from '/flow/game.flow'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
+import { getRandomInt } from 'test/data-generation/generators/randomVariableGenerators'
+import type { User } from 'flow//user.flow'
+import type { Game } from 'flow/game.flow'
 
 const getRandomSignup = (games: Array<Game>, user: User) => {
   const randomGames = []

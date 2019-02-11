@@ -1,7 +1,7 @@
 /* @flow */
 import generator from 'generate-serial-number'
-import logger from '/utils/logger'
-import db from '/db/mongodb'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
 
 const isInt = n => parseInt(n, 10) % 1 === 0
 

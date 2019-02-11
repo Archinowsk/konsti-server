@@ -3,7 +3,7 @@
 import { createLogger, format, transports } from 'winston'
 import fs from 'fs'
 import 'winston-daily-rotate-file'
-import config from '/config'
+import config from 'config'
 
 const { combine, printf, colorize, timestamp, json } = format
 const { logDir, debug } = config

@@ -1,18 +1,18 @@
 /* @flow */
 import express from 'express'
 
-import { postGames, getGames } from '/api/controllers/gamesController'
-import { postUser, getUser } from '/api/controllers/userController'
-import { postLogin } from '/api/controllers/loginController'
-import { postPlayers } from '/api/controllers/playersController'
-import { postSignup } from '/api/controllers/signupController'
-import { postFavorite } from '/api/controllers/favoriteController'
-import { postBlacklist } from '/api/controllers/blacklistController'
-import { postSignupTime } from '/api/controllers/signuptimeController'
-import { postFeedback } from '/api/controllers/feedbackController'
-import { getSettings } from '/api/controllers/settingsController'
-import { getResults } from '/api/controllers/resultsController'
-import { postGroup, getGroup } from '/api/controllers/groupController'
+import { postGames, getGames } from 'api/controllers/gamesController'
+import { postUser, getUser } from 'api/controllers/userController'
+import { postLogin } from 'api/controllers/loginController'
+import { postPlayers } from 'api/controllers/playersController'
+import { postSignup } from 'api/controllers/signupController'
+import { postFavorite } from 'api/controllers/favoriteController'
+import { postBlacklist } from 'api/controllers/blacklistController'
+import { postSignupTime } from 'api/controllers/signuptimeController'
+import { postFeedback } from 'api/controllers/feedbackController'
+import { getSettings } from 'api/controllers/settingsController'
+import { getResults } from 'api/controllers/resultsController'
+import { postGroup, getGroup } from 'api/controllers/groupController'
 
 const router = express.Router()
 

@@ -1,12 +1,12 @@
 /* @flow */
 import faker from 'faker'
 import moment from 'moment'
-import logger from '/utils/logger'
-import db from '/db/mongodb'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
 import {
   getRandomInt,
   getRandomStartingTime,
-} from '/test/data-generation/generators/randomVariableGenerators'
+} from 'test/data-generation/generators/randomVariableGenerators'
 
 const createGames = (count: number) => {
   // Create games with randomized data

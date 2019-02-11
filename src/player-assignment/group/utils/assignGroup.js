@@ -1,9 +1,9 @@
 /* @flow */
-import logger from '/utils/logger'
-import runAssignment from '/player-assignment/group/utils/runAssignment'
-import config from '/config'
-import type { User } from '/flow/user.flow'
-import type { Game } from '/flow/game.flow'
+import logger from 'utils/logger'
+import runAssignment from 'player-assignment/group/utils/runAssignment'
+import config from 'config'
+import type { User } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 
 type UserArray = Array<User>
 

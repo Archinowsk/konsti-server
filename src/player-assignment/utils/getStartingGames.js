@@ -1,6 +1,6 @@
 /* @flow */
 import moment from 'moment'
-import logger from '/utils/logger'
+import logger from 'utils/logger'
 
 const getStartingGames = (games: Array<Object>, startingTime: Date) => {
   logger.info('Get starting games')

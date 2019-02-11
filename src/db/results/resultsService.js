@@ -1,7 +1,7 @@
 /* @flow */
 import moment from 'moment'
-import logger from '/utils/logger'
-import Results from '/db/results/resultsSchema'
+import logger from 'utils/logger'
+import Results from 'db/results/resultsSchema'
 
 const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')

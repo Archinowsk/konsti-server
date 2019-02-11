@@ -1,7 +1,7 @@
 /* @flow */
-import logger from '/utils/logger'
-import Game from '/db/game/gameSchema'
-import type { KompassiGame } from '/flow/game.flow'
+import logger from 'utils/logger'
+import Game from 'db/game/gameSchema'
+import type { KompassiGame } from 'flow/game.flow'
 
 const removeGames = () => {
   logger.info('MongoDB: remove ALL games from db')

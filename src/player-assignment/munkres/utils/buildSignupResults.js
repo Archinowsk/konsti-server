@@ -1,6 +1,6 @@
 /* @flow */
-import type { User } from '/flow/user.flow'
-import type { Game } from '/flow/game.flow'
+import type { User } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 
 type signedGame = { id: string, priority: number }
 

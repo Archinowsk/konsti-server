@@ -1,7 +1,7 @@
 /* @flow */
-import logger from '/utils/logger'
-import db from '/db/mongodb'
-import validateAuthHeader from '/utils/authHeader'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
+import validateAuthHeader from 'utils/authHeader'
 
 // Add blacklist data to server settings
 const postBlacklist = async (req: Object, res: Object) => {

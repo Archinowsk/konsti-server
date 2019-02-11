@@ -1,8 +1,8 @@
 /* @flow */
-import logger from '/utils/logger'
-import db from '/db/mongodb'
-import validateAuthHeader from '/utils/authHeader'
-import arrayToObject from '/utils/arrayToObject'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
+import validateAuthHeader from 'utils/authHeader'
+import arrayToObject from 'utils/arrayToObject'
 
 const postGroup = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/group')

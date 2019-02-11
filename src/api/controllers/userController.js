@@ -1,9 +1,9 @@
 /* @flow */
-import logger from '/utils/logger'
-import db from '/db/mongodb'
-import { hashPassword } from '/utils/bcrypt'
-import validateAuthHeader from '/utils/authHeader'
-import arrayToObject from '/utils/arrayToObject'
+import logger from 'utils/logger'
+import db from 'db/mongodb'
+import { hashPassword } from 'utils/bcrypt'
+import validateAuthHeader from 'utils/authHeader'
+import arrayToObject from 'utils/arrayToObject'
 
 // Register new user
 const postUser = async (req: Object, res: Object) => {
