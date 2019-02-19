@@ -1,5 +1,5 @@
-// flow-typed signature: db1dcdfdce113dc4528154ce273fab6a
-// flow-typed version: bb849ae672/express_v4.16.x/flow_>=v0.32.x
+// flow-typed signature: 46e386401113f35997bdfa15bfaec07e
+// flow-typed version: c7f4cf7a4d/express_v4.16.x/flow_>=v0.93.x
 
 import * as http from "http";
 import type { Socket } from "net";
@@ -182,7 +182,7 @@ declare class express$Router extends express$Route {
   ): this;
   use(path: string, router: express$Router): this;
   handle(
-    req: http$IncomingMessage,
+    req: http$IncomingMessage<>,
     res: http$ServerResponse,
     next: express$NextFunction
   ): void;
@@ -196,7 +196,7 @@ declare class express$Router extends express$Route {
     ) => mixed
   ): void;
   (
-    req: http$IncomingMessage,
+    req: http$IncomingMessage<>,
     res: http$ServerResponse,
     next?: ?express$NextFunction
   ): void;
@@ -244,13 +244,13 @@ declare class express$Application extends express$Router mixins events$EventEmit
     callback: express$RenderCallback
   ): void;
   handle(
-    req: http$IncomingMessage,
+    req: http$IncomingMessage<>,
     res: http$ServerResponse,
     next?: ?express$NextFunction
   ): void;
   // callable signature is not inherited
   (
-    req: http$IncomingMessage,
+    req: http$IncomingMessage<>,
     res: http$ServerResponse,
     next?: ?express$NextFunction
   ): void;
