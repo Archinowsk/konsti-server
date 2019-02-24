@@ -9,7 +9,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.035Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -33,7 +32,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.035Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -52,7 +50,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -71,7 +68,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Mysteeri / Investigation",
       "Seikkailu / Exploration",
@@ -91,7 +87,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Vakava pelityyli / Serious gamestyle",
@@ -111,7 +106,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -135,7 +129,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -157,7 +150,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -177,7 +169,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Raskaat säännöt / Rules heavy",
@@ -197,7 +188,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -221,7 +211,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -236,7 +225,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -257,7 +245,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -276,7 +263,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -296,7 +282,6 @@
     "mins": "120",
     "minAttendance": "2",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Mysteeri / Investigation",
       "Seikkailu / Exploration",
@@ -315,7 +300,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -338,7 +322,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -357,7 +340,6 @@
     "mins": "240",
     "minAttendance": "5",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Sci-fi"],
     "people": ["Mattila Samu-Ville"],
     "tags": [
@@ -377,7 +359,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Raskaat säännöt / Rules heavy",
@@ -400,7 +381,6 @@
     "mins": "180",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Mysteeri / Investigation",
@@ -421,7 +401,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Huumori / Humor", "Sci-fi"],
     "people": ["Järvi-Eskola Aki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -436,7 +415,6 @@
     "mins": "420",
     "minAttendance": "16",
     "maxAttendance": "16",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Raskaat säännöt / Rules heavy",
@@ -457,7 +435,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -478,7 +455,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -501,7 +477,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -521,7 +496,6 @@
     "mins": "180",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -542,7 +516,6 @@
     "mins": "480",
     "minAttendance": "4",
     "maxAttendance": "12",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -564,7 +537,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -583,7 +555,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -603,7 +574,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -627,7 +597,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Mysteeri / Investigation",
       "Kauhu / Horror",
@@ -646,7 +615,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -673,7 +641,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Frösen Joonas"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
@@ -688,7 +655,6 @@
     "mins": "180",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Seikkailu / Exploration",
@@ -707,7 +673,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Hahmovetoinen / Character driven", "Sci-fi"],
     "people": ["Lautjärvi Petri"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -722,7 +687,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -750,7 +714,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -770,7 +733,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -790,7 +752,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Tarinavetoinen / Story driven", "Kauhu / Horror", "Sci-fi"],
     "people": ["Andersson Pontus"],
     "tags": [
@@ -810,7 +771,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.035Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Mysteeri / Investigation",
@@ -830,7 +790,6 @@
     "mins": "120",
     "minAttendance": "3",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -852,7 +811,6 @@
     "mins": "480",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Sci-fi", "Fantasia / Fantasy"],
     "people": ["Saarinen Eeli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
@@ -867,7 +825,6 @@
     "mins": "360",
     "minAttendance": "20",
     "maxAttendance": "30",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -893,7 +850,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Tulivirta Eerik"],
     "tags": ["Pöytäpelit"]
@@ -908,7 +864,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Hiltula Minna"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -923,7 +878,6 @@
     "mins": "120",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Sota / War", "Sci-fi"],
     "people": ["Viertiö Aaro"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -938,7 +892,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": ["Seikkailu / Exploration", "Sci-fi"],
     "people": ["Joukamaa Mauno"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -953,7 +906,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Mysteeri / Investigation", "Sci-fi", "Fantasia / Fantasy"],
     "people": ["Kankkunen Ari-Pekka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -968,7 +920,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Draama / Drama",
@@ -995,7 +946,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Sci-fi", "Fantasia / Fantasy"],
     "people": ["Kankkunen Ari-Pekka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -1010,7 +960,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1032,7 +981,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Saarinen Tomi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -1047,7 +995,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -1067,7 +1014,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1090,7 +1036,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -1109,7 +1054,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Hahmovetoinen / Character driven",
@@ -1140,7 +1084,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Seikkailu / Exploration",
@@ -1159,7 +1102,6 @@
     "mins": "240",
     "minAttendance": "5",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Raskaat säännöt / Rules heavy",
@@ -1186,7 +1128,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -1205,7 +1146,6 @@
     "mins": "240",
     "minAttendance": "8",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": ["Sci-fi"],
     "people": ["Mattila Samu-Ville"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
@@ -1220,7 +1160,6 @@
     "mins": "360",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyt pelityyli / Light gamestyle",
@@ -1242,7 +1181,6 @@
     "mins": "240",
     "minAttendance": "6",
     "maxAttendance": "10",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [],
     "people": ["Valentinelli Monica"],
     "tags": ["Pöytäpelit", "In English", "Kunniavieras"]
@@ -1257,7 +1195,6 @@
     "mins": "360",
     "minAttendance": "1",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Seikkailu / Exploration",
@@ -1276,7 +1213,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": ["Fantasia / Fantasy"],
     "people": ["Lee Jason"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -1291,7 +1227,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -1310,7 +1245,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -1330,7 +1264,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -1350,7 +1283,6 @@
     "mins": "240",
     "minAttendance": "6",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -1370,7 +1302,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1392,7 +1323,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Kiiskilä Annika"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -1407,7 +1337,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -1426,7 +1355,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -1447,7 +1375,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Seikkailu / Exploration", "Sci-fi"],
     "people": ["Andersson Pontus"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -1462,7 +1389,6 @@
     "mins": "300",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1481,7 +1407,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1508,7 +1433,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Mysteeri / Investigation",
       "Seikkailu / Exploration",
@@ -1528,7 +1452,6 @@
     "mins": "300",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1547,7 +1470,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [],
     "people": ["Kirjastot Helmet"],
     "tags": ["Pöytäpelit", "Lapsiystävällinen", "Aloittelijaystävällinen"]
@@ -1562,7 +1484,6 @@
     "mins": "360",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -1582,7 +1503,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -1603,7 +1523,6 @@
     "mins": "180",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -1624,7 +1543,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Riikonen Santeri"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
@@ -1639,7 +1557,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Mysteeri / Investigation", "Sci-fi", "Fantasia / Fantasy"],
     "people": ["Andersson Pontus"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -1654,7 +1571,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1674,7 +1590,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Kevyet säännöt / Rules light", "Huumori / Humor", "Sci-fi"],
     "people": ["Järvi-Eskola Aki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -1689,7 +1604,6 @@
     "mins": "180",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -1710,7 +1624,6 @@
     "mins": "300",
     "minAttendance": "2",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Hahmovetoinen / Character driven",
@@ -1735,7 +1648,6 @@
     "mins": "780",
     "minAttendance": "16",
     "maxAttendance": "16",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Raskaat säännöt / Rules heavy",
@@ -1756,7 +1668,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Fantasia / Fantasy"],
     "people": ["Lee Jason"],
     "tags": ["Pöytäpelit", "In English"]
@@ -1771,7 +1682,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Hahmovetoinen / Character driven",
@@ -1792,7 +1702,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "3",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Vakava pelityyli / Serious gamestyle",
       "Mysteeri / Investigation",
@@ -1811,7 +1720,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -1826,7 +1734,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "14",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyt pelityyli / Light gamestyle",
@@ -1848,7 +1755,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Frösen Joonas"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
@@ -1863,7 +1769,6 @@
     "mins": "120",
     "minAttendance": "1",
     "maxAttendance": "10",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light"
@@ -1881,7 +1786,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Mysteeri / Investigation",
@@ -1901,7 +1805,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Seikkailu / Exploration",
@@ -1920,7 +1823,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -1940,7 +1842,6 @@
     "mins": "120",
     "minAttendance": "2",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Mysteeri / Investigation",
       "Seikkailu / Exploration",
@@ -1959,7 +1860,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": ["Fantasia / Fantasy"],
     "people": ["Kramb Jason"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -1974,7 +1874,6 @@
     "mins": "300",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -1995,7 +1894,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2015,7 +1913,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2034,7 +1931,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -2061,7 +1957,6 @@
     "mins": "300",
     "minAttendance": "6",
     "maxAttendance": "10",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyt pelityyli / Light gamestyle",
@@ -2082,7 +1977,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -2104,7 +1998,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2123,7 +2016,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -2142,7 +2034,6 @@
     "mins": "120",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.222Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -2161,7 +2052,6 @@
     "mins": "360",
     "minAttendance": "4",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -2183,7 +2073,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -2205,7 +2094,6 @@
     "mins": "360",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Draama / Drama",
@@ -2226,7 +2114,6 @@
     "mins": "420",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2247,7 +2134,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -2266,7 +2152,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -2285,7 +2170,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit"]
@@ -2300,7 +2184,6 @@
     "mins": "120",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2321,7 +2204,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -2341,7 +2223,6 @@
     "mins": "180",
     "minAttendance": "2",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.222Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Huumori / Humor",
@@ -2362,7 +2243,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2389,7 +2269,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -2409,7 +2288,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -2433,7 +2311,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Kiiskilä Annika"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -2448,7 +2325,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Mysteeri / Investigation",
@@ -2468,7 +2344,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2495,7 +2370,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -2514,7 +2388,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Sillanpää Mikko"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -2529,7 +2402,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": ["Sota / War", "Sci-fi"],
     "people": ["Rihko Pekka"],
     "tags": ["Pöytäpelit"]
@@ -2544,7 +2416,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Raskaat säännöt / Rules heavy",
@@ -2564,7 +2435,6 @@
     "mins": "180",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Seikkailu / Exploration",
@@ -2583,7 +2453,6 @@
     "mins": "480",
     "minAttendance": "16",
     "maxAttendance": "16",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Raskaat säännöt / Rules heavy",
@@ -2604,7 +2473,6 @@
     "mins": "300",
     "minAttendance": "2",
     "maxAttendance": "2",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Hahmovetoinen / Character driven",
@@ -2629,7 +2497,6 @@
     "mins": "60",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": ["Sota / War", "Sci-fi"],
     "people": ["Viertiö Aaro"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -2644,7 +2511,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Tarinavetoinen / Story driven",
@@ -2666,7 +2532,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -2685,7 +2550,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "9",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -2706,7 +2570,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2726,7 +2589,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Salo Tytti"],
     "tags": ["Pöytäpelit"]
@@ -2741,7 +2603,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [],
     "people": ["McElroy Matt M"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -2756,7 +2617,6 @@
     "mins": "300",
     "minAttendance": "4",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -2775,7 +2635,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -2795,7 +2654,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Lehkonen Veini"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -2810,7 +2668,6 @@
     "mins": "240",
     "minAttendance": "4",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.222Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Kevyt pelityyli / Light gamestyle",
@@ -2830,7 +2687,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Hiltula Minna"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
@@ -2845,7 +2701,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "3",
-    "created": "2017-07-30T08:00:45.241Z",
     "attributes": ["Tarinavetoinen / Story driven", "Sci-fi"],
     "people": ["Eronen Antti"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille", "Freeform"]
@@ -2860,7 +2715,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -2879,7 +2733,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Seikkailu / Exploration",
@@ -2898,7 +2751,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle"],
     "people": ["Honkonen Harri"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -2913,7 +2765,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light"
@@ -2931,7 +2782,6 @@
     "mins": "120",
     "minAttendance": "3",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -2952,7 +2802,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -2972,7 +2821,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -2993,7 +2841,6 @@
     "mins": "300",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Mysteeri / Investigation",
@@ -3013,7 +2860,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "4",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Mysteeri / Investigation", "Moderni / Modern"],
     "people": ["Kramb Jason"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -3028,7 +2874,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Tarinavetoinen / Story driven", "Kauhu / Horror", "Sci-fi"],
     "people": ["Andersson Pontus"],
     "tags": [
@@ -3048,7 +2893,6 @@
     "mins": "480",
     "minAttendance": "1",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Seikkailu / Exploration",
@@ -3067,7 +2911,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Mysteeri / Investigation",
@@ -3087,7 +2930,6 @@
     "mins": "120",
     "minAttendance": "3",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -3109,7 +2951,6 @@
     "mins": "360",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
       "Mysteeri / Investigation",
@@ -3128,7 +2969,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Salo Tytti"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -3143,7 +2983,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Mysteeri / Investigation", "Sci-fi", "Fantasia / Fantasy"],
     "people": ["Andersson Pontus"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
@@ -3158,7 +2997,6 @@
     "mins": "240",
     "minAttendance": "2",
     "maxAttendance": "3",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Tarinavetoinen / Story driven",
@@ -3183,7 +3021,6 @@
     "mins": "240",
     "minAttendance": "6",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
       "Kevyet säännöt / Rules light",
@@ -3203,7 +3040,6 @@
     "mins": "300",
     "minAttendance": "1",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
       "Kevyet säännöt / Rules light",
@@ -3223,7 +3059,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "8",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit"]
@@ -3238,7 +3073,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
       "Kevyet säännöt / Rules light",
@@ -3258,7 +3092,6 @@
     "mins": "180",
     "minAttendance": "3",
     "maxAttendance": "5",
-    "created": "2017-07-30T08:00:45.207Z",
     "attributes": [],
     "people": ["Kirjastot Helmet"],
     "tags": ["Pöytäpelit", "Lapsiystävällinen", "Aloittelijaystävällinen"]
@@ -3273,7 +3106,6 @@
     "mins": "240",
     "minAttendance": "3",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Frösen Joonas"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
@@ -3288,7 +3120,6 @@
     "mins": "180",
     "minAttendance": "6",
     "maxAttendance": "6",
-    "created": "2017-07-30T08:00:45.241Z",
     "attributes": ["Huumori / Humor", "Fantasia / Fantasy"],
     "people": ["Mattila Samu-Ville"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]

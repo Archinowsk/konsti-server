@@ -20,8 +20,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -44,8 +43,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -68,8 +66,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -92,8 +89,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -116,8 +112,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -140,8 +135,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -164,8 +158,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -188,8 +181,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -212,8 +204,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -236,8 +227,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -260,8 +250,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -284,8 +273,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -308,8 +296,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": [
@@ -337,8 +324,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -361,8 +347,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -385,8 +370,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -417,8 +401,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -441,8 +424,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -465,8 +447,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -489,8 +470,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -513,8 +493,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -537,8 +516,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -561,8 +539,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -585,8 +562,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -609,8 +585,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -633,8 +608,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -657,8 +631,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -681,8 +654,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -705,8 +677,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -729,8 +700,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -753,8 +723,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -783,8 +752,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -807,8 +775,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -831,8 +798,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -855,8 +821,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -879,8 +844,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit", "k18"],
@@ -903,8 +867,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -927,8 +890,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -951,8 +913,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -975,8 +936,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -999,8 +959,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -1023,8 +982,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -1047,8 +1005,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1071,8 +1028,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1095,8 +1051,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -1119,8 +1074,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -1143,8 +1097,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1167,8 +1120,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1191,8 +1143,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -1215,8 +1166,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1239,8 +1189,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -1263,8 +1212,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -1287,8 +1235,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1311,8 +1258,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1335,8 +1281,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1359,8 +1304,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit", "k18"],
@@ -1383,8 +1327,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1407,8 +1350,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -1431,8 +1373,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1455,8 +1396,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen"],
@@ -1479,8 +1419,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1503,8 +1442,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1527,8 +1465,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -1551,8 +1488,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1575,8 +1511,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -1599,8 +1534,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -1623,8 +1557,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1647,8 +1580,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1671,8 +1603,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -1695,8 +1626,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen"],
@@ -1719,8 +1649,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1743,8 +1672,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1767,8 +1695,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -1791,8 +1718,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -1815,8 +1741,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1839,8 +1764,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -1863,8 +1787,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1887,8 +1810,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -1911,8 +1833,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1935,8 +1856,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1959,8 +1879,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -1983,8 +1902,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2007,8 +1925,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2031,8 +1948,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2055,8 +1971,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2079,8 +1994,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2103,8 +2017,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -2127,8 +2040,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2151,8 +2063,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -2175,8 +2086,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2199,8 +2109,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2223,8 +2132,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -2247,8 +2155,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -2271,8 +2178,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2295,8 +2201,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen"],
@@ -2319,8 +2224,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2343,8 +2247,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -2367,8 +2270,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": [
@@ -2396,8 +2298,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2420,8 +2321,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2444,8 +2344,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -2468,8 +2367,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -2492,8 +2390,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2516,8 +2413,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -2540,8 +2436,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2564,8 +2459,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -2588,8 +2482,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -2612,8 +2505,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -2642,8 +2534,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2666,8 +2557,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -2690,8 +2580,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2714,8 +2603,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -2738,8 +2626,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -2762,8 +2649,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit", "k18"],
@@ -2786,8 +2672,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -2810,8 +2695,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit", "k18"],
@@ -2834,8 +2718,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": [
@@ -2863,8 +2746,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -2887,8 +2769,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -2911,8 +2792,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -2935,8 +2815,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2959,8 +2838,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -2983,8 +2861,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3007,8 +2884,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -3031,8 +2907,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3055,8 +2930,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3079,8 +2953,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3103,8 +2976,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit", "k18"],
@@ -3127,8 +2999,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -3151,8 +3022,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -3175,8 +3045,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit"],
@@ -3199,8 +3068,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -3223,8 +3091,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3247,8 +3114,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": [
@@ -3276,8 +3142,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["pöytäpelit"],
@@ -3300,8 +3165,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["pöytäpelit"],
@@ -3324,8 +3188,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -3348,8 +3211,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3372,8 +3234,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3396,8 +3257,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3420,8 +3280,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3444,8 +3303,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3468,8 +3326,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3492,8 +3349,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -3516,8 +3372,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -3540,8 +3395,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3564,8 +3418,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["lapsiystävällinen", "pöytäpelit"],
@@ -3588,8 +3441,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3612,8 +3464,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -3636,8 +3487,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3660,8 +3510,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -3684,8 +3533,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -3708,8 +3556,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -3732,8 +3579,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3756,8 +3602,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3780,8 +3625,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3804,8 +3648,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -3828,8 +3671,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3852,8 +3694,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -3876,8 +3717,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3900,8 +3740,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -3924,8 +3763,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -3948,8 +3786,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -3972,8 +3809,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -3996,8 +3832,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4020,8 +3855,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -4044,8 +3878,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4068,8 +3901,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -4092,8 +3924,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit", "k18"],
@@ -4116,8 +3947,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4140,8 +3970,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -4164,8 +3993,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -4188,8 +4016,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4212,8 +4039,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -4236,8 +4062,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4260,8 +4085,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -4284,8 +4108,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -4308,8 +4131,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit", "k18"],
@@ -4332,8 +4154,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -4356,8 +4177,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4386,8 +4206,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -4410,8 +4229,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -4434,8 +4252,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4458,8 +4275,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4482,8 +4298,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit", "k18"],
@@ -4506,8 +4321,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "english", "pöytäpelit"],
@@ -4530,8 +4344,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4554,8 +4367,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -4578,8 +4390,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -4602,8 +4413,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["english", "pöytäpelit", "k18"],
@@ -4626,8 +4436,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4650,8 +4459,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4674,8 +4482,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit", "k18"],
@@ -4698,8 +4505,7 @@
     "childrenFriendly": false,
     "ageRestricted": true,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["aloittelijaystävällinen", "lapsiystävällinen", "pöytäpelit"],
@@ -4722,8 +4528,7 @@
     "childrenFriendly": true,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -4746,8 +4551,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   },
   {
     "tags": ["aloittelijaystävällinen", "pöytäpelit"],
@@ -4770,8 +4574,7 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": false
   },
   {
     "tags": ["pöytäpelit"],
@@ -4794,7 +4597,6 @@
     "childrenFriendly": false,
     "ageRestricted": false,
     "beginnerFriendly": false,
-    "intendedForExperiencedParticipants": true,
-    "created": "2018-07-29T08:02:24.000Z"
+    "intendedForExperiencedParticipants": true
   }
 ]
