@@ -2,8 +2,8 @@
 logs
 *.log
 
-# Statistics data files
-datafiles
+# Temp files
+temp
 
 # Dependency directories
 node_modules
