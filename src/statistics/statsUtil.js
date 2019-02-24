@@ -40,7 +40,7 @@ export const writeJson = data => {
 
   fs.writeFileSync(
     `src/statistics/datafiles/${year}/${type}-fixed.json`,
-    JSON.stringify(data),
+    JSON.stringify(data, null, 2),
     'utf8'
   )
 
