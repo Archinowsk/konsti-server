@@ -38,8 +38,12 @@ export const writeJson = data => {
   const year = getYear()
   const type = getType()
 
+  if (!fs.existsSync(`src/statistics/datafiles/${year}/temp/`)) {
+    fs.mkdirSync(`src/statistics/datafiles/${year}/temp/`)
+  }
+
   fs.writeFileSync(
-    `src/statistics/datafiles/${year}/${type}-fixed.json`,
+    `src/statistics/datafiles/${year}/temp/${type}-fixed.json`,
     JSON.stringify(data, null, 2),
     'utf8'
   )
