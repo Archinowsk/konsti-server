@@ -2,7 +2,7 @@ import fs from 'fs'
 import moment from 'moment'
 import { getYear, getType } from './statsUtil'
 
-const getUserStats = async () => {
+const getStats = async () => {
   const year = getYear()
   const type = getType()
 
@@ -27,4 +27,4 @@ const getUserStats = async () => {
   )
 }
 
-getUserStats()
+getStats()
