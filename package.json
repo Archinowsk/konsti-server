@@ -35,6 +35,7 @@
     "stats:results": "node -r esm src/statistics/getResultsStats.js",
     "stats:users": "node -r esm src/statistics/getUserStats.js",
     "stats:fix": "node -r esm src/statistics/dataFixer.js",
+    "stats:anonymize": "node -r esm src/statistics/dataAnonymizer.js",
     "test": "mocha --reporter spec --compilers js:@babel/register",
     "test-assign": "npm run build && cross-env NODE_ENV=development node -r esm lib/test/testAssignPlayers.js"
   },
