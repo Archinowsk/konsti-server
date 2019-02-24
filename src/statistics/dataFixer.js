@@ -1,30 +1,14 @@
-import fs from 'fs'
-import moment from 'moment'
-import { getYear, getType } from './statsUtil'
+import { readJson, writeJson } from './statsUtil'
 
-const getStats = async () => {
-  const year = getYear()
-  const type = getType()
+const fixData = async () => {
+  const data = readJson()
 
-  const data = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/${type}.json`, 'utf8')
-  )
-
-  console.info(`Loaded ${data.length} ${type}`)
-
+  // Implement fixed logic here
   data.forEach(dataEntry => {
-    const timestamp = moment(
-      parseInt(dataEntry.startTime['$date']['$numberLong'])
-    )
-
-    dataEntry.startTime = timestamp.format()
+    dataEntry.username = dataEntry.username.toUpperCase()
   })
 
-  fs.writeFileSync(
-    `src/statistics/datafiles/${year}/${type}-fixed.json`,
-    JSON.stringify(data),
-    'utf8'
-  )
+  writeJson(data)
 }
 
-getStats()
+fixData()

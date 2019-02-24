@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 export const getYear = () => {
   const year = parseInt(process.argv[2], 10)
 
@@ -18,4 +20,29 @@ export const getType = () => {
   }
 
   return getType
+}
+
+export const readJson = () => {
+  const year = getYear()
+  const type = getType()
+
+  const data = JSON.parse(
+    fs.readFileSync(`src/statistics/datafiles/${year}/${type}.json`, 'utf8')
+  )
+
+  console.info(`Loaded ${data.length} ${type}`)
+  return data
+}
+
+export const writeJson = data => {
+  const year = getYear()
+  const type = getType()
+
+  fs.writeFileSync(
+    `src/statistics/datafiles/${year}/${type}-fixed.json`,
+    JSON.stringify(data),
+    'utf8'
+  )
+
+  console.info(`Saved ${data.length} ${type}`)
 }
