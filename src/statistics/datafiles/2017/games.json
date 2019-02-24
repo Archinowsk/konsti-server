@@ -6,9 +6,9 @@
     "notes": "Intergalaktinen Turpakäräjä",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.035Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -23,7 +23,6 @@
     "people": ["Honkanen Aki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8302",
     "title": "#7-99 Through Maelstrom Rift",
@@ -31,9 +30,9 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.035Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -43,7 +42,6 @@
     "people": ["Miinalainen Toni"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
   },
-
   {
     "id": "8441",
     "title": "Viva Presidente!",
@@ -51,9 +49,9 @@
     "notes": "oma, kevyt",
     "location": "Sali 212",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -63,7 +61,6 @@
     "people": ["Oksanen Jukka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Äänekäs"]
   },
-
   {
     "id": "8398",
     "title": "Vetehisten Virsi",
@@ -71,9 +68,9 @@
     "notes": "Lamentations of the Flame Princess",
     "location": "Sali 203b",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Mysteeri / Investigation",
@@ -84,7 +81,6 @@
     "people": ["Suominen Samuli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Lapsiystävällinen"]
   },
-
   {
     "id": "8365",
     "title": "Catthulhu",
@@ -92,9 +88,9 @@
     "notes": "Call of Cthulhu / Catthulhu",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -105,7 +101,6 @@
     "people": ["Lauronen Mixu"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8320",
     "title": "Meripeli",
@@ -113,9 +108,9 @@
     "notes": "Glorantha Tarot -kortit; jotka ovat myös 4x 1-20 noppa.",
     "location": "Sali 209",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -130,7 +125,6 @@
       "Ei sovellu lapsille"
     ]
   },
-
   {
     "id": "8366",
     "title": "Nahanviejät",
@@ -138,9 +132,9 @@
     "notes": "Arius: the Ashen Age",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -153,7 +147,6 @@
     "people": ["Tenhunen Tuukka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8397",
     "title": "Virasto 2084: Vastarintaan I",
@@ -161,9 +154,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 Pooli ",
     "location": "Sali 203b",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -174,7 +167,6 @@
     "people": ["Karhapää Jani"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8453",
     "title": "Ölnir kultasilmän aarre",
@@ -182,9 +174,9 @@
     "notes": "Keski-Maa roolipeli",
     "location": "Sali 307",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -195,7 +187,6 @@
     "people": ["Oksanen Antti"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8332",
     "title": "Beverly Hillsin täydelliset fiaskot",
@@ -203,9 +194,9 @@
     "notes": "Fiasco",
     "location": "Sali 203a",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -220,7 +211,6 @@
       "Äänekäs"
     ]
   },
-
   {
     "id": "8442",
     "title": "Vainoharhaa Alpha Komplexissa",
@@ -228,15 +218,14 @@
     "notes": "Paranoia Rebooted2016",
     "location": "Sali 212",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8403",
     "title": "Chronicle of Gilor",
@@ -244,9 +233,9 @@
     "notes": "D&D 3.5ed",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 5,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -258,7 +247,6 @@
     "people": ["Kärpinlehto Heikki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8468",
     "title": "Hovin huominen",
@@ -266,9 +254,9 @@
     "notes": "FATE",
     "location": "Sali 203a",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -278,7 +266,6 @@
     "people": ["Hemming Veli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8455",
     "title": "Virasto 2084: Vastarintaan II",
@@ -286,9 +273,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 Pooli",
     "location": "Sali 307",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -299,7 +286,6 @@
     "people": ["Karhapää Jani"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8431",
     "title": "Metsäsaaren arvoitus",
@@ -307,9 +293,9 @@
     "notes": "Seikkailijoiden kilta",
     "location": "Sali 214",
     "startTime": "2017-07-29T11:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 2,
-    "maxAttendance": 6,
+    "mins": "120",
+    "minAttendance": "2",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Mysteeri / Investigation",
@@ -319,7 +305,6 @@
     "people": ["Laine Tuomo"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8448",
     "title": "seikkailu Q",
@@ -327,9 +312,9 @@
     "notes": "D&D",
     "location": "Sali 212",
     "startTime": "2017-07-29T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -343,7 +328,6 @@
     "people": ["Jääskeläinen Reko"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Lapsiystävällinen"]
   },
-
   {
     "id": "8340",
     "title": "Shadows of Ceramath",
@@ -351,9 +335,9 @@
     "notes": "D&D 5th",
     "location": "Sali 203a",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -363,7 +347,6 @@
     "people": ["Salminen Anni"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8376",
     "title": "Lifebook",
@@ -371,9 +354,9 @@
     "notes": "Cyberpunk 2020",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T14:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 5,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "5",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Sci-fi"],
     "people": ["Mattila Samu-Ville"],
@@ -384,7 +367,6 @@
       "Äänekäs"
     ]
   },
-
   {
     "id": "8418",
     "title": "Hunter: the Vigil - It doesn't belong to the museum!",
@@ -392,9 +374,9 @@
     "notes": "Storytelling System 2n Edition",
     "location": "Sali 301",
     "startTime": "2017-07-29T14:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -408,7 +390,6 @@
     "people": ["Kingelin Juri"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8410",
     "title": "Tsaarin asialla, maalaiset väistäkää!",
@@ -416,9 +397,9 @@
     "notes": "Call of Cthulhu",
     "location": "Sali 203b",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "180",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -430,7 +411,6 @@
     "people": ["Nurmikolu Mika"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8359",
     "title": "Tähtikarpaasit ja riskaabeli kuorma",
@@ -438,15 +418,14 @@
     "notes": "Savage Worlds modded",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Huumori / Humor", "Sci-fi"],
     "people": ["Järvi-Eskola Aki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8321",
     "title": "Charlie ei surffaa",
@@ -454,9 +433,9 @@
     "notes": "Charlie ei surffaa",
     "location": "Sali 211",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 420,
-    "minAttendance": 16,
-    "maxAttendance": 16,
+    "mins": "420",
+    "minAttendance": "16",
+    "maxAttendance": "16",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -468,7 +447,6 @@
     "people": ["Juhola Eero"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8435",
     "title": "Yes, Sir!",
@@ -476,9 +454,9 @@
     "notes": "Yes, Sir!",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -490,7 +468,6 @@
     "people": ["Lauronen Mixu"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8327",
     "title": "seikkailuE",
@@ -498,9 +475,9 @@
     "notes": "D&D",
     "location": "Sali 203a",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -514,7 +491,6 @@
     "people": ["Jääskeläinen Reko"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Lapsiystävällinen"]
   },
-
   {
     "id": "8450",
     "title": "Progeny of Aegis",
@@ -522,9 +498,9 @@
     "notes": "Oma",
     "location": "Sali 212",
     "startTime": "2017-07-29T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -535,7 +511,6 @@
     "people": ["Kärpinlehto Heikki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8452",
     "title": "Murha Salavalinnassa",
@@ -543,9 +518,9 @@
     "notes": "Mouse Guard",
     "location": "Sali 307",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "180",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -557,7 +532,6 @@
     "people": ["Hakonen Vehka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8400",
     "title": "Vault of the Elements",
@@ -565,9 +539,9 @@
     "notes": "The Branded first edition",
     "location": "Sali 203b",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 480,
-    "minAttendance": 4,
-    "maxAttendance": 12,
+    "mins": "480",
+    "minAttendance": "4",
+    "maxAttendance": "12",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -580,7 +554,6 @@
     "people": ["Rishling Zach"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8420",
     "title": "Kuninkaan festivaali",
@@ -588,9 +561,9 @@
     "notes": "Dungeons  & Dragons 5th Edition",
     "location": "Sali 302",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -600,7 +573,6 @@
     "people": ["Heinonen Teemu"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8334",
     "title": "Pehtoori Sauhusen Kirous",
@@ -608,9 +580,9 @@
     "notes": "Dungeons and Dragons 1st Edition",
     "location": "Sali 203a",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -621,7 +593,6 @@
     "people": ["Rihko Pekka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8421",
     "title": "Saxon invaasio",
@@ -629,9 +600,9 @@
     "notes": "Pendragon 5th edition",
     "location": "Sali 303",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 4,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -646,7 +617,6 @@
     "people": ["Luoma Aapo"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8348",
     "title": "Rakkaudesta rangaistaan",
@@ -654,9 +624,9 @@
     "notes": "Lamentations of the Flame Princess",
     "location": "Sali 203a",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Mysteeri / Investigation",
@@ -666,7 +636,6 @@
     "people": ["Suominen Samuli"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8326",
     "title": "End of the World",
@@ -674,9 +643,9 @@
     "notes": "End of the World",
     "location": "Sali 203a",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 5,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -694,7 +663,6 @@
       "In English"
     ]
   },
-
   {
     "id": "8305",
     "title": "#8-23: Graves of Crystalmaw Pass",
@@ -702,15 +670,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Frösen Joonas"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
   },
-
   {
     "id": "8371",
     "title": "Mouse Guard Syksy 1255, Mysteeri pähkinäpellossa",
@@ -718,9 +685,9 @@
     "notes": "Mouse Guard",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "180",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -730,7 +697,6 @@
     "people": ["Asumalahti Aleksi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8344",
     "title": "Lost Stars",
@@ -738,15 +704,14 @@
     "notes": "USR kinda",
     "location": "Sali 203a",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Hahmovetoinen / Character driven", "Sci-fi"],
     "people": ["Lautjärvi Petri"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8373",
     "title": "Beaver Lake Horror / Beaver Laken kauhu",
@@ -754,9 +719,9 @@
     "notes": "Fiasco",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -775,7 +740,6 @@
       "In English"
     ]
   },
-
   {
     "id": "8456",
     "title": "Virasto 2084: Vastarintaan II",
@@ -783,9 +747,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 pooli",
     "location": "Sali 307",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -796,7 +760,6 @@
     "people": ["Arkki Eliel"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8409",
     "title": "Star Wars: Murder in Arcturus-station",
@@ -804,9 +767,9 @@
     "notes": "Star Wars: Edge of the Empire",
     "location": "Sali 203b",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 5,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -817,7 +780,6 @@
     "people": ["Yliviuhkola Saku"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Äänekäs"]
   },
-
   {
     "id": "8458",
     "title": "The Void: Drifting",
@@ -825,9 +787,9 @@
     "notes": "The Void",
     "location": "Sali 203a",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Tarinavetoinen / Story driven", "Kauhu / Horror", "Sci-fi"],
     "people": ["Andersson Pontus"],
@@ -838,7 +800,6 @@
       "In English"
     ]
   },
-
   {
     "id": "8325",
     "title": "Kultaneidon runo",
@@ -846,9 +807,9 @@
     "notes": "Roudan maa/HeroQuest",
     "location": "Sali 203a",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.035Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -859,7 +820,6 @@
     "people": ["Ruotsalainen Wille"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Äänekäs"]
   },
-
   {
     "id": "8447",
     "title": "Action Castle",
@@ -867,9 +827,9 @@
     "notes": "Parseley",
     "location": "Sali 212",
     "startTime": "2017-07-29T11:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 3,
-    "maxAttendance": 8,
+    "mins": "120",
+    "minAttendance": "3",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -882,7 +842,6 @@
     "people": ["Sani Ilari"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8329",
     "title": "Vastarinnan varjoissa",
@@ -890,15 +849,14 @@
     "notes": "Oma järjestelmä",
     "location": "Sali 203a",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 480,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "480",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Sci-fi", "Fantasia / Fantasy"],
     "people": ["Saarinen Eeli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8316",
     "title": "#8-00: The Cosmic Captive",
@@ -906,9 +864,9 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-29T12:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 20,
-    "maxAttendance": 30,
+    "mins": "360",
+    "minAttendance": "20",
+    "maxAttendance": "30",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -925,7 +883,6 @@
     ],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8301",
     "title": "#8-02 Ward Asunder",
@@ -933,15 +890,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Tulivirta Eerik"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8303",
     "title": "#7–10: The Consortium Compact",
@@ -949,15 +905,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.035Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Hiltula Minna"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8465",
     "title": "Sotakarjut: Operaatio Musta Medusa",
@@ -965,15 +920,14 @@
     "notes": "Sotakarjut",
     "location": "Sali 302",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "120",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Sota / War", "Sci-fi"],
     "people": ["Viertiö Aaro"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8382",
     "title": "Prisoners of the Planet of the Apes",
@@ -981,15 +935,14 @@
     "notes": "Mutant: Year Zero",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": ["Seikkailu / Exploration", "Sci-fi"],
     "people": ["Joukamaa Mauno"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8399",
     "title": "Yksin pimeässä ",
@@ -997,15 +950,14 @@
     "notes": "Dark Heresy 2 E",
     "location": "Sali 203b",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Mysteeri / Investigation", "Sci-fi", "Fantasia / Fantasy"],
     "people": ["Kankkunen Ari-Pekka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8424",
     "title": "The Soul Sepulchre",
@@ -1013,9 +965,9 @@
     "notes": "",
     "location": "Sali 304",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1033,7 +985,6 @@
       "In English"
     ]
   },
-
   {
     "id": "8408",
     "title": "Pitkä yö ",
@@ -1041,15 +992,14 @@
     "notes": "Dark Heresy 2 E ",
     "location": "Sali 203b",
     "startTime": "2017-07-29T14:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Sci-fi", "Fantasia / Fantasy"],
     "people": ["Kankkunen Ari-Pekka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8357",
     "title": "The Quick: Straum",
@@ -1057,9 +1007,9 @@
     "notes": "The Quick",
     "location": "Sali 203a",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1072,7 +1022,6 @@
     "people": ["Takanen Ville"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8300",
     "title": "#8-08—Tyranny of Winds, Part 1: The Sandstorm Prophecy",
@@ -1080,15 +1029,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Saarinen Tomi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8362",
     "title": "Nerf Hammer",
@@ -1096,9 +1044,9 @@
     "notes": "Itse kehitetty, yksinkertainen järjestelmä",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1109,7 +1057,6 @@
     "people": ["Hankipohja Ville"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8358",
     "title": "Taskmasters of the Overlord",
@@ -1117,9 +1064,9 @@
     "notes": "Dungeon Lords Self made system",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1133,7 +1080,6 @@
     "people": ["Timo Tapani Turunen Markus"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8319",
     "title": "To Fell a Behemoth",
@@ -1141,9 +1087,9 @@
     "notes": "Slayer's Frontier WIPD20OGL",
     "location": "Sali 209",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1153,7 +1099,6 @@
     "people": ["Lind Joonas"],
     "tags": ["Pöytäpelit", "In English"]
   },
-
   {
     "id": "8425",
     "title": "Traitor of the Curse Oath",
@@ -1161,9 +1106,9 @@
     "notes": "D&D 5th edition ",
     "location": "Sali 304",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1185,7 +1130,6 @@
       "Ei sovellu lapsille"
     ]
   },
-
   {
     "id": "8367",
     "title": "Belltaxin kirous",
@@ -1193,9 +1137,9 @@
     "notes": "Dungeon world",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -1205,7 +1149,6 @@
     "people": ["Uotila Mikko"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8423",
     "title": "Rogue Trader - Tehtävä Kehätähdissä",
@@ -1213,9 +1156,9 @@
     "notes": "Warhammer 40,000 Roleplay - Dark Heresy 2nd Edition",
     "location": "Sali 304",
     "startTime": "2017-07-28T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 5,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "5",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.050Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1233,7 +1176,6 @@
       "Ei sovellu lapsille"
     ]
   },
-
   {
     "id": "8377",
     "title": "Puuta, heinää ja muutama fiasko",
@@ -1241,9 +1183,9 @@
     "notes": "Fiasco",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -1253,7 +1195,6 @@
     "people": ["Järvi-Eskola Aki"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille", "Äänekäs"]
   },
-
   {
     "id": "8333",
     "title": "Ticket to hell",
@@ -1261,15 +1202,14 @@
     "notes": "Cyberpunk 2020",
     "location": "Sali 203a",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 8,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "8",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": ["Sci-fi"],
     "people": ["Mattila Samu-Ville"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8387",
     "title": "Ankkojen valtakunta",
@@ -1277,9 +1217,9 @@
     "notes": "Wanha runequest",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T16:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "360",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1292,7 +1232,6 @@
     "people": ["Karila Jonne"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8293",
     "title": "Hunter: The Vigil – Doubting Souls",
@@ -1300,15 +1239,14 @@
     "notes": "",
     "location": "Halli 5 Ohjelmalava",
     "startTime": "2017-07-29T22:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 6,
-    "maxAttendance": 10,
+    "mins": "240",
+    "minAttendance": "6",
+    "maxAttendance": "10",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [],
     "people": ["Valentinelli Monica"],
     "tags": ["Pöytäpelit", "In English", "Kunniavieras"]
   },
-
   {
     "id": "8474",
     "title": "Stars Without Number - Pähkinänsärkijä",
@@ -1316,9 +1254,9 @@
     "notes": "Stars Without Number",
     "location": "Sali 214",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 1,
-    "maxAttendance": 6,
+    "mins": "360",
+    "minAttendance": "1",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1328,7 +1266,6 @@
     "people": ["Laakso Joonas"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8317",
     "title": "The Desecrated Tomb",
@@ -1336,15 +1273,14 @@
     "notes": "Dungeons & Dragons 5th Edition",
     "location": "Sali 209",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": ["Fantasia / Fantasy"],
     "people": ["Lee Jason"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8361",
     "title": "Elämää ja kuolemaa Dorastorissa",
@@ -1352,9 +1288,9 @@
     "notes": "HeroQuestin suomenkielinen laitos",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1364,7 +1300,6 @@
     "people": ["Järvinen Matti"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8434",
     "title": "Virasto 2084: Vastarintaan III",
@@ -1372,9 +1307,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 Pooli",
     "location": "Sali 203b",
     "startTime": "2017-07-29T16:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -1385,7 +1320,6 @@
     "people": ["Karhapää Jani"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8396",
     "title": "Virasto 2084: Vastarintaan I",
@@ -1393,9 +1327,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 pooli",
     "location": "Sali 203b",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -1406,7 +1340,6 @@
     "people": ["Arkki Eliel"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8364",
     "title": "Star Wars 30th Anniversary: Tatooine Manhunt",
@@ -1414,9 +1347,9 @@
     "notes": "Star Wars RPG D6 West End Games",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 6,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "6",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -1427,7 +1360,6 @@
     "people": ["Bergenheim Nikolas"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8336",
     "title": "The Quick: Straum",
@@ -1435,9 +1367,9 @@
     "notes": "The Quick",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1450,7 +1382,6 @@
     "people": ["Takanen Ville"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille", "In English"]
   },
-
   {
     "id": "8306",
     "title": "#8-06 Reaping What We Sow",
@@ -1458,15 +1389,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Kiiskilä Annika"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8445",
     "title": "Nähdä Thyatis ja kuolla",
@@ -1474,9 +1404,9 @@
     "notes": "ACKS",
     "location": "Sali 212",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 8,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1486,7 +1416,6 @@
     "people": ["Kenkkilä Jussi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8388",
     "title": "In Service of The Take",
@@ -1494,9 +1423,9 @@
     "notes": "Dungeons & Dragons 5ed",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -1508,7 +1437,6 @@
     "people": ["Mustonen Timo"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8404",
     "title": "Deep Six: Have Submarine, Will Travel",
@@ -1516,15 +1444,14 @@
     "notes": "Fate Core",
     "location": "Sali 203b",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Seikkailu / Exploration", "Sci-fi"],
     "people": ["Andersson Pontus"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8381",
     "title": "Muukalainen",
@@ -1532,9 +1459,9 @@
     "notes": "Warhammer Fantasy Roleplay - Powered by Fate",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1544,7 +1471,6 @@
     "people": ["Rötkö Juha"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8368",
     "title": "Tumbleweed",
@@ -1552,9 +1478,9 @@
     "notes": "Oma d6-dice pool",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T11:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1572,7 +1498,6 @@
       "Pelimaailman tuntemus suotavaa"
     ]
   },
-
   {
     "id": "8386",
     "title": "Vetehisten Virsi",
@@ -1580,9 +1505,9 @@
     "notes": "Lamentations of the Flame Princess",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Mysteeri / Investigation",
@@ -1593,7 +1518,6 @@
     "people": ["Suominen Samuli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Lapsiystävällinen"]
   },
-
   {
     "id": "8351",
     "title": "Muukalainen",
@@ -1601,9 +1525,9 @@
     "notes": "Warhammer Fantasy Roleplay - Powered by Fate",
     "location": "Sali 203a",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1613,7 +1537,6 @@
     "people": ["Rötkö Juha"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8156",
     "title": "Roolipelejä kirjaston alueella",
@@ -1621,15 +1544,14 @@
     "notes": "",
     "location": "Halli 5",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [],
     "people": ["Kirjastot Helmet"],
     "tags": ["Pöytäpelit", "Lapsiystävällinen", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8318",
     "title": "Non volebat de inmunditia",
@@ -1637,9 +1559,9 @@
     "notes": "Oma",
     "location": "Sali 209",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "360",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -1650,7 +1572,6 @@
     "people": ["Kärpinlehto Heikki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8360",
     "title": "Monolith burger 3001",
@@ -1658,9 +1579,9 @@
     "notes": "GURPS 3 laitos",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1672,7 +1593,6 @@
     "people": ["Jouha Jarmo"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8411",
     "title": "Astraterra: Taskulohikäärmeitä kuljettamassa",
@@ -1680,9 +1600,9 @@
     "notes": "Astraterra",
     "location": "Sali 203b",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "180",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -1694,7 +1614,6 @@
     "people": ["Koponen Sami"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Lapsiystävällinen"]
   },
-
   {
     "id": "8307",
     "title": "#8-19 Treacherous Waves",
@@ -1702,15 +1621,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Riikonen Santeri"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
   },
-
   {
     "id": "8428",
     "title": "Shadowrun: The Moonchase Affair",
@@ -1718,15 +1636,14 @@
     "notes": "Shadowrun simplified",
     "location": "Sali 214",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Mysteeri / Investigation", "Sci-fi", "Fantasia / Fantasy"],
     "people": ["Andersson Pontus"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8378",
     "title": "Space 1889 - Ether Calculator",
@@ -1734,9 +1651,9 @@
     "notes": "Space 1889 ubiquity edition.",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1747,7 +1664,6 @@
     "people": ["Mäntylä Tero"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8347",
     "title": "Ystävä Tietokone, boteillako takaumia?",
@@ -1755,15 +1671,14 @@
     "notes": "Paranoia",
     "location": "Sali 203a",
     "startTime": "2017-07-29T14:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Kevyet säännöt / Rules light", "Huumori / Humor", "Sci-fi"],
     "people": ["Järvi-Eskola Aki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8375",
     "title": "Murha Salavalinnassa",
@@ -1771,9 +1686,9 @@
     "notes": "Mouse Guard",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T18:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "180",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -1785,7 +1700,6 @@
     "people": ["Hakonen Vehka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8369",
     "title": "Riders of Rohan, Part 1: The New Riders",
@@ -1793,9 +1707,9 @@
     "notes": "Pendragon with lightened rules, kevennetyt säännöt",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 2,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "2",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1811,7 +1725,6 @@
     "people": ["Pelkonen Veli-Matti"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8322",
     "title": "Charlie ei surffaa",
@@ -1819,9 +1732,9 @@
     "notes": "Charlie ei surffaa",
     "location": "Sali 211",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 780,
-    "minAttendance": 16,
-    "maxAttendance": 16,
+    "mins": "780",
+    "minAttendance": "16",
+    "maxAttendance": "16",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1833,7 +1746,6 @@
     "people": ["Malaska Heikki", "Juhola Eero"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8384",
     "title": "The Domain of Quoth",
@@ -1841,15 +1753,14 @@
     "notes": "Dungeons & Dragons 5th Edition",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T11:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Fantasia / Fantasy"],
     "people": ["Lee Jason"],
     "tags": ["Pöytäpelit", "In English"]
   },
-
   {
     "id": "8342",
     "title": "Kesähovin ritarit",
@@ -1857,9 +1768,9 @@
     "notes": "Dungeons & Dragons 5th Edition",
     "location": "Sali 203a",
     "startTime": "2017-07-29T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1871,7 +1782,6 @@
     "people": ["Heinonen Teemu"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8374",
     "title": "Obsidiaanitorni",
@@ -1879,9 +1789,9 @@
     "notes": "GURPS 3 laitos",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 3,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "3",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Vakava pelityyli / Serious gamestyle",
@@ -1891,7 +1801,6 @@
     "people": ["Jouha Jarmo"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8449",
     "title": "Petturimetsästystä Alpha Komplexissa",
@@ -1899,15 +1808,14 @@
     "notes": "Paranoia Rebooted2016",
     "location": "Sali 212",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8349",
     "title": "An Elemental Adventure!",
@@ -1915,9 +1823,9 @@
     "notes": "The Branded first edition",
     "location": "Sali 203a",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 14,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "14",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -1930,7 +1838,6 @@
     "people": ["Rishling Zach"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8310",
     "title": "#8-15: Hrethnar's Throne",
@@ -1938,15 +1845,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Frösen Joonas"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
   },
-
   {
     "id": "8389",
     "title": "Jumalat",
@@ -1954,9 +1860,9 @@
     "notes": "Jumalat",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T20:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 1,
-    "maxAttendance": 10,
+    "mins": "120",
+    "minAttendance": "1",
+    "maxAttendance": "10",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -1965,7 +1871,6 @@
     "people": ["Kärpinlehto Heikki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8413",
     "title": "Straum The Quick",
@@ -1973,9 +1878,9 @@
     "notes": "The Quick ",
     "location": "Sali 203b",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -1986,7 +1891,6 @@
     "people": ["Leinonen Petri"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8345",
     "title": "Belltaxin kirous",
@@ -1994,9 +1898,9 @@
     "notes": "Dungeon world",
     "location": "Sali 203a",
     "startTime": "2017-07-29T14:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -2006,7 +1910,6 @@
     "people": ["Uotila Mikko"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8402",
     "title": "Nerf Hammer",
@@ -2014,9 +1917,9 @@
     "notes": "Itse kehitetty, yksinkertainen järjestelmä",
     "location": "Sali 203b",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2027,7 +1930,6 @@
     "people": ["Hankipohja Ville"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8379",
     "title": "Kadoksissa",
@@ -2035,9 +1937,9 @@
     "notes": "Seikkailijoiden kilta",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 2,
-    "maxAttendance": 6,
+    "mins": "120",
+    "minAttendance": "2",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Mysteeri / Investigation",
@@ -2047,7 +1949,6 @@
     "people": ["Laine Tuomo"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8390",
     "title": "Hunting the Brotherhood",
@@ -2055,15 +1956,14 @@
     "notes": "One roll engine",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": ["Fantasia / Fantasy"],
     "people": ["Kramb Jason"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8417",
     "title": "Liskojen yö",
@@ -2071,9 +1971,9 @@
     "notes": "Free storytelling",
     "location": "Sali 303",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "300",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2085,7 +1985,6 @@
     "people": ["Åhman Jukka"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8440",
     "title": "Virasto 2084: Vastarintaan IV",
@@ -2093,9 +1992,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 Pooli",
     "location": "Sali 214",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2106,7 +2005,6 @@
     "people": ["Karhapää Jani"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8433",
     "title": "Virasto 2084: Vastarintaan III",
@@ -2114,9 +2012,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 pooli",
     "location": "Sali 203b",
     "startTime": "2017-07-29T16:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2126,7 +2024,6 @@
     "people": ["Arkki Eliel"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8338",
     "title": "Tumbleweed",
@@ -2134,9 +2031,9 @@
     "notes": "Oma d6-dice pool",
     "location": "Sali 203a",
     "startTime": "2017-07-29T16:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2154,7 +2051,6 @@
       "Pelimaailman tuntemus suotavaa"
     ]
   },
-
   {
     "id": "8451",
     "title": "Amberin linnan salaisuus - sumun hälvettyä näette...",
@@ -2162,9 +2058,9 @@
     "notes": "Dungeons & Dragons 5th edition",
     "location": "Sali 212",
     "startTime": "2017-07-29T20:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 6,
-    "maxAttendance": 10,
+    "mins": "300",
+    "minAttendance": "6",
+    "maxAttendance": "10",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2176,7 +2072,6 @@
     "people": ["Nurmikolu Mika"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
   },
-
   {
     "id": "8385",
     "title": "Kaikki hyvä? päättyy aikanaan",
@@ -2184,9 +2079,9 @@
     "notes": "Kult:Divinity Lost Quick start rules",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2199,7 +2094,6 @@
     "people": ["Julku Ari"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8370",
     "title": "Punainen Aurinko nousee: Jumalattaren saattajat",
@@ -2207,9 +2101,9 @@
     "notes": "HeroQuest: Glorantha",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2219,7 +2113,6 @@
     "people": ["Rutila Juho"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8446",
     "title": "Nähdä Thyatis ja kuolla",
@@ -2227,9 +2120,9 @@
     "notes": "ACKS",
     "location": "Sali 212",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 8,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2239,7 +2132,6 @@
     "people": ["Kenkkilä Jussi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8480",
     "title": "Lasers & Feelings",
@@ -2247,9 +2139,9 @@
     "notes": "Lasers & Feelings",
     "location": "Sali 203a",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "120",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.222Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -2259,7 +2151,6 @@
     "people": ["Renholm Patrik"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8422",
     "title": "Saxon invaasio",
@@ -2267,9 +2158,9 @@
     "notes": "Pendragon 5th edition",
     "location": "Sali 302",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 4,
-    "maxAttendance": 4,
+    "mins": "360",
+    "minAttendance": "4",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2282,7 +2173,6 @@
     "people": ["Luoma Aapo"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8412",
     "title": "Kallopallo! ",
@@ -2290,9 +2180,9 @@
     "notes": "Arius: the Ashen Age",
     "location": "Sali 203b",
     "startTime": "2017-07-29T18:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2305,7 +2195,6 @@
     "people": ["Tenhunen Tuukka"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8328",
     "title": "Burgers for everyone!",
@@ -2313,9 +2202,9 @@
     "notes": "World of Darkness",
     "location": "Sali 203a",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "360",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2327,7 +2216,6 @@
     "people": ["Karila Jonne"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8416",
     "title": "Liskojen yö",
@@ -2335,9 +2223,9 @@
     "notes": "Free storytelling",
     "location": "Sali 301",
     "startTime": "2017-07-28T18:00:00.000Z",
-    "mins": 420,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "420",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2349,7 +2237,6 @@
     "people": ["Åhman Jukka"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8356",
     "title": "Shadows of Ceramath",
@@ -2357,9 +2244,9 @@
     "notes": "D&D 5th",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.066Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2369,7 +2256,6 @@
     "people": ["Salminen Anni"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8308",
     "title": "#8-7 From the Tome of Righteous Repose",
@@ -2377,9 +2263,9 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2389,7 +2275,6 @@
     "people": ["Miinalainen Toni"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
   },
-
   {
     "id": "8460",
     "title": "Raskaita välineitä Alpha Komplexissa",
@@ -2397,15 +2282,14 @@
     "notes": "Paranoia Rebooted2016",
     "location": "Sali 307",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8352",
     "title": "Tuonne taakse metsämaan",
@@ -2413,9 +2297,9 @@
     "notes": "Itsetehty",
     "location": "Sali 203a",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "120",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2427,7 +2311,6 @@
     "people": ["Hakkarainen Olli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8343",
     "title": "Call of Cthulhu: Dockside Dogs",
@@ -2435,9 +2318,9 @@
     "notes": "Call of Cthulhu 6. laitos",
     "location": "Sali 203a",
     "startTime": "2017-07-29T20:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2448,7 +2331,6 @@
     "people": ["Nikula Aleksi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8444",
     "title": "Seikkailu W",
@@ -2456,9 +2338,9 @@
     "notes": "",
     "location": "Sali 212",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 2,
-    "maxAttendance": 8,
+    "mins": "180",
+    "minAttendance": "2",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.222Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -2470,7 +2352,6 @@
     "people": ["Jääskeläinen Reko"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Lapsiystävällinen"]
   },
-
   {
     "id": "8430",
     "title": "Sleeping Under Shallow Waters FIN/ENG",
@@ -2478,9 +2359,9 @@
     "notes": "NNRPG",
     "location": "Sali 214",
     "startTime": "2017-07-28T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2498,7 +2379,6 @@
       "In English"
     ]
   },
-
   {
     "id": "8341",
     "title": "Nuclear Strike: Wacky Race 2020",
@@ -2506,9 +2386,9 @@
     "notes": "Strike!",
     "location": "Sali 203a",
     "startTime": "2017-07-29T18:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2519,7 +2399,6 @@
     "people": ["Renholm Patrik"],
     "tags": ["Pöytäpelit", "Äänekäs", "In English"]
   },
-
   {
     "id": "8331",
     "title": "Intergalaktinen Turpakäräjä",
@@ -2527,9 +2406,9 @@
     "notes": "Intergalaktinen Turpakäräjä",
     "location": "Sali 203a",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.085Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -2544,7 +2423,6 @@
     "people": ["Honkanen Aki"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8311",
     "title": "#5–08: The Confirmation",
@@ -2552,15 +2430,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Kiiskilä Annika"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8415",
     "title": "Sinisen meduusan sokkelo",
@@ -2568,9 +2445,9 @@
     "notes": "Kevyt, D&D-henkinen",
     "location": "Sali 203b",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -2581,7 +2458,6 @@
     "people": ["Brander Tommi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8459",
     "title": "Sleeping Under Shallow Waters FIN/ENG",
@@ -2589,9 +2465,9 @@
     "notes": "NNRPG",
     "location": "Sali 307",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2609,7 +2485,6 @@
       "In English"
     ]
   },
-
   {
     "id": "8392",
     "title": " Finding the King of the Sky",
@@ -2617,9 +2492,9 @@
     "notes": "Slayer's Frontier WIPD20OGL",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2629,7 +2504,6 @@
     "people": ["Lind Joonas"],
     "tags": ["Pöytäpelit", "In English"]
   },
-
   {
     "id": "8304",
     "title": "#8-16 House of Harmonious Wisdom",
@@ -2637,15 +2511,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Sillanpää Mikko"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8463",
     "title": "Sotakarjut - Operaatio Jääkäärme",
@@ -2653,15 +2526,14 @@
     "notes": "Sotakarjut",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": ["Sota / War", "Sci-fi"],
     "people": ["Rihko Pekka"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8394",
     "title": "Alussa",
@@ -2669,9 +2541,9 @@
     "notes": "Dungeons & Dragons -mestarisäännöt",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2682,7 +2554,6 @@
     "people": ["Ruotsalainen Wille"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8405",
     "title": "Mouse Guard syksy 1255, mysteeri pähkinäpellossa",
@@ -2690,9 +2561,9 @@
     "notes": "Mouse Guard",
     "location": "Sali 203a",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "180",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2702,7 +2573,6 @@
     "people": ["Majaluoma Olli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8323",
     "title": "Charlie ei surffaa",
@@ -2710,9 +2580,9 @@
     "notes": "Charlie ei surffaa",
     "location": "Sali 211",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 480,
-    "minAttendance": 16,
-    "maxAttendance": 16,
+    "mins": "480",
+    "minAttendance": "16",
+    "maxAttendance": "16",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2724,7 +2594,6 @@
     "people": ["Malaska Heikki", "Juhola Eero"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8395",
     "title": "Riders of Rohan, Part 2: The War of the Ring",
@@ -2732,9 +2601,9 @@
     "notes": "Pendragon with lightened rules, kevennetyt säännöt",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 2,
-    "maxAttendance": 2,
+    "mins": "300",
+    "minAttendance": "2",
+    "maxAttendance": "2",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2750,7 +2619,6 @@
     "people": ["Pelkonen Veli-Matti"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8466",
     "title": "Sotakarjut: Operaatio Lasilohikäärme",
@@ -2758,15 +2626,14 @@
     "notes": "Sotakarjut",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 60,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "60",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": ["Sota / War", "Sci-fi"],
     "people": ["Viertiö Aaro"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8414",
     "title": "So you want to be a Slayer?",
@@ -2774,9 +2641,9 @@
     "notes": "Dungeons and Dragons 5ed",
     "location": "Sali 203b",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2789,7 +2656,6 @@
     "people": ["Mustonen Timo"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8427",
     "title": "Kuningattaren sadonkorjuu",
@@ -2797,9 +2663,9 @@
     "notes": "Dungeons & Dragons 5th Edition",
     "location": "Sali 303",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2809,7 +2675,6 @@
     "people": ["Heinonen Teemu"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8354",
     "title": "Koi no Ai - ikuisesti 17",
@@ -2817,9 +2682,9 @@
     "notes": "Maid the roleplaying game",
     "location": "Sali 203a",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 9,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "9",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2831,7 +2696,6 @@
     "people": ["Oksanen Antti"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8439",
     "title": "Virasto 2084: Vastarintaan IV",
@@ -2839,9 +2703,9 @@
     "notes": "Virasto Pelin oma mekaniikka - D6 pooli",
     "location": "Sali 214",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -2852,7 +2716,6 @@
     "people": ["Arkki Eliel"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8314",
     "title": "#8-12—Tyranny of Winds, Part 3: Caught in the Eclipse",
@@ -2860,15 +2723,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Salo Tytti"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8296",
     "title": "Dread Names, Red List - The Hunt for Alex Swift",
@@ -2876,15 +2738,14 @@
     "notes": "Vampire: the Masquerade 20th Anniversary Edition",
     "location": "Sali 301",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [],
     "people": ["McElroy Matt M"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8443",
     "title": "Nähdä Thyatis ja kuolla",
@@ -2892,9 +2753,9 @@
     "notes": "ACKS",
     "location": "Sali 212",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 4,
-    "maxAttendance": 8,
+    "mins": "300",
+    "minAttendance": "4",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -2904,7 +2765,6 @@
     "people": ["Kenkkilä Jussi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8393",
     "title": "Wanted! Kuolleena tai epäkuolleena.",
@@ -2912,9 +2772,9 @@
     "notes": "Cypher System",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -2925,7 +2785,6 @@
     "people": ["Mäntylä Tero"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8312",
     "title": "#6-10 The Wounded Wisp",
@@ -2933,15 +2792,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Lehkonen Veini"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8426",
     "title": "Dread: Under Dead Orbit",
@@ -2949,9 +2807,9 @@
     "notes": "Dread",
     "location": "Sali 302",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 4,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "4",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.222Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -2962,7 +2820,6 @@
     "people": ["Korkama Timo"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8315",
     "title": "#8-24: Raid on the Cloudborne Keep",
@@ -2970,15 +2827,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Hiltula Minna"],
     "tags": ["Pöytäpelit", "Pelisääntöjen tuntemus suotavaa"]
   },
-
   {
     "id": "8324",
     "title": "Nukkemestari",
@@ -2986,15 +2842,14 @@
     "notes": "freeform/jeepform",
     "location": "Sali 304",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 3,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "3",
     "created": "2017-07-30T08:00:45.241Z",
     "attributes": ["Tarinavetoinen / Story driven", "Sci-fi"],
     "people": ["Eronen Antti"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille", "Freeform"]
   },
-
   {
     "id": "8454",
     "title": "Deadlands: Noir",
@@ -3002,9 +2857,9 @@
     "notes": "Savage worlds Deadlands noir lisäosalla",
     "location": "Sali 307",
     "startTime": "2017-07-28T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.097Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -3014,7 +2869,6 @@
     "people": ["Honkonen Harri"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8337",
     "title": "On the track of a Stormcaller",
@@ -3022,9 +2876,9 @@
     "notes": "Slayer's Frontier WIPD20OGL",
     "location": "Sali 203a",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -3034,7 +2888,6 @@
     "people": ["Lind Joonas"],
     "tags": ["Pöytäpelit", "In English"]
   },
-
   {
     "id": "8432",
     "title": "Deadlands: Weird West",
@@ -3042,15 +2895,14 @@
     "notes": "Savage worlds Deadalands: Weird West lisäosalla",
     "location": "Sali 214",
     "startTime": "2017-07-29T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle"],
     "people": ["Honkonen Harri"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8406",
     "title": "Totally improvised roleplay using Mythic GM Emulator",
@@ -3058,9 +2910,9 @@
     "notes": "Mythic GM Emulator and Freeform Universal",
     "location": "Sali 203b",
     "startTime": "2017-07-29T11:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.114Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -3069,7 +2921,6 @@
     "people": ["Rutila Juho"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8401",
     "title": "Tuonne taakse metsämaan",
@@ -3077,9 +2928,9 @@
     "notes": "Itsetehty",
     "location": "Sali 203b",
     "startTime": "2017-07-29T12:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 3,
-    "maxAttendance": 4,
+    "mins": "120",
+    "minAttendance": "3",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -3091,7 +2942,6 @@
     "people": ["Hakkarainen Olli"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8372",
     "title": "Nuclear Strike: Wacky Race 2020",
@@ -3099,9 +2949,9 @@
     "notes": "Strike!",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.129Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -3112,7 +2962,6 @@
     "people": ["Renholm Patrik"],
     "tags": ["Pöytäpelit", "Äänekäs", "In English"]
   },
-
   {
     "id": "8295",
     "title": "Firefly – Friends in Low Places",
@@ -3120,9 +2969,9 @@
     "notes": "Cortex Plus",
     "location": "Sali 302",
     "startTime": "2017-07-29T13:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -3134,7 +2983,6 @@
     "people": ["Valentinelli Monica"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8346",
     "title": "Sinisen meduusan sokkelo",
@@ -3142,9 +2990,9 @@
     "notes": "Kevyt, D&D-henkinen",
     "location": "Sali 203a",
     "startTime": "2017-07-29T14:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -3155,7 +3003,6 @@
     "people": ["Brander Tommi"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8383",
     "title": "At the Mountains of Meth Madness",
@@ -3163,15 +3010,14 @@
     "notes": "One roll engine",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 4,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "4",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Mysteeri / Investigation", "Moderni / Modern"],
     "people": ["Kramb Jason"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8330",
     "title": "The Void: Drifting",
@@ -3179,9 +3025,9 @@
     "notes": "The Void",
     "location": "Sali 307",
     "startTime": "2017-07-29T15:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.144Z",
     "attributes": ["Tarinavetoinen / Story driven", "Kauhu / Horror", "Sci-fi"],
     "people": ["Andersson Pontus"],
@@ -3192,7 +3038,6 @@
       "In English"
     ]
   },
-
   {
     "id": "8475",
     "title": "Stars Without Number - Pähkinänsärkijä",
@@ -3200,9 +3045,9 @@
     "notes": "Stars Without Number",
     "location": "Sali 203b",
     "startTime": "2017-07-29T16:00:00.000Z",
-    "mins": 480,
-    "minAttendance": 1,
-    "maxAttendance": 6,
+    "mins": "480",
+    "minAttendance": "1",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -3212,7 +3057,6 @@
     "people": ["Laakso Joonas"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8380",
     "title": "Karannut sulhanen",
@@ -3220,9 +3064,9 @@
     "notes": "Cyberpunk 2020",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -3233,7 +3077,6 @@
     "people": ["Oksanen Antti"],
     "tags": ["Pöytäpelit", "Ei sovellu lapsille"]
   },
-
   {
     "id": "8457",
     "title": "Action Castle II",
@@ -3241,9 +3084,9 @@
     "notes": "Parseley",
     "location": "Sali 307",
     "startTime": "2017-07-29T17:00:00.000Z",
-    "mins": 120,
-    "minAttendance": 3,
-    "maxAttendance": 8,
+    "mins": "120",
+    "minAttendance": "3",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.160Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -3256,7 +3099,6 @@
     "people": ["Sani Ilari"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8419",
     "title": "Murha Joninkylässä",
@@ -3264,9 +3106,9 @@
     "notes": "HeroQuestin suomenkielinen laitos",
     "location": "Sali 301",
     "startTime": "2017-07-29T18:00:00.000Z",
-    "mins": 360,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "360",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": [
       "Kevyet säännöt / Rules light",
@@ -3276,7 +3118,6 @@
     "people": ["Järvinen Matti"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8309",
     "title": "#8-10—Tyranny of Winds, Part 2: Secrets of the Endless Sky",
@@ -3284,15 +3125,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-29T19:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Salo Tytti"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8437",
     "title": "The Moonchase Affair",
@@ -3300,15 +3140,14 @@
     "notes": "Shadowrun simplified",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-29T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.175Z",
     "attributes": ["Mysteeri / Investigation", "Sci-fi", "Fantasia / Fantasy"],
     "people": ["Andersson Pontus"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8339",
     "title": "Kaupunki nimeltä Sacrificio",
@@ -3316,9 +3155,9 @@
     "notes": "Jotain kevyttä.",
     "location": "Sali 203b",
     "startTime": "2017-07-29T20:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 2,
-    "maxAttendance": 3,
+    "mins": "240",
+    "minAttendance": "2",
+    "maxAttendance": "3",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -3334,7 +3173,6 @@
     "people": ["Laine Eero"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8391",
     "title": "Star Wars 30th Anniversary: Tatooine Manhunt",
@@ -3342,9 +3180,9 @@
     "notes": "Star Wars RPG D6 West End Games",
     "location": "Kokoustamon aula 1. krs.",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 6,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "6",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Tarinavetoinen / Story driven",
@@ -3355,7 +3193,6 @@
     "people": ["Bergenheim Nikolas"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8476",
     "title": "Stars Without Number - Pähkinänsärkijä",
@@ -3363,9 +3200,9 @@
     "notes": "Stars Without Number",
     "location": "Sali 203b",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 300,
-    "minAttendance": 1,
-    "maxAttendance": 6,
+    "mins": "300",
+    "minAttendance": "1",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.193Z",
     "attributes": [
       "Hahmovetoinen / Character driven",
@@ -3376,7 +3213,6 @@
     "people": ["Laakso Joonas"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen", "In English"]
   },
-
   {
     "id": "8461",
     "title": "Kaaosta Alpha Komplexissa",
@@ -3384,15 +3220,14 @@
     "notes": "Paranoia Rebooted2016",
     "location": "Sali 307",
     "startTime": "2017-07-30T10:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 8,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "8",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": ["Kevyt pelityyli / Light gamestyle", "Huumori / Humor"],
     "people": ["Roto Vesa"],
     "tags": ["Pöytäpelit"]
   },
-
   {
     "id": "8353",
     "title": "Nuclear Strike: Wacky Race 2020",
@@ -3400,9 +3235,9 @@
     "notes": "Strike!",
     "location": "Sali 203a",
     "startTime": "2017-07-30T11:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [
       "Taisteluvetoinen / Combat driven",
@@ -3413,7 +3248,6 @@
     "people": ["Renholm Patrik"],
     "tags": ["Pöytäpelit", "Äänekäs", "In English"]
   },
-
   {
     "id": "8157",
     "title": "Roolipelejä kirjaston alueella",
@@ -3421,15 +3255,14 @@
     "notes": "",
     "location": "Halli 5",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 3,
-    "maxAttendance": 5,
+    "mins": "180",
+    "minAttendance": "3",
+    "maxAttendance": "5",
     "created": "2017-07-30T08:00:45.207Z",
     "attributes": [],
     "people": ["Kirjastot Helmet"],
     "tags": ["Pöytäpelit", "Lapsiystävällinen", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8313",
     "title": "#8-22: Wrath of the Fleshwarped Queen",
@@ -3437,15 +3270,14 @@
     "notes": "Pathfinder",
     "location": "Sali 209",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 240,
-    "minAttendance": 3,
-    "maxAttendance": 6,
+    "mins": "240",
+    "minAttendance": "3",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.222Z",
     "attributes": ["Seikkailu / Exploration", "Fantasia / Fantasy"],
     "people": ["Frösen Joonas"],
     "tags": ["Pöytäpelit", "Aloittelijaystävällinen"]
   },
-
   {
     "id": "8462",
     "title": "Lalli-mättö",
@@ -3453,9 +3285,9 @@
     "notes": "ANKH",
     "location": "Sali 307",
     "startTime": "2017-07-30T12:00:00.000Z",
-    "mins": 180,
-    "minAttendance": 6,
-    "maxAttendance": 6,
+    "mins": "180",
+    "minAttendance": "6",
+    "maxAttendance": "6",
     "created": "2017-07-30T08:00:45.241Z",
     "attributes": ["Huumori / Humor", "Fantasia / Fantasy"],
     "people": ["Mattila Samu-Ville"],
