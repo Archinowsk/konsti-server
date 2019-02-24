@@ -3,7 +3,7 @@ import { readJson, writeJson } from './statsUtil'
 const fixData = async () => {
   const data = readJson()
 
-  // Implement fixed logic here
+  // Implement fixer logic here
   data.forEach(dataEntry => {
     dataEntry.username = dataEntry.username.toUpperCase()
   })
