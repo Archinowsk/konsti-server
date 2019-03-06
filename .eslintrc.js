@@ -1,6 +1,7 @@
 module.exports = {
   extends: [
     'standard',
+    'plugin:jest/recommended',
     // 'plugin:security/recommended',
     'plugin:flowtype/recommended',
     // 'plugin:node/recommended',
@@ -21,6 +22,7 @@ module.exports = {
     'promise',
     'unicorn',
     'eslint-plugin',
+    'jest',
     // 'flowtype-errors',
   ],
   parser: 'babel-eslint',
@@ -30,6 +32,7 @@ module.exports = {
   },
   env: {
     node: true,
+    jest: true,
   },
   rules: {
     'prettier/prettier': 'error',
