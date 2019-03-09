@@ -29,9 +29,8 @@ const createAdminUser = async () => {
   }
 }
 
-const createTestUser = async () => {
-  // Create admin user with predefined data
-  logger.info(`Generate data for user "test:test"`)
+const createTestUser = async (userNumber: number) => {
+  logger.info(`Generate data for user "test${userNumber}:test"`)
 
   let response = null
   try {
@@ -39,7 +38,7 @@ const createTestUser = async () => {
     const passwordHash = response
 
     const registrationData = {
-      username: 'test',
+      username: `test${userNumber}`,
       passwordHash,
       userGroup: 'user',
       serial: faker.random.number(10000000),
@@ -51,6 +50,13 @@ const createTestUser = async () => {
     return db.user.saveUser(registrationData)
   } catch (error) {
     logger.error(error)
+  }
+}
+
+const createTestUsers = async (number: number) => {
+  // Create test users with predefined data
+  for (let i = 0; i < number; i += 1) {
+    createTestUser(i + 1)
   }
 }
 
@@ -106,4 +112,4 @@ const createUsers = (count: number) => {
   return Promise.all(promises)
 }
 
-export { createUsers, createAdminUser, createTestUser, createUsersInGroup }
+export { createUsers, createAdminUser, createTestUsers, createUsersInGroup }

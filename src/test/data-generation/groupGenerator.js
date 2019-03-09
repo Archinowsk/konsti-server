@@ -3,7 +3,7 @@ import faker from 'faker'
 import {
   createUsers,
   createAdminUser,
-  createTestUser,
+  createTestUsers,
   createUsersInGroup,
 } from 'test/data-generation/generators/userDataGenerators'
 import { createGames } from 'test/data-generation/generators/gameDataGenerators'
@@ -16,7 +16,7 @@ const groupGenerator = async (
   numberOfGroups: number
 ) => {
   await createAdminUser()
-  await createTestUser()
+  await createTestUsers(2)
   await createUsers(newUsersCount)
 
   for (let i = 0; i < numberOfGroups; i++) {
