@@ -7,7 +7,7 @@ import {
   createUsersInGroup,
 } from 'test/data-generation/generators/userDataGenerators'
 import { createGames } from 'test/data-generation/generators/gameDataGenerators'
-// import { createSignupData } from 'test/data-generation/generators/signupDataGenerators'
+import { createSignupData } from 'test/data-generation/generators/signupDataGenerators'
 
 const groupGenerator = async (
   newUsersCount: number,
@@ -25,7 +25,7 @@ const groupGenerator = async (
   }
 
   await createGames(newGamesCount)
-  // await createSignupData('group')
+  await createSignupData('group')
 }
 
 export default groupGenerator
