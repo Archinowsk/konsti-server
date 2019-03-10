@@ -37,6 +37,8 @@
     "stats:fix": "node -r esm src/statistics/dataFixer.js",
     "stats:anonymize": "node -r esm src/statistics/dataAnonymizer.js",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors",
     "test-assign": "npm run build && cross-env NODE_ENV=development node -r esm lib/test/testAssignPlayers.js"
   },
   "dependencies": {

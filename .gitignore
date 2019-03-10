@@ -30,3 +30,6 @@ front
 
 # Mac
 .DS_Store
+
+# Coverage report
+coverage
