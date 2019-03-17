@@ -1,5 +1,10 @@
 import fs from 'fs'
 import { getYear } from './statsUtil'
+import {
+  getUsersWithoutGames,
+  getUsersWithoutSignups,
+  getUsersSignupCount,
+} from './statistics-helpers/userDataHelpers'
 
 const getUserStats = () => {
   const year = getYear()
@@ -10,14 +15,9 @@ const getUserStats = () => {
 
   console.info(`Loaded ${userData.length} users`)
 
-  const enteredGames = userData.reduce((acc, user) => {
-    user.entered_games.forEach(game => {
-      acc[game.id] = ++acc[game.id] || 1
-    })
-    return acc
-  }, {})
-
-  console.log(enteredGames['8334'])
+  getUsersWithoutSignups(userData)
+  const usersWithoutGames = getUsersWithoutGames(userData)
+  getUsersSignupCount(usersWithoutGames)
 }
 
 getUserStats()
