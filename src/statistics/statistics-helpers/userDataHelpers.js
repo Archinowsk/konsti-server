@@ -61,14 +61,27 @@ export const getUsersSignupCount = userData => {
     userSignupCounts.push(signedGames)
   })
 
-  const counts = { '1': 0, '2': 0, '3': 0 }
+  const gameWishes = {}
   userSignupCounts.forEach(userSignups => {
-    for (const key in userSignups) {
-      counts[userSignups[key]] += 1
+    for (const signupTime in userSignups) {
+      gameWishes[userSignups[signupTime]] =
+        ++gameWishes[userSignups[signupTime]] || 1
     }
   })
 
-  console.log(`Number of signups with only one game wish: ${counts['1']}`)
-  console.log(`Number of signups with two one game wishes: ${counts['2']}`)
-  console.log(`Number of signups with three game wishes: ${counts['3']}`)
+  console.log(
+    `Users signed for this many games when they didn't get signed:`,
+    gameWishes
+  )
+
+  const signupCount = {}
+  userSignupCounts.forEach(userSignups => {
+    signupCount[Object.keys(userSignups).length] =
+      ++signupCount[Object.keys(userSignups).length] || 1
+  })
+
+  console.log(
+    `Users didn't get into any games after this many signup attemps:`,
+    signupCount
+  )
 }
