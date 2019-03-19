@@ -1,6 +1,4 @@
-const toPercent = num => {
-  return Math.round(num * 100)
-}
+import { toPercent } from '../statsUtil'
 
 export const getUsersByGames = users => {
   const enteredGames = users.reduce((acc, user) => {

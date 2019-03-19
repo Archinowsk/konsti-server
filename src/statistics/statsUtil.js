@@ -50,3 +50,7 @@ export const writeJson = data => {
 
   console.info(`Saved ${data.length} ${type}`)
 }
+
+export const toPercent = num => {
+  return Math.round(num * 100)
+}
