@@ -4,6 +4,9 @@ import {
   getGamesByStartingTime,
   getUsersByGames,
   getNumberOfFullGames,
+  getMaximumNumberOfPlayersByTime,
+  getDemandByTime,
+  getSignupsByStartTime,
 } from './statistics-helpers/gameDataHelpers'
 
 const getGameStats = () => {
@@ -24,6 +27,10 @@ const getGameStats = () => {
   const usersByGames = getUsersByGames(users)
 
   getNumberOfFullGames(games, usersByGames)
+
+  const signupsByStartTime = getSignupsByStartTime(users)
+  const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games)
+  getDemandByTime(signupsByStartTime, maximumNumberOfPlayersByTime)
 }
 
 getGameStats()
