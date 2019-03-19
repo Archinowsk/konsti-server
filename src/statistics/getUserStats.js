@@ -4,6 +4,7 @@ import {
   getUsersWithoutGames,
   getUsersWithoutSignups,
   getUsersSignupCount,
+  getUsersWithAllGames,
 } from './statistics-helpers/userDataHelpers'
 
 const getUserStats = () => {
@@ -18,6 +19,7 @@ const getUserStats = () => {
   getUsersWithoutSignups(userData)
   const usersWithoutGames = getUsersWithoutGames(userData)
   getUsersSignupCount(usersWithoutGames)
+  getUsersWithAllGames(userData)
 }
 
 getUserStats()

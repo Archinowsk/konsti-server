@@ -85,3 +85,24 @@ export const getUsersSignupCount = userData => {
     signupCount
   )
 }
+
+export const getUsersWithAllGames = userData => {
+  let counter = 0
+
+  userData.forEach(user => {
+    const signedGamesByTime = user.signedGames.reduce((acc, signedGame) => {
+      acc[signedGame.time] = ++acc[signedGame.time] || 1
+      return acc
+    }, {})
+
+    if (Object.keys(signedGamesByTime).length === user.enteredGames.length) {
+      counter++
+    }
+  })
+
+  console.log(
+    `This many users got into a game each time they signed up: ${counter}/${
+      userData.length
+    } (${toPercent(counter / userData.length)}%)`
+  )
+}
