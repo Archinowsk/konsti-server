@@ -1,22 +1,27 @@
 import fs from 'fs'
 import { getYear } from './statsUtil'
+import {
+  getSignupsByTime,
+  getMaximumNumberOfPlayersByTime,
+  getDemandByTime,
+} from './statistics-helpers/resultDataHelpers'
 
 const getResultsStats = () => {
   const year = getYear()
 
-  const resultData = JSON.parse(
+  const results = JSON.parse(
     fs.readFileSync(`src/statistics/datafiles/${year}/results.json`, 'utf8')
   )
+  console.info(`Loaded ${results.length} results`)
 
-  console.info(`Loaded ${resultData.length} results`)
+  const games = JSON.parse(
+    fs.readFileSync(`src/statistics/datafiles/${year}/games.json`, 'utf8')
+  )
+  console.info(`Loaded ${games.length} games`)
 
-  // Signup by starting time
-  const signupsByTime = resultData.reduce((acc, results) => {
-    acc[results.startTime] = results.result.length
-    return acc
-  }, {})
-
-  console.log(signupsByTime)
+  const signupsByTime = getSignupsByTime(results)
+  const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games)
+  getDemandByTime(signupsByTime, maximumNumberOfPlayersByTime)
 }
 
 getResultsStats()
