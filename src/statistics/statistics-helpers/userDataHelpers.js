@@ -2,8 +2,8 @@ const toPercent = num => {
   return Math.round(num * 100)
 }
 
-export const getUsersByGames = userData => {
-  const enteredGames = userData.reduce((acc, user) => {
+export const getUsersByGames = users => {
+  const enteredGames = users.reduce((acc, user) => {
     user.enteredGames.forEach(game => {
       acc[game.id] = ++acc[game.id] || 1
     })
@@ -13,10 +13,10 @@ export const getUsersByGames = userData => {
   console.log(enteredGames)
 }
 
-export const getUsersWithoutGames = userData => {
+export const getUsersWithoutGames = users => {
   let counter = 0
   const usersWithoutGames = []
-  userData.forEach(user => {
+  users.forEach(user => {
     if (user.enteredGames.length === 0 && user.signedGames.length !== 0) {
       usersWithoutGames.push(user)
       counter += 1
@@ -24,18 +24,18 @@ export const getUsersWithoutGames = userData => {
   })
 
   console.log(
-    `Players without any entered games: ${counter}/${
-      userData.length
-    } (${toPercent(counter / userData.length)}%)`
+    `Players without any entered games: ${counter}/${users.length} (${toPercent(
+      counter / users.length
+    )}%)`
   )
 
   return usersWithoutGames
 }
 
-export const getUsersWithoutSignups = userData => {
+export const getUsersWithoutSignups = users => {
   let counter = 0
   const usersWithoutSignups = []
-  userData.forEach(user => {
+  users.forEach(user => {
     if (user.signedGames.length === 0) {
       usersWithoutSignups.push(user)
       counter += 1
@@ -43,17 +43,17 @@ export const getUsersWithoutSignups = userData => {
   })
 
   console.log(
-    `Players without any signed games: ${counter}/${
-      userData.length
-    } (${toPercent(counter / userData.length)}%)`
+    `Players without any signed games: ${counter}/${users.length} (${toPercent(
+      counter / users.length
+    )}%)`
   )
 
   return usersWithoutSignups
 }
 
-export const getUsersSignupCount = userData => {
+export const getUsersSignupCount = users => {
   const userSignupCounts = []
-  userData.forEach(user => {
+  users.forEach(user => {
     const signedGames = user.signedGames.reduce((acc, signedGame) => {
       acc[signedGame.time] = ++acc[signedGame.time] || 1
       return acc
@@ -86,10 +86,10 @@ export const getUsersSignupCount = userData => {
   )
 }
 
-export const getUsersWithAllGames = userData => {
+export const getUsersWithAllGames = users => {
   let counter = 0
 
-  userData.forEach(user => {
+  users.forEach(user => {
     const signedGamesByTime = user.signedGames.reduce((acc, signedGame) => {
       acc[signedGame.time] = ++acc[signedGame.time] || 1
       return acc
@@ -102,7 +102,7 @@ export const getUsersWithAllGames = userData => {
 
   console.log(
     `This many users got into a game each time they signed up: ${counter}/${
-      userData.length
-    } (${toPercent(counter / userData.length)}%)`
+      users.length
+    } (${toPercent(counter / users.length)}%)`
   )
 }

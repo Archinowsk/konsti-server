@@ -10,16 +10,16 @@ import {
 const getUserStats = () => {
   const year = getYear()
 
-  const userData = JSON.parse(
+  const users = JSON.parse(
     fs.readFileSync(`src/statistics/datafiles/${year}/users.json`, 'utf8')
   )
 
-  console.info(`Loaded ${userData.length} users`)
+  console.info(`Loaded ${users.length} users`)
 
-  getUsersWithoutSignups(userData)
-  const usersWithoutGames = getUsersWithoutGames(userData)
+  getUsersWithoutSignups(users)
+  const usersWithoutGames = getUsersWithoutGames(users)
   getUsersSignupCount(usersWithoutGames)
-  getUsersWithAllGames(userData)
+  getUsersWithAllGames(users)
 }
 
 getUserStats()
