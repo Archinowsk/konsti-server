@@ -7,7 +7,7 @@ import { postLogin } from 'api/controllers/loginController'
 import { postPlayers } from 'api/controllers/playersController'
 import { postSignup } from 'api/controllers/signupController'
 import { postFavorite } from 'api/controllers/favoriteController'
-import { postBlacklist } from 'api/controllers/blacklistController'
+import { postHidden } from 'api/controllers/hiddenController'
 import { postSignupTime } from 'api/controllers/signuptimeController'
 import { postFeedback } from 'api/controllers/feedbackController'
 import { getSettings } from 'api/controllers/settingsController'
@@ -22,7 +22,7 @@ router.post('/login', postLogin)
 router.post('/players', postPlayers)
 router.post('/signup', postSignup)
 router.post('/favorite', postFavorite)
-router.post('/blacklist', postBlacklist)
+router.post('/hidden', postHidden)
 router.post('/signuptime', postSignupTime)
 router.post('/feedback', postFeedback)
 router.post('/group', postGroup)

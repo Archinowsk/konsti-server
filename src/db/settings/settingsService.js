@@ -12,7 +12,7 @@ const createSettings = async () => {
   logger.info('MongoDB: "Settings" collection not found, create empty')
 
   const settings = new Settings({
-    blacklistedGames: [],
+    hiddenGames: [],
     canceledGames: [],
     signupTime: moment('2018-07-27T15:00:00.000Z'),
   })
@@ -45,16 +45,16 @@ const findSettings = async () => {
   return response
 }
 
-const saveBlacklist = async (blacklistData: Object) => {
+const saveHidden = async (hiddenData: Object) => {
   let response = null
   try {
     response = await Settings.update({
-      $set: { blacklistedGames: blacklistData.blacklistedGames },
+      $set: { hiddenGames: hiddenData.hiddenGames },
     })
-    logger.info(`MongoDB: Blacklist data updated`)
+    logger.info(`MongoDB: Hidden data updated`)
     return response
   } catch (error) {
-    logger.error(`MongoDB: Error updating blacklist data - ${error}`)
+    logger.error(`MongoDB: Error updating hidden data - ${error}`)
     return error
   }
 }
@@ -84,7 +84,7 @@ const saveSignupTime = async (signupTime: Date) => {
 const settings = {
   findSettings,
   removeSettings,
-  saveBlacklist,
+  saveHidden,
   saveSignupTime,
 }
 

@@ -11,7 +11,7 @@ const getSettings = async (req: Object, res: Object) => {
     response = await db.settings.findSettings()
 
     const gamesData = {
-      blacklistedGames: response.blacklistedGames,
+      hiddenGames: response.hiddenGames,
     }
 
     res.json({

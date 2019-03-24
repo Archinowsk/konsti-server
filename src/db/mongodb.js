@@ -13,6 +13,8 @@ import serial from 'db/serial/serialService'
 const connectToDb = async () => {
   // Use native Node promises
   mongoose.Promise = global.Promise
+  // Don't use Mongoose useFindAndModify
+  mongoose.set('useFindAndModify', false)
 
   // Connect to MongoDB and create/use database
   try {
