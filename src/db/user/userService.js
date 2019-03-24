@@ -10,7 +10,6 @@ const removeUsers = () => {
 const saveUser = async (userData: Object) => {
   const username = userData.username.trim()
 
-  // User data
   const user = new User({
     username,
     password: userData.passwordHash,
@@ -57,8 +56,7 @@ const updateUserSignedGames = async (userData: Object) => {
 
   let response = null
   try {
-    // response = await User.findOne({ username })
-    response = await User.update(
+    response = await User.updateOne(
       { username: username },
       { $set: { signedGames: signedGames } }
     )
@@ -169,7 +167,7 @@ const saveSignup = async (signupData: Object) => {
 
   let signupResponse = null
   try {
-    signupResponse = await User.update(
+    signupResponse = await User.updateOne(
       { username: username },
       { $set: { signedGames: selectedGames } }
     )
@@ -187,7 +185,7 @@ const saveSignup = async (signupData: Object) => {
 const saveGroup = async (groupCode: string, username: string) => {
   let response = null
   try {
-    response = await User.update(
+    response = await User.updateOne(
       { username: username },
       { $set: { playerGroup: groupCode } }
     )
@@ -209,7 +207,7 @@ const saveGroup = async (groupCode: string, username: string) => {
 const saveFavorite = async (favoriteData: Object) => {
   let response = null
   try {
-    response = await User.update(
+    response = await User.updateOne(
       { username: favoriteData.username },
       { $set: { favoritedGames: favoriteData.favoritedGames } }
     )
@@ -231,12 +229,11 @@ const saveFavorite = async (favoriteData: Object) => {
 const saveSignupResult = async (signupResultData: Object) => {
   let response = null
   try {
-    response = await User.update(
+    response = await User.updateOne(
       {
         username: signupResultData.username,
         enteredGames: { $ne: [{ id: signupResultData.enteredGame.id }] },
       },
-      // { $set: { enteredGames: { id: signupResultData.enteredGame } } }
       { $push: { enteredGames: { id: signupResultData.enteredGame.id } } }
     )
 

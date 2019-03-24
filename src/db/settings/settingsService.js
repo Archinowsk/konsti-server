@@ -48,7 +48,7 @@ const findSettings = async () => {
 const saveHidden = async (hiddenData: Object) => {
   let response = null
   try {
-    response = await Settings.update({
+    response = await Settings.updateOne({
       $set: { hiddenGames: hiddenData.hiddenGames },
     })
     logger.info(`MongoDB: Hidden data updated`)
@@ -70,7 +70,7 @@ const saveSignupTime = async (signupTime: Date) => {
 
   let response = null
   try {
-    response = await Settings.update({
+    response = await Settings.updateOne({
       $set: { signupTime: formattedTime },
     })
     logger.info(`MongoDB: Signup time updated`)
