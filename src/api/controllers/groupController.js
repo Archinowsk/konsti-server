@@ -2,7 +2,6 @@
 import logger from 'utils/logger'
 import db from 'db/mongodb'
 import validateAuthHeader from 'utils/authHeader'
-import arrayToObject from 'utils/arrayToObject'
 
 const postGroup = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/group')
@@ -213,13 +212,13 @@ const getGroup = async (req: Object, res: Object) => {
       let signedGames = []
 
       enteredGames = result.enteredGames.map(enteredGame => {
-        const game = games.filter(game => enteredGame.id === game.id)
-        return { ...enteredGame, details: arrayToObject(game) }
+        const game = games.find(game => enteredGame.id === game.id)
+        return { ...enteredGame, details: game.toObject() }
       })
 
       signedGames = result.signedGames.map(signedGame => {
-        const game = games.filter(game => signedGame.id === game.id)
-        return { ...signedGame, details: arrayToObject(game) }
+        const game = games.find(game => signedGame.id === game.id)
+        return { ...signedGame, details: game.toObject() }
       })
 
       returnData.push({
