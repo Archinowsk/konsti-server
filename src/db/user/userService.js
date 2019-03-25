@@ -209,7 +209,13 @@ const saveFavorite = async (favoriteData: Object) => {
   try {
     response = await User.updateOne(
       { username: favoriteData.username },
-      { $set: { favoritedGames: favoriteData.favoritedGames } }
+      {
+        $set: {
+          favoritedGames: favoriteData.favoritedGames.map(game => {
+            return { id: game.id }
+          }),
+        },
+      }
     )
 
     logger.info(

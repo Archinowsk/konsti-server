@@ -3,7 +3,6 @@ import logger from 'utils/logger'
 import db from 'db/mongodb'
 import { hashPassword } from 'utils/bcrypt'
 import validateAuthHeader from 'utils/authHeader'
-import arrayToObject from 'utils/arrayToObject'
 
 // Register new user
 const postUser = async (req: Object, res: Object) => {
@@ -141,27 +140,27 @@ const getUser = async (req: Object, res: Object) => {
     let favoritedGames = []
     let signedGames = []
 
-    if (games) {
-      if (user && user.enteredGames) {
-        enteredGames = user.enteredGames.map(enteredGame => {
-          const game = games.filter(game => enteredGame.id === game.id)
-          return { ...enteredGame, details: arrayToObject(game) }
-        })
-      }
+    if (!games || !user) return
 
-      if (user && user.favoritedGames && games) {
-        favoritedGames = user.favoritedGames.map(favoritedGame => {
-          const game = games.filter(game => favoritedGame.id === game.id)
-          return { ...favoritedGame, details: arrayToObject(game) }
-        })
-      }
+    if (user.enteredGames) {
+      enteredGames = user.enteredGames.map(enteredGame => {
+        const game = games.find(game => enteredGame.id === game.id)
+        return { ...enteredGame, details: game.toObject() }
+      })
+    }
 
-      if (user && user.signedGames && games) {
-        signedGames = user.signedGames.map(signedGame => {
-          const game = games.filter(game => signedGame.id === game.id)
-          return { ...signedGame, details: arrayToObject(game) }
-        })
-      }
+    if (user.favoritedGames) {
+      favoritedGames = user.favoritedGames.map(favoritedGame => {
+        const game = games.find(game => favoritedGame.id === game.id)
+        return { ...favoritedGame, ...game.toObject() }
+      })
+    }
+
+    if (user.signedGames) {
+      signedGames = user.signedGames.map(signedGame => {
+        const game = games.find(game => signedGame.id === game.id)
+        return { ...signedGame, details: game.toObject() }
+      })
     }
 
     const returnData = {
