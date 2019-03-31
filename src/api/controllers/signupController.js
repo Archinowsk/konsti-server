@@ -20,39 +20,20 @@ const postSignup = async (req: Object, res: Object) => {
     return
   }
 
+  const { selectedGames, username, time } = signupData
+
+  const modifiedSignupData = {
+    selectedGames,
+    username,
+    time,
+  }
+
   try {
-    const { selectedGames, username, time } = signupData
-
-    const user = await db.user.findUser(signupData)
-
-    // Remove games with same time
-    const filteredGames = user.signedGames.filter(
-      signedGame => signedGame.time !== time
-    )
-
-    const mergedSelectedGames = filteredGames.concat(selectedGames)
-
-    const modifiedSignupData = {
-      selectedGames: mergedSelectedGames,
-      username,
-      time,
-    }
-
     await db.user.saveSignup(modifiedSignupData)
-    const games = await db.game.findGames()
-
-    let signedGames = []
-    if (mergedSelectedGames) {
-      signedGames = mergedSelectedGames.map(signedGame => {
-        const game = games.find(game => signedGame.id === game.id)
-        return { ...signedGame, details: game.toObject() }
-      })
-    }
 
     res.json({
       message: 'Signup success',
       status: 'success',
-      signedGames,
     })
   } catch (error) {
     res.json({
