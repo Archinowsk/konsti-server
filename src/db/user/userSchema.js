@@ -7,9 +7,9 @@ const UserSchema = mongoose.Schema({
   userGroup: String,
   serial: String,
   playerGroup: String,
-  favoritedGames: [{}],
-  signedGames: [{}],
-  enteredGames: [{}],
+  favoritedGames: [{ id: String }],
+  signedGames: [{ id: String, priority: Number, time: Date }],
+  enteredGames: [{ id: String }],
   created: { type: Date, default: Date.now },
 })
 
