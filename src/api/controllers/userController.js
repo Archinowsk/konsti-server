@@ -145,21 +145,21 @@ const getUser = async (req: Object, res: Object) => {
     if (user.enteredGames) {
       enteredGames = user.enteredGames.map(enteredGame => {
         const game = games.find(game => enteredGame.id === game.id)
-        return { ...enteredGame, details: game.toObject() }
+        return { ...enteredGame.toObject(), ...game.toObject() }
       })
     }
 
     if (user.favoritedGames) {
       favoritedGames = user.favoritedGames.map(favoritedGame => {
         const game = games.find(game => favoritedGame.id === game.id)
-        return { ...favoritedGame, ...game.toObject() }
+        return { ...favoritedGame.toObject(), ...game.toObject() }
       })
     }
 
     if (user.signedGames) {
       signedGames = user.signedGames.map(signedGame => {
         const game = games.find(game => signedGame.id === game.id)
-        return { ...signedGame, details: game.toObject() }
+        return { ...signedGame.toObject(), ...game.toObject() }
       })
     }
 
