@@ -2,16 +2,11 @@
 import logger from 'utils/logger'
 import getRandomInt from 'player-assignment/utils/getRandomInt'
 import shuffleArray from 'utils/shuffleArray'
-import type { User } from 'flow/user.flow'
+import type { User, SignupResult } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
 type UserArray = Array<User>
-type SignedGame = { id: string, priority: number }
-type SignupResult = {
-  username: string,
-  enteredGame: { id: string },
-  signedGames: Array<SignedGame>,
-}
+
 type Result = {
   score: number,
   signupResults: Array<SignupResult>,

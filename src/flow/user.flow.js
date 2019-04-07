@@ -1,7 +1,16 @@
 // @flow
-export type SignupData = {
+export type FavoritedGame = {
+  id: string,
+}
+
+export type SignedGame = {
   id: string,
   priority: number,
+  time: Date,
+}
+
+export type EnteredGame = {
+  id: string,
 }
 
 export type User = {
@@ -10,8 +19,14 @@ export type User = {
   userGroup: string,
   serial: string,
   playerGroup: string,
-  favoritedGames: Array<SignupData>,
-  signedGames: Array<SignupData>,
-  enteredGames: Array<SignupData>,
+  favoritedGames: Array<FavoritedGame>,
+  signedGames: Array<SignedGame>,
+  enteredGames: Array<EnteredGame>,
   created: Date | null,
+}
+
+export type SignupResult = {
+  username: string,
+  enteredGame: { id: string },
+  signedGames: Array<SignedGame>,
 }

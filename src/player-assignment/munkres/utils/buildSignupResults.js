@@ -1,20 +1,12 @@
 /* @flow */
-import type { User } from 'flow/user.flow'
+import type { User, SignupResult } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-
-type signedGame = { id: string, priority: number }
-
-type signupResult = {
-  username: string,
-  enteredGame: { id: string },
-  signedGames: Array<signedGame>,
-}
 
 const buildSignupResults = (
   results: Array<Array<number>>,
   selectedGames: Array<Game>,
   selectedPlayers: Array<User>
-): Array<signupResult> => {
+): Array<SignupResult> => {
   const signupResults = []
 
   // Build signup results
