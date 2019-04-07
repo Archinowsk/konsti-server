@@ -40,7 +40,7 @@ const munkresAssignPlayers = (
     const removedGame = getRemovedGame(gamesWithTooFewPlayers)
 
     for (let i = 0; i < selectedGames.length; i += 1) {
-      if (selectedGames[i].id === removedGame.id) {
+      if (selectedGames[i].gameId === removedGame.gameId) {
         logger.info(`Removed game "${selectedGames[i].title}"`)
         selectedGames.splice(i, 1)
         removedGamesCount += 1

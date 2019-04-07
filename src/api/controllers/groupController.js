@@ -212,12 +212,12 @@ const getGroup = async (req: Object, res: Object) => {
       let signedGames = []
 
       enteredGames = result.enteredGames.map(enteredGame => {
-        const game = games.find(game => enteredGame.id === game.id)
+        const game = games.find(game => enteredGame.gameId === game.gameId)
         return { ...enteredGame.toObject(), ...game.toObject() }
       })
 
       signedGames = result.signedGames.map(signedGame => {
-        const game = games.find(game => signedGame.id === game.id)
+        const game = games.find(game => signedGame.gameId === game.gameId)
         return { ...signedGame.toObject(), ...game.toObject() }
       })
 

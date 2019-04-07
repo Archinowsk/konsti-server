@@ -15,7 +15,7 @@ const saveGames = async (games: Array<KompassiGame>) => {
 
   games.forEach(game => {
     const gameDoc = new Game({
-      id: game.identifier,
+      gameId: game.identifier,
       title: game.title,
       description: game.description,
       location: game.room_name,

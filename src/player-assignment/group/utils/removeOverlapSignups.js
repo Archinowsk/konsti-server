@@ -8,7 +8,9 @@ const removeOverlapSignups = (result, games, players) => {
   if (!result.results) return
   /* $FlowFixMe */
   result.results.forEach(result => {
-    const enteredGame = games.filter(game => game.id === result.enteredGame.id)
+    const enteredGame = games.filter(
+      game => game.gameId === result.enteredGame.gameId
+    )
 
     const signedPlayer = players.filter(
       player => player.username === result.username
@@ -22,7 +24,7 @@ const removeOverlapSignups = (result, games, players) => {
       /* $FlowFixMe */
       signedPlayer[0].signedGames.forEach(signedGame => {
         const signedGameDetails = games.filter(
-          game => game.id === signedGame.id
+          game => game.gameId === signedGame.gameId
         )
 
         // If signed game takes place during the length of entered game, cancel it

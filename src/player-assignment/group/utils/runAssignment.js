@@ -33,7 +33,7 @@ const runAssignment = (
       // Get groups with specific game signup
       // Always use first player in group
       playerGroup[0].signedGames.forEach(signedGame => {
-        if (signedGame.id === selectedGame.id) {
+        if (signedGame.gameId === selectedGame.gameId) {
           matchingGroups.push(playerGroup)
         }
       })
@@ -129,7 +129,7 @@ const runAssignment = (
       for (let selectedGroup of selectedGroups) {
         for (let groupMember of selectedGroup) {
           let signedGame = groupMember.signedGames.filter(
-            game => game.id === selectedGame.id
+            game => game.gameId === selectedGame.gameId
           )
 
           // Increase score based on priority of the entered game
@@ -145,7 +145,7 @@ const runAssignment = (
 
           signupResults.push({
             username: groupMember.username,
-            enteredGame: { id: selectedGame.id },
+            enteredGame: { gameId: selectedGame.gameId },
             signedGames: groupMember.signedGames,
           })
         }

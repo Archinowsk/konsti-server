@@ -27,7 +27,7 @@ const buildSignupResults = (
       if (selectedRow < attendanceRange) {
         signupResults.push({
           username: selectedPlayers[selectedPlayer].username,
-          enteredGame: { id: selectedGames[j].id },
+          enteredGame: { gameId: selectedGames[j].gameId },
           signedGames: selectedPlayers[selectedPlayer].signedGames,
         })
         break

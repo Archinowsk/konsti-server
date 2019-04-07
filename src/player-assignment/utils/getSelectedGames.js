@@ -13,7 +13,7 @@ const getSelectedGames = (
   // Get valid games from games that are starting and games that have wishes
   startingGames.forEach(startingGame => {
     for (let i = 0; i < signupWishes.length; i += 1) {
-      if (startingGame.id === signupWishes[i].id) {
+      if (startingGame.gameId === signupWishes[i].gameId) {
         selectedGames.push(startingGame)
         minAttendance += startingGame.minAttendance
         maxAttendance += startingGame.maxAttendance

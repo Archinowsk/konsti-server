@@ -21,7 +21,7 @@ const getSignupMatrix = (
       let match = false
       for (let i = 0; i < player.signedGames.length; i += 1) {
         // Player has wish that matches starting game
-        if (selectedGame.id === player.signedGames[i].id) {
+        if (selectedGame.gameId === player.signedGames[i].gameId) {
           if (typeof player.signedGames[i].priority === 'undefined') {
             gameSignups.push(9)
           } else {

@@ -3,7 +3,7 @@ import { toPercent } from '../statsUtil'
 export const getUsersByGames = users => {
   const enteredGames = users.reduce((acc, user) => {
     user.enteredGames.forEach(game => {
-      acc[game.id] = ++acc[game.id] || 1
+      acc[game.gameId] = ++acc[game.gameId] || 1
     })
     return acc
   }, {})

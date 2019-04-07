@@ -212,7 +212,7 @@ const saveFavorite = async (favoriteData: Object) => {
       {
         $set: {
           favoritedGames: favoriteData.favoritedGames.map(game => {
-            return { id: game.id }
+            return { gameId: game.gameId }
           }),
         },
       }
@@ -238,9 +238,15 @@ const saveSignupResult = async (signupResultData: Object) => {
     response = await User.updateOne(
       {
         username: signupResultData.username,
-        enteredGames: { $ne: [{ id: signupResultData.enteredGame.id }] },
+        enteredGames: {
+          $ne: [{ gameId: signupResultData.enteredGame.gameId }],
+        },
       },
-      { $push: { enteredGames: { id: signupResultData.enteredGame.id } } }
+      {
+        $push: {
+          enteredGames: { gameId: signupResultData.enteredGame.gameId },
+        },
+      }
     )
 
     logger.info(

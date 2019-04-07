@@ -4,7 +4,7 @@ import Feedback from 'db/feedback/feedbackSchema'
 
 const saveFeedback = async (feedbackData: Object) => {
   const feedback = new Feedback({
-    gameId: feedbackData.id,
+    gameId: feedbackData.gameId,
     feedback: feedbackData.feedback,
   })
 

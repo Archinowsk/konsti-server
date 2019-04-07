@@ -1,16 +1,16 @@
 // @flow
 export type FavoritedGame = {
-  id: string,
+  gameId: string,
 }
 
 export type SignedGame = {
-  id: string,
+  gameId: string,
   priority: number,
   time: Date,
 }
 
 export type EnteredGame = {
-  id: string,
+  gameId: string,
 }
 
 export type User = {
@@ -27,6 +27,6 @@ export type User = {
 
 export type SignupResult = {
   username: string,
-  enteredGame: { id: string },
+  enteredGame: { gameId: string },
   signedGames: Array<SignedGame>,
 }

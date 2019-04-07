@@ -14,7 +14,7 @@ export const getGamesByStartingTime = games => {
 export const getUsersByGames = users => {
   const enteredGames = users.reduce((acc, user) => {
     user.enteredGames.forEach(game => {
-      acc[game.id] = ++acc[game.id] || 1
+      acc[game.gameId] = ++acc[game.gameId] || 1
     })
     return acc
   }, {})
@@ -27,7 +27,8 @@ export const getNumberOfFullGames = (games, usersByGames) => {
   let counter = 0
   games.forEach(game => {
     if (
-      parseInt(game.maxAttendance, 10) === parseInt(usersByGames[game.id], 10)
+      parseInt(game.maxAttendance, 10) ===
+      parseInt(usersByGames[game.gameId], 10)
     ) {
       counter++
     }

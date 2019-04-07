@@ -1,6 +1,6 @@
 // @flow
 export type Game = {
-  id: string,
+  gameId: string,
   title: string,
   description: string,
   location: string,
