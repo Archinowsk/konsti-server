@@ -1,4 +1,5 @@
 import moment from 'moment'
+import logger from 'utils/logger'
 
 const removeOverlapSignups = (result, games, players) => {
   // Remove signups that overlap with assignment result
@@ -8,56 +9,51 @@ const removeOverlapSignups = (result, games, players) => {
   if (!result.results) return
   /* $FlowFixMe */
   result.results.forEach(result => {
-    const enteredGame = games.filter(
+    const enteredGame = games.find(
       game => game.gameId === result.enteredGame.gameId
     )
 
-    const signedPlayer = players.filter(
+    const signedPlayer = players.find(
       player => player.username === result.username
     )
 
-    // console.log('before', signedPlayer[0].signedGames)
-
     const newSignedGames = []
 
-    if (signedPlayer[0] && signedPlayer[0].signedGames) {
+    if (signedPlayer && signedPlayer.signedGames) {
       /* $FlowFixMe */
-      signedPlayer[0].signedGames.forEach(signedGame => {
-        const signedGameDetails = games.filter(
+      signedPlayer.signedGames.forEach(signedGame => {
+        const signedGameDetails = games.find(
           game => game.gameId === signedGame.gameId
         )
 
         // If signed game takes place during the length of entered game, cancel it
         if (
-          moment(signedGameDetails[0].startTime).isBetween(
-            moment(enteredGame[0].startTime).add(1, 'minutes'),
-            moment(enteredGame[0].endTime)
+          moment(signedGameDetails.startTime).isBetween(
+            moment(enteredGame.startTime).add(1, 'minutes'),
+            moment(enteredGame.endTime)
           )
         ) {
           // Remove this signup
-          /*
-        console.log(
-          `Signed game "${signedGameDetails[0].title}" starts at ${moment(
-            signedGameDetails[0].startTime
-          ).format()}`
-        )
+          logger.debug(
+            `Signed game "${signedGameDetails.title}" starts at ${moment(
+              signedGameDetails.startTime
+            ).format()}`
+          )
 
-        console.log(
-          `Entered game "${enteredGame[0].title}" ends at ${moment(
-            enteredGame[0].endTime
-          ).format()}`
-        )
-        */
+          logger.debug(
+            `Entered game "${enteredGame.title}" ends at ${moment(
+              enteredGame.endTime
+            ).format()}`
+          )
+          logger.debug(`=> Remove signup "${signedGameDetails.title}"`)
         } else {
           newSignedGames.push(signedGame)
         }
       })
     }
 
-    // console.log('after', signedPlayer[0].signedGames)
-
     newSignupData.push({
-      username: signedPlayer[0].username,
+      username: signedPlayer.username,
       signedGames: newSignedGames,
     })
   })

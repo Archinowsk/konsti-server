@@ -128,16 +128,16 @@ const runAssignment = (
       // Store results for selected groups
       for (let selectedGroup of selectedGroups) {
         for (let groupMember of selectedGroup) {
-          let signedGame = groupMember.signedGames.filter(
+          let signedGame = groupMember.signedGames.find(
             game => game.gameId === selectedGame.gameId
           )
 
           // Increase score based on priority of the entered game
-          if (signedGame[0].priority === 1) {
+          if (signedGame.priority === 1) {
             score += 3
-          } else if (signedGame[0].priority === 2) {
+          } else if (signedGame.priority === 2) {
             score += 2
-          } else if (signedGame[0].priority === 3) {
+          } else if (signedGame.priority === 3) {
             score += 1
           }
 
