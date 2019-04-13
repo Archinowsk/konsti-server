@@ -133,11 +133,11 @@ const runAssignment = (
           )
 
           // Increase score based on priority of the entered game
-          if (signedGame.priority === 1) {
+          if (signedGame && signedGame.priority === 1) {
             score += 3
-          } else if (signedGame.priority === 2) {
+          } else if (signedGame && signedGame.priority === 2) {
             score += 2
-          } else if (signedGame.priority === 3) {
+          } else if (signedGame && signedGame.priority === 3) {
             score += 1
           }
 
