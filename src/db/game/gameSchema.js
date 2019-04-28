@@ -23,7 +23,6 @@ const GameSchema = mongoose.Schema({
   ageRestricted: Boolean,
   beginnerFriendly: Boolean,
   intendedForExperiencedParticipants: Boolean,
-  created: { type: Date, default: Date.now },
 })
 
 const Game = mongoose.model('Game', GameSchema)
