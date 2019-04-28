@@ -1,4 +1,6 @@
 /* @flow */
+
+/*
 import moment from 'moment'
 import logger from 'utils/logger'
 import db from 'db/mongodb'
@@ -6,21 +8,20 @@ import assignPlayers from 'player-assignment/assignPlayers'
 import config from 'config'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
+import type { Result } from 'flow/result.flow'
+*/
 
 const runAssignPlayers = async () => {
+  /*
   const strategy = config.assignmentStrategy
 
   const startingTime = moment('2018-07-27T15:00:00.000Z')
     .endOf('hour')
     .toDate()
 
-  // '2018-07-27T15:00:00.000Z',
-  // '2018-07-27T16:00:00.000Z',
-  // const startingTime = '2018-07-27T15:00:00.000Z'
-
   let users: Array<User> = []
   let games: Array<Game> = []
-  let assignResults: Array<Object> | null = []
+  let assignResults: Array<Result> | null = []
 
   try {
     try {
@@ -68,6 +69,7 @@ const runAssignPlayers = async () => {
   } catch (error) {
     logger.error(`Player assign error: ${error}`)
   }
+*/
 }
 
 export default runAssignPlayers
