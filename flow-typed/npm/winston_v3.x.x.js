@@ -1,5 +1,5 @@
-// flow-typed signature: 6c0cc8d49fc2cfa9d95d578096338f52
-// flow-typed version: 14a225d629/winston_v3.x.x/flow_>=v0.34.x
+// flow-typed signature: 2fc7141f884c9143b8b0f29efe4e7f6a
+// flow-typed version: 48df12b2b8/winston_v3.x.x/flow_>=v0.34.x
 
 declare type $winstonLevels = {
   [string]: number
@@ -68,6 +68,7 @@ declare type $winstonConfigSubModule = {
 };
 
 declare type $winstonFormatSubModule = {
+  ((info: Object) => Object): () => $winstonFormat,
   combine: (...args: Array<$winstonFormat>) => $winstonFormat,
   json: () => $winstonFormat,
   label: (config?: Object) => $winstonFormat,
@@ -87,9 +88,26 @@ declare class $winstonContainer<T> {
   constructor(config?: $winstonLoggerConfig<T>): $winstonContainer<T>;
   add(loggerId: string, config?: $winstonLoggerConfig<T>): $winstonLogger<T>;
   get(loggerId: string): $winstonLogger<T>;
+  has(loggerId: string): boolean;
 }
 
 declare module "winston" {
+  declare export type Levels = $winstonLevels;
+  declare export type NpmLogLevels = $winstonNpmLogLevels;
+  declare export type Info<T: Levels > = $winstonInfo<T>;
+  declare export type Format = $winstonFormat;
+  declare export type FileTransportConfig<T: Levels> = $winstonFileTransportConfig<T>;
+  declare export type Transport = typeof $winstonTransport;
+  declare export type FileTransport<T: Levels> = $winstonFileTransport<T>;
+  declare export type ConsoleTransportConfig<T: Levels> = $winstonConsoleTransportConfig<T>;
+  declare export type ConsoleTransport<T: Levels> = $winstonConsoleTransport<T>;
+  declare export type LoggerConfig<T: Levels> = $winstonLoggerConfig<T>;
+  declare export type Logger<T: Levels> = $winstonLogger<T>;
+  declare export type ConfigSubModule = $winstonConfigSubModule;
+  declare export type FormatSubModule = $winstonFormatSubModule;
+  declare export type DefaultLogger = $winstonDefaultLogger;
+  declare export type Container<T: Levels> = $winstonContainer<T>;
+
   declare module.exports: $winstonDefaultLogger & {
     format: $winstonFormatSubModule,
     transports: {
