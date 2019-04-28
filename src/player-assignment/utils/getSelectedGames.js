@@ -2,9 +2,15 @@
 import logger from 'utils/logger'
 import type { Game } from 'flow/game.flow'
 
+type SignupWish = {
+  username: string,
+  gameId: string,
+  priority: number,
+}
+
 const getSelectedGames = (
   startingGames: Array<Game>,
-  signupWishes: Array<Object>
+  signupWishes: Array<SignupWish>
 ) => {
   logger.info('Get selected games')
   const selectedGames = []

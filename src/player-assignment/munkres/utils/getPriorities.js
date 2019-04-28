@@ -1,5 +1,8 @@
 /* @flow */
-const getPriorities = (results: Array<Object>, signupMatrix: Array<Object>) => {
+import type { Result } from 'flow/result.flow'
+
+const getPriorities = (results: Array<Result>, signupMatrix: Array<Object>) => {
+  console.log('signupMatrix', signupMatrix)
   // Show the priorities players were assigned to
   const priorities = []
   for (let i = 0; i < results.length; i += 1) {
