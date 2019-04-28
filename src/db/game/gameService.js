@@ -66,7 +66,7 @@ const findGames = async () => {
   let response = null
   try {
     response = await Game.find({})
-    logger.info(`MongoDB: Find all games`)
+    logger.debug(`MongoDB: Find all games`)
     return response
   } catch (error) {
     logger.error(`MongoDB: Error fetcing games - ${error}`)

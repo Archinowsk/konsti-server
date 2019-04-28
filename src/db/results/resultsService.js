@@ -11,7 +11,7 @@ const findResults = async () => {
   let response = null
   try {
     response = await Results.find({})
-    logger.info(`MongoDB: Results data found`)
+    logger.debug(`MongoDB: Results data found`)
     return response
   } catch (error) {
     logger.error(`MongoDB: Error finding results data - ${error}`)

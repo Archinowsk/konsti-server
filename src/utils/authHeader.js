@@ -4,8 +4,7 @@ import logger from 'utils/logger'
 import config from 'config'
 
 const validateAuthHeader = (authHeader: string, userGroup: string) => {
-  logger.info(`Auth: Require jwt token for "${userGroup}" user group`)
-
+  logger.debug(`Auth: Require jwt token for user group "${userGroup}"`)
   let jwtToken = ''
 
   if (authHeader) {
@@ -25,10 +24,10 @@ const validateAuthHeader = (authHeader: string, userGroup: string) => {
 
   try {
     jwt.verify(jwtToken, jwtSecretKey)
-    logger.info(`Auth: Valid jwt token for "${userGroup}" user group`)
+    logger.debug(`Auth: Valid jwt token for user group "${userGroup}" `)
     return true
   } catch (e) {
-    logger.info(`Auth: Invalid jwt token for "${userGroup}" user group`)
+    logger.info(`Auth: Invalid jwt for user group "${userGroup}"`)
     return false
   }
 }

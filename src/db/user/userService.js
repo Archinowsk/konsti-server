@@ -46,7 +46,7 @@ const findUser = async (userData: Object) => {
   if (!response) {
     logger.info(`MongoDB: User "${username}" not found`)
   } else {
-    logger.info(`MongoDB: Found user "${username}"`)
+    logger.debug(`MongoDB: Found user "${username}"`)
   }
   return response
 }

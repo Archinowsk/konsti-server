@@ -76,7 +76,9 @@ const postLogin = async (req: Object, res: Object) => {
     response2 = await validateLogin(loginData, response.password)
 
     logger.info(
-      `Login: User "${response.username}" with "${response.userGroup}" account`
+      `Login: User "${response.username}" with "${
+        response.userGroup
+      }" user group`
     )
 
     let jwtToken = ''

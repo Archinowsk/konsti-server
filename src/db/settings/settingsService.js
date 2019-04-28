@@ -41,7 +41,7 @@ const findSettings = async () => {
     // No settings data, create new collection
     return createSettings()
   }
-  logger.info(`MongoDB: Settings data found`)
+  logger.debug(`MongoDB: Settings data found`)
   return response
 }
 
