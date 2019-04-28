@@ -6,12 +6,20 @@ import db from 'db/mongodb'
 const getSettings = async (req: Object, res: Object) => {
   logger.info('API call: GET /api/settings')
 
-  let response = null
   try {
-    response = await db.settings.findSettings()
+    const response = await db.settings.findSettings()
+    const games = await db.game.findGames()
+
+    let hiddenGames = []
+    if (response && response.hiddenGames && games) {
+      hiddenGames = response.hiddenGames.map(hiddenGame => {
+        const game = games.find(game => hiddenGame.gameId === game.gameId)
+        return { ...hiddenGame, ...game.toObject() }
+      })
+    }
 
     const gamesData = {
-      hiddenGames: response.hiddenGames,
+      hiddenGames,
     }
 
     res.json({
