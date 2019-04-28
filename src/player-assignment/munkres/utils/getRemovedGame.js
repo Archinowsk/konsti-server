@@ -1,5 +1,12 @@
 /* @flow */
-const getRemovedGame = (gamesWithTooFewPlayers: Array<Object>) => {
+import type { Game } from 'flow/game.flow'
+
+type GameWithPlayerCount = {
+  game: Game,
+  players: number,
+}
+
+const getRemovedGame = (gamesWithTooFewPlayers: Array<GameWithPlayerCount>) => {
   // Get games with least players
   const sortedGamesWithTooFewPlayers = gamesWithTooFewPlayers.sort((a, b) => {
     const keyA = a.players

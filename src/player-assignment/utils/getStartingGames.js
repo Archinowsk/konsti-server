@@ -1,8 +1,9 @@
 /* @flow */
 import moment from 'moment'
 import logger from 'utils/logger'
+import type { Game } from 'flow/game.flow'
 
-const getStartingGames = (games: Array<Object>, startingTime: Date) => {
+const getStartingGames = (games: Array<Game>, startingTime: Date) => {
   logger.info('Get starting games')
   const startingGames = []
   const selectedStartingTime = moment(startingTime).format()

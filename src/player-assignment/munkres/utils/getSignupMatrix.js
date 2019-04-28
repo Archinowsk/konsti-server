@@ -1,9 +1,11 @@
 /* @flow */
 import logger from 'utils/logger'
+import type { Game } from 'flow/game.flow'
+import type { User } from 'flow/user.flow'
 
 const getSignupMatrix = (
-  selectedGames: Array<Object>,
-  selectedPlayers: Array<Object>
+  selectedGames: Array<Game>,
+  selectedPlayers: Array<User>
 ) => {
   logger.info('Generate signup matrix')
   // Create matrix for the sorting algorithm

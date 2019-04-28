@@ -1,9 +1,10 @@
 /* @flow */
 import logger from 'utils/logger'
+import type { Game } from 'flow/game.flow'
 
 const checkMinAttendance = (
   results: Array<Object>,
-  selectedGames: Array<Object>
+  selectedGames: Array<Game>
 ) => {
   // Check that game minAttendance is fullfilled
   const gameIds = []

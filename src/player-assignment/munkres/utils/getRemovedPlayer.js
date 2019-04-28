@@ -1,5 +1,9 @@
 /* @flow */
-const getRemovedPlayer = (playersWithTooHighPriority: Array<Object>) => {
+type PlayeIdWithPriority = { playerId: number, priorityValue: number }
+
+const getRemovedPlayer = (
+  playersWithTooHighPriority: Array<PlayeIdWithPriority>
+) => {
   const randomIndex = Math.floor(
     Math.random() * playersWithTooHighPriority.length
   )

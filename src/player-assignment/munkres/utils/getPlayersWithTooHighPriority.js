@@ -1,7 +1,10 @@
 /* @flow */
 import logger from 'utils/logger'
+type PlayeIdWithPriority = { playerId: number, priorityValue: number }
 
-const getPlayersWithTooHighPriority = (priorities: Array<Object>) => {
+const getPlayersWithTooHighPriority = (
+  priorities: Array<PlayeIdWithPriority>
+) => {
   const playersWithTooHighPriority = []
 
   priorities.forEach(priority => {

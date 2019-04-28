@@ -4,6 +4,7 @@ import logger from 'utils/logger'
 import db from 'db/mongodb'
 import validateAuthHeader from 'utils/authHeader'
 import config from 'config'
+import type { KompassiGame } from 'flow/game.flow'
 
 const updateGames = async () => {
   logger.info('Games: GET games from remote server')
@@ -53,7 +54,7 @@ const postGames = async (req: Object, res: Object) => {
     return
   }
 
-  let games: Array<Object> = []
+  let games: Array<KompassiGame> = []
   let response = null
   try {
     games = await updateGames()
