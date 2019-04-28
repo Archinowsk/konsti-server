@@ -6,6 +6,7 @@ import validateAuthHeader from 'utils/authHeader'
 import config from 'config'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
+import type { Result } from 'flow/result.flow'
 
 // Assign players to games
 const postPlayers = async (req: Object, res: Object) => {
@@ -28,7 +29,7 @@ const postPlayers = async (req: Object, res: Object) => {
 
   let users: Array<User> = []
   let games: Array<Game> = []
-  let assignResults: Array<Object> | null = []
+  let assignResults: Array<Result> | null = []
 
   try {
     try {

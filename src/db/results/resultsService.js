@@ -2,6 +2,7 @@
 import moment from 'moment'
 import logger from 'utils/logger'
 import Results from 'db/results/resultsSchema'
+import type { Result } from 'flow/result.flow'
 
 const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')
@@ -20,7 +21,7 @@ const findResults = async () => {
 }
 
 const saveAllSignupResults = async (
-  signupResultData: Array<Object>,
+  signupResultData: Array<Result>,
   startingTime: Date
 ) => {
   const formattedTime = moment(startingTime)
