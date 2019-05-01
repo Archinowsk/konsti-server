@@ -1,11 +1,9 @@
 /* @flow */
 import type { Result } from 'flow/result.flow'
 
-type SignupMatrix = Array<number>
-
 const getPriorities = (
   results: Array<Result>,
-  signupMatrix: Array<SignupMatrix>
+  signupMatrix: Array<Array<number>>
 ) => {
   // Show the priorities players were assigned to
   const priorities = []

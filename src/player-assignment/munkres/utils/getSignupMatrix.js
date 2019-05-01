@@ -11,7 +11,7 @@ const getSignupMatrix = (
   // Create matrix for the sorting algorithm
   // Each available seat is possible result
   // Sort same game wishes to single array
-  const signupMatrix: Array<any> = []
+  const signupMatrix: Array<Array<number>> = []
   let counter = 0
 
   // For each starting game...
