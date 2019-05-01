@@ -8,14 +8,16 @@ const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')
   return Results.deleteMany({})
 }
-const findResults = async () => {
+const findResults = async (startTime: string) => {
   let response = null
   try {
-    response = await Results.find({})
-    logger.debug(`MongoDB: Results data found`)
-    return response
+    response = await Results.findOne({ startTime })
+    logger.debug(`MongoDB: Results data found for time ${startTime}`)
+    return response.result
   } catch (error) {
-    logger.error(`MongoDB: Error finding results data - ${error}`)
+    logger.error(
+      `MongoDB: Error finding results data for time ${startTime} - ${error}`
+    )
     return error
   }
 }
