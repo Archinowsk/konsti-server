@@ -13,7 +13,7 @@ const findResults = async (startTime: string) => {
   try {
     response = await Results.findOne({ startTime })
     logger.debug(`MongoDB: Results data found for time ${startTime}`)
-    return response.result
+    return response
   } catch (error) {
     logger.error(
       `MongoDB: Error finding results data for time ${startTime} - ${error}`
