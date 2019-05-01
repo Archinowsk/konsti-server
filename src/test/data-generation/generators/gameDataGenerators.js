@@ -15,8 +15,8 @@ const createGames = (count: number) => {
   const games = []
 
   for (let i = 0; i < count; i += 1) {
-    const minAttendance = getRandomInt(5, 5)
-    const maxAttendance = getRandomInt(5, 5)
+    const minAttendance = getRandomInt(3, 4)
+    const maxAttendance = getRandomInt(4, 6)
 
     const startTime = getRandomStartingTime()
     const length = 180
