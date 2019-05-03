@@ -12,11 +12,7 @@ const postSignupTime = async (req: Object, res: Object) => {
   const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
-    res.json({
-      code: 401,
-      message: 'Unauthorized',
-      status: 'error',
-    })
+    res.sendStatus(401)
     return
   }
 

@@ -124,11 +124,7 @@ const getUser = async (req: Object, res: Object) => {
   const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
-    res.json({
-      code: 401,
-      message: 'Unauthorized',
-      status: 'error',
-    })
+    res.sendStatus(401)
     return
   }
 
