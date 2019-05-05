@@ -27,7 +27,6 @@ const postLogin = async (req: Object, res: Object) => {
   const loginData = req.body.loginData
 
   if (!loginData || !loginData.username || !loginData.password) {
-    logger.info('Login: validation failed')
     res.sendStatus(422)
     return
   }

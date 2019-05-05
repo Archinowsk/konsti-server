@@ -7,6 +7,11 @@ const getResults = async (req: Object, res: Object) => {
   logger.info('API call: GET /api/results')
   const startTime = req.query.startTime
 
+  if (!startTime) {
+    res.sendStatus(422)
+    return
+  }
+
   let results
   try {
     results = await db.results.findResults(startTime)
