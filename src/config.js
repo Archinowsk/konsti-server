@@ -31,9 +31,10 @@ config.enableAccessLog = false
 // App settings
 config.assignmentStrategy = 'group' // 'munkres', 'group'
 
+config.env = process.env.ENVIRONMENT || 'development'
+
 // Variables for production environment
-if (process.env.NODE_ENV === 'production') {
-  config.env = 'production'
+if (config.env === 'production') {
   config.db = process.env.CONN_STRING || ''
   config.jwtSecretKey = process.env.JWT_SECRET_KEY || ''
   config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN || ''
@@ -46,8 +47,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Variables for development environment
-if (process.env.NODE_ENV === 'development') {
-  config.env = 'development'
+if (config.env === 'development') {
   config.db = 'mongodb://localhost:27017/konsti'
   config.jwtSecretKey = 'secret'
   config.jwtSecretKeyAdmin = 'admin secret'
