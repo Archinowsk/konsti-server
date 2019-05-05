@@ -31,7 +31,7 @@ config.enableAccessLog = false
 // App settings
 config.assignmentStrategy = 'group' // 'munkres', 'group'
 
-config.env = process.env.ENVIRONMENT || 'development'
+config.env = process.env.NODE_ENV || 'development'
 
 // Variables for production environment
 if (config.env === 'production') {
