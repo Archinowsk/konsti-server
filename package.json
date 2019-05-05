@@ -43,7 +43,9 @@
   },
   "dependencies": {
     "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.4",
     "@babel/node": "7.2.2",
+    "@babel/preset-env": "7.4.4",
     "@babel/preset-flow": "^7.0.0",
     "babel-plugin-module-resolver": "3.2.0",
     "bcryptjs": "2.4.3",
@@ -66,8 +68,6 @@
     "winston-daily-rotate-file": "3.9.0"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@babel/preset-env": "7.4.4",
     "babel-eslint": "10.0.1",
     "babel-jest": "24.8.0",
     "cross-env": "5.2.0",
