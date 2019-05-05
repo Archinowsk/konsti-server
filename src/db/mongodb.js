@@ -18,7 +18,7 @@ const connectToDb = async () => {
 
   // Connect to MongoDB and create/use database
   try {
-    await mongoose.connect(config.db)
+    await mongoose.connect(config.db, { useNewUrlParser: true })
     logger.info('MongoDB: Connection succesful')
   } catch (error) {
     logger.error(`MongoDB: Error connecting to DB: ${error}`)
