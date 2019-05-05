@@ -3,10 +3,11 @@ import app from 'app'
 import logger from 'utils/logger'
 import db from 'db/mongodb'
 import { updateGames } from 'api/controllers/gamesController'
+import config from 'config'
 
-if (process.env.NODE_ENV === 'production') {
-  // Update games from master data every 5 minutes
-  schedule.scheduleJob('*/5 * * * *', async () => {
+if (config.autoUpdateGames) {
+  // Update games from master data every n minutes
+  schedule.scheduleJob(`*/${config.gameUpdateInterval} * * * *`, async () => {
     const games = await updateGames()
     await db.game.saveGames(games)
   })

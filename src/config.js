@@ -31,6 +31,8 @@ config.enableAccessLog = false
 // App settings
 config.assignmentStrategy = 'group' // 'munkres', 'group'
 config.bundleCompression = false
+config.autoUpdateGames = false
+config.gameUpdateInterval = 5 // minutes
 
 config.env = process.env.NODE_ENV || 'development'
 
