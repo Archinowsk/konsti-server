@@ -12,15 +12,15 @@ import db from 'db/mongodb'
 import allowCORS from 'middleware/cors'
 import apiRoutes from 'api/apiRoutes'
 
-const COMPRESSED = ['/client.bundle']
-
 db.connectToDb()
 
 const app = express()
 
 app.use(helmet())
 
-if (process.env.NODE_ENV === 'production') {
+if (config.bundleCompression) {
+  const COMPRESSED = ['/client.bundle']
+
   // Request gzip file if should be compressed
   app.get('*.js', (req: Object, res: Object, next: Function) => {
     COMPRESSED.forEach((value, index) => {

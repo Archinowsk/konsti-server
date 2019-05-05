@@ -30,6 +30,7 @@ config.enableAccessLog = false
 
 // App settings
 config.assignmentStrategy = 'group' // 'munkres', 'group'
+config.bundleCompression = false
 
 config.env = process.env.NODE_ENV || 'development'
 
