@@ -46,8 +46,8 @@ if (config.env === 'production') {
   config.ASSIGNMENT_ROUNDS = 300
 }
 
-// Variables for development environment
-if (config.env === 'development') {
+// Variables for development and test environment
+if (config.env === 'development' || config.env === 'test') {
   config.db = 'mongodb://localhost:27017/konsti'
   config.jwtSecretKey = 'secret'
   config.jwtSecretKeyAdmin = 'admin secret'

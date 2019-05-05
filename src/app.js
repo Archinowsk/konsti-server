@@ -14,7 +14,7 @@ import apiRoutes from 'api/apiRoutes'
 
 const COMPRESSED = ['/client.bundle']
 
-if (process.env.NODE_ENV !== 'test') db.connectToDb()
+db.connectToDb()
 
 const app = express()
 
