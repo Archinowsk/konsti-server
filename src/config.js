@@ -19,50 +19,70 @@ type Config = {
   gameUpdateInterval: number,
 }
 
-const config: Config = {}
+const commonConfig = {
+  // App info
+  appName: 'Konsti',
 
-// App info
-config.appName = 'Konsti'
+  // Server settings
+  port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,
+  debug: false,
 
-// Server settings
-config.port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000
-config.debug = false
+  // Logging
+  logDir: './logs',
+  enableAccessLog: false,
 
-// Logging
-config.logDir = './logs'
-config.enableAccessLog = false
+  // App settings
+  assignmentStrategy: 'group', // 'munkres', 'group'
+  bundleCompression: false,
+  autoUpdateGames: false,
+  gameUpdateInterval: 5, // minutes
 
-// App settings
-config.assignmentStrategy = 'group' // 'munkres', 'group'
-config.bundleCompression = false
-config.autoUpdateGames = false
-config.gameUpdateInterval = 5 // minutes
+  env: process.env.NODE_ENV || 'development',
+}
 
-config.env = process.env.NODE_ENV || 'development'
-
-// Variables for production environment
-if (config.env === 'production') {
-  config.db = process.env.CONN_STRING || ''
-  config.jwtSecretKey = process.env.JWT_SECRET_KEY || ''
-  config.jwtSecretKeyAdmin = process.env.JWT_SECRET_KEY_ADMIN || ''
-  config.allowedCorsOrigins = process.env.CORS_WHITELIST
+const prodConfig = {
+  db: process.env.CONN_STRING || '',
+  jwtSecretKey: process.env.JWT_SECRET_KEY || '',
+  jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
+  allowedCorsOrigins: process.env.CORS_WHITELIST
     ? process.env.CORS_WHITELIST.split(';')
-    : []
-  config.dataUri = process.env.GAME_DATA_URI || ''
-  config.debug = process.env.DEBUG === 'true' || false
-  config.ASSIGNMENT_ROUNDS = 300
+    : [],
+  dataUri: process.env.GAME_DATA_URI || '',
+  debug: process.env.DEBUG === 'true' || false,
+  ASSIGNMENT_ROUNDS: 300,
 }
 
-// Variables for development and test environment
-if (config.env === 'development' || config.env === 'test') {
-  config.db = 'mongodb://localhost:27017/konsti'
-  config.jwtSecretKey = 'secret'
-  config.jwtSecretKeyAdmin = 'admin secret'
-  config.allowedCorsOrigins = ['http://localhost:8080']
-  config.dataUri =
-    'https://kompassi.eu/api/v1/events/ropecon2018/programme/ropecon'
-  config.debug = true
-  config.ASSIGNMENT_ROUNDS = 1
+const stagingConfig = {
+  db: process.env.CONN_STRING || '',
+  jwtSecretKey: process.env.JWT_SECRET_KEY || '',
+  jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
+  allowedCorsOrigins: process.env.CORS_WHITELIST
+    ? process.env.CORS_WHITELIST.split(';')
+    : [],
+  dataUri: process.env.GAME_DATA_URI || '',
+  debug: process.env.DEBUG === 'true' || false,
+  ASSIGNMENT_ROUNDS: 300,
 }
+
+const devConfig = {
+  db: 'mongodb://localhost:27017/konsti',
+  jwtSecretKey: 'secret',
+  jwtSecretKeyAdmin: 'admin secret',
+  allowedCorsOrigins: ['http://localhost:8080'],
+  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2018/programme/ropecon',
+  debug: true,
+  ASSIGNMENT_ROUNDS: 1,
+}
+
+const combineConfig = () => {
+  if (process.env.NODE_ENV === 'production') {
+    return { ...commonConfig, ...prodConfig }
+  } else if (process.env.NODE_ENV === 'staging') {
+    return { ...commonConfig, ...stagingConfig }
+  }
+  return { ...commonConfig, ...devConfig }
+}
+
+const config: Config = combineConfig()
 
 module.exports = config
