@@ -6,7 +6,6 @@ type Config = {
   logDir: string,
   enableAccessLog: boolean,
   assignmentStrategy: string,
-  env: string,
   db: string,
   jwtSecretKey: string,
   jwtSecretKeyAdmin: string,
@@ -36,8 +35,6 @@ const commonConfig = {
   bundleCompression: false,
   autoUpdateGames: false,
   gameUpdateInterval: 5, // minutes
-
-  env: process.env.NODE_ENV || 'development',
 }
 
 const prodConfig = {
@@ -75,9 +72,9 @@ const devConfig = {
 }
 
 const combineConfig = () => {
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.SETTINGS === 'production') {
     return { ...commonConfig, ...prodConfig }
-  } else if (process.env.NODE_ENV === 'staging') {
+  } else if (process.env.SETTINGS === 'staging') {
     return { ...commonConfig, ...stagingConfig }
   }
   return { ...commonConfig, ...devConfig }

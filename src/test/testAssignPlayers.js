@@ -1,7 +1,6 @@
 import logger from 'utils/logger'
 import assignPlayers from 'player-assignment/assignPlayers'
 import db from 'db/mongodb'
-import config from 'config'
 
 const testAssignPlayers = async () => {
   const strategy = process.argv[2]
@@ -11,10 +10,10 @@ const testAssignPlayers = async () => {
     process.exit()
   }
 
-  if (config.env !== 'development') {
+  if (process.env.NODE_ENV !== 'development') {
     logger.error(
       `Player allocation only allowed in dev environment, current env "${
-        config.env
+        process.env.NODE_ENV
       }"`
     )
     process.exit()

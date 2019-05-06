@@ -4,8 +4,6 @@ import db from 'db/mongodb'
 import munkresGenerator from 'test/data-generation/munkresGenerator'
 import groupGenerator from 'test/data-generation/groupGenerator'
 
-import config from 'config'
-
 const runGenerators = async () => {
   const strategy = process.argv[2]
 
@@ -14,10 +12,10 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  if (config.env !== 'development') {
+  if (process.env.NODE_ENV !== 'development') {
     logger.error(
       `Data creation only allowed in dev environment, current env "${
-        config.env
+        process.env.NODE_ENV
       }"`
     )
     process.exit()
