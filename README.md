@@ -1,6 +1,6 @@
 # konsti-server
 
-[![Known Vulnerabilities](https://snyk.io/test/github/archinowsk/konsti-client/badge.svg)](https://snyk.io/test/github/archinowsk/konsti-client)
+[![Known Vulnerabilities](https://snyk.io/test/github/archinowsk/konsti-server/badge.svg)](https://snyk.io/test/github/archinowsk/konsti-server)
 
 Konsti is a signup tool. Registered users can choose weighted preferences (i.e. option 1, option 2, option 3) and signup slots are quickly allocated using [Hungarian algorithm](https://en.wikipedia.org/wiki/Hungarian_algorithm) or brute force approximation.
 
