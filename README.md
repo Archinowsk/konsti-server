@@ -8,19 +8,23 @@ Konsti is designed for the roleplaying convention [Ropecon](https://ropecon.fi).
 
 ## Tech
 
-* Back-end
-  * Node.js
-  * Express
-  * AWS
-  * MongoDB
-* Front-end (see [konsti-client](https://github.com/Archinowsk/konsti-client))
-  * React
-  * Redux
-  * ES6
-  * Webpack
-  
+- Back-end
+  - Node.js
+  - Express
+  - AWS
+  - MongoDB
+- Front-end (see [konsti-client](https://github.com/Archinowsk/konsti-client))
+  - React
+  - Redux
+  - ES6
+  - Webpack
+
 ## Development Suppported By
 
+Konsti development sponsored by <a href="https://www.sovellin.com/">Sovellin</a>
+
 <a href="https://www.sovellin.com/"><img src="https://github.com/Archinowsk/archinowsk.github.io/blob/master/assets/sovellin-logo.svg" height="40"></a>
+
+Mobile testing support sponsored by <a href="https://www.browserstack.com/">BrowserStack</a>
 
 <a href="https://www.browserstack.com/"><img src="https://github.com/Archinowsk/archinowsk.github.io/blob/master/assets/browserstack-logo.svg" height="40"></a>
