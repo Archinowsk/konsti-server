@@ -13,6 +13,10 @@ type Config = {
   allowedCorsOrigins: Array<string>,
   dataUri: string,
   ASSIGNMENT_ROUNDS: number,
+  bundleCompression: boolean,
+  autoUpdateGames: boolean,
+  assignmentStrategy: string,
+  gameUpdateInterval: number,
 }
 
 const config: Config = {}
