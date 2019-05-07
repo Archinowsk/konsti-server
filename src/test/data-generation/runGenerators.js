@@ -12,12 +12,8 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  if (process.env.NODE_ENV !== 'development') {
-    logger.error(
-      `Data creation only allowed in dev environment, current env "${
-        process.env.NODE_ENV
-      }"`
-    )
+  if (process.env.NODE_ENV === 'production') {
+    logger.error(`Data creation not allowed in production`)
     process.exit()
   }
 

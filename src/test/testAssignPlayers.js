@@ -10,12 +10,8 @@ const testAssignPlayers = async () => {
     process.exit()
   }
 
-  if (process.env.NODE_ENV !== 'development') {
-    logger.error(
-      `Player allocation only allowed in dev environment, current env "${
-        process.env.NODE_ENV
-      }"`
-    )
+  if (process.env.NODE_ENV === 'production') {
+    logger.error(`Player allocation not allowed in production`)
     process.exit()
   }
 
