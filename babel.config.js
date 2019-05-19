@@ -20,6 +20,7 @@ module.exports = api => {
       {
         root: ['./src'],
       },
+      'lodash',
     ],
   ]
 

@@ -57,6 +57,7 @@
     "generate-serial-number": "0.0.3",
     "helmet": "3.18.0",
     "jsonwebtoken": "8.5.1",
+    "lodash": "4.17.11",
     "moment": "2.24.0",
     "mongoose": "5.5.9",
     "morgan": "1.9.1",
@@ -71,6 +72,7 @@
   "devDependencies": {
     "babel-eslint": "10.0.1",
     "babel-jest": "24.8.0",
+    "babel-plugin-lodash": "3.3.4",
     "cross-env": "5.2.0",
     "eslint": "5.16.0",
     "eslint-config-prettier": "4.3.0",
