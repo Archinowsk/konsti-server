@@ -2,6 +2,7 @@
 import moment from 'moment'
 import logger from 'utils/logger'
 import Settings from 'db/settings/settingsSchema'
+import type { Game } from 'flow/game.flow'
 
 const removeSettings = () => {
   logger.info('MongoDB: remove ALL settings from db')
@@ -45,11 +46,16 @@ const findSettings = async () => {
   return response
 }
 
-const saveHidden = async (hiddenData: Object) => {
+const saveHidden = async (hiddenData: Array<Game>) => {
+  console.log(hiddenData)
   let response = null
   try {
     response = await Settings.updateOne({
-      $set: { hiddenGames: hiddenData.hiddenGames },
+      $set: {
+        hiddenGames: hiddenData.map(game => {
+          return { gameId: game.gameId }
+        }),
+      },
     })
     logger.info(`MongoDB: Hidden data updated`)
     return response
