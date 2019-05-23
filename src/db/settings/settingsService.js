@@ -47,7 +47,6 @@ const findSettings = async () => {
 }
 
 const saveHidden = async (hiddenData: Array<Game>) => {
-  console.log(hiddenData)
   let response = null
   try {
     response = await Settings.updateOne({
