@@ -1,6 +1,7 @@
 import fs from 'fs'
 import faker from 'faker'
 import { getYear } from './statsUtil'
+import logger from 'utils/logger'
 
 const anonymizeData = async () => {
   const year = getYear()
@@ -19,13 +20,13 @@ const anonymizeData = async () => {
     results.forEach(result => {
       result.result.forEach(userResult => {
         if (user.username === userResult.username) {
-          console.log(`results.json: ${user.username} -> ${randomUsername}`)
+          logger.info(`results.json: ${user.username} -> ${randomUsername}`)
           userResult.username = randomUsername
         }
       })
     })
 
-    console.log(`users.json: ${user.username} -> ${randomUsername}`)
+    logger.info(`users.json: ${user.username} -> ${randomUsername}`)
     user.username = randomUsername
   })
 

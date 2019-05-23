@@ -1,4 +1,5 @@
 import { toPercent } from '../statsUtil'
+import logger from 'utils/logger'
 
 export const getSignupsByTime = (results, games) => {
   const signupsByTime = results.reduce((acc, result) => {
@@ -7,7 +8,7 @@ export const getSignupsByTime = (results, games) => {
   }, {})
 
   /*
-  console.log(
+  logger.info(
     `Number of people entering to games by starting times: \n`,
     signupsByTime
   )
@@ -29,7 +30,7 @@ export const getMaximumNumberOfPlayersByTime = games => {
   })
 
   /*
-  console.log(
+  logger.info(
     `Maximum number of seats by starting times: \n`,
     maxNumberOfPlayersByTime
   )
@@ -41,9 +42,9 @@ export const getDemandByTime = (
   signupsByTime,
   maximumNumberOfPlayersByTime
 ) => {
-  console.log('Sanity check: values over 100% are anomalies')
+  logger.info('Sanity check: values over 100% are anomalies')
   for (const startTime in maximumNumberOfPlayersByTime) {
-    console.log(
+    logger.info(
       `Signed people for ${startTime}: ${signupsByTime[startTime]}/${
         maximumNumberOfPlayersByTime[startTime]
       } (${toPercent(

@@ -1,4 +1,5 @@
 import { toPercent } from '../statsUtil'
+import logger from 'utils/logger'
 
 export const getUsersByGames = users => {
   const enteredGames = users.reduce((acc, user) => {
@@ -8,7 +9,7 @@ export const getUsersByGames = users => {
     return acc
   }, {})
 
-  console.log(enteredGames)
+  logger.info(enteredGames)
 }
 
 export const getUsersWithoutGames = users => {
@@ -21,7 +22,7 @@ export const getUsersWithoutGames = users => {
     }
   })
 
-  console.log(
+  logger.info(
     `Players without any entered games: ${counter}/${users.length} (${toPercent(
       counter / users.length
     )}%)`
@@ -40,7 +41,7 @@ export const getUsersWithoutSignups = users => {
     }
   })
 
-  console.log(
+  logger.info(
     `Players without any signed games: ${counter}/${users.length} (${toPercent(
       counter / users.length
     )}%)`
@@ -67,7 +68,7 @@ export const getUsersSignupCount = users => {
     }
   })
 
-  console.log(
+  logger.info(
     `Users signed for this many games when they didn't get signed:`,
     gameWishes
   )
@@ -78,7 +79,7 @@ export const getUsersSignupCount = users => {
       ++signupCount[Object.keys(userSignups).length] || 1
   })
 
-  console.log(
+  logger.info(
     `Users didn't get into any games after this many signup attemps:`,
     signupCount
   )
@@ -98,7 +99,7 @@ export const getUsersWithAllGames = users => {
     }
   })
 
-  console.log(
+  logger.info(
     `This many users got into a game each time they signed up: ${counter}/${
       users.length
     } (${toPercent(counter / users.length)}%)`

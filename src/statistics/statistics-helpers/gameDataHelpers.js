@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { toPercent } from '../statsUtil'
+import logger from 'utils/logger'
 
 export const getGamesByStartingTime = games => {
   const gamesByTime = games.reduce((acc, game) => {
@@ -7,7 +8,7 @@ export const getGamesByStartingTime = games => {
     return acc
   }, {})
 
-  console.log(`Number of games for each start time: \n`, gamesByTime)
+  logger.info(`Number of games for each start time: \n`, gamesByTime)
   return gamesByTime
 }
 
@@ -19,7 +20,7 @@ export const getUsersByGames = users => {
     return acc
   }, {})
 
-  // console.log(enteredGames)
+  // logger.info(enteredGames)
   return enteredGames
 }
 
@@ -34,7 +35,7 @@ export const getNumberOfFullGames = (games, usersByGames) => {
     }
   })
 
-  console.log(
+  logger.info(
     `Games with maximum number of players: ${counter}/${
       games.length
     } (${toPercent(counter / games.length)}%)`
@@ -56,7 +57,7 @@ export const getSignupsByStartTime = users => {
     }
   })
 
-  // console.log(`Total number of signups by time: \n`, userSignupCountsByTime)
+  // logger.info(`Total number of signups by time: \n`, userSignupCountsByTime)
   return userSignupCountsByTime
 }
 
@@ -73,7 +74,7 @@ export const getMaximumNumberOfPlayersByTime = games => {
   })
 
   /*
-  console.log(
+  logger.info(
     `Maximum number of seats by starting times: \n`,
     maxNumberOfPlayersByTime
   )
@@ -87,7 +88,7 @@ export const getDemandByTime = (
   maximumNumberOfPlayersByTime
 ) => {
   for (const startTime in maximumNumberOfPlayersByTime) {
-    console.log(
+    logger.info(
       `Demand for ${moment(startTime).format('DD.M.YYYY HH:mm')}: ${
         signupsByTime[startTime]
       }/${maximumNumberOfPlayersByTime[startTime]} (${toPercent(
