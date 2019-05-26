@@ -17,8 +17,8 @@ const assignGroups = (
   let bestScore = 0
   let players = 0
   let games = 0
-  let result = null
-  let bestResult = null
+  let result = []
+  let bestResult = []
 
   // Run assignment ASSIGNMENT_ROUNDS times
   for (let i = 0; i < ASSIGNMENT_ROUNDS; i++) {

@@ -1,10 +1,12 @@
 // @flow
+import type { Game } from 'flow/game.flow'
+
 export type FavoritedGame = {
   gameId: string,
 }
 
 export type SignedGame = {
-  gameId: string,
+  gameDetails: Game,
   priority: number,
   time: Date,
 }

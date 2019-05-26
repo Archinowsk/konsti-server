@@ -130,23 +130,12 @@ const getUser = async (req: Object, res: Object) => {
 
   try {
     const user = await db.user.findUser({ username })
-    const games = await db.game.findGames()
-
-    let signedGames = []
-
-    if (!games || !user) return
-
-    if (user.signedGames) {
-      signedGames = user.signedGames.map(signedGame => {
-        const game = games.find(game => signedGame.gameId === game.gameId)
-        return { ...signedGame.toObject(), ...game.toObject() }
-      })
-    }
+    if (!user) return
 
     const returnData = {
       enteredGames: user.enteredGames,
       favoritedGames: user.favoritedGames,
-      signedGames,
+      signedGames: user.signedGames,
     }
 
     res.json({

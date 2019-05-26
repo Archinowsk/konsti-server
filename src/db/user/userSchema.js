@@ -8,7 +8,13 @@ const UserSchema = mongoose.Schema({
   serial: String,
   playerGroup: String,
   favoritedGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
-  signedGames: [{ gameId: String, priority: Number, time: Date }],
+  signedGames: [
+    {
+      gameDetails: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
+      priority: Number,
+      time: Date,
+    },
+  ],
   enteredGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
   created: { type: Date, default: Date.now },
 })

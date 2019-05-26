@@ -1,7 +1,20 @@
+/* @flow */
 import moment from 'moment'
 import logger from 'utils/logger'
+import type { User } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
+import type { Result } from 'flow/result.flow'
 
-const removeOverlapSignups = (result, games, players) => {
+type ResulstWithMessage = {
+  results: Array<Result>,
+  message: string,
+}
+
+const removeOverlapSignups = (
+  result: ResulstWithMessage,
+  games: Array<Game>,
+  players: Array<User>
+) => {
   // Remove signups that overlap with assignment result
 
   const newSignupData = []
@@ -13,9 +26,13 @@ const removeOverlapSignups = (result, games, players) => {
       game => game.gameId === result.enteredGame.gameId
     )
 
+    if (!enteredGame) return new Error('Error finding entered game')
+
     const signedPlayer = players.find(
       player => player.username === result.username
     )
+
+    if (!signedPlayer) return new Error('Error finding signed player')
 
     const newSignedGames = []
 
@@ -23,8 +40,10 @@ const removeOverlapSignups = (result, games, players) => {
       /* $FlowFixMe */
       signedPlayer.signedGames.forEach(signedGame => {
         const signedGameDetails = games.find(
-          game => game.gameId === signedGame.gameId
+          game => game.gameId === signedGame.gameDetails.gameId
         )
+
+        if (!signedGameDetails) return new Error('Error finding signed game')
 
         // If signed game takes place during the length of entered game, cancel it
         if (

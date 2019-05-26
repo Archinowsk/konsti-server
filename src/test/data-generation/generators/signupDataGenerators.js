@@ -24,7 +24,7 @@ const getRandomSignup = (games: Array<Game>, user: User) => {
   const gamesWithPriorities = []
   randomGames.forEach((randomGame, index) => {
     gamesWithPriorities.push({
-      gameId: randomGame.gameId,
+      gameDetails: randomGame,
       priority: index + 1,
       time: randomGame.startTime,
     })

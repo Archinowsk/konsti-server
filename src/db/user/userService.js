@@ -2,6 +2,12 @@
 import logger from 'utils/logger'
 import User from 'db/user/userSchema'
 import type { Result } from 'flow/result.flow'
+import type { SignedGame } from 'flow/user.flow'
+
+type SignupData = {
+  selectedGames: Array<SignedGame>,
+  username: string,
+}
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')
@@ -41,6 +47,7 @@ const findUser = async (userData: Object) => {
     response = await User.findOne({ username })
       .populate('favoritedGames')
       .populate('enteredGames')
+      .populate('signedGames.gameDetails')
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
     return error
@@ -101,6 +108,9 @@ const findGroupMembers = async (playerGroup: string) => {
   let response = null
   try {
     response = await User.find({ playerGroup })
+      .populate('favoritedGames')
+      .populate('enteredGames')
+      .populate('signedGames.gameDetails')
   } catch (error) {
     logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
     return error
@@ -159,6 +169,7 @@ const findUsers = async () => {
     response = await User.find({})
       .populate('favoritedGames')
       .populate('enteredGames')
+      .populate('signedGames.gameDetails')
     logger.info(`MongoDB: Find all users`)
     return response
   } catch (error) {
@@ -167,14 +178,24 @@ const findUsers = async () => {
   }
 }
 
-const saveSignup = async (signupData: Object) => {
+const saveSignup = async (signupData: SignupData) => {
   const { selectedGames, username } = signupData
 
   let signupResponse = null
   try {
     signupResponse = await User.updateOne(
       { username: username },
-      { $set: { signedGames: selectedGames } }
+      {
+        $set: {
+          signedGames: selectedGames.map(selectedGame => {
+            return {
+              gameDetails: selectedGame.gameDetails._id,
+              priority: selectedGame.priority,
+              time: selectedGame.time,
+            }
+          }),
+        },
+      }
     )
   } catch (error) {
     logger.error(

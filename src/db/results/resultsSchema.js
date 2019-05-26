@@ -6,7 +6,13 @@ const ResultsSchema = mongoose.Schema({
     {
       username: String,
       enteredGame: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
-      signedGames: [{ gameId: String, priority: Number, time: Date }],
+      signedGames: [
+        {
+          gameDetails: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
+          priority: Number,
+          time: Date,
+        },
+      ],
     },
   ],
   startTime: Date,

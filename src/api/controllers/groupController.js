@@ -196,27 +196,13 @@ const getGroup = async (req: Object, res: Object) => {
   let findGroupResults = null
   try {
     findGroupResults = await db.user.findGroupMembers(groupCode)
-    const games = await db.game.findGames()
 
     const returnData = []
     for (let result of findGroupResults) {
-      let enteredGames = []
-      let signedGames = []
-
-      enteredGames = result.enteredGames.map(enteredGame => {
-        const game = games.find(game => enteredGame.gameId === game.gameId)
-        return { ...enteredGame.toObject(), ...game.toObject() }
-      })
-
-      signedGames = result.signedGames.map(signedGame => {
-        const game = games.find(game => signedGame.gameId === game.gameId)
-        return { ...signedGame.toObject(), ...game.toObject() }
-      })
-
       returnData.push({
         playerGroup: result.playerGroup,
-        signedGames,
-        enteredGames,
+        signedGames: result.signedGames,
+        enteredGames: result.enteredGames,
         serial: result.serial,
         username: result.username,
       })

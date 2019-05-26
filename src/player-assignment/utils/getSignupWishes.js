@@ -11,7 +11,7 @@ const getSignupWishes = (players: Array<User>) => {
     player.signedGames.forEach(signedGame => {
       signupWishes.push({
         username: player.username,
-        gameId: signedGame.gameId,
+        gameId: signedGame.gameDetails.gameId,
         priority: signedGame.priority,
       })
     })

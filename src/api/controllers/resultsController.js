@@ -32,38 +32,10 @@ const getResults = async (req: Object, res: Object) => {
     return
   }
 
-  let games
-  try {
-    games = await db.game.findGames()
-  } catch (error) {
-    logger.error(`Results: ${error}`)
-    res.json({
-      message: 'Getting results failed',
-      status: 'error',
-      error,
-    })
-  }
-
-  let signedGames = []
-  let filledResults = []
-
-  results.result.map(result => {
-    signedGames = result.signedGames.map(signedGame => {
-      const game = games.find(game => signedGame.gameId === game.gameId)
-      return { ...signedGame, ...game.toObject() }
-    })
-
-    filledResults.push({
-      username: result.username,
-      signedGames,
-      enteredGame: result.enteredGame,
-    })
-  })
-
   res.json({
     message: 'Getting results success',
     status: 'success',
-    results: filledResults,
+    results,
   })
 }
 

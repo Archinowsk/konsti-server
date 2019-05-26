@@ -15,6 +15,7 @@ const findResults = async (startTime: string) => {
     response = await Results.findOne({ startTime })
       .sort({ created: -1 })
       .populate('result.enteredGame')
+      .populate('result.signedGames.gameDetails')
     logger.debug(`MongoDB: Results data found for time ${startTime}`)
     return response
   } catch (error) {
@@ -33,7 +34,13 @@ const saveResults = async (
     return {
       username: result.username,
       enteredGame: result.enteredGame._id,
-      signedGames: result.signedGames,
+      signedGames: result.signedGames.map(game => {
+        return {
+          gameDetails: game.gameDetails._id,
+          priority: game.priority,
+          time: game.time,
+        }
+      }),
     }
   })
 
