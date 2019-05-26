@@ -8,10 +8,13 @@ const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db')
   return Results.deleteMany({})
 }
+
 const findResults = async (startTime: string) => {
   let response = null
   try {
-    response = await Results.findOne({ startTime })
+    response = await Results.findOne({ startTime }).populate(
+      'result.enteredGame'
+    )
     logger.debug(`MongoDB: Results data found for time ${startTime}`)
     return response
   } catch (error) {
@@ -22,15 +25,21 @@ const findResults = async (startTime: string) => {
   }
 }
 
-const saveAllSignupResults = async (
+const saveResults = async (
   signupResultData: Array<Result>,
   startingTime: Date
 ) => {
-  const formattedTime = moment(startingTime)
+  const result = signupResultData.map(result => {
+    return {
+      username: result.username,
+      enteredGame: result.enteredGame._id,
+      signedGames: result.signedGames,
+    }
+  })
 
   const results = new Results({
-    result: signupResultData,
-    startTime: formattedTime,
+    result,
+    startTime: moment(startingTime),
   })
 
   let response = null
@@ -46,6 +55,6 @@ const saveAllSignupResults = async (
   }
 }
 
-const results = { removeResults, saveAllSignupResults, findResults }
+const results = { removeResults, saveResults, findResults }
 
 export default results

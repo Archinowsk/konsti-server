@@ -53,13 +53,13 @@ const postPlayers = async (req: Object, res: Object) => {
     /* $FlowFixMe */
     if (assignResults && assignResults.results) {
       try {
-        await db.results.saveAllSignupResults(
+        await db.results.saveResults(
           /* $FlowFixMe */
           assignResults.results,
           startingTime
         )
       } catch (error) {
-        logger.error(`saveAllSignupResults error: ${error}`)
+        logger.error(`saveResults error: ${error}`)
         throw new Error('No assign results')
       }
 

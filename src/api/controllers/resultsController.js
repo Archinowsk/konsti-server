@@ -2,7 +2,6 @@
 import logger from 'utils/logger'
 import db from 'db/mongodb'
 
-// Get results
 const getResults = async (req: Object, res: Object) => {
   logger.info('API call: GET /api/results')
   const startTime = req.query.startTime
@@ -46,7 +45,6 @@ const getResults = async (req: Object, res: Object) => {
   }
 
   let signedGames = []
-  let enteredGame = []
   let filledResults = []
 
   results.result.map(result => {
@@ -55,13 +53,10 @@ const getResults = async (req: Object, res: Object) => {
       return { ...signedGame, ...game.toObject() }
     })
 
-    const game = games.find(game => result.enteredGame.gameId === game.gameId)
-    enteredGame = { ...result.enteredGame, ...game.toObject() }
-
     filledResults.push({
       username: result.username,
       signedGames,
-      enteredGame,
+      enteredGame: result.enteredGame,
     })
   })
 

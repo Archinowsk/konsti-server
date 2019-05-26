@@ -2,7 +2,13 @@
 import mongoose from 'mongoose'
 
 const ResultsSchema = mongoose.Schema({
-  result: Array,
+  result: [
+    {
+      username: String,
+      enteredGame: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
+      signedGames: [{ gameId: String, priority: Number, time: Date }],
+    },
+  ],
   startTime: Date,
 })
 

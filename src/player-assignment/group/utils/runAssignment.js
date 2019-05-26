@@ -145,7 +145,7 @@ const runAssignment = (
 
           signupResults.push({
             username: groupMember.username,
-            enteredGame: { gameId: selectedGame.gameId },
+            enteredGame: selectedGame,
             signedGames: groupMember.signedGames,
           })
         }

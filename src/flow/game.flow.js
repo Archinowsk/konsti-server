@@ -1,5 +1,8 @@
 // @flow
+import type { ObjectId } from 'mongoose'
+
 export type Game = {
+  _id: ObjectId,
   gameId: string,
   title: string,
   description: string,
