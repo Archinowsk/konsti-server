@@ -2,7 +2,7 @@
 import mongoose from 'mongoose'
 
 const SettingsSchema = mongoose.Schema({
-  hiddenGames: Array,
+  hiddenGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
   canceledGames: Array,
   signupTime: Date,
 })

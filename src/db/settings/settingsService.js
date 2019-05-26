@@ -32,7 +32,7 @@ const createSettings = async () => {
 const findSettings = async () => {
   let response = null
   try {
-    response = await Settings.findOne({})
+    response = await Settings.findOne({}).populate('hiddenGames')
   } catch (error) {
     logger.error(`MongoDB: Error finding settings data - ${error}`)
     return error
@@ -52,7 +52,7 @@ const saveHidden = async (hiddenData: Array<Game>) => {
     response = await Settings.updateOne({
       $set: {
         hiddenGames: hiddenData.map(game => {
-          return { gameId: game.gameId }
+          return game._id
         }),
       },
     })

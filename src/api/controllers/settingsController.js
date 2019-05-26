@@ -8,24 +8,11 @@ const getSettings = async (req: Object, res: Object) => {
 
   try {
     const response = await db.settings.findSettings()
-    const games = await db.game.findGames()
-
-    let hiddenGames = []
-    if (response && response.hiddenGames && games) {
-      hiddenGames = response.hiddenGames.map(hiddenGame => {
-        const game = games.find(game => hiddenGame.gameId === game.gameId)
-        return { ...hiddenGame, ...game.toObject() }
-      })
-    }
-
-    const gamesData = {
-      hiddenGames,
-    }
 
     res.json({
       message: 'Getting settings success',
       status: 'success',
-      games: gamesData,
+      hiddenGames: response.hiddenGames,
       signupTime: response.signupTime,
     })
   } catch (error) {
