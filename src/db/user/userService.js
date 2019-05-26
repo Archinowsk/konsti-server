@@ -1,6 +1,7 @@
 /* @flow */
 import logger from 'utils/logger'
 import User from 'db/user/userSchema'
+import type { Result } from 'flow/result.flow'
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')
@@ -37,7 +38,9 @@ const findUser = async (userData: Object) => {
 
   let response = null
   try {
-    response = await User.findOne({ username }).populate('favoritedGames')
+    response = await User.findOne({ username })
+      .populate('favoritedGames')
+      .populate('enteredGames')
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
     return error
@@ -153,8 +156,9 @@ const findGroup = async (playerGroup: string, username: string) => {
 const findUsers = async () => {
   let response = null
   try {
-    response = await User.find({}).populate('favoritedGames')
-
+    response = await User.find({})
+      .populate('favoritedGames')
+      .populate('enteredGames')
     logger.info(`MongoDB: Find all users`)
     return response
   } catch (error) {
@@ -233,33 +237,26 @@ const saveFavorite = async (favoriteData: Object) => {
   }
 }
 
-const saveSignupResult = async (signupResultData: Object) => {
+const saveSignupResult = async (signupResult: Result) => {
   let response = null
   try {
     response = await User.updateOne(
       {
-        username: signupResultData.username,
-        enteredGames: {
-          $ne: [{ gameId: signupResultData.enteredGame.gameId }],
-        },
+        username: signupResult.username,
       },
       {
-        $push: {
-          enteredGames: { gameId: signupResultData.enteredGame.gameId },
-        },
+        $push: { enteredGames: signupResult.enteredGame._id },
       }
     )
 
     logger.info(
-      `MongoDB: Signup result data stored for user "${
-        signupResultData.username
-      }"`
+      `MongoDB: Signup result data stored for user "${signupResult.username}"`
     )
     return response
   } catch (error) {
     logger.error(
       `MongoDB: Error storing signup result data for user ${
-        signupResultData.username
+        signupResult.username
       } - ${error}`
     )
     return error
