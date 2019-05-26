@@ -37,7 +37,7 @@ const findUser = async (userData: Object) => {
 
   let response = null
   try {
-    response = await User.findOne({ username })
+    response = await User.findOne({ username }).populate('favoritedGames')
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
     return error
@@ -153,7 +153,8 @@ const findGroup = async (playerGroup: string, username: string) => {
 const findUsers = async () => {
   let response = null
   try {
-    response = await User.find({})
+    response = await User.find({}).populate('favoritedGames')
+
     logger.info(`MongoDB: Find all users`)
     return response
   } catch (error) {
@@ -212,7 +213,7 @@ const saveFavorite = async (favoriteData: Object) => {
       {
         $set: {
           favoritedGames: favoriteData.favoritedGames.map(game => {
-            return { gameId: game.gameId }
+            return game._id
           }),
         },
       }

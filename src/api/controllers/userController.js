@@ -133,7 +133,6 @@ const getUser = async (req: Object, res: Object) => {
     const games = await db.game.findGames()
 
     let enteredGames = []
-    let favoritedGames = []
     let signedGames = []
 
     if (!games || !user) return
@@ -142,13 +141,6 @@ const getUser = async (req: Object, res: Object) => {
       enteredGames = user.enteredGames.map(enteredGame => {
         const game = games.find(game => enteredGame.gameId === game.gameId)
         return { ...enteredGame.toObject(), ...game.toObject() }
-      })
-    }
-
-    if (user.favoritedGames) {
-      favoritedGames = user.favoritedGames.map(favoritedGame => {
-        const game = games.find(game => favoritedGame.gameId === game.gameId)
-        return { ...favoritedGame.toObject(), ...game.toObject() }
       })
     }
 
@@ -161,7 +153,7 @@ const getUser = async (req: Object, res: Object) => {
 
     const returnData = {
       enteredGames,
-      favoritedGames,
+      favoritedGames: user.favoritedGames,
       signedGames,
     }
 
