@@ -10,6 +10,7 @@ const ResultsSchema = mongoose.Schema({
     },
   ],
   startTime: Date,
+  created: { type: Date, default: Date.now },
 })
 
 const Results = mongoose.model('Results', ResultsSchema)

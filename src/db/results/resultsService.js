@@ -12,9 +12,9 @@ const removeResults = () => {
 const findResults = async (startTime: string) => {
   let response = null
   try {
-    response = await Results.findOne({ startTime }).populate(
-      'result.enteredGame'
-    )
+    response = await Results.findOne({ startTime })
+      .sort({ created: -1 })
+      .populate('result.enteredGame')
     logger.debug(`MongoDB: Results data found for time ${startTime}`)
     return response
   } catch (error) {
