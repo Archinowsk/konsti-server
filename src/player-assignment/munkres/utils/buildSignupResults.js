@@ -1,12 +1,13 @@
 /* @flow */
-import type { User, SignupResult } from 'flow/user.flow'
+import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
+import type { Result } from 'flow/result.flow'
 
 const buildSignupResults = (
   results: Array<Array<number>>,
   selectedGames: Array<Game>,
   selectedPlayers: Array<User>
-): Array<SignupResult> => {
+): Array<Result> => {
   const signupResults = []
 
   // Build signup results
@@ -27,7 +28,7 @@ const buildSignupResults = (
       if (selectedRow < attendanceRange) {
         signupResults.push({
           username: selectedPlayers[selectedPlayer].username,
-          enteredGame: { gameId: selectedGames[j].gameId },
+          enteredGame: selectedGames[j],
           signedGames: selectedPlayers[selectedPlayer].signedGames,
         })
         break

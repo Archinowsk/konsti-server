@@ -12,14 +12,15 @@ import getPriorities from 'player-assignment/munkres/utils/getPriorities'
 import getPlayersWithTooHighPriority from 'player-assignment/munkres/utils/getPlayersWithTooHighPriority'
 import getRemovedPlayer from 'player-assignment/munkres/utils/getRemovedPlayer'
 import buildSignupResults from 'player-assignment/munkres/utils/buildSignupResults'
-import type { User, SignupResult } from 'flow/user.flow'
+import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
+import type { Result } from 'flow/result.flow'
 
 const munkresAssignPlayers = (
   players: Array<User>,
   games: Array<Game>,
   startingTime: Date
-): Array<SignupResult> => {
+): Array<Result> => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const selectedGames = getSelectedGames(startingGames, signupWishes)

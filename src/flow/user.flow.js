@@ -24,9 +24,3 @@ export type User = {
   enteredGames: Array<EnteredGame>,
   created: Date | null,
 }
-
-export type SignupResult = {
-  username: string,
-  enteredGame: { gameId: string },
-  signedGames: Array<SignedGame>,
-}
