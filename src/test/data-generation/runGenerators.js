@@ -17,12 +17,13 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  // Total users: newUsersCount + 2 + groupSize * numberOfGroups
+  // Total users: newUsersCount + 2 test accounts + groupSize * numberOfGroups
+  const newUsersCount = 10 // Number of individual users
+  const groupSize = 3 // How many users in each group
+  const numberOfGroups = 6 // Number of groups
 
-  const newUsersCount = 10 // How many players exist overall, add +2 for test accounts
-  const newGamesCount = 10 // How many games are availale for signup - minimum is 3
-  const groupSize = 3 // How many new users will be in each group
-  const numberOfGroups = 6 // How many groups are created
+  // How many games are availale for signup - minimum is 3
+  const newGamesCount = 10
 
   try {
     await db.connectToDb()
