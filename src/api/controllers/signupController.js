@@ -16,12 +16,11 @@ const postSignup = async (req: Object, res: Object) => {
     return
   }
 
-  const { signedGames, username, time } = signupData
+  const { selectedGames, username } = signupData
 
   const modifiedSignupData = {
-    signedGames,
+    signedGames: selectedGames,
     username,
-    time,
   }
 
   try {
