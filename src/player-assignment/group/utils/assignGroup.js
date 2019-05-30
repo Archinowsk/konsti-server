@@ -15,7 +15,7 @@ type ResultsWithMessage = {
 
 const assignGroups = (
   selectedPlayers: Array<User>,
-  selectedGames: Array<Game>,
+  signedGames: Array<Game>,
   playerGroups: Array<UserArray>
 ): ResultsWithMessage => {
   const { ASSIGNMENT_ROUNDS } = config
@@ -28,7 +28,7 @@ const assignGroups = (
 
   // Run assignment ASSIGNMENT_ROUNDS times
   for (let i = 0; i < ASSIGNMENT_ROUNDS; i++) {
-    result = runAssignment(playerGroups, selectedGames)
+    result = runAssignment(playerGroups, signedGames)
     if (result.score > bestScore) {
       bestScore = result.score
       bestResult = result.signupResults
@@ -42,8 +42,8 @@ const assignGroups = (
     selectedPlayers.length
   } (${Math.round(
     (players / selectedPlayers.length) * 100
-  )}%), Games: ${games}/${selectedGames.length} (${Math.round(
-    (games / selectedGames.length) * 100
+  )}%), Games: ${games}/${signedGames.length} (${Math.round(
+    (games / signedGames.length) * 100
   )}%)`
 
   logger.info(returnMessage)

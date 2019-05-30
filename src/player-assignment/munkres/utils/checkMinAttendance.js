@@ -5,7 +5,7 @@ import type { Result } from 'flow/result.flow'
 
 const checkMinAttendance = (
   results: Array<Result>,
-  selectedGames: Array<Game>
+  signedGames: Array<Game>
 ) => {
   // Check that game minAttendance is fullfilled
   const gameIds = []
@@ -16,11 +16,11 @@ const checkMinAttendance = (
 
     // Figure what games the row numbers are
     let attendanceRange = 0
-    for (let j = 0; j < selectedGames.length; j += 1) {
-      attendanceRange += selectedGames[j].maxAttendance
+    for (let j = 0; j < signedGames.length; j += 1) {
+      attendanceRange += signedGames[j].maxAttendance
       // Found game
       if (selectedRow < attendanceRange) {
-        gameIds.push(selectedGames[j].gameId)
+        gameIds.push(signedGames[j].gameId)
         break
       }
     }
@@ -33,16 +33,16 @@ const checkMinAttendance = (
 
   // Find games with too few players
   const gamesWithTooFewPlayers = []
-  selectedGames.forEach(selectedGame => {
-    if (counts[selectedGame.gameId] < selectedGame.minAttendance) {
+  signedGames.forEach(signedGame => {
+    if (counts[signedGame.gameId] < signedGame.minAttendance) {
       gamesWithTooFewPlayers.push({
-        game: selectedGame,
-        players: counts[selectedGame.gameId],
+        game: signedGame,
+        players: counts[signedGame.gameId],
       })
       logger.info(
-        `Too few people for game "${selectedGame.title}" (${
-          counts[selectedGame.gameId]
-        }/${selectedGame.minAttendance})`
+        `Too few people for game "${signedGame.title}" (${
+          counts[signedGame.gameId]
+        }/${signedGame.minAttendance})`
       )
     }
   })

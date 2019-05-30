@@ -89,11 +89,11 @@ const removeOverlappingSignups = async (signups: Array<Signup>) => {
   try {
     await Promise.all(
       signups.map(signup => {
-        return db.user.updateUserSignedGames(signup)
+        return db.user.saveSignup(signup)
       })
     )
   } catch (error) {
-    logger.error(`updateUserSignedGames error: ${error}`)
+    logger.error(`saveSignup error: ${error}`)
     throw new Error('No assign results')
   }
 }

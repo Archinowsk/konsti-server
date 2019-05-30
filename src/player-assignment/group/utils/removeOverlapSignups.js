@@ -3,7 +3,7 @@ import moment from 'moment'
 import logger from 'utils/logger'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { Result, NewSignupData } from 'flow/result.flow'
+import type { Result, Signup } from 'flow/result.flow'
 
 type ResultsWithMessage = {
   results: Array<Result>,
@@ -14,8 +14,9 @@ const removeOverlapSignups = (
   result: ResultsWithMessage,
   games: Array<Game>,
   players: Array<User>
-): Array<NewSignupData> => {
-  const newSignupData = []
+): Array<Signup> => {
+  logger.debug('Clear overlapping signups')
+  const signupData = []
 
   result.results.forEach(result => {
     const enteredGame = games.find(
@@ -34,23 +35,17 @@ const removeOverlapSignups = (
 
     if (signedPlayer && signedPlayer.signedGames) {
       signedPlayer.signedGames.forEach(signedGame => {
-        const signedGameDetails = games.find(
-          game => game.gameId === signedGame.gameDetails.gameId
-        )
-
-        if (!signedGameDetails) return new Error('Error finding signed game')
-
         // If signed game takes place during the length of entered game, cancel it
         if (
-          moment(signedGameDetails.startTime).isBetween(
+          moment(signedGame.gameDetails.startTime).isBetween(
             moment(enteredGame.startTime).add(1, 'minutes'),
             moment(enteredGame.endTime)
           )
         ) {
           // Remove this signup
           logger.debug(
-            `Signed game "${signedGameDetails.title}" starts at ${moment(
-              signedGameDetails.startTime
+            `Signed game "${signedGame.gameDetails.title}" starts at ${moment(
+              signedGame.gameDetails.startTime
             ).format()}`
           )
 
@@ -59,20 +54,20 @@ const removeOverlapSignups = (
               enteredGame.endTime
             ).format()}`
           )
-          logger.debug(`=> Remove signup "${signedGameDetails.title}"`)
+          logger.debug(`=> Remove signup "${signedGame.gameDetails.title}"`)
         } else {
           newSignedGames.push(signedGame)
         }
       })
     }
 
-    newSignupData.push({
+    signupData.push({
       username: signedPlayer.username,
       signedGames: newSignedGames,
     })
   })
 
-  return newSignupData
+  return signupData
 }
 
 export default removeOverlapSignups

@@ -8,12 +8,12 @@ type SignupWish = {
   priority: number,
 }
 
-const getSelectedGames = (
+const getSignedGames = (
   startingGames: Array<Game>,
   signupWishes: Array<SignupWish>
 ) => {
   logger.info('Get selected games')
-  const selectedGames = []
+  const signedGames = []
   let minAttendance = 0
   let maxAttendance = 0
 
@@ -21,7 +21,7 @@ const getSelectedGames = (
   startingGames.forEach(startingGame => {
     for (let i = 0; i < signupWishes.length; i += 1) {
       if (startingGame.gameId === signupWishes[i].gameId) {
-        selectedGames.push(startingGame)
+        signedGames.push(startingGame)
         minAttendance += startingGame.minAttendance
         maxAttendance += startingGame.maxAttendance
         break
@@ -31,11 +31,11 @@ const getSelectedGames = (
 
   logger.info(
     `Found ${
-      selectedGames.length
+      signedGames.length
     } games that have signup wishes and ${minAttendance}-${maxAttendance} available seats`
   )
 
-  return selectedGames
+  return signedGames
 }
 
-export default getSelectedGames
+export default getSignedGames

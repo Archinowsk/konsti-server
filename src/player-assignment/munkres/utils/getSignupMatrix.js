@@ -4,7 +4,7 @@ import type { Game } from 'flow/game.flow'
 import type { User } from 'flow/user.flow'
 
 const getSignupMatrix = (
-  selectedGames: Array<Game>,
+  signedGames: Array<Game>,
   selectedPlayers: Array<User>
 ) => {
   logger.info('Generate signup matrix')
@@ -15,7 +15,7 @@ const getSignupMatrix = (
   let counter = 0
 
   // For each starting game...
-  selectedGames.forEach(selectedGame => {
+  signedGames.forEach(signedGame => {
     const gameSignups: Array<number> = []
 
     // ... check if players have wishes that match with game id
@@ -23,7 +23,7 @@ const getSignupMatrix = (
       let match = false
       for (let i = 0; i < player.signedGames.length; i += 1) {
         // Player has wish that matches starting game
-        if (selectedGame.gameId === player.signedGames[i].gameDetails.gameId) {
+        if (signedGame.gameId === player.signedGames[i].gameDetails.gameId) {
           if (typeof player.signedGames[i].priority === 'undefined') {
             gameSignups.push(9)
           } else {
@@ -39,7 +39,7 @@ const getSignupMatrix = (
       }
     })
     // Add one matrix row for each attendance seat
-    for (let j = 0; j < selectedGame.maxAttendance; j += 1) {
+    for (let j = 0; j < signedGame.maxAttendance; j += 1) {
       // Copy array, don't add reference
       signupMatrix[counter] = gameSignups.slice()
       counter += 1

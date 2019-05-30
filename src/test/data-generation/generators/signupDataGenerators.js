@@ -49,7 +49,7 @@ const signup = (games: Array<Game>, user: User) => {
 
   return db.user.saveSignup({
     username: user.username,
-    selectedGames: signup.gamesWithPriorities,
+    signedGames: signup.gamesWithPriorities,
   })
 
   // TODO: Different users: some sign for all three, some for one
@@ -84,7 +84,7 @@ const signupGroup = async (games: Array<Game>, users: Array<User>) => {
 
     let signupData = {
       username: users[i].username,
-      selectedGames: i === 0 ? signup.gamesWithPriorities : [],
+      signedGames: i === 0 ? signup.gamesWithPriorities : [],
     }
 
     promises.push(db.user.saveSignup(signupData))

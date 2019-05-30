@@ -17,7 +17,7 @@ type AssignmentResult = {
 
 const runAssignment = (
   playerGroups: Array<UserArray>,
-  selectedGames: Array<Game>
+  signedGames: Array<Game>
 ): AssignmentResult => {
   const signupResults = []
   let matchingGroups = []
@@ -27,7 +27,7 @@ const runAssignment = (
   let games = 0
 
   // Shuffle games order
-  const shuffledGames = shuffleArray(selectedGames)
+  const shuffledGames = shuffleArray(signedGames)
 
   for (let selectedGame of shuffledGames) {
     for (let playerGroup of playerGroups) {

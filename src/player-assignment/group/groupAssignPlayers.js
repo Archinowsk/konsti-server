@@ -2,7 +2,7 @@
 import logger from 'utils/logger'
 import getStartingGames from 'player-assignment/utils/getStartingGames'
 import getSignupWishes from 'player-assignment/utils/getSignupWishes'
-import getSelectedGames from 'player-assignment/utils/getSelectedGames'
+import getSignedGames from 'player-assignment/utils/getSignedGames'
 import getSelectedPlayers from 'player-assignment/utils/getSelectedPlayers'
 import assignGroups from 'player-assignment/group/utils/assignGroup'
 import getPlayerGroups from 'player-assignment/group/utils/getPlayerGroups'
@@ -18,7 +18,7 @@ const groupAssignPlayers = (
 ): AssignResult => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
-  const selectedGames = getSelectedGames(startingGames, signupWishes)
+  const signedGames = getSignedGames(startingGames, signupWishes)
 
   // Individual user is a group of one
   const selectedGroupLeaders = getSelectedPlayers(players, startingGames)
@@ -54,7 +54,7 @@ const groupAssignPlayers = (
     }
   }
 
-  logger.info(`Selected games: ${selectedGames.length}`)
+  logger.info(`Signed games: ${signedGames.length}`)
   logger.info(
     `Selected players: ${
       selectedPlayers.length
@@ -63,7 +63,7 @@ const groupAssignPlayers = (
 
   const result = assignGroups(
     selectedPlayers,
-    selectedGames,
+    signedGames,
     selectedPlayerGroups
   )
 

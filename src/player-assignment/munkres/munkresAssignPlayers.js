@@ -3,7 +3,7 @@ import munkres from 'munkres-js'
 import logger from 'utils/logger'
 import getStartingGames from 'player-assignment/utils/getStartingGames'
 import getSignupWishes from 'player-assignment/utils/getSignupWishes'
-import getSelectedGames from 'player-assignment/utils/getSelectedGames'
+import getSignedGames from 'player-assignment/utils/getSignedGames'
 import getSelectedPlayers from 'player-assignment/utils/getSelectedPlayers'
 import getSignupMatrix from 'player-assignment/munkres/utils/getSignupMatrix'
 import checkMinAttendance from 'player-assignment/munkres/utils/checkMinAttendance'
@@ -23,11 +23,11 @@ const munkresAssignPlayers = (
 ): AssignResult => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
-  const selectedGames = getSelectedGames(startingGames, signupWishes)
+  const signedGames = getSignedGames(startingGames, signupWishes)
   const selectedPlayers = getSelectedPlayers(players, startingGames)
-  const signupMatrix = getSignupMatrix(selectedGames, selectedPlayers)
+  const signupMatrix = getSignupMatrix(signedGames, selectedPlayers)
 
-  const initialGamesCount = selectedGames.length
+  const initialGamesCount = signedGames.length
   const initialPlayerCount = selectedPlayers.length
   let removedGamesCount = 0
   let removedPlayerCount = 0
@@ -35,22 +35,22 @@ const munkresAssignPlayers = (
   // Run the algorithm
   let results = munkres(signupMatrix)
 
-  let gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames)
+  let gamesWithTooFewPlayers = checkMinAttendance(results, signedGames)
 
   while (gamesWithTooFewPlayers.length > 0) {
     const removedGame = getRemovedGame(gamesWithTooFewPlayers)
 
-    for (let i = 0; i < selectedGames.length; i += 1) {
-      if (selectedGames[i].gameId === removedGame.gameId) {
-        logger.info(`Removed game "${selectedGames[i].title}"`)
-        selectedGames.splice(i, 1)
+    for (let i = 0; i < signedGames.length; i += 1) {
+      if (signedGames[i].gameId === removedGame.gameId) {
+        logger.info(`Removed game "${signedGames[i].title}"`)
+        signedGames.splice(i, 1)
         removedGamesCount += 1
         break
       }
     }
 
     results = munkres(signupMatrix)
-    gamesWithTooFewPlayers = checkMinAttendance(results, selectedGames)
+    gamesWithTooFewPlayers = checkMinAttendance(results, signedGames)
   }
 
   // Map usernames back to player IDs before altering players array
@@ -74,7 +74,7 @@ const munkresAssignPlayers = (
 
   const signupResults = buildSignupResults(
     results,
-    selectedGames,
+    signedGames,
     selectedPlayers
   )
 

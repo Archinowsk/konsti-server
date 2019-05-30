@@ -5,7 +5,7 @@ import type { Result } from 'flow/result.flow'
 
 const buildSignupResults = (
   results: Array<Array<number>>,
-  selectedGames: Array<Game>,
+  signedGames: Array<Game>,
   selectedPlayers: Array<User>
 ): Array<Result> => {
   const signupResults = []
@@ -21,14 +21,14 @@ const buildSignupResults = (
     let attendanceRange = 0
 
     // Figure what games the row numbers are
-    for (let j = 0; j < selectedGames.length; j += 1) {
-      attendanceRange += selectedGames[j].maxAttendance
+    for (let j = 0; j < signedGames.length; j += 1) {
+      attendanceRange += signedGames[j].maxAttendance
 
       // Found game
       if (selectedRow < attendanceRange) {
         signupResults.push({
           username: selectedPlayers[selectedPlayer].username,
-          enteredGame: selectedGames[j],
+          enteredGame: signedGames[j],
           signedGames: selectedPlayers[selectedPlayer].signedGames,
         })
         break

@@ -1,14 +1,8 @@
 /* @flow */
 import logger from 'utils/logger'
 import User from 'db/user/userSchema'
-import type { Result } from 'flow/result.flow'
-import type { SignedGame } from 'flow/user.flow'
+import type { Result, Signup } from 'flow/result.flow'
 import type { Game } from 'flow/game.flow'
-
-type SignupData = {
-  selectedGames: Array<SignedGame>,
-  username: string,
-}
 
 type NewUserData = {
   username: string,
@@ -74,30 +68,6 @@ const findUser = async (userData: UserData) => {
     logger.info(`MongoDB: User "${username}" not found`)
   } else {
     logger.debug(`MongoDB: Found user "${username}"`)
-  }
-  return response
-}
-
-const updateUserSignedGames = async (userData: Object) => {
-  const { username, signedGames } = userData
-
-  let response = null
-  try {
-    response = await User.updateOne(
-      { username: username },
-      { $set: { signedGames: signedGames } }
-    )
-  } catch (error) {
-    logger.error(
-      `MongoDB: Error updating user ${username} signed games - ${error}`
-    )
-    return error
-  }
-
-  if (!response) {
-    logger.info(`MongoDB: User "${username}" not found`)
-  } else {
-    logger.info(`MongoDB: User "${username}" signed games updated`)
   }
   return response
 }
@@ -195,8 +165,8 @@ const findUsers = async () => {
   }
 }
 
-const saveSignup = async (signupData: SignupData) => {
-  const { selectedGames, username } = signupData
+const saveSignup = async (signupData: Signup) => {
+  const { signedGames, username } = signupData
 
   let signupResponse = null
   try {
@@ -204,11 +174,11 @@ const saveSignup = async (signupData: SignupData) => {
       { username: username },
       {
         $set: {
-          signedGames: selectedGames.map(selectedGame => {
+          signedGames: signedGames.map(signedGame => {
             return {
-              gameDetails: selectedGame.gameDetails._id,
-              priority: selectedGame.priority,
-              time: selectedGame.time,
+              gameDetails: signedGame.gameDetails._id,
+              priority: signedGame.priority,
+              time: signedGame.time,
             }
           }),
         },
@@ -311,7 +281,6 @@ const user = {
   saveSignup,
   saveSignupResult,
   saveUser,
-  updateUserSignedGames,
   findGroupMembers,
   saveGroup,
 }
