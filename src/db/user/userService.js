@@ -3,9 +3,26 @@ import logger from 'utils/logger'
 import User from 'db/user/userSchema'
 import type { Result } from 'flow/result.flow'
 import type { SignedGame } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 
 type SignupData = {
   selectedGames: Array<SignedGame>,
+  username: string,
+}
+
+type NewUserData = {
+  username: string,
+  registerDescription: boolean,
+  serial: string,
+  passwordHash: string | Promise<any>,
+  userGroup?: string,
+  playerGroup?: string,
+  favoritedGames?: Array<Game>,
+  signedGames?: Array<Game>,
+  enteredGames?: Array<Game>,
+}
+
+type UserData = {
   username: string,
 }
 
@@ -14,18 +31,18 @@ const removeUsers = () => {
   return User.deleteMany({})
 }
 
-const saveUser = async (userData: Object) => {
-  const username = userData.username.trim()
+const saveUser = async (newUserData: NewUserData) => {
+  const username = newUserData.username.trim()
 
   const user = new User({
     username,
-    password: userData.passwordHash,
-    userGroup: userData.userGroup || 'user', // Options: 'user' and 'admin'
-    serial: userData.serial,
-    playerGroup: userData.playerGroup || '0',
-    favoritedGames: userData.favoritedGames || [],
-    signedGames: userData.signedGames || [],
-    enteredGames: userData.enteredGames || [],
+    password: newUserData.passwordHash,
+    userGroup: newUserData.userGroup || 'user', // Options: 'user' and 'admin'
+    serial: newUserData.serial,
+    playerGroup: newUserData.playerGroup || '0',
+    favoritedGames: newUserData.favoritedGames || [],
+    signedGames: newUserData.signedGames || [],
+    enteredGames: newUserData.enteredGames || [],
   })
 
   let response = null
@@ -39,7 +56,7 @@ const saveUser = async (userData: Object) => {
   }
 }
 
-const findUser = async (userData: Object) => {
+const findUser = async (userData: UserData) => {
   const username = userData.username.trim()
 
   let response = null

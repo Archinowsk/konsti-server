@@ -2,23 +2,22 @@
 import bcrypt from 'bcryptjs'
 import logger from 'utils/logger'
 
-const saltRounds = 10
+const saltLength = 10
 
-const hashPassword = async (password: string) => {
-  let response = null
+const hashPassword = async (password: string): Promise<any> => {
   try {
-    response = await bcrypt.hash(password, saltRounds)
-    return response
+    return await bcrypt.hash(password, saltLength)
   } catch (error) {
     logger.error(error)
   }
 }
 
-const comparePasswordHash = async (password: string, hash: string) => {
-  let response = null
+const comparePasswordHash = async (
+  password: string,
+  hash: string
+): Promise<any> => {
   try {
-    response = await bcrypt.compare(password, hash)
-    return response
+    return await bcrypt.compare(password, hash)
   } catch (error) {
     logger.error(error)
   }
