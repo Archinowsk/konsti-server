@@ -7,3 +7,16 @@ export type Result = {
   enteredGame: Game,
   signedGames: Array<SignedGame>,
 }
+
+export type NewSignupData = { username: string, signedGames: Array<SignedGame> }
+
+export type AssignResult = {
+  results: Array<Result>,
+  message: string,
+  newSignupData: Array<NewSignupData>,
+}
+
+export type Signup = {
+  username: string,
+  signedGames: Array<SignedGame>,
+}

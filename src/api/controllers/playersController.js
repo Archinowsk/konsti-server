@@ -6,6 +6,7 @@ import validateAuthHeader from 'utils/authHeader'
 import config from 'config'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
+import type { Signup } from 'flow/result.flow'
 
 // Assign players to games
 const postPlayers = async (req: Object, res: Object) => {
@@ -42,14 +43,9 @@ const postPlayers = async (req: Object, res: Object) => {
 
     const assignResults = assignPlayers(users, games, startingTime, strategy)
 
-    /* $FlowFixMe */
     if (assignResults && assignResults.results) {
       try {
-        await db.results.saveResults(
-          /* $FlowFixMe */
-          assignResults.results,
-          startingTime
-        )
+        await db.results.saveResults(assignResults.results, startingTime)
       } catch (error) {
         logger.error(`saveResults error: ${error}`)
         throw new Error('No assign results')
@@ -57,7 +53,6 @@ const postPlayers = async (req: Object, res: Object) => {
 
       try {
         await Promise.all(
-          /* $FlowFixMe */
           assignResults.results.map(assignResult => {
             return db.user.saveSignupResult(assignResult)
           })
@@ -69,17 +64,7 @@ const postPlayers = async (req: Object, res: Object) => {
 
       // Remove overlapping signups
       if (assignResults.newSignupData) {
-        try {
-          await Promise.all(
-            /* $FlowFixMe */
-            assignResults.newSignupData.map(newSignupData => {
-              return db.user.updateUserSignedGames(newSignupData)
-            })
-          )
-        } catch (error) {
-          logger.error(`updateUserSignedGames error: ${error}`)
-          throw new Error('No assign results')
-        }
+        await removeOverlappingSignups(assignResults.newSignupData)
       }
 
       res.json({
@@ -97,6 +82,19 @@ const postPlayers = async (req: Object, res: Object) => {
       status: 'error',
       error,
     })
+  }
+}
+
+const removeOverlappingSignups = async (signups: Array<Signup>) => {
+  try {
+    await Promise.all(
+      signups.map(signup => {
+        return db.user.updateUserSignedGames(signup)
+      })
+    )
+  } catch (error) {
+    logger.error(`updateUserSignedGames error: ${error}`)
+    throw new Error('No assign results')
   }
 }
 

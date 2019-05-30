@@ -14,13 +14,13 @@ import getRemovedPlayer from 'player-assignment/munkres/utils/getRemovedPlayer'
 import buildSignupResults from 'player-assignment/munkres/utils/buildSignupResults'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { Result } from 'flow/result.flow'
+import type { AssignResult } from 'flow/result.flow'
 
 const munkresAssignPlayers = (
   players: Array<User>,
   games: Array<Game>,
   startingTime: Date
-): Array<Result> => {
+): AssignResult => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const selectedGames = getSelectedGames(startingGames, signupWishes)
@@ -78,7 +78,9 @@ const munkresAssignPlayers = (
     selectedPlayers
   )
 
-  return signupResults
+  const message = 'Munkres assignment completed'
+
+  return { results: signupResults, message, newSignupData: [] }
 }
 
 export default munkresAssignPlayers

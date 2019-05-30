@@ -3,23 +3,20 @@ import moment from 'moment'
 import logger from 'utils/logger'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { Result } from 'flow/result.flow'
+import type { Result, NewSignupData } from 'flow/result.flow'
 
-type ResulstWithMessage = {
+type ResultsWithMessage = {
   results: Array<Result>,
   message: string,
 }
 
 const removeOverlapSignups = (
-  result: ResulstWithMessage,
+  result: ResultsWithMessage,
   games: Array<Game>,
   players: Array<User>
-) => {
-  // Remove signups that overlap with assignment result
-
+): Array<NewSignupData> => {
   const newSignupData = []
 
-  if (!result.results) return
   result.results.forEach(result => {
     const enteredGame = games.find(
       game => game.gameId === result.enteredGame.gameId

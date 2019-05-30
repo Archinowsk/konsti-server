@@ -9,12 +9,13 @@ import getPlayerGroups from 'player-assignment/group/utils/getPlayerGroups'
 import removeOverlapSignups from 'player-assignment/group/utils/removeOverlapSignups'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
+import type { AssignResult } from 'flow/result.flow'
 
 const groupAssignPlayers = (
   players: Array<User>,
   games: Array<Game>,
   startingTime: Date
-) => {
+): AssignResult => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const selectedGames = getSelectedGames(startingGames, signupWishes)
