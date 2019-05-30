@@ -19,26 +19,7 @@ const groupAssignPlayers = (
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const signedGames = getSignedGames(startingGames, signupWishes)
-
-  // Individual user is a group of one
-  const selectedGroupLeaders = getSelectedPlayers(players, startingGames)
-  const selectedPlayers = selectedGroupLeaders.slice()
-
-  for (let selectedGroupLeader of selectedGroupLeaders) {
-    // Group leader has multiple users in group
-    if (selectedGroupLeader.playerGroup !== '0') {
-      for (let player of players) {
-        // Player is in the group
-        if (
-          player.playerGroup === selectedGroupLeader.playerGroup &&
-          player.username !== selectedGroupLeader.username
-        ) {
-          player.signedGames = selectedGroupLeader.signedGames
-          selectedPlayers.push(player)
-        }
-      }
-    }
-  }
+  const selectedPlayers = getSelectedPlayers(players, startingGames)
 
   // Group individual users to groups
   // Single user is size 1 group

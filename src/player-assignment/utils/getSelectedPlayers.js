@@ -1,23 +1,16 @@
 /* @flow */
 import logger from 'utils/logger'
-import config from 'config'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
 const getSelectedPlayers = (
   players: Array<User>,
   startingGames: Array<Game>
-) => {
-  const strategy = config.assignmentStrategy
+): Array<User> => {
+  logger.info('Get selected players')
 
-  if (strategy === 'munkres') {
-    logger.info('Get selected players')
-  } else if (strategy === 'group') {
-    logger.info('Get selected group leaders')
-  }
-
-  // Get users who have wishes for valid games
-  const selectedPlayers: Array<User> = []
+  // Get users who have wishes for starting games
+  const selectedPlayers = []
 
   players.forEach(player => {
     let match = false
@@ -38,15 +31,7 @@ const getSelectedPlayers = (
     }
   })
 
-  if (strategy === 'munkres') {
-    logger.info(
-      `Found ${selectedPlayers.length} players for this starting time`
-    )
-  } else if (strategy === 'group') {
-    logger.info(
-      `Found ${selectedPlayers.length} group leaders for this starting time`
-    )
-  }
+  logger.info(`Found ${selectedPlayers.length} players for this starting time`)
 
   return selectedPlayers
 }
