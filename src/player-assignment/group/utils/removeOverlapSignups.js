@@ -20,7 +20,6 @@ const removeOverlapSignups = (
   const newSignupData = []
 
   if (!result.results) return
-  /* $FlowFixMe */
   result.results.forEach(result => {
     const enteredGame = games.find(
       game => game.gameId === result.enteredGame.gameId
@@ -37,7 +36,6 @@ const removeOverlapSignups = (
     const newSignedGames = []
 
     if (signedPlayer && signedPlayer.signedGames) {
-      /* $FlowFixMe */
       signedPlayer.signedGames.forEach(signedGame => {
         const signedGameDetails = games.find(
           game => game.gameId === signedGame.gameDetails.gameId
