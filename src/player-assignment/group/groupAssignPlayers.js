@@ -7,6 +7,7 @@ import getSelectedPlayers from 'player-assignment/utils/getSelectedPlayers'
 import assignGroups from 'player-assignment/group/utils/assignGroup'
 import getPlayerGroups from 'player-assignment/group/utils/getPlayerGroups'
 import removeOverlapSignups from 'player-assignment/group/utils/removeOverlapSignups'
+import getGroupMembers from 'player-assignment/group/utils/getGroupMembers'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
@@ -19,16 +20,18 @@ const groupAssignPlayers = (
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const signedGames = getSignedGames(startingGames, signupWishes)
-  const selectedPlayers = getSelectedPlayers(players, startingGames)
 
-  // Group individual users to groups
+  // Selected players are group leaders since group members don't have signups at this point
+  const groupLeaders = getSelectedPlayers(players, startingGames)
+  const groupMembers = getGroupMembers(groupLeaders, players)
+  const allPlayers = groupLeaders.concat(groupMembers)
   // Single user is size 1 group
-  const selectedPlayerGroups = getPlayerGroups(selectedPlayers)
+  const playerGroups = getPlayerGroups(allPlayers)
 
   let numberOfIndividuals = 0
   let numberOfGroups = 0
-  for (let selectedPlayerGroup of selectedPlayerGroups) {
-    if (selectedPlayerGroup.length > 1) {
+  for (let playerGroup of playerGroups) {
+    if (playerGroup.length > 1) {
       numberOfGroups += 1
     } else {
       numberOfIndividuals += 1
@@ -38,16 +41,11 @@ const groupAssignPlayers = (
   logger.info(`Signed games: ${signedGames.length}`)
   logger.info(
     `Selected players: ${
-      selectedPlayers.length
+      allPlayers.length
     } (${numberOfIndividuals} individual, ${numberOfGroups} groups)`
   )
 
-  const result = assignGroups(
-    selectedPlayers,
-    signedGames,
-    selectedPlayerGroups
-  )
-
+  const result = assignGroups(allPlayers, signedGames, playerGroups)
   const newSignupData = removeOverlapSignups(result, games, players)
 
   return Object.assign({ ...result, newSignupData })

@@ -154,6 +154,7 @@ const findUsers = async () => {
   let response = null
   try {
     response = await User.find({})
+      .lean()
       .populate('favoritedGames')
       .populate('enteredGames')
       .populate('signedGames.gameDetails')
