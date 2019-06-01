@@ -52,11 +52,9 @@ const saveHidden = async (hiddenData: Array<Game>) => {
   let response = null
   try {
     response = await Settings.updateOne({
-      $set: {
-        hiddenGames: hiddenData.map(game => {
-          return game._id
-        }),
-      },
+      hiddenGames: hiddenData.map(game => {
+        return game._id
+      }),
     })
     logger.info(`MongoDB: Hidden data updated`)
     return response
@@ -78,7 +76,7 @@ const saveSignupTime = async (signupTime: Date) => {
   let response = null
   try {
     response = await Settings.updateOne({
-      $set: { signupTime: formattedTime },
+      signupTime: formattedTime,
     })
     logger.info(`MongoDB: Signup time updated`)
     return response

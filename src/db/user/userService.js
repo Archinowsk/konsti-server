@@ -176,15 +176,13 @@ const saveSignup = async (signupData: Signup) => {
     signupResponse = await User.updateOne(
       { username: username },
       {
-        $set: {
-          signedGames: signedGames.map(signedGame => {
-            return {
-              gameDetails: signedGame.gameDetails._id,
-              priority: signedGame.priority,
-              time: signedGame.time,
-            }
-          }),
-        },
+        signedGames: signedGames.map(signedGame => {
+          return {
+            gameDetails: signedGame.gameDetails._id,
+            priority: signedGame.priority,
+            time: signedGame.time,
+          }
+        }),
       }
     )
   } catch (error) {
@@ -203,7 +201,7 @@ const saveGroup = async (groupCode: string, username: string) => {
   try {
     response = await User.updateOne(
       { username: username },
-      { $set: { playerGroup: groupCode } }
+      { playerGroup: groupCode }
     )
   } catch (error) {
     logger.error(
@@ -226,11 +224,9 @@ const saveFavorite = async (favoriteData: Object) => {
     response = await User.updateOne(
       { username: favoriteData.username },
       {
-        $set: {
-          favoritedGames: favoriteData.favoritedGames.map(game => {
-            return game._id
-          }),
-        },
+        favoritedGames: favoriteData.favoritedGames.map(game => {
+          return game._id
+        }),
       }
     )
 

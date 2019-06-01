@@ -1,7 +1,7 @@
 /* @flow */
 import mongoose from 'mongoose'
 
-const GameSchema = mongoose.Schema({
+const GameSchema = new mongoose.Schema({
   gameId: String,
   title: String,
   description: String,

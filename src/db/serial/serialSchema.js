@@ -1,7 +1,7 @@
 /* @flow */
 import mongoose from 'mongoose'
 
-const SerialSchema = mongoose.Schema({
+const SerialSchema = new mongoose.Schema({
   serial: String,
 })
 
