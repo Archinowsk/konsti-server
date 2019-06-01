@@ -13,7 +13,7 @@ const getResults = async (req: Object, res: Object) => {
 
   let results
   try {
-    results = await db.results.findResults(startTime)
+    results = await db.results.findResult(startTime)
   } catch (error) {
     logger.error(`Results: ${error}`)
     res.json({

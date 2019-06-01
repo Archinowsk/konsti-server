@@ -45,9 +45,9 @@ const postPlayers = async (req: Object, res: Object) => {
 
     if (assignResults && assignResults.results) {
       try {
-        await db.results.saveResults(assignResults.results, startingTime)
+        await db.results.saveResult(assignResults.results, startingTime)
       } catch (error) {
-        logger.error(`saveResults error: ${error}`)
+        logger.error(`saveResult error: ${error}`)
         throw new Error('No assign results')
       }
 

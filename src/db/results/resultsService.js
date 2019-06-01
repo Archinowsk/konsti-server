@@ -9,7 +9,7 @@ const removeResults = () => {
   return Results.deleteMany({})
 }
 
-const findResults = async (startTime: string) => {
+const findResult = async (startTime: string) => {
   let response = null
   try {
     response = await Results.findOne({ startTime })
@@ -27,7 +27,7 @@ const findResults = async (startTime: string) => {
   }
 }
 
-const saveResults = async (
+const saveResult = async (
   signupResultData: Array<Result>,
   startingTime: Date
 ) => {
@@ -63,6 +63,6 @@ const saveResults = async (
   }
 }
 
-const results = { removeResults, saveResults, findResults }
+const results = { removeResults, saveResult, findResult }
 
 export default results
