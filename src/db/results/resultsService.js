@@ -13,7 +13,7 @@ const findResult = async (startTime: string) => {
   try {
     response = await Results.findOne({ startTime })
       .lean()
-      .sort({ created: -1 })
+      .sort({ createdAt: -1 })
       .populate('result.enteredGame')
       .populate('result.signedGames.gameDetails')
     logger.debug(`MongoDB: Results data found for time ${startTime}`)

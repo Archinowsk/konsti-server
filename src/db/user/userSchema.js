@@ -16,7 +16,7 @@ const UserSchema = mongoose.Schema({
     },
   ],
   enteredGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
-  created: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
 })
 
 const User = mongoose.model('User', UserSchema)

@@ -24,5 +24,5 @@ export type User = {
   favoritedGames: Array<FavoritedGame>,
   signedGames: Array<SignedGame>,
   enteredGames: Array<EnteredGame>,
-  created: Date | null,
+  createdAt: Date | null,
 }

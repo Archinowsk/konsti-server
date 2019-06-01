@@ -40,7 +40,7 @@ const postLogin = async (req: Object, res: Object) => {
     userGroup: '',
     serial: '',
     playerGroup: '0',
-    created: null,
+    createdAt: null,
   }
 
   try {
