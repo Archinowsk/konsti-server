@@ -27,10 +27,7 @@ const findResult = async (startTime: string) => {
   }
 }
 
-const saveResult = async (
-  signupResultData: Array<Result>,
-  startingTime: Date
-) => {
+const saveResult = async (signupResultData: Array<Result>, startTime: Date) => {
   const result = signupResultData.map(result => {
     return {
       username: result.username,
@@ -47,7 +44,7 @@ const saveResult = async (
 
   const results = new Results({
     result,
-    startTime: moment(startingTime),
+    startTime: moment(startTime),
   })
 
   let response = null
