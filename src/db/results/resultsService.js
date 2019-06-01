@@ -1,5 +1,4 @@
 /* @flow */
-import moment from 'moment'
 import logger from 'utils/logger'
 import Results from 'db/results/resultsSchema'
 import type { Result } from 'flow/result.flow'
@@ -27,7 +26,10 @@ const findResult = async (startTime: string) => {
   }
 }
 
-const saveResult = async (signupResultData: Array<Result>, startTime: Date) => {
+const saveResult = async (
+  signupResultData: Array<Result>,
+  startTime: string
+) => {
   const result = signupResultData.map(result => {
     return {
       username: result.username,
@@ -42,19 +44,20 @@ const saveResult = async (signupResultData: Array<Result>, startTime: Date) => {
     }
   })
 
-  const results = new Results({
-    result,
-    startTime: moment(startTime),
-  })
-
   let response = null
   try {
-    response = await results.save()
-    logger.info(`MongoDB: Signup results stored to separate collection`)
+    response = await Results.replaceOne(
+      { startTime },
+      { startTime, result },
+      { upsert: true }
+    )
+    logger.info(
+      `MongoDB: Signup results for starting time ${startTime} stored to separate collection`
+    )
     return response
   } catch (error) {
     logger.error(
-      `MongoDB: Error storing signup results to separate collection - ${error}`
+      `MongoDB: Error storing signup results for starting time ${startTime} to separate collection - ${error}`
     )
     return error
   }
