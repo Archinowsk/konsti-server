@@ -56,6 +56,7 @@ const findUser = async (userData: UserData) => {
   let response = null
   try {
     response = await User.findOne({ username })
+      .lean()
       .populate('favoritedGames')
       .populate('enteredGames')
       .populate('signedGames.gameDetails')
@@ -77,7 +78,7 @@ const findSerial = async (serialData: Object) => {
 
   let response = null
   try {
-    response = await User.findOne({ serial })
+    response = await User.findOne({ serial }).lean()
   } catch (error) {
     logger.error(`MongoDB: Error finding Serial ${serial} - ${error}`)
     return error
@@ -95,6 +96,7 @@ const findGroupMembers = async (playerGroup: string) => {
   let response = null
   try {
     response = await User.find({ playerGroup })
+      .lean()
       .populate('favoritedGames')
       .populate('enteredGames')
       .populate('signedGames.gameDetails')
@@ -117,7 +119,7 @@ const findGroup = async (playerGroup: string, username: string) => {
   let response = null
   if (username) {
     try {
-      response = await User.findOne({ playerGroup, username })
+      response = await User.findOne({ playerGroup, username }).lean()
     } catch (error) {
       logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
       return error
@@ -135,7 +137,7 @@ const findGroup = async (playerGroup: string, username: string) => {
     return response
   } else {
     try {
-      response = await User.findOne(playerGroup)
+      response = await User.findOne(playerGroup).lean()
     } catch (error) {
       logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
       return error

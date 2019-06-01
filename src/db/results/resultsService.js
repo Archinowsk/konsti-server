@@ -13,6 +13,7 @@ const findResults = async (startTime: string) => {
   let response = null
   try {
     response = await Results.findOne({ startTime })
+      .lean()
       .sort({ created: -1 })
       .populate('result.enteredGame')
       .populate('result.signedGames.gameDetails')

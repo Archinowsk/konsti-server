@@ -65,7 +65,7 @@ const saveGames = async (games: Array<KompassiGame>) => {
 const findGames = async () => {
   let response = null
   try {
-    response = await Game.find({})
+    response = await Game.find({}).lean()
     logger.debug(`MongoDB: Find all games`)
     return response
   } catch (error) {

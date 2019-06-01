@@ -32,7 +32,7 @@ const saveSerials = async (serials: Array<string>) => {
 const findSerial = async (serial: string) => {
   let response = null
   try {
-    response = await Serial.findOne({ serial })
+    response = await Serial.findOne({ serial }).lean()
   } catch (error) {
     logger.error(`MongoDB: Error finding serial ${serial} - ${error}`)
     return error

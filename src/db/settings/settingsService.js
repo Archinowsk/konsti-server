@@ -32,7 +32,9 @@ const createSettings = async () => {
 const findSettings = async () => {
   let response = null
   try {
-    response = await Settings.findOne({}).populate('hiddenGames')
+    response = await Settings.findOne({})
+      .lean()
+      .populate('hiddenGames')
   } catch (error) {
     logger.error(`MongoDB: Error finding settings data - ${error}`)
     return error
