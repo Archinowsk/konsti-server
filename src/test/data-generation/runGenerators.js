@@ -17,13 +17,21 @@ const runGenerators = async () => {
     process.exit()
   }
 
-  // Total users: newUsersCount + 2 test accounts + groupSize * numberOfGroups
-  const newUsersCount = 10 // Number of individual users
-  const groupSize = 3 // How many users in each group
-  const numberOfGroups = 6 // Number of groups
+  let newUsersCount = 0 // Number of individual users
+  let groupSize = 0 // How many users in each group
+  let numberOfGroups = 0 // Number of groups
+  let newGamesCount = 0 // How many games are availale for signup - minimum is 3
 
-  // How many games are availale for signup - minimum is 3
-  const newGamesCount = 10
+  if (strategy === 'munkres') {
+    newUsersCount = 20
+    newGamesCount = 10
+  } else if (strategy === 'group') {
+    // Total users: newUsersCount + 2 test accounts + groupSize * numberOfGroups
+    newUsersCount = 10
+    groupSize = 3
+    numberOfGroups = 6
+    newGamesCount = 10
+  }
 
   try {
     await db.connectToDb()
