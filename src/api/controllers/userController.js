@@ -52,7 +52,7 @@ const postUser = async (req: Object, res: Object) => {
   let response = null
   try {
     // Check if user already exists
-    response = await db.user.findUser({ username })
+    response = await db.user.findUser(username)
   } catch (error) {
     logger.error(`db.user.findUser(): ${error}`)
   }
@@ -129,7 +129,7 @@ const getUser = async (req: Object, res: Object) => {
   }
 
   try {
-    const user = await db.user.findUser({ username })
+    const user = await db.user.findUser(username)
     if (!user) return
 
     const returnData = {

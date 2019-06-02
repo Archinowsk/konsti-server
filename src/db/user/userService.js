@@ -16,10 +16,6 @@ type NewUserData = {
   enteredGames?: Array<Game>,
 }
 
-type UserData = {
-  username: string,
-}
-
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')
   return User.deleteMany({})
@@ -50,9 +46,7 @@ const saveUser = async (newUserData: NewUserData) => {
   }
 }
 
-const findUser = async (userData: UserData) => {
-  const username = userData.username.trim()
-
+const findUser = async (username: string) => {
   let response = null
   try {
     response = await User.findOne({ username })
