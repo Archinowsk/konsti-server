@@ -46,7 +46,7 @@ const groupAssignPlayers = (
   )
 
   const result = assignGroups(allPlayers, signedGames, playerGroups)
-  const newSignupData = removeOverlapSignups(result, games, players)
+  const newSignupData = removeOverlapSignups(result, players)
 
   return Object.assign({ ...result, newSignupData })
 }

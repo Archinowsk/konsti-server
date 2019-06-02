@@ -12,7 +12,9 @@ export type SignedGame = {
 }
 
 export type EnteredGame = {
-  gameId: string,
+  gameDetails: Game,
+  priority: number,
+  time: Date,
 }
 
 export type User = {

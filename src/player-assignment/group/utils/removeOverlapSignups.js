@@ -2,7 +2,6 @@
 import moment from 'moment'
 import logger from 'utils/logger'
 import type { User } from 'flow/user.flow'
-import type { Game } from 'flow/game.flow'
 import type { Result, Signup } from 'flow/result.flow'
 
 type ResultsWithMessage = {
@@ -12,16 +11,13 @@ type ResultsWithMessage = {
 
 const removeOverlapSignups = (
   result: ResultsWithMessage,
-  games: Array<Game>,
   players: Array<User>
 ): Array<Signup> => {
   logger.debug('Clear overlapping signups')
   const signupData = []
 
   result.results.forEach(result => {
-    const enteredGame = games.find(
-      game => game.gameId === result.enteredGame.gameId
-    )
+    const enteredGame = result.enteredGame.gameDetails
 
     if (!enteredGame) return new Error('Error finding entered game')
 

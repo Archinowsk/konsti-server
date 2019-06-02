@@ -241,12 +241,27 @@ const saveFavorite = async (favoriteData: Object) => {
 const saveSignupResult = async (signupResult: Result) => {
   let response = null
   try {
+    const user = await findUser(signupResult.username)
+
+    let enteredGames = []
+    if (user.enteredGames.length === 0) {
+      enteredGames = signupResult.enteredGame
+    } else {
+      enteredGames = user.enteredGames.map(enteredGame => {
+        if (enteredGame.time === signupResult.enteredGame.time) {
+          return signupResult.enteredGame
+        } else {
+          return enteredGame
+        }
+      })
+    }
+
     response = await User.updateOne(
       {
         username: signupResult.username,
       },
       {
-        $push: { enteredGames: signupResult.enteredGame._id },
+        enteredGames,
       }
     )
 

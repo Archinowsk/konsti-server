@@ -6,7 +6,7 @@ import type { Result } from 'flow/result.flow'
 const buildSignupResults = (
   results: Array<Array<number>>,
   signedGames: Array<Game>,
-  selectedPlayers: Array<User>
+  players: Array<User>
 ): Array<Result> => {
   const signupResults = []
 
@@ -20,16 +20,30 @@ const buildSignupResults = (
 
     let attendanceRange = 0
 
+    const findEnteredGame = (enteredGame, signedGames) => {
+      return signedGames.find(
+        signedGame => signedGame.gameDetails.gameId === enteredGame.gameId
+      )
+    }
+
     // Figure what games the row numbers are
     for (let j = 0; j < signedGames.length; j += 1) {
       attendanceRange += signedGames[j].maxAttendance
 
       // Found game
       if (selectedRow < attendanceRange) {
+        let enteredGame = findEnteredGame(
+          signedGames[j],
+          players[selectedPlayer].signedGames
+        )
+
+        if (!enteredGame)
+          throw new Error('Unable to find entered game from signed games')
+
         signupResults.push({
-          username: selectedPlayers[selectedPlayer].username,
-          enteredGame: signedGames[j],
-          signedGames: selectedPlayers[selectedPlayer].signedGames,
+          username: players[selectedPlayer].username,
+          enteredGame,
+          signedGames: players[selectedPlayer].signedGames,
         })
         break
       }

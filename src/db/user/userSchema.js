@@ -16,7 +16,13 @@ const UserSchema = new mongoose.Schema(
         time: Date,
       },
     ],
-    enteredGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
+    enteredGames: [
+      {
+        gameDetails: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
+        priority: Number,
+        time: Date,
+      },
+    ],
   },
   { timestamps: true }
 )

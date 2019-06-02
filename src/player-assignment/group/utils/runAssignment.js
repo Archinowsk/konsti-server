@@ -11,8 +11,8 @@ type UserArray = Array<User>
 type AssignmentResult = {
   score: number,
   signupResults: Array<Result>,
-  players: number,
-  games: number,
+  playerCounter: number,
+  gameCounter: number,
 }
 
 const runAssignment = (
@@ -23,8 +23,14 @@ const runAssignment = (
   let matchingGroups = []
   let selectedGroups = []
   let score = 0
-  let players = 0
-  let games = 0
+  let playerCounter = 0
+  let gameCounter = 0
+
+  const findEnteredGame = (enteredGame, signedGames) => {
+    return signedGames.find(
+      signedGame => signedGame.gameDetails.gameId === enteredGame.gameId
+    )
+  }
 
   // Shuffle games order
   const shuffledGames = shuffleArray(signedGames)
@@ -130,7 +136,7 @@ const runAssignment = (
       for (let selectedGroup of selectedGroups) {
         for (let groupMember of selectedGroup) {
           let signedGame = groupMember.signedGames.find(
-            game => game.gameDetails.gameId === selectedGame.gameId
+            signedGame => signedGame.gameDetails.gameId === selectedGame.gameId
           )
 
           // Increase score based on priority of the entered game
@@ -142,22 +148,22 @@ const runAssignment = (
             score += 1
           }
 
-          players += 1
+          playerCounter += 1
+
+          let enteredGame = findEnteredGame(
+            selectedGame,
+            groupMember.signedGames
+          )
+
+          if (!enteredGame)
+            throw new Error('Unable to find entered game from signed games')
 
           signupResults.push({
             username: groupMember.username,
-            enteredGame: selectedGame,
+            enteredGame,
             signedGames: groupMember.signedGames,
           })
         }
-
-        // TODO: Figure correct group penalty
-        // Adjust the score based on group size
-        // Group of 1 = 0     => prio 1 = 3                 | prio 2 = 2                  | prio 3 = 1
-        // Group of 2-3 = 1   => prio 1 = 6-9 - 1 = 5-8     | prio 2 = 4-6 - 1 = 3-5      | prio 3 = 2-3 - 1 = 1-2
-        // Group of 4-5 = 2   => prio 1 = 12-15 - 2 = 10-13 | prio 2 = 8-10 - 2 = 6-8     | prio 3 = 4-5 - 2 = 2-3
-        // Group of 6-7 = 3   => prio 1 = 18-21 - 3 = 15-18 | prio 2 = 12-14 - 3 = 9 - 11 | prio 3 = 6-7 - 3 = 3-4
-        // score -= Math.round(selectedGroup.length / 2)
       }
 
       // Remove selected groups from ALL groups array
@@ -170,7 +176,7 @@ const runAssignment = (
         return remainingGroup
       })
 
-      games += 1
+      gameCounter += 1
     }
 
     logger.debug(`${playerGroups.length} player groups remaining`)
@@ -185,8 +191,8 @@ const runAssignment = (
   return {
     score,
     signupResults,
-    players,
-    games,
+    playerCounter,
+    gameCounter,
   }
 }
 

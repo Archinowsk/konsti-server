@@ -32,13 +32,13 @@ const assignGroups = (
     if (result.score > bestScore) {
       bestScore = result.score
       bestResult = result.signupResults
-      players = result.players
-      games = result.games
+      players = result.playerCounter
+      games = result.gameCounter
       logger.info(`New best score: ${bestScore}`)
     }
   }
 
-  const returnMessage = `Final result - Players: score ${bestScore}, number ${players}/${
+  const returnMessage = `Result - Score: ${bestScore}, Players: ${players}/${
     selectedPlayers.length
   } (${Math.round(
     (players / selectedPlayers.length) * 100
