@@ -52,7 +52,7 @@ const findUser = async (username: string) => {
     response = await User.findOne({ username })
       .lean()
       .populate('favoritedGames')
-      .populate('enteredGames')
+      .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails')
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
@@ -92,7 +92,7 @@ const findGroupMembers = async (playerGroup: string) => {
     response = await User.find({ playerGroup })
       .lean()
       .populate('favoritedGames')
-      .populate('enteredGames')
+      .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails')
   } catch (error) {
     logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
@@ -152,7 +152,7 @@ const findUsers = async () => {
     response = await User.find({})
       .lean()
       .populate('favoritedGames')
-      .populate('enteredGames')
+      .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails')
     logger.info(`MongoDB: Find all users`)
     return response
