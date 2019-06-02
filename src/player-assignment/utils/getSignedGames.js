@@ -12,7 +12,7 @@ const getSignedGames = (
   startingGames: Array<Game>,
   signupWishes: Array<SignupWish>
 ) => {
-  logger.info('Get selected games')
+  logger.debug('Get selected games')
   const signedGames = []
   let minAttendance = 0
   let maxAttendance = 0

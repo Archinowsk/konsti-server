@@ -3,7 +3,7 @@ import logger from 'utils/logger'
 import type { User } from 'flow/user.flow'
 
 const getSignupWishes = (players: Array<User>) => {
-  logger.info('Get signup wishes')
+  logger.debug('Get signup wishes')
   const signupWishes = []
 
   // Get signup wishes for all players

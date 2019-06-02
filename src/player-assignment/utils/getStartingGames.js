@@ -4,7 +4,7 @@ import logger from 'utils/logger'
 import type { Game } from 'flow/game.flow'
 
 const getStartingGames = (games: Array<Game>, startingTime: Date) => {
-  logger.info('Get starting games')
+  logger.debug('Get starting games')
   const startingGames = []
   const selectedStartingTime = moment(startingTime).format()
 

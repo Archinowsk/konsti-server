@@ -7,7 +7,7 @@ const getSelectedPlayers = (
   players: Array<User>,
   startingGames: Array<Game>
 ): Array<User> => {
-  logger.info('Get selected players')
+  logger.debug('Get selected players')
 
   // Get users who have wishes for starting games
   const selectedPlayers = []
