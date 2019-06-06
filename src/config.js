@@ -32,7 +32,7 @@ const commonConfig = {
 
   // App settings
   assignmentStrategy: 'group', // 'munkres', 'group'
-  bundleCompression: false,
+  bundleCompression: true,
   autoUpdateGames: false,
   gameUpdateInterval: 5, // minutes
 }

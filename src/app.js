@@ -5,7 +5,7 @@ import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 // import expressJWT from 'express-jwt'
-
+import expressStaticGzip from 'express-static-gzip'
 import config from 'config'
 import logger, { stream } from 'utils/logger'
 import db from 'db/mongodb'
@@ -17,21 +17,6 @@ db.connectToDb()
 const app = express()
 
 app.use(helmet())
-
-if (config.bundleCompression) {
-  const COMPRESSED = ['/client.bundle']
-
-  // Request gzip file if should be compressed
-  app.get('*.js', (req: Object, res: Object, next: Function) => {
-    COMPRESSED.forEach((value, index) => {
-      if (req.url.startsWith(value[index])) {
-        req.url += '.gz'
-        res.set('Content-Encoding', 'gzip')
-      }
-    }, this)
-    next()
-  })
-}
 
 if (config.enableAccessLog) {
   // Set logger
@@ -63,11 +48,18 @@ app.use('/api', apiRoutes)
 
 // Set static path
 const staticPath = path.join(__dirname, '../', 'front')
-app.use(express.static(staticPath))
 
-// Set static path for register description
-const registerInfoPath = path.join(__dirname, '../', 'front')
-app.use(express.static(registerInfoPath))
+// Set compression
+if (config.bundleCompression) {
+  app.use(
+    expressStaticGzip(staticPath, {
+      enableBrotli: true,
+      orderPreference: ['br', 'gz'],
+    })
+  )
+} else {
+  app.use(express.static(staticPath))
+}
 
 // No match, route to index
 app.get('/*', (req: Object, res: Object) => {
