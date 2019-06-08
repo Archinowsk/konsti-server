@@ -35,6 +35,6 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 'error',
-    'node/no-unsupported-features/es-syntax': 'off',
+    'node/no-unsupported-features/es-syntax': 'off', // Import and export declarations are not supported yet
   },
 }
