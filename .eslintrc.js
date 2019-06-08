@@ -4,8 +4,8 @@ module.exports = {
     'plugin:jest/recommended',
     'plugin:flowtype/recommended',
     // 'plugin:security/recommended',
-    // 'plugin:node/recommended',
     // 'plugin:unicorn/recommended',
+    'plugin:node/recommended',
     'plugin:promise/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:eslint-plugin/recommended',
@@ -36,5 +36,6 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'node/no-unsupported-features/es-syntax': 'off', // Import and export declarations are not supported yet
+    'no-process-exit': 'off', // There are valid uses for process.exit()
   },
 }
