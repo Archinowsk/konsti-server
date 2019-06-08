@@ -31,7 +31,7 @@ const commonConfig = {
   enableAccessLog: false,
 
   // App settings
-  assignmentStrategy: 'munkres', // 'munkres', 'group'
+  assignmentStrategy: 'group', // 'munkres', 'group'
   bundleCompression: true,
   autoUpdateGames: false,
   gameUpdateInterval: 5, // minutes
