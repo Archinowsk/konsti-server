@@ -50,7 +50,7 @@ const postGames = async (req: Object, res: Object) => {
     return
   }
 
-  let games: Array<KompassiGame> = []
+  let games: $ReadOnlyArray<KompassiGame> = []
   let response = null
   try {
     games = await updateGames()

@@ -1,6 +1,6 @@
 // @flow
 
 export type FeedbackData = {
-  gameId: string,
-  feedback: string,
+  +gameId: string,
+  +feedback: string,
 }

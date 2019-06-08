@@ -7,7 +7,7 @@ const removeSerials = () => {
   return Serial.deleteMany({})
 }
 
-const saveSerials = async (serials: Array<string>) => {
+const saveSerials = async (serials: $ReadOnlyArray<string>) => {
   const serialDocs = []
 
   for (let serial of serials) {

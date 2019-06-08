@@ -1,5 +1,5 @@
 /* @flow */
-const shuffleArray = (array: Array<any>) => {
+const shuffleArray = (array: $ReadOnlyArray<any>) => {
   // Don't mutate input array
   /* $FlowFixMe */
   const shuffledArray = array.slice()

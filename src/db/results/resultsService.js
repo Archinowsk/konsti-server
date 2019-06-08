@@ -27,7 +27,7 @@ const findResult = async (startTime: string) => {
 }
 
 const saveResult = async (
-  signupResultData: Array<Result>,
+  signupResultData: $ReadOnlyArray<Result>,
   startTime: string
 ) => {
   const result = signupResultData.map(result => {

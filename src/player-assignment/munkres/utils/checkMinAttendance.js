@@ -4,8 +4,8 @@ import type { Game } from 'flow/game.flow'
 import type { Result } from 'flow/result.flow'
 
 const checkMinAttendance = (
-  results: Array<Result>,
-  signedGames: Array<Game>
+  results: $ReadOnlyArray<Result>,
+  signedGames: $ReadOnlyArray<Game>
 ) => {
   // Check that game minAttendance is fullfilled
   const gameIds = []

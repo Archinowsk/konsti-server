@@ -2,19 +2,7 @@
 import logger from 'utils/logger'
 import User from 'db/user/userSchema'
 import type { Result, Signup } from 'flow/result.flow'
-import type { Game } from 'flow/game.flow'
-
-type NewUserData = {
-  username: string,
-  registerDescription: boolean,
-  serial: string,
-  passwordHash: string | Promise<any>,
-  userGroup?: string,
-  playerGroup?: string,
-  favoritedGames?: Array<Game>,
-  signedGames?: Array<Game>,
-  enteredGames?: Array<Game>,
-}
+import type { NewUserData } from 'flow/user.flow'
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')

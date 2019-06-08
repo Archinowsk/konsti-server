@@ -2,18 +2,30 @@
 import type { SignedGame, EnteredGame } from 'flow/user.flow'
 
 export type Result = {
-  username: string,
-  enteredGame: EnteredGame,
-  signedGames: Array<SignedGame>,
+  +username: string,
+  +enteredGame: EnteredGame,
+  +signedGames: $ReadOnlyArray<SignedGame>,
 }
 
 export type Signup = {
-  username: string,
-  signedGames: Array<SignedGame>,
+  +username: string,
+  +signedGames: $ReadOnlyArray<SignedGame>,
 }
 
 export type AssignResult = {
-  results: Array<Result>,
-  message: string,
-  newSignupData: Array<Signup>,
+  +results: $ReadOnlyArray<Result>,
+  +message: string,
+  +newSignupData: $ReadOnlyArray<Signup>,
+}
+
+export type ResultsWithMessage = {
+  +results: $ReadOnlyArray<Result>,
+  +message: string,
+}
+
+export type AssignmentResult = {
+  +score: number,
+  +signupResults: $ReadOnlyArray<Result>,
+  +playerCounter: number,
+  +gameCounter: number,
 }

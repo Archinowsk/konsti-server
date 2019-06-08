@@ -4,10 +4,10 @@ import type { Game } from 'flow/game.flow'
 import type { Result } from 'flow/result.flow'
 
 const buildSignupResults = (
-  results: Array<Array<number>>,
-  signedGames: Array<Game>,
-  players: Array<User>
-): Array<Result> => {
+  results: $ReadOnlyArray<$ReadOnlyArray<number>>,
+  signedGames: $ReadOnlyArray<Game>,
+  players: $ReadOnlyArray<User>
+): $ReadOnlyArray<Result> => {
   const signupResults = []
 
   // Build signup results

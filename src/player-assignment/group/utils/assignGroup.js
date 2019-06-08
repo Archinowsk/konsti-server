@@ -2,21 +2,14 @@
 import logger from 'utils/logger'
 import runAssignment from 'player-assignment/group/utils/runAssignment'
 import config from 'config'
-import type { User } from 'flow/user.flow'
+import type { User, UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { Result } from 'flow/result.flow'
-
-type UserArray = Array<User>
-
-type ResultsWithMessage = {
-  results: Array<Result>,
-  message: string,
-}
+import type { ResultsWithMessage } from 'flow/result.flow'
 
 const assignGroups = (
-  selectedPlayers: Array<User>,
-  signedGames: Array<Game>,
-  playerGroups: Array<UserArray>
+  selectedPlayers: $ReadOnlyArray<User>,
+  signedGames: $ReadOnlyArray<Game>,
+  playerGroups: $ReadOnlyArray<UserArray>
 ): ResultsWithMessage => {
   const { ASSIGNMENT_ROUNDS } = config
 

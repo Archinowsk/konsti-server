@@ -3,7 +3,7 @@ import logger from 'utils/logger'
 type PlayeIdWithPriority = { playerId: number, priorityValue: number }
 
 const getPlayersWithTooHighPriority = (
-  priorities: Array<PlayeIdWithPriority>
+  priorities: $ReadOnlyArray<PlayeIdWithPriority>
 ) => {
   const playersWithTooHighPriority = []
 

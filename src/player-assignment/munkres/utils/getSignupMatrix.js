@@ -4,8 +4,8 @@ import type { Game } from 'flow/game.flow'
 import type { User } from 'flow/user.flow'
 
 const getSignupMatrix = (
-  signedGames: Array<Game>,
-  selectedPlayers: Array<User>
+  signedGames: $ReadOnlyArray<Game>,
+  selectedPlayers: $ReadOnlyArray<User>
 ) => {
   logger.info('Generate signup matrix')
   // Create matrix for the sorting algorithm

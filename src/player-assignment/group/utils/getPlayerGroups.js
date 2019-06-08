@@ -1,9 +1,9 @@
 /* @flow */
-import type { User } from 'flow/user.flow'
+import type { User, UserArray } from 'flow/user.flow'
 
-type UserArray = Array<User>
-
-const getPlayerGroups = (players: Array<User>): Array<UserArray> => {
+const getPlayerGroups = (
+  players: $ReadOnlyArray<User>
+): $ReadOnlyArray<UserArray> => {
   // Group all unique group numbers
   const groupedUsers = players.reduce((acc, player) => {
     acc[player['playerGroup']] = acc[player['playerGroup']] || []

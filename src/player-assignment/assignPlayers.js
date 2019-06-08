@@ -7,8 +7,8 @@ import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
 
 const assignPlayers = (
-  players: Array<User>,
-  games: Array<Game>,
+  players: $ReadOnlyArray<User>,
+  games: $ReadOnlyArray<Game>,
   startingTime: Date,
   strategy: string
 ): AssignResult => {

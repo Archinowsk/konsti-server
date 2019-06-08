@@ -5,7 +5,7 @@ import { getRandomInt } from 'test/data-generation/generators/randomVariableGene
 import type { User } from 'flow//user.flow'
 import type { Game } from 'flow/game.flow'
 
-const getRandomSignup = (games: Array<Game>, user: User) => {
+const getRandomSignup = (games: $ReadOnlyArray<Game>, user: User) => {
   const randomGames = []
   let randomIndex
 
@@ -36,7 +36,7 @@ const getRandomSignup = (games: Array<Game>, user: User) => {
   }
 }
 
-const signup = (games: Array<Game>, user: User) => {
+const signup = (games: $ReadOnlyArray<Game>, user: User) => {
   const signup = getRandomSignup(games, user)
 
   /*
@@ -55,7 +55,10 @@ const signup = (games: Array<Game>, user: User) => {
   // TODO: Different users: some sign for all three, some for one
 }
 
-const signupMultiple = (games: Array<Game>, users: Array<User>) => {
+const signupMultiple = (
+  games: $ReadOnlyArray<Game>,
+  users: $ReadOnlyArray<User>
+) => {
   const promises = []
 
   for (let user of users) {
@@ -67,7 +70,10 @@ const signupMultiple = (games: Array<Game>, users: Array<User>) => {
   return Promise.all(promises)
 }
 
-const signupGroup = async (games: Array<Game>, users: Array<User>) => {
+const signupGroup = async (
+  games: $ReadOnlyArray<Game>,
+  users: $ReadOnlyArray<User>
+) => {
   // Generate random signup data for the first user
   const signup = getRandomSignup(games, users[0])
 
@@ -96,8 +102,8 @@ const signupGroup = async (games: Array<Game>, users: Array<User>) => {
 const createSignupData = async (strategy: string) => {
   logger.info('Generate signup data')
 
-  let games: Array<Game> = []
-  let users: Array<User> = []
+  let games: $ReadOnlyArray<Game> = []
+  let users: $ReadOnlyArray<User> = []
 
   try {
     games = await db.game.findGames()
@@ -120,7 +126,7 @@ const createSignupData = async (strategy: string) => {
       return acc
     }, {})
 
-    for (const [key: String, value: Array<User>] of Object.entries(
+    for (const [key: String, value: $ReadOnlyArray<User>] of Object.entries(
       groupedUsers
     )) {
       // $FlowFixMe

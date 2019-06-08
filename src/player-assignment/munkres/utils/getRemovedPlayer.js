@@ -2,7 +2,7 @@
 type PlayeIdWithPriority = { playerId: number, priorityValue: number }
 
 const getRemovedPlayer = (
-  playersWithTooHighPriority: Array<PlayeIdWithPriority>
+  playersWithTooHighPriority: $ReadOnlyArray<PlayeIdWithPriority>
 ) => {
   const randomIndex = Math.floor(
     Math.random() * playersWithTooHighPriority.length

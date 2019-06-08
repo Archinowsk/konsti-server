@@ -9,7 +9,7 @@ const removeGames = () => {
 }
 
 // Save all games to db
-const saveGames = async (games: Array<KompassiGame>) => {
+const saveGames = async (games: $ReadOnlyArray<KompassiGame>) => {
   logger.info('MongoDB: Store games to DB')
   const gameDocs = []
 

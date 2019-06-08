@@ -3,7 +3,7 @@ import moment from 'moment'
 import logger from 'utils/logger'
 import type { Game } from 'flow/game.flow'
 
-const getStartingGames = (games: Array<Game>, startingTime: Date) => {
+const getStartingGames = (games: $ReadOnlyArray<Game>, startingTime: Date) => {
   logger.debug('Get starting games')
   const startingGames = []
   const selectedStartingTime = moment(startingTime).format()

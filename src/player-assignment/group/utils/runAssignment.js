@@ -2,22 +2,13 @@
 import logger from 'utils/logger'
 import getRandomInt from 'player-assignment/utils/getRandomInt'
 import shuffleArray from 'utils/shuffleArray'
-import type { User } from 'flow/user.flow'
+import type { UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { Result } from 'flow/result.flow'
-
-type UserArray = Array<User>
-
-type AssignmentResult = {
-  score: number,
-  signupResults: Array<Result>,
-  playerCounter: number,
-  gameCounter: number,
-}
+import type { AssignmentResult } from 'flow/result.flow'
 
 const runAssignment = (
-  playerGroups: Array<UserArray>,
-  signedGames: Array<Game>
+  playerGroups: $ReadOnlyArray<UserArray>,
+  signedGames: $ReadOnlyArray<Game>
 ): AssignmentResult => {
   const signupResults = []
   let matchingGroups = []

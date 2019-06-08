@@ -3,9 +3,9 @@ import logger from 'utils/logger'
 import type { User } from 'flow/user.flow'
 
 const getGroupMembers = (
-  groupLeaders: Array<User>,
-  players: Array<User>
-): Array<User> => {
+  groupLeaders: $ReadOnlyArray<User>,
+  players: $ReadOnlyArray<User>
+): $ReadOnlyArray<User> => {
   logger.info('Add group members to groups')
 
   const selectedPlayersWithSignups = []

@@ -23,8 +23,8 @@ const postPlayers = async (req: Object, res: Object) => {
 
   const strategy = config.assignmentStrategy
 
-  let users: Array<User> = []
-  let games: Array<Game> = []
+  let users: $ReadOnlyArray<User> = []
+  let games: $ReadOnlyArray<Game> = []
 
   try {
     try {
@@ -85,7 +85,7 @@ const postPlayers = async (req: Object, res: Object) => {
   }
 }
 
-const removeOverlappingSignups = async (signups: Array<Signup>) => {
+const removeOverlappingSignups = async (signups: $ReadOnlyArray<Signup>) => {
   try {
     await Promise.all(
       signups.map(signup => {

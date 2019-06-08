@@ -2,8 +2,8 @@
 import type { Result } from 'flow/result.flow'
 
 const getPriorities = (
-  results: Array<Result>,
-  signupMatrix: Array<Array<number>>
+  results: $ReadOnlyArray<Result>,
+  signupMatrix: $ReadOnlyArray<$ReadOnlyArray<number>>
 ) => {
   // Show the priorities players were assigned to
   const priorities = []

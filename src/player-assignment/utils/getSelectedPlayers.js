@@ -4,8 +4,8 @@ import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
 const getSelectedPlayers = (
-  players: Array<User>,
-  startingGames: Array<Game>
+  players: $ReadOnlyArray<User>,
+  startingGames: $ReadOnlyArray<Game>
 ): Array<User> => {
   logger.debug('Get selected players')
 

@@ -13,8 +13,8 @@ import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
 
 const groupAssignPlayers = (
-  players: Array<User>,
-  games: Array<Game>,
+  players: $ReadOnlyArray<User>,
+  games: $ReadOnlyArray<Game>,
   startingTime: Date
 ): AssignResult => {
   const startingGames = getStartingGames(games, startingTime)
