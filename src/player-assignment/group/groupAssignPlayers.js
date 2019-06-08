@@ -40,9 +40,7 @@ const groupAssignPlayers = (
 
   logger.info(`Signed games: ${signedGames.length}`)
   logger.info(
-    `Selected players: ${
-      allPlayers.length
-    } (${numberOfIndividuals} individual, ${numberOfGroups} groups)`
+    `Selected players: ${allPlayers.length} (${numberOfIndividuals} individual, ${numberOfGroups} groups)`
   )
 
   const result = assignGroups(allPlayers, signedGames, playerGroups)

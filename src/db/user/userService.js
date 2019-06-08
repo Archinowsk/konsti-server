@@ -230,9 +230,7 @@ const saveFavorite = async (favoriteData: Object) => {
     return response
   } catch (error) {
     logger.error(
-      `MongoDB: Error storing favorite data for user "${
-        favoriteData.username
-      }" - ${error}`
+      `MongoDB: Error storing favorite data for user "${favoriteData.username}" - ${error}`
     )
     return error
   }
@@ -271,9 +269,7 @@ const saveSignupResult = async (signupResult: Result) => {
     return response
   } catch (error) {
     logger.error(
-      `MongoDB: Error storing signup result data for user ${
-        signupResult.username
-      } - ${error}`
+      `MongoDB: Error storing signup result data for user ${signupResult.username} - ${error}`
     )
     return error
   }

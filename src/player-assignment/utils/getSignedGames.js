@@ -30,9 +30,7 @@ const getSignedGames = (
   })
 
   logger.info(
-    `Found ${
-      signedGames.length
-    } games that have signup wishes and ${minAttendance}-${maxAttendance} available seats`
+    `Found ${signedGames.length} games that have signup wishes and ${minAttendance}-${maxAttendance} available seats`
   )
 
   return signedGames
