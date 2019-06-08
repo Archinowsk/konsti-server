@@ -1,5 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/node_modules/bcryptjs/src/bower.json
+<PROJECT_ROOT>/front
+<PROJECT_ROOT>/lib
 
 [include]
 
