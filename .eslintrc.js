@@ -23,7 +23,6 @@ module.exports = {
     'unicorn',
     'eslint-plugin',
     'jest',
-    // 'flowtype-errors',
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -37,6 +36,5 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'node/no-unsupported-features/es-syntax': 'off',
-    // 'flowtype-errors/show-errors': 'error',
   },
 }
