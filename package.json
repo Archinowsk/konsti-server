@@ -29,7 +29,7 @@
     "generate-serials": "npm run build && cross-env NODE_ENV=development node -r esm lib/utils/generateSerials.js",
     "prepare-deploy-prod": "npm run clean && npm run build-front-prod && npm run build",
     "prepare-deploy-staging": "npm run clean && npm run build-front-staging && npm run build",
-    "prettier": "prettier --write src/**/*.{js,json}",
+    "prettier": "prettier --write src/**/*.{js,json,md}",
     "start": "npm run build && node -r esm lib/server.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development node -r esm lib/server.js",
     "start-prod": "npm run build && cross-env NODE_ENV=production node -r esm lib/server.js",
@@ -109,11 +109,15 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "prettier --parser flow --write",
+      "prettier --write",
       "git add"
     ],
     "*.json": [
-      "prettier --parser json --write",
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
       "git add"
     ]
   }
