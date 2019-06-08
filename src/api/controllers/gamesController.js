@@ -67,7 +67,7 @@ const postGames = async (req: Object, res: Object) => {
       status: 'error',
       data: error,
     })
-    Promise.reject(error)
+    return Promise.reject(error)
   }
 }
 

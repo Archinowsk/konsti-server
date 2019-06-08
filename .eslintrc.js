@@ -2,11 +2,11 @@ module.exports = {
   extends: [
     'standard',
     'plugin:jest/recommended',
-    // 'plugin:security/recommended',
     'plugin:flowtype/recommended',
+    // 'plugin:security/recommended',
     // 'plugin:node/recommended',
-    // 'plugin:promise/recommended',
     // 'plugin:unicorn/recommended',
+    'plugin:promise/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:eslint-plugin/recommended',
     'prettier',
