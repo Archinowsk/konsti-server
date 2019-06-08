@@ -37,11 +37,14 @@ const saveUser = async (newUserData: NewUserData) => {
 const findUser = async (username: string) => {
   let response = null
   try {
-    response = await User.findOne({ username })
+    response = await User.findOne(
+      { username },
+      '-signedGames._id -enteredGames._id'
+    )
       .lean()
-      .populate('favoritedGames')
-      .populate('enteredGames.gameDetails')
-      .populate('signedGames.gameDetails')
+      .populate('favoritedGames', '-_id -__v')
+      .populate('enteredGames.gameDetails', '-_id -__v')
+      .populate('signedGames.gameDetails', '-_id -__v')
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
     return error
