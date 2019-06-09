@@ -8,6 +8,9 @@
 [libs]
 
 [lints]
+all=off
+untyped-import=off
+unclear-type=off
 
 [options]
 # Root import
