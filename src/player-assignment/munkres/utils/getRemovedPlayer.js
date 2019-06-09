@@ -1,5 +1,5 @@
 /* @flow */
-type PlayeIdWithPriority = { playerId: number, priorityValue: number }
+import type { PlayeIdWithPriority } from 'flow/user.flow'
 
 const getRemovedPlayer = (
   playersWithTooHighPriority: $ReadOnlyArray<PlayeIdWithPriority>

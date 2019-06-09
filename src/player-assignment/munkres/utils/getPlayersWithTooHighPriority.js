@@ -1,6 +1,6 @@
 /* @flow */
 import logger from 'utils/logger'
-type PlayeIdWithPriority = { playerId: number, priorityValue: number }
+import type { PlayeIdWithPriority } from 'flow/user.flow'
 
 const getPlayersWithTooHighPriority = (
   priorities: $ReadOnlyArray<PlayeIdWithPriority>

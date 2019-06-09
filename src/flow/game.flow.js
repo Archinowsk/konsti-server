@@ -26,7 +26,7 @@ export type Game = {
   +intendedForExperiencedParticipants: boolean,
 }
 
-export type KompassiGame = {
+export type KompassiGame = {|
   +title: string,
   +description: string,
   +category_title: string,
@@ -49,9 +49,9 @@ export type KompassiGame = {
   +tags: $ReadOnlyArray<string>,
   +genres: $ReadOnlyArray<string>,
   +styles: $ReadOnlyArray<string>,
-}
+|}
 
-export type GameWithPlayerCount = {
+export type GameWithPlayerCount = {|
   +game: Game,
   +players: number,
-}
+|}

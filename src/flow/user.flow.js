@@ -17,7 +17,7 @@ export type EnteredGame = {
   +time: Date,
 }
 
-export type User = {
+export type User = {|
   +username: string,
   +password: string,
   +userGroup: string,
@@ -27,11 +27,11 @@ export type User = {
   +signedGames: $ReadOnlyArray<SignedGame>,
   +enteredGames: $ReadOnlyArray<EnteredGame>,
   +createdAt: Date | null,
-}
+|}
 
 export type UserArray = $ReadOnlyArray<User>
 
-export type NewUserData = {
+export type NewUserData = {|
   +username: string,
   +registerDescription: boolean,
   +serial: string,
@@ -41,10 +41,12 @@ export type NewUserData = {
   +favoritedGames?: $ReadOnlyArray<Game>,
   +signedGames?: $ReadOnlyArray<Game>,
   +enteredGames?: $ReadOnlyArray<Game>,
-}
+|}
 
-export type SignupWish = {
+export type SignupWish = {|
   +username: string,
   +gameId: string,
   +priority: number,
-}
+|}
+
+export type PlayeIdWithPriority = {| playerId: number, priorityValue: number |}

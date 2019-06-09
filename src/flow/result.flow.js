@@ -1,31 +1,31 @@
 // @flow
 import type { SignedGame, EnteredGame } from 'flow/user.flow'
 
-export type Result = {
+export type Result = {|
   +username: string,
   +enteredGame: EnteredGame,
   +signedGames: $ReadOnlyArray<SignedGame>,
-}
+|}
 
-export type Signup = {
+export type Signup = {|
   +username: string,
   +signedGames: $ReadOnlyArray<SignedGame>,
-}
+|}
 
-export type AssignResult = {
+export type AssignResult = {|
   +results: $ReadOnlyArray<Result>,
   +message: string,
   +newSignupData: $ReadOnlyArray<Signup>,
-}
+|}
 
-export type ResultsWithMessage = {
+export type ResultsWithMessage = {|
   +results: $ReadOnlyArray<Result>,
   +message: string,
-}
+|}
 
-export type AssignmentResult = {
+export type AssignmentResult = {|
   +score: number,
   +signupResults: $ReadOnlyArray<Result>,
   +playerCounter: number,
   +gameCounter: number,
-}
+|}
