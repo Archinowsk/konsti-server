@@ -169,7 +169,7 @@ const saveSignup = async (signupData: Signup) => {
           }
         }),
       },
-      { new: true }
+      { new: true, fields: '-signedGames._id' }
     ).populate('signedGames.gameDetails' /* , '-_id -__v' */)
   } catch (error) {
     logger.error(
