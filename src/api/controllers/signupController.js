@@ -24,11 +24,11 @@ const postSignup = async (req: Object, res: Object) => {
   }
 
   try {
-    await db.user.saveSignup(modifiedSignupData)
-
+    const response = await db.user.saveSignup(modifiedSignupData)
     res.json({
       message: 'Signup success',
       status: 'success',
+      signedGames: response.signedGames,
     })
   } catch (error) {
     res.json({

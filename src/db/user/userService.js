@@ -42,9 +42,9 @@ const findUser = async (username: string) => {
       '-signedGames._id -enteredGames._id'
     )
       .lean()
-      .populate('favoritedGames', '-_id -__v')
-      .populate('enteredGames.gameDetails', '-_id -__v')
-      .populate('signedGames.gameDetails', '-_id -__v')
+      .populate('favoritedGames' /* , '-_id -__v' */)
+      .populate('enteredGames.gameDetails' /* , '-_id -__v' */)
+      .populate('signedGames.gameDetails' /* , '-_id -__v' */)
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
     return error
@@ -158,7 +158,7 @@ const saveSignup = async (signupData: Signup) => {
 
   let signupResponse = null
   try {
-    signupResponse = await User.updateOne(
+    signupResponse = await User.findOneAndUpdate(
       { username: username },
       {
         signedGames: signedGames.map(signedGame => {
@@ -168,8 +168,9 @@ const saveSignup = async (signupData: Signup) => {
             time: signedGame.time,
           }
         }),
-      }
-    )
+      },
+      { new: true }
+    ).populate('signedGames.gameDetails' /* , '-_id -__v' */)
   } catch (error) {
     logger.error(
       `MongoDB: Error storing signup data for user "${username}" - ${error}`
