@@ -9,7 +9,7 @@
 [libs]
 
 [lints]
-all=off
+all=error
 untyped-import=off
 unclear-type=off
 

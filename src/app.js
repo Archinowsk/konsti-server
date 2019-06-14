@@ -66,6 +66,6 @@ app.get('/*', (req: Object, res: Object) => {
   res.redirect('/')
 })
 
-app.set('port', process.env.PORT || 3000)
+app.set('port', config.port)
 
 export default app

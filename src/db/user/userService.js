@@ -15,9 +15,15 @@ const saveUser = async (newUserData: NewUserData) => {
   const user = new User({
     username,
     password: newUserData.passwordHash,
-    userGroup: newUserData.userGroup || 'user', // Options: 'user' and 'admin'
+    userGroup:
+      typeof newUserData.userGroup === 'string'
+        ? newUserData.userGroup
+        : 'user', // Options: 'user' and 'admin'
     serial: newUserData.serial,
-    playerGroup: newUserData.playerGroup || '0',
+    playerGroup:
+      typeof newUserData.playerGroup === 'string'
+        ? newUserData.playerGroup
+        : '0',
     favoritedGames: newUserData.favoritedGames || [],
     signedGames: newUserData.signedGames || [],
     enteredGames: newUserData.enteredGames || [],

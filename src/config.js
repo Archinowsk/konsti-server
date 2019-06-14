@@ -6,7 +6,10 @@ const commonConfig = {
   appName: 'Konsti',
 
   // Server settings
-  port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,
+  port:
+    typeof process.env.PORT === 'string'
+      ? parseInt(process.env.PORT, 10)
+      : 3000,
   debug: false,
 
   // Logging
@@ -24,9 +27,10 @@ const prodConfig = {
   db: process.env.CONN_STRING || '',
   jwtSecretKey: process.env.JWT_SECRET_KEY || '',
   jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
-  allowedCorsOrigins: process.env.CORS_WHITELIST
-    ? process.env.CORS_WHITELIST.split(';')
-    : [],
+  allowedCorsOrigins:
+    typeof process.env.CORS_WHITELIST === 'string'
+      ? process.env.CORS_WHITELIST.split(';')
+      : [],
   dataUri: process.env.GAME_DATA_URI || '',
   debug: process.env.DEBUG === 'true' || false,
   ASSIGNMENT_ROUNDS: 300,
@@ -36,9 +40,10 @@ const stagingConfig = {
   db: process.env.CONN_STRING || '',
   jwtSecretKey: process.env.JWT_SECRET_KEY || '',
   jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
-  allowedCorsOrigins: process.env.CORS_WHITELIST
-    ? process.env.CORS_WHITELIST.split(';')
-    : [],
+  allowedCorsOrigins:
+    typeof process.env.CORS_WHITELIST === 'string'
+      ? process.env.CORS_WHITELIST.split(';')
+      : [],
   dataUri: process.env.GAME_DATA_URI || '',
   debug: process.env.DEBUG === 'true' || false,
   ASSIGNMENT_ROUNDS: 300,
