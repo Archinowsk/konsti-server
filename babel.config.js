@@ -4,7 +4,7 @@ module.exports = api => {
     [
       '@babel/preset-env',
       {
-        modules: api.env('test') ? 'commonjs' : false,
+        modules: 'commonjs',
         debug: false,
         targets: {
           node: 'current',
