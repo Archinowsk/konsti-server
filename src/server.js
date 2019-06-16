@@ -1,3 +1,4 @@
+/* @flow */
 import schedule from 'node-schedule'
 import app from 'app'
 import logger from 'utils/logger'
@@ -15,7 +16,12 @@ if (config.autoUpdateGames) {
 
 const server = app.listen(app.get('port'), () => {
   if (!server) return
-  logger.info(`Node environment: ${process.env.NODE_ENV}`)
+  if (typeof process.env.NODE_ENV === 'string') {
+    logger.info(`Node environment: ${process.env.NODE_ENV}`)
+  } else {
+    logger.error(`Node environment (NODE_ENV) missing`)
+    process.exit()
+  }
   logger.info(`Express: Server started on port ${server.address().port}`)
 })
 
