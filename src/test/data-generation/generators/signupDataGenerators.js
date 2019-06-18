@@ -1,4 +1,5 @@
 /* @flow */
+import _ from 'lodash'
 import logger from 'utils/logger'
 import db from 'db/mongodb'
 import { getRandomInt } from 'test/data-generation/generators/randomVariableGenerators'
@@ -75,7 +76,7 @@ const signupGroup = async (
   users: $ReadOnlyArray<User>
 ) => {
   // Generate random signup data for the first user
-  const signup = getRandomSignup(games, users[0])
+  const signup = getRandomSignup(games, _.first(users))
 
   // Assign same signup data for group members
   const promises = []

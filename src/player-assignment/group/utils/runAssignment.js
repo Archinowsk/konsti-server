@@ -1,4 +1,5 @@
 /* @flow */
+import _ from 'lodash'
 import logger from 'utils/logger'
 import getRandomInt from 'player-assignment/utils/getRandomInt'
 import shuffleArray from 'utils/shuffleArray'
@@ -30,7 +31,7 @@ const runAssignment = (
     for (let playerGroup of playerGroups) {
       // Get groups with specific game signup
       // Always use first player in group
-      playerGroup[0].signedGames.forEach(signedGame => {
+      _.first(playerGroup).signedGames.forEach(signedGame => {
         if (signedGame.gameDetails.gameId === selectedGame.gameId) {
           matchingGroups.push(playerGroup)
         }
@@ -68,10 +69,12 @@ const runAssignment = (
       const selectedGroup = matchingGroups[groupNumber]
 
       if (selectedGroup.length === 1) {
-        logger.debug(`Selected player: ${selectedGroup[0].username} `)
+        logger.debug(`Selected player: ${_.first(selectedGroup).username} `)
       } else {
         logger.debug(
-          `Selected group ${selectedGroup[0].playerGroup} with ${selectedGroup.length} players`
+          `Selected group ${_.first(selectedGroup).playerGroup} with ${
+            selectedGroup.length
+          } players`
         )
       }
 
@@ -84,7 +87,7 @@ const runAssignment = (
         // Remove selected group from MATCHING groups array
         matchingGroups = matchingGroups.filter(
           remainingGroup =>
-            remainingGroup[0].username !== selectedGroup[0].username
+            _.first(remainingGroup).username !== _.first(selectedGroup).username
         )
 
         const seatsRemaining = maximumPlayers - numberOfPlayers
@@ -146,7 +149,9 @@ const runAssignment = (
       // Remove selected groups from ALL groups array
       playerGroups = playerGroups.filter(remainingGroup => {
         for (let selectedGroup of selectedGroups) {
-          if (remainingGroup[0].username === selectedGroup[0].username) {
+          if (
+            _.first(remainingGroup).username === _.first(selectedGroup).username
+          ) {
             return undefined
           }
         }
