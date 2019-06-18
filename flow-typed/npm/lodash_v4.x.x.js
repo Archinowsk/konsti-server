@@ -1,5 +1,5 @@
-// flow-typed signature: 958f6c4556c1af87c2608f47846d8de1
-// flow-typed version: 9f33da9d84/lodash_v4.x.x/flow_>=v0.63.x
+// flow-typed signature: 28c68d6d296ca755e580c4763ea8cd1f
+// flow-typed version: 07f4c5ae3d/lodash_v4.x.x/flow_>=v0.63.x
 
 declare module "lodash" {
   declare type Path = $ReadOnlyArray<string | number> | string | number;
@@ -1245,7 +1245,7 @@ declare module "lodash" {
     ): Object;
     omitBy<A, T>(object: void | null, predicate?: ?OPredicate<A, T>): {};
     pick(object?: ?Object, ...props: Array<string>): Object;
-    pick(object?: ?Object, props: Array<string>): Object;
+    pick(object?: ?Object, props: $ReadOnlyArray<string>): Object;
     pickBy<A, T: { [id: any]: A } | { [id: number]: A }>(
       object: T,
       predicate?: ?OPredicate<A, T>
@@ -2946,8 +2946,10 @@ declare module "lodash/fp" {
       predicate: OPredicate<A>
     ): (object: T) => Object;
     omitBy<A, T: { [id: any]: A }>(predicate: OPredicate<A>, object: T): Object;
-    pick(props: Array<string>): (object: Object) => Object;
-    pick(props: Array<string>, object: Object): Object;
+    pick(...props: Array<string | {}>): Object;
+    pick(props: $ReadOnlyArray<string>, object: Object): Object;
+    pick(...props: Array<string>): (object: Object) => Object;
+    pick(props: $ReadOnlyArray<string>): (object: Object) => Object;
     pickAll(props: Array<string>): (object: Object) => Object;
     pickAll(props: Array<string>, object: Object): Object;
     pickBy<A, T: { [id: any]: A }>(

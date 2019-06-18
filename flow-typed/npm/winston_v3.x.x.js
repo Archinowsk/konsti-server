@@ -1,5 +1,5 @@
-// flow-typed signature: 2fc7141f884c9143b8b0f29efe4e7f6a
-// flow-typed version: 48df12b2b8/winston_v3.x.x/flow_>=v0.34.x
+// flow-typed signature: 3e93520f8bff0dfda50359af4b809379
+// flow-typed version: e12ae322cb/winston_v3.x.x/flow_>=v0.34.x
 
 declare type $winstonLevels = {
   [string]: number
@@ -66,11 +66,17 @@ declare type $winstonLogger<T: $winstonLevels> = {
 declare type $winstonConfigSubModule = {
   npm: () => $winstonNpmLogLevels
 };
+  
+declare type $winstonFormatJsonOptions = {
+  replacer?: (key: string, value: any) => any,
+  space?: number,
+  stable?: boolean
+};
 
 declare type $winstonFormatSubModule = {
   ((info: Object) => Object): () => $winstonFormat,
   combine: (...args: Array<$winstonFormat>) => $winstonFormat,
-  json: () => $winstonFormat,
+  json: (options?: $winstonFormatJsonOptions) => $winstonFormat,
   label: (config?: Object) => $winstonFormat,
   metadata: () => $winstonFormat,
   prettyPrint: () => $winstonFormat,
