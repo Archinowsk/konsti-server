@@ -1,10 +1,10 @@
 /* @flow */
 import schedule from 'node-schedule'
-import app from 'app'
-import logger from 'utils/logger'
-import db from 'db/mongodb'
+import { app } from 'app'
+import { logger } from 'utils/logger'
+import { db } from 'db/mongodb'
 import { updateGames } from 'api/controllers/gamesController'
-import config from 'config'
+import { config } from 'config'
 
 if (config.autoUpdateGames) {
   // Update games from master data every n minutes
@@ -14,7 +14,7 @@ if (config.autoUpdateGames) {
   })
 }
 
-const server = app.listen(app.get('port'), () => {
+export const server = app.listen(app.get('port'), () => {
   if (!server) return
   if (typeof process.env.NODE_ENV === 'string') {
     logger.info(`Node environment: ${process.env.NODE_ENV}`)
@@ -24,5 +24,3 @@ const server = app.listen(app.get('port'), () => {
   }
   logger.info(`Express: Server started on port ${server.address().port}`)
 })
-
-export default server

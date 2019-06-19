@@ -1,25 +1,25 @@
 /* @flow */
 import munkres from 'munkres-js'
-import logger from 'utils/logger'
-import getStartingGames from 'player-assignment/utils/getStartingGames'
-import getSignupWishes from 'player-assignment/utils/getSignupWishes'
-import getSignedGames from 'player-assignment/utils/getSignedGames'
-import getSelectedPlayers from 'player-assignment/utils/getSelectedPlayers'
-import getSignupMatrix from 'player-assignment/munkres/utils/getSignupMatrix'
-import checkMinAttendance from 'player-assignment/munkres/utils/checkMinAttendance'
-import getRemovedGame from 'player-assignment/munkres/utils/getRemovedGame'
-import getPriorities from 'player-assignment/munkres/utils/getPriorities'
-import getPlayersWithTooHighPriority from 'player-assignment/munkres/utils/getPlayersWithTooHighPriority'
-import getRemovedPlayer from 'player-assignment/munkres/utils/getRemovedPlayer'
-import buildSignupResults from 'player-assignment/munkres/utils/buildSignupResults'
+import { logger } from 'utils/logger'
+import { getStartingGames } from 'player-assignment/utils/getStartingGames'
+import { getSignupWishes } from 'player-assignment/utils/getSignupWishes'
+import { getSignedGames } from 'player-assignment/utils/getSignedGames'
+import { getSelectedPlayers } from 'player-assignment/utils/getSelectedPlayers'
+import { getSignupMatrix } from 'player-assignment/munkres/utils/getSignupMatrix'
+import { checkMinAttendance } from 'player-assignment/munkres/utils/checkMinAttendance'
+import { getRemovedGame } from 'player-assignment/munkres/utils/getRemovedGame'
+import { getPriorities } from 'player-assignment/munkres/utils/getPriorities'
+import { getPlayersWithTooHighPriority } from 'player-assignment/munkres/utils/getPlayersWithTooHighPriority'
+import { getRemovedPlayer } from 'player-assignment/munkres/utils/getRemovedPlayer'
+import { buildSignupResults } from 'player-assignment/munkres/utils/buildSignupResults'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
 
-const munkresAssignPlayers = (
+export const munkresAssignPlayers = (
   players: $ReadOnlyArray<User>,
   games: $ReadOnlyArray<Game>,
-  startingTime: Date
+  startingTime: string
 ): AssignResult => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
@@ -82,5 +82,3 @@ const munkresAssignPlayers = (
 
   return { results: signupResults, message, newSignupData: [] }
 }
-
-export default munkresAssignPlayers

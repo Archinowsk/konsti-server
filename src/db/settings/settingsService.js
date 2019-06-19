@@ -1,7 +1,7 @@
 /* @flow */
 import moment from 'moment'
-import logger from 'utils/logger'
-import Settings from 'db/settings/settingsSchema'
+import { logger } from 'utils/logger'
+import { Settings } from 'db/settings/settingsSchema'
 import type { Game } from 'flow/game.flow'
 
 const removeSettings = () => {
@@ -86,11 +86,9 @@ const saveSignupTime = async (signupTime: Date) => {
   }
 }
 
-const settings = {
+export const settings = {
   findSettings,
   removeSettings,
   saveHidden,
   saveSignupTime,
 }
-
-export default settings

@@ -1,7 +1,7 @@
 /* @flow */
 import faker from 'faker'
-import logger from 'utils/logger'
-import db from 'db/mongodb'
+import { logger } from 'utils/logger'
+import { db } from 'db/mongodb'
 import { hashPassword } from 'utils/bcrypt'
 
 const createAdminUser = async () => {

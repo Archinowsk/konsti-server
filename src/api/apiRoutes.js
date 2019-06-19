@@ -14,23 +14,21 @@ import { getSettings } from 'api/controllers/settingsController'
 import { getResults } from 'api/controllers/resultsController'
 import { postGroup, getGroup } from 'api/controllers/groupController'
 
-const router = express.Router()
+export const apiRoutes = express.Router()
 
-router.post('/games', postGames)
-router.post('/user', postUser)
-router.post('/login', postLogin)
-router.post('/players', postPlayers)
-router.post('/signup', postSignup)
-router.post('/favorite', postFavorite)
-router.post('/hidden', postHidden)
-router.post('/signuptime', postSignupTime)
-router.post('/feedback', postFeedback)
-router.post('/group', postGroup)
+apiRoutes.post('/games', postGames)
+apiRoutes.post('/user', postUser)
+apiRoutes.post('/login', postLogin)
+apiRoutes.post('/players', postPlayers)
+apiRoutes.post('/signup', postSignup)
+apiRoutes.post('/favorite', postFavorite)
+apiRoutes.post('/hidden', postHidden)
+apiRoutes.post('/signuptime', postSignupTime)
+apiRoutes.post('/feedback', postFeedback)
+apiRoutes.post('/group', postGroup)
 
-router.get('/games', getGames)
-router.get('/user', getUser)
-router.get('/settings', getSettings)
-router.get('/results', getResults)
-router.get('/group', getGroup)
-
-export default router
+apiRoutes.get('/games', getGames)
+apiRoutes.get('/user', getUser)
+apiRoutes.get('/settings', getSettings)
+apiRoutes.get('/results', getResults)
+apiRoutes.get('/group', getGroup)

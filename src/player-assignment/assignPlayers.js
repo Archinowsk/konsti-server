@@ -1,15 +1,15 @@
 /* @flow */
-import logger from 'utils/logger'
-import groupAssignPlayers from 'player-assignment/group/groupAssignPlayers'
-import munkresAssignPlayers from 'player-assignment/munkres/munkresAssignPlayers'
+import { logger } from 'utils/logger'
+import { groupAssignPlayers } from 'player-assignment/group/groupAssignPlayers'
+import { munkresAssignPlayers } from 'player-assignment/munkres/munkresAssignPlayers'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
 
-const assignPlayers = (
+export const assignPlayers = (
   players: $ReadOnlyArray<User>,
   games: $ReadOnlyArray<Game>,
-  startingTime: Date,
+  startingTime: string,
   strategy: string
 ): AssignResult => {
   logger.info(
@@ -30,5 +30,3 @@ const assignPlayers = (
     throw new Error('Invalid or missing "assignmentStrategy" config')
   }
 }
-
-export default assignPlayers

@@ -1,5 +1,6 @@
+/* @flow */
 import request from 'supertest'
-import app from 'app'
+import { app } from 'app'
 
 describe('/api/settings tests', () => {
   test('GET /api/settings', async () => {

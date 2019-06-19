@@ -1,6 +1,6 @@
 /* @flow */
-import logger from 'utils/logger'
-import Game from 'db/game/gameSchema'
+import { logger } from 'utils/logger'
+import { Game } from 'db/game/gameSchema'
 import type { KompassiGame } from 'flow/game.flow'
 
 const removeGames = () => {
@@ -74,6 +74,4 @@ const findGames = async () => {
   }
 }
 
-const game = { saveGames, findGames, removeGames }
-
-export default game
+export const game = { saveGames, findGames, removeGames }

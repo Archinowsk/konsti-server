@@ -1,9 +1,9 @@
 /* @flow */
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
 import type { Game } from 'flow/game.flow'
 import type { User } from 'flow/user.flow'
 
-const getSignupMatrix = (
+export const getSignupMatrix = (
   signedGames: $ReadOnlyArray<Game>,
   selectedPlayers: $ReadOnlyArray<User>
 ) => {
@@ -48,5 +48,3 @@ const getSignupMatrix = (
 
   return signupMatrix
 }
-
-export default getSignupMatrix

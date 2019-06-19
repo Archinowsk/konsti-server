@@ -1,12 +1,12 @@
 /* @flow */
-import logger from 'utils/logger'
-import runAssignment from 'player-assignment/group/utils/runAssignment'
-import config from 'config'
+import { logger } from 'utils/logger'
+import { runAssignment } from 'player-assignment/group/utils/runAssignment'
+import { config } from 'config'
 import type { User, UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { ResultsWithMessage } from 'flow/result.flow'
 
-const assignGroups = (
+export const assignGroups = (
   selectedPlayers: $ReadOnlyArray<User>,
   signedGames: $ReadOnlyArray<Game>,
   playerGroups: $ReadOnlyArray<UserArray>
@@ -43,5 +43,3 @@ const assignGroups = (
 
   return { results: bestResult, message: returnMessage }
 }
-
-export default assignGroups

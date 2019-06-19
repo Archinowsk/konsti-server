@@ -6,15 +6,15 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 // import expressJWT from 'express-jwt'
 import expressStaticGzip from 'express-static-gzip'
-import config from 'config'
-import logger, { stream } from 'utils/logger'
-import db from 'db/mongodb'
-import allowCORS from 'middleware/cors'
-import apiRoutes from 'api/apiRoutes'
+import { config } from 'config'
+import { logger, stream } from 'utils/logger'
+import { db } from 'db/mongodb'
+import { allowCORS } from 'middleware/cors'
+import { apiRoutes } from 'api/apiRoutes'
 
 db.connectToDb()
 
-const app = express()
+export const app = express()
 
 app.use(helmet())
 
@@ -67,5 +67,3 @@ app.get('/*', (req: Object, res: Object) => {
 })
 
 app.set('port', config.port)
-
-export default app

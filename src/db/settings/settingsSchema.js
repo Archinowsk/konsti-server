@@ -10,6 +10,4 @@ const SettingsSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-const Settings = mongoose.model('Settings', SettingsSchema)
-
-export default Settings
+export const Settings = mongoose.model('Settings', SettingsSchema)

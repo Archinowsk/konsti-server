@@ -1,8 +1,8 @@
 /* @flow */
-import logger from 'utils/logger'
-import db from 'db/mongodb'
-import munkresGenerator from 'test/data-generation/munkresGenerator'
-import groupGenerator from 'test/data-generation/groupGenerator'
+import { logger } from 'utils/logger'
+import { db } from 'db/mongodb'
+import { munkresGenerator } from 'test/data-generation/munkresGenerator'
+import { groupGenerator } from 'test/data-generation/groupGenerator'
 
 const runGenerators = async () => {
   const strategy = process.argv[2]

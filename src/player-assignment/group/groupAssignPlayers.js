@@ -1,21 +1,21 @@
 /* @flow */
-import logger from 'utils/logger'
-import getStartingGames from 'player-assignment/utils/getStartingGames'
-import getSignupWishes from 'player-assignment/utils/getSignupWishes'
-import getSignedGames from 'player-assignment/utils/getSignedGames'
-import getSelectedPlayers from 'player-assignment/utils/getSelectedPlayers'
-import assignGroups from 'player-assignment/group/utils/assignGroup'
-import getPlayerGroups from 'player-assignment/group/utils/getPlayerGroups'
-import removeOverlapSignups from 'player-assignment/group/utils/removeOverlapSignups'
-import getGroupMembers from 'player-assignment/group/utils/getGroupMembers'
+import { logger } from 'utils/logger'
+import { getStartingGames } from 'player-assignment/utils/getStartingGames'
+import { getSignupWishes } from 'player-assignment/utils/getSignupWishes'
+import { getSignedGames } from 'player-assignment/utils/getSignedGames'
+import { getSelectedPlayers } from 'player-assignment/utils/getSelectedPlayers'
+import { assignGroups } from 'player-assignment/group/utils/assignGroup'
+import { getPlayerGroups } from 'player-assignment/group/utils/getPlayerGroups'
+import { removeOverlapSignups } from 'player-assignment/group/utils/removeOverlapSignups'
+import { getGroupMembers } from 'player-assignment/group/utils/getGroupMembers'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
 
-const groupAssignPlayers = (
+export const groupAssignPlayers = (
   players: $ReadOnlyArray<User>,
   games: $ReadOnlyArray<Game>,
-  startingTime: Date
+  startingTime: string
 ): AssignResult => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
@@ -48,5 +48,3 @@ const groupAssignPlayers = (
 
   return Object.assign({ ...result, newSignupData })
 }
-
-export default groupAssignPlayers

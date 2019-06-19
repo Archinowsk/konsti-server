@@ -1,9 +1,9 @@
 /* @flow */
 import jwt from 'jsonwebtoken'
-import logger from 'utils/logger'
-import config from 'config'
+import { logger } from 'utils/logger'
+import { config } from 'config'
 
-const validateAuthHeader = (authHeader: string, userGroup: string) => {
+export const validateAuthHeader = (authHeader: string, userGroup: string) => {
   logger.debug(`Auth: Require jwt token for user group "${userGroup}"`)
   let jwtToken = ''
 
@@ -31,5 +31,3 @@ const validateAuthHeader = (authHeader: string, userGroup: string) => {
     return false
   }
 }
-
-export default validateAuthHeader

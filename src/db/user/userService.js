@@ -1,6 +1,6 @@
 /* @flow */
-import logger from 'utils/logger'
-import User from 'db/user/userSchema'
+import { logger } from 'utils/logger'
+import { User } from 'db/user/userSchema'
 import type { Result, Signup } from 'flow/result.flow'
 import type { NewUserData } from 'flow/user.flow'
 
@@ -273,7 +273,7 @@ const saveSignupResult = async (signupResult: Result) => {
   }
 }
 
-const user = {
+export const user = {
   findSerial,
   findUser,
   findGroup,
@@ -286,5 +286,3 @@ const user = {
   findGroupMembers,
   saveGroup,
 }
-
-export default user

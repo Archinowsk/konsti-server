@@ -1,14 +1,13 @@
 /* @flow */
 import mongoose from 'mongoose'
-import logger from 'utils/logger'
-import config from 'config'
-
-import user from 'db/user/userService'
-import feedback from 'db/feedback/feedbackService'
-import game from 'db/game/gameService'
-import results from 'db/results/resultsService'
-import settings from 'db/settings/settingsService'
-import serial from 'db/serial/serialService'
+import { logger } from 'utils/logger'
+import { config } from 'config'
+import { user } from 'db/user/userService'
+import { feedback } from 'db/feedback/feedbackService'
+import { game } from 'db/game/gameService'
+import { results } from 'db/results/resultsService'
+import { settings } from 'db/settings/settingsService'
+import { serial } from 'db/serial/serialService'
 
 const connectToDb = async () => {
   // Use native Node promises
@@ -42,7 +41,7 @@ const gracefulExit = () => {
 process.on('SIGINT', gracefulExit)
 process.on('SIGTERM', gracefulExit)
 
-const db = {
+export const db = {
   connectToDb,
   user,
   feedback,
@@ -51,5 +50,3 @@ const db = {
   settings,
   serial,
 }
-
-export default db

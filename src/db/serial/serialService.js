@@ -1,6 +1,6 @@
 /* @flow */
-import logger from 'utils/logger'
-import Serial from 'db/serial/serialSchema'
+import { logger } from 'utils/logger'
+import { Serial } from 'db/serial/serialSchema'
 
 const removeSerials = () => {
   logger.info('MongoDB: remove ALL serials from db')
@@ -47,6 +47,4 @@ const findSerial = async (serial: string) => {
   }
 }
 
-const serial = { removeSerials, findSerial, saveSerials }
-
-export default serial
+export const serial = { removeSerials, findSerial, saveSerials }

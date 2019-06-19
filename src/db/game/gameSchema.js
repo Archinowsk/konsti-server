@@ -25,6 +25,4 @@ const GameSchema = new mongoose.Schema({
   intendedForExperiencedParticipants: Boolean,
 })
 
-const Game = mongoose.model('Game', GameSchema)
-
-export default Game
+export const Game = mongoose.model('Game', GameSchema)

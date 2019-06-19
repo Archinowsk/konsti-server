@@ -1,5 +1,5 @@
 /* @flow */
-const shuffleArray = (array: $ReadOnlyArray<any>) => {
+export const shuffleArray = (array: $ReadOnlyArray<any>) => {
   // Don't mutate input array
   /* $FlowFixMe */
   const shuffledArray = array.slice()
@@ -12,5 +12,3 @@ const shuffleArray = (array: $ReadOnlyArray<any>) => {
   }
   return shuffledArray
 }
-
-export default shuffleArray

@@ -3,7 +3,7 @@ import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { Result } from 'flow/result.flow'
 
-const buildSignupResults = (
+export const buildSignupResults = (
   results: $ReadOnlyArray<$ReadOnlyArray<number>>,
   signedGames: $ReadOnlyArray<Game>,
   players: $ReadOnlyArray<User>
@@ -51,5 +51,3 @@ const buildSignupResults = (
   }
   return signupResults
 }
-
-export default buildSignupResults

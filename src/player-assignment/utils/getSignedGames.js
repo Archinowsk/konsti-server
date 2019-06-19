@@ -1,9 +1,9 @@
 /* @flow */
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
 import type { Game } from 'flow/game.flow'
 import type { SignupWish } from 'flow/user.flow'
 
-const getSignedGames = (
+export const getSignedGames = (
   startingGames: $ReadOnlyArray<Game>,
   signupWishes: $ReadOnlyArray<SignupWish>
 ) => {
@@ -30,5 +30,3 @@ const getSignedGames = (
 
   return signedGames
 }
-
-export default getSignedGames

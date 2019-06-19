@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import type { GameWithPlayerCount } from 'flow/game.flow'
 
-const getRemovedGame = (
+export const getRemovedGame = (
   gamesWithTooFewPlayers: $ReadOnlyArray<GameWithPlayerCount>
 ) => {
   // Get games with least players
@@ -25,5 +25,3 @@ const getRemovedGame = (
 
   return removedGame
 }
-
-export default getRemovedGame

@@ -68,6 +68,4 @@ const combineConfig = () => {
   return { ...commonConfig, ...devConfig }
 }
 
-const config: Config = combineConfig()
-
-module.exports = config
+export const config: Config = combineConfig()

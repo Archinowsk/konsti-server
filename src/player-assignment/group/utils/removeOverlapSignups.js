@@ -1,10 +1,10 @@
 /* @flow */
 import moment from 'moment'
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
 import type { User } from 'flow/user.flow'
 import type { Signup, ResultsWithMessage } from 'flow/result.flow'
 
-const removeOverlapSignups = (
+export const removeOverlapSignups = (
   result: ResultsWithMessage,
   players: $ReadOnlyArray<User>
 ): $ReadOnlyArray<Signup> => {
@@ -60,5 +60,3 @@ const removeOverlapSignups = (
 
   return signupData
 }
-
-export default removeOverlapSignups

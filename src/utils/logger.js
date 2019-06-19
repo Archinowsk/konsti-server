@@ -3,7 +3,7 @@
 import { createLogger, format, transports } from 'winston'
 import fs from 'fs'
 import 'winston-daily-rotate-file'
-import config from 'config'
+import { config } from 'config'
 
 const { combine, printf, colorize, timestamp, json } = format
 const { logDir, debug } = config
@@ -18,7 +18,7 @@ const loggerLevel = () => {
   else return 'info'
 }
 
-const logger = createLogger({
+export const logger = createLogger({
   transports: [
     new transports.DailyRotateFile({
       level: 'info', // info, debug, warn, error
@@ -49,5 +49,3 @@ const logger = createLogger({
 export const stream = {
   write: (message: string) => logger.info(message.slice(0, -1)), // Slice to remove line break
 }
-
-export default logger

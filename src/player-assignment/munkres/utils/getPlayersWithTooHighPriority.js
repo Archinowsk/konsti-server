@@ -1,8 +1,8 @@
 /* @flow */
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
 import type { PlayeIdWithPriority } from 'flow/user.flow'
 
-const getPlayersWithTooHighPriority = (
+export const getPlayersWithTooHighPriority = (
   priorities: $ReadOnlyArray<PlayeIdWithPriority>
 ) => {
   const playersWithTooHighPriority = []
@@ -16,5 +16,3 @@ const getPlayersWithTooHighPriority = (
 
   return playersWithTooHighPriority
 }
-
-export default getPlayersWithTooHighPriority

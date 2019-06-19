@@ -1,7 +1,7 @@
 /* @flow */
 import type { User, UserArray } from 'flow/user.flow'
 
-const getPlayerGroups = (
+export const getPlayerGroups = (
   players: $ReadOnlyArray<User>
 ): $ReadOnlyArray<UserArray> => {
   // Group all unique group numbers
@@ -28,5 +28,3 @@ const getPlayerGroups = (
   // $FlowFixMe
   return playersArray
 }
-
-export default getPlayerGroups

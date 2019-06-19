@@ -7,7 +7,7 @@ import {
 import { createGames } from 'test/data-generation/generators/gameDataGenerators'
 import { createSignupData } from 'test/data-generation/generators/signupDataGenerators'
 
-const munkresGenerator = async (
+export const munkresGenerator = async (
   newUsersCount: number,
   newGamesCount: number
 ) => {
@@ -17,5 +17,3 @@ const munkresGenerator = async (
   await createGames(newGamesCount)
   await createSignupData('munkres')
 }
-
-export default munkresGenerator

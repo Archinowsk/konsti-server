@@ -1,8 +1,8 @@
 /* @flow */
-import logger from 'utils/logger'
-import db from 'db/mongodb'
+import { logger } from 'utils/logger'
+import { db } from 'db/mongodb'
 import { hashPassword } from 'utils/bcrypt'
-import validateAuthHeader from 'utils/authHeader'
+import { validateAuthHeader } from 'utils/authHeader'
 
 // Register new user
 const postUser = async (req: Object, res: Object) => {

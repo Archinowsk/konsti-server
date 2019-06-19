@@ -1,13 +1,13 @@
 /* @flow */
 import _ from 'lodash'
-import logger from 'utils/logger'
-import getRandomInt from 'player-assignment/utils/getRandomInt'
-import shuffleArray from 'utils/shuffleArray'
+import { logger } from 'utils/logger'
+import { getRandomInt } from 'player-assignment/utils/getRandomInt'
+import { shuffleArray } from 'utils/shuffleArray'
 import type { UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { AssignmentResult } from 'flow/result.flow'
 
-const runAssignment = (
+export const runAssignment = (
   playerGroups: $ReadOnlyArray<UserArray>,
   signedGames: $ReadOnlyArray<Game>
 ): AssignmentResult => {
@@ -177,5 +177,3 @@ const runAssignment = (
     gameCounter,
   }
 }
-
-export default runAssignment

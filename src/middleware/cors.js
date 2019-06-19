@@ -1,8 +1,8 @@
 /* @flow */
-import logger from 'utils/logger'
-import config from 'config'
+import { logger } from 'utils/logger'
+import { config } from 'config'
 
-const allowCrossDomain = (req: Object, res: Object, next: Function) => {
+export const allowCORS = (req: Object, res: Object, next: Function) => {
   const allowedOrigins = config.allowedCorsOrigins
   const origin = req.headers.origin
 
@@ -18,5 +18,3 @@ const allowCrossDomain = (req: Object, res: Object, next: Function) => {
 
   return next()
 }
-
-export default allowCrossDomain

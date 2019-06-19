@@ -1,10 +1,10 @@
 /* @flow */
 
 import jwt from 'jsonwebtoken'
-import logger from 'utils/logger'
-import db from 'db/mongodb'
+import { logger } from 'utils/logger'
+import { db } from 'db/mongodb'
 import { comparePasswordHash } from 'utils/bcrypt'
-import config from 'config'
+import { config } from 'config'
 import type { User } from 'flow/user.flow'
 
 const validateLogin = async (loginData, hash) => {

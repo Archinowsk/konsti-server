@@ -1,8 +1,8 @@
 /* @flow */
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
 import type { User } from 'flow/user.flow'
 
-const getSignupWishes = (players: $ReadOnlyArray<User>) => {
+export const getSignupWishes = (players: $ReadOnlyArray<User>) => {
   logger.debug('Get signup wishes')
   const signupWishes = []
 
@@ -21,5 +21,3 @@ const getSignupWishes = (players: $ReadOnlyArray<User>) => {
 
   return signupWishes
 }
-
-export default getSignupWishes

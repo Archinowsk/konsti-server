@@ -1,7 +1,7 @@
 /* @flow */
 import type { Result } from 'flow/result.flow'
 
-const getPriorities = (
+export const getPriorities = (
   results: $ReadOnlyArray<Result>,
   signupMatrix: $ReadOnlyArray<$ReadOnlyArray<number>>
 ) => {
@@ -17,5 +17,3 @@ const getPriorities = (
   }
   return priorities
 }
-
-export default getPriorities

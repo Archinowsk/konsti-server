@@ -25,6 +25,4 @@ const ResultsSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-const Results = mongoose.model('Results', ResultsSchema)
-
-export default Results
+export const Results = mongoose.model('Results', ResultsSchema)

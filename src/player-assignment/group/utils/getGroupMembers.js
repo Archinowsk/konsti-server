@@ -1,8 +1,8 @@
 /* @flow */
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
 import type { User } from 'flow/user.flow'
 
-const getGroupMembers = (
+export const getGroupMembers = (
   groupLeaders: $ReadOnlyArray<User>,
   players: $ReadOnlyArray<User>
 ): $ReadOnlyArray<User> => {
@@ -35,5 +35,3 @@ const getGroupMembers = (
 
   return selectedPlayersWithSignups
 }
-
-export default getGroupMembers

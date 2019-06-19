@@ -1,7 +1,7 @@
 /* @flow */
 import type { PlayeIdWithPriority } from 'flow/user.flow'
 
-const getRemovedPlayer = (
+export const getRemovedPlayer = (
   playersWithTooHighPriority: $ReadOnlyArray<PlayeIdWithPriority>
 ) => {
   const randomIndex = Math.floor(
@@ -11,5 +11,3 @@ const getRemovedPlayer = (
 
   return removedPlayer
 }
-
-export default getRemovedPlayer
