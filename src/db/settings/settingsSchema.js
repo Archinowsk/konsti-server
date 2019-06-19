@@ -6,6 +6,7 @@ const SettingsSchema = new mongoose.Schema(
     hiddenGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
     canceledGames: Array,
     signupTime: Date,
+    appOpen: Boolean,
   },
   { timestamps: true }
 )

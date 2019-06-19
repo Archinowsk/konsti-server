@@ -6,6 +6,7 @@ Registration
 Login
 
 21: Login failed, username and password don't match
+22: Login disabled
 
 Groups
 

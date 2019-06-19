@@ -14,6 +14,7 @@ const getSettings = async (req: Object, res: Object) => {
       status: 'success',
       hiddenGames: response.hiddenGames,
       signupTime: response.signupTime,
+      appOpen: response.appOpen,
     })
   } catch (error) {
     logger.error(`Settings: ${error}`)

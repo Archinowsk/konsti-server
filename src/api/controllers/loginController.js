@@ -31,7 +31,7 @@ const postLogin = async (req: Object, res: Object) => {
     return
   }
 
-  let response: User = {
+  let user: User = {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
@@ -44,7 +44,7 @@ const postLogin = async (req: Object, res: Object) => {
   }
 
   try {
-    response = await db.user.findUser(loginData.username)
+    user = await db.user.findUser(loginData.username)
   } catch (error) {
     logger.error(`Login: ${error}`)
     res.json({
@@ -56,7 +56,7 @@ const postLogin = async (req: Object, res: Object) => {
   }
 
   // User does not exist
-  if (!response) {
+  if (!user) {
     logger.info(`Login: User "${loginData.username}" not found`)
     res.json({
       code: 21,
@@ -66,17 +66,39 @@ const postLogin = async (req: Object, res: Object) => {
     return
   }
 
-  // User exists
-  let response2 = null
+  let settingsResponse
   try {
-    response2 = await validateLogin(loginData, response.password)
+    settingsResponse = await db.settings.findSettings()
+  } catch (error) {
+    logger.error(`Login: ${error}`)
+    res.json({
+      message: 'User login error',
+      status: 'error',
+      error,
+    })
+    return
+  }
+
+  if (!settingsResponse.appOpen && user.userGroup === 'user') {
+    res.json({
+      code: 22,
+      message: 'User login disabled',
+      status: 'error',
+    })
+    return
+  }
+
+  // User exists
+  let validLogin
+  try {
+    validLogin = await validateLogin(loginData, user.password)
 
     logger.info(
-      `Login: User "${response.username}" with "${response.userGroup}" user group`
+      `Login: User "${user.username}" with "${user.userGroup}" user group`
     )
 
     let jwtToken = ''
-    if (response.userGroup === 'admin') {
+    if (user.userGroup === 'admin') {
       jwtToken = jwt.sign(
         { username: loginData.username },
         config.jwtSecretKeyAdmin
@@ -84,7 +106,7 @@ const postLogin = async (req: Object, res: Object) => {
     } else {
       jwtToken = jwt.sign({ username: loginData.username }, config.jwtSecretKey)
     }
-    if (response2 === true) {
+    if (validLogin === true) {
       logger.info(
         `Login: Password for user "${loginData.username.trim()}" matches`
       )
@@ -92,9 +114,9 @@ const postLogin = async (req: Object, res: Object) => {
         message: 'User login success',
         status: 'success',
         jwtToken,
-        userGroup: response.userGroup,
-        serial: response.serial,
-        playerGroup: response.playerGroup,
+        userGroup: user.userGroup,
+        serial: user.serial,
+        playerGroup: user.playerGroup,
       })
       return
     } else {

@@ -86,9 +86,28 @@ const saveSignupTime = async (signupTime: Date) => {
   }
 }
 
+const saveToggleAppOpen = async (appOpen: boolean) => {
+  let response = null
+  try {
+    response = await Settings.findOneAndUpdate(
+      {},
+      {
+        appOpen,
+      },
+      { new: true }
+    )
+    logger.info(`MongoDB: Toggle app open updated`)
+    return response
+  } catch (error) {
+    logger.error(`MongoDB: Error updating toggle app open - ${error}`)
+    return error
+  }
+}
+
 export const settings = {
   findSettings,
   removeSettings,
   saveHidden,
   saveSignupTime,
+  saveToggleAppOpen,
 }

@@ -13,6 +13,7 @@ import { postFeedback } from 'api/controllers/feedbackController'
 import { getSettings } from 'api/controllers/settingsController'
 import { getResults } from 'api/controllers/resultsController'
 import { postGroup, getGroup } from 'api/controllers/groupController'
+import { toggleAppOpen } from 'api/controllers/toggleAppOpenController'
 
 export const apiRoutes = express.Router()
 
@@ -26,6 +27,7 @@ apiRoutes.post('/hidden', postHidden)
 apiRoutes.post('/signuptime', postSignupTime)
 apiRoutes.post('/feedback', postFeedback)
 apiRoutes.post('/group', postGroup)
+apiRoutes.post('/toggle-app-open', toggleAppOpen)
 
 apiRoutes.get('/games', getGames)
 apiRoutes.get('/user', getUser)
