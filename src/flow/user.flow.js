@@ -8,13 +8,13 @@ export type FavoritedGame = {
 export type SignedGame = {
   +gameDetails: Game,
   +priority: number,
-  +time: Date,
+  +time: string,
 }
 
 export type EnteredGame = {
   +gameDetails: Game,
   +priority: number,
-  +time: Date,
+  +time: string,
 }
 
 export type User = {|
@@ -26,7 +26,7 @@ export type User = {|
   +favoritedGames: $ReadOnlyArray<FavoritedGame>,
   +signedGames: $ReadOnlyArray<SignedGame>,
   +enteredGames: $ReadOnlyArray<EnteredGame>,
-  +createdAt: Date | null,
+  +createdAt: string | null,
 |}
 
 export type UserArray = $ReadOnlyArray<User>
