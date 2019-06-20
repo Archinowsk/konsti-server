@@ -59,13 +59,12 @@ const postGames = async (req: Object, res: Object) => {
     res.json({
       message: 'Games db updated',
       status: 'success',
-      data: response,
+      games: response,
     })
   } catch (error) {
     res.json({
       message: 'Games db update failed',
       status: 'error',
-      data: error,
     })
     return Promise.reject(error)
   }
