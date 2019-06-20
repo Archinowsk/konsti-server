@@ -3,10 +3,12 @@ import mongoose from 'mongoose'
 
 const SettingsSchema = new mongoose.Schema(
   {
-    hiddenGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
-    canceledGames: Array,
-    signupTime: Date,
-    appOpen: Boolean,
+    hiddenGames: [
+      { type: mongoose.Schema.Types.ObjectId, ref: 'Game', default: [] },
+    ],
+    canceledGames: { type: Array, default: [] },
+    signupTime: { type: Date, default: null },
+    appOpen: { type: Boolean, default: true },
   },
   { timestamps: true }
 )
