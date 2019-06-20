@@ -17,10 +17,11 @@ const postHidden = async (req: Object, res: Object) => {
   }
 
   try {
-    await db.settings.saveHidden(hiddenData)
+    const response = await db.settings.saveHidden(hiddenData)
     res.json({
       message: 'Update hidden success',
       status: 'success',
+      hiddenGames: response.hiddenGames,
     })
   } catch (error) {
     res.json({
