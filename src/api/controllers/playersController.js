@@ -70,7 +70,10 @@ const postPlayers = async (req: Object, res: Object) => {
       res.json({
         message: 'Players assign success',
         status: 'success',
-        results: assignResults,
+        results: assignResults.results,
+        resultMessage: assignResults.message,
+        signups: assignResults.newSignupData,
+        startTime: startingTime,
       })
     } else {
       throw new Error('No matching assignments')
