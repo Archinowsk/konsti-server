@@ -17,10 +17,11 @@ const postSignupTime = async (req: Object, res: Object) => {
   }
 
   try {
-    await db.settings.saveSignupTime(signupTime)
+    const response = await db.settings.saveSignupTime(signupTime)
     res.json({
       message: 'Signup time set success',
       status: 'success',
+      signupTime: response.signupTime,
     })
     return
   } catch (error) {

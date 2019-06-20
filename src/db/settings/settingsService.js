@@ -68,20 +68,19 @@ const saveHidden = async (hiddenData: $ReadOnlyArray<Game>) => {
   }
 }
 
-const saveSignupTime = async (signupTime: Date) => {
+const saveSignupTime = async (signupTime: string) => {
   // Make sure that the string is in correct format
-  let formattedTime
-  if (signupTime === null) {
-    formattedTime = moment('2018-07-27T15:00:00.000Z')
-  } else {
-    formattedTime = moment(signupTime)
-  }
+  const formattedTime = moment(signupTime)
 
   let response = null
   try {
-    response = await Settings.updateOne({
-      signupTime: formattedTime,
-    })
+    response = await Settings.findOneAndUpdate(
+      {},
+      {
+        signupTime: formattedTime,
+      },
+      { new: true }
+    )
     logger.info(`MongoDB: Signup time updated`)
     return response
   } catch (error) {
