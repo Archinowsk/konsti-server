@@ -11,7 +11,10 @@ const removeResults = () => {
 const findResult = async (startTime: string) => {
   let response = null
   try {
-    response = await Results.findOne({ startTime })
+    response = await Results.findOne(
+      { startTime },
+      '-_id -__v -createdAt -updatedAt -result._id'
+    )
       .lean()
       .sort({ createdAt: -1 })
       .populate('result.enteredGame.gameDetails')
