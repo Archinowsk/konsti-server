@@ -1,5 +1,16 @@
 import fs from 'fs'
 
+const getType = () => {
+  const getType = process.argv[3]
+
+  if (!getType) {
+    console.error('Give valid type parameter: games, results, users')
+    process.exit()
+  }
+
+  return getType
+}
+
 export const getYear = () => {
   const year = parseInt(process.argv[2], 10)
 
@@ -9,17 +20,6 @@ export const getYear = () => {
   }
 
   return year
-}
-
-export const getType = () => {
-  const getType = process.argv[3]
-
-  if (!getType) {
-    console.error('Give valid type parameter: games, results, users')
-    process.exit()
-  }
-
-  return getType
 }
 
 export const readJson = () => {

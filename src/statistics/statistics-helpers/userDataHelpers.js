@@ -1,17 +1,6 @@
 import { toPercent } from '../statsUtil'
 import logger from 'utils/logger'
 
-export const getUsersByGames = users => {
-  const enteredGames = users.reduce((acc, user) => {
-    user.enteredGames.forEach(game => {
-      acc[game.gameId] = ++acc[game.gameId] || 1
-    })
-    return acc
-  }, {})
-
-  logger.info(enteredGames)
-}
-
 export const getUsersWithoutGames = users => {
   let counter = 0
   const usersWithoutGames = []

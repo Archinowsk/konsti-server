@@ -14,7 +14,7 @@ if (config.autoUpdateGames) {
   })
 }
 
-export const server = app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
   if (!server) return
   if (typeof process.env.NODE_ENV === 'string') {
     logger.info(`Node environment: ${process.env.NODE_ENV}`)

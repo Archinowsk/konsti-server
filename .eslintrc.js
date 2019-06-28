@@ -38,6 +38,12 @@ module.exports = {
     jest: true,
   },
 
+  settings: {
+    'import/resolver': {
+      'babel-module': {},
+    },
+  },
+
   rules: {
     // eslint-plugin-prettier
     'prettier/prettier': 'error',
@@ -45,5 +51,8 @@ module.exports = {
     // eslint-plugin-node
     'node/no-unsupported-features/es-syntax': 'off', // Import and export declarations are not supported yet
     'no-process-exit': 'off', // There are valid uses for process.exit()
+
+    // eslint-plugin-import
+    'import/no-unused-modules': ['error', { unusedExports: true }],
   },
 }
