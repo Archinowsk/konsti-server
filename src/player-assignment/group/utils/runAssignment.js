@@ -27,10 +27,12 @@ export const runAssignment = (
   // Shuffle games order
   const shuffledGames = shuffleArray(signedGames)
 
+  // Don't mutate function parameter
+  let playerGroupsCopy = [...playerGroups]
+
   for (let selectedGame of shuffledGames) {
-    for (let playerGroup of playerGroups) {
-      // Get groups with specific game signup
-      // Always use first player in group
+    for (let playerGroup of playerGroupsCopy) {
+      // Get groups with specific game signup, always use first player in group
       _.first(playerGroup).signedGames.forEach(signedGame => {
         if (signedGame.gameDetails.gameId === selectedGame.gameId) {
           matchingGroups.push(playerGroup)
@@ -147,7 +149,7 @@ export const runAssignment = (
       }
 
       // Remove selected groups from ALL groups array
-      playerGroups = playerGroups.filter(remainingGroup => {
+      playerGroupsCopy = playerGroupsCopy.filter(remainingGroup => {
         for (let selectedGroup of selectedGroups) {
           if (
             _.first(remainingGroup).username === _.first(selectedGroup).username
@@ -161,7 +163,7 @@ export const runAssignment = (
       gameCounter += 1
     }
 
-    logger.debug(`${playerGroups.length} player groups remaining`)
+    logger.debug(`${playerGroupsCopy.length} player groups remaining`)
 
     // Clear selections
     matchingGroups = []

@@ -47,6 +47,7 @@ module.exports = {
   rules: {
     // eslint
     'no-unused-expressions': 'off', // False warnings with Flow
+    'no-param-reassign': 'error',
 
     // eslint-plugin-flowtype
     'flowtype/no-unused-expressions': 'error', // Fixed version of no-unused-expressions
