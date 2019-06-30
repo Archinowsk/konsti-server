@@ -5,7 +5,6 @@ import { validateAuthHeader } from 'utils/authHeader'
 
 const postGroup = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/group')
-  const groupData = req.body.groupData
 
   const authHeader = req.headers.authorization
   const validToken = validateAuthHeader(authHeader, 'user')
@@ -15,16 +14,17 @@ const postGroup = async (req: Object, res: Object) => {
     return
   }
 
-  try {
-    const { username, leader, groupCode, ownSerial, leaveGroup } = groupData
+  const groupData = req.body.groupData
+  const { username, leader, groupCode, ownSerial, leaveGroup } = groupData
 
+  try {
     // Create group
     if (leader) {
       // Leave group
       if (leaveGroup) {
-        const findGroupResults = await db.user.findGroupMembers(groupCode)
+        const groupMembers = await db.user.findGroupMembers(groupCode)
 
-        if (findGroupResults.length > 1) {
+        if (groupMembers.length > 1) {
           res.json({
             message: 'Leader cannot leave non-empty group',
             status: 'error',
