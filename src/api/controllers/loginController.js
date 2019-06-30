@@ -95,8 +95,6 @@ const postLogin = async (req: Object, res: Object) => {
       `Login: User "${user.username}" with "${user.userGroup}" user group`
     )
 
-    const jwt = getJWT(user.userGroup, user.username)
-
     if (validLogin === true) {
       logger.info(
         `Login: Password for user "${loginData.username.trim()}" matches`
@@ -108,7 +106,7 @@ const postLogin = async (req: Object, res: Object) => {
         userGroup: user.userGroup,
         serial: user.serial,
         groupCode: user.groupCode,
-        jwtToken: jwt,
+        jwt: getJWT(user.userGroup, user.username),
       })
       return
     } else {
