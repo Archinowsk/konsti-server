@@ -29,6 +29,11 @@ const postUser = async (req: Object, res: Object) => {
     serialFound = await db.serial.findSerial(registrationData.serial.trim())
   } catch (error) {
     logger.error(`Error finding serial: ${error}`)
+    res.json({
+      code: 10,
+      message: 'Finding serial failed',
+      status: 'error',
+    })
   }
 
   // Check for valid serial
@@ -49,69 +54,105 @@ const postUser = async (req: Object, res: Object) => {
   const serial = registrationData.serial.trim()
 
   // Check that serial is not used
-  let response = null
+  let user = null
   try {
     // Check if user already exists
-    response = await db.user.findUser(username)
+    user = await db.user.findUser(username)
   } catch (error) {
     logger.error(`db.user.findUser(): ${error}`)
+    res.json({
+      code: 10,
+      message: 'Finding user failed',
+      status: 'error',
+    })
   }
 
-  // Username free
-  if (!response) {
-    let serialResponse = null
-    try {
-      // Check if serial is used
-      serialResponse = await db.user.findSerial({ serial })
-    } catch (error) {
-      logger.error(`db.user.findSerial(): ${error}`)
-    }
-
-    // Serial not used
-    if (!serialResponse) {
-      let response2 = null
-      try {
-        response2 = await hashPassword(password)
-      } catch (error) {
-        logger.error(`hashPassword(): ${error}`)
-      }
-
-      if (response2) {
-        registrationData.passwordHash = response2
-
-        try {
-          await db.user.saveUser(registrationData)
-          res.json({
-            message: 'User registration success',
-            status: 'success',
-          })
-          return
-        } catch (error) {
-          logger.error(`db.user.saveUser(): ${error}`)
-          res.json({
-            message: 'User registration failed',
-            status: 'error',
-          })
-          // return
-        }
-      }
-    } else {
-      logger.info('User: Serial used')
-      res.json({
-        code: 12,
-        message: 'Invalid serial',
-        status: 'error',
-      })
-      // return
-    }
-  } else {
+  if (user) {
     logger.info(`User: Username "${username}" is already registered`)
     res.json({
       code: 11,
       message: 'Username in already registered',
       status: 'error',
     })
-    // return
+    return
+  }
+
+  // Username free
+  if (!user) {
+    // Check if serial is used
+    let serialResponse = null
+    try {
+      serialResponse = await db.user.findSerial({ serial })
+    } catch (error) {
+      logger.error(`db.user.findSerial(): ${error}`)
+      res.json({
+        code: 10,
+        message: 'Finding serial failed',
+        status: 'error',
+      })
+      return
+    }
+
+    // Serial used
+    if (serialResponse) {
+      logger.info('User: Serial used')
+      res.json({
+        code: 12,
+        message: 'Invalid serial',
+        status: 'error',
+      })
+      return
+    }
+
+    // Serial not used
+    if (!serialResponse) {
+      let hashResponse = null
+      try {
+        hashResponse = await hashPassword(password)
+      } catch (error) {
+        logger.error(`hashPassword(): ${error}`)
+        res.json({
+          code: 10,
+          message: 'Hashing password failed',
+          status: 'error',
+        })
+        return
+      }
+
+      if (!hashResponse) {
+        logger.info('User: Serial used')
+        res.json({
+          code: 12,
+          message: 'Invalid serial',
+          status: 'error',
+        })
+        return
+      }
+
+      if (hashResponse) {
+        registrationData.passwordHash = hashResponse
+
+        let saveUserResponse = null
+        try {
+          saveUserResponse = await db.user.saveUser(registrationData)
+        } catch (error) {
+          logger.error(`db.user.saveUser(): ${error}`)
+          res.json({
+            code: 10,
+            message: 'User registration failed',
+            status: 'error',
+          })
+          return
+        }
+
+        res.json({
+          message: 'User registration success',
+          status: 'success',
+          username: saveUserResponse.username,
+          password: saveUserResponse.password,
+        })
+      }
+    }
   }
 }
 

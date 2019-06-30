@@ -1,5 +1,6 @@
 Registration
 
+10: Generic registration error
 11: Username not free
 12: Serial not valid
 
