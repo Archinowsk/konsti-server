@@ -17,41 +17,51 @@ const postGroup = async (req: Object, res: Object) => {
   const groupData = req.body.groupData
   const { username, leader, groupCode, ownSerial, leaveGroup } = groupData
 
+  if (leaveGroup) {
+    const groupMembers = await db.user.findGroupMembers(groupCode)
+    let saveGroupResponse
+
+    if (leader && groupMembers.length > 1) {
+      res.json({
+        message: 'Leader cannot leave non-empty group',
+        status: 'error',
+        code: 36,
+      })
+      return
+    }
+
+    try {
+      saveGroupResponse = await db.user.saveGroup('0', username)
+    } catch (error) {
+      logger.error(`Failed to leave group: ${error}`)
+      res.json({
+        message: 'Failed to leave group',
+        status: 'error',
+        code: 35,
+      })
+      return
+    }
+
+    if (saveGroupResponse) {
+      res.json({
+        message: 'Leave group group success',
+        status: 'success',
+      })
+      return
+    } else {
+      logger.error('Failed to leave group')
+      res.json({
+        message: 'Failed to leave group',
+        status: 'error',
+        code: 35,
+      })
+      return
+    }
+  }
+
   try {
     // Create group
     if (leader) {
-      // Leave group
-      if (leaveGroup) {
-        const groupMembers = await db.user.findGroupMembers(groupCode)
-
-        if (groupMembers.length > 1) {
-          res.json({
-            message: 'Leader cannot leave non-empty group',
-            status: 'error',
-            code: 36,
-          })
-          return
-        } else {
-          const saveGroupResponse = await db.user.saveGroup('0', username)
-
-          if (saveGroupResponse) {
-            res.json({
-              message: 'Leave group group success',
-              status: 'success',
-            })
-            return
-          } else {
-            logger.error('Failed to leave group')
-            res.json({
-              message: 'Failed to leave group',
-              status: 'error',
-              code: 35,
-            })
-            return
-          }
-        }
-      }
-
       // Check that serial is not used
       let findGroupResponse = null
       try {
@@ -87,27 +97,6 @@ const postGroup = async (req: Object, res: Object) => {
     }
     // Join group
     else {
-      // Leave group
-      if (leaveGroup) {
-        const saveGroupResponse = await db.user.saveGroup('0', username)
-
-        if (saveGroupResponse) {
-          res.json({
-            message: 'Leave group group success',
-            status: 'success',
-          })
-          return
-        } else {
-          logger.error('Failed to leave group')
-          res.json({
-            message: 'Failed to leave group',
-            status: 'error',
-            code: 35,
-          })
-          return
-        }
-      }
-
       // Cannot join own group
       if (ownSerial === groupCode) {
         res.json({
