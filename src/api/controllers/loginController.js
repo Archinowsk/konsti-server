@@ -113,10 +113,11 @@ const postLogin = async (req: Object, res: Object) => {
       res.json({
         message: 'User login success',
         status: 'success',
-        jwtToken,
+        username: user.username,
         userGroup: user.userGroup,
         serial: user.serial,
         playerGroup: user.playerGroup,
+        jwtToken,
       })
       return
     } else {
