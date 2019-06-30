@@ -31,7 +31,7 @@ const postGroup = async (req: Object, res: Object) => {
     }
 
     try {
-      saveGroupResponse = await db.user.saveGroup('0', username)
+      saveGroupResponse = await db.user.saveGroupCode('0', username)
     } catch (error) {
       logger.error(`Failed to leave group: ${error}`)
       res.json({
@@ -59,112 +59,148 @@ const postGroup = async (req: Object, res: Object) => {
     }
   }
 
-  try {
-    // Create group
-    if (leader) {
-      // Check that serial is not used
-      let findGroupResponse = null
-      try {
-        // Check if group exists
-        findGroupResponse = await db.user.findGroup(groupCode, username)
-      } catch (error) {
-        logger.error(`db.user.findUser(): ${error}`)
-      }
+  // Create group
+  if (leader) {
+    // Check that serial is not used
+    let findGroupResponse = null
+    try {
+      // Check if group exists
+      findGroupResponse = await db.user.findGroup(groupCode, username)
+    } catch (error) {
+      logger.error(`db.user.findUser(): ${error}`)
+      res.json({
+        message: 'Own group already exists',
+        status: 'error',
+        code: 34,
+      })
+      return
+    }
 
-      // No existing group, create
-      let saveGroupResponse
-      if (!findGroupResponse) {
-        saveGroupResponse = await db.user.saveGroup(groupCode, username)
-      }
+    if (findGroupResponse) {
       // Group exists
-      else {
-        res.json({
-          message: 'Own group already exists',
-          status: 'error',
-          code: 34,
-        })
-        return
-      }
-
-      if (saveGroupResponse) {
-        res.json({
-          message: 'Create group success',
-          status: 'success',
-        })
-      } else {
-        throw new Error('Failed to create group')
-      }
+      res.json({
+        message: 'Own group already exists',
+        status: 'error',
+        code: 34,
+      })
+      return
     }
-    // Join group
-    else {
-      // Cannot join own group
-      if (ownSerial === groupCode) {
-        res.json({
-          message: 'Cannot join own group',
-          status: 'error',
-          code: 33,
-        })
-        return
-      }
 
-      let findGroupResponse = null
-      let findSerialResponse = null
+    // No existing group, create
+    let saveGroupResponse
+    try {
+      saveGroupResponse = await db.user.saveGroupCode(groupCode, username)
+    } catch (error) {
+      logger.error(`db.user.saveGroup(): ${error}`)
+      res.json({
+        message: 'Save group failure',
+        status: 'error',
+        error,
+        code: 30,
+      })
+    }
 
-      // Check if code is valid
+    if (saveGroupResponse) {
+      res.json({
+        message: 'Create group success',
+        status: 'success',
+        groupCode: saveGroupResponse.groupCode,
+      })
+    } else {
+      res.json({
+        message: 'Save group failure',
+        status: 'error',
+        code: 30,
+      })
+    }
+  }
+
+  // Join group
+  if (!leader) {
+    // Cannot join own group
+    if (ownSerial === groupCode) {
+      res.json({
+        message: 'Cannot join own group',
+        status: 'error',
+        code: 33,
+      })
+      return
+    }
+
+    // Check if code is valid
+    let findSerialResponse = null
+    try {
       findSerialResponse = await db.user.findSerial({ serial: groupCode })
-
-      // Code is valid
-      if (!findSerialResponse) {
-        res.json({
-          message: 'Invalid group code',
-          status: 'error',
-          code: 31,
-        })
-        return
-      }
-
-      const leaderUsername = findSerialResponse.username
-
-      // Check if group leader has created a group
-      findGroupResponse = await db.user.findGroup(groupCode, leaderUsername)
-
-      // No existing group, cannot join
-      if (!findGroupResponse) {
-        res.json({
-          message: 'Group does not exist',
-          status: 'error',
-          code: 32,
-        })
-        return
-      }
-
-      // Group exists, join
-      else {
-        const saveGroupResponse = await db.user.saveGroup(groupCode, username)
-
-        if (saveGroupResponse) {
-          res.json({
-            message: 'Joined to group success',
-            status: 'success',
-          })
-        } else {
-          logger.error('Failed to sign to group')
-          res.json({
-            message: 'Failed to update group',
-            status: 'error',
-            code: 30,
-          })
-          return
-        }
-      }
+    } catch (error) {
+      logger.error(`db.user.findSerial(): ${error}`)
+      res.json({
+        message: 'Error finding serial',
+        status: 'error',
+        code: 31,
+      })
     }
-  } catch (error) {
-    res.json({
-      message: 'Add to group failure',
-      status: 'error',
-      error,
-      code: 30,
-    })
+
+    // Code is valid
+    if (!findSerialResponse) {
+      res.json({
+        message: 'Invalid group code',
+        status: 'error',
+        code: 31,
+      })
+      return
+    }
+
+    // Check if group leader has created a group
+    let findGroupResponse = null
+    try {
+      const leaderUsername = findSerialResponse.username
+      findGroupResponse = await db.user.findGroup(groupCode, leaderUsername)
+    } catch (error) {
+      logger.error(`db.user.findGroup(): ${error}`)
+      res.json({
+        message: 'Error finding group',
+        status: 'error',
+        code: 32,
+      })
+    }
+
+    // No existing group, cannot join
+    if (!findGroupResponse) {
+      res.json({
+        message: 'Group does not exist',
+        status: 'error',
+        code: 32,
+      })
+      return
+    }
+
+    // Group exists, join
+    let saveGroupResponse
+    try {
+      saveGroupResponse = await db.user.saveGroupCode(groupCode, username)
+    } catch (error) {
+      logger.error(`db.user.saveGroup(): ${error}`)
+      res.json({
+        message: 'Error saving group',
+        status: 'error',
+        code: 30,
+      })
+    }
+
+    if (saveGroupResponse) {
+      res.json({
+        message: 'Joined to group success',
+        status: 'success',
+        groupCode: saveGroupResponse.groupCode,
+      })
+    } else {
+      logger.error('Failed to sign to group')
+      res.json({
+        message: 'Failed to update group',
+        status: 'error',
+        code: 30,
+      })
+    }
   }
 }
 

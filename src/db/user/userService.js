@@ -186,12 +186,14 @@ const saveSignup = async (signupData: Signup) => {
   return signupResponse
 }
 
-const saveGroup = async (groupCode: string, username: string) => {
+const saveGroupCode = async (groupCode: string, username: string) => {
   let response = null
+
   try {
-    response = await User.updateOne(
+    response = await User.findOneAndUpdate(
       { username: username },
-      { groupCode: groupCode }
+      { groupCode: groupCode },
+      { new: true, fields: 'groupCode' }
     )
   } catch (error) {
     logger.error(
@@ -282,5 +284,5 @@ export const user = {
   saveSignupResult,
   saveUser,
   findGroupMembers,
-  saveGroup,
+  saveGroupCode,
 }
