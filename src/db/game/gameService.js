@@ -65,7 +65,7 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>) => {
 const findGames = async () => {
   let response = null
   try {
-    response = await Game.find({}).lean()
+    response = await Game.find({}, '-_id -__v').lean()
     logger.debug(`MongoDB: Find all games`)
     return response
   } catch (error) {
