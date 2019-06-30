@@ -17,10 +17,12 @@ const postFavorite = async (req: Object, res: Object) => {
   }
 
   try {
-    await db.user.saveFavorite(favoriteData)
+    const saveFavoriteResponse = await db.user.saveFavorite(favoriteData)
+
     res.json({
       message: 'Update favorite success',
       status: 'success',
+      favoritedGames: saveFavoriteResponse.favoritedGames,
     })
   } catch (error) {
     res.json({

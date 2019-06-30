@@ -46,9 +46,9 @@ const findUser = async (username: string) => {
       '-signedGames._id -enteredGames._id'
     )
       .lean()
-      .populate('favoritedGames' /* , '-_id -__v' */)
-      .populate('enteredGames.gameDetails' /* , '-_id -__v' */)
-      .populate('signedGames.gameDetails' /* , '-_id -__v' */)
+      .populate('favoritedGames')
+      .populate('enteredGames.gameDetails')
+      .populate('signedGames.gameDetails')
   } catch (error) {
     logger.error(`MongoDB: Error finding user ${username} - ${error}`)
     return error
@@ -174,7 +174,7 @@ const saveSignup = async (signupData: Signup) => {
         }),
       },
       { new: true, fields: '-signedGames._id' }
-    ).populate('signedGames.gameDetails' /* , '-_id -__v' */)
+    ).populate('signedGames.gameDetails')
   } catch (error) {
     logger.error(
       `MongoDB: Error storing signup data for user "${username}" - ${error}`
@@ -213,14 +213,17 @@ const saveGroupCode = async (groupCode: string, username: string) => {
 const saveFavorite = async (favoriteData: Object) => {
   let response = null
   try {
-    response = await User.updateOne(
+    response = await User.findOneAndUpdate(
       { username: favoriteData.username },
       {
         favoritedGames: favoriteData.favoritedGames.map(game => {
           return game._id
         }),
-      }
+      },
+      { new: true, fields: 'favoritedGames' }
     )
+      .lean()
+      .populate('favoritedGames')
 
     logger.info(
       `MongoDB: Favorite data stored for user "${favoriteData.username}"`
