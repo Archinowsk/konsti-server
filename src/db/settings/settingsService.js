@@ -34,7 +34,7 @@ const findSettings = async () => {
   try {
     response = await Settings.findOne({}, '-_id -__v -createdAt -updatedAt')
       .lean()
-      .populate('hiddenGames', '-_id -__v')
+      .populate('hiddenGames')
   } catch (error) {
     logger.error(`MongoDB: Error finding settings data - ${error}`)
     return error
@@ -59,7 +59,7 @@ const saveHidden = async (hiddenData: $ReadOnlyArray<Game>) => {
         }),
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
-    ).populate('hiddenGames', '-_id -__v')
+    ).populate('hiddenGames')
     logger.info(`MongoDB: Hidden data updated`)
     return response
   } catch (error) {
