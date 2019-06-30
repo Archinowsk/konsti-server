@@ -2,8 +2,7 @@
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { comparePasswordHash } from 'utils/bcrypt'
-import { getJWT } from 'utils/jwt'
-import type { User } from 'flow/user.flow'
+import { getJWT, verifyJWT } from 'utils/jwt'
 
 const validateLogin = async (loginData, hash) => {
   let response = null
@@ -24,23 +23,47 @@ const postLogin = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/login')
   const loginData = req.body.loginData
 
+  if (loginData.jwt) {
+    const jwtResponse = verifyJWT(loginData.jwt, 'user')
+
+    if (jwtResponse.status === 'error') {
+      res.sendStatus(422)
+      return
+    }
+
+    if (typeof jwtResponse.username === 'string') {
+      let user = null
+      try {
+        user = await db.user.findUser(jwtResponse.username)
+      } catch (error) {
+        logger.error(`Login: ${error}`)
+        res.json({
+          message: 'Session restore error',
+          status: 'error',
+          error,
+        })
+        return
+      }
+
+      res.json({
+        message: 'Session restore success',
+        status: 'success',
+        username: user.username,
+        userGroup: user.userGroup,
+        serial: user.serial,
+        groupCode: user.groupCode,
+        jwt: getJWT(user.userGroup, user.username),
+      })
+      return
+    }
+  }
+
   if (!loginData || !loginData.username || !loginData.password) {
     res.sendStatus(422)
     return
   }
 
-  let user: User = {
-    favoritedGames: [],
-    signedGames: [],
-    enteredGames: [],
-    username: '',
-    password: '',
-    userGroup: '',
-    serial: '',
-    groupCode: '0',
-    createdAt: null,
-  }
-
+  let user = null
   try {
     user = await db.user.findUser(loginData.username)
   } catch (error) {

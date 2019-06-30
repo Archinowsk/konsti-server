@@ -18,8 +18,8 @@ export const getJWT = (userGroup: string, username: string): string => {
 }
 
 export const verifyJWT = (
-  userGroup: string,
-  jwt: string
+  jwt: string,
+  userGroup: string
 ): JWTResult | JWTError => {
   if (userGroup === 'admin') {
     try {

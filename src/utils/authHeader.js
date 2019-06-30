@@ -3,7 +3,7 @@ import { verifyJWT } from 'utils/jwt'
 import { logger } from 'utils/logger'
 
 export const validateAuthHeader = (authHeader: string, userGroup: string) => {
-  logger.debug(`Auth: Require jwt token for user group "${userGroup}"`)
+  logger.debug(`Auth: Require jwt for user group "${userGroup}"`)
   let jwt = ''
 
   if (authHeader) {
@@ -14,14 +14,13 @@ export const validateAuthHeader = (authHeader: string, userGroup: string) => {
     return false
   }
 
-  const jwtResponse = verifyJWT(userGroup, jwt)
+  const jwtResponse = verifyJWT(jwt, userGroup)
 
   if (jwtResponse.status !== 'error') {
-    logger.debug(`Auth: Valid jwt token for user group "${userGroup}" `)
+    logger.debug(`Auth: Valid jwt for user group "${userGroup}" `)
     return true
   } else {
     logger.info(`Auth: Invalid jwt for user group "${userGroup}"`)
-
     return false
   }
 }
