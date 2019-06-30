@@ -46,6 +46,7 @@ const postGroup = async (req: Object, res: Object) => {
       res.json({
         message: 'Leave group group success',
         status: 'success',
+        groupCode: saveGroupResponse.groupCode,
       })
       return
     } else {
