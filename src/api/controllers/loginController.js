@@ -1,10 +1,8 @@
 /* @flow */
-
-import jwt from 'jsonwebtoken'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { comparePasswordHash } from 'utils/bcrypt'
-import { config } from 'config'
+import { getJWT } from 'utils/jwt'
 import type { User } from 'flow/user.flow'
 
 const validateLogin = async (loginData, hash) => {
@@ -97,15 +95,8 @@ const postLogin = async (req: Object, res: Object) => {
       `Login: User "${user.username}" with "${user.userGroup}" user group`
     )
 
-    let jwtToken = ''
-    if (user.userGroup === 'admin') {
-      jwtToken = jwt.sign(
-        { username: loginData.username },
-        config.jwtSecretKeyAdmin
-      )
-    } else {
-      jwtToken = jwt.sign({ username: loginData.username }, config.jwtSecretKey)
-    }
+    const jwt = getJWT(user.userGroup, user.username)
+
     if (validLogin === true) {
       logger.info(
         `Login: Password for user "${loginData.username.trim()}" matches`
@@ -117,7 +108,7 @@ const postLogin = async (req: Object, res: Object) => {
         userGroup: user.userGroup,
         serial: user.serial,
         groupCode: user.groupCode,
-        jwtToken,
+        jwtToken: jwt,
       })
       return
     } else {
