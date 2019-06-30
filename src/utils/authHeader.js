@@ -16,7 +16,7 @@ export const validateAuthHeader = (authHeader: string, userGroup: string) => {
 
   const jwtResponse = verifyJWT(userGroup, jwt)
 
-  if (jwtResponse) {
+  if (jwtResponse.status !== 'error') {
     logger.debug(`Auth: Valid jwt token for user group "${userGroup}" `)
     return true
   } else {
