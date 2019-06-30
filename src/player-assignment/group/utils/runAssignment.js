@@ -74,7 +74,7 @@ export const runAssignment = (
         logger.debug(`Selected player: ${_.first(selectedGroup).username} `)
       } else {
         logger.debug(
-          `Selected group ${_.first(selectedGroup).playerGroup} with ${
+          `Selected group ${_.first(selectedGroup).groupCode} with ${
             selectedGroup.length
           } players`
         )

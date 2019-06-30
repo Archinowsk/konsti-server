@@ -20,10 +20,8 @@ const saveUser = async (newUserData: NewUserData) => {
         ? newUserData.userGroup
         : 'user', // Options: 'user' and 'admin'
     serial: newUserData.serial,
-    playerGroup:
-      typeof newUserData.playerGroup === 'string'
-        ? newUserData.playerGroup
-        : '0',
+    groupCode:
+      typeof newUserData.groupCode === 'string' ? newUserData.groupCode : '0',
     favoritedGames: newUserData.favoritedGames || [],
     signedGames: newUserData.signedGames || [],
     enteredGames: newUserData.enteredGames || [],
@@ -83,61 +81,61 @@ const findSerial = async (serialData: Object) => {
   return response
 }
 
-const findGroupMembers = async (playerGroup: string) => {
+const findGroupMembers = async (groupCode: string) => {
   let response = null
   try {
-    response = await User.find({ playerGroup })
+    response = await User.find({ groupCode })
       .lean()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails')
   } catch (error) {
-    logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
+    logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`)
     return error
   }
 
   if (!response || response.length === 0) {
-    logger.info(`MongoDB: group "${playerGroup}" not found`)
+    logger.info(`MongoDB: group "${groupCode}" not found`)
   } else {
     logger.info(
-      `MongoDB: Found group "${playerGroup}" with ${response.length} members`
+      `MongoDB: Found group "${groupCode}" with ${response.length} members`
     )
   }
   return response
 }
 
-const findGroup = async (playerGroup: string, username: string) => {
+const findGroup = async (groupCode: string, username: string) => {
   let response = null
   if (username) {
     try {
-      response = await User.findOne({ playerGroup, username }).lean()
+      response = await User.findOne({ groupCode, username }).lean()
     } catch (error) {
-      logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
+      logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`)
       return error
     }
 
     if (!response) {
       logger.info(
-        `MongoDB: Group "${playerGroup}" with leader "${username}" not found`
+        `MongoDB: Group "${groupCode}" with leader "${username}" not found`
       )
     } else {
       logger.info(
-        `MongoDB: Group "${playerGroup}" with leader "${username}" found`
+        `MongoDB: Group "${groupCode}" with leader "${username}" found`
       )
     }
     return response
   } else {
     try {
-      response = await User.findOne(playerGroup).lean()
+      response = await User.findOne(groupCode).lean()
     } catch (error) {
-      logger.error(`MongoDB: Error finding group ${playerGroup} - ${error}`)
+      logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`)
       return error
     }
 
     if (!response) {
-      logger.info(`MongoDB: Group "${playerGroup}" not found`)
+      logger.info(`MongoDB: Group "${groupCode}" not found`)
     } else {
-      logger.info(`MongoDB: Group "${playerGroup}" found`)
+      logger.info(`MongoDB: Group "${groupCode}" found`)
     }
     return response
   }
@@ -193,7 +191,7 @@ const saveGroup = async (groupCode: string, username: string) => {
   try {
     response = await User.updateOne(
       { username: username },
-      { playerGroup: groupCode }
+      { groupCode: groupCode }
     )
   } catch (error) {
     logger.error(

@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema(
     password: String,
     userGroup: String,
     serial: String,
-    playerGroup: String,
+    groupCode: String,
     favoritedGames: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Game' }],
     signedGames: [
       {

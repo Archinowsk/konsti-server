@@ -200,7 +200,7 @@ const getGroup = async (req: Object, res: Object) => {
     const returnData = []
     for (let result of findGroupResults) {
       returnData.push({
-        playerGroup: result.playerGroup,
+        groupCode: result.groupCode,
         signedGames: result.signedGames,
         enteredGames: result.enteredGames,
         serial: result.serial,

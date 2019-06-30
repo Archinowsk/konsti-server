@@ -58,13 +58,13 @@ const createTestUsers = async (number: number) => {
   }
 }
 
-const createUserInGroup = (groupId: string, index: number) => {
+const createUserInGroup = (groupCode: string, index: number) => {
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass', // Skip hashing to save time
     userGroup: 'user',
-    serial: index === 0 ? groupId : faker.random.number().toString(),
-    playerGroup: groupId,
+    serial: index === 0 ? groupCode : faker.random.number().toString(),
+    groupCode,
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
@@ -91,7 +91,7 @@ const createUser = () => {
     passwordHash: 'testPass', // Skip hashing to save time
     userGroup: 'user',
     serial: faker.random.number().toString(),
-    playerGroup: '0',
+    groupCode: '0',
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],

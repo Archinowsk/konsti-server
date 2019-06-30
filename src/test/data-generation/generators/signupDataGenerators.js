@@ -122,8 +122,8 @@ const createSignupData = async (strategy: string) => {
   } else if (strategy === 'group') {
     // Group all unique group numbers
     const groupedUsers = users.reduce((acc, user) => {
-      acc[user['playerGroup']] = acc[user['playerGroup']] || []
-      acc[user['playerGroup']].push(user)
+      acc[user['groupCode']] = acc[user['groupCode']] || []
+      acc[user['groupCode']].push(user)
       return acc
     }, {})
 
