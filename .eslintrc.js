@@ -60,6 +60,7 @@ module.exports = {
     'no-process-exit': 'off', // There are valid uses for process.exit()
 
     // eslint-plugin-import
-    'import/no-unused-modules': ['error', { unusedExports: true }],
+    // Useful but disabled because slows down ESLint
+    // 'import/no-unused-modules': ['error', { unusedExports: true }],
   },
 }
