@@ -5,7 +5,7 @@ import type { JWTResult, JWTError } from 'flow/jwt.flow'
 
 export const getJWT = (userGroup: string, username: string): string => {
   const options = {
-    // expiresIn: '5 seconds',
+    expiresIn: '2 days',
   }
 
   if (userGroup === 'admin') {
