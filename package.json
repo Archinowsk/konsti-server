@@ -41,7 +41,9 @@
     "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@babel/cli": "7.4.4",
@@ -68,7 +70,8 @@
     "request-promise-native": "1.0.7",
     "rimraf": "2.6.3",
     "winston": "3.2.1",
-    "winston-daily-rotate-file": "3.9.0"
+    "winston-daily-rotate-file": "3.9.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "babel-eslint": "10.0.2",
@@ -122,5 +125,6 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "snyk": true
 }

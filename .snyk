@@ -1,0 +1,30 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - '@babel/core > @babel/helpers > @babel/types > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
+    - lodash:
+        patched: '2019-07-04T01:49:10.684Z'
+    - '@babel/core > @babel/types > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
+    - request-promise-native > request-promise-core > lodash:
+        patched: '2019-07-04T01:49:10.684Z'
+    - winston > async > lodash:
+        patched: '2019-07-04T01:49:10.684Z'
+    - mongoose > async > lodash:
+        patched: '2019-07-04T01:49:10.684Z'
+    - '@babel/cli > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
+    - '@babel/preset-env > @babel/plugin-transform-classes > @babel/helper-annotate-as-pure > @babel/types > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
+    - '@babel/core > @babel/helpers > @babel/traverse > @babel/generator > @babel/types > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/generator > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
+    - '@babel/preset-env > @babel/plugin-transform-object-super > @babel/helper-replace-supers > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
+    - '@babel/preset-env > @babel/plugin-proposal-async-generator-functions > @babel/helper-remap-async-to-generator > @babel/helper-wrap-function > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2019-07-04T01:49:10.684Z'
