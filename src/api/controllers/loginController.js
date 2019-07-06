@@ -8,8 +8,6 @@ const postLogin = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/login')
   const loginData = req.body.loginData
 
-  console.log('loginData', loginData)
-
   if (loginData.jwt) {
     const jwtResponse = verifyJWT(loginData.jwt, 'user')
 
