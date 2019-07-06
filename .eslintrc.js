@@ -5,7 +5,6 @@ module.exports = {
     'eslint-config-prettier/flowtype',
     'eslint-config-prettier/standard',
     'plugin:eslint-plugin-eslint-comments/recommended',
-    'plugin:eslint-plugin-eslint-plugin/recommended',
     'plugin:eslint-plugin-flowtype/recommended',
     'plugin:eslint-plugin-jest/recommended',
     'plugin:eslint-plugin-node/recommended',
@@ -15,7 +14,6 @@ module.exports = {
   ],
 
   plugins: [
-    'eslint-plugin-eslint-plugin',
     'eslint-plugin-flowtype',
     'eslint-plugin-jest',
     'eslint-plugin-node',
