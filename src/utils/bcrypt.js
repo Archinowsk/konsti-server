@@ -23,4 +23,20 @@ const comparePasswordHash = async (
   }
 }
 
-export { hashPassword, comparePasswordHash }
+const validateLogin = async (password: string, hash: string) => {
+  let hashResponse = null
+  try {
+    hashResponse = await comparePasswordHash(password.trim(), hash)
+  } catch (error) {
+    logger.error(`comparePasswordHash error: ${error}`)
+    return error
+  }
+
+  if (hashResponse === true) {
+    return true
+  }
+
+  return false
+}
+
+export { hashPassword, comparePasswordHash, validateLogin }

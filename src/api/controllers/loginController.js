@@ -1,27 +1,14 @@
 /* @flow */
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
-import { comparePasswordHash } from 'utils/bcrypt'
+import { validateLogin } from 'utils/bcrypt'
 import { getJWT, verifyJWT } from 'utils/jwt'
-
-const validateLogin = async (loginData, hash) => {
-  let response = null
-  try {
-    response = await comparePasswordHash(loginData.password.trim(), hash)
-
-    // Password matches hash
-    if (response === true) {
-      return true
-    }
-    return false
-  } catch (error) {
-    return error
-  }
-}
 
 const postLogin = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/login')
   const loginData = req.body.loginData
+
+  console.log('loginData', loginData)
 
   if (loginData.jwt) {
     const jwtResponse = verifyJWT(loginData.jwt, 'user')
@@ -112,7 +99,7 @@ const postLogin = async (req: Object, res: Object) => {
   // User exists
   let validLogin
   try {
-    validLogin = await validateLogin(loginData, user.password)
+    validLogin = await validateLogin(loginData.password, user.password)
 
     logger.info(
       `Login: User "${user.username}" with "${user.userGroup}" user group`
