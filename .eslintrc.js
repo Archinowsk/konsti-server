@@ -1,29 +1,29 @@
 module.exports = {
   extends: [
-    'standard',
-    'plugin:jest/recommended',
-    'plugin:flowtype/recommended',
-    // 'plugin:security/recommended',
-    // 'plugin:unicorn/recommended',
-    'plugin:node/recommended',
-    'plugin:promise/recommended',
-    'plugin:eslint-comments/recommended',
-    'plugin:eslint-plugin/recommended',
-    'prettier',
-    'prettier/flowtype',
-    'prettier/standard',
+    'eslint-config-standard',
+    'eslint-config-prettier',
+    'eslint-config-prettier/flowtype',
+    'eslint-config-prettier/standard',
+    'plugin:eslint-plugin-eslint-comments/recommended',
+    'plugin:eslint-plugin-eslint-plugin/recommended',
+    'plugin:eslint-plugin-flowtype/recommended',
+    'plugin:eslint-plugin-jest/recommended',
+    'plugin:eslint-plugin-node/recommended',
+    'plugin:eslint-plugin-promise/recommended',
+    // 'plugin:eslint-plugin-security/recommended',
+    // 'plugin:eslint-plugin-unicorn/recommended',
   ],
 
   plugins: [
-    'flowtype',
-    'prettier',
-    'standard',
-    'security',
-    'node',
-    'promise',
-    'unicorn',
-    'eslint-plugin',
-    'jest',
+    'eslint-plugin-eslint-plugin',
+    'eslint-plugin-flowtype',
+    'eslint-plugin-jest',
+    'eslint-plugin-node',
+    'eslint-plugin-prettier',
+    'eslint-plugin-promise',
+    'eslint-plugin-standard',
+    // 'eslint-plugin-security',
+    // 'eslint-plugin-unicorn',
   ],
 
   parser: 'babel-eslint',
@@ -62,5 +62,8 @@ module.exports = {
     // eslint-plugin-import
     // Useful but disabled because slows down ESLint
     // 'import/no-unused-modules': ['error', { unusedExports: true }],
+
+    // eslint-plugin-eslint-comments
+    'eslint-comments/no-unused-disable': 'error',
   },
 }
