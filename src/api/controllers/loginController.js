@@ -8,7 +8,7 @@ const postLogin = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/login')
   const { username, password, jwt } = req.body
 
-  if ((!username || !password) && !jwt) {
+  if (((!username || !password) && !jwt) || (username && password && jwt)) {
     res.sendStatus(422)
     return
   }
