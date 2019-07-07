@@ -21,10 +21,10 @@ Konsti is designed for the roleplaying convention [Ropecon](https://ropecon.fi).
 
 ## Supporters
 
-Konsti development sponsored by <a href="https://www.sovellin.com/">Sovellin</a>
+Konsti development supported by <a href="https://www.sovellin.com/">Sovellin</a>
 
 <a href="https://www.sovellin.com/"><img src="https://github.com/Archinowsk/archinowsk.github.io/blob/master/assets/sovellin-logo.svg" height="40"></a>
 
-Mobile testing sponsored by <a href="https://www.browserstack.com/">BrowserStack</a>
+Mobile testing supported by <a href="https://www.browserstack.com/">BrowserStack</a>
 
 <a href="https://www.browserstack.com/"><img src="https://github.com/Archinowsk/archinowsk.github.io/blob/master/assets/browserstack-logo.svg" height="40"></a>
