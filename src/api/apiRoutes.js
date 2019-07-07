@@ -1,5 +1,6 @@
 /* @flow */
 import express from 'express'
+import { postUserValidation, postLoginValidation } from 'api/validation'
 
 import { postGames, getGames } from 'api/controllers/gamesController'
 import { postUser, getUser } from 'api/controllers/userController'
@@ -18,8 +19,8 @@ import { toggleAppOpen } from 'api/controllers/toggleAppOpenController'
 export const apiRoutes = express.Router()
 
 apiRoutes.post('/games', postGames)
-apiRoutes.post('/user', postUser)
-apiRoutes.post('/login', postLogin)
+apiRoutes.post('/user', postUserValidation, postUser)
+apiRoutes.post('/login', postLoginValidation, postLogin)
 apiRoutes.post('/players', postPlayers)
 apiRoutes.post('/signup', postSignup)
 apiRoutes.post('/favorite', postFavorite)

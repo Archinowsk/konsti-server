@@ -1,4 +1,5 @@
 /* @flow */
+import { validationResult } from 'express-validator'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { hashPassword } from 'utils/bcrypt'
@@ -9,10 +10,9 @@ const postUser = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/user')
   const { username, password, serial } = req.body
 
-  // Validate values
-  if (!username || !password || !serial) {
-    res.sendStatus(422)
-    return
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() })
   }
 
   let serialFound = false
