@@ -25,7 +25,15 @@ if (config.enableAccessLog) {
 }
 
 // Parse body and populate req.body - only accepts JSON
-app.use(bodyParser.json({ limit: '100kb' }))
+app.use(bodyParser.json({ limit: '100kb', type: '*/*' }))
+
+app.use((err, req, res, next) => {
+  if (err) {
+    res.sendStatus(400)
+  } else {
+    next()
+  }
+})
 
 /*
 app.use(
