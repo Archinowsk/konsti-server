@@ -41,3 +41,7 @@ export const verifyJWT = (
 
   return { status: 'error', message: 'unknown jwt error' }
 }
+
+export const decodeJWT = (jwt: string) => {
+  return jsonwebtoken.decode(jwt)
+}

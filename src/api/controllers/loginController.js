@@ -2,7 +2,7 @@
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateLogin } from 'utils/bcrypt'
-import { getJWT, verifyJWT } from 'utils/jwt'
+import { getJWT, verifyJWT, decodeJWT } from 'utils/jwt'
 
 const postLogin = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/login')
@@ -15,7 +15,21 @@ const postLogin = async (req: Object, res: Object) => {
 
   // Restore session
   if (jwt) {
-    const jwtResponse = verifyJWT(jwt, 'user')
+    const { username } = decodeJWT(jwt)
+    let user = null
+    try {
+      user = await db.user.findUser(username)
+    } catch (error) {
+      logger.error(`Login: ${error}`)
+      res.json({
+        message: 'User login error',
+        status: 'error',
+        error,
+      })
+      return
+    }
+
+    const jwtResponse = verifyJWT(jwt, user.userGroup)
 
     if (jwtResponse.status === 'error') {
       res.json({
