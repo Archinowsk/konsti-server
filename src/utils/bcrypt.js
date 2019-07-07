@@ -26,7 +26,7 @@ const comparePasswordHash = async (
 const validateLogin = async (password: string, hash: string) => {
   let hashResponse = null
   try {
-    hashResponse = await comparePasswordHash(password.trim(), hash)
+    hashResponse = await comparePasswordHash(password, hash)
   } catch (error) {
     logger.error(`comparePasswordHash error: ${error}`)
     return error

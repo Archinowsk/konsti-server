@@ -33,7 +33,6 @@ export type UserArray = $ReadOnlyArray<User>
 
 export type NewUserData = {|
   +username: string,
-  +registerDescription: boolean,
   +serial: string,
   +passwordHash: string | Promise<any>,
   +userGroup?: string,

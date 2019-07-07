@@ -108,7 +108,7 @@ const postLogin = async (req: Object, res: Object) => {
     )
 
     if (validLogin === true) {
-      logger.info(`Login: Password for user "${username.trim()}" matches`)
+      logger.info(`Login: Password for user "${username}" matches`)
       res.json({
         message: 'User login success',
         status: 'success',

@@ -10,10 +10,8 @@ const removeUsers = () => {
 }
 
 const saveUser = async (newUserData: NewUserData) => {
-  const username = newUserData.username.trim()
-
   const user = new User({
-    username,
+    username: newUserData.username,
     password: newUserData.passwordHash,
     userGroup:
       typeof newUserData.userGroup === 'string'
@@ -30,10 +28,12 @@ const saveUser = async (newUserData: NewUserData) => {
   let response = null
   try {
     response = await user.save()
-    logger.info(`MongoDB: User "${username}" saved to DB`)
+    logger.info(`MongoDB: User "${newUserData.username}" saved to DB`)
     return response
   } catch (error) {
-    logger.error(`MongoDB: Error creating new user ${username} - ${error}`)
+    logger.error(
+      `MongoDB: Error creating new user ${newUserData.username} - ${error}`
+    )
     return error
   }
 }

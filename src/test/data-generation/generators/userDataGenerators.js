@@ -18,7 +18,6 @@ const createAdminUser = async () => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-    registerDescription: true,
   }
 
   try {
@@ -41,7 +40,6 @@ const createTestUser = async (userNumber: number) => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-    registerDescription: true,
   }
 
   try {
@@ -68,7 +66,6 @@ const createUserInGroup = (groupCode: string, index: number) => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-    registerDescription: true,
   }
 
   return db.user.saveUser(registrationData)
@@ -95,7 +92,6 @@ const createUser = () => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-    registerDescription: true,
   }
 
   return db.user.saveUser(registrationData)

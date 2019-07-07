@@ -7,26 +7,17 @@ import { validateAuthHeader } from 'utils/authHeader'
 // Register new user
 const postUser = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/user')
-  const registrationData = req.body.registrationData
+  const { username, password, serial } = req.body
 
   // Validate values
-  if (
-    !registrationData ||
-    !registrationData.username ||
-    !registrationData.password ||
-    !registrationData.serial
-  ) {
-    logger.info('User: validation failed')
-    res.json({
-      message: 'Validation error',
-      status: 'error',
-    })
+  if (!username || !password || !serial) {
+    res.sendStatus(422)
     return
   }
 
   let serialFound = false
   try {
-    serialFound = await db.serial.findSerial(registrationData.serial.trim())
+    serialFound = await db.serial.findSerial(serial)
   } catch (error) {
     logger.error(`Error finding serial: ${error}`)
     res.json({
@@ -48,10 +39,6 @@ const postUser = async (req: Object, res: Object) => {
   }
 
   logger.info('User: Serial is valid')
-
-  const username = registrationData.username.trim()
-  const password = registrationData.password.trim()
-  const serial = registrationData.serial.trim()
 
   // Check that serial is not used
   let user = null
@@ -106,9 +93,9 @@ const postUser = async (req: Object, res: Object) => {
 
     // Serial not used
     if (!serialResponse) {
-      let hashResponse = null
+      let passwordHash = null
       try {
-        hashResponse = await hashPassword(password)
+        passwordHash = await hashPassword(password)
       } catch (error) {
         logger.error(`hashPassword(): ${error}`)
         res.json({
@@ -119,7 +106,7 @@ const postUser = async (req: Object, res: Object) => {
         return
       }
 
-      if (!hashResponse) {
+      if (!passwordHash) {
         logger.info('User: Serial used')
         res.json({
           code: 12,
@@ -129,12 +116,14 @@ const postUser = async (req: Object, res: Object) => {
         return
       }
 
-      if (hashResponse) {
-        registrationData.passwordHash = hashResponse
-
+      if (passwordHash) {
         let saveUserResponse = null
         try {
-          saveUserResponse = await db.user.saveUser(registrationData)
+          saveUserResponse = await db.user.saveUser({
+            username,
+            passwordHash,
+            serial,
+          })
         } catch (error) {
           logger.error(`db.user.saveUser(): ${error}`)
           res.json({
