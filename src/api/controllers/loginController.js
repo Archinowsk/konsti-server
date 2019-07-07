@@ -6,13 +6,22 @@ import { getJWT, verifyJWT } from 'utils/jwt'
 
 const postLogin = async (req: Object, res: Object) => {
   logger.info('API call: POST /api/login')
-  const loginData = req.body.loginData
+  const { username, password, jwt } = req.body
 
-  if (loginData.jwt) {
-    const jwtResponse = verifyJWT(loginData.jwt, 'user')
+  if ((!username || !password) && !jwt) {
+    res.sendStatus(422)
+    return
+  }
+
+  // Restore session
+  if (jwt) {
+    const jwtResponse = verifyJWT(jwt, 'user')
 
     if (jwtResponse.status === 'error') {
-      res.sendStatus(422)
+      res.json({
+        message: 'Invalid jwt',
+        status: 'error',
+      })
       return
     }
 
@@ -43,14 +52,9 @@ const postLogin = async (req: Object, res: Object) => {
     }
   }
 
-  if (!loginData || !loginData.username || !loginData.password) {
-    res.sendStatus(422)
-    return
-  }
-
   let user = null
   try {
-    user = await db.user.findUser(loginData.username)
+    user = await db.user.findUser(username)
   } catch (error) {
     logger.error(`Login: ${error}`)
     res.json({
@@ -63,7 +67,7 @@ const postLogin = async (req: Object, res: Object) => {
 
   // User does not exist
   if (!user) {
-    logger.info(`Login: User "${loginData.username}" not found`)
+    logger.info(`Login: User "${username}" not found`)
     res.json({
       code: 21,
       message: 'User login error',
@@ -97,16 +101,14 @@ const postLogin = async (req: Object, res: Object) => {
   // User exists
   let validLogin
   try {
-    validLogin = await validateLogin(loginData.password, user.password)
+    validLogin = await validateLogin(password, user.password)
 
     logger.info(
       `Login: User "${user.username}" with "${user.userGroup}" user group`
     )
 
     if (validLogin === true) {
-      logger.info(
-        `Login: Password for user "${loginData.username.trim()}" matches`
-      )
+      logger.info(`Login: Password for user "${username.trim()}" matches`)
       res.json({
         message: 'User login success',
         status: 'success',
@@ -118,9 +120,7 @@ const postLogin = async (req: Object, res: Object) => {
       })
       return
     } else {
-      logger.info(
-        `Login: Password for user "${loginData.username}" doesn't match`
-      )
+      logger.info(`Login: Password for user "${username}" doesn't match`)
 
       res.json({
         code: 21,
