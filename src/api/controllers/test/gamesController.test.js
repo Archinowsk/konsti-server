@@ -2,13 +2,15 @@
 import request from 'supertest'
 import { app } from 'app'
 
-describe('/api/games tests', () => {
-  test('GET /api/games', async () => {
+describe('GET /api/games', () => {
+  test('should return 200', async () => {
     const response = await request(app).get('/api/games')
     expect(response.status).toEqual(200)
   })
+})
 
-  test('POST /api/games', async () => {
+describe('POST /api/games', () => {
+  test('should return 401 without valid authorization', async () => {
     const response = await request(app).post('/api/games')
     expect(response.status).toEqual(401)
   })

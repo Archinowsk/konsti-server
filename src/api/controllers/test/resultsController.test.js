@@ -2,8 +2,8 @@
 import request from 'supertest'
 import { app } from 'app'
 
-describe('/api/results tests', () => {
-  test('GET /api/results', async () => {
+describe('GET /api/results', () => {
+  test('should return 422 without any parameters', async () => {
     const response = await request(app).get('/api/results')
     expect(response.status).toEqual(422)
   })
