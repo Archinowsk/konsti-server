@@ -3,39 +3,36 @@ import jsonwebtoken from 'jsonwebtoken'
 import { config } from 'config'
 import type { JWTResult, JWTError } from 'flow/jwt.flow'
 
+const getSecret = (userGroup: string) => {
+  if (userGroup === 'admin') {
+    return config.jwtSecretKeyAdmin
+  } else if (userGroup === 'user') {
+    return config.jwtSecretKey
+  }
+  return ''
+}
+
 export const getJWT = (userGroup: string, username: string): string => {
   const options = {
     expiresIn: '2 days',
   }
 
-  if (userGroup === 'admin') {
-    return jsonwebtoken.sign({ username }, config.jwtSecretKeyAdmin, options)
-  } else if (userGroup === 'user') {
-    return jsonwebtoken.sign({ username }, config.jwtSecretKey, options)
-  }
-
-  return ''
+  return jsonwebtoken.sign(
+    { username, userGroup },
+    getSecret(userGroup),
+    options
+  )
 }
 
 export const verifyJWT = (
   jwt: string,
   userGroup: string
 ): JWTResult | JWTError => {
-  if (userGroup === 'admin') {
-    try {
-      return jsonwebtoken.verify(jwt, config.jwtSecretKeyAdmin)
-    } catch (error) {
-      if (error.name === 'TokenExpiredError') {
-        return { status: 'error', message: 'expired jwt' }
-      }
-    }
-  } else if (userGroup === 'user') {
-    try {
-      return jsonwebtoken.verify(jwt, config.jwtSecretKey)
-    } catch (error) {
-      if (error.name === 'TokenExpiredError') {
-        return { status: 'error', message: 'expired jwt' }
-      }
+  try {
+    return jsonwebtoken.verify(jwt, getSecret(userGroup))
+  } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return { status: 'error', message: 'expired jwt' }
     }
   }
 

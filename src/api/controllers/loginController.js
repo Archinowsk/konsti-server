@@ -15,21 +15,9 @@ const postLogin = async (req: Object, res: Object) => {
 
   // Restore session
   if (jwt) {
-    const { username } = decodeJWT(jwt)
-    let user = null
-    try {
-      user = await db.user.findUser(username)
-    } catch (error) {
-      logger.error(`Login: ${error}`)
-      res.json({
-        message: 'User login error',
-        status: 'error',
-        error,
-      })
-      return
-    }
+    const { userGroup } = decodeJWT(jwt)
 
-    const jwtResponse = verifyJWT(jwt, user.userGroup)
+    const jwtResponse = verifyJWT(jwt, userGroup)
 
     if (jwtResponse.status === 'error') {
       res.json({
