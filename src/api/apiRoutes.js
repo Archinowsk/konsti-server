@@ -17,9 +17,10 @@ import { postGroup, getGroup } from 'api/controllers/groupController'
 import { toggleAppOpen } from 'api/controllers/toggleAppOpenController'
 
 export const apiRoutes = express.Router()
-
 apiRoutes.post('/games', postGames)
+// $FlowFixMe: Cannot call `apiRoutes.post` because no more than 1 argument is expected by  function type [1].
 apiRoutes.post('/user', postUserValidation, postUser)
+// $FlowFixMe: Cannot call `apiRoutes.post` because no more than 1 argument is expected by  function type [1].
 apiRoutes.post('/login', postLoginValidation, postLogin)
 apiRoutes.post('/players', postPlayers)
 apiRoutes.post('/signup', postSignup)

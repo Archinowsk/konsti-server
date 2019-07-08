@@ -11,6 +11,7 @@ import { logger, stream } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { allowCORS } from 'middleware/cors'
 import { apiRoutes } from 'api/apiRoutes'
+import type { $Request, $Response, NextFunction } from 'express'
 
 db.connectToDb()
 
@@ -27,13 +28,16 @@ if (config.enableAccessLog) {
 // Parse body and populate req.body - only accepts JSON
 app.use(bodyParser.json({ limit: '100kb', type: '*/*' }))
 
-app.use((err, req, res, next) => {
-  if (err) {
-    res.sendStatus(400)
-  } else {
-    next()
+app.use(
+  '/',
+  (err: Error, req: $Request, res: $Response, next: NextFunction) => {
+    if (err) {
+      res.sendStatus(400)
+    } else {
+      next()
+    }
   }
-})
+)
 
 /*
 app.use(
