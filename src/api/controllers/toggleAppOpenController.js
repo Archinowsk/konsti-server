@@ -2,8 +2,12 @@
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
+import type { $Request, $Response, Middleware } from 'express'
 
-export const toggleAppOpen = async (req: Object, res: Object) => {
+export const toggleAppOpen: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: POST /api/toggle-app-open')
   const appOpen = req.body.appOpen
 

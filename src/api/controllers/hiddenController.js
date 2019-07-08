@@ -2,9 +2,13 @@
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
+import type { $Request, $Response, Middleware } from 'express'
 
 // Add hidden data to server settings
-const postHidden = async (req: Object, res: Object) => {
+const postHidden: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: POST /api/hidden')
   const hiddenData = req.body.hiddenData
 

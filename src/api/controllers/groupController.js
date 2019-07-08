@@ -2,8 +2,12 @@
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
+import type { $Request, $Response, Middleware } from 'express'
 
-const postGroup = async (req: Object, res: Object) => {
+const postGroup: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: POST /api/group')
 
   const authHeader = req.headers.authorization
@@ -206,7 +210,10 @@ const postGroup = async (req: Object, res: Object) => {
 }
 
 // Get group members
-const getGroup = async (req: Object, res: Object) => {
+const getGroup: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: GET /api/group')
 
   const groupCode = req.query.groupCode

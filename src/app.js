@@ -74,7 +74,7 @@ if (config.bundleCompression) {
 }
 
 // No match, route to index
-app.get('/*', (req: Object, res: Object) => {
+app.get('/*', (req: $Request, res: $Response) => {
   res.redirect('/')
 })
 

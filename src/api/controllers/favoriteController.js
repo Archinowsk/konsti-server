@@ -2,9 +2,13 @@
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
+import type { $Request, $Response, Middleware } from 'express'
 
 // Add favorite data for user
-const postFavorite = async (req: Object, res: Object) => {
+const postFavorite: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: POST /api/favorite')
   const favoriteData = req.body.favoriteData
 

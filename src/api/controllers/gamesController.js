@@ -5,6 +5,7 @@ import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
 import { config } from 'config'
 import type { KompassiGame } from 'flow/game.flow'
+import type { $Request, $Response, Middleware } from 'express'
 
 const updateGames = async () => {
   logger.info('Games: GET games from remote server')
@@ -39,7 +40,10 @@ const updateGames = async () => {
 }
 
 // Update games db from master data
-const postGames = async (req: Object, res: Object) => {
+const postGames: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: POST /api/games')
 
   const authHeader = req.headers.authorization
@@ -71,7 +75,10 @@ const postGames = async (req: Object, res: Object) => {
 }
 
 // Get games from db
-const getGames = async (req: Object, res: Object) => {
+const getGames: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: GET /api/games')
 
   let games = null

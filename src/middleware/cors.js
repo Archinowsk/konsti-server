@@ -1,8 +1,13 @@
 /* @flow */
 import { logger } from 'utils/logger'
 import { config } from 'config'
+import type { $Request, $Response, NextFunction, Middleware } from 'express'
 
-export const allowCORS = (req: Object, res: Object, next: Function) => {
+export const allowCORS: Middleware = (
+  req: $Request,
+  res: $Response,
+  next: NextFunction
+): mixed => {
   const allowedOrigins = config.allowedCorsOrigins
   const origin = req.headers.origin
 

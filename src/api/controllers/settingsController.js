@@ -1,9 +1,13 @@
 /* @flow */
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
+import type { $Request, $Response, Middleware } from 'express'
 
 // Get settings
-const getSettings = async (req: Object, res: Object) => {
+const getSettings: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: GET /api/settings')
 
   try {

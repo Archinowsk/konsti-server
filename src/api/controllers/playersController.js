@@ -7,9 +7,13 @@ import { config } from 'config'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/result.flow'
+import type { $Request, $Response, Middleware } from 'express'
 
 // Assign players to games
-const postPlayers = async (req: Object, res: Object) => {
+const postPlayers: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: POST /api/players')
   const startingTime = req.body.startingTime
 

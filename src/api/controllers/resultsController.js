@@ -1,8 +1,12 @@
 /* @flow */
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
+import type { $Request, $Response, Middleware } from 'express'
 
-const getResults = async (req: Object, res: Object) => {
+const getResults: Middleware = async (
+  req: $Request,
+  res: $Response
+): Promise<void> => {
   logger.info('API call: GET /api/results')
   const startTime = req.query.startTime
 

@@ -1,7 +1,6 @@
 /* @flow */
 import express from 'express'
 import { postUserValidation, postLoginValidation } from 'api/validation'
-
 import { postGames, getGames } from 'api/controllers/gamesController'
 import { postUser, getUser } from 'api/controllers/userController'
 import { postLogin } from 'api/controllers/loginController'
@@ -15,8 +14,10 @@ import { getSettings } from 'api/controllers/settingsController'
 import { getResults } from 'api/controllers/resultsController'
 import { postGroup, getGroup } from 'api/controllers/groupController'
 import { toggleAppOpen } from 'api/controllers/toggleAppOpenController'
+import type { Middleware } from 'express'
 
-export const apiRoutes = express.Router()
+export const apiRoutes: Middleware = express.Router()
+
 apiRoutes.post('/games', postGames)
 // $FlowFixMe: Cannot call `apiRoutes.post` because no more than 1 argument is expected by  function type [1].
 apiRoutes.post('/user', postUserValidation, postUser)
