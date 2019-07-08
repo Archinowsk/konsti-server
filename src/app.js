@@ -32,9 +32,9 @@ app.use(
   '/',
   (err: Error, req: $Request, res: $Response, next: NextFunction) => {
     if (err) {
-      res.sendStatus(400)
+      return res.sendStatus(400)
     } else {
-      next()
+      return next()
     }
   }
 )
@@ -75,7 +75,7 @@ if (config.bundleCompression) {
 
 // No match, route to index
 app.get('/*', (req: $Request, res: $Response) => {
-  res.redirect('/')
+  return res.redirect('/')
 })
 
 app.set('port', config.port)

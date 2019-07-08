@@ -13,8 +13,7 @@ const postLogin: Middleware = async (
   const { username, password, jwt } = req.body
 
   if (((!username || !password) && !jwt) || (username && password && jwt)) {
-    res.sendStatus(422)
-    return
+    return res.sendStatus(422)
   }
 
   // Restore session
@@ -22,22 +21,20 @@ const postLogin: Middleware = async (
     const jwtData = decodeJWT(jwt)
 
     if (!jwtData) {
-      res.json({
+      return res.json({
         message: 'Invalid jwt',
         status: 'error',
       })
-      return
     }
 
     const { userGroup } = jwtData
     const jwtResponse = verifyJWT(jwt, userGroup)
 
     if (jwtResponse.status === 'error') {
-      res.json({
+      return res.json({
         message: 'Invalid jwt',
         status: 'error',
       })
-      return
     }
 
     if (typeof jwtResponse.username === 'string') {
@@ -46,15 +43,14 @@ const postLogin: Middleware = async (
         user = await db.user.findUser(jwtResponse.username)
       } catch (error) {
         logger.error(`Login: ${error}`)
-        res.json({
+        return res.json({
           message: 'Session restore error',
           status: 'error',
           error,
         })
-        return
       }
 
-      res.json({
+      return res.json({
         message: 'Session restore success',
         status: 'success',
         username: user.username,
@@ -63,7 +59,6 @@ const postLogin: Middleware = async (
         groupCode: user.groupCode,
         jwt: getJWT(user.userGroup, user.username),
       })
-      return
     }
   }
 
@@ -72,23 +67,21 @@ const postLogin: Middleware = async (
     user = await db.user.findUser(username)
   } catch (error) {
     logger.error(`Login: ${error}`)
-    res.json({
+    return res.json({
       message: 'User login error',
       status: 'error',
       error,
     })
-    return
   }
 
   // User does not exist
   if (!user) {
     logger.info(`Login: User "${username}" not found`)
-    res.json({
+    return res.json({
       code: 21,
       message: 'User login error',
       status: 'error',
     })
-    return
   }
 
   let settingsResponse
@@ -96,21 +89,19 @@ const postLogin: Middleware = async (
     settingsResponse = await db.settings.findSettings()
   } catch (error) {
     logger.error(`Login: ${error}`)
-    res.json({
+    return res.json({
       message: 'User login error',
       status: 'error',
       error,
     })
-    return
   }
 
   if (!settingsResponse.appOpen && user.userGroup === 'user') {
-    res.json({
+    return res.json({
       code: 22,
       message: 'User login disabled',
       status: 'error',
     })
-    return
   }
 
   // User exists
@@ -124,7 +115,7 @@ const postLogin: Middleware = async (
 
     if (validLogin === true) {
       logger.info(`Login: Password for user "${username}" matches`)
-      res.json({
+      return res.json({
         message: 'User login success',
         status: 'success',
         username: user.username,
@@ -133,25 +124,22 @@ const postLogin: Middleware = async (
         groupCode: user.groupCode,
         jwt: getJWT(user.userGroup, user.username),
       })
-      return
     } else {
       logger.info(`Login: Password for user "${username}" doesn't match`)
 
-      res.json({
+      return res.json({
         code: 21,
         message: 'User login failed',
         status: 'error',
       })
-      return
     }
   } catch (error) {
     logger.error(`Login: ${error}`)
-    res.json({
+    return res.json({
       message: 'User login error',
       status: 'error',
       error,
     })
-    // return
   }
 }
 

@@ -16,8 +16,7 @@ const postSignup: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   const { selectedGames, username } = signupData
@@ -29,13 +28,13 @@ const postSignup: Middleware = async (
 
   try {
     const response = await db.user.saveSignup(modifiedSignupData)
-    res.json({
+    return res.json({
       message: 'Signup success',
       status: 'success',
       signedGames: response.signedGames,
     })
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Signup failure',
       status: 'error',
       error,

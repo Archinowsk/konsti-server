@@ -1,43 +1,10 @@
 /* @flow */
-import requestPromiseNative from 'request-promise-native'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
-import { config } from 'config'
+import { updateGames } from 'utils/updateGames'
 import type { KompassiGame } from 'flow/game.flow'
 import type { $Request, $Response, Middleware } from 'express'
-
-const updateGames = async () => {
-  logger.info('Games: GET games from remote server')
-
-  const options = {
-    uri: config.dataUri,
-    headers: {
-      'User-Agent': 'Request-Promise',
-    },
-    json: true,
-  }
-
-  let programItems = null
-  try {
-    programItems = await requestPromiseNative(options)
-  } catch (error) {
-    logger.error(`Games: requestPromiseNative(): ${error}`)
-    return Promise.reject(error)
-  }
-
-  const games = []
-
-  // TODO: Filter games in designated locations, i.e. not "hall 5"
-  if (programItems) {
-    programItems.forEach(game => {
-      if (game.category_title === 'Roolipeli') {
-        games.push(game)
-      }
-    })
-  }
-  return games
-}
 
 // Update games db from master data
 const postGames: Middleware = async (
@@ -50,8 +17,7 @@ const postGames: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   let games: $ReadOnlyArray<KompassiGame> = []
@@ -60,17 +26,16 @@ const postGames: Middleware = async (
     games = await updateGames()
     response = await db.game.saveGames(games)
 
-    res.json({
+    return res.json({
       message: 'Games db updated',
       status: 'success',
       games: response,
     })
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Games db update failed',
       status: 'error',
     })
-    return Promise.reject(error)
   }
 }
 
@@ -85,13 +50,13 @@ const getGames: Middleware = async (
   try {
     games = await db.game.findGames()
 
-    res.json({
+    return res.json({
       message: 'Games downloaded',
       status: 'success',
       games: games,
     })
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Downloading games failed',
       status: 'error',
       response: error,

@@ -15,19 +15,18 @@ export const toggleAppOpen: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   try {
     const response = await db.settings.saveToggleAppOpen(appOpen)
-    res.json({
+    return res.json({
       message: 'Update app open success',
       status: 'success',
       appOpen: response.appOpen,
     })
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Update app open failure',
       status: 'error',
       error,

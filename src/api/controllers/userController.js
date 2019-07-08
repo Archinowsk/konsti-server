@@ -24,7 +24,7 @@ const postUser: Middleware = async (
     serialFound = await db.serial.findSerial(serial)
   } catch (error) {
     logger.error(`Error finding serial: ${error}`)
-    res.json({
+    return res.json({
       code: 10,
       message: 'Finding serial failed',
       status: 'error',
@@ -34,12 +34,11 @@ const postUser: Middleware = async (
   // Check for valid serial
   if (!serialFound) {
     logger.info('User: Serial is not valid')
-    res.json({
+    return res.json({
       code: 12,
       message: 'Invalid serial',
       status: 'error',
     })
-    return
   }
 
   logger.info('User: Serial is valid')
@@ -51,7 +50,7 @@ const postUser: Middleware = async (
     user = await db.user.findUser(username)
   } catch (error) {
     logger.error(`db.user.findUser(): ${error}`)
-    res.json({
+    return res.json({
       code: 10,
       message: 'Finding user failed',
       status: 'error',
@@ -60,12 +59,11 @@ const postUser: Middleware = async (
 
   if (user) {
     logger.info(`User: Username "${username}" is already registered`)
-    res.json({
+    return res.json({
       code: 11,
       message: 'Username in already registered',
       status: 'error',
     })
-    return
   }
 
   // Username free
@@ -76,23 +74,21 @@ const postUser: Middleware = async (
       serialResponse = await db.user.findSerial({ serial })
     } catch (error) {
       logger.error(`db.user.findSerial(): ${error}`)
-      res.json({
+      return res.json({
         code: 10,
         message: 'Finding serial failed',
         status: 'error',
       })
-      return
     }
 
     // Serial used
     if (serialResponse) {
       logger.info('User: Serial used')
-      res.json({
+      return res.json({
         code: 12,
         message: 'Invalid serial',
         status: 'error',
       })
-      return
     }
 
     // Serial not used
@@ -102,22 +98,20 @@ const postUser: Middleware = async (
         passwordHash = await hashPassword(password)
       } catch (error) {
         logger.error(`hashPassword(): ${error}`)
-        res.json({
+        return res.json({
           code: 10,
           message: 'Hashing password failed',
           status: 'error',
         })
-        return
       }
 
       if (!passwordHash) {
         logger.info('User: Serial used')
-        res.json({
+        return res.json({
           code: 12,
           message: 'Invalid serial',
           status: 'error',
         })
-        return
       }
 
       if (passwordHash) {
@@ -130,15 +124,14 @@ const postUser: Middleware = async (
           })
         } catch (error) {
           logger.error(`db.user.saveUser(): ${error}`)
-          res.json({
+          return res.json({
             code: 10,
             message: 'User registration failed',
             status: 'error',
           })
-          return
         }
 
-        res.json({
+        return res.json({
           message: 'User registration success',
           status: 'success',
           username: saveUserResponse.username,
@@ -161,35 +154,39 @@ const getUser: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
+  let user = null
   try {
-    const user = await db.user.findUser(username)
-    if (!user) return
-
-    const returnData = {
-      enteredGames: user.enteredGames,
-      favoritedGames: user.favoritedGames,
-      signedGames: user.signedGames,
-    }
-
-    res.json({
-      message: 'Getting user data success',
-      status: 'success',
-      games: returnData,
-    })
-    return
+    user = await db.user.findUser(username)
   } catch (error) {
     logger.error(`db.user.findUser(): ${error}`)
-    res.json({
+    return res.json({
       message: 'Getting user data failed',
       status: 'error',
       error,
     })
-    // return
   }
+
+  if (!user) {
+    return res.json({
+      message: `User ${username} not found`,
+      status: 'error',
+    })
+  }
+
+  const returnData = {
+    enteredGames: user.enteredGames,
+    favoritedGames: user.favoritedGames,
+    signedGames: user.signedGames,
+  }
+
+  return res.json({
+    message: 'Getting user data success',
+    status: 'success',
+    games: returnData,
+  })
 }
 
 export { postUser, getUser }

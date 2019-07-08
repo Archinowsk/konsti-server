@@ -11,8 +11,7 @@ const getResults: Middleware = async (
   const startTime = req.query.startTime
 
   if (!startTime) {
-    res.sendStatus(422)
-    return
+    return res.sendStatus(422)
   }
 
   let results
@@ -20,7 +19,7 @@ const getResults: Middleware = async (
     results = await db.results.findResult(startTime)
   } catch (error) {
     logger.error(`Results: ${error}`)
-    res.json({
+    return res.json({
       message: 'Getting results failed',
       status: 'error',
       error,
@@ -28,15 +27,14 @@ const getResults: Middleware = async (
   }
 
   if (!results) {
-    res.json({
+    return res.json({
       message: 'Getting results success',
       status: 'success',
       results: null,
     })
-    return
   }
 
-  res.json({
+  return res.json({
     message: 'Getting results success',
     status: 'success',
     results,

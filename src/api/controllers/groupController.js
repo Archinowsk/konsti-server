@@ -14,8 +14,7 @@ const postGroup: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   const groupData = req.body.groupData
@@ -26,41 +25,37 @@ const postGroup: Middleware = async (
     let saveGroupResponse
 
     if (leader && groupMembers.length > 1) {
-      res.json({
+      return res.json({
         message: 'Leader cannot leave non-empty group',
         status: 'error',
         code: 36,
       })
-      return
     }
 
     try {
       saveGroupResponse = await db.user.saveGroupCode('0', username)
     } catch (error) {
       logger.error(`Failed to leave group: ${error}`)
-      res.json({
+      return res.json({
         message: 'Failed to leave group',
         status: 'error',
         code: 35,
       })
-      return
     }
 
     if (saveGroupResponse) {
-      res.json({
+      return res.json({
         message: 'Leave group group success',
         status: 'success',
         groupCode: saveGroupResponse.groupCode,
       })
-      return
     } else {
       logger.error('Failed to leave group')
-      res.json({
+      return res.json({
         message: 'Failed to leave group',
         status: 'error',
         code: 35,
       })
-      return
     }
   }
 
@@ -73,22 +68,20 @@ const postGroup: Middleware = async (
       findGroupResponse = await db.user.findGroup(groupCode, username)
     } catch (error) {
       logger.error(`db.user.findUser(): ${error}`)
-      res.json({
+      return res.json({
         message: 'Own group already exists',
         status: 'error',
         code: 34,
       })
-      return
     }
 
     if (findGroupResponse) {
       // Group exists
-      res.json({
+      return res.json({
         message: 'Own group already exists',
         status: 'error',
         code: 34,
       })
-      return
     }
 
     // No existing group, create
@@ -97,7 +90,7 @@ const postGroup: Middleware = async (
       saveGroupResponse = await db.user.saveGroupCode(groupCode, username)
     } catch (error) {
       logger.error(`db.user.saveGroup(): ${error}`)
-      res.json({
+      return res.json({
         message: 'Save group failure',
         status: 'error',
         error,
@@ -106,13 +99,13 @@ const postGroup: Middleware = async (
     }
 
     if (saveGroupResponse) {
-      res.json({
+      return res.json({
         message: 'Create group success',
         status: 'success',
         groupCode: saveGroupResponse.groupCode,
       })
     } else {
-      res.json({
+      return res.json({
         message: 'Save group failure',
         status: 'error',
         code: 30,
@@ -124,12 +117,11 @@ const postGroup: Middleware = async (
   if (!leader) {
     // Cannot join own group
     if (ownSerial === groupCode) {
-      res.json({
+      return res.json({
         message: 'Cannot join own group',
         status: 'error',
         code: 33,
       })
-      return
     }
 
     // Check if code is valid
@@ -138,7 +130,7 @@ const postGroup: Middleware = async (
       findSerialResponse = await db.user.findSerial({ serial: groupCode })
     } catch (error) {
       logger.error(`db.user.findSerial(): ${error}`)
-      res.json({
+      return res.json({
         message: 'Error finding serial',
         status: 'error',
         code: 31,
@@ -147,12 +139,11 @@ const postGroup: Middleware = async (
 
     // Code is valid
     if (!findSerialResponse) {
-      res.json({
+      return res.json({
         message: 'Invalid group code',
         status: 'error',
         code: 31,
       })
-      return
     }
 
     // Check if group leader has created a group
@@ -162,7 +153,7 @@ const postGroup: Middleware = async (
       findGroupResponse = await db.user.findGroup(groupCode, leaderUsername)
     } catch (error) {
       logger.error(`db.user.findGroup(): ${error}`)
-      res.json({
+      return res.json({
         message: 'Error finding group',
         status: 'error',
         code: 32,
@@ -171,12 +162,11 @@ const postGroup: Middleware = async (
 
     // No existing group, cannot join
     if (!findGroupResponse) {
-      res.json({
+      return res.json({
         message: 'Group does not exist',
         status: 'error',
         code: 32,
       })
-      return
     }
 
     // Group exists, join
@@ -185,7 +175,7 @@ const postGroup: Middleware = async (
       saveGroupResponse = await db.user.saveGroupCode(groupCode, username)
     } catch (error) {
       logger.error(`db.user.saveGroup(): ${error}`)
-      res.json({
+      return res.json({
         message: 'Error saving group',
         status: 'error',
         code: 30,
@@ -193,14 +183,14 @@ const postGroup: Middleware = async (
     }
 
     if (saveGroupResponse) {
-      res.json({
+      return res.json({
         message: 'Joined to group success',
         status: 'success',
         groupCode: saveGroupResponse.groupCode,
       })
     } else {
       logger.error('Failed to sign to group')
-      res.json({
+      return res.json({
         message: 'Failed to update group',
         status: 'error',
         code: 30,
@@ -222,8 +212,7 @@ const getGroup: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   let findGroupResults = null
@@ -241,14 +230,14 @@ const getGroup: Middleware = async (
       })
     }
 
-    res.json({
+    return res.json({
       message: 'Getting group members success',
       status: 'success',
       results: returnData,
     })
   } catch (error) {
     logger.error(`Results: ${error}`)
-    res.json({
+    return res.json({
       message: 'Getting group members failed',
       status: 'error',
       error,

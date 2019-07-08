@@ -16,18 +16,17 @@ const postFeedback: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   try {
     await db.feedback.saveFeedback(feedbackData)
-    res.json({
+    return res.json({
       message: 'Post feedback success',
       status: 'success',
     })
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Post feedback failure',
       status: 'error',
       error,

@@ -16,19 +16,18 @@ const postHidden: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   try {
     const response = await db.settings.saveHidden(hiddenData)
-    res.json({
+    return res.json({
       message: 'Update hidden success',
       status: 'success',
       hiddenGames: response.hiddenGames,
     })
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Update hidden failure',
       status: 'error',
       error,

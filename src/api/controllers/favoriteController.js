@@ -16,20 +16,19 @@ const postFavorite: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'user')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   try {
     const saveFavoriteResponse = await db.user.saveFavorite(favoriteData)
 
-    res.json({
+    return res.json({
       message: 'Update favorite success',
       status: 'success',
       favoritedGames: saveFavoriteResponse.favoritedGames,
     })
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Update favorite failure',
       status: 'error',
       error,

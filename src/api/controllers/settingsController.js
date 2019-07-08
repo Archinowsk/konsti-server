@@ -13,7 +13,7 @@ const getSettings: Middleware = async (
   try {
     const response = await db.settings.findSettings()
 
-    res.json({
+    return res.json({
       message: 'Getting settings success',
       status: 'success',
       hiddenGames: response.hiddenGames,
@@ -22,7 +22,7 @@ const getSettings: Middleware = async (
     })
   } catch (error) {
     logger.error(`Settings: ${error}`)
-    res.json({
+    return res.json({
       message: 'Getting settings failed',
       status: 'error',
       error,

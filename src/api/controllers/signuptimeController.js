@@ -16,25 +16,22 @@ const postSignupTime: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   try {
     const response = await db.settings.saveSignupTime(signupTime)
-    res.json({
+    return res.json({
       message: 'Signup time set success',
       status: 'success',
       signupTime: response.signupTime,
     })
-    return
   } catch (error) {
-    res.json({
+    return res.json({
       message: 'Signup time set failure',
       status: 'error',
       error,
     })
-    // return
   }
 }
 

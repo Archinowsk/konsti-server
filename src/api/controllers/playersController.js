@@ -21,8 +21,7 @@ const postPlayers: Middleware = async (
   const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
-    res.sendStatus(401)
-    return
+    return res.sendStatus(401)
   }
 
   const strategy = config.assignmentStrategy
@@ -71,7 +70,7 @@ const postPlayers: Middleware = async (
         await removeOverlappingSignups(assignResults.newSignupData)
       }
 
-      res.json({
+      return res.json({
         message: 'Players assign success',
         status: 'success',
         results: assignResults.results,
@@ -84,7 +83,7 @@ const postPlayers: Middleware = async (
     }
   } catch (error) {
     logger.error(`Player assign error: ${error}`)
-    res.json({
+    return res.json({
       message: 'Players assign failure',
       status: 'error',
       error,
