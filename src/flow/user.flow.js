@@ -17,10 +17,12 @@ export type EnteredGame = {
   +time: string,
 }
 
+export type UserGroup = 'user' | 'admin'
+
 export type User = {|
   +username: string,
   +password: string,
-  +userGroup: string,
+  +userGroup: UserGroup,
   +serial: string,
   +groupCode: string,
   +favoritedGames: $ReadOnlyArray<FavoritedGame>,

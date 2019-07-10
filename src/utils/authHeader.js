@@ -1,8 +1,12 @@
 /* @flow */
 import { verifyJWT } from 'utils/jwt'
 import { logger } from 'utils/logger'
+import type { UserGroup } from 'flow/user.flow'
 
-export const validateAuthHeader = (authHeader: string, userGroup: string) => {
+export const validateAuthHeader = (
+  authHeader: string,
+  userGroup: UserGroup
+) => {
   logger.debug(`Auth: Require jwt for user group "${userGroup}"`)
   let jwt = ''
 
