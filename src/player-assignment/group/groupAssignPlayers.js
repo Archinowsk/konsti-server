@@ -30,7 +30,7 @@ export const groupAssignPlayers = (
 
   let numberOfIndividuals = 0
   let numberOfGroups = 0
-  for (let playerGroup of playerGroups) {
+  for (const playerGroup of playerGroups) {
     if (playerGroup.length > 1) {
       numberOfGroups += 1
     } else {

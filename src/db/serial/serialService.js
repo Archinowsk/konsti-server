@@ -10,7 +10,7 @@ const removeSerials = () => {
 const saveSerials = async (serials: $ReadOnlyArray<string>) => {
   const serialDocs = []
 
-  for (let serial of serials) {
+  for (const serial of serials) {
     serialDocs.push(
       new Serial({
         serial,
@@ -20,7 +20,7 @@ const saveSerials = async (serials: $ReadOnlyArray<string>) => {
 
   let response = null
   try {
-    await Serial.create(serialDocs)
+    response = await Serial.create(serialDocs)
     logger.info(`MongoDB: Serials data saved`)
     return response
   } catch (error) {

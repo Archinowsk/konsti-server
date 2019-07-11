@@ -30,8 +30,8 @@ export const runAssignment = (
   // Don't mutate function parameter
   let playerGroupsCopy = [...playerGroups]
 
-  for (let selectedGame of shuffledGames) {
-    for (let playerGroup of playerGroupsCopy) {
+  for (const selectedGame of shuffledGames) {
+    for (const playerGroup of playerGroupsCopy) {
       // Get groups with specific game signup, always use first player in group
       _.first(playerGroup).signedGames.forEach(signedGame => {
         if (signedGame.gameDetails.gameId === selectedGame.gameId) {
@@ -67,7 +67,7 @@ export const runAssignment = (
 
     while (numberOfPlayers < maximumPlayers) {
       // Randomize group to enter the game
-      let groupNumber = getRandomInt(0, matchingGroups.length - 1)
+      const groupNumber = getRandomInt(0, matchingGroups.length - 1)
       const selectedGroup = matchingGroups[groupNumber]
 
       if (selectedGroup.length === 1) {
@@ -115,9 +115,9 @@ export const runAssignment = (
     } else {
       // Enough signups, game will happen
       // Store results for selected groups
-      for (let selectedGroup of selectedGroups) {
-        for (let groupMember of selectedGroup) {
-          let signedGame = groupMember.signedGames.find(
+      for (const selectedGroup of selectedGroups) {
+        for (const groupMember of selectedGroup) {
+          const signedGame = groupMember.signedGames.find(
             signedGame => signedGame.gameDetails.gameId === selectedGame.gameId
           )
 
@@ -132,7 +132,7 @@ export const runAssignment = (
 
           playerCounter += 1
 
-          let enteredGame = findEnteredGame(
+          const enteredGame = findEnteredGame(
             selectedGame,
             groupMember.signedGames
           )
@@ -150,7 +150,7 @@ export const runAssignment = (
 
       // Remove selected groups from ALL groups array
       playerGroupsCopy = playerGroupsCopy.filter(remainingGroup => {
-        for (let selectedGroup of selectedGroups) {
+        for (const selectedGroup of selectedGroups) {
           if (
             _.first(remainingGroup).username === _.first(selectedGroup).username
           ) {

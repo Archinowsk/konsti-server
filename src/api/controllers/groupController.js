@@ -220,7 +220,7 @@ const getGroup: Middleware = async (
     findGroupResults = await db.user.findGroupMembers(groupCode)
 
     const returnData = []
-    for (let result of findGroupResults) {
+    for (const result of findGroupResults) {
       returnData.push({
         groupCode: result.groupCode,
         signedGames: result.signedGames,

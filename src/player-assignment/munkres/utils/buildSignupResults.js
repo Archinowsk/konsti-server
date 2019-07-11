@@ -32,7 +32,7 @@ export const buildSignupResults = (
 
       // Found game
       if (selectedRow < attendanceRange) {
-        let enteredGame = findEnteredGame(
+        const enteredGame = findEnteredGame(
           signedGames[j],
           players[selectedPlayer].signedGames
         )

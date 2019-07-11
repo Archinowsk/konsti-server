@@ -62,7 +62,7 @@ const signupMultiple = (
 ) => {
   const promises = []
 
-  for (let user of users) {
+  for (const user of users) {
     if (user.username !== 'admin' /* && user.username !== 'test' */) {
       promises.push(signup(games, user))
     }
@@ -89,7 +89,7 @@ const signupGroup = async (
     )
     */
 
-    let signupData = {
+    const signupData = {
       username: users[i].username,
       signedGames: i === 0 ? signup.gamesWithPriorities : [],
     }
@@ -131,7 +131,7 @@ const createSignupData = async (strategy: string) => {
       groupedUsers
     )) {
       // $FlowFixMe
-      let array = [...value]
+      const array = [...value]
       if (key === '0') {
         logger.info('SIGNUP INDIVIDUAL USERS')
         await signupMultiple(games, array)

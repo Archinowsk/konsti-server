@@ -10,10 +10,10 @@ export const getGroupMembers = (
 
   const selectedPlayersWithSignups = []
 
-  for (let groupLeader of groupLeaders) {
+  for (const groupLeader of groupLeaders) {
     // Skip individual users
     if (groupLeader.groupCode !== '0') {
-      for (let player of players) {
+      for (const player of players) {
         // User is in the group but is not the leader
         if (
           player.groupCode === groupLeader.groupCode &&

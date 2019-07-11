@@ -20,7 +20,7 @@ export const groupGenerator = async (
   await createUsers(newUsersCount)
 
   for (let i = 0; i < numberOfGroups; i++) {
-    let randomGroupId = faker.random.number().toString()
+    const randomGroupId = faker.random.number().toString()
     await createUsersInGroup(groupSize, randomGroupId)
   }
 
