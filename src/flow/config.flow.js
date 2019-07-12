@@ -17,4 +17,5 @@ export type Config = {|
   +autoUpdateGames: boolean,
   +assignmentStrategy: string,
   +gameUpdateInterval: number,
+  +CONVENTION_START_TIME: string,
 |}

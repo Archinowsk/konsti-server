@@ -21,6 +21,7 @@ const commonConfig = {
   bundleCompression: true,
   autoUpdateGames: false,
   gameUpdateInterval: 5, // minutes
+  CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
 }
 
 const prodConfig = {
