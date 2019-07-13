@@ -57,7 +57,7 @@ const devConfig = {
   jwtSecretKey: 'secret',
   jwtSecretKeyAdmin: 'admin secret',
   allowedCorsOrigins: ['http://localhost:8080'],
-  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2018/programme/ropecon',
+  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: true,
   ASSIGNMENT_ROUNDS: 1,
   autoUpdateGames: false,
