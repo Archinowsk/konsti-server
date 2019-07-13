@@ -3,7 +3,7 @@ import { logger } from 'utils/logger'
 import { Feedback } from 'db/feedback/feedbackSchema'
 import type { FeedbackData } from 'flow/feedback.flow'
 
-const saveFeedback = async (feedbackData: FeedbackData) => {
+const saveFeedback = async (feedbackData: FeedbackData): Promise<any> => {
   const feedback = new Feedback({
     gameId: feedbackData.gameId,
     feedback: feedbackData.feedback,

@@ -3,7 +3,7 @@ import requestPromiseNative from 'request-promise-native'
 import { logger } from 'utils/logger'
 import { config } from 'config'
 
-export const updateGames = async () => {
+export const updateGames = async (): Promise<any> => {
   logger.info('Games: GET games from remote server')
 
   const options = {

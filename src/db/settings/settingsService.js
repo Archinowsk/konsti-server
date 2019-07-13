@@ -9,7 +9,7 @@ const removeSettings = () => {
   return Settings.deleteMany({})
 }
 
-const createSettings = async () => {
+const createSettings = async (): Promise<any> => {
   logger.info('MongoDB: "Settings" collection not found, create empty')
 
   const settings = new Settings({
@@ -29,7 +29,7 @@ const createSettings = async () => {
   }
 }
 
-const findSettings = async () => {
+const findSettings = async (): Promise<any> => {
   let response = null
   try {
     response = await Settings.findOne({}, '-_id -__v -createdAt -updatedAt')
@@ -48,7 +48,7 @@ const findSettings = async () => {
   return response
 }
 
-const saveHidden = async (hiddenData: $ReadOnlyArray<Game>) => {
+const saveHidden = async (hiddenData: $ReadOnlyArray<Game>): Promise<any> => {
   let response = null
   try {
     response = await Settings.findOneAndUpdate(
@@ -68,7 +68,7 @@ const saveHidden = async (hiddenData: $ReadOnlyArray<Game>) => {
   }
 }
 
-const saveSignupTime = async (signupTime: string) => {
+const saveSignupTime = async (signupTime: string): Promise<any> => {
   // Make sure that the string is in correct format
   const formattedTime = moment(signupTime)
 
@@ -89,7 +89,7 @@ const saveSignupTime = async (signupTime: string) => {
   }
 }
 
-const saveToggleAppOpen = async (appOpen: boolean) => {
+const saveToggleAppOpen = async (appOpen: boolean): Promise<any> => {
   let response = null
   try {
     response = await Settings.findOneAndUpdate(

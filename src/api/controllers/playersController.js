@@ -91,7 +91,9 @@ const postPlayers: Middleware = async (
   }
 }
 
-const removeOverlappingSignups = async (signups: $ReadOnlyArray<Signup>) => {
+const removeOverlappingSignups = async (
+  signups: $ReadOnlyArray<Signup>
+): Promise<any> => {
   try {
     await Promise.all(
       signups.map(signup => {

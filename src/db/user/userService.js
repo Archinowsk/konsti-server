@@ -9,7 +9,7 @@ const removeUsers = () => {
   return User.deleteMany({})
 }
 
-const saveUser = async (newUserData: NewUserData) => {
+const saveUser = async (newUserData: NewUserData): Promise<any> => {
   const user = new User({
     username: newUserData.username,
     password: newUserData.passwordHash,
@@ -38,7 +38,7 @@ const saveUser = async (newUserData: NewUserData) => {
   }
 }
 
-const findUser = async (username: string) => {
+const findUser = async (username: string): Promise<any> => {
   let response = null
   try {
     response = await User.findOne(
@@ -62,7 +62,7 @@ const findUser = async (username: string) => {
   return response
 }
 
-const findSerial = async (serialData: Object) => {
+const findSerial = async (serialData: Object): Promise<any> => {
   const serial = serialData.serial
 
   let response = null
@@ -81,7 +81,7 @@ const findSerial = async (serialData: Object) => {
   return response
 }
 
-const findGroupMembers = async (groupCode: string) => {
+const findGroupMembers = async (groupCode: string): Promise<any> => {
   let response = null
   try {
     response = await User.find({ groupCode })
@@ -104,7 +104,7 @@ const findGroupMembers = async (groupCode: string) => {
   return response
 }
 
-const findGroup = async (groupCode: string, username: string) => {
+const findGroup = async (groupCode: string, username: string): Promise<any> => {
   let response = null
   if (username) {
     try {
@@ -141,7 +141,7 @@ const findGroup = async (groupCode: string, username: string) => {
   }
 }
 
-const findUsers = async () => {
+const findUsers = async (): Promise<any> => {
   let response = null
   try {
     response = await User.find({})
@@ -157,7 +157,7 @@ const findUsers = async () => {
   }
 }
 
-const saveSignup = async (signupData: Signup) => {
+const saveSignup = async (signupData: Signup): Promise<any> => {
   const { signedGames, username } = signupData
 
   let signupResponse = null
@@ -186,7 +186,10 @@ const saveSignup = async (signupData: Signup) => {
   return signupResponse
 }
 
-const saveGroupCode = async (groupCode: string, username: string) => {
+const saveGroupCode = async (
+  groupCode: string,
+  username: string
+): Promise<any> => {
   let response = null
 
   try {
@@ -210,7 +213,7 @@ const saveGroupCode = async (groupCode: string, username: string) => {
   return response
 }
 
-const saveFavorite = async (favoriteData: Object) => {
+const saveFavorite = async (favoriteData: Object): Promise<any> => {
   let response = null
   try {
     response = await User.findOneAndUpdate(
@@ -237,7 +240,7 @@ const saveFavorite = async (favoriteData: Object) => {
   }
 }
 
-const saveSignupResult = async (signupResult: Result) => {
+const saveSignupResult = async (signupResult: Result): Promise<any> => {
   let response = null
   try {
     const user = await findUser(signupResult.username)

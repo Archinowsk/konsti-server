@@ -4,7 +4,7 @@ import { db } from 'db/mongodb'
 import { munkresGenerator } from 'test/data-generation/munkresGenerator'
 import { groupGenerator } from 'test/data-generation/groupGenerator'
 
-const runGenerators = async () => {
+const runGenerators = async (): Promise<any> => {
   const strategy = process.argv[2]
 
   if (!strategy || (strategy !== 'munkres' && strategy !== 'group')) {

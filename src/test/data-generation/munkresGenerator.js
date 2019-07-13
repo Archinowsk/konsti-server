@@ -10,7 +10,7 @@ import { createSignupData } from 'test/data-generation/generators/signupDataGene
 export const munkresGenerator = async (
   newUsersCount: number,
   newGamesCount: number
-) => {
+): Promise<any> => {
   await createAdminUser()
   await createTestUsers(2)
   await createUsers(newUsersCount)

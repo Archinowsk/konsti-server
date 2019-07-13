@@ -3,7 +3,7 @@ import { logger } from 'utils/logger'
 import { assignPlayers } from 'player-assignment/assignPlayers'
 import { db } from 'db/mongodb'
 
-const testAssignPlayers = async () => {
+const testAssignPlayers = async (): Promise<any> => {
   const strategy = process.argv[2]
 
   if (!strategy || (strategy !== 'munkres' && strategy !== 'group')) {

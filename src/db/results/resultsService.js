@@ -8,7 +8,7 @@ const removeResults = () => {
   return Results.deleteMany({})
 }
 
-const findResult = async (startTime: string) => {
+const findResult = async (startTime: string): Promise<any> => {
   let response = null
   try {
     response = await Results.findOne(
@@ -32,7 +32,7 @@ const findResult = async (startTime: string) => {
 const saveResult = async (
   signupResultData: $ReadOnlyArray<Result>,
   startTime: string
-) => {
+): Promise<any> => {
   const result = signupResultData.map(result => {
     return {
       username: result.username,

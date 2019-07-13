@@ -8,10 +8,13 @@ import { config } from 'config'
 
 if (config.autoUpdateGames) {
   // Update games from master data every n minutes
-  schedule.scheduleJob(`*/${config.gameUpdateInterval} * * * *`, async () => {
-    const games = await updateGames()
-    await db.game.saveGames(games)
-  })
+  schedule.scheduleJob(
+    `*/${config.gameUpdateInterval} * * * *`,
+    async (): Promise<any> => {
+      const games = await updateGames()
+      await db.game.saveGames(games)
+    }
+  )
 }
 
 const server = app.listen(app.get('port'), () => {

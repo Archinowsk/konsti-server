@@ -9,7 +9,7 @@ import { results } from 'db/results/resultsService'
 import { settings } from 'db/settings/settingsService'
 import { serial } from 'db/serial/serialService'
 
-const connectToDb = async () => {
+const connectToDb = async (): Promise<any> => {
   // Use native Node promises
   mongoose.Promise = global.Promise
   // Don't use Mongoose useFindAndModify

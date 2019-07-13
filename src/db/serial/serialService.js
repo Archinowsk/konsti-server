@@ -7,7 +7,7 @@ const removeSerials = () => {
   return Serial.deleteMany({})
 }
 
-const saveSerials = async (serials: $ReadOnlyArray<string>) => {
+const saveSerials = async (serials: $ReadOnlyArray<string>): Promise<any> => {
   const serialDocs = []
 
   for (const serial of serials) {
@@ -29,7 +29,7 @@ const saveSerials = async (serials: $ReadOnlyArray<string>) => {
   }
 }
 
-const findSerial = async (serial: string) => {
+const findSerial = async (serial: string): Promise<any> => {
   let response = null
   try {
     response = await Serial.findOne({ serial }).lean()

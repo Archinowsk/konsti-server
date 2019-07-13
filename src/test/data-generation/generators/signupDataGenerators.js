@@ -74,7 +74,7 @@ const signupMultiple = (
 const signupGroup = async (
   games: $ReadOnlyArray<Game>,
   users: $ReadOnlyArray<User>
-) => {
+): Promise<any> => {
   // Generate random signup data for the first user
   const signup = getRandomSignup(games, _.first(users))
 
@@ -100,7 +100,7 @@ const signupGroup = async (
   return Promise.all(promises)
 }
 
-const createSignupData = async (strategy: string) => {
+const createSignupData = async (strategy: string): Promise<any> => {
   logger.info('Generate signup data')
 
   let games: $ReadOnlyArray<Game> = []

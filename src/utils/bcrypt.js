@@ -23,7 +23,7 @@ const comparePasswordHash = async (
   }
 }
 
-const validateLogin = async (password: string, hash: string) => {
+const validateLogin = async (password: string, hash: string): Promise<any> => {
   let hashResponse = null
   try {
     hashResponse = await comparePasswordHash(password, hash)

@@ -4,7 +4,7 @@ import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { hashPassword } from 'utils/bcrypt'
 
-const createAdminUser = async () => {
+const createAdminUser = async (): Promise<any> => {
   // Create admin user with predefined data
   logger.info(`Generate data for admin user "admin:test"`)
 
@@ -27,7 +27,7 @@ const createAdminUser = async () => {
   }
 }
 
-const createTestUser = async (userNumber: number) => {
+const createTestUser = async (userNumber: number): Promise<any> => {
   logger.info(`Generate data for user "test${userNumber}:test"`)
 
   const passwordHash = await hashPassword('test')
@@ -49,7 +49,7 @@ const createTestUser = async (userNumber: number) => {
   }
 }
 
-const createTestUsers = async (number: number) => {
+const createTestUsers = async (number: number): Promise<any> => {
   // Create test users with predefined data
   for (let i = 0; i < number; i += 1) {
     createTestUser(i + 1)

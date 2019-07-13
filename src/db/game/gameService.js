@@ -9,7 +9,7 @@ const removeGames = () => {
 }
 
 // Save all games to db
-const saveGames = async (games: $ReadOnlyArray<KompassiGame>) => {
+const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
   logger.info('MongoDB: Store games to DB')
   const gameDocs = []
 
@@ -62,7 +62,7 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>) => {
   }
 }
 
-const findGames = async () => {
+const findGames = async (): Promise<any> => {
   let response = null
   try {
     response = await Game.find({}).lean()

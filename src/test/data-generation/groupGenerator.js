@@ -14,7 +14,7 @@ export const groupGenerator = async (
   newGamesCount: number,
   groupSize: number,
   numberOfGroups: number
-) => {
+): Promise<any> => {
   await createAdminUser()
   await createTestUsers(2)
   await createUsers(newUsersCount)
