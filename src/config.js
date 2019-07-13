@@ -19,8 +19,6 @@ const commonConfig = {
   // App settings
   assignmentStrategy: 'group', // 'munkres', 'group'
   bundleCompression: true,
-  autoUpdateGames: false,
-  gameUpdateInterval: 5, // minutes
   CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
 }
 
@@ -35,6 +33,8 @@ const prodConfig = {
   dataUri: process.env.GAME_DATA_URI || '',
   debug: process.env.DEBUG === 'true' || false,
   ASSIGNMENT_ROUNDS: 300,
+  autoUpdateGames: true,
+  gameUpdateInterval: 1, // minutes
 }
 
 const stagingConfig = {
@@ -48,6 +48,8 @@ const stagingConfig = {
   dataUri: process.env.GAME_DATA_URI || '',
   debug: process.env.DEBUG === 'true' || false,
   ASSIGNMENT_ROUNDS: 300,
+  autoUpdateGames: false,
+  gameUpdateInterval: 5, // minutes
 }
 
 const devConfig = {
@@ -58,6 +60,8 @@ const devConfig = {
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2018/programme/ropecon',
   debug: true,
   ASSIGNMENT_ROUNDS: 1,
+  autoUpdateGames: false,
+  gameUpdateInterval: 5, // minutes
 }
 
 const combineConfig = () => {
