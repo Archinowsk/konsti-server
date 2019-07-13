@@ -49,6 +49,8 @@ export type KompassiGame = {|
   +tags: $ReadOnlyArray<string>,
   +genres: $ReadOnlyArray<string>,
   +styles: $ReadOnlyArray<string>,
+  +short_blurb: string,
+  +revolving_door: boolean,
 |}
 
 export type GameWithPlayerCount = {|

@@ -37,6 +37,8 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
       beginnerFriendly: game.beginner_friendly,
       intendedForExperiencedParticipants:
         game.intended_for_experienced_participants,
+      shortDescription: game.short_blurb,
+      revolvingDoor: game.revolving_door,
     })
 
     gameDocs.push(gameDoc)

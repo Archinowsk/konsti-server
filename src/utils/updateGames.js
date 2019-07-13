@@ -1,5 +1,5 @@
 /* @flow */
-import requestPromiseNative from 'request-promise-native'
+import request from 'request-promise-native'
 import { logger } from 'utils/logger'
 import { config } from 'config'
 
@@ -16,21 +16,19 @@ export const updateGames = async (): Promise<any> => {
 
   let programItems = null
   try {
-    programItems = await requestPromiseNative(options)
+    programItems = await request(options)
   } catch (error) {
-    logger.error(`Games: requestPromiseNative(): ${error}`)
+    logger.error(`Games request error: ${error}`)
     return Promise.reject(error)
   }
 
-  const games = []
-
-  // TODO: Filter games in designated locations, i.e. not "hall 5"
-  if (programItems) {
-    programItems.forEach(game => {
-      if (game.category_title === 'Roolipeli') {
-        games.push(game)
-      }
-    })
+  if (!programItems) {
+    return []
   }
-  return games
+
+  return programItems.filter(programItem => {
+    if (programItem.category_title === 'Roolipeli / Pen & Paper RPG') {
+      return programItem
+    }
+  })
 }

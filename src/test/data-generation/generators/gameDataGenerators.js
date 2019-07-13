@@ -46,6 +46,8 @@ const createGames = (count: number) => {
       tags: ['aloittelijaystävällinen', 'pöytäpelit'],
       genres: ['scifi'],
       styles: ['light', 'rules_light'],
+      short_blurb: 'Short description',
+      revolving_door: false,
     }
 
     logger.info(`Stored game "${gameData.title}"`)
