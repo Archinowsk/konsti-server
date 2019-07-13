@@ -1,9 +1,10 @@
+/* @flow */
 import fs from 'fs'
 import faker from 'faker'
 import { getYear } from './statsUtil'
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
 
-const anonymizeData = async () => {
+const anonymizeData = async (): Promise<any> => {
   const year = getYear()
 
   const users = JSON.parse(

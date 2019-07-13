@@ -1,7 +1,9 @@
+/* @flow */
 import { toPercent } from '../statsUtil'
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
+import type { Game } from 'flow/game.flow'
 
-export const getSignupsByTime = (results, games) => {
+export const getSignupsByTime = (results: $ReadOnlyArray<any>) => {
   const signupsByTime = results.reduce((acc, result) => {
     acc[result.startTime] = result.result.length
     return acc
@@ -17,7 +19,9 @@ export const getSignupsByTime = (results, games) => {
   return signupsByTime
 }
 
-export const getMaximumNumberOfPlayersByTime = games => {
+export const getMaximumNumberOfPlayersByTime = (
+  games: $ReadOnlyArray<Game>
+) => {
   const maxNumberOfPlayersByTime = {}
   games.forEach(game => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {
@@ -39,8 +43,8 @@ export const getMaximumNumberOfPlayersByTime = games => {
 }
 
 export const getDemandByTime = (
-  signupsByTime,
-  maximumNumberOfPlayersByTime
+  signupsByTime: Object,
+  maximumNumberOfPlayersByTime: Object
 ) => {
   logger.info('Sanity check: values over 100% are anomalies')
   for (const startTime in maximumNumberOfPlayersByTime) {

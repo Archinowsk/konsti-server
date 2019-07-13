@@ -1,3 +1,4 @@
+/* @flow */
 import fs from 'fs'
 
 const getType = () => {
@@ -34,7 +35,7 @@ export const readJson = () => {
   return data
 }
 
-export const writeJson = data => {
+export const writeJson = (data: Array<any>) => {
   const year = getYear()
   const type = getType()
 
@@ -51,6 +52,6 @@ export const writeJson = data => {
   console.info(`Saved ${data.length} ${type}`)
 }
 
-export const toPercent = num => {
+export const toPercent = (num: number) => {
   return Math.round(num * 100)
 }

@@ -1,7 +1,9 @@
+/* @flow */
 import { toPercent } from '../statsUtil'
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
+import type { User } from 'flow/user.flow'
 
-export const getUsersWithoutGames = users => {
+export const getUsersWithoutGames = (users: $ReadOnlyArray<User>) => {
   let counter = 0
   const usersWithoutGames = []
   users.forEach(user => {
@@ -20,7 +22,7 @@ export const getUsersWithoutGames = users => {
   return usersWithoutGames
 }
 
-export const getUsersWithoutSignups = users => {
+export const getUsersWithoutSignups = (users: $ReadOnlyArray<User>) => {
   let counter = 0
   const usersWithoutSignups = []
   users.forEach(user => {
@@ -39,7 +41,7 @@ export const getUsersWithoutSignups = users => {
   return usersWithoutSignups
 }
 
-export const getUsersSignupCount = users => {
+export const getUsersSignupCount = (users: $ReadOnlyArray<User>) => {
   const userSignupCounts = []
   users.forEach(user => {
     const signedGames = user.signedGames.reduce((acc, signedGame) => {
@@ -74,7 +76,7 @@ export const getUsersSignupCount = users => {
   )
 }
 
-export const getUsersWithAllGames = users => {
+export const getUsersWithAllGames = (users: $ReadOnlyArray<User>) => {
   let counter = 0
 
   users.forEach(user => {

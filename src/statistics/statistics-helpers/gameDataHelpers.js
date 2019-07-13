@@ -1,8 +1,11 @@
+/* @flow */
 import moment from 'moment'
 import { toPercent } from '../statsUtil'
-import logger from 'utils/logger'
+import { logger } from 'utils/logger'
+import type { Game } from 'flow/game.flow'
+import type { User } from 'flow/user.flow'
 
-export const getGamesByStartingTime = games => {
+export const getGamesByStartingTime = (games: $ReadOnlyArray<Game>) => {
   const gamesByTime = games.reduce((acc, game) => {
     acc[game.startTime] = ++acc[game.startTime] || 1
     return acc
@@ -12,10 +15,10 @@ export const getGamesByStartingTime = games => {
   return gamesByTime
 }
 
-export const getUsersByGames = users => {
+export const getUsersByGames = (users: $ReadOnlyArray<User>) => {
   const enteredGames = users.reduce((acc, user) => {
     user.enteredGames.forEach(game => {
-      acc[game.gameId] = ++acc[game.gameId] || 1
+      acc[game.gameDetails.gameId] = ++acc[game.gameDetails.gameId] || 1
     })
     return acc
   }, {})
@@ -24,7 +27,10 @@ export const getUsersByGames = users => {
   return enteredGames
 }
 
-export const getNumberOfFullGames = (games, usersByGames) => {
+export const getNumberOfFullGames = (
+  games: $ReadOnlyArray<Game>,
+  usersByGames: Object
+) => {
   let counter = 0
   games.forEach(game => {
     if (
@@ -42,7 +48,7 @@ export const getNumberOfFullGames = (games, usersByGames) => {
   )
 }
 
-export const getSignupsByStartTime = users => {
+export const getSignupsByStartTime = (users: $ReadOnlyArray<User>) => {
   const userSignupCountsByTime = {}
 
   users.forEach(user => {
@@ -61,7 +67,9 @@ export const getSignupsByStartTime = users => {
   return userSignupCountsByTime
 }
 
-export const getMaximumNumberOfPlayersByTime = games => {
+export const getMaximumNumberOfPlayersByTime = (
+  games: $ReadOnlyArray<Game>
+) => {
   const maxNumberOfPlayersByTime = {}
   games.forEach(game => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {
@@ -84,8 +92,8 @@ export const getMaximumNumberOfPlayersByTime = games => {
 }
 
 export const getDemandByTime = (
-  signupsByTime,
-  maximumNumberOfPlayersByTime
+  signupsByTime: Object,
+  maximumNumberOfPlayersByTime: Object
 ) => {
   for (const startTime in maximumNumberOfPlayersByTime) {
     logger.info(

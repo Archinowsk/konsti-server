@@ -1,3 +1,4 @@
+/* @flow */
 import fs from 'fs'
 import { getYear } from './statsUtil'
 import {
