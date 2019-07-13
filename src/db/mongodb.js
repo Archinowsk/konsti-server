@@ -10,14 +10,18 @@ import { settings } from 'db/settings/settingsService'
 import { serial } from 'db/serial/serialService'
 
 const connectToDb = async (): Promise<any> => {
+  const { dbConnString, dbName } = config
+
   // Use native Node promises
   mongoose.Promise = global.Promise
   // Don't use Mongoose useFindAndModify
   mongoose.set('useFindAndModify', false)
 
-  // Connect to MongoDB and create/use database
   try {
-    await mongoose.connect(config.db, { useNewUrlParser: true })
+    await mongoose.connect(dbConnString, {
+      useNewUrlParser: true,
+      dbName: dbName,
+    })
     logger.info('MongoDB: Connection succesful')
   } catch (error) {
     logger.error(`MongoDB: Error connecting to DB: ${error}`)
@@ -26,11 +30,13 @@ const connectToDb = async (): Promise<any> => {
 }
 
 const gracefulExit = () => {
+  const { dbConnString } = config
+
   mongoose.connection.close(
     // $FlowFixMe
     () => {
       logger.info(
-        `MongoDB: ${config.db} is disconnected through app termination`
+        `MongoDB: ${dbConnString} is disconnected through app termination`
       )
       process.exit()
     }

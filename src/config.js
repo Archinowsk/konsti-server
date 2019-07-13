@@ -23,7 +23,8 @@ const commonConfig = {
 }
 
 const prodConfig = {
-  db: process.env.CONN_STRING || '',
+  dbConnString: process.env.CONN_STRING || '',
+  dbName: 'konsti',
   jwtSecretKey: process.env.JWT_SECRET_KEY || '',
   jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
   allowedCorsOrigins:
@@ -38,7 +39,8 @@ const prodConfig = {
 }
 
 const stagingConfig = {
-  db: process.env.CONN_STRING || '',
+  dbConnString: process.env.CONN_STRING || '',
+  dbName: 'konsti',
   jwtSecretKey: process.env.JWT_SECRET_KEY || '',
   jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
   allowedCorsOrigins:
@@ -53,7 +55,8 @@ const stagingConfig = {
 }
 
 const devConfig = {
-  db: 'mongodb://localhost:27017/konsti',
+  dbConnString: 'mongodb://localhost:27017',
+  dbName: 'konsti',
   jwtSecretKey: 'secret',
   jwtSecretKeyAdmin: 'admin secret',
   allowedCorsOrigins: ['http://localhost:8080'],
