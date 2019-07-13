@@ -31,7 +31,7 @@ const prodConfig = {
     typeof process.env.CORS_WHITELIST === 'string'
       ? process.env.CORS_WHITELIST.split(';')
       : [],
-  dataUri: process.env.GAME_DATA_URI || '',
+  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: process.env.DEBUG === 'true' || false,
   ASSIGNMENT_ROUNDS: 300,
   autoUpdateGames: true,
@@ -47,7 +47,7 @@ const stagingConfig = {
     typeof process.env.CORS_WHITELIST === 'string'
       ? process.env.CORS_WHITELIST.split(';')
       : [],
-  dataUri: process.env.GAME_DATA_URI || '',
+  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: process.env.DEBUG === 'true' || false,
   ASSIGNMENT_ROUNDS: 300,
   autoUpdateGames: false,
