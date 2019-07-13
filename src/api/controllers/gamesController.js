@@ -21,22 +21,45 @@ const postGames: Middleware = async (
   }
 
   let games: $ReadOnlyArray<KompassiGame> = []
-  let response = null
   try {
     games = await updateGames()
-    response = await db.game.saveGames(games)
-
-    return res.json({
-      message: 'Games db updated',
-      status: 'success',
-      games: response,
-    })
   } catch (error) {
     return res.json({
       message: 'Games db update failed',
       status: 'error',
     })
   }
+
+  if (!games || games.length === 0) {
+    return res.json({
+      message: 'Games db update failed: No games available',
+      status: 'error',
+    })
+  }
+
+  let gameSaveResponse = null
+  try {
+    gameSaveResponse = await db.game.saveGames(games)
+  } catch (error) {
+    logger.error(error)
+    return res.json({
+      message: 'Games db update failed: Saving games failed',
+      status: 'error',
+    })
+  }
+
+  if (!gameSaveResponse) {
+    return res.json({
+      message: 'Games db update failed: No save response',
+      status: 'error',
+    })
+  }
+
+  return res.json({
+    message: 'Games db updated',
+    status: 'success',
+    games: gameSaveResponse,
+  })
 }
 
 // Get games from db
