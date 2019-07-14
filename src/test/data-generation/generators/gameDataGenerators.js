@@ -23,7 +23,7 @@ const createGames = (count: number) => {
 
     const gameData = {
       title: faker.random.words(3),
-      description: faker.lorem.sentence(),
+      description: faker.lorem.sentences(5),
       category_title: 'Roolipeli',
       formatted_hosts: 'Test GM',
       room_name: 'Ropetaverna',
@@ -46,7 +46,7 @@ const createGames = (count: number) => {
       tags: ['aloittelijaystävällinen', 'pöytäpelit'],
       genres: ['scifi'],
       styles: ['light', 'rules_light'],
-      short_blurb: 'Short description',
+      short_blurb: faker.lorem.sentence(),
       revolving_door: false,
     }
 
