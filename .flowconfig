@@ -3,6 +3,7 @@
 <PROJECT_ROOT>/node_modules/flow-coverage-report
 <PROJECT_ROOT>/front
 <PROJECT_ROOT>/lib
+<PROJECT_ROOT>/.git
 
 [include]
 
