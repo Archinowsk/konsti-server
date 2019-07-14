@@ -15,7 +15,7 @@ export type Config = {|
   +dataUri: string,
   +ASSIGNMENT_ROUNDS: number,
   +bundleCompression: boolean,
-  +autoUpdateGames: boolean,
+  +autoUpdateGamesEnabled: boolean,
   +assignmentStrategy: string,
   +gameUpdateInterval: number,
   +CONVENTION_START_TIME: string,
