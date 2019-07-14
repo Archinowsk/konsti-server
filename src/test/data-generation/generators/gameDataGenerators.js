@@ -34,12 +34,12 @@ const createGames = (count: number) => {
         .format(),
       language: 'fi',
       rpg_system: 'Test gamesystem',
-      no_language: false,
-      english_ok: false,
-      children_friendly: false,
-      age_restricted: false,
-      beginner_friendly: false,
-      intended_for_experienced_participants: false,
+      no_language: true,
+      english_ok: true,
+      children_friendly: true,
+      age_restricted: true,
+      beginner_friendly: true,
+      intended_for_experienced_participants: true,
       min_players: minAttendance,
       max_players: maxAttendance,
       identifier: faker.random.number().toString(),
@@ -47,7 +47,7 @@ const createGames = (count: number) => {
       genres: ['scifi'],
       styles: ['light', 'rules_light'],
       short_blurb: faker.lorem.sentence(),
-      revolving_door: false,
+      revolving_door: true,
     }
 
     logger.info(`Stored game "${gameData.title}"`)
