@@ -24,7 +24,7 @@ const postPlayers: Middleware = async (
     return res.sendStatus(401)
   }
 
-  const strategy = config.assignmentStrategy
+  const { assignmentStrategy } = config
 
   let users: $ReadOnlyArray<User> = []
   let games: $ReadOnlyArray<Game> = []
@@ -44,7 +44,12 @@ const postPlayers: Middleware = async (
       throw new Error('No assign results')
     }
 
-    const assignResults = assignPlayers(users, games, startingTime, strategy)
+    const assignResults = assignPlayers(
+      users,
+      games,
+      startingTime,
+      assignmentStrategy
+    )
 
     if (assignResults && assignResults.results) {
       try {

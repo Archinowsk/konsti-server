@@ -1,12 +1,14 @@
 // @flow
 
+export type AssignmentStrategy = 'munkres' | 'group' | 'opa'
+
 export type Config = {|
   +appName: string,
   +port: number,
   +debug: boolean,
   +logDir: string,
   +enableAccessLog: boolean,
-  +assignmentStrategy: string,
+  +assignmentStrategy: AssignmentStrategy,
   +dbConnString: string,
   +dbName: string,
   +jwtSecretKey: string,
@@ -16,7 +18,6 @@ export type Config = {|
   +ASSIGNMENT_ROUNDS: number,
   +bundleCompression: boolean,
   +autoUpdateGamesEnabled: boolean,
-  +assignmentStrategy: string,
   +gameUpdateInterval: number,
   +CONVENTION_START_TIME: string,
 |}

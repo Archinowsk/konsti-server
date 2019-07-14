@@ -5,12 +5,13 @@ import { munkresAssignPlayers } from 'player-assignment/munkres/munkresAssignPla
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
+import type { AssignmentStrategy } from 'flow/config.flow'
 
 export const assignPlayers = (
   players: $ReadOnlyArray<User>,
   games: $ReadOnlyArray<Game>,
   startingTime: string,
-  strategy: string
+  assignmentStrategy: AssignmentStrategy
 ): AssignResult => {
   logger.info(
     `Received data for ${players.length} players and ${games.length} games`
@@ -20,11 +21,11 @@ export const assignPlayers = (
     `Assigning players for games starting at ${startingTime.toString()}`
   )
 
-  logger.info(`Assign strategy: ${strategy}`)
+  logger.info(`Assign strategy: ${assignmentStrategy}`)
 
-  if (strategy === 'munkres') {
+  if (assignmentStrategy === 'munkres') {
     return munkresAssignPlayers(players, games, startingTime)
-  } else if (strategy === 'group') {
+  } else if (assignmentStrategy === 'group') {
     return groupAssignPlayers(players, games, startingTime)
   } else {
     throw new Error('Invalid or missing "assignmentStrategy" config')
