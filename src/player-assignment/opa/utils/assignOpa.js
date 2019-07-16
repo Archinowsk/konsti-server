@@ -14,39 +14,6 @@ import type {
 import type { UserArray, SignedGame } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
-const getGain = (signedGame: SignedGame) => {
-  switch (signedGame.priority) {
-    case 1:
-      return 1
-    case 2:
-      return 0.5
-    case 3:
-      return 0.33
-  }
-}
-
-const getList = (
-  playerGroups: $ReadOnlyArray<UserArray>,
-  startingTime: string
-): Array<ListItem> => {
-  // $FlowFixMe: Cannot call `playerGroups.flatMap` because property `flatMap` is missing in `$ReadOnlyArray` [1].
-  return playerGroups.flatMap(playerGroup => {
-    return _.first(playerGroup)
-      .signedGames.filter(
-        signedGame =>
-          moment(signedGame.time).format() === moment(startingTime).format()
-      )
-      .map(signedGame => {
-        return {
-          id: _.first(playerGroup).groupCode,
-          size: playerGroup.length,
-          event: signedGame.gameDetails.gameId,
-          gain: getGain(signedGame),
-        }
-      })
-  })
-}
-
 export const assignOpa = (
   signedGames: $ReadOnlyArray<Game>,
   playerGroups: $ReadOnlyArray<UserArray>,
@@ -99,4 +66,37 @@ export const assignOpa = (
   const message = 'Opa assignment completed'
 
   return { results: [], message }
+}
+
+const getList = (
+  playerGroups: $ReadOnlyArray<UserArray>,
+  startingTime: string
+): Array<ListItem> => {
+  // $FlowFixMe: Cannot call `playerGroups.flatMap` because property `flatMap` is missing in `$ReadOnlyArray` [1].
+  return playerGroups.flatMap(playerGroup => {
+    return _.first(playerGroup)
+      .signedGames.filter(
+        signedGame =>
+          moment(signedGame.time).format() === moment(startingTime).format()
+      )
+      .map(signedGame => {
+        return {
+          id: _.first(playerGroup).groupCode,
+          size: playerGroup.length,
+          event: signedGame.gameDetails.gameId,
+          gain: getGain(signedGame),
+        }
+      })
+  })
+}
+
+const getGain = (signedGame: SignedGame) => {
+  switch (signedGame.priority) {
+    case 1:
+      return 1
+    case 2:
+      return 0.5
+    case 3:
+      return 0.33
+  }
 }
