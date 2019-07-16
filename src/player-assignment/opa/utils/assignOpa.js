@@ -4,7 +4,13 @@ import _ from 'lodash'
 import moment from 'moment'
 import { logger } from 'utils/logger'
 import type { AssignmentStrategyResult } from 'flow/result.flow'
-import type { Input, ListItem, Group, Event } from 'flow/opaAssign.flow'
+import type {
+  Input,
+  ListItem,
+  Group,
+  Event,
+  OpaAssignResults,
+} from 'flow/opaAssign.flow'
 import type { UserArray, SignedGame } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
@@ -86,7 +92,7 @@ export const assignOpa = (
 
   const input: Input = { groups, events, list, updateL }
 
-  const results = eventassigner.eventAssignment(input)
+  const results: OpaAssignResults = eventassigner.eventAssignment(input)
 
   logger.info(`>>>>>>>> assignment: ${JSON.stringify(results, null, 2)}`)
 

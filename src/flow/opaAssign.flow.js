@@ -26,3 +26,10 @@ export type Input = {|
   +list: $ReadOnlyArray<ListItem>,
   +updateL: Function,
 |}
+
+export type OpaAssignResult = {|
+  +id: string,
+  +assignment: string,
+|}
+
+export type OpaAssignResults = $ReadOnlyArray<OpaAssignResult>
