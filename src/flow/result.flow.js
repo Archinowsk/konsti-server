@@ -4,7 +4,6 @@ import type { SignedGame, EnteredGame } from 'flow/user.flow'
 export type Result = {|
   +username: string,
   +enteredGame: EnteredGame,
-  +signedGames: $ReadOnlyArray<SignedGame>,
 |}
 
 export type Signup = {|

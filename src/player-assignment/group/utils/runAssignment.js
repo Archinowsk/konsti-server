@@ -143,7 +143,6 @@ export const runAssignment = (
           signupResults.push({
             username: groupMember.username,
             enteredGame,
-            signedGames: groupMember.signedGames,
           })
         }
       }

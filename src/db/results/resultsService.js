@@ -18,7 +18,6 @@ const findResult = async (startTime: string): Promise<any> => {
       .lean()
       .sort({ createdAt: -1 })
       .populate('result.enteredGame.gameDetails')
-      .populate('result.signedGames.gameDetails')
     logger.debug(`MongoDB: Results data found for time ${startTime}`)
     return response
   } catch (error) {
@@ -41,13 +40,6 @@ const saveResult = async (
         priority: result.enteredGame.priority,
         time: result.enteredGame.time,
       },
-      signedGames: result.signedGames.map(game => {
-        return {
-          gameDetails: game.gameDetails._id,
-          priority: game.priority,
-          time: game.time,
-        }
-      }),
     }
   })
 

@@ -11,13 +11,6 @@ const ResultsSchema = new mongoose.Schema(
           priority: Number,
           time: Date,
         },
-        signedGames: [
-          {
-            gameDetails: { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
-            priority: Number,
-            time: Date,
-          },
-        ],
       },
     ],
     startTime: Date,

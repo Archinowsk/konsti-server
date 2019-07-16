@@ -43,7 +43,6 @@ export const buildSignupResults = (
         signupResults.push({
           username: players[selectedPlayer].username,
           enteredGame,
-          signedGames: players[selectedPlayer].signedGames,
         })
         break
       }
