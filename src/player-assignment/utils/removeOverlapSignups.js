@@ -2,16 +2,16 @@
 import moment from 'moment'
 import { logger } from 'utils/logger'
 import type { User } from 'flow/user.flow'
-import type { Signup, ResultsWithMessage } from 'flow/result.flow'
+import type { Signup, Result } from 'flow/result.flow'
 
 export const removeOverlapSignups = (
-  result: ResultsWithMessage,
+  results: $ReadOnlyArray<Result>,
   players: $ReadOnlyArray<User>
 ): $ReadOnlyArray<Signup> => {
   logger.debug('Clear overlapping signups')
   const signupData = []
 
-  result.results.forEach(result => {
+  results.forEach(result => {
     const enteredGame = result.enteredGame.gameDetails
 
     if (!enteredGame) return new Error('Error finding entered game')

@@ -54,7 +54,7 @@ export const opaAssignPlayers = (
   const result = assignOpa(signedGames, playerGroups, startingTime)
   logger.info(result)
 
-  const newSignupData = removeOverlapSignups(result, players)
+  const newSignupData = removeOverlapSignups(result.results, players)
 
   return Object.assign({ ...result, newSignupData })
 }
