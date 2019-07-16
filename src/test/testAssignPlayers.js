@@ -1,7 +1,9 @@
 /* @flow */
+import moment from 'moment'
 import { logger } from 'utils/logger'
 import { assignPlayers } from 'player-assignment/assignPlayers'
 import { db } from 'db/mongodb'
+import { config } from 'config'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
 const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
@@ -53,7 +55,11 @@ const testAssignPlayers = async (): Promise<any> => {
       logger.error(error)
     }
 
-    const startingTime = '2018-07-27T15:00:00.000Z'
+    const { CONVENTION_START_TIME } = config
+
+    const startingTime = moment(CONVENTION_START_TIME)
+      .add(2, 'hours')
+      .format()
 
     await assignPlayers(users, games, startingTime, assignmentStategy)
 
