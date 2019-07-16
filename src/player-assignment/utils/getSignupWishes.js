@@ -8,13 +8,15 @@ export const getSignupWishes = (players: $ReadOnlyArray<User>) => {
 
   // Get signup wishes for all players
   players.forEach(player => {
-    player.signedGames.forEach(signedGame => {
-      signupWishes.push({
-        username: player.username,
-        gameId: signedGame.gameDetails.gameId,
-        priority: signedGame.priority,
+    if (player.groupCode !== '0') {
+      player.signedGames.forEach(signedGame => {
+        signupWishes.push({
+          username: player.username,
+          gameId: signedGame.gameDetails.gameId,
+          priority: signedGame.priority,
+        })
       })
-    })
+    }
   })
 
   logger.info(`Found ${signupWishes.length} signup wishes`)

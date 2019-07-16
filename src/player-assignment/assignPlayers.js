@@ -2,6 +2,7 @@
 import { logger } from 'utils/logger'
 import { groupAssignPlayers } from 'player-assignment/group/groupAssignPlayers'
 import { munkresAssignPlayers } from 'player-assignment/munkres/munkresAssignPlayers'
+import { opaAssignPlayers } from 'player-assignment/opa/opaAssignPlayers'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { AssignResult } from 'flow/result.flow'
@@ -27,6 +28,8 @@ export const assignPlayers = (
     return munkresAssignPlayers(players, games, startingTime)
   } else if (assignmentStrategy === 'group') {
     return groupAssignPlayers(players, games, startingTime)
+  } else if (assignmentStrategy === 'opa') {
+    return opaAssignPlayers(players, games, startingTime)
   } else {
     throw new Error('Invalid or missing "assignmentStrategy" config')
   }
