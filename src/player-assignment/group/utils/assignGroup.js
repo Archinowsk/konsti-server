@@ -4,13 +4,13 @@ import { runGroupAssignment } from 'player-assignment/group/utils/runGroupAssign
 import { config } from 'config'
 import type { User, UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { ResultsWithMessage } from 'flow/result.flow'
+import type { AssignmentStrategyResult } from 'flow/result.flow'
 
 export const assignGroups = (
   selectedPlayers: $ReadOnlyArray<User>,
   signedGames: $ReadOnlyArray<Game>,
   playerGroups: $ReadOnlyArray<UserArray>
-): ResultsWithMessage => {
+): AssignmentStrategyResult => {
   const { ASSIGNMENT_ROUNDS } = config
 
   let bestScore = 0

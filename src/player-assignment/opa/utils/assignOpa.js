@@ -3,7 +3,7 @@ import eventassigner from 'eventassigner-js'
 import _ from 'lodash'
 import moment from 'moment'
 import { logger } from 'utils/logger'
-import type { ResultsWithMessage } from 'flow/result.flow'
+import type { AssignmentStrategyResult } from 'flow/result.flow'
 import type { Input, ListItem, Group, Event } from 'flow/opaAssign.flow'
 import type { UserArray, SignedGame } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
@@ -45,7 +45,7 @@ export const assignOpa = (
   signedGames: $ReadOnlyArray<Game>,
   playerGroups: $ReadOnlyArray<UserArray>,
   startingTime: string
-): ResultsWithMessage => {
+): AssignmentStrategyResult => {
   const groups: Array<Group> = playerGroups.map(playerGroup => {
     return {
       id: _.first(playerGroup).groupCode,

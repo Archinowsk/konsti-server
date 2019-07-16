@@ -10,13 +10,13 @@ import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignu
 import { getGroupMembers } from 'player-assignment/utils/getGroupMembers'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { AssignResult } from 'flow/result.flow'
+import type { PlayerAssignmentResult } from 'flow/result.flow'
 
 export const groupAssignPlayers = (
   players: $ReadOnlyArray<User>,
   games: $ReadOnlyArray<Game>,
   startingTime: string
-): AssignResult => {
+): PlayerAssignmentResult => {
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const signedGames = getSignedGames(startingGames, signupWishes)

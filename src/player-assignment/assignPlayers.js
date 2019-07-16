@@ -5,7 +5,7 @@ import { munkresAssignPlayers } from 'player-assignment/munkres/munkresAssignPla
 import { opaAssignPlayers } from 'player-assignment/opa/opaAssignPlayers'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { AssignResult } from 'flow/result.flow'
+import type { PlayerAssignmentResult } from 'flow/result.flow'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
 export const assignPlayers = (
@@ -13,7 +13,7 @@ export const assignPlayers = (
   games: $ReadOnlyArray<Game>,
   startingTime: string,
   assignmentStrategy: AssignmentStrategy
-): AssignResult => {
+): PlayerAssignmentResult => {
   logger.info(
     `Received data for ${players.length} players and ${games.length} games`
   )

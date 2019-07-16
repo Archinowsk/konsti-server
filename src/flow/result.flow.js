@@ -11,20 +11,13 @@ export type Signup = {|
   +signedGames: $ReadOnlyArray<SignedGame>,
 |}
 
-export type AssignResult = {|
+export type PlayerAssignmentResult = {|
   +results: $ReadOnlyArray<Result>,
   +message: string,
   +newSignupData: $ReadOnlyArray<Signup>,
 |}
 
-export type ResultsWithMessage = {|
+export type AssignmentStrategyResult = {|
   +results: $ReadOnlyArray<Result>,
   +message: string,
-|}
-
-export type GroupAssignmentResult = {|
-  +score: number,
-  +signupResults: $ReadOnlyArray<Result>,
-  +playerCounter: number,
-  +gameCounter: number,
 |}

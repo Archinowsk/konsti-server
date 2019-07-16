@@ -5,7 +5,7 @@ import { getRandomInt } from 'player-assignment/utils/getRandomInt'
 import { shuffleArray } from 'utils/shuffleArray'
 import type { UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { GroupAssignmentResult } from 'flow/result.flow'
+import type { GroupAssignmentResult } from 'flow/groupAssign.flow'
 
 export const runGroupAssignment = (
   playerGroups: $ReadOnlyArray<UserArray>,
