@@ -22,7 +22,7 @@ export type ResultsWithMessage = {|
   +message: string,
 |}
 
-export type AssignmentResult = {|
+export type GroupAssignmentResult = {|
   +score: number,
   +signupResults: $ReadOnlyArray<Result>,
   +playerCounter: number,

@@ -1,6 +1,6 @@
 /* @flow */
 import { logger } from 'utils/logger'
-import { runAssignment } from 'player-assignment/group/utils/runAssignment'
+import { runGroupAssignment } from 'player-assignment/group/utils/runGroupAssignment'
 import { config } from 'config'
 import type { User, UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
@@ -21,7 +21,7 @@ export const assignGroups = (
 
   // Run assignment ASSIGNMENT_ROUNDS times
   for (let i = 0; i < ASSIGNMENT_ROUNDS; i++) {
-    result = runAssignment(playerGroups, signedGames)
+    result = runGroupAssignment(playerGroups, signedGames)
     if (result.score > bestScore) {
       bestScore = result.score
       bestResult = result.signupResults

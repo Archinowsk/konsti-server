@@ -5,12 +5,12 @@ import { getRandomInt } from 'player-assignment/utils/getRandomInt'
 import { shuffleArray } from 'utils/shuffleArray'
 import type { UserArray } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { AssignmentResult } from 'flow/result.flow'
+import type { GroupAssignmentResult } from 'flow/result.flow'
 
-export const runAssignment = (
+export const runGroupAssignment = (
   playerGroups: $ReadOnlyArray<UserArray>,
   signedGames: $ReadOnlyArray<Game>
-): AssignmentResult => {
+): GroupAssignmentResult => {
   const signupResults = []
   let matchingGroups = []
   let selectedGroups = []
