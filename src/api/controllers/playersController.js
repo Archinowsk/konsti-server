@@ -27,65 +27,37 @@ const postPlayers: Middleware = async (
   const { assignmentStrategy } = config
 
   let users: $ReadOnlyArray<User> = []
-  let games: $ReadOnlyArray<Game> = []
-
   try {
-    try {
-      users = await db.user.findUsers()
-    } catch (error) {
-      logger.error(`findUsers error: ${error}`)
-      throw new Error('No assign results')
-    }
+    users = await db.user.findUsers()
+  } catch (error) {
+    logger.error(`findUsers error: ${error}`)
+    return res.json({
+      message: 'Players assign failure',
+      status: 'error',
+      error,
+    })
+  }
 
-    try {
-      games = await db.game.findGames()
-    } catch (error) {
-      logger.error(`findGames error: ${error}`)
-      throw new Error('No assign results')
-    }
+  let games: $ReadOnlyArray<Game> = []
+  try {
+    games = await db.game.findGames()
+  } catch (error) {
+    logger.error(`findGames error: ${error}`)
+    return res.json({
+      message: 'Players assign failure',
+      status: 'error',
+      error,
+    })
+  }
 
-    const assignResults = assignPlayers(
+  let assignResults = null
+  try {
+    assignResults = assignPlayers(
       users,
       games,
       startingTime,
       assignmentStrategy
     )
-
-    if (assignResults && assignResults.results) {
-      try {
-        await db.results.saveResult(assignResults.results, startingTime)
-      } catch (error) {
-        logger.error(`saveResult error: ${error}`)
-        throw new Error('No assign results')
-      }
-
-      try {
-        await Promise.all(
-          assignResults.results.map(assignResult => {
-            return db.user.saveSignupResult(assignResult)
-          })
-        )
-      } catch (error) {
-        logger.error(`saveSignupResult error: ${error}`)
-        throw new Error('No assign results')
-      }
-
-      // Remove overlapping signups
-      if (assignResults.newSignupData) {
-        await removeOverlappingSignups(assignResults.newSignupData)
-      }
-
-      return res.json({
-        message: 'Players assign success',
-        status: 'success',
-        results: assignResults.results,
-        resultMessage: assignResults.message,
-        signups: assignResults.newSignupData,
-        startTime: startingTime,
-      })
-    } else {
-      throw new Error('No matching assignments')
-    }
   } catch (error) {
     logger.error(`Player assign error: ${error}`)
     return res.json({
@@ -94,6 +66,62 @@ const postPlayers: Middleware = async (
       error,
     })
   }
+
+  if (!assignResults || !assignResults.results) {
+    return res.json({
+      message: 'Players assign failure',
+      status: 'error',
+    })
+  }
+
+  try {
+    await db.results.saveResult(assignResults.results, startingTime)
+  } catch (error) {
+    logger.error(`saveResult error: ${error}`)
+    return res.json({
+      message: 'Players assign failure',
+      status: 'error',
+      error,
+    })
+  }
+
+  try {
+    await Promise.all(
+      assignResults.results.map(assignResult => {
+        return db.user.saveSignupResult(assignResult)
+      })
+    )
+  } catch (error) {
+    logger.error(`saveSignupResult error: ${error}`)
+    return res.json({
+      message: 'Players assign failure',
+      status: 'error',
+      error,
+    })
+  }
+
+  // Remove overlapping signups
+  if (assignResults.newSignupData) {
+    try {
+      await removeOverlappingSignups(assignResults.newSignupData)
+    } catch (error) {
+      logger.error(`removeOverlappingSignups error: ${error}`)
+      return res.json({
+        message: 'Players assign failure',
+        status: 'error',
+        error,
+      })
+    }
+  }
+
+  return res.json({
+    message: 'Players assign success',
+    status: 'success',
+    results: assignResults.results,
+    resultMessage: assignResults.message,
+    signups: assignResults.newSignupData,
+    startTime: startingTime,
+  })
 }
 
 const removeOverlappingSignups = async (
