@@ -7,9 +7,7 @@ import { getSelectedPlayers } from 'player-assignment/utils/getSelectedPlayers'
 import { getPlayerGroups } from 'player-assignment/utils/getPlayerGroups'
 import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups'
 import { getGroupMembers } from 'player-assignment/utils/getGroupMembers'
-
 import { assignOpa } from 'player-assignment/opa/utils/assignOpa'
-
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { PlayerAssignmentResult } from 'flow/result.flow'
@@ -23,8 +21,7 @@ export const opaAssignPlayers = (
   const signupWishes = getSignupWishes(players)
   const signedGames = getSignedGames(startingGames, signupWishes)
 
-  // Get group leaders
-  // Selected players are group leaders since group members don't have signups at this point
+  // Get group leaders, selected players are group leaders since group members don't have signups yet
   const groupLeaders = getSelectedPlayers(players, startingGames)
 
   // Get group members based on group leaders
@@ -33,7 +30,7 @@ export const opaAssignPlayers = (
   // Combine group leaders and group members
   const allPlayers = groupLeaders.concat(groupMembers)
 
-  // Single user is size 1 group
+  // Combine users to groups, single user is size 1 group
   const playerGroups = getPlayerGroups(allPlayers)
 
   let numberOfIndividuals = 0
