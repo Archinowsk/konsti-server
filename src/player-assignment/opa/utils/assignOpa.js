@@ -2,7 +2,6 @@
 import eventassigner from 'eventassigner-js'
 import _ from 'lodash'
 import moment from 'moment'
-import { logger } from 'utils/logger'
 import type { AssignmentStrategyResult } from 'flow/result.flow'
 import type {
   Input,
@@ -51,21 +50,38 @@ export const assignOpa = (
     }
   )
 
-  console.log('groups', groups)
-  console.log('events', events)
-  console.log('list', list)
-
   const updateL = input => input.list
 
   const input: Input = { groups, events, list, updateL }
+  const assignResults: OpaAssignResults = eventassigner.eventAssignment(input)
 
-  const results: OpaAssignResults = eventassigner.eventAssignment(input)
+  const selectedPlayers = playerGroups
+    .filter(playerGroup => {
+      return assignResults.find(
+        assignResult =>
+          assignResult.id === _.first(playerGroup).groupCode &&
+          assignResult.assignment !== -1
+      )
+    })
+    // $FlowFixMe: Cannot call `playerGroups.filter(...).flat` because property `flat` is missing in `Array` [1].
+    .flat()
 
-  logger.info(`>>>>>>>> assignment: ${JSON.stringify(results, null, 2)}`)
+  const results = selectedPlayers.map(player => {
+    return {
+      username: player.username,
+      enteredGame: player.signedGames.find(signedGame =>
+        assignResults.filter(
+          assignResult =>
+            assignResult.assignment === signedGame.gameDetails.gameId &&
+            assignResult.id === player.groupCode
+        )
+      ),
+    }
+  })
 
   const message = 'Opa assignment completed'
 
-  return { results: [], message }
+  return { results, message }
 }
 
 const getList = (
