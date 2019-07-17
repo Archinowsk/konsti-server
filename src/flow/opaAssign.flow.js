@@ -28,8 +28,8 @@ export type Input = {|
 |}
 
 export type OpaAssignResult = {|
-  +id: string,
-  +assignment: string,
+  +id: string, // group id
+  +assignment: string, // assigned game id
 |}
 
 export type OpaAssignResults = $ReadOnlyArray<OpaAssignResult>
