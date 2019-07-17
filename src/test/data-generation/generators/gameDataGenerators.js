@@ -4,7 +4,7 @@ import moment from 'moment'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import {
-  // getRandomInt,
+  getRandomInt,
   getRandomStartingTime,
 } from 'test/data-generation/generators/randomVariableGenerators'
 
@@ -15,10 +15,8 @@ const createGames = (count: number) => {
   const games = []
 
   for (let i = 0; i < count; i += 1) {
-    // const minAttendance = getRandomInt(3, 4)
-    // const maxAttendance = getRandomInt(4, 6)
-    const minAttendance = 3
-    const maxAttendance = 6
+    const minAttendance = getRandomInt(3, 4)
+    const maxAttendance = getRandomInt(4, 6)
     const startTime = getRandomStartingTime()
     const length = 180
 
