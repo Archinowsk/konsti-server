@@ -20,6 +20,7 @@ const commonConfig = {
   assignmentStrategy: 'group', // 'munkres', 'group', 'opa'
   bundleCompression: true,
   CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
+  removeOverlapSignups: true,
 }
 
 const prodConfig = {
