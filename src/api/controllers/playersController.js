@@ -6,7 +6,7 @@ import { validateAuthHeader } from 'utils/authHeader'
 import { config } from 'config'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { Signup } from 'flow/result.flow'
+import type { Signup, Result } from 'flow/result.flow'
 import type { $Request, $Response, Middleware } from 'express'
 
 // Assign players to games
@@ -86,11 +86,7 @@ const postPlayers: Middleware = async (
   }
 
   try {
-    await Promise.all(
-      assignResults.results.map(assignResult => {
-        return db.user.saveSignupResult(assignResult)
-      })
-    )
+    await saveSignupResults(assignResults.results)
   } catch (error) {
     logger.error(`saveSignupResult error: ${error}`)
     return res.json({
@@ -101,8 +97,9 @@ const postPlayers: Middleware = async (
   }
 
   // Remove overlapping signups
-  if (assignResults.newSignupData) {
+  if (config.removeOverlapSignups && assignResults.newSignupData) {
     try {
+      logger.info('Remove overlapping signups')
       await removeOverlappingSignups(assignResults.newSignupData)
     } catch (error) {
       logger.error(`removeOverlappingSignups error: ${error}`)
@@ -124,13 +121,28 @@ const postPlayers: Middleware = async (
   })
 }
 
+const saveSignupResults = async (
+  results: $ReadOnlyArray<Result>
+): Promise<any> => {
+  try {
+    await Promise.all(
+      results.map(async assignResult => {
+        await db.user.saveSignupResult(assignResult)
+      })
+    )
+  } catch (error) {
+    logger.error(`saveSignupResult error: ${error}`)
+    throw new Error('No assign results')
+  }
+}
+
 const removeOverlappingSignups = async (
   signups: $ReadOnlyArray<Signup>
 ): Promise<any> => {
   try {
     await Promise.all(
-      signups.map(signup => {
-        return db.user.saveSignup(signup)
+      signups.map(async signup => {
+        await db.user.saveSignup(signup)
       })
     )
   } catch (error) {
