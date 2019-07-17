@@ -24,7 +24,7 @@
     "eslint-rules": "eslint-index .eslintrc.js",
     "eslint": "eslint src --fix",
     "flow-coverage-report": "flow-coverage-report -c 10 -i 'src/**/*.js'",
-    "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundle",
+    "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundled",
     "flow": "flow check",
     "generate-data": "babel-node src/test/data-generation/runGenerators.js",
     "generate-serials": "babel-node src/utils/generateSerials.js",
