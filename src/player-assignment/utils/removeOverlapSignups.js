@@ -8,7 +8,7 @@ export const removeOverlapSignups = (
   results: $ReadOnlyArray<Result>,
   players: $ReadOnlyArray<User>
 ): $ReadOnlyArray<Signup> => {
-  logger.debug('Clear overlapping signups')
+  logger.debug('Find overlapping signups')
   const signupData = []
 
   results.forEach(result => {
