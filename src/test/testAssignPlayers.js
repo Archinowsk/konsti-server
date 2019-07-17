@@ -1,4 +1,5 @@
 /* @flow */
+import 'array-flat-polyfill'
 import moment from 'moment'
 import { logger } from 'utils/logger'
 import { assignPlayers } from 'player-assignment/assignPlayers'
@@ -62,9 +63,6 @@ const testAssignPlayers = async (): Promise<any> => {
       .format()
 
     await assignPlayers(users, games, startingTime, assignmentStategy)
-
-    // const result = await assignPlayers(users, games, startingTime, strategy)
-    // logger.info(`Result: ${JSON.stringify(result, null, 2)}`)
 
     process.exit()
   }
