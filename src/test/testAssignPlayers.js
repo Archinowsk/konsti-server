@@ -5,6 +5,7 @@ import { logger } from 'utils/logger'
 import { assignPlayers } from 'player-assignment/assignPlayers'
 import { db } from 'db/mongodb'
 import { config } from 'config'
+import { saveResults } from 'api/controllers/playersController'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
 const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
@@ -62,9 +63,21 @@ const testAssignPlayers = async (): Promise<any> => {
       .add(2, 'hours')
       .format()
 
-    await assignPlayers(users, games, startingTime, assignmentStategy)
+    const assignResults = await assignPlayers(
+      users,
+      games,
+      startingTime,
+      assignmentStategy
+    )
 
-    // Test that entered games match signups
+    try {
+      await saveResults(assignResults.results, startingTime)
+    } catch (error) {
+      logger.error(`saveResult error: ${error}`)
+    }
+
+    // Verify entered games match signups
+    logger.info('Verify entered games and signups match')
     let usersAfterAssign = []
     try {
       usersAfterAssign = await db.user.findUsers()

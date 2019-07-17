@@ -75,20 +75,9 @@ const postPlayers: Middleware = async (
   }
 
   try {
-    await db.results.saveResult(assignResults.results, startingTime)
+    await saveResults(assignResults.results, startingTime)
   } catch (error) {
     logger.error(`saveResult error: ${error}`)
-    return res.json({
-      message: 'Players assign failure',
-      status: 'error',
-      error,
-    })
-  }
-
-  try {
-    await saveSignupResults(assignResults.results)
-  } catch (error) {
-    logger.error(`saveSignupResult error: ${error}`)
     return res.json({
       message: 'Players assign failure',
       status: 'error',
@@ -121,7 +110,26 @@ const postPlayers: Middleware = async (
   })
 }
 
-const saveSignupResults = async (
+export const saveResults = async (
+  results: $ReadOnlyArray<Result>,
+  startingTime: string
+): Promise<any> => {
+  try {
+    await db.results.saveResult(results, startingTime)
+  } catch (error) {
+    logger.error(`db.results.saveResult error: ${error}`)
+    throw new Error('No assign results')
+  }
+
+  try {
+    await saveUserSignupResults(results)
+  } catch (error) {
+    logger.error(`saveUserSignupResults: ${error}`)
+    throw new Error('No assign results')
+  }
+}
+
+const saveUserSignupResults = async (
   results: $ReadOnlyArray<Result>
 ): Promise<any> => {
   try {
