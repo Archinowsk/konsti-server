@@ -64,6 +64,37 @@ const testAssignPlayers = async (): Promise<any> => {
 
     await assignPlayers(users, games, startingTime, assignmentStategy)
 
+    // Test that entered games match signups
+    let usersAfterAssign = []
+    try {
+      usersAfterAssign = await db.user.findUsers()
+    } catch (error) {
+      logger.error(error)
+    }
+
+    usersAfterAssign.map(user => {
+      const signedGames = user.signedGames.filter(
+        signedGame =>
+          moment(signedGame.time).format() === moment(startingTime).format()
+      )
+
+      const enteredGame = user.enteredGames.find(
+        enteredGame =>
+          moment(enteredGame.time).format() === moment(startingTime).format()
+      )
+
+      if (signedGames && signedGames.length !== 0 && enteredGame) {
+        const gameFound = signedGames.find(
+          signedGame =>
+            signedGame.gameDetails.gameId === enteredGame.gameDetails.gameId
+        )
+
+        if (!gameFound) {
+          logger.error(`Signups and entered game don't match`)
+        }
+      }
+    })
+
     process.exit()
   }
 }
