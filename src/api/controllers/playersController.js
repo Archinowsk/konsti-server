@@ -115,6 +115,9 @@ export const saveResults = async (
   startingTime: string
 ): Promise<any> => {
   try {
+    logger.info(
+      `Save signup results for starting time ${startingTime} to separate collection`
+    )
     await db.results.saveResult(results, startingTime)
   } catch (error) {
     logger.error(`db.results.saveResult error: ${error}`)
@@ -122,6 +125,7 @@ export const saveResults = async (
   }
 
   try {
+    logger.info(`Save user signup results for starting time ${startingTime}`)
     await saveUserSignupResults(results)
   } catch (error) {
     logger.error(`saveUserSignupResults: ${error}`)
