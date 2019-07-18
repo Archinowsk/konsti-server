@@ -12,11 +12,7 @@ const removeSettings = () => {
 const createSettings = async (): Promise<any> => {
   logger.info('MongoDB: "Settings" collection not found, create empty')
 
-  const settings = new Settings({
-    hiddenGames: [],
-    canceledGames: [],
-    signupTime: moment('2018-07-27T15:00:00.000Z'),
-  })
+  const settings = new Settings()
 
   let response = null
   try {
@@ -77,7 +73,7 @@ const saveSignupTime = async (signupTime: string): Promise<any> => {
     response = await Settings.findOneAndUpdate(
       {},
       {
-        signupTime: formattedTime,
+        signupTime: signupTime ? formattedTime : null,
       },
       { new: true }
     )
