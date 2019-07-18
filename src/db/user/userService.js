@@ -149,7 +149,7 @@ const findUsers = async (): Promise<any> => {
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails')
-    logger.info(`MongoDB: Find all users`)
+    logger.debug(`MongoDB: Find all users`)
     return response
   } catch (error) {
     logger.error(`MongoDB: Error fetcing users - ${error}`)
@@ -267,7 +267,7 @@ const saveSignupResult = async (signupResult: Result): Promise<any> => {
       }
     )
 
-    logger.info(
+    logger.debug(
       `MongoDB: Signup result data stored for user "${signupResult.username}"`
     )
     return response

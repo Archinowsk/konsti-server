@@ -50,7 +50,7 @@ const saveResult = async (
       { startTime, result },
       { upsert: true }
     )
-    logger.info(
+    logger.debug(
       `MongoDB: Signup results for starting time ${startTime} stored to separate collection`
     )
     return response
