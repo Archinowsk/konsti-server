@@ -1,6 +1,7 @@
 /* @flow */
 import 'array-flat-polyfill'
 import moment from 'moment'
+import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { assignPlayers } from 'player-assignment/assignPlayers'
 import { db } from 'db/mongodb'
@@ -86,24 +87,39 @@ const testAssignPlayers = async (): Promise<any> => {
     }
 
     usersAfterAssign.map(user => {
-      const signedGames = user.signedGames.filter(
-        signedGame =>
-          moment(signedGame.time).format() === moment(startingTime).format()
-      )
-
-      const enteredGame = user.enteredGames.find(
+      const enteredGames = user.enteredGames.filter(
         enteredGame =>
           moment(enteredGame.time).format() === moment(startingTime).format()
       )
 
-      if (signedGames && signedGames.length !== 0 && enteredGame) {
-        const gameFound = signedGames.find(
-          signedGame =>
-            signedGame.gameDetails.gameId === enteredGame.gameDetails.gameId
-        )
+      if (!enteredGames || enteredGames.length === 0) return
 
-        if (!gameFound) {
-          logger.error(`Signups and entered game don't match`)
+      if (enteredGames.length !== 1) {
+        logger.error(
+          `Too many entered games for time ${startingTime}: ${user.username} - ${enteredGames.length} games`
+        )
+        return
+      }
+
+      const enteredGame = _.first(enteredGames)
+
+      if (user.signedGames && user.signedGames.length !== 0) {
+        const signupFound = user.signedGames.find(signedGame => {
+          return (
+            signedGame.gameDetails.gameId === enteredGame.gameDetails.gameId &&
+            moment(signedGame.time).format() ===
+              moment(enteredGame.time).format()
+          )
+        })
+
+        if (!signupFound) {
+          logger.error(
+            `Signup not found: ${user.username} - ${enteredGame.gameDetails.title}`
+          )
+        } else {
+          logger.info(
+            `Signup found: ${user.username} - ${enteredGame.gameDetails.title}`
+          )
         }
       }
     })
