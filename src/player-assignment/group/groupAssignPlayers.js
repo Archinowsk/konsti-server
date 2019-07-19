@@ -38,7 +38,7 @@ export const groupAssignPlayers = (
     }
   }
 
-  logger.info(`Signed games: ${signedGames.length}`)
+  logger.info(`Games with signups: ${signedGames.length}`)
   logger.info(
     `Selected players: ${allPlayers.length} (${numberOfIndividuals} individual, ${numberOfGroups} groups)`
   )

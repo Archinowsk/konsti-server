@@ -2,6 +2,7 @@
 import eventassigner from 'eventassigner-js'
 import _ from 'lodash'
 import moment from 'moment'
+import { logger } from 'utils/logger'
 import type { AssignmentStrategyResult } from 'flow/result.flow'
 import type {
   Input,
@@ -70,7 +71,7 @@ export const assignOpa = (
     return {
       username: player.username,
       enteredGame: player.signedGames.find(signedGame =>
-        assignResults.filter(
+        assignResults.find(
           assignResult =>
             assignResult.assignment === signedGame.gameDetails.gameId &&
             assignResult.id === player.groupCode
@@ -80,6 +81,7 @@ export const assignOpa = (
   })
 
   const message = 'Opa assignment completed'
+  logger.info(message)
 
   return { results, message }
 }
@@ -88,7 +90,6 @@ const getList = (
   playerGroups: $ReadOnlyArray<UserArray>,
   startingTime: string
 ): Array<ListItem> => {
-  // $FlowFixMe: Cannot call `playerGroups.flatMap` because property `flatMap` is missing in `$ReadOnlyArray` [1].
   return playerGroups.flatMap(playerGroup => {
     return _.first(playerGroup)
       .signedGames.filter(
@@ -115,4 +116,6 @@ const getGain = (signedGame: SignedGame) => {
     case 3:
       return 0.33
   }
+
+  throw new Error(`Invalid signup priority: ${signedGame.priority}`)
 }

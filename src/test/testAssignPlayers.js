@@ -9,19 +9,8 @@ import { config } from 'config'
 import { saveResults } from 'api/controllers/playersController'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
-const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
-  if (
-    userParameter === 'munkres' ||
-    userParameter === 'group' ||
-    userParameter === 'opa'
-  ) {
-    return userParameter
-  } else {
-    throw new Error('Unexpected assignment strategy')
-  }
-}
-
 const testAssignPlayers = async (): Promise<any> => {
+  const { CONVENTION_START_TIME } = config
   const userParameter = process.argv[2]
 
   let assignmentStategy
@@ -58,8 +47,6 @@ const testAssignPlayers = async (): Promise<any> => {
       logger.error(error)
     }
 
-    const { CONVENTION_START_TIME } = config
-
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
       .format()
@@ -81,6 +68,18 @@ const testAssignPlayers = async (): Promise<any> => {
     await verifyResults(startingTime)
 
     process.exit()
+  }
+}
+
+const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
+  if (
+    userParameter === 'munkres' ||
+    userParameter === 'group' ||
+    userParameter === 'opa'
+  ) {
+    return userParameter
+  } else {
+    throw new Error('Unexpected assignment strategy')
   }
 }
 

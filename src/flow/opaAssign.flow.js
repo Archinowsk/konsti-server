@@ -14,9 +14,9 @@ export type Event = {|
 |}
 
 export type ListItem = {|
-  +id: number, // group id
+  +id: string, // group id
   +size: number, // group size
-  +event: number, // game id for the signed game
+  +event: string, // game id for the signed game
   +gain: number, // preference: 1st choice => 1, 2nd choice => 0.5, 3rd choice => 0.33
 |}
 
