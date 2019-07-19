@@ -73,9 +73,8 @@ if (config.bundleCompression) {
   app.use(express.static(staticPath))
 }
 
-// No match, route to index
 app.get('/*', (req: $Request, res: $Response) => {
-  return res.redirect('/')
+  res.sendFile(path.join(__dirname, '..', 'front', 'index.html'))
 })
 
 app.set('port', config.port)
