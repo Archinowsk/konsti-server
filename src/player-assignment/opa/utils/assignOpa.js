@@ -21,7 +21,10 @@ export const assignOpa = (
 ): AssignmentStrategyResult => {
   const groups: Array<Group> = playerGroups.map(playerGroup => {
     return {
-      id: _.first(playerGroup).groupCode,
+      id:
+        _.first(playerGroup).groupCode !== '0'
+          ? _.first(playerGroup).groupCode
+          : _.first(playerGroup).serial,
       size: playerGroup.length,
       pref: _.first(playerGroup)
         .signedGames.filter(
@@ -60,7 +63,8 @@ export const assignOpa = (
     .filter(playerGroup => {
       return assignResults.find(
         assignResult =>
-          assignResult.id === _.first(playerGroup).groupCode &&
+          (assignResult.id === _.first(playerGroup).groupCode ||
+            assignResult.id === _.first(playerGroup).serial) &&
           assignResult.assignment !== -1
       )
     })
@@ -73,8 +77,9 @@ export const assignOpa = (
       enteredGame: player.signedGames.find(signedGame =>
         assignResults.find(
           assignResult =>
-            assignResult.assignment === signedGame.gameDetails.gameId &&
-            assignResult.id === player.groupCode
+            (assignResult.id === player.groupCode ||
+              assignResult.id === player.serial) &&
+            assignResult.assignment === signedGame.gameDetails.gameId
         )
       ),
     }
@@ -98,7 +103,10 @@ const getList = (
       )
       .map(signedGame => {
         return {
-          id: _.first(playerGroup).groupCode,
+          id:
+            _.first(playerGroup).groupCode !== '0'
+              ? _.first(playerGroup).groupCode
+              : _.first(playerGroup).serial,
           size: playerGroup.length,
           event: signedGame.gameDetails.gameId,
           gain: getGain(signedGame),
