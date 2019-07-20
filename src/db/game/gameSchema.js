@@ -17,7 +17,6 @@ const GameSchema = new mongoose.Schema({
   minAttendance: Number,
   maxAttendance: Number,
   gameSystem: String,
-  noLanguage: Boolean,
   englishOk: Boolean,
   childrenFriendly: Boolean,
   ageRestricted: Boolean,

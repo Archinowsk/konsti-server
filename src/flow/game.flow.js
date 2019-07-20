@@ -18,7 +18,6 @@ export type Game = {
   +minAttendance: number,
   +maxAttendance: number,
   +gameSystem: string,
-  +noLanguage: boolean,
   +englishOk: boolean,
   +childrenFriendly: boolean,
   +ageRestricted: boolean,

@@ -30,7 +30,6 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
       minAttendance: game.min_players,
       maxAttendance: game.max_players,
       gameSystem: game.rpg_system,
-      noLanguage: game.no_language,
       englishOk: game.english_ok,
       childrenFriendly: game.children_friendly,
       ageRestricted: game.age_restricted,
