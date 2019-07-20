@@ -8,6 +8,7 @@ import {
 } from 'test/data-generation/generators/userDataGenerators'
 import { createGames } from 'test/data-generation/generators/gameDataGenerators'
 import { createSignupData } from 'test/data-generation/generators/signupDataGenerators'
+import { config } from 'config'
 
 export const groupGenerator = async (
   newUsersCount: number,
@@ -15,6 +16,8 @@ export const groupGenerator = async (
   groupSize: number,
   numberOfGroups: number
 ): Promise<any> => {
+  const { generateSignups } = config
+
   await createAdminUser()
   await createTestUsers(2)
   await createUsers(newUsersCount)
@@ -25,5 +28,8 @@ export const groupGenerator = async (
   }
 
   await createGames(newGamesCount)
-  await createSignupData('group')
+
+  if (generateSignups) {
+    await createSignupData('group')
+  }
 }

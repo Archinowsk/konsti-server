@@ -21,4 +21,5 @@ export type Config = {|
   +gameUpdateInterval: number,
   +CONVENTION_START_TIME: string,
   +removeOverlapSignups: boolean,
+  +generateSignups: boolean,
 |}
