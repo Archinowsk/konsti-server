@@ -67,6 +67,8 @@ const testAssignPlayers = async (): Promise<any> => {
     await verifyUserSignups(startingTime)
     await verifyResults(startingTime)
 
+    logger.info(assignResults.message)
+
     process.exit()
   }
 }

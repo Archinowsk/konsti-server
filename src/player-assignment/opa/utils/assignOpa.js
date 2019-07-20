@@ -3,6 +3,7 @@ import eventassigner from 'eventassigner-js'
 import _ from 'lodash'
 import moment from 'moment'
 import { logger } from 'utils/logger'
+import { calculateHappiness } from 'player-assignment/opa/utils/calculateHappiness'
 import type { AssignmentStrategyResult } from 'flow/result.flow'
 import type {
   Input,
@@ -59,6 +60,8 @@ export const assignOpa = (
   const input: Input = { groups, events, list, updateL }
   const assignResults: OpaAssignResults = eventassigner.eventAssignment(input)
 
+  const happiness = calculateHappiness(assignResults, groups)
+
   const selectedPlayers = playerGroups
     .filter(playerGroup => {
       return assignResults.find(
@@ -85,7 +88,7 @@ export const assignOpa = (
     }
   })
 
-  const message = 'Opa assignment completed'
+  const message = `Opa assignment completed with happiness ${happiness}`
   logger.info(message)
 
   return { results, message }

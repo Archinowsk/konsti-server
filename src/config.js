@@ -23,7 +23,7 @@ const commonConfig = {
   removeOverlapSignups: true,
 
   // Development and testing
-  generateSignups: false,
+  generateSignups: true,
 }
 
 const prodConfig = {
