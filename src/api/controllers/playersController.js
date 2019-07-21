@@ -17,6 +17,13 @@ const postPlayers: Middleware = async (
   logger.info('API call: POST /api/players')
   const startingTime = req.body.startingTime
 
+  if (!startingTime) {
+    return res.json({
+      message: 'Invalid starting time',
+      status: 'error',
+    })
+  }
+
   const authHeader = req.headers.authorization
   const validToken = validateAuthHeader(authHeader, 'admin')
 
@@ -67,8 +74,6 @@ const postPlayers: Middleware = async (
     })
   }
 
-  logger.info(assignResults.message)
-
   if (!assignResults || !assignResults.results) {
     return res.json({
       message: 'Players assign failure',
@@ -118,7 +123,7 @@ export const saveResults = async (
 ): Promise<any> => {
   try {
     logger.info(
-      `Save signup results for starting time ${startingTime} to separate collection`
+      `Save all signup results to separate collection for starting time ${startingTime}`
     )
     await db.results.saveResult(results, startingTime)
   } catch (error) {
