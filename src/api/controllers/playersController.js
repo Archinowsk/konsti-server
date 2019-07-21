@@ -67,6 +67,8 @@ const postPlayers: Middleware = async (
     })
   }
 
+  logger.info(assignResults.message)
+
   if (!assignResults || !assignResults.results) {
     return res.json({
       message: 'Players assign failure',

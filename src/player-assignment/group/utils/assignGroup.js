@@ -26,7 +26,7 @@ export const assignGroups = (
       bestResult = result.signupResults
       players = result.playerCounter
       games = result.gameCounter
-      logger.info(`New best score: ${bestScore}`)
+      logger.debug(`New best score: ${bestScore}`)
     }
   }
 
@@ -37,8 +37,6 @@ export const assignGroups = (
   )}%), Games: ${games}/${signedGames.length} (${Math.round(
     (games / signedGames.length) * 100
   )}%)`
-
-  logger.info(returnMessage)
 
   return { results: bestResult, message: returnMessage }
 }
