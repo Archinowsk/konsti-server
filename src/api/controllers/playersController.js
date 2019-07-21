@@ -148,7 +148,7 @@ const saveUserSignupResults = async (
   }
 }
 
-const removeOverlappingSignups = async (
+export const removeOverlappingSignups = async (
   signups: $ReadOnlyArray<Signup>
 ): Promise<any> => {
   try {

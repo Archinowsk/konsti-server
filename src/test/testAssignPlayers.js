@@ -6,11 +6,14 @@ import { logger } from 'utils/logger'
 import { assignPlayers } from 'player-assignment/assignPlayers'
 import { db } from 'db/mongodb'
 import { config } from 'config'
-import { saveResults } from 'api/controllers/playersController'
+import {
+  saveResults,
+  removeOverlappingSignups,
+} from 'api/controllers/playersController'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
 const testAssignPlayers = async (): Promise<any> => {
-  const { CONVENTION_START_TIME, saveTestAssign } = config
+  const { CONVENTION_START_TIME, saveTestAssign, removeOverlapSignups } = config
   const userParameter = process.argv[2]
 
   let assignmentStategy
@@ -59,6 +62,15 @@ const testAssignPlayers = async (): Promise<any> => {
     )
 
     if (saveTestAssign) {
+      if (removeOverlapSignups && assignResults.newSignupData) {
+        try {
+          logger.info('Remove overlapping signups')
+          await removeOverlappingSignups(assignResults.newSignupData)
+        } catch (error) {
+          logger.error(`removeOverlappingSignups error: ${error}`)
+        }
+      }
+
       try {
         await saveResults(assignResults.results, startingTime)
       } catch (error) {
