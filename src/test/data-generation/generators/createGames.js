@@ -5,26 +5,24 @@ import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { config } from 'config'
 
+export const startingTimes = [
+  moment(config.CONVENTION_START_TIME)
+    .add(2, 'hours')
+    .format(),
+
+  moment(config.CONVENTION_START_TIME)
+    .add(3, 'hours')
+    .format(),
+
+  moment(config.CONVENTION_START_TIME)
+    .add(7, 'hours')
+    .format(),
+]
+
 export const createGames = (count: number) => {
   logger.info(`Generate data for ${count} games`)
 
-  const { CONVENTION_START_TIME } = config
-
   const games = []
-
-  const startingTimes = [
-    moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format(),
-
-    moment(CONVENTION_START_TIME)
-      .add(3, 'hours')
-      .format(),
-
-    moment(CONVENTION_START_TIME)
-      .add(7, 'hours')
-      .format(),
-  ]
 
   startingTimes.forEach(startingTime => {
     for (let i = 0; i < count; i += 1) {

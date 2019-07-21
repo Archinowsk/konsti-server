@@ -1,65 +1,69 @@
 /* @flow */
 import faker from 'faker'
+import moment from 'moment'
 import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
-import type { User } from 'flow//user.flow'
+import { startingTimes } from 'test/data-generation/generators/createGames'
+import type { User, SignedGame } from 'flow//user.flow'
 import type { Game } from 'flow/game.flow'
 
-const getRandomSignup = (games: $ReadOnlyArray<Game>, user: User) => {
-  const randomGames = []
+const getRandomSignup = (
+  games: $ReadOnlyArray<Game>,
+  user: User
+): Array<SignedGame> => {
+  const signedGames = []
   let randomIndex
 
-  // Select three random games
-  for (let i = 0; i < 3; i += 1) {
-    randomIndex = faker.random.number({ min: 0, max: games.length - 1 })
-    const randomGame = games[randomIndex]
-    if (randomGames.includes(randomGame)) {
-      i -= 1
-    } else {
-      randomGames.push(randomGame)
-    }
-  }
+  // Select three random games for each starting time
+  startingTimes.forEach(startingTime => {
+    const gamesForTime = games.filter(
+      games =>
+        moment(games.startTime).format() === moment(startingTime).format()
+    )
 
-  // Save random games with priorities
-  const gamesWithPriorities = []
-  randomGames.forEach((randomGame, index) => {
-    gamesWithPriorities.push({
-      gameDetails: randomGame,
-      priority: index + 1,
-      time: randomGame.startTime,
-    })
+    const numberOfSignups = 3
+
+    for (let i = 0; i < numberOfSignups; i += 1) {
+      randomIndex = faker.random.number({
+        min: 0,
+        max: gamesForTime.length - 1,
+      })
+
+      const randomGame = gamesForTime[randomIndex]
+
+      const duplicate = !!signedGames.find(
+        signedGame => signedGame.gameDetails.gameId === randomGame.gameId
+      )
+
+      if (duplicate) {
+        i -= 1
+      } else {
+        signedGames.push({
+          gameDetails: randomGame,
+          priority: i + 1,
+          time: randomGame.startTime,
+        })
+      }
+    }
   })
 
-  return {
-    randomGames,
-    gamesWithPriorities,
-  }
+  return signedGames
 }
 
-const signup = (games: $ReadOnlyArray<Game>, user: User) => {
-  const signup = getRandomSignup(games, user)
-
-  /*
-  logger.info(
-    `Signup: Selected games: ${signup.randomGames.toString()} for "${
-      user.username
-    }"`
-  )
-  */
+const signup = (games: $ReadOnlyArray<Game>, user: User): Promise<any> => {
+  const signedGames = getRandomSignup(games, user)
 
   return db.user.saveSignup({
     username: user.username,
-    signedGames: signup.gamesWithPriorities,
+    signedGames: signedGames,
   })
-
-  // TODO: Different users: some sign for all three, some for one
 }
 
 const signupMultiple = (
   games: $ReadOnlyArray<Game>,
   users: $ReadOnlyArray<User>
-) => {
+): Promise<any> => {
   const promises = []
 
   for (const user of users) {
@@ -76,22 +80,14 @@ const signupGroup = async (
   users: $ReadOnlyArray<User>
 ): Promise<any> => {
   // Generate random signup data for the first user
-  const signup = getRandomSignup(games, _.first(users))
+  const signedGames = getRandomSignup(games, _.first(users))
 
   // Assign same signup data for group members
   const promises = []
   for (let i = 0; i < users.length; i++) {
-    /*
-    logger.info(
-      `Signup: Selected games: ${signup.randomGames.toString()} for "${
-        users[i].username
-      }"`
-    )
-    */
-
     const signupData = {
       username: users[i].username,
-      signedGames: i === 0 ? signup.gamesWithPriorities : [],
+      signedGames: i === 0 ? signedGames : [],
     }
 
     promises.push(db.user.saveSignup(signupData))
@@ -103,8 +99,8 @@ const signupGroup = async (
 export const createSignups = async (strategy: string): Promise<any> => {
   logger.info('Generate signup data')
 
-  let games: $ReadOnlyArray<Game> = []
-  let users: $ReadOnlyArray<User> = []
+  let games = []
+  let users = []
 
   try {
     games = await db.game.findGames()
