@@ -56,7 +56,7 @@ export const createTestUsers = async (number: number): Promise<any> => {
   }
 }
 
-const createUserInGroup = (groupCode: string, index: number) => {
+const createUserInGroup = (groupCode: string, index: number): Promise<any> => {
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass', // Skip hashing to save time
@@ -71,7 +71,10 @@ const createUserInGroup = (groupCode: string, index: number) => {
   return db.user.saveUser(registrationData)
 }
 
-export const createUsersInGroup = (count: number, groupId: string) => {
+export const createUsersInGroup = (
+  count: number,
+  groupId: string
+): Promise<any> => {
   logger.info(`Generate data for ${count} users in group ${groupId}`)
 
   const promises = []
@@ -82,7 +85,7 @@ export const createUsersInGroup = (count: number, groupId: string) => {
   return Promise.all(promises)
 }
 
-const createUser = () => {
+const createUser = (): Promise<any> => {
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass', // Skip hashing to save time
@@ -97,7 +100,7 @@ const createUser = () => {
   return db.user.saveUser(registrationData)
 }
 
-export const createUsers = (count: number) => {
+export const createUsers = (count: number): Promise<any> => {
   logger.info(`Generate data for ${count} users`)
 
   const promises = []

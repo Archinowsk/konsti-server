@@ -19,7 +19,7 @@ export const startingTimes = [
     .format(),
 ]
 
-export const createGames = (count: number) => {
+export const createGames = (count: number): Promise<any> => {
   logger.info(`Generate data for ${count} games`)
 
   const games = []
