@@ -1,4 +1,5 @@
 /* @flow */
+import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { getStartingGames } from 'player-assignment/utils/getStartingGames'
 import { getSignupWishes } from 'player-assignment/utils/getSignupWishes'
@@ -50,7 +51,13 @@ export const opaAssignPlayers = (
 
   const result = runOpaAssignment(signedGames, playerGroups, startingTime)
 
+  const selectedUniqueGames = _.uniq(
+    result.results.map(result => result.enteredGame.gameDetails.gameId)
+  )
+
+  const message = `Result - Players: ${result.results.length}/${allPlayers.length}, Games: ${selectedUniqueGames.length}/${signedGames.length}`
+
   const newSignupData = removeOverlapSignups(result.results, players)
 
-  return Object.assign({ ...result, newSignupData })
+  return Object.assign({ ...result, newSignupData, message })
 }
