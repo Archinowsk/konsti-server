@@ -8,6 +8,7 @@ import { assignGroups } from 'player-assignment/group/utils/assignGroup'
 import { getPlayerGroups } from 'player-assignment/utils/getPlayerGroups'
 import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups'
 import { getGroupMembers } from 'player-assignment/utils/getGroupMembers'
+import { getHappiness } from 'player-assignment/group/utils/getHappiness'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { PlayerAssignmentResult } from 'flow/result.flow'
@@ -44,6 +45,9 @@ export const groupAssignPlayers = (
   )
 
   const result = assignGroups(allPlayers, signedGames, playerGroups)
+
+  getHappiness(result.results, playerGroups, allPlayers, startingTime)
+
   const newSignupData = removeOverlapSignups(result.results, players)
 
   return Object.assign({ ...result, newSignupData })
