@@ -30,7 +30,7 @@ export const assignGroups = (
     }
   }
 
-  const returnMessage = `Result - Score: ${bestScore}, Players: ${players}/${
+  const returnMessage = `Result - Players: ${players}/${
     selectedPlayers.length
   } (${Math.round(
     (players / selectedPlayers.length) * 100

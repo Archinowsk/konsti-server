@@ -55,7 +55,13 @@ export const opaAssignPlayers = (
     result.results.map(result => result.enteredGame.gameDetails.gameId)
   )
 
-  const message = `Result - Players: ${result.results.length}/${allPlayers.length}, Games: ${selectedUniqueGames.length}/${signedGames.length}`
+  const message = `Result - Players: ${result.results.length}/${
+    allPlayers.length
+  } (${Math.round(
+    (result.results.length / allPlayers.length) * 100
+  )}%), Games: ${selectedUniqueGames.length}/${
+    signedGames.length
+  } (${Math.round((selectedUniqueGames.length / signedGames.length) * 100)}%)`
 
   const newSignupData = removeOverlapSignups(result.results, players)
 
