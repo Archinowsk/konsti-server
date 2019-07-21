@@ -36,7 +36,7 @@ const runGenerators = async (): Promise<any> => {
   try {
     await db.connectToDb()
   } catch (error) {
-    logger.error(error)
+    logger.error(`db.connectToDb error: ${error}`)
   }
 
   try {
@@ -46,7 +46,7 @@ const runGenerators = async (): Promise<any> => {
     await db.results.removeResults()
     await db.settings.removeSettings()
   } catch (error) {
-    logger.error(error)
+    logger.error(`MongoDB: Clean old data error: ${error}`)
   }
 
   logger.info(`MongoDB: Generate new data with "${strategy}" strategy`)
@@ -63,7 +63,7 @@ const runGenerators = async (): Promise<any> => {
       )
     }
   } catch (error) {
-    logger.error(error)
+    logger.error(`runGenerators error: ${error}`)
   }
 
   process.exit()

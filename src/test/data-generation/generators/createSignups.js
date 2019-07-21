@@ -100,13 +100,17 @@ export const createSignups = async (strategy: string): Promise<any> => {
   logger.info('Generate signup data')
 
   let games = []
-  let users = []
-
   try {
     games = await db.game.findGames()
+  } catch (error) {
+    logger.error(`db.game.findGames error: ${error}`)
+  }
+
+  let users = []
+  try {
     users = await db.user.findUsers()
   } catch (error) {
-    logger.error(error)
+    logger.error(`db.game.findUsers error: ${error}`)
   }
 
   logger.info(`Signup: ${games.length} games`)

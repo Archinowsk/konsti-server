@@ -23,7 +23,7 @@ export const createAdminUser = async (): Promise<any> => {
   try {
     return db.user.saveUser(registrationData)
   } catch (error) {
-    logger.error(error)
+    logger.error(`db.game.saveUser error: ${error}`)
   }
 }
 
@@ -45,7 +45,7 @@ const createTestUser = async (userNumber: number): Promise<any> => {
   try {
     return db.user.saveUser(registrationData)
   } catch (error) {
-    logger.error(error)
+    logger.error(`db.game.saveUser error: ${error}`)
   }
 }
 

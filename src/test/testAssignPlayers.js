@@ -35,21 +35,21 @@ const testAssignPlayers = async (): Promise<any> => {
     try {
       await db.connectToDb()
     } catch (error) {
-      logger.error(error)
+      logger.error(`db.connectToDb error: ${error}`)
     }
 
     let users = []
     try {
       users = await db.user.findUsers()
     } catch (error) {
-      logger.error(error)
+      logger.error(`db.user.findUsers error: ${error}`)
     }
 
     let games = []
     try {
       games = await db.game.findGames()
     } catch (error) {
-      logger.error(error)
+      logger.error(`db.user.findGames error: ${error}`)
     }
 
     const startingTime = moment(CONVENTION_START_TIME)
@@ -107,7 +107,7 @@ const verifyUserSignups = async (startingTime: string) => {
   try {
     usersAfterAssign = await db.user.findUsers()
   } catch (error) {
-    logger.error(error)
+    logger.error(`db.user.findUsers error: ${error}`)
   }
 
   usersAfterAssign.map(user => {

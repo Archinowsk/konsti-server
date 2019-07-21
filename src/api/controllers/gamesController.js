@@ -41,7 +41,7 @@ const postGames: Middleware = async (
   try {
     gameSaveResponse = await db.game.saveGames(games)
   } catch (error) {
-    logger.error(error)
+    logger.error(`db.game.saveGames error: ${error}`)
     return res.json({
       message: 'Games db update failed: Saving games failed',
       status: 'error',

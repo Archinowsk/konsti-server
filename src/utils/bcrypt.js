@@ -8,7 +8,7 @@ const hashPassword = async (password: string): Promise<any> => {
   try {
     return await bcrypt.hash(password, saltLength)
   } catch (error) {
-    logger.error(error)
+    logger.error(`bcrypt.hash error: ${error}`)
   }
 }
 
@@ -19,7 +19,7 @@ const comparePasswordHash = async (
   try {
     return await bcrypt.compare(password, hash)
   } catch (error) {
-    logger.error(error)
+    logger.error(`bcrypt.compare error: ${error}`)
   }
 }
 
