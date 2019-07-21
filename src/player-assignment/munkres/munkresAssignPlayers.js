@@ -21,6 +21,7 @@ export const munkresAssignPlayers = (
   games: $ReadOnlyArray<Game>,
   startingTime: string
 ): PlayerAssignmentResult => {
+  logger.info(`***** Run Munkres Assignment`)
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const signedGames = getSignedGames(startingGames, signupWishes)
@@ -79,6 +80,8 @@ export const munkresAssignPlayers = (
   )
 
   const message = 'Munkres assignment completed'
+
+  logger.info(`----> ${message}`)
 
   return { results: signupResults, message, newSignupData: [] }
 }

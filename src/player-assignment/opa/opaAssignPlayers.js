@@ -18,6 +18,7 @@ export const opaAssignPlayers = (
   games: $ReadOnlyArray<Game>,
   startingTime: string
 ): PlayerAssignmentResult => {
+  logger.info(`***** Run Opa Assignment`)
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const signedGames = getSignedGames(startingGames, signupWishes)
@@ -55,7 +56,9 @@ export const opaAssignPlayers = (
     result.results.map(result => result.enteredGame.gameDetails.gameId)
   )
 
-  const message = `Result - Players: ${result.results.length}/${
+  const newSignupData = removeOverlapSignups(result.results, players)
+
+  const message = `Opa Assign Result - Players: ${result.results.length}/${
     allPlayers.length
   } (${Math.round(
     (result.results.length / allPlayers.length) * 100
@@ -63,7 +66,7 @@ export const opaAssignPlayers = (
     signedGames.length
   } (${Math.round((selectedUniqueGames.length / signedGames.length) * 100)}%)`
 
-  const newSignupData = removeOverlapSignups(result.results, players)
+  logger.info(`----> ${message}`)
 
   return Object.assign({ ...result, newSignupData, message })
 }
