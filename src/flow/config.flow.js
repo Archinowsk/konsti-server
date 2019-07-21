@@ -1,6 +1,6 @@
 // @flow
 
-export type AssignmentStrategy = 'munkres' | 'group' | 'opa'
+export type AssignmentStrategy = 'munkres' | 'group' | 'opa' | 'group+opa'
 
 export type Config = {|
   +appName: string,

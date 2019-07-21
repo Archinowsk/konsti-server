@@ -17,7 +17,7 @@ const commonConfig = {
   enableAccessLog: false,
 
   // App settings
-  assignmentStrategy: 'opa', // 'munkres', 'group', 'opa'
+  assignmentStrategy: 'group+opa', // 'munkres', 'group', 'opa', 'group+opa'
   bundleCompression: true,
   CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
   removeOverlapSignups: true,
@@ -68,8 +68,8 @@ const devConfig = {
   jwtSecretKeyAdmin: 'admin secret',
   allowedCorsOrigins: ['http://localhost:8080'],
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
-  debug: true,
-  GROUP_ASSIGNMENT_ROUNDS: 1,
+  debug: false,
+  GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
   autoUpdateGamesEnabled: false,
   gameUpdateInterval: 5, // minutes

@@ -30,6 +30,21 @@ export const assignPlayers = (
     return groupAssignPlayers(players, games, startingTime)
   } else if (assignmentStrategy === 'opa') {
     return opaAssignPlayers(players, games, startingTime)
+  } else if (assignmentStrategy === 'group+opa') {
+    const groupResult = groupAssignPlayers(players, games, startingTime)
+    const opaResult = opaAssignPlayers(players, games, startingTime)
+
+    logger.info(
+      `Group result: ${groupResult.results.length} players, Opa result: ${opaResult.results.length} players`
+    )
+
+    if (groupResult.results.length > opaResult.results.length) {
+      logger.info('----> Use Group Assign result')
+      return groupResult
+    } else {
+      logger.info('----> Use Opa Assign result')
+      return opaResult
+    }
   } else {
     throw new Error('Invalid or missing "assignmentStrategy" config')
   }

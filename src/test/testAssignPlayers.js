@@ -20,7 +20,9 @@ const testAssignPlayers = async (): Promise<any> => {
   try {
     assignmentStategy = getAssignmentStategy(userParameter)
   } catch (error) {
-    logger.error('Give strategy parameter, possible: "munkres", "group", "opa"')
+    logger.error(
+      'Give strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
+    )
     process.exit()
   }
 
@@ -81,8 +83,6 @@ const testAssignPlayers = async (): Promise<any> => {
       await verifyResults(startingTime)
     }
 
-    logger.info(assignResults.message)
-
     process.exit()
   }
 }
@@ -91,7 +91,8 @@ const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
   if (
     userParameter === 'munkres' ||
     userParameter === 'group' ||
-    userParameter === 'opa'
+    userParameter === 'opa' ||
+    userParameter === 'group+opa'
   ) {
     return userParameter
   } else {
