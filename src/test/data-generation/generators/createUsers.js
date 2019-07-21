@@ -4,7 +4,7 @@ import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { hashPassword } from 'utils/bcrypt'
 
-const createAdminUser = async (): Promise<any> => {
+export const createAdminUser = async (): Promise<any> => {
   // Create admin user with predefined data
   logger.info(`Generate data for admin user "admin:test"`)
 
@@ -49,7 +49,7 @@ const createTestUser = async (userNumber: number): Promise<any> => {
   }
 }
 
-const createTestUsers = async (number: number): Promise<any> => {
+export const createTestUsers = async (number: number): Promise<any> => {
   // Create test users with predefined data
   for (let i = 0; i < number; i += 1) {
     createTestUser(i + 1)
@@ -71,7 +71,7 @@ const createUserInGroup = (groupCode: string, index: number) => {
   return db.user.saveUser(registrationData)
 }
 
-const createUsersInGroup = (count: number, groupId: string) => {
+export const createUsersInGroup = (count: number, groupId: string) => {
   logger.info(`Generate data for ${count} users in group ${groupId}`)
 
   const promises = []
@@ -97,7 +97,7 @@ const createUser = () => {
   return db.user.saveUser(registrationData)
 }
 
-const createUsers = (count: number) => {
+export const createUsers = (count: number) => {
   logger.info(`Generate data for ${count} users`)
 
   const promises = []
@@ -107,5 +107,3 @@ const createUsers = (count: number) => {
 
   return Promise.all(promises)
 }
-
-export { createUsers, createAdminUser, createTestUsers, createUsersInGroup }

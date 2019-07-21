@@ -20,16 +20,16 @@ const runGenerators = async (): Promise<any> => {
   let newUsersCount = 0 // Number of individual users
   let groupSize = 0 // How many users in each group
   let numberOfGroups = 0 // Number of groups
-  let newGamesCount = 0 // How many games are availale for signup - minimum is 3
+  let newGamesCount = 0 // How many games are availale for each signup time - minimum is 3
 
   if (strategy === 'munkres') {
     newUsersCount = 20
     newGamesCount = 10
   } else if (strategy === 'group') {
     // Total users: newUsersCount + 2 test accounts + groupSize * numberOfGroups
-    newUsersCount = 10
+    newUsersCount = 40
     groupSize = 3
-    numberOfGroups = 6
+    numberOfGroups = 15
     newGamesCount = 10
   }
 

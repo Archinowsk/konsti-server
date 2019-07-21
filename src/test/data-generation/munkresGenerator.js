@@ -3,9 +3,9 @@ import {
   createUsers,
   createAdminUser,
   createTestUsers,
-} from 'test/data-generation/generators/userDataGenerators'
-import { createGames } from 'test/data-generation/generators/gameDataGenerators'
-import { createSignupData } from 'test/data-generation/generators/signupDataGenerators'
+} from 'test/data-generation/generators/createUsers'
+import { createGames } from 'test/data-generation/generators/createGames'
+import { createSignups } from 'test/data-generation/generators/createSignups'
 
 export const munkresGenerator = async (
   newUsersCount: number,
@@ -15,5 +15,5 @@ export const munkresGenerator = async (
   await createTestUsers(2)
   await createUsers(newUsersCount)
   await createGames(newGamesCount)
-  await createSignupData('munkres')
+  await createSignups('munkres')
 }

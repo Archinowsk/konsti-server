@@ -1,8 +1,8 @@
 /* @flow */
+import faker from 'faker'
 import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
-import { getRandomInt } from 'test/data-generation/generators/randomVariableGenerators'
 import type { User } from 'flow//user.flow'
 import type { Game } from 'flow/game.flow'
 
@@ -12,7 +12,7 @@ const getRandomSignup = (games: $ReadOnlyArray<Game>, user: User) => {
 
   // Select three random games
   for (let i = 0; i < 3; i += 1) {
-    randomIndex = getRandomInt(0, games.length - 1)
+    randomIndex = faker.random.number({ min: 0, max: games.length - 1 })
     const randomGame = games[randomIndex]
     if (randomGames.includes(randomGame)) {
       i -= 1
@@ -100,7 +100,7 @@ const signupGroup = async (
   return Promise.all(promises)
 }
 
-const createSignupData = async (strategy: string): Promise<any> => {
+export const createSignups = async (strategy: string): Promise<any> => {
   logger.info('Generate signup data')
 
   let games: $ReadOnlyArray<Game> = []
@@ -142,5 +142,3 @@ const createSignupData = async (strategy: string): Promise<any> => {
     }
   }
 }
-
-export { createSignupData }
