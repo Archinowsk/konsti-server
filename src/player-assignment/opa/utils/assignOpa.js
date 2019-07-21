@@ -3,6 +3,7 @@ import eventassigner from 'eventassigner-js'
 import _ from 'lodash'
 import moment from 'moment'
 import { logger } from 'utils/logger'
+import { inOrder, randomize } from 'utils/sort'
 import { calculateHappiness } from 'player-assignment/opa/utils/calculateHappiness'
 import type { AssignmentStrategyResult } from 'flow/result.flow'
 import type {
@@ -45,26 +46,44 @@ export const assignOpa = (
     }
   })
 
-  const list: Array<ListItem> = getList(playerGroups, startingTime).sort(
-    (a, b) => {
-      if (a.gain >= b.gain) {
-        return 1
-      } else {
-        return -1
-      }
-    }
-  )
+  const list: Array<ListItem> = getList(playerGroups, startingTime)
 
   const updateL = input => input.list
 
-  const input: Input = { groups, events, list, updateL }
-  const assignResults: OpaAssignResults = eventassigner.eventAssignment(input)
+  let finalHappiness = 0
+  let finalAssignResults: OpaAssignResults = []
 
-  const happiness = calculateHappiness(assignResults, groups)
+  for (let i = 0; i < 5; i++) {
+    const eventsCopy = _.cloneDeep(events)
+
+    const input: Input = {
+      groups,
+      events: eventsCopy,
+      list: i === 0 ? list.sort(inOrder) : list.sort(randomize),
+      updateL,
+    }
+
+    const assignResults: OpaAssignResults = eventassigner.eventAssignment(input)
+
+    const happiness = calculateHappiness(assignResults, groups)
+
+    if (happiness > finalHappiness) {
+      finalHappiness = happiness
+      finalAssignResults = assignResults
+    }
+
+    logger.info(
+      `Opa assignment round ${i + 1} completed with happiness ${happiness}%`
+    )
+  }
+
+  if (!finalAssignResults) {
+    throw new Error('Opa assignment error')
+  }
 
   const selectedPlayers = playerGroups
     .filter(playerGroup => {
-      return assignResults.find(
+      return finalAssignResults.find(
         assignResult =>
           (assignResult.id === _.first(playerGroup).groupCode ||
             assignResult.id === _.first(playerGroup).serial) &&
@@ -78,7 +97,7 @@ export const assignOpa = (
     return {
       username: player.username,
       enteredGame: player.signedGames.find(signedGame =>
-        assignResults.find(
+        finalAssignResults.find(
           assignResult =>
             (assignResult.id === player.groupCode ||
               assignResult.id === player.serial) &&
@@ -88,7 +107,7 @@ export const assignOpa = (
     }
   })
 
-  const message = `Opa assignment completed with happiness ${happiness}`
+  const message = `Opa assignment completed with happiness ${finalHappiness}%`
   logger.info(message)
 
   return { results, message }
