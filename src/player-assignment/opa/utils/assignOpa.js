@@ -3,6 +3,7 @@ import eventassigner from 'eventassigner-js'
 import _ from 'lodash'
 import moment from 'moment'
 import { logger } from 'utils/logger'
+import { config } from 'config'
 import { inOrder, randomize } from 'utils/sort'
 import { calculateHappiness } from 'player-assignment/opa/utils/calculateHappiness'
 import type { AssignmentStrategyResult } from 'flow/result.flow'
@@ -21,6 +22,8 @@ export const assignOpa = (
   playerGroups: $ReadOnlyArray<UserArray>,
   startingTime: string
 ): AssignmentStrategyResult => {
+  const { OPA_ASSIGNMENT_ROUNDS } = config
+
   const groups: Array<Group> = playerGroups.map(playerGroup => {
     return {
       id:
@@ -53,7 +56,7 @@ export const assignOpa = (
   let finalHappiness = 0
   let finalAssignResults: OpaAssignResults = []
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < OPA_ASSIGNMENT_ROUNDS; i++) {
     const eventsCopy = _.cloneDeep(events)
 
     const input: Input = {

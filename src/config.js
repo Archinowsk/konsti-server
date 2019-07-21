@@ -38,7 +38,8 @@ const prodConfig = {
       : [],
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: process.env.DEBUG === 'true' || false,
-  ASSIGNMENT_ROUNDS: 300,
+  GROUP_ASSIGNMENT_ROUNDS: 300,
+  OPA_ASSIGNMENT_ROUNDS: 300,
   autoUpdateGamesEnabled: true,
   gameUpdateInterval: 1, // minutes
 }
@@ -54,7 +55,8 @@ const stagingConfig = {
       : [],
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: process.env.DEBUG === 'true' || false,
-  ASSIGNMENT_ROUNDS: 300,
+  GROUP_ASSIGNMENT_ROUNDS: 300,
+  OPA_ASSIGNMENT_ROUNDS: 300,
   autoUpdateGamesEnabled: false,
   gameUpdateInterval: 5, // minutes
 }
@@ -67,7 +69,8 @@ const devConfig = {
   allowedCorsOrigins: ['http://localhost:8080'],
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: true,
-  ASSIGNMENT_ROUNDS: 1,
+  GROUP_ASSIGNMENT_ROUNDS: 1,
+  OPA_ASSIGNMENT_ROUNDS: 300,
   autoUpdateGamesEnabled: false,
   gameUpdateInterval: 5, // minutes
 }

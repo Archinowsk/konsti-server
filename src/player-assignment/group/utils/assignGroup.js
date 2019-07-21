@@ -11,7 +11,7 @@ export const assignGroups = (
   signedGames: $ReadOnlyArray<Game>,
   playerGroups: $ReadOnlyArray<UserArray>
 ): AssignmentStrategyResult => {
-  const { ASSIGNMENT_ROUNDS } = config
+  const { GROUP_ASSIGNMENT_ROUNDS } = config
 
   let bestScore = 0
   let players = 0
@@ -19,8 +19,7 @@ export const assignGroups = (
   let result = []
   let bestResult = []
 
-  // Run assignment ASSIGNMENT_ROUNDS times
-  for (let i = 0; i < ASSIGNMENT_ROUNDS; i++) {
+  for (let i = 0; i < GROUP_ASSIGNMENT_ROUNDS; i++) {
     result = runGroupAssignment(playerGroups, signedGames)
     if (result.score > bestScore) {
       bestScore = result.score
