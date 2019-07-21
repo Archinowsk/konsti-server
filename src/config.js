@@ -24,6 +24,7 @@ const commonConfig = {
 
   // Development and testing
   generateSignups: true,
+  saveTestAssign: false,
 }
 
 const prodConfig = {

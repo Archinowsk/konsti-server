@@ -22,4 +22,5 @@ export type Config = {|
   +CONVENTION_START_TIME: string,
   +removeOverlapSignups: boolean,
   +generateSignups: boolean,
+  +saveTestAssign: boolean,
 |}

@@ -10,7 +10,7 @@ import { saveResults } from 'api/controllers/playersController'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
 const testAssignPlayers = async (): Promise<any> => {
-  const { CONVENTION_START_TIME } = config
+  const { CONVENTION_START_TIME, saveTestAssign } = config
   const userParameter = process.argv[2]
 
   let assignmentStategy
@@ -58,14 +58,16 @@ const testAssignPlayers = async (): Promise<any> => {
       assignmentStategy
     )
 
-    try {
-      await saveResults(assignResults.results, startingTime)
-    } catch (error) {
-      logger.error(`saveResult error: ${error}`)
-    }
+    if (saveTestAssign) {
+      try {
+        await saveResults(assignResults.results, startingTime)
+      } catch (error) {
+        logger.error(`saveResult error: ${error}`)
+      }
 
-    await verifyUserSignups(startingTime)
-    await verifyResults(startingTime)
+      await verifyUserSignups(startingTime)
+      await verifyResults(startingTime)
+    }
 
     logger.info(assignResults.message)
 
