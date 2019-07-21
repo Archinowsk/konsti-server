@@ -4,7 +4,6 @@ import _ from 'lodash'
 import moment from 'moment'
 import { logger } from 'utils/logger'
 import { config } from 'config'
-import { inOrder, randomize } from 'utils/sort'
 import { calculateHappiness } from 'player-assignment/opa/utils/calculateHappiness'
 import type { AssignmentStrategyResult } from 'flow/result.flow'
 import type {
@@ -56,13 +55,24 @@ export const assignOpa = (
   let finalHappiness = 0
   let finalAssignResults: OpaAssignResults = []
 
+  const sortList = (i: number) => {
+    switch (i) {
+      case 0:
+        return _.sortBy(list, 'gain')
+      case 1:
+        return _.sortBy(list, 'size')
+      default:
+        return list.sort((a, b) => 0.5 - Math.random())
+    }
+  }
+
   for (let i = 0; i < OPA_ASSIGNMENT_ROUNDS; i++) {
     const eventsCopy = _.cloneDeep(events)
 
     const input: Input = {
       groups,
       events: eventsCopy,
-      list: i === 0 ? list.sort(inOrder) : list.sort(randomize),
+      list: sortList(i),
       updateL,
     }
 
@@ -75,9 +85,11 @@ export const assignOpa = (
       finalAssignResults = assignResults
     }
 
+    /*
     logger.info(
       `Opa assignment round ${i + 1} completed with happiness ${happiness}%`
     )
+    */
   }
 
   if (!finalAssignResults) {
