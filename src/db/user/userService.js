@@ -182,7 +182,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
     return error
   }
 
-  logger.info(`MongoDB: Signup data stored for user "${username}"`)
+  logger.debug(`MongoDB: Signup data stored for user "${username}"`)
   return signupResponse
 }
 
