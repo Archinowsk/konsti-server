@@ -16,5 +16,6 @@ export const calculateHappiness = (
       happiness = happiness + 1 / ind
     }
   })
-  return happiness
+
+  return Math.round(((happiness / groups.length) * 10000) / 100)
 }
