@@ -7,7 +7,7 @@ import { getSelectedPlayers } from 'player-assignment/utils/getSelectedPlayers'
 import { getPlayerGroups } from 'player-assignment/utils/getPlayerGroups'
 import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups'
 import { getGroupMembers } from 'player-assignment/utils/getGroupMembers'
-import { assignOpa } from 'player-assignment/opa/utils/assignOpa'
+import { runOpaAssignment } from 'player-assignment/opa/utils/runOpaAssignment'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { PlayerAssignmentResult } from 'flow/result.flow'
@@ -48,7 +48,7 @@ export const opaAssignPlayers = (
     `Selected players: ${allPlayers.length} (${numberOfIndividuals} individual, ${numberOfGroups} groups)`
   )
 
-  const result = assignOpa(signedGames, playerGroups, startingTime)
+  const result = runOpaAssignment(signedGames, playerGroups, startingTime)
 
   const newSignupData = removeOverlapSignups(result.results, players)
 
