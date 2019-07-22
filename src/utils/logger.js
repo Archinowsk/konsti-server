@@ -1,5 +1,4 @@
 /* @flow */
-/* $FlowFixMe */
 import { createLogger, format, transports } from 'winston'
 import fs from 'fs'
 import 'winston-daily-rotate-file'
@@ -18,8 +17,10 @@ const loggerLevel = () => {
   else return 'info'
 }
 
+// $FlowFixMe: Missing type annotation for `T`. `T` is a type parameter declared in function type [1] and was implicitly instantiated at call of `createLogger` [2].
 export const logger = createLogger({
   transports: [
+    // $FlowFixMe: Cannot get `transports.DailyRotateFile` because property `DailyRotateFile` is missing in object type [1].
     new transports.DailyRotateFile({
       level: 'info', // info, debug, warn, error
       filename: `${logDir}/%DATE%.log`,
