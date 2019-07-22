@@ -57,8 +57,8 @@ const stagingConfig = {
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
-  autoUpdateGamesEnabled: false,
-  gameUpdateInterval: 5, // minutes
+  autoUpdateGamesEnabled: true,
+  gameUpdateInterval: 1, // minutes
 }
 
 const devConfig = {
