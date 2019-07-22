@@ -3,9 +3,14 @@ import { logger } from 'utils/logger'
 import { Game } from 'db/game/gameSchema'
 import type { KompassiGame } from 'flow/game.flow'
 
-const removeGames = () => {
+const removeGames = async (): Promise<any> => {
   logger.info('MongoDB: remove ALL games from db')
-  return Game.deleteMany({})
+  try {
+    return await Game.deleteMany({})
+  } catch (error) {
+    logger.error(`MongoDB: Error removing games - ${error}`)
+    return error
+  }
 }
 
 // Save all games to db
@@ -76,4 +81,23 @@ const findGames = async (): Promise<any> => {
   }
 }
 
-export const game = { saveGames, findGames, removeGames }
+const updateGamePopularity = async (
+  gameId: string,
+  popularity: number
+): Promise<any> => {
+  logger.debug(`MongoDB: Update popularity for game ${gameId} to ${popularity}`)
+  try {
+    return await Game.updateOne(
+      {
+        gameId,
+      },
+      {
+        popularity,
+      }
+    )
+  } catch (error) {
+    logger.errog(`Error updating game popularity: ${error}`)
+  }
+}
+
+export const game = { saveGames, findGames, removeGames, updateGamePopularity }

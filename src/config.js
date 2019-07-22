@@ -23,7 +23,7 @@ const commonConfig = {
   removeOverlapSignups: true,
 
   // Development and testing
-  generateSignups: false,
+  generateSignups: true,
   saveTestAssign: false,
 }
 
@@ -45,7 +45,7 @@ const prodConfig = {
   autoUpdateGamesEnabled: true,
   gameUpdateInterval: 1, // minutes
   autoUpdateGamePopularityEnabled: true,
-  popularityUpdateInterval: 1, // minutes
+  popularityUpdateInterval: 10, // minutes
 }
 
 const stagingConfig = {
@@ -66,7 +66,7 @@ const stagingConfig = {
   autoUpdateGamesEnabled: true,
   gameUpdateInterval: 1, // minutes
   autoUpdateGamePopularityEnabled: true,
-  popularityUpdateInterval: 1, // minutes
+  popularityUpdateInterval: 10, // minutes
 }
 
 const devConfig = {
@@ -76,7 +76,7 @@ const devConfig = {
   jwtSecretKeyAdmin: 'admin secret',
   allowedCorsOrigins: ['http://localhost:8080'],
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
-  debug: false,
+  debug: true,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
 
@@ -84,7 +84,7 @@ const devConfig = {
   autoUpdateGamesEnabled: false,
   gameUpdateInterval: 1, // minutes
   autoUpdateGamePopularityEnabled: false,
-  popularityUpdateInterval: 1, // minutes
+  popularityUpdateInterval: 10, // minutes
 }
 
 const combineConfig = () => {
