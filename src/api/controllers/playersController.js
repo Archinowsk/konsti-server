@@ -17,18 +17,18 @@ const postPlayers: Middleware = async (
   logger.info('API call: POST /api/players')
   const startingTime = req.body.startingTime
 
-  if (!startingTime) {
-    return res.json({
-      message: 'Invalid starting time',
-      status: 'error',
-    })
-  }
-
   const authHeader = req.headers.authorization
   const validToken = validateAuthHeader(authHeader, 'admin')
 
   if (!validToken) {
     return res.sendStatus(401)
+  }
+
+  if (!startingTime) {
+    return res.json({
+      message: 'Invalid starting time',
+      status: 'error',
+    })
   }
 
   const { assignmentStrategy } = config
