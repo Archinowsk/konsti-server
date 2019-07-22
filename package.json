@@ -41,7 +41,8 @@
     "test-assign": "cross-env NODE_ENV=development babel-node src/test/testAssignPlayers.js",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
-    "test": "jest"
+    "test": "jest",
+    "update-game-popularity": "cross-env NODE_ENV=development babel-node src/test/testUpdateGamePopularity.js"
   },
   "dependencies": {
     "@babel/cli": "7.5.5",

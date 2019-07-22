@@ -40,8 +40,12 @@ const prodConfig = {
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
+
+  // Cron
   autoUpdateGamesEnabled: true,
   gameUpdateInterval: 1, // minutes
+  autoUpdateGamePopularityEnabled: true,
+  popularityUpdateInterval: 1, // minutes
 }
 
 const stagingConfig = {
@@ -57,8 +61,12 @@ const stagingConfig = {
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
+
+  // Cron
   autoUpdateGamesEnabled: true,
   gameUpdateInterval: 1, // minutes
+  autoUpdateGamePopularityEnabled: true,
+  popularityUpdateInterval: 1, // minutes
 }
 
 const devConfig = {
@@ -71,8 +79,12 @@ const devConfig = {
   debug: false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
+
+  // Cron
   autoUpdateGamesEnabled: false,
-  gameUpdateInterval: 5, // minutes
+  gameUpdateInterval: 1, // minutes
+  autoUpdateGamePopularityEnabled: false,
+  popularityUpdateInterval: 1, // minutes
 }
 
 const combineConfig = () => {

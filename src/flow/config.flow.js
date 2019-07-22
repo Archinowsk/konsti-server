@@ -24,4 +24,6 @@ export type Config = {|
   +removeOverlapSignups: boolean,
   +generateSignups: boolean,
   +saveTestAssign: boolean,
+  +autoUpdateGamePopularityEnabled: boolean,
+  +popularityUpdateInterval: number,
 |}
