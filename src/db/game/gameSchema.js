@@ -24,6 +24,7 @@ const GameSchema = new mongoose.Schema({
   intendedForExperiencedParticipants: Boolean,
   shortDescription: String,
   revolvingDoor: Boolean,
+  popularity: { type: Number, default: 0 },
 })
 
 export const Game = mongoose.model('Game', GameSchema)

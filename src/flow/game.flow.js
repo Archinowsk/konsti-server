@@ -23,6 +23,7 @@ export type Game = {
   +ageRestricted: boolean,
   +beginnerFriendly: boolean,
   +intendedForExperiencedParticipants: boolean,
+  +popularity: number,
 }
 
 export type KompassiGame = {|
