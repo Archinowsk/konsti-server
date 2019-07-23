@@ -31,7 +31,7 @@ export const getSelectedPlayers = (
     }
   })
 
-  logger.info(`Found ${selectedPlayers.length} players for this starting time`)
+  logger.debug(`Found ${selectedPlayers.length} players for this starting time`)
 
   return selectedPlayers
 }

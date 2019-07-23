@@ -19,7 +19,7 @@ export const getStartingGames = (
     }
   })
 
-  logger.info(`Found ${startingGames.length} games for this starting time`)
+  logger.debug(`Found ${startingGames.length} games for this starting time`)
 
   return startingGames
 }

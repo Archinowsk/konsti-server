@@ -19,7 +19,7 @@ export const getSignupWishes = (players: $ReadOnlyArray<User>) => {
     }
   })
 
-  logger.info(`Found ${signupWishes.length} signup wishes`)
+  logger.debug(`Found ${signupWishes.length} signup wishes`)
 
   return signupWishes
 }

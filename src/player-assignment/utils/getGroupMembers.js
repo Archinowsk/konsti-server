@@ -6,7 +6,7 @@ export const getGroupMembers = (
   groupLeaders: $ReadOnlyArray<User>,
   players: $ReadOnlyArray<User>
 ): $ReadOnlyArray<User> => {
-  logger.info('Add group members to groups')
+  logger.debug('Add group members to groups')
 
   const selectedPlayersWithSignups = []
 
@@ -31,7 +31,7 @@ export const getGroupMembers = (
     }
   }
 
-  logger.info(`Found ${selectedPlayersWithSignups.length} group members`)
+  logger.debug(`Found ${selectedPlayersWithSignups.length} group members`)
 
   return selectedPlayersWithSignups
 }

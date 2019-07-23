@@ -24,7 +24,7 @@ export const getSignedGames = (
     }
   })
 
-  logger.info(
+  logger.debug(
     `Found ${signedGames.length} games that have signup wishes and ${minAttendance}-${maxAttendance} available seats`
   )
 
