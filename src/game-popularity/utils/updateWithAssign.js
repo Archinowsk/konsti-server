@@ -11,7 +11,11 @@ export const updateWithAssign = async (
   users: $ReadOnlyArray<User>,
   games: $ReadOnlyArray<Game>
 ) => {
-  const groupedGames = _.groupBy(games, game => moment(game.startTime).format())
+  const groupedGames = _.groupBy(games, game =>
+    moment(game.startTime)
+      .utc()
+      .format()
+  )
 
   let results = []
   _.forEach(groupedGames, (value, key) => {
