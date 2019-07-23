@@ -4,13 +4,14 @@ import { logger } from 'utils/logger'
 import { Settings } from 'db/settings/settingsSchema'
 import type { Game } from 'flow/game.flow'
 
-const removeSettings = () => {
+const removeSettings = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL settings from db')
-  return Settings.deleteMany({})
+  await Settings.deleteMany({})
+  await createSettings()
 }
 
 const createSettings = async (): Promise<any> => {
-  logger.info('MongoDB: "Settings" collection not found, create empty')
+  logger.info('MongoDB: Create default "Settings" collection')
 
   const settings = new Settings()
 
@@ -65,8 +66,7 @@ const saveHidden = async (hiddenData: $ReadOnlyArray<Game>): Promise<any> => {
 }
 
 const saveSignupTime = async (signupTime: string): Promise<any> => {
-  // Make sure that the string is in correct format
-  const formattedTime = moment(signupTime)
+  const formattedTime = moment(signupTime).format()
 
   let response = null
   try {
