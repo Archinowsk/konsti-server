@@ -81,7 +81,7 @@ const findGames = async (): Promise<any> => {
   }
 }
 
-const updateGamePopularity = async (
+const saveGamePopularity = async (
   gameId: string,
   popularity: number
 ): Promise<any> => {
@@ -100,4 +100,4 @@ const updateGamePopularity = async (
   }
 }
 
-export const game = { saveGames, findGames, removeGames, updateGamePopularity }
+export const game = { saveGames, findGames, removeGames, saveGamePopularity }

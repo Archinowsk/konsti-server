@@ -30,7 +30,7 @@ export const updateWithAssign = async (
     await Promise.all(
       games.map(async game => {
         if (groupedSignups[game.gameId]) {
-          await db.game.updateGamePopularity(
+          await db.game.saveGamePopularity(
             game.gameId,
             groupedSignups[game.gameId]
           )
@@ -38,7 +38,7 @@ export const updateWithAssign = async (
       })
     )
   } catch (error) {
-    logger.error(`updateGamePopularity error: ${error}`)
+    logger.error(`saveGamePopularity error: ${error}`)
     throw new Error('Update game popularity error')
   }
 }
