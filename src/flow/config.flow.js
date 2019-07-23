@@ -26,6 +26,5 @@ export type Config = {|
   +generateSignups: boolean,
   +saveTestAssign: boolean,
   +autoUpdateGamePopularityEnabled: boolean,
-  +popularityUpdateInterval: number,
   +gamePopularityUpdateMethod: GameUpdateMethod,
 |}

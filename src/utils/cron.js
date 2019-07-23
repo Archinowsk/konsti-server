@@ -9,12 +9,11 @@ const {
   autoUpdateGamesEnabled,
   gameUpdateInterval,
   autoUpdateGamePopularityEnabled,
-  popularityUpdateInterval,
 } = config
 
-export const autoUpdateGames = (): void => {
+export const autoUpdateGames = async (): Promise<void> => {
   if (autoUpdateGamesEnabled) {
-    schedule.scheduleJob(
+    await schedule.scheduleJob(
       `*/${gameUpdateInterval} * * * *`,
       async (): Promise<any> => {
         const games = await updateGames()
@@ -22,12 +21,10 @@ export const autoUpdateGames = (): void => {
       }
     )
   }
-}
 
-export const autoUpdateGamePopularity = (): void => {
   if (autoUpdateGamePopularityEnabled) {
-    schedule.scheduleJob(
-      `*/${popularityUpdateInterval} * * * *`,
+    await schedule.scheduleJob(
+      `*/${gameUpdateInterval} * * * *`,
       async (): Promise<any> => {
         updateGamePopularity()
       }
