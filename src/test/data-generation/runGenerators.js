@@ -1,8 +1,9 @@
 /* @flow */
+import 'array-flat-polyfill'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
-import { munkresGenerator } from 'test/data-generation/munkresGenerator'
-import { groupGenerator } from 'test/data-generation/groupGenerator'
+import { munkresGenerator } from 'test/data-generation/generators/munkresGenerator'
+import { groupGenerator } from 'test/data-generation/generators/groupGenerator'
 
 const runGenerators = async (): Promise<any> => {
   const strategy = process.argv[2]
