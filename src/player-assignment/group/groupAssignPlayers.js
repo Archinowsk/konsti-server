@@ -18,7 +18,7 @@ export const groupAssignPlayers = (
   games: $ReadOnlyArray<Game>,
   startingTime: string
 ): PlayerAssignmentResult => {
-  logger.info(`***** Run Group Assignment`)
+  logger.info(`***** Run Group Assignment for ${startingTime}`)
   const startingGames = getStartingGames(games, startingTime)
   const signupWishes = getSignupWishes(players)
   const signedGames = getSignedGames(startingGames, signupWishes)
