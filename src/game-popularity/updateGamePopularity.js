@@ -3,9 +3,12 @@ import 'array-flat-polyfill'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { updateWithSignups } from 'game-popularity/utils/updateWithSignups'
+import { updateWithAssign } from 'game-popularity/utils/updateWithAssign'
+import { config } from 'config'
 
-export const updateGamePopularity = async () => {
+export const updateGamePopularity = async (): Promise<void> => {
   logger.info('Calculate game popularity')
+  const { gamePopularityUpdateMethod } = config
 
   try {
     await db.connectToDb()
@@ -27,7 +30,10 @@ export const updateGamePopularity = async () => {
     logger.error(`db.user.findGames error: ${error}`)
   }
 
-  await updateWithSignups(users, games)
+  if (gamePopularityUpdateMethod === 'signups')
+    await updateWithSignups(users, games)
+  else if (gamePopularityUpdateMethod === 'assign')
+    await updateWithAssign(users, games)
 
   logger.info('Game popularity updated')
 }

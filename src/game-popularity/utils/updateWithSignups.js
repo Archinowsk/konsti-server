@@ -7,7 +7,7 @@ import type { Game } from 'flow/game.flow'
 export const updateWithSignups = async (
   users: Array<User>,
   games: Array<Game>
-) => {
+): Promise<void> => {
   const groupLeaders = users.filter(
     user => user.groupCode !== '0' && user.groupCode === user.serial
   )
