@@ -20,7 +20,29 @@ export const opaAssignPlayers = (
 ): PlayerAssignmentResult => {
   logger.info(`***** Run Opa Assignment for ${startingTime}`)
   const startingGames = getStartingGames(games, startingTime)
+
+  if (startingGames.length === 0) {
+    logger.info('No starting games, stop!')
+    return {
+      results: [],
+      message: 'No starting games',
+      newSignupData: [],
+      algorithm: 'opa',
+    }
+  }
+
   const signupWishes = getSignupWishes(players)
+
+  if (signupWishes.length === 0) {
+    logger.info('No signup wishes, stop!')
+    return {
+      results: [],
+      message: 'Signup wishes',
+      newSignupData: [],
+      algorithm: 'opa',
+    }
+  }
+
   const signedGames = getSignedGames(startingGames, signupWishes)
 
   // Get group leaders, selected players are group leaders since group members don't have signups yet

@@ -20,7 +20,29 @@ export const groupAssignPlayers = (
 ): PlayerAssignmentResult => {
   logger.info(`***** Run Group Assignment for ${startingTime}`)
   const startingGames = getStartingGames(games, startingTime)
+
+  if (startingGames.length === 0) {
+    logger.info('No starting games, stop!')
+    return {
+      results: [],
+      message: 'No starting games',
+      newSignupData: [],
+      algorithm: 'group',
+    }
+  }
+
   const signupWishes = getSignupWishes(players)
+
+  if (signupWishes.length === 0) {
+    logger.info('No signup wishes, stop!')
+    return {
+      results: [],
+      message: 'Signup wishes',
+      newSignupData: [],
+      algorithm: 'group',
+    }
+  }
+
   const signedGames = getSignedGames(startingGames, signupWishes)
 
   // Selected players are group leaders since group members don't have signups at this point
