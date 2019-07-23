@@ -40,15 +40,20 @@ const generateUsers = async (): Promise<any> => {
 
   logger.info(`Update games from remote server`)
 
-  let kompassiGames = []
+  let games = []
   try {
-    kompassiGames = await updateGames()
+    games = await updateGames()
   } catch (error) {
-    logger.error(`updateGames error: ${error}`)
     throw new Error(`updateGames error: ${error}`)
   }
 
-  logger.info(`Games updated, found ${kompassiGames.length} games`)
+  try {
+    await db.game.saveGames(games)
+  } catch (error) {
+    throw new Error(`db.game.saveGames error: ${error}`)
+  }
+
+  logger.info(`Games updated, found ${games.length} games`)
 
   logger.info(`MongoDB: Generate new signup data`)
 
