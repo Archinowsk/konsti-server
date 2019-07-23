@@ -44,8 +44,8 @@ const prodConfig = {
 
   // Cron
   autoUpdateGamesEnabled: true,
-  gameUpdateInterval: 1, // minutes
   autoUpdateGamePopularityEnabled: true,
+  gameUpdateInterval: 5, // minutes
 }
 
 const stagingConfig = {
@@ -64,8 +64,8 @@ const stagingConfig = {
 
   // Cron
   autoUpdateGamesEnabled: true,
-  gameUpdateInterval: 1, // minutes
   autoUpdateGamePopularityEnabled: true,
+  gameUpdateInterval: 5, // minutes
 }
 
 const devConfig = {
@@ -76,13 +76,13 @@ const devConfig = {
   allowedCorsOrigins: ['http://localhost:8080'],
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: true,
-  GROUP_ASSIGNMENT_ROUNDS: 300,
+  GROUP_ASSIGNMENT_ROUNDS: 1,
   OPA_ASSIGNMENT_ROUNDS: 300,
 
   // Cron
   autoUpdateGamesEnabled: false,
-  gameUpdateInterval: 1, // minutes
   autoUpdateGamePopularityEnabled: false,
+  gameUpdateInterval: 5, // minutes
 }
 
 const combineConfig = () => {
