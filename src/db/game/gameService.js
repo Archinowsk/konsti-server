@@ -1,4 +1,5 @@
 /* @flow */
+import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { Game } from 'db/game/gameSchema'
 import type { KompassiGame } from 'flow/game.flow'
@@ -13,13 +14,13 @@ const removeGames = async (): Promise<any> => {
   }
 }
 
-// Save all games to db
-const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
-  logger.info('MongoDB: Store games to DB')
-  const gameDocs = []
+const removeDeletedGames = async (
+  games: $ReadOnlyArray<KompassiGame>
+): Promise<any> => {
+  const currentGames = await findGames()
 
-  games.forEach(game => {
-    const gameDoc = new Game({
+  const formattedGames = games.map(game => {
+    return {
       gameId: game.identifier,
       title: game.title,
       description: game.description,
@@ -43,30 +44,75 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
         game.intended_for_experienced_participants,
       shortDescription: game.short_blurb,
       revolvingDoor: game.revolving_door,
-      popularity: 0,
-    })
-
-    gameDocs.push(gameDoc)
+    }
   })
 
-  // Remove existing documents
+  const deletedGames = _.differenceBy(currentGames, formattedGames, 'gameId')
+
+  if (deletedGames && deletedGames.length !== 0) {
+    logger.info(`Found ${deletedGames.length} deleted games, remove...`)
+
+    try {
+      await Promise.all(
+        deletedGames.map(async deletedGame => {
+          await Game.deleteOne({ gameId: deletedGame.gameId })
+        })
+      )
+    } catch (error) {
+      logger.error(`Error removing deleted games: ${error}`)
+      return Promise.reject(error)
+    }
+  }
+}
+
+const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
+  logger.info('MongoDB: Store games to DB')
+
   try {
-    await removeGames()
+    await Promise.all(
+      games.map(async game => {
+        await Game.updateOne(
+          { gameId: game.identifier },
+          {
+            gameId: game.identifier,
+            title: game.title,
+            description: game.description,
+            location: game.room_name,
+            startTime: game.start_time,
+            mins: game.length,
+            tags: game.tags,
+            genres: game.genres,
+            styles: game.styles,
+            language: game.language,
+            endTime: game.end_time,
+            people: game.formatted_hosts,
+            minAttendance: game.min_players,
+            maxAttendance: game.max_players,
+            gameSystem: game.rpg_system,
+            englishOk: game.english_ok,
+            childrenFriendly: game.children_friendly,
+            ageRestricted: game.age_restricted,
+            beginnerFriendly: game.beginner_friendly,
+            intendedForExperiencedParticipants:
+              game.intended_for_experienced_participants,
+            shortDescription: game.short_blurb,
+            revolvingDoor: game.revolving_door,
+          },
+          {
+            upsert: true,
+            setDefaultsOnInsert: true,
+          }
+        )
+      })
+    )
   } catch (error) {
-    logger.error(`Error removing old db entries: ${error}`)
+    logger.error(`Error saving games to db: ${error}`)
     return Promise.reject(error)
   }
 
-  let response = null
-  try {
-    response = await Game.create(gameDocs)
-    logger.info('MongoDB: Games saved to DB succesfully')
-    return response
-  } catch (error) {
-    // TODO: Collect and return all errors, now only catches one
-    logger.error(`Error saving game to db: ${error}`)
-    return Promise.reject(error)
-  }
+  await removeDeletedGames(games)
+
+  logger.info('MongoDB: Games saved to DB succesfully')
 }
 
 const findGames = async (): Promise<any> => {
