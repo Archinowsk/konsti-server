@@ -1,6 +1,6 @@
 /* @flow */
 import { logger } from 'utils/logger'
-import { updateGamePopularity } from 'utils/updateGamePopularity'
+import { updateGamePopularity } from 'game-popularity/updateGamePopularity'
 
 const testUpdateGamePopularity = async () => {
   try {

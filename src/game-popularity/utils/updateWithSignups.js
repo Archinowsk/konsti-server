@@ -1,31 +1,13 @@
 /* @flow */
-import 'array-flat-polyfill'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
+import type { User } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 
-export const updateGamePopularity = async () => {
-  logger.info('Calculate game popularity')
-
-  try {
-    await db.connectToDb()
-  } catch (error) {
-    logger.error(`db.connectToDb error: ${error}`)
-  }
-
-  let users = []
-  try {
-    users = await db.user.findUsers()
-  } catch (error) {
-    logger.error(`db.user.findUsers error: ${error}`)
-  }
-
-  let games = []
-  try {
-    games = await db.game.findGames()
-  } catch (error) {
-    logger.error(`db.user.findGames error: ${error}`)
-  }
-
+export const updateWithSignups = async (
+  users: Array<User>,
+  games: Array<Game>
+) => {
   const groupLeaders = users.filter(
     user => user.groupCode !== '0' && user.groupCode === user.serial
   )
@@ -66,6 +48,4 @@ export const updateGamePopularity = async () => {
     logger.error(`updateGamePopularity error: ${error}`)
     throw new Error('Update game popularity error')
   }
-
-  logger.info('Game popularity updated')
 }

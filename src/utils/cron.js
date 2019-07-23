@@ -3,7 +3,7 @@ import schedule from 'node-schedule'
 import { db } from 'db/mongodb'
 import { updateGames } from 'api/controllers/gamesController'
 import { config } from 'config'
-import { updateGamePopularity } from 'utils/updateGamePopularity'
+import { updateGamePopularity } from 'game-popularity/updateGamePopularity'
 
 const {
   autoUpdateGamesEnabled,
