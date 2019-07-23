@@ -159,6 +159,7 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
   await removeDeletedGames(games)
 
   logger.info('MongoDB: Games saved to DB succesfully')
+  return findGames()
 }
 
 const findGames = async (): Promise<any> => {
