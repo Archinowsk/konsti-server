@@ -4,7 +4,6 @@ import moment from 'moment'
 import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
-import { startingTimes } from 'test/data-generation/generators/createGames'
 import type { User, SignedGame } from 'flow//user.flow'
 import type { Game } from 'flow/game.flow'
 
@@ -15,14 +14,22 @@ const getRandomSignup = (
   const signedGames = []
   let randomIndex
 
+  const startTimes = games.map(game =>
+    moment(game.startTime)
+      .utc()
+      .format()
+  )
+  const uniqueTimes = Array.from(new Set(startTimes))
+
   // Select three random games for each starting time
-  startingTimes.forEach(startingTime => {
+  uniqueTimes.forEach(startingTime => {
+    logger.debug(`Generate signups for time ${startingTime}`)
     const gamesForTime = games.filter(
       games =>
         moment(games.startTime).format() === moment(startingTime).format()
     )
 
-    const numberOfSignups = 3
+    const numberOfSignups = Math.min(gamesForTime.length, 3)
 
     for (let i = 0; i < numberOfSignups; i += 1) {
       randomIndex = faker.random.number({

@@ -5,7 +5,7 @@ import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { config } from 'config'
 
-export const startingTimes = [
+const startingTimes = [
   moment(config.CONVENTION_START_TIME)
     .add(2, 'hours')
     .format(),
