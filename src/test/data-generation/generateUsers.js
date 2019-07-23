@@ -31,7 +31,6 @@ const generateUsers = async (): Promise<any> => {
   }
 
   try {
-    logger.info(`MongoDB: Clean old user and results data`)
     await db.user.removeUsers()
     await db.results.removeResults()
   } catch (error) {
