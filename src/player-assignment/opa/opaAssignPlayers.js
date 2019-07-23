@@ -68,5 +68,5 @@ export const opaAssignPlayers = (
 
   logger.info(`----> ${message}`)
 
-  return Object.assign({ ...result, newSignupData, message })
+  return Object.assign({ ...result, newSignupData, message, algorithm: 'opa' })
 }

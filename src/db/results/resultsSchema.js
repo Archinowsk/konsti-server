@@ -14,6 +14,7 @@ const ResultsSchema = new mongoose.Schema(
       },
     ],
     startTime: Date,
+    algorithm: String,
   },
   { timestamps: true }
 )

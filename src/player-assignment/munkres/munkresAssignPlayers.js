@@ -83,5 +83,10 @@ export const munkresAssignPlayers = (
 
   logger.info(`----> ${message}`)
 
-  return { results: signupResults, message, newSignupData: [] }
+  return {
+    results: signupResults,
+    message,
+    newSignupData: [],
+    algorithm: 'munkres',
+  }
 }

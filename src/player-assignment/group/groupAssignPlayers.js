@@ -53,5 +53,5 @@ export const groupAssignPlayers = (
 
   logger.info(`----> ${result.message}`)
 
-  return Object.assign({ ...result, newSignupData })
+  return Object.assign({ ...result, newSignupData, algorithm: 'group' })
 }

@@ -74,7 +74,11 @@ const testAssignPlayers = async (): Promise<any> => {
       }
 
       try {
-        await saveResults(assignResults.results, startingTime)
+        await saveResults(
+          assignResults.results,
+          startingTime,
+          assignResults.algorithm
+        )
       } catch (error) {
         logger.error(`saveResult error: ${error}`)
       }
