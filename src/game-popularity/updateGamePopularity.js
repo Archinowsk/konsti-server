@@ -10,12 +10,6 @@ export const updateGamePopularity = async (): Promise<void> => {
   logger.info('Calculate game popularity')
   const { gamePopularityUpdateMethod } = config
 
-  try {
-    await db.connectToDb()
-  } catch (error) {
-    logger.error(`db.connectToDb error: ${error}`)
-  }
-
   let users = []
   try {
     users = await db.user.findUsers()
