@@ -62,8 +62,54 @@ const removeDeletedGames = async (
       logger.error(`Error removing deleted games: ${error}`)
       return Promise.reject(error)
     }
+
+    // await removeDeletedGamesFromUsers()
   }
 }
+
+/*
+const removeDeletedGamesFromUsers = async () => {
+  logger.info('Remove deleted games from users')
+
+  let users = null
+  try {
+    users = await db.user.findUsers()
+  } catch (error) {
+    logger.error(`findUsers error: ${error}`)
+    return Promise.reject(error)
+  }
+
+  const updatedUsers = users.map(user => {
+    return user.signedGames.filter(signedGame => {
+      return !signedGame.gameDetails
+    })
+  })
+
+  const updatedUsers2 = updatedUsers.map(user => {
+    return user.enteredGames.filter(enteredGame => {
+      return !enteredGame.gameDetails
+    })
+  })
+
+  const updatedUsers3 = updatedUsers2.map(user => {
+    return user.favoritedGames.filter(favoritedGame => {
+      return !favoritedGame
+    })
+  })
+
+  const usersWithChannges = users.filter(user => {
+    return (
+      user.signedGames.length !== updatedUsers3.signedGames.length ||
+      user.enteredGames.length !== updatedUsers3.enteredGames.length ||
+      user.favoritedGames.length !== updatedUsers3.favoritedGames.length
+    )
+  })
+
+  if (usersWithChannges && usersWithChannges.length !== 0) {
+    logger.info(`Remove deleted games from ${usersWithChannges.length} users `)
+  }
+}
+*/
 
 const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
   logger.info('MongoDB: Store games to DB')
