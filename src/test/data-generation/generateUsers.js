@@ -10,6 +10,7 @@ import {
 } from 'test/data-generation/generators/createUsers'
 import { createSignups } from 'test/data-generation/generators/createSignups'
 import { config } from 'config'
+import { updateGames } from 'utils/updateGames'
 
 const generateUsers = async (): Promise<any> => {
   const newUsersCount = 10
@@ -36,6 +37,18 @@ const generateUsers = async (): Promise<any> => {
   } catch (error) {
     logger.error(`MongoDB: Clean old data error: ${error}`)
   }
+
+  logger.info(`Update games from remote server`)
+
+  let kompassiGames = []
+  try {
+    kompassiGames = await updateGames()
+  } catch (error) {
+    logger.error(`updateGames error: ${error}`)
+    throw new Error(`updateGames error: ${error}`)
+  }
+
+  logger.info(`Games updated, found ${kompassiGames.length} games`)
 
   logger.info(`MongoDB: Generate new signup data`)
 
