@@ -27,4 +27,5 @@ export type Config = {|
   +saveTestAssign: boolean,
   +autoUpdateGamePopularityEnabled: boolean,
   +gamePopularityUpdateMethod: GameUpdateMethod,
+  +updateGamePopularityEnabled: boolean,
 |}

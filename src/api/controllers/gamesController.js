@@ -4,6 +4,7 @@ import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
 import { updateGames } from 'utils/updateGames'
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity'
+import { config } from 'config'
 import type { KompassiGame } from 'flow/game.flow'
 import type { $Request, $Response, Middleware } from 'express'
 
@@ -56,14 +57,16 @@ const postGames: Middleware = async (
     })
   }
 
-  try {
-    await updateGamePopularity()
-  } catch (error) {
-    logger.error(`updateGamePopularity: ${error}`)
-    return res.json({
-      message: 'Game popularity update failed',
-      status: 'error',
-    })
+  if (config.updateGamePopularityEnabled) {
+    try {
+      await updateGamePopularity()
+    } catch (error) {
+      logger.error(`updateGamePopularity: ${error}`)
+      return res.json({
+        message: 'Game popularity update failed',
+        status: 'error',
+      })
+    }
   }
 
   return res.json({

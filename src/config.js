@@ -41,6 +41,7 @@ const prodConfig = {
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
+  updateGamePopularityEnabled: false,
 
   // Cron
   autoUpdateGamesEnabled: true,
@@ -61,6 +62,7 @@ const stagingConfig = {
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
+  updateGamePopularityEnabled: false,
 
   // Cron
   autoUpdateGamesEnabled: true,
@@ -78,6 +80,7 @@ const devConfig = {
   debug: true,
   GROUP_ASSIGNMENT_ROUNDS: 1,
   OPA_ASSIGNMENT_ROUNDS: 300,
+  updateGamePopularityEnabled: false,
 
   // Cron
   autoUpdateGamesEnabled: false,
