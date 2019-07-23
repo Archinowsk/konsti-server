@@ -3,6 +3,7 @@ import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
 import { updateGames } from 'utils/updateGames'
+import { updateGamePopularity } from 'game-popularity/updateGamePopularity'
 import type { KompassiGame } from 'flow/game.flow'
 import type { $Request, $Response, Middleware } from 'express'
 
@@ -51,6 +52,16 @@ const postGames: Middleware = async (
   if (!gameSaveResponse) {
     return res.json({
       message: 'Games db update failed: No save response',
+      status: 'error',
+    })
+  }
+
+  try {
+    await updateGamePopularity()
+  } catch (error) {
+    logger.error(`updateGamePopularity: ${error}`)
+    return res.json({
+      message: 'Game popularity update failed',
       status: 'error',
     })
   }
