@@ -85,7 +85,7 @@ const updateGamePopularity = async (
   gameId: string,
   popularity: number
 ): Promise<any> => {
-  logger.debug(`MongoDB: Update popularity for game ${gameId} to ${popularity}`)
+  logger.debug(`MongoDB: Update game ${gameId} popularity to ${popularity}`)
   try {
     return await Game.updateOne(
       {

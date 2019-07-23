@@ -26,7 +26,23 @@ export const updateGamePopularity = async () => {
     logger.error(`db.user.findGames error: ${error}`)
   }
 
-  const signedGames = users.flatMap(user =>
+  const groupLeaders = users.filter(
+    user => user.groupCode !== '0' && user.groupCode === user.serial
+  )
+
+  const allUsers = users.map(user => {
+    const groupLeader = groupLeaders.find(
+      groupLeader =>
+        user.groupCode === groupLeader.groupCode &&
+        user.serial !== groupLeader.serial
+    )
+
+    if (groupLeader) {
+      return { ...user, signedGames: groupLeader.signedGames }
+    } else return user
+  })
+
+  const signedGames = allUsers.flatMap(user =>
     user.signedGames.map(signedGames => signedGames.gameDetails)
   )
 
