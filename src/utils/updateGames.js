@@ -2,8 +2,9 @@
 import request from 'request-promise-native'
 import { logger } from 'utils/logger'
 import { config } from 'config'
+import type { KompassiGame } from 'flow/game.flow'
 
-export const updateGames = async (): Promise<any> => {
+export const updateGames = async (): Promise<$ReadOnlyArray<KompassiGame>> => {
   logger.info('Games: GET games from remote server')
 
   const options = {
