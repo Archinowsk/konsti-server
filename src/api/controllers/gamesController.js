@@ -5,7 +5,6 @@ import { validateAuthHeader } from 'utils/authHeader'
 import { updateGames } from 'utils/updateGames'
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity'
 import { config } from 'config'
-import type { KompassiGame } from 'flow/game.flow'
 import type { $Request, $Response, Middleware } from 'express'
 
 // Update games db from master data
@@ -22,7 +21,7 @@ const postGames: Middleware = async (
     return res.sendStatus(401)
   }
 
-  let games: $ReadOnlyArray<KompassiGame> = []
+  let games = []
   try {
     games = await updateGames()
   } catch (error) {
@@ -38,6 +37,8 @@ const postGames: Middleware = async (
       status: 'error',
     })
   }
+
+  logger.info(`Found ${games.length} games`)
 
   let gameSaveResponse = null
   try {
