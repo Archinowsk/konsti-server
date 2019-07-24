@@ -73,15 +73,21 @@ const removeMovedGamesFromUsers = async (
     await Promise.all(
       users.map(async user => {
         const signedGames = user.signedGames.filter(signedGame => {
-          return movedGames.find(movedGame => {
-            return movedGame.gameId !== signedGame.gameDetails.gameId
+          const movedFound = movedGames.find(movedGame => {
+            return movedGame.gameId === signedGame.gameDetails.gameId
           })
+          if (!movedFound) {
+            return signedGame
+          }
         })
 
         const enteredGames = user.enteredGames.filter(enteredGame => {
-          return movedGames.find(movedGame => {
+          const movedFound = movedGames.find(movedGame => {
             return movedGame.gameId !== enteredGame.gameDetails.gameId
           })
+          if (!movedFound) {
+            return enteredGame
+          }
         })
 
         if (
