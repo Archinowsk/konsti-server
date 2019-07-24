@@ -45,8 +45,8 @@ const updateUser = async (newUserData: NewUserData): Promise<any> => {
     response = await User.findOneAndUpdate(
       { username: newUserData.username },
       {
-        username: newUserData.username,
-        password: newUserData.passwordHash,
+        // username: newUserData.username,
+        // password: newUserData.passwordHash,
         userGroup:
           typeof newUserData.userGroup === 'string'
             ? newUserData.userGroup
