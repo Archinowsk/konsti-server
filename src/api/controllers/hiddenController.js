@@ -33,7 +33,7 @@ const postHidden: Middleware = async (
   }
 
   try {
-    removeHiddenGamesFromUsers(settings.hiddenGames)
+    await removeHiddenGamesFromUsers(settings.hiddenGames)
   } catch (error) {
     logger.error(`removeHiddenGamesFromUsers error: ${error}`)
     return res.json({
@@ -71,21 +71,30 @@ const removeHiddenGamesFromUsers = async (
     await Promise.all(
       users.map(async user => {
         const signedGames = user.signedGames.filter(signedGame => {
-          return hiddenGames.find(hiddenGame => {
-            return hiddenGame.gameId !== signedGame.gameDetails.gameId
+          const hiddenFound = hiddenGames.find(hiddenGame => {
+            return hiddenGame.gameId === signedGame.gameDetails.gameId
           })
+          if (!hiddenFound) {
+            return signedGame
+          }
         })
 
         const enteredGames = user.enteredGames.filter(enteredGame => {
-          return hiddenGames.find(hiddenGame => {
-            return hiddenGame.gameId !== enteredGame.gameDetails.gameId
+          const hiddenFound = hiddenGames.find(hiddenGame => {
+            return hiddenGame.gameId === enteredGame.gameDetails.gameId
           })
+          if (!hiddenFound) {
+            return enteredGame
+          }
         })
 
         const favoritedGames = user.favoritedGames.filter(favoritedGame => {
-          return hiddenGames.find(hiddenGame => {
-            return hiddenGame.gameId !== favoritedGame.gameId
+          const hiddenFound = hiddenGames.find(hiddenGame => {
+            return hiddenGame.gameId === favoritedGame.gameId
           })
+          if (!hiddenFound) {
+            return favoritedGame
+          }
         })
 
         if (
