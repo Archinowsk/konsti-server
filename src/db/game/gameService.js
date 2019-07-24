@@ -1,5 +1,6 @@
 /* @flow */
 import _ from 'lodash'
+import moment from 'moment'
 import { logger } from 'utils/logger'
 import { Game } from 'db/game/gameSchema'
 import { db } from 'db/mongodb'
@@ -16,42 +17,11 @@ const removeGames = async (): Promise<any> => {
 }
 
 const removeDeletedGames = async (
-  games: $ReadOnlyArray<KompassiGame>
+  updatedGames: $ReadOnlyArray<Game>
 ): Promise<any> => {
   const currentGames = await findGames()
 
-  const formattedGames = games.map(game => {
-    // For testing
-    // if (game.identifier === 'p3646') return {}
-
-    return {
-      gameId: game.identifier,
-      title: game.title,
-      description: game.description,
-      location: game.room_name,
-      startTime: game.start_time,
-      mins: game.length,
-      tags: game.tags,
-      genres: game.genres,
-      styles: game.styles,
-      language: game.language,
-      endTime: game.end_time,
-      people: game.formatted_hosts,
-      minAttendance: game.min_players,
-      maxAttendance: game.max_players,
-      gameSystem: game.rpg_system,
-      englishOk: game.english_ok,
-      childrenFriendly: game.children_friendly,
-      ageRestricted: game.age_restricted,
-      beginnerFriendly: game.beginner_friendly,
-      intendedForExperiencedParticipants:
-        game.intended_for_experienced_participants,
-      shortDescription: game.short_blurb,
-      revolvingDoor: game.revolving_door,
-    }
-  })
-
-  const deletedGames = _.differenceBy(currentGames, formattedGames, 'gameId')
+  const deletedGames = _.differenceBy(currentGames, updatedGames, 'gameId')
 
   if (deletedGames && deletedGames.length !== 0) {
     logger.info(`Found ${deletedGames.length} deleted games, remove...`)
@@ -68,6 +38,67 @@ const removeDeletedGames = async (
     }
 
     await removeDeletedGamesFromUsers()
+  }
+}
+
+const removeMovedGamesFromUsers = async (
+  updatedGames: $ReadOnlyArray<Game>
+): Promise<any> => {
+  logger.info('Remove moved games from users')
+  const currentGames = await findGames()
+
+  const movedGames = currentGames.filter(currentGame => {
+    return updatedGames.find(updatedGame => {
+      return (
+        currentGame.gameId === updatedGame.gameId &&
+        moment(currentGame.startTime).format() !==
+          moment(updatedGame.startTime).format()
+      )
+    })
+  })
+
+  if (!movedGames || movedGames.length === 0) return
+
+  logger.info(`Found ${movedGames.length} moved games`)
+
+  let users = null
+  try {
+    users = await db.user.findUsers()
+  } catch (error) {
+    logger.error(`findUsers error: ${error}`)
+    return Promise.reject(error)
+  }
+
+  try {
+    await Promise.all(
+      users.map(async user => {
+        const signedGames = user.signedGames.filter(signedGame => {
+          return movedGames.find(movedGame => {
+            return movedGame.gameId !== signedGame.gameDetails.gameId
+          })
+        })
+
+        const enteredGames = user.enteredGames.filter(enteredGame => {
+          return movedGames.find(movedGame => {
+            return movedGame.gameId !== enteredGame.gameDetails.gameId
+          })
+        })
+
+        if (
+          user.signedGames.length !== signedGames.length ||
+          user.enteredGames.length !== enteredGames.length
+        ) {
+          await db.user.updateUser({
+            ...user,
+            signedGames,
+            enteredGames,
+          })
+        }
+      })
+    )
+  } catch (error) {
+    logger.error(`db.user.updateUser error: ${error}`)
+    throw new Error('No assign results')
   }
 }
 
@@ -120,35 +151,66 @@ const removeDeletedGamesFromUsers = async () => {
 const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
   logger.info('MongoDB: Store games to DB')
 
+  const updatedGames = games.map(game => {
+    return {
+      gameId: game.identifier,
+      title: game.title,
+      description: game.description,
+      location: game.room_name,
+      startTime: moment(game.start_time).format(),
+      mins: game.length,
+      tags: game.tags,
+      genres: game.genres,
+      styles: game.styles,
+      language: game.language,
+      endTime: game.end_time,
+      people: game.formatted_hosts,
+      minAttendance: game.min_players,
+      maxAttendance: game.max_players,
+      gameSystem: game.rpg_system,
+      englishOk: game.english_ok,
+      childrenFriendly: game.children_friendly,
+      ageRestricted: game.age_restricted,
+      beginnerFriendly: game.beginner_friendly,
+      intendedForExperiencedParticipants:
+        game.intended_for_experienced_participants,
+      shortDescription: game.short_blurb,
+      revolvingDoor: game.revolving_door,
+    }
+  })
+
+  await removeDeletedGames(updatedGames)
+  await removeMovedGamesFromUsers(updatedGames)
+
   try {
     await Promise.all(
-      games.map(async game => {
+      updatedGames.map(async game => {
         await Game.updateOne(
-          { gameId: game.identifier },
+          { gameId: game.gameId },
           {
-            gameId: game.identifier,
+            gameId: game.gameId,
             title: game.title,
             description: game.description,
-            location: game.room_name,
-            startTime: game.start_time,
-            mins: game.length,
+            location: game.location,
+            startTime: game.startTime,
+            mins: game.mins,
             tags: game.tags,
             genres: game.genres,
             styles: game.styles,
             language: game.language,
-            endTime: game.end_time,
-            people: game.formatted_hosts,
-            minAttendance: game.min_players,
-            maxAttendance: game.max_players,
-            gameSystem: game.rpg_system,
-            englishOk: game.english_ok,
-            childrenFriendly: game.children_friendly,
-            ageRestricted: game.age_restricted,
-            beginnerFriendly: game.beginner_friendly,
+            endTime: game.endTime,
+            people: game.people,
+            minAttendance: game.minAttendance,
+            maxAttendance: game.maxAttendance,
+            gameSystem: game.gameSystem,
+            englishOk: game.englishOk,
+            childrenFriendly: game.childrenFriendly,
+            ageRestricted: game.ageRestricted,
+            beginnerFriendly: game.beginnerFriendly,
             intendedForExperiencedParticipants:
-              game.intended_for_experienced_participants,
-            shortDescription: game.short_blurb,
-            revolvingDoor: game.revolving_door,
+              game.intendedForExperiencedParticipants,
+            shortDescription: game.shortDescription,
+            revolvingDoor: game.revolvingDoor,
           },
           {
             upsert: true,
@@ -161,8 +223,6 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
     logger.error(`Error saving games to db: ${error}`)
     return Promise.reject(error)
   }
-
-  await removeDeletedGames(games)
 
   logger.info('MongoDB: Games saved to DB succesfully')
   return findGames()
