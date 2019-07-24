@@ -48,6 +48,7 @@ const prodConfig = {
   autoUpdateGamesEnabled: true,
   autoUpdateGamePopularityEnabled: true,
   gameUpdateInterval: 5, // minutes
+  autoAssignPlayersEnabled: false,
 }
 
 const stagingConfig = {
@@ -70,6 +71,7 @@ const stagingConfig = {
   autoUpdateGamesEnabled: true,
   autoUpdateGamePopularityEnabled: true,
   gameUpdateInterval: 5, // minutes
+  autoAssignPlayersEnabled: false,
 }
 
 const devConfig = {
@@ -89,6 +91,7 @@ const devConfig = {
   autoUpdateGamesEnabled: false,
   autoUpdateGamePopularityEnabled: false,
   gameUpdateInterval: 5, // minutes
+  autoAssignPlayersEnabled: true,
 }
 
 const combineConfig = () => {

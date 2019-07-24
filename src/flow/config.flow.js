@@ -29,4 +29,5 @@ export type Config = {|
   +gamePopularityUpdateMethod: GameUpdateMethod,
   +updateGamePopularityEnabled: boolean,
   +useLocalProgramFile: boolean,
+  +autoAssignPlayersEnabled: boolean,
 |}
