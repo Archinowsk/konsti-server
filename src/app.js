@@ -26,7 +26,7 @@ if (config.enableAccessLog) {
 }
 
 // Parse body and populate req.body - only accepts JSON
-app.use(bodyParser.json({ limit: '100kb', type: '*/*' }))
+app.use(bodyParser.json({ limit: '1000kb', type: '*/*' }))
 
 app.use(
   '/',
@@ -54,7 +54,7 @@ app.use(
 );
 */
 
-if (process.env.NODE_ENV !== 'test') app.use(allowCORS)
+app.use(allowCORS)
 
 app.use('/api', apiRoutes)
 
