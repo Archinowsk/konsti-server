@@ -38,6 +38,46 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
   }
 }
 
+const updateUser = async (newUserData: NewUserData): Promise<any> => {
+  let response = null
+
+  try {
+    response = await User.findOneAndUpdate(
+      { username: newUserData.username },
+      {
+        username: newUserData.username,
+        password: newUserData.passwordHash,
+        userGroup:
+          typeof newUserData.userGroup === 'string'
+            ? newUserData.userGroup
+            : 'user', // Options: 'user' and 'admin'
+        serial: newUserData.serial,
+        groupCode:
+          typeof newUserData.groupCode === 'string'
+            ? newUserData.groupCode
+            : '0',
+        favoritedGames: newUserData.favoritedGames || [],
+        signedGames: newUserData.signedGames || [],
+        enteredGames: newUserData.enteredGames || [],
+      },
+      { new: true, fields: '-_id -__v -createdAt -updatedAt' }
+    )
+      .lean()
+      .populate('favoritedGames')
+      .populate('enteredGames.gameDetails')
+      .populate('signedGames.gameDetails')
+
+    logger.debug(`MongoDB: User "${newUserData.username}" updated`)
+
+    return response
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error updating user ${newUserData.username} - ${error}`
+    )
+    return error
+  }
+}
+
 const findUser = async (username: string): Promise<any> => {
   let response = null
   try {
@@ -291,4 +331,5 @@ export const user = {
   saveUser,
   findGroupMembers,
   saveGroupCode,
+  updateUser,
 }

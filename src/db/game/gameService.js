@@ -2,6 +2,7 @@
 import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { Game } from 'db/game/gameSchema'
+import { db } from 'db/mongodb'
 import type { KompassiGame } from 'flow/game.flow'
 
 const removeGames = async (): Promise<any> => {
@@ -20,6 +21,9 @@ const removeDeletedGames = async (
   const currentGames = await findGames()
 
   const formattedGames = games.map(game => {
+    // For testing
+    // if (game.identifier === 'p3646') return {}
+
     return {
       gameId: game.identifier,
       title: game.title,
@@ -63,11 +67,10 @@ const removeDeletedGames = async (
       return Promise.reject(error)
     }
 
-    // await removeDeletedGamesFromUsers()
+    await removeDeletedGamesFromUsers()
   }
 }
 
-/*
 const removeDeletedGamesFromUsers = async () => {
   logger.info('Remove deleted games from users')
 
@@ -79,37 +82,40 @@ const removeDeletedGamesFromUsers = async () => {
     return Promise.reject(error)
   }
 
-  const updatedUsers = users.map(user => {
-    return user.signedGames.filter(signedGame => {
-      return !signedGame.gameDetails
-    })
-  })
+  try {
+    await Promise.all(
+      users.map(async user => {
+        const signedGames = user.signedGames.filter(signedGame => {
+          return signedGame.gameDetails
+        })
 
-  const updatedUsers2 = updatedUsers.map(user => {
-    return user.enteredGames.filter(enteredGame => {
-      return !enteredGame.gameDetails
-    })
-  })
+        const enteredGames = user.enteredGames.filter(enteredGame => {
+          return enteredGame.gameDetails
+        })
 
-  const updatedUsers3 = updatedUsers2.map(user => {
-    return user.favoritedGames.filter(favoritedGame => {
-      return !favoritedGame
-    })
-  })
+        const favoritedGames = user.favoritedGames.filter(favoritedGame => {
+          return favoritedGame
+        })
 
-  const usersWithChannges = users.filter(user => {
-    return (
-      user.signedGames.length !== updatedUsers3.signedGames.length ||
-      user.enteredGames.length !== updatedUsers3.enteredGames.length ||
-      user.favoritedGames.length !== updatedUsers3.favoritedGames.length
+        if (
+          user.signedGames.length !== signedGames.length ||
+          user.enteredGames.length !== enteredGames.length ||
+          user.favoritedGames.length !== favoritedGames.length
+        ) {
+          await db.user.updateUser({
+            ...user,
+            signedGames,
+            enteredGames,
+            favoritedGames,
+          })
+        }
+      })
     )
-  })
-
-  if (usersWithChannges && usersWithChannges.length !== 0) {
-    logger.info(`Remove deleted games from ${usersWithChannges.length} users `)
+  } catch (error) {
+    logger.error(`db.user.updateUser error: ${error}`)
+    throw new Error('No assign results')
   }
 }
-*/
 
 const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
   logger.info('MongoDB: Store games to DB')
