@@ -81,7 +81,7 @@ export const munkresAssignPlayers = (
 
   const message = 'Munkres assignment completed'
 
-  logger.info(`----> ${message}`)
+  logger.info(`${message}`)
 
   return {
     results: signupResults,

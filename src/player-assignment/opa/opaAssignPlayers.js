@@ -88,7 +88,7 @@ export const opaAssignPlayers = (
     signedGames.length
   } (${Math.round((selectedUniqueGames.length / signedGames.length) * 100)}%)`
 
-  logger.info(`----> ${message}`)
+  logger.info(`${message}`)
 
   return Object.assign({ ...result, newSignupData, message, algorithm: 'opa' })
 }

@@ -73,7 +73,7 @@ export const groupAssignPlayers = (
 
   const newSignupData = removeOverlapSignups(result.results, players)
 
-  logger.info(`----> ${result.message}`)
+  logger.info(`${result.message}`)
 
   return Object.assign({ ...result, newSignupData, algorithm: 'group' })
 }
