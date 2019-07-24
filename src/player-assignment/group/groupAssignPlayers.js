@@ -25,7 +25,7 @@ export const groupAssignPlayers = (
     logger.info('No starting games, stop!')
     return {
       results: [],
-      message: 'No starting games',
+      message: 'Group Assign Result - No starting games',
       newSignupData: [],
       algorithm: 'group',
     }
@@ -37,7 +37,7 @@ export const groupAssignPlayers = (
     logger.info('No signup wishes, stop!')
     return {
       results: [],
-      message: 'Signup wishes',
+      message: 'Group Assign Result - No signup wishes',
       newSignupData: [],
       algorithm: 'group',
     }

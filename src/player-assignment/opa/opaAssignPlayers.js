@@ -25,7 +25,7 @@ export const opaAssignPlayers = (
     logger.info('No starting games, stop!')
     return {
       results: [],
-      message: 'No starting games',
+      message: 'Opa Assign Result - No starting games',
       newSignupData: [],
       algorithm: 'opa',
     }
@@ -37,7 +37,7 @@ export const opaAssignPlayers = (
     logger.info('No signup wishes, stop!')
     return {
       results: [],
-      message: 'Signup wishes',
+      message: 'Opa Assign Result - No signup wishes',
       newSignupData: [],
       algorithm: 'opa',
     }
