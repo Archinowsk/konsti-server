@@ -3,6 +3,7 @@ import moment from 'moment'
 import { logger } from 'utils/logger'
 import { Settings } from 'db/settings/settingsSchema'
 import type { Game } from 'flow/game.flow'
+import type { SettingsType } from 'flow/settings.flow'
 
 const removeSettings = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL settings from db')
@@ -26,7 +27,7 @@ const createSettings = async (): Promise<any> => {
   }
 }
 
-const findSettings = async (): Promise<any> => {
+const findSettings = async (): Promise<SettingsType> => {
   let response = null
   try {
     response = await Settings.findOne({}, '-_id -__v -createdAt -updatedAt')
@@ -45,7 +46,9 @@ const findSettings = async (): Promise<any> => {
   return response
 }
 
-const saveHidden = async (hiddenData: $ReadOnlyArray<Game>): Promise<any> => {
+const saveHidden = async (
+  hiddenData: $ReadOnlyArray<Game>
+): Promise<SettingsType> => {
   let response = null
   try {
     response = await Settings.findOneAndUpdate(
@@ -57,15 +60,16 @@ const saveHidden = async (hiddenData: $ReadOnlyArray<Game>): Promise<any> => {
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
     ).populate('hiddenGames')
-    logger.info(`MongoDB: Hidden data updated`)
-    return response
   } catch (error) {
     logger.error(`MongoDB: Error updating hidden data - ${error}`)
     return error
   }
+
+  logger.info(`MongoDB: Hidden data updated`)
+  return response
 }
 
-const saveSignupTime = async (signupTime: string): Promise<any> => {
+const saveSignupTime = async (signupTime: string): Promise<SettingsType> => {
   const formattedTime = moment(signupTime).format()
 
   let response = null
@@ -85,7 +89,7 @@ const saveSignupTime = async (signupTime: string): Promise<any> => {
   }
 }
 
-const saveToggleAppOpen = async (appOpen: boolean): Promise<any> => {
+const saveToggleAppOpen = async (appOpen: boolean): Promise<SettingsType> => {
   let response = null
   try {
     response = await Settings.findOneAndUpdate(
