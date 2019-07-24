@@ -6,7 +6,7 @@ import { validateAuthHeader } from 'utils/authHeader'
 import { config } from 'config'
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
-import type { Signup, Result } from 'flow/result.flow'
+import type { Signup, Result, PlayerAssignmentResult } from 'flow/result.flow'
 import type { $Request, $Response, Middleware } from 'express'
 
 // Assign players to games
@@ -31,46 +31,13 @@ const postPlayers: Middleware = async (
     })
   }
 
-  const { assignmentStrategy } = config
-
-  let users: $ReadOnlyArray<User> = []
-  try {
-    users = await db.user.findUsers()
-  } catch (error) {
-    logger.error(`findUsers error: ${error}`)
-    return res.json({
-      message: 'Players assign failure',
-      status: 'error',
-      error,
-    })
-  }
-
-  let games: $ReadOnlyArray<Game> = []
-  try {
-    games = await db.game.findGames()
-  } catch (error) {
-    logger.error(`findGames error: ${error}`)
-    return res.json({
-      message: 'Players assign failure',
-      status: 'error',
-      error,
-    })
-  }
-
   let assignResults = null
   try {
-    assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    )
+    assignResults = await doAssignment(startingTime)
   } catch (error) {
-    logger.error(`Player assign error: ${error}`)
     return res.json({
       message: 'Players assign failure',
       status: 'error',
-      error,
     })
   }
 
@@ -173,6 +140,42 @@ export const removeOverlappingSignups = async (
     logger.error(`saveSignup error: ${error}`)
     throw new Error('No assign results')
   }
+}
+
+export const doAssignment = async (
+  startingTime: string
+): Promise<PlayerAssignmentResult> => {
+  const { assignmentStrategy } = config
+
+  let users: $ReadOnlyArray<User> = []
+  try {
+    users = await db.user.findUsers()
+  } catch (error) {
+    throw new Error(`findUsers error: ${error}`)
+  }
+
+  let games: $ReadOnlyArray<Game> = []
+  try {
+    games = await db.game.findGames()
+  } catch (error) {
+    logger.error(`findGames error: ${error}`)
+    throw new Error(`findGames error: ${error}`)
+  }
+
+  let assignResults = null
+  try {
+    assignResults = assignPlayers(
+      users,
+      games,
+      startingTime,
+      assignmentStrategy
+    )
+  } catch (error) {
+    logger.error(`Player assign error: ${error}`)
+    throw new Error(`Player assign error: ${error}`)
+  }
+
+  return assignResults
 }
 
 export { postPlayers }
