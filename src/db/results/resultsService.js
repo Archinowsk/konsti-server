@@ -31,7 +31,8 @@ const findResult = async (startTime: string): Promise<any> => {
 const saveResult = async (
   signupResultData: $ReadOnlyArray<Result>,
   startTime: string,
-  algorithm: string
+  algorithm: string,
+  message: string
 ): Promise<any> => {
   const result = signupResultData.map(result => {
     return {
@@ -48,7 +49,7 @@ const saveResult = async (
   try {
     response = await Results.replaceOne(
       { startTime },
-      { startTime, result, algorithm },
+      { startTime, result, algorithm, message },
       { upsert: true }
     )
     logger.debug(

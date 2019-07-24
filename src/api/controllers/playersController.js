@@ -52,7 +52,8 @@ const postPlayers: Middleware = async (
     await saveResults(
       assignResults.results,
       startingTime,
-      assignResults.algorithm
+      assignResults.algorithm,
+      assignResults.message
     )
   } catch (error) {
     logger.error(`saveResult error: ${error}`)
@@ -91,13 +92,14 @@ const postPlayers: Middleware = async (
 export const saveResults = async (
   results: $ReadOnlyArray<Result>,
   startingTime: string,
-  algorithm: string
+  algorithm: string,
+  message: string
 ): Promise<any> => {
   try {
     logger.info(
       `Save all signup results to separate collection for starting time ${startingTime}`
     )
-    await db.results.saveResult(results, startingTime, algorithm)
+    await db.results.saveResult(results, startingTime, algorithm, message)
   } catch (error) {
     logger.error(`db.results.saveResult error: ${error}`)
     throw new Error('No assign results')
