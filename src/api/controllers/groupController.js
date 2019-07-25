@@ -18,11 +18,38 @@ const postGroup: Middleware = async (
   }
 
   const groupData = req.body.groupData
-  const { username, leader, groupCode, ownSerial, leaveGroup } = groupData
+  const {
+    username,
+    leader,
+    groupCode,
+    ownSerial,
+    leaveGroup,
+    closeGroup,
+  } = groupData
+
+  if (closeGroup) {
+    const groupMembers = await db.user.findGroupMembers(groupCode)
+
+    try {
+      await Promise.all(
+        groupMembers.map(async groupMember => {
+          await db.user.saveGroupCode('0', groupMember.username)
+        })
+      )
+    } catch (error) {
+      logger.error(`db.user.findGroupMembers: ${error}`)
+      throw new Error('Error closing group')
+    }
+
+    return res.json({
+      message: 'Group closed succesfully',
+      status: 'success',
+      groupCode: '0',
+    })
+  }
 
   if (leaveGroup) {
     const groupMembers = await db.user.findGroupMembers(groupCode)
-    let saveGroupResponse
 
     if (leader && groupMembers.length > 1) {
       return res.json({
@@ -32,6 +59,7 @@ const postGroup: Middleware = async (
       })
     }
 
+    let saveGroupResponse
     try {
       saveGroupResponse = await db.user.saveGroupCode('0', username)
     } catch (error) {
@@ -45,7 +73,7 @@ const postGroup: Middleware = async (
 
     if (saveGroupResponse) {
       return res.json({
-        message: 'Leave group group success',
+        message: 'Leave group success',
         status: 'success',
         groupCode: saveGroupResponse.groupCode,
       })
