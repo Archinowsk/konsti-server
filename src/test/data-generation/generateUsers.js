@@ -7,6 +7,7 @@ import {
   createAdminUser,
   createTestUsers,
   createUsersInGroup,
+  createHelpUser,
 } from 'test/data-generation/generators/createUsers'
 import { createSignups } from 'test/data-generation/generators/createSignups'
 import { config } from 'config'
@@ -57,6 +58,7 @@ const generateUsers = async (): Promise<any> => {
   logger.info(`MongoDB: Generate new signup data`)
 
   await createAdminUser()
+  await createHelpUser()
   await createTestUsers(5)
   await createUsers(newUsersCount)
 

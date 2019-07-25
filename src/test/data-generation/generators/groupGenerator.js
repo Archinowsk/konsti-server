@@ -5,6 +5,7 @@ import {
   createAdminUser,
   createTestUsers,
   createUsersInGroup,
+  createHelpUser,
 } from 'test/data-generation/generators/createUsers'
 import { createGames } from 'test/data-generation/generators/createGames'
 import { createSignups } from 'test/data-generation/generators/createSignups'
@@ -19,6 +20,7 @@ export const groupGenerator = async (
   const { generateSignups } = config
 
   await createAdminUser()
+  await createHelpUser()
   await createTestUsers(5)
   await createUsers(newUsersCount)
 

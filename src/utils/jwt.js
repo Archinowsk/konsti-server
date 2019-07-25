@@ -9,6 +9,8 @@ const getSecret = (userGroup: UserGroup) => {
     return config.jwtSecretKeyAdmin
   } else if (userGroup === 'user') {
     return config.jwtSecretKey
+  } else if (userGroup === 'help') {
+    return config.jwtSecretKey
   }
   return ''
 }
