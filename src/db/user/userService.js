@@ -79,6 +79,36 @@ const updateUser = async (newUserData: NewUserData): Promise<any> => {
   }
 }
 
+const updateUserPassword = async (
+  username: string,
+  password: string
+): Promise<any> => {
+  let response = null
+
+  try {
+    response = await User.findOneAndUpdate(
+      { username: username },
+      {
+        password: password,
+      },
+      { new: true, fields: '-_id -__v -createdAt -updatedAt' }
+    )
+      .lean()
+      .populate('favoritedGames')
+      .populate('enteredGames.gameDetails')
+      .populate('signedGames.gameDetails')
+
+    logger.debug(`MongoDB: Password for user "${username}" updated`)
+
+    return response
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error updating password for user ${username} - ${error}`
+    )
+    return error
+  }
+}
+
 const findUser = async (username: string): Promise<any> => {
   let response = null
   try {
@@ -99,6 +129,30 @@ const findUser = async (username: string): Promise<any> => {
     logger.info(`MongoDB: User "${username}" not found`)
   } else {
     logger.debug(`MongoDB: Found user "${username}"`)
+  }
+  return response
+}
+
+const findUserBySerial = async (serial: string): Promise<any> => {
+  let response = null
+  try {
+    response = await User.findOne(
+      { serial },
+      '-signedGames._id -enteredGames._id'
+    )
+      .lean()
+      .populate('favoritedGames')
+      .populate('enteredGames.gameDetails')
+      .populate('signedGames.gameDetails')
+  } catch (error) {
+    logger.error(`MongoDB: Error finding user with serial ${serial} - ${error}`)
+    return error
+  }
+
+  if (!response) {
+    logger.info(`MongoDB: User with serial "${serial}" not found`)
+  } else {
+    logger.debug(`MongoDB: Found user with serial "${serial}"`)
   }
   return response
 }
@@ -338,4 +392,6 @@ export const user = {
   findGroupMembers,
   saveGroupCode,
   updateUser,
+  findUserBySerial,
+  updateUserPassword,
 }

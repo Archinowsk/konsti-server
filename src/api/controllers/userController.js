@@ -6,17 +6,33 @@ import { hashPassword } from 'utils/bcrypt'
 import { validateAuthHeader } from 'utils/authHeader'
 import type { $Request, $Response, Middleware } from 'express'
 
-// Register new user
 const postUser: Middleware = async (
   req: $Request,
   res: $Response
 ): Promise<void> => {
   logger.info('API call: POST /api/user')
-  const { username, password, serial } = req.body
+  const { username, password, serial, changePassword } = req.body
 
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })
+  }
+
+  if (changePassword) {
+    try {
+      const passwordHash = await hashPassword(password)
+      db.user.updateUserPassword(username, passwordHash)
+    } catch (error) {
+      logger.error(`db.user.updateUser error: ${error}`)
+      return res.json({
+        message: 'Password change error',
+        status: 'error',
+      })
+    }
+    return res.json({
+      message: 'Password changed',
+      status: 'success',
+    })
   }
 
   let serialFound = false
@@ -148,7 +164,7 @@ const getUser: Middleware = async (
   res: $Response
 ): Promise<void> => {
   logger.info('API call: GET /api/user')
-  const username = req.query.username
+  const { username, serial } = req.query
 
   const authHeader = req.headers.authorization
   const validToken = validateAuthHeader(authHeader, 'user')
@@ -158,15 +174,31 @@ const getUser: Middleware = async (
   }
 
   let user = null
-  try {
-    user = await db.user.findUser(username)
-  } catch (error) {
-    logger.error(`db.user.findUser(): ${error}`)
-    return res.json({
-      message: 'Getting user data failed',
-      status: 'error',
-      error,
-    })
+
+  if (username) {
+    try {
+      user = await db.user.findUser(username)
+    } catch (error) {
+      logger.error(`db.user.findUser(): ${error}`)
+      return res.json({
+        message: 'Getting user data failed',
+        status: 'error',
+        error,
+      })
+    }
+  }
+
+  if (serial) {
+    try {
+      user = await db.user.findUserBySerial(serial)
+    } catch (error) {
+      logger.error(`db.user.findUser(): ${error}`)
+      return res.json({
+        message: 'Getting user data failed',
+        status: 'error',
+        error,
+      })
+    }
   }
 
   if (!user) {
@@ -176,16 +208,16 @@ const getUser: Middleware = async (
     })
   }
 
-  const returnData = {
-    enteredGames: user.enteredGames,
-    favoritedGames: user.favoritedGames,
-    signedGames: user.signedGames,
-  }
-
   return res.json({
     message: 'Getting user data success',
     status: 'success',
-    games: returnData,
+    games: {
+      enteredGames: user.enteredGames,
+      favoritedGames: user.favoritedGames,
+      signedGames: user.signedGames,
+    },
+    username: user.username,
+    serial: user.serial,
   })
 }
 
