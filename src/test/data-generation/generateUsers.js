@@ -57,7 +57,7 @@ const generateUsers = async (): Promise<any> => {
   logger.info(`MongoDB: Generate new signup data`)
 
   await createAdminUser()
-  await createTestUsers(3)
+  await createTestUsers(5)
   await createUsers(newUsersCount)
 
   for (let i = 0; i < numberOfGroups; i++) {

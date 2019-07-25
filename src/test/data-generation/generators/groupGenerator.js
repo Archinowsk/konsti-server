@@ -19,7 +19,7 @@ export const groupGenerator = async (
   const { generateSignups } = config
 
   await createAdminUser()
-  await createTestUsers(3)
+  await createTestUsers(5)
   await createUsers(newUsersCount)
 
   for (let i = 0; i < numberOfGroups; i++) {
