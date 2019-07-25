@@ -17,7 +17,7 @@ const getSettings: Middleware = async (
       message: 'Getting settings success',
       status: 'success',
       hiddenGames: response.hiddenGames,
-      signupTime: response.signupTime,
+      signupTime: response.signupTime || '',
       appOpen: response.appOpen,
     })
   } catch (error) {
