@@ -20,21 +20,22 @@ const {
 } = config
 
 export const autoUpdateGames = async (): Promise<void> => {
-  if (autoUpdateGamesEnabled) {
+  if (autoUpdateGamesEnabled || autoUpdateGamePopularityEnabled) {
     await schedule.scheduleJob(
       `*/${gameUpdateInterval} * * * *`,
       async (): Promise<any> => {
-        const games = await updateGames()
-        await db.game.saveGames(games)
-      }
-    )
-  }
+        if (autoUpdateGamesEnabled) {
+          logger.info('----> Auto update games')
+          const games = await updateGames()
+          await db.game.saveGames(games)
+          logger.info('***** Games auto update completed')
+        }
 
-  if (autoUpdateGamePopularityEnabled) {
-    await schedule.scheduleJob(
-      `*/${gameUpdateInterval} * * * *`,
-      async (): Promise<any> => {
-        updateGamePopularity()
+        if (autoUpdateGamePopularityEnabled) {
+          logger.info('----> Auto update game popularity')
+          await updateGamePopularity()
+          logger.info('***** Game popularity auto update completed')
+        }
       }
     )
   }
@@ -90,6 +91,8 @@ export const autoAssignPlayers = async (): Promise<void> => {
           logger.error(`removeOverlappingSignups error: ${error}`)
         }
       }
+
+      logger.info('***** Automatic player assignment completed')
     })
   }
 }
