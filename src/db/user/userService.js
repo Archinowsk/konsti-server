@@ -138,7 +138,7 @@ const findGroupMembers = async (groupCode: string): Promise<any> => {
   if (!response || response.length === 0) {
     logger.info(`MongoDB: group "${groupCode}" not found`)
   } else {
-    logger.info(
+    logger.debug(
       `MongoDB: Found group "${groupCode}" with ${response.length} members`
     )
   }
