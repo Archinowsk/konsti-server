@@ -1,4 +1,5 @@
 /* @flow */
+import moment from 'moment'
 import { logger } from 'utils/logger'
 import { User } from 'db/user/userSchema'
 import type { Result, Signup } from 'flow/result.flow'
@@ -280,30 +281,35 @@ const saveFavorite = async (favoriteData: Object): Promise<any> => {
   }
 }
 
+const getEnteredGames = async (signupResult: Result): Promise<any> => {
+  const user = await findUser(signupResult.username)
+
+  if (user.enteredGames.length === 0) {
+    return signupResult.enteredGame
+  }
+
+  // Remove results for same time
+  const enteredGames = user.enteredGames.filter(enteredGame => {
+    return (
+      moment(enteredGame.time).format() !==
+      moment(signupResult.enteredGame.time).format()
+    )
+  })
+
+  return enteredGames.concat([signupResult.enteredGame])
+}
+
 const saveSignupResult = async (signupResult: Result): Promise<any> => {
   let response = null
+  const newEnteredGames = await getEnteredGames(signupResult)
+
   try {
-    const user = await findUser(signupResult.username)
-
-    let enteredGames = []
-    if (user.enteredGames.length === 0) {
-      enteredGames = signupResult.enteredGame
-    } else {
-      enteredGames = user.enteredGames.map(enteredGame => {
-        if (enteredGame.time === signupResult.enteredGame.time) {
-          return signupResult.enteredGame
-        } else {
-          return enteredGame
-        }
-      })
-    }
-
     response = await User.updateOne(
       {
         username: signupResult.username,
       },
       {
-        enteredGames,
+        enteredGames: newEnteredGames,
       }
     )
 

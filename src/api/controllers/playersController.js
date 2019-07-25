@@ -119,8 +119,8 @@ const saveUserSignupResults = async (
 ): Promise<any> => {
   try {
     await Promise.all(
-      results.map(async assignResult => {
-        await db.user.saveSignupResult(assignResult)
+      results.map(async result => {
+        await db.user.saveSignupResult(result)
       })
     )
   } catch (error) {
