@@ -54,7 +54,7 @@ export const assignOpa = (
     }
   }
 
-  logger.info(`Opa assignment completed with happiness ${finalHappiness}%`)
+  logger.debug(`Opa assignment completed with happiness ${finalHappiness}%`)
 
   return finalAssignResults
 }

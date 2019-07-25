@@ -88,8 +88,8 @@ const devConfig = {
   updateGamePopularityEnabled: true,
 
   // Cron
-  autoUpdateGamesEnabled: false,
-  autoUpdateGamePopularityEnabled: false,
+  autoUpdateGamesEnabled: true,
+  autoUpdateGamePopularityEnabled: true,
   gameUpdateInterval: 5, // minutes
   autoAssignPlayersEnabled: true,
 }

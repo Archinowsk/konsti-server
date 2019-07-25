@@ -18,7 +18,7 @@ export const groupAssignPlayers = (
   games: $ReadOnlyArray<Game>,
   startingTime: string
 ): PlayerAssignmentResult => {
-  logger.info(`***** Run Group Assignment for ${startingTime}`)
+  logger.debug(`***** Run Group Assignment for ${startingTime}`)
   const startingGames = getStartingGames(games, startingTime)
 
   if (startingGames.length === 0) {
@@ -73,7 +73,7 @@ export const groupAssignPlayers = (
 
   const newSignupData = removeOverlapSignups(result.results, players)
 
-  logger.info(`${result.message}`)
+  logger.debug(`${result.message}`)
 
   return Object.assign({ ...result, newSignupData, algorithm: 'group' })
 }

@@ -18,7 +18,7 @@ export const opaAssignPlayers = (
   games: $ReadOnlyArray<Game>,
   startingTime: string
 ): PlayerAssignmentResult => {
-  logger.info(`***** Run Opa Assignment for ${startingTime}`)
+  logger.debug(`***** Run Opa Assignment for ${startingTime}`)
   const startingGames = getStartingGames(games, startingTime)
 
   if (startingGames.length === 0) {
@@ -88,7 +88,7 @@ export const opaAssignPlayers = (
     signedGames.length
   } (${Math.round((selectedUniqueGames.length / signedGames.length) * 100)}%)`
 
-  logger.info(`${message}`)
+  logger.debug(`${message}`)
 
   return Object.assign({ ...result, newSignupData, message, algorithm: 'opa' })
 }

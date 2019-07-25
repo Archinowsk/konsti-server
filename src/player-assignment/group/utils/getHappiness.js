@@ -27,5 +27,5 @@ export const getHappiness = (
 
   const groups = getGroups(playerGroups, startingTime)
   const happiness = calculateHappiness(_.uniqBy(opaAssignment, 'id'), groups)
-  logger.info(`Group assignment completed with happiness ${happiness}%`)
+  logger.debug(`Group assignment completed with happiness ${happiness}%`)
 }

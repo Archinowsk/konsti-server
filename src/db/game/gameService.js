@@ -230,7 +230,7 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
     return Promise.reject(error)
   }
 
-  logger.info('MongoDB: Games saved to DB succesfully')
+  logger.debug('MongoDB: Games saved to DB succesfully')
   return findGames()
 }
 
