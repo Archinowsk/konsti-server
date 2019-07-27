@@ -83,7 +83,7 @@ const removeMovedGamesFromUsers = async (
 
         const enteredGames = user.enteredGames.filter(enteredGame => {
           const movedFound = movedGames.find(movedGame => {
-            return movedGame.gameId !== enteredGame.gameDetails.gameId
+            return movedGame.gameId === enteredGame.gameDetails.gameId
           })
           if (!movedFound) {
             return enteredGame
