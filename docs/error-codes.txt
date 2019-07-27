@@ -19,6 +19,10 @@ Groups
 35: Failed to update group (add new or leave)
 36: Leader cannot leave non-empty group
 
+Signup
+
+41: Signup made after the game assignment
+
 HTTP
 
 401: Unauthorized, invalid jtw token

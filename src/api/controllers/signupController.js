@@ -1,4 +1,5 @@
 /* @flow */
+import moment from 'moment'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'
@@ -19,7 +20,30 @@ const postSignup: Middleware = async (
     return res.sendStatus(401)
   }
 
-  const { selectedGames, username } = signupData
+  const { selectedGames, username, signupTime } = signupData
+
+  if (!signupTime) {
+    return res.json({
+      message: 'Signup failure',
+      status: 'error',
+    })
+  }
+
+  const timeNow = moment()
+
+  if (signupTime !== 'all' && moment(signupTime).isBefore(timeNow)) {
+    const error = `Signup time ${moment(
+      signupTime
+    ).format()} does not match: too late`
+
+    logger.debug(error)
+    return res.json({
+      code: 41,
+      message: 'Signup failure',
+      status: 'error',
+      error,
+    })
+  }
 
   const modifiedSignupData = {
     signedGames: selectedGames,
