@@ -15,7 +15,7 @@ const testVerifyResults = async () => {
   try {
     await verifyResults(startTime)
   } catch (error) {
-    logger.error(`Error verifying results for time ${startTime}`)
+    logger.error(`Error verifying results for time ${startTime}: ${error}`)
   }
 
   process.exit()

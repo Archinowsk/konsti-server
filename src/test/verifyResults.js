@@ -94,6 +94,12 @@ export const verifyResults = async (startTime: string): Promise<any> => {
       return
     }
 
+    if (!result.enteredGame.gameDetails) {
+      logger.error(`Game details missing for result`)
+      console.log(result)
+      return
+    }
+
     users.forEach(user => {
       // console.log(`user: ${user.username}`)
 
@@ -118,11 +124,6 @@ export const verifyResults = async (startTime: string): Promise<any> => {
 
             if (!enteredGame.gameDetails) {
               logger.error(`Game details missing for entered game`)
-            }
-
-            if (!result.enteredGame.gameDetails) {
-              logger.error(`Game details missing for result`)
-              console.log(result)
             }
 
             if (
