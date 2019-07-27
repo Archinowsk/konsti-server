@@ -43,7 +43,8 @@
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
     "test": "jest",
-    "update-game-popularity": "cross-env NODE_ENV=development babel-node src/test/testUpdateGamePopularity.js"
+    "update-game-popularity": "cross-env NODE_ENV=development babel-node src/test/testUpdateGamePopularity.js",
+    "verify-results": "cross-env NODE_ENV=development babel-node src/test/testVerifyResults.js"
   },
   "dependencies": {
     "@babel/cli": "7.5.5",
