@@ -108,7 +108,7 @@ const removeMovedGamesFromUsers = async (
   }
 }
 
-const removeDeletedGamesFromUsers = async () => {
+export const removeDeletedGamesFromUsers = async () => {
   logger.info('Remove deleted games from users')
 
   let users = null
