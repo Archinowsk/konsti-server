@@ -11,6 +11,7 @@ import {
   saveResults,
   removeOverlappingSignups,
 } from 'api/controllers/playersController'
+import { sleep } from 'utils/sleep'
 
 const {
   autoUpdateGamesEnabled,
@@ -53,7 +54,12 @@ export const autoAssignPlayers = async (): Promise<void> => {
         .add(1, 'seconds')
         .format()
 
+      // Wait for final signup requests
+      logger.info('Wait 10s for final requests')
+      await sleep(10000)
+
       // const startTime = '2019-07-26T14:00:00Z'
+      logger.info('Waiting done, start assignment')
       const assignResults = await doAssignment(startTime)
 
       // console.log('>>> assignResults: ', assignResults)
