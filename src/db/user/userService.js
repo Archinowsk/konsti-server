@@ -3,7 +3,7 @@ import moment from 'moment'
 import { logger } from 'utils/logger'
 import { User } from 'db/user/userSchema'
 import type { Result, Signup } from 'flow/result.flow'
-import type { NewUserData } from 'flow/user.flow'
+import type { NewUserData, SignedGame } from 'flow/user.flow'
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db')
@@ -335,11 +335,13 @@ const saveFavorite = async (favoriteData: Object): Promise<any> => {
   }
 }
 
-const getEnteredGames = async (signupResult: Result): Promise<any> => {
+const getEnteredGames = async (
+  signupResult: Result
+): Promise<$ReadOnlyArray<SignedGame>> => {
   const user = await findUser(signupResult.username)
 
   if (user.enteredGames.length === 0) {
-    return signupResult.enteredGame
+    return [signupResult.enteredGame]
   }
 
   // Remove results for same time
@@ -354,9 +356,9 @@ const getEnteredGames = async (signupResult: Result): Promise<any> => {
 }
 
 const saveSignupResult = async (signupResult: Result): Promise<any> => {
-  let response = null
   const newEnteredGames = await getEnteredGames(signupResult)
 
+  let response = null
   try {
     response = await User.updateOne(
       {
