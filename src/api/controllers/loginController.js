@@ -50,6 +50,26 @@ const postLogin: Middleware = async (
         })
       }
 
+      let settingsResponse
+      try {
+        settingsResponse = await db.settings.findSettings()
+      } catch (error) {
+        logger.error(`Login: ${error}`)
+        return res.json({
+          message: 'User login error',
+          status: 'error',
+          error,
+        })
+      }
+
+      if (!settingsResponse.appOpen && user.userGroup === 'user') {
+        return res.json({
+          code: 22,
+          message: 'User login disabled',
+          status: 'error',
+        })
+      }
+
       return res.json({
         message: 'Session restore success',
         status: 'success',
