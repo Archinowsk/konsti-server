@@ -45,10 +45,10 @@ const prodConfig = {
   updateGamePopularityEnabled: true,
 
   // Cron
-  autoUpdateGamesEnabled: true,
-  autoUpdateGamePopularityEnabled: true,
+  autoUpdateGamesEnabled: false,
+  autoUpdateGamePopularityEnabled: false,
   gameUpdateInterval: 4, // minutes
-  autoAssignPlayersEnabled: true,
+  autoAssignPlayersEnabled: false,
 }
 
 const stagingConfig = {
@@ -68,10 +68,10 @@ const stagingConfig = {
   updateGamePopularityEnabled: true,
 
   // Cron
-  autoUpdateGamesEnabled: true,
-  autoUpdateGamePopularityEnabled: true,
+  autoUpdateGamesEnabled: false,
+  autoUpdateGamePopularityEnabled: false,
   gameUpdateInterval: 4, // minutes
-  autoAssignPlayersEnabled: true,
+  autoAssignPlayersEnabled: false,
 }
 
 const devConfig = {
