@@ -50,6 +50,15 @@ const postLogin: Middleware = async (
         })
       }
 
+      if (!user) {
+        logger.info(`Login: User "${username}" not found`)
+        return res.json({
+          code: 21,
+          message: 'User login error',
+          status: 'error',
+        })
+      }
+
       let settingsResponse
       try {
         settingsResponse = await db.settings.findSettings()
@@ -94,7 +103,6 @@ const postLogin: Middleware = async (
     })
   }
 
-  // User does not exist
   if (!user) {
     logger.info(`Login: User "${username}" not found`)
     return res.json({
