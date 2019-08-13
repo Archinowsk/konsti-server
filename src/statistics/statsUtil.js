@@ -5,7 +5,7 @@ const getType = () => {
   const getType = process.argv[3]
 
   if (!getType) {
-    console.error('Give valid type parameter: games, results, users')
+    console.error('Give valid type parameter: games, results, users, feedbacks')
     process.exit()
   }
 
@@ -16,7 +16,7 @@ export const getYear = () => {
   const year = parseInt(process.argv[2], 10)
 
   if (!year) {
-    console.error('Give valid year parameter: 2017, 2018')
+    console.error('Give valid year parameter: 2017, 2018, 2019')
     process.exit()
   }
 
@@ -35,7 +35,7 @@ export const readJson = () => {
   return data
 }
 
-export const writeJson = (data: Array<any>) => {
+export const writeJson = (data: Array<any> | Object) => {
   const year = getYear()
   const type = getType()
 
@@ -49,7 +49,9 @@ export const writeJson = (data: Array<any>) => {
     'utf8'
   )
 
-  console.info(`Saved ${data.length} ${type}`)
+  console.info(
+    `Saved ${data.length} ${type} to file src/statistics/datafiles/${year}/temp/${type}-fixed.json`
+  )
 }
 
 export const toPercent = (num: number) => {
