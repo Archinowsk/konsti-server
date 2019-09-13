@@ -6,8 +6,8 @@ export const getPlayerGroups = (
 ): $ReadOnlyArray<UserArray> => {
   // Group all unique group numbers
   const groupedUsers = players.reduce((acc, player) => {
-    acc[player['groupCode']] = acc[player['groupCode']] || []
-    acc[player['groupCode']].push(player)
+    acc[player.groupCode] = acc[player.groupCode] || []
+    acc[player.groupCode].push(player)
     return acc
   }, {})
 

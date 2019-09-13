@@ -46,6 +46,7 @@ module.exports = {
     // eslint
     'no-unused-expressions': 'off', // False warnings with Flow
     'no-param-reassign': 'error',
+    'no-process-exit': 'off', // There are valid uses for process.exit()
 
     // eslint-plugin-flowtype
     'flowtype/no-unused-expressions': 'error', // Fixed version of no-unused-expressions
@@ -55,7 +56,7 @@ module.exports = {
 
     // eslint-plugin-node
     'node/no-unsupported-features/es-syntax': 'off', // Import and export declarations are not supported yet
-    'no-process-exit': 'off', // There are valid uses for process.exit()
+    'node/no-missing-import': 'off', // Bugging with eslint-plugin-module-resolver and handled by flow
 
     // eslint-plugin-import
     // Useful but disabled because slows down ESLint
