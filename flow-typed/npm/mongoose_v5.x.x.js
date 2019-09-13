@@ -1,5 +1,5 @@
-// flow-typed signature: 75bb13ef37ff8ca612e2e266c22b45c8
-// flow-typed version: aeb7115aaa/mongoose_v5.x.x/flow_>=v0.50.x
+// flow-typed signature: 124ad483ae3897b49b31da91af6f1f05
+// flow-typed version: c6154227d1/mongoose_v5.x.x/flow_>=v0.104.x
 
 /*** FIX broken globals import 'bson' (((( ***/
 // import 'bson';
@@ -21,7 +21,7 @@ declare class bson$Decimal128 {
   constructor(bytes: Buffer): this;
   static fromString(string: string): bson$Decimal128;
   toString(): string;
-  toJSON(): { $numberDecimal: string };
+  toJSON(): { $numberDecimal: string, ... };
 }
 /*** end FIX broken globals import 'bson' (((( ***/
 
@@ -39,9 +39,7 @@ type Mongoose$Types = {|
   Decimal128: Class<bson$Decimal128>
 |};
 
-type SchemaFields = {
-  [fieldName: string]: any
-};
+type SchemaFields = { [fieldName: string]: any, ... };
 
 type ToObjectOpts<Doc> = {
   getters?: boolean,
@@ -50,7 +48,8 @@ type ToObjectOpts<Doc> = {
   transform?: (doc: Doc, ret: Object, options: Object) => any,
   depopulate?: boolean,
   versionKey?: boolean,
-  retainKeyOrder?: boolean
+  retainKeyOrder?: boolean,
+  ...
 };
 
 type SchemaOpts<Doc> = {
@@ -76,15 +75,15 @@ type SchemaOpts<Doc> = {
   timestamps?:
     | boolean
     | {
-        createdAt?: string,
-        updatedAt?: string
-      },
-  discriminatorKey?: string
+    createdAt?: string,
+    updatedAt?: string,
+    ...
+  },
+  discriminatorKey?: string,
+  ...
 };
 
-type IndexFields = {
-  [fieldName: string]: 1 | -1 | true | false | string
-};
+type IndexFields = { [fieldName: string]: 1 | -1 | true | false | string, ... };
 
 type IndexOpts = {|
   background?: boolean,
@@ -96,13 +95,9 @@ type IndexOpts = {|
   weights?: Object
 |};
 
-type Mongoose$SchemaMethods = {
-  [name: string]: Function
-};
+type Mongoose$SchemaMethods = { [name: string]: Function, ... };
 
-type Mongoose$SchemaStatics = {
-  [name: string]: Function
-};
+type Mongoose$SchemaStatics = { [name: string]: Function, ... };
 
 type VirtualType = Object;
 
@@ -163,9 +158,7 @@ declare class Mongoose$Schema<Doc> {
   plugin<Opts>(plugin: Mongoose$SchemaPlugin<Opts>, opts: Opts): void;
   add(fields: SchemaFields, prefix?: string): void;
   loadClass(cls: Class<Doc>): void;
-  paths: {
-    [name: string]: Mongoose$SchemaField<this>
-  };
+  paths: { [name: string]: Mongoose$SchemaField<this>, ... };
   clone(): Mongoose$Schema<Doc>;
   eachPath(fn: (path: string, fieldOpts: Object) => void): this;
   get(optionKey: string): any;
@@ -177,16 +170,16 @@ declare class Mongoose$Schema<Doc> {
   remove(path: string | string[]): void;
   requiredPaths(invalidate?: boolean): string[];
   method(method: string, fn: Function): this;
-  method(methods: { [method: string]: Function }): this;
+  method(methods: { [method: string]: Function, ... }): this;
   static (method: string, fn: Function): this;
-  static (methods: { [method: string]: Function }): this;
+  static (methods: { [method: string]: Function, ... }): this;
   virtual(name: string, opts?: Object): VirtualType;
   virtualpath(name: string): ?VirtualType;
   indexTypes(): string[];
   reserved: string[];
   obj: SchemaOpts<Doc>;
   _indexes: Array<
-    [{ [fieldName: string]: number | string }, { [optionName: string]: mixed }]
+    [{ [fieldName: string]: number | string, ... }, { [optionName: string]: mixed, ... }]
   >;
 }
 
@@ -194,12 +187,11 @@ type Mongoose$SchemaField<Schema> = {
   path?: string,
   instance: string,
   caster?: ?Mongoose$SchemaField<Schema>,
-  options?: ?{
-    description: ?string
-  },
+  options?: ?{ description: ?string, ... },
   enumValues?: ?(string[]),
   schema?: Schema,
-  _index?: ?{ [optionName: string]: mixed }
+  _index?: ?{ [optionName: string]: mixed, ... },
+  ...
 };
 
 declare class Mongoose$SchemaVirtualField {
@@ -213,7 +205,8 @@ type UpdateResult = {
   nMatched: number,
   nUpserted: number,
   nModified: number,
-  ok?: boolean
+  ok?: boolean,
+  ...
 };
 
 // A list of Model static methods: http://mongoosejs.com/docs/api.html#Model
@@ -275,7 +268,8 @@ declare class Mongoose$Document {
       near: [number, number],
       maxDistance: number,
       limit?: number,
-      lean?: boolean
+      lean?: boolean,
+      ...
     }
   ): Promise<Array<this>>;
   static hydrate(data: Object): Mongoose$Document;
@@ -298,17 +292,17 @@ declare class Mongoose$Document {
     criteria: Object,
     update: Object,
     options?: Object
-  ): Promise<UpdateResult> & { exec(): Promise<UpdateResult> };
+  ): Promise<UpdateResult> & { exec(): Promise<UpdateResult>, ... };
   static updateMany(
     criteria: Object,
     update: Object,
     options?: Object
-  ): Promise<UpdateResult> & { exec(): Promise<UpdateResult> };
+  ): Promise<UpdateResult> & { exec(): Promise<UpdateResult>, ... };
   static updateOne(
     criteria: Object,
     update: Object,
     options?: Object
-  ): Promise<UpdateResult> & { exec(): Promise<UpdateResult> };
+  ): Promise<UpdateResult> & { exec(): Promise<UpdateResult>, ... };
   static watch(pipeline?: Array<any>, opts?: Object): events$EventEmitter;
   static where(criteria?: Object): Mongoose$Query<this, this>;
   static collection: Mongoose$Collection;
@@ -390,7 +384,8 @@ declare class Mongoose$Query<Result, Doc> extends Promise<Result> {
       runValidators?: boolean,
       setDefaultsOnInsert?: boolean,
       strict?: boolean,
-      overwrite?: boolean
+      overwrite?: boolean,
+      ...
     }
   ): Mongoose$Query<any, Doc>;
   updateMany(
@@ -418,7 +413,12 @@ declare class Mongoose$Query<Result, Doc> extends Promise<Result> {
   findOne(criteria?: Object, projection?: Object): Mongoose$Query<?Doc, Doc>;
   findOneAndRemove(
     criteria: Object,
-    opts?: { sort?: Object, maxTimeMS?: number, passRawResult?: boolean }
+    opts?: {
+      sort?: Object,
+      maxTimeMS?: number,
+      passRawResult?: boolean,
+      ...
+    }
   ): Mongoose$Query<?Doc, Doc>;
   findOneAndUpdate(
     criteria: Object,
@@ -431,7 +431,8 @@ declare class Mongoose$Query<Result, Doc> extends Promise<Result> {
       runValidators?: boolean,
       setDefaultsOnInsert?: boolean,
       passRawResult?: boolean,
-      runSettersOnQuery?: boolean
+      runSettersOnQuery?: boolean,
+      ...
     }
   ): Mongoose$Query<?Doc, Doc>;
   getQuery(): Object;
@@ -444,7 +445,8 @@ declare class Mongoose$Query<Result, Doc> extends Promise<Result> {
     path: string,
     select?: string,
     match?: Object,
-    options?: Object
+    options?: Object,
+    ...
   }): Mongoose$Query<Result, Doc>;
   read(
     pref:
@@ -496,8 +498,8 @@ declare class Aggregate$Query extends Promise<any> {
   replaceRoot(opts?: Object): Aggregate$Query;
   sample(n: number): Aggregate$Query;
   skip(n: number): Aggregate$Query;
-  sort(options: {} | string): Aggregate$Query;
-  sortByCount(options: {} | string): Aggregate$Query;
+  sort(options: {...} | string): Aggregate$Query;
+  sortByCount(options: {...} | string): Aggregate$Query;
   unwind(str: string): Aggregate$Query;
 }
 
@@ -538,9 +540,8 @@ type ConnectionConnectOpts = {
   reconnectTries?: number,
   reconnectInterval?: number,
   useMongoClient?: boolean,
-  config?: {
-    autoIndex?: boolean
-  }
+  config?: { autoIndex?: boolean, ... },
+  ...
 };
 type ConnectionEventTypes = "error" | "open" | "disconnected" | string;
 
@@ -560,7 +561,7 @@ declare class Mongoose$Connection {
   db: any;
   collections: Mongoose$Collection[];
   readyState: number;
-  models: { [name: string]: Mongoose$Document };
+  models: { [name: string]: Mongoose$Document, ... };
 
   // EventEmitter
   addListener(event: ConnectionEventTypes, listener: Function): this;
@@ -603,6 +604,7 @@ declare module "mongoose" {
     connections: Mongoose$Connection[],
     Query: typeof Mongoose$Query,
     disconnect: (fn?: (error: any) => void) => Promise<void>,
-    Model: typeof Mongoose$Document
+    Model: typeof Mongoose$Document,
+    ...
   };
 }
