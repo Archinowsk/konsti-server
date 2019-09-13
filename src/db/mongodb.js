@@ -25,23 +25,20 @@ const connectToDb = async (): Promise<any> => {
     })
     logger.info('MongoDB: Connection succesful')
   } catch (error) {
-    logger.error(`MongoDB: Error connecting to DB: ${error}`)
-    process.exit()
+    throw new Error(`MongoDB: Error connecting to DB: ${error}`)
   }
 }
 
-const gracefulExit = () => {
+const gracefulExit = async () => {
   const { dbConnString } = config
 
-  mongoose.connection.close(
-    // $FlowFixMe
-    () => {
-      logger.info(
-        `MongoDB: ${dbConnString} is disconnected through app termination`
-      )
-      process.exit()
-    }
-  )
+  try {
+    await mongoose.connection.close()
+  } catch (error) {
+    throw new Error(`Error shutting down db connection: ${error}`)
+  }
+
+  logger.info(`MongoDB: Connection ${dbConnString} closed`)
 }
 
 // If the Node process ends, close the Mongoose connection
@@ -50,6 +47,7 @@ process.on('SIGTERM', gracefulExit)
 
 export const db = {
   connectToDb,
+  gracefulExit,
   user,
   feedback,
   game,

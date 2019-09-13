@@ -17,7 +17,11 @@ const testUpdateGamePopularity = async () => {
     logger.error(`updateGamePopularity error: ${error}`)
   }
 
-  process.exit()
+  try {
+    await db.gracefulExit()
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 testUpdateGamePopularity()

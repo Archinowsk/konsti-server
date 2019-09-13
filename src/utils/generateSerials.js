@@ -36,7 +36,11 @@ const generateSerials = async (): Promise<any> => {
     }
   }
 
-  process.exit()
+  try {
+    await db.gracefulExit()
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 generateSerials()

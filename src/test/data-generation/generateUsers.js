@@ -21,8 +21,7 @@ const generateUsers = async (): Promise<any> => {
   const { generateSignups } = config
 
   if (process.env.NODE_ENV === 'production') {
-    logger.error(`Signup creation not allowed in production`)
-    process.exit()
+    throw new Error(`Signup creation not allowed in production`)
   }
 
   try {
@@ -71,7 +70,11 @@ const generateUsers = async (): Promise<any> => {
     await createSignups('group')
   }
 
-  process.exit()
+  try {
+    await db.gracefulExit()
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 generateUsers()

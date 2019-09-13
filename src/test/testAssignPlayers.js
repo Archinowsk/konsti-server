@@ -20,16 +20,14 @@ const testAssignPlayers = async (): Promise<any> => {
   try {
     assignmentStategy = getAssignmentStategy(userParameter)
   } catch (error) {
-    logger.error(
+    throw new Error(
       'Give strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
     )
-    process.exit()
   }
 
   if (assignmentStategy) {
     if (process.env.NODE_ENV === 'production') {
-      logger.error(`Player allocation not allowed in production`)
-      process.exit()
+      throw new Error(`Player allocation not allowed in production`)
     }
 
     try {
@@ -88,7 +86,11 @@ const testAssignPlayers = async (): Promise<any> => {
       await verifyResults(startingTime)
     }
 
-    process.exit()
+    try {
+      await db.gracefulExit()
+    } catch (error) {
+      logger.error(error)
+    }
   }
 }
 

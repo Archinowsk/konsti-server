@@ -15,8 +15,7 @@ const server = app.listen(app.get('port'), () => {
   if (typeof process.env.NODE_ENV === 'string') {
     logger.info(`Node environment: ${process.env.NODE_ENV}`)
   } else {
-    logger.error(`Node environment (NODE_ENV) missing`)
-    process.exit()
+    throw new Error(`Node environment NODE_ENV missing`)
   }
   logger.info(`Express: Server started on port ${server.address().port}`)
 })

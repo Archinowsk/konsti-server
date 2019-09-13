@@ -48,7 +48,6 @@ module.exports = {
     // eslint
     'no-unused-expressions': 'off', // False warnings with Flow
     'no-param-reassign': 'error',
-    'no-process-exit': 'off', // There are valid uses for process.exit()
 
     // eslint-plugin-flowtype
     'flowtype/no-unused-expressions': 'error', // Fixed version of no-unused-expressions

@@ -9,13 +9,11 @@ const runGenerators = async (): Promise<any> => {
   const strategy = process.argv[2]
 
   if (!strategy || (strategy !== 'munkres' && strategy !== 'group')) {
-    logger.error('Give strategy parameter, possible: "munkres", "group"')
-    process.exit()
+    throw new Error('Give strategy parameter, possible: "munkres", "group"')
   }
 
   if (process.env.NODE_ENV === 'production') {
-    logger.error(`Data creation not allowed in production`)
-    process.exit()
+    throw new Error(`Data creation not allowed in production`)
   }
 
   let newUsersCount = 0 // Number of individual users
@@ -67,7 +65,11 @@ const runGenerators = async (): Promise<any> => {
     logger.error(`runGenerators error: ${error}`)
   }
 
-  process.exit()
+  try {
+    await db.gracefulExit()
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 runGenerators()

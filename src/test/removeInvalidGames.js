@@ -2,6 +2,7 @@
 import { db } from 'db/mongodb'
 import { logger } from 'utils/logger'
 import { removeDeletedGamesFromUsers } from 'db/game/gameService'
+
 const testVerifyResults = async () => {
   try {
     await db.connectToDb()
@@ -15,7 +16,11 @@ const testVerifyResults = async () => {
     logger.error(`Error removing invalid games: ${error}`)
   }
 
-  process.exit()
+  try {
+    await db.gracefulExit()
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 testVerifyResults()

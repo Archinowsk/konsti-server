@@ -2,22 +2,22 @@
 import fs from 'fs'
 
 const getType = () => {
-  const getType = process.argv[3]
+  const type = process.argv[3]
 
-  if (!getType) {
-    console.error('Give valid type parameter: games, results, users, feedbacks')
-    process.exit()
+  if (!type) {
+    throw new Error(
+      'Give valid type parameter: games, results, users, feedbacks'
+    )
   }
 
-  return getType
+  return type
 }
 
 export const getYear = () => {
   const year = parseInt(process.argv[2], 10)
 
   if (!year) {
-    console.error('Give valid year parameter: 2017, 2018, 2019')
-    process.exit()
+    throw new Error('Give valid year parameter: 2017, 2018, 2019')
   }
 
   return year
