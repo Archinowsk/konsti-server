@@ -2,9 +2,15 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/github/archinowsk/konsti-server/badge.svg)](https://snyk.io/test/github/archinowsk/konsti-server)
 
-Tabletop roleplaying games signup application Konsti. The application is used to sign up and to assign players to the game sessions. Registered users can choose weighted preferences (i.e. option 1, option 2, option 3) and signup slots are quickly allocated using [Hungarian algorithm](https://en.wikipedia.org/wiki/Hungarian_algorithm), brute force approximation or [eventassigner-js](https://github.com/Altesmi/eventassigner-js).
+Tabletop roleplaying game signup application Konsti. The application is used to sign up and assign players to game sessions. Registered users can choose weighted preferences and signup slots are quickly allocated using [Hungarian algorithm](https://en.wikipedia.org/wiki/Hungarian_algorithm), [eventassigner-js](https://github.com/Altesmi/eventassigner-js), or brute force approximation. Users can form groups to be assigned into the same game session. Game data is fetched from [Kompassi Event Management System](https://kompassi.eu/).
 
-Konsti is designed for the roleplaying convention [Ropecon](https://ropecon.fi). There were 550 registered users at Ropecon 2017 and 850 registered users at Ropecon 2018.
+Konsti is designed for the roleplaying convention [Ropecon](https://ropecon.fi).
+
+Registered users by year:
+
+- Ropecon 2017: 550
+- Ropecon 2018: 850
+- Ropecon 2019: 920
 
 ## Tech
 
@@ -13,11 +19,16 @@ Konsti is designed for the roleplaying convention [Ropecon](https://ropecon.fi).
   - Express
   - AWS
   - MongoDB
+  - Flow
+  - Jest
+  - Prettier & ESLint
 - Front-end (see [konsti-client](https://github.com/Archinowsk/konsti-client))
   - React
   - Redux
-  - ES6
   - Webpack
+  - Flow
+  - Jest
+  - Prettier & ESLint & stylelint
 
 ## Supporters
 
