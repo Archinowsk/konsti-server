@@ -20,7 +20,7 @@ const generateSerials = async (): Promise<any> => {
     try {
       await db.connectToDb()
     } catch (error) {
-      logger.error(`Error connecting to db: ${error}`)
+      logger.error(error)
     }
 
     try {

@@ -1,6 +1,15 @@
 // @flow
 import request from 'supertest'
-import { server } from 'server/server'
+import { startServer, closeServer } from 'server/server'
+
+let server
+beforeEach(async () => {
+  server = await startServer()
+})
+
+afterEach(async () => {
+  await closeServer(server)
+})
 
 describe('GET /api/results', () => {
   test('should return 422 without any parameters', async () => {

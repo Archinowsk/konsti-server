@@ -35,7 +35,7 @@ const runGenerators = async (): Promise<any> => {
   try {
     await db.connectToDb()
   } catch (error) {
-    logger.error(`db.connectToDb error: ${error}`)
+    logger.error(error)
   }
 
   try {

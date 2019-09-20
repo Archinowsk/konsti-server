@@ -1,6 +1,15 @@
 // @flow
 import request from 'supertest'
-import { server } from 'server/server'
+import { startServer, closeServer } from 'server/server'
+
+let server
+beforeEach(async () => {
+  server = await startServer()
+})
+
+afterEach(async () => {
+  await closeServer(server)
+})
 
 describe('POST /api/favorite', () => {
   test('should return 401 without valid authorization', async () => {
