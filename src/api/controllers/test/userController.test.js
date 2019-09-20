@@ -1,17 +1,17 @@
 // @flow
 import request from 'supertest'
-import { app } from 'app'
+import { server } from 'server/server'
 
 describe('GET /api/user', () => {
   test('should return 401 without valid authorization', async () => {
-    const response = await request(app).get('/api/user')
+    const response = await request(server).get('/api/user')
     expect(response.status).toEqual(401)
   })
 })
 
 describe('POST /api/user', () => {
   test('should return 422 without username', async () => {
-    const response = await request(app)
+    const response = await request(server)
       .post('/api/user')
       .send({
         password: 'testpass',
@@ -21,7 +21,7 @@ describe('POST /api/user', () => {
   })
 
   test('should return 422 without password', async () => {
-    const response = await request(app)
+    const response = await request(server)
       .post('/api/user')
       .send({
         username: 'testuser',
@@ -31,7 +31,7 @@ describe('POST /api/user', () => {
   })
 
   test('should return 422 without serial', async () => {
-    const response = await request(app)
+    const response = await request(server)
       .post('/api/user')
       .send({
         username: 'testuser',

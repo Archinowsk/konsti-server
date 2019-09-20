@@ -2,7 +2,7 @@
   "name": "konsti-server",
   "version": "0.0.1",
   "private": true,
-  "main": "server.js",
+  "main": "app.js",
   "description": "Konsti signup tool server",
   "author": {
     "name": "Arttu Hanska"
@@ -32,8 +32,8 @@
     "prepare-deploy-prod": "npm run clean && npm run build-front-prod && npm run build",
     "prepare-deploy-staging": "npm run clean && npm run build-front-staging && npm run build",
     "prettier": "prettier --write src/**/*.{js,json,md}",
-    "start-dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/server.js",
-    "start": "npm run build && node lib/server.js",
+    "start-dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/app.js",
+    "start": "npm run build && node lib/app.js",
     "stats:anonymize": "babel-node src/statistics/dataAnonymizer.js",
     "stats:fix": "babel-node src/statistics/dataFixer.js",
     "stats:games": "babel-node src/statistics/getGameStats.js",
