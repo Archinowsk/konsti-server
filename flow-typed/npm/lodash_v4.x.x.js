@@ -1,5 +1,5 @@
-// flow-typed signature: 3584ccfacef49063d7c9a1743ce4ccad
-// flow-typed version: d381f02c43/lodash_v4.x.x/flow_>=v0.104.x
+// flow-typed signature: 414b554420e055797a6f308059e01c5f
+// flow-typed version: d18ab9e6cb/lodash_v4.x.x/flow_>=v0.104.x
 
 declare module "lodash" {
   declare type Path = $ReadOnlyArray<string | number> | string | number;
@@ -1251,14 +1251,14 @@ declare module "lodash" {
         source: A | B | C | D
       ) => any | void
     ): Object;
-    omit(object?: ?Object, ...props: Array<string>): Object;
-    omit(object?: ?Object, props: Array<string>): Object;
+    omit(object?: ?Object, ...props: $ReadOnlyArray<string>): Object;
+    omit(object?: ?Object, props: $ReadOnlyArray<string>): Object;
     omitBy<A, T: { [id: any]: A, ... } | { [id: number]: A, ... }>(
       object: T,
       predicate?: ?OPredicate<A, T>
     ): Object;
     omitBy<A, T>(object: void | null, predicate?: ?OPredicate<A, T>): {...};
-    pick(object?: ?Object, ...props: Array<string>): Object;
+    pick(object?: ?Object, ...props: $ReadOnlyArray<string>): Object;
     pick(object?: ?Object, props: $ReadOnlyArray<string>): Object;
     pickBy<A, T: { [id: any]: A, ... } | { [id: number]: A, ... }>(
       object: T,
