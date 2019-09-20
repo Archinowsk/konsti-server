@@ -12,24 +12,12 @@ import {
 } from 'api/controllers/playersController'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
-const testAssignPlayers = async (): Promise<any> => {
+const testAssignPlayers = async (
+  assignmentStategy: AssignmentStrategy
+): Promise<any> => {
   const { CONVENTION_START_TIME, saveTestAssign, removeOverlapSignups } = config
-  const userParameter = process.argv[2]
-
-  let assignmentStategy
-  try {
-    assignmentStategy = getAssignmentStategy(userParameter)
-  } catch (error) {
-    throw new Error(
-      'Give strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
-    )
-  }
 
   if (assignmentStategy) {
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error(`Player allocation not allowed in production`)
-    }
-
     try {
       await db.connectToDb()
     } catch (error) {
@@ -107,7 +95,7 @@ const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
   }
 }
 
-const verifyUserSignups = async (startingTime: string) => {
+const verifyUserSignups = async (startingTime: string): Promise<void> => {
   logger.info('Verify entered games and signups match for users')
 
   let usersAfterAssign = []
@@ -155,7 +143,7 @@ const verifyUserSignups = async (startingTime: string) => {
   })
 }
 
-const verifyResults = async (startingTime: string) => {
+const verifyResults = async (startingTime: string): Promise<void> => {
   logger.info('Verify results contain valid data')
 
   let results
@@ -185,4 +173,23 @@ const verifyResults = async (startingTime: string) => {
   })
 }
 
-testAssignPlayers()
+const init = (): void => {
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error(`Player allocation not allowed in production`)
+  }
+
+  const userParameter = process.argv[2]
+
+  let assignmentStategy
+  try {
+    assignmentStategy = getAssignmentStategy(userParameter)
+  } catch (error) {
+    throw new Error(
+      'Give strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
+    )
+  }
+
+  testAssignPlayers(assignmentStategy)
+}
+
+init()

@@ -4,7 +4,7 @@ import { logger } from 'utils/logger'
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity'
 import { db } from 'db/mongodb'
 
-const testUpdateGamePopularity = async () => {
+const testUpdateGamePopularity = async (): Promise<void> => {
   try {
     await db.connectToDb()
   } catch (error) {

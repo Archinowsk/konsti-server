@@ -1,9 +1,9 @@
 // @flow
 import { db } from 'db/mongodb'
 import { logger } from 'utils/logger'
-import { verifyResults } from 'test/verifyResults'
+import { verifyResults } from 'test/data-verification/utils/verifyResults'
 
-const testVerifyResults = async () => {
+const testVerifyResults = async (): Promise<void> => {
   try {
     await db.connectToDb()
   } catch (error) {
