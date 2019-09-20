@@ -11,9 +11,9 @@ import { logger, stream } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { allowCORS } from 'server/middleware/cors'
 import { apiRoutes } from 'api/apiRoutes'
-import type { $Request, $Response, NextFunction } from 'express'
+import type { $Request, $Response, NextFunction, $Application } from 'express'
 
-export const startServer = async () => {
+export const startServer = async (): Promise<$Application> => {
   try {
     await db.connectToDb()
   } catch (error) {
@@ -87,7 +87,7 @@ export const startServer = async () => {
   return server
 }
 
-export const closeServer = async (server: Object) => {
+export const closeServer = async (server: $Application): Promise<void> => {
   try {
     await db.gracefulExit()
   } catch (error) {
