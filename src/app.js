@@ -4,7 +4,7 @@ import { startServer } from 'server/server'
 import { logger } from 'utils/logger'
 import { autoUpdateGames, autoAssignPlayers } from 'utils/cron'
 
-const startApp = async () => {
+const startApp = async (): Promise<void> => {
   // Start cronjob to auto update games from Kompassi
   autoUpdateGames()
 
@@ -19,10 +19,14 @@ const startApp = async () => {
   })
 }
 
-if (typeof process.env.NODE_ENV === 'string') {
-  logger.info(`Node environment: ${process.env.NODE_ENV}`)
-} else {
-  throw new Error(`Node environment NODE_ENV missing`)
+const init = (): void => {
+  if (typeof process.env.NODE_ENV === 'string') {
+    logger.info(`Node environment: ${process.env.NODE_ENV}`)
+  } else {
+    throw new Error(`Node environment NODE_ENV missing`)
+  }
+
+  startApp()
 }
 
-startApp()
+init()
