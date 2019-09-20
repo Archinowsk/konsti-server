@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import moment from 'moment'
 import _ from 'lodash'
 import { db } from 'db/mongodb'

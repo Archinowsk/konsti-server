@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { createLogger, format, transports } from 'winston'
 import fs from 'fs'
 import 'winston-daily-rotate-file'

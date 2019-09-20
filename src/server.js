@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import 'array-flat-polyfill'
 import { app } from 'app'
 import { logger } from 'utils/logger'

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { toPercent } from '../statsUtil'
 import { logger } from 'utils/logger'
 import type { Game } from 'flow/game.flow'

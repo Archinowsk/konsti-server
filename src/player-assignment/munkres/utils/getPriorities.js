@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { Result } from 'flow/result.flow'
 
 export const getPriorities = (

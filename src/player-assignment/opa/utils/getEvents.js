@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { Game } from 'flow/game.flow'
 import type { Event } from 'flow/opaAssign.flow'
 

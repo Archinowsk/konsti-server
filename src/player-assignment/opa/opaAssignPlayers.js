@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { getStartingGames } from 'player-assignment/utils/getStartingGames'

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import generator from 'generate-serial-number'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'

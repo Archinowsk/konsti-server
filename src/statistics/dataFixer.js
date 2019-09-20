@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { readJson, writeJson } from './statsUtil'
 
 const fixData = async (): Promise<any> => {

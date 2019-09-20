@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import eventassigner from 'eventassigner-js'
 import _ from 'lodash'
 import { logger } from 'utils/logger'

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { logger } from 'utils/logger'
 import type { User } from 'flow/user.flow'
 

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import moment from 'moment'
 import schedule from 'node-schedule'
 import { logger } from 'utils/logger'

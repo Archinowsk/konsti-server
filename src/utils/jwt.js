@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import jsonwebtoken from 'jsonwebtoken'
 import { config } from 'config'
 import type { JWTResult, JWTError } from 'flow/jwt.flow'

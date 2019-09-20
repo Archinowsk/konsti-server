@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import fs from 'fs'
 import _ from 'lodash'
 import moment from 'moment'

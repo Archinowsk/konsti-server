@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { PlayeIdWithPriority } from 'flow/user.flow'
 
 export const getRemovedPlayer = (

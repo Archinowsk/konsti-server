@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { verifyJWT } from 'utils/jwt'
 import { logger } from 'utils/logger'
 import type { UserGroup } from 'flow/user.flow'

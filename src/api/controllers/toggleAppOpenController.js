@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'
 import { validateAuthHeader } from 'utils/authHeader'

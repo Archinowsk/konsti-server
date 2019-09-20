@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { Config } from 'flow/config.flow'
 
 const commonConfig = {

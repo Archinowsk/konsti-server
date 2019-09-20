@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import express from 'express'
 import { postUserValidation, postLoginValidation } from 'api/validation'
 import { postGames, getGames } from 'api/controllers/gamesController'

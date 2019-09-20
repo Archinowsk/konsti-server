@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { assignOpa } from 'player-assignment/opa/utils/assignOpa'
 import { getGroups } from 'player-assignment/opa/utils/getGroups'
 import { getList } from 'player-assignment/opa/utils/getList'

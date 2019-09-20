@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { logger } from 'utils/logger'
 import { Feedback } from 'db/feedback/feedbackSchema'
 import type { FeedbackData } from 'flow/feedback.flow'

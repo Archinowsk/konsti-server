@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { OpaAssignResults, Group } from 'flow/opaAssign.flow'
 
 export const calculateHappiness = (

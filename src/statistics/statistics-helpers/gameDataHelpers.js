@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import moment from 'moment'
 import { toPercent } from '../statsUtil'
 import { logger } from 'utils/logger'

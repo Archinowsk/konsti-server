@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { logger } from 'utils/logger'
 import { getStartingGames } from 'player-assignment/utils/getStartingGames'
 import { getSignupWishes } from 'player-assignment/utils/getSignupWishes'

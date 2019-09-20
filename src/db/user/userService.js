@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import moment from 'moment'
 import { logger } from 'utils/logger'
 import { User } from 'db/user/userSchema'

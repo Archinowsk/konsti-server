@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import _ from 'lodash'
 import type { OpaAssignResults } from 'flow/opaAssign.flow'
 import type { UserArray } from 'flow/user.flow'

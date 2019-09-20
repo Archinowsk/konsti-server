@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import _ from 'lodash'
 import { logger } from 'utils/logger'
 import { calculateHappiness } from 'player-assignment/opa/utils/calculateHappiness'

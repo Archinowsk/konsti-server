@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 
 export type Group = {|
   +id: string, // Group id

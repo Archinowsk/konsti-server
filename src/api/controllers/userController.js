@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { validationResult } from 'express-validator'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'

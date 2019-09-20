@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { logger } from 'utils/logger'
 import type { PlayeIdWithPriority } from 'flow/user.flow'
 

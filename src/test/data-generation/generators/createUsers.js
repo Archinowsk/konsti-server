@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import faker from 'faker'
 import { logger } from 'utils/logger'
 import { db } from 'db/mongodb'

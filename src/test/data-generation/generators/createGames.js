@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import faker from 'faker'
 import moment from 'moment'
 import { logger } from 'utils/logger'

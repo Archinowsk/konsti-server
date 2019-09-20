@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 export const shuffleArray = (array: $ReadOnlyArray<any>) => {
   // Don't mutate input array
   /* $FlowFixMe */

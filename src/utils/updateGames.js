@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import fs from 'fs'
 import path from 'path'
 import request from 'request-promise-native'

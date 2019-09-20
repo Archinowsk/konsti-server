@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import fs from 'fs'
 import faker from 'faker'
 import { getYear } from './statsUtil'

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import mongoose from 'mongoose'
 
 const ResultsSchema = new mongoose.Schema(

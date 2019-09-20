@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { logger } from 'utils/logger'
 import { Results } from 'db/results/resultsSchema'
 import type { Result } from 'flow/result.flow'

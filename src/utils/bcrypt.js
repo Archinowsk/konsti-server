@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import bcrypt from 'bcryptjs'
 import { logger } from 'utils/logger'
 

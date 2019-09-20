@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { logger } from 'utils/logger'
 import { config } from 'config'
 import type { $Request, $Response, NextFunction, Middleware } from 'express'

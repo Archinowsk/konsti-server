@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import 'array-flat-polyfill'
 import { logger } from 'utils/logger'
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity'

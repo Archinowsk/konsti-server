@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { User } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 import type { Result } from 'flow/result.flow'

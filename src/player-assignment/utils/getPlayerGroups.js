@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { User, UserArray } from 'flow/user.flow'
 
 export const getPlayerGroups = (

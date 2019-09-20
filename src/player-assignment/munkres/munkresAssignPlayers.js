@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import munkres from 'munkres-js'
 import { logger } from 'utils/logger'
 import { getStartingGames } from 'player-assignment/utils/getStartingGames'
