@@ -9,7 +9,7 @@ import expressStaticGzip from 'express-static-gzip'
 import { config } from 'config'
 import { logger, stream } from 'utils/logger'
 import { db } from 'db/mongodb'
-import { allowCORS } from 'middleware/cors'
+import { allowCORS } from 'server/middleware/cors'
 import { apiRoutes } from 'api/apiRoutes'
 import type { $Request, $Response, NextFunction } from 'express'
 
