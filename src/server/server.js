@@ -13,7 +13,7 @@ import { allowCORS } from 'server/middleware/cors'
 import { apiRoutes } from 'api/apiRoutes'
 import type { $Request, $Response, NextFunction, $Application } from 'express'
 
-export const startServer = async (): Promise<$Application> => {
+export const startServer = async (): Promise<$Application<>> => {
   try {
     await db.connectToDb()
   } catch (error) {
@@ -27,6 +27,7 @@ export const startServer = async (): Promise<$Application> => {
   if (config.enableAccessLog) {
     // Set logger
     logger.info("Express: Overriding 'Express' logger")
+    // $FlowFixMe: Cannot call `morgan` with object literal bound to `options` because `$winstonLogger` [1] is incompatible with undefined [2] in property `stream.write`.
     server.use(morgan('dev', { stream }))
   }
 
@@ -87,7 +88,7 @@ export const startServer = async (): Promise<$Application> => {
   return server
 }
 
-export const closeServer = async (server: $Application): Promise<void> => {
+export const closeServer = async (server: $Application<>): Promise<void> => {
   try {
     await db.gracefulExit()
   } catch (error) {

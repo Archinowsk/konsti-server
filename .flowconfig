@@ -14,9 +14,6 @@ all=error
 untyped-import=off
 unclear-type=off
 
-# Remove this when flow-typed types don't use $Supertype or $Subtype
-deprecated-utility=off
-
 [options]
 # Root import
 module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
