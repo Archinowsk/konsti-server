@@ -64,7 +64,7 @@ export const startServer = async (): Promise<$Application> => {
   server.use('/api', apiRoutes)
 
   // Set static path
-  const staticPath = path.join(__dirname, '../', 'front')
+  const staticPath = path.join(__dirname, '../../', 'front')
 
   // Set compression
   if (config.bundleCompression) {
@@ -79,7 +79,7 @@ export const startServer = async (): Promise<$Application> => {
   }
 
   server.get('/*', (req: $Request, res: $Response) => {
-    res.sendFile(path.join(__dirname, '..', 'front', 'index.html'))
+    res.sendFile(path.join(staticPath, 'index.html'))
   })
 
   server.set('port', config.port)
