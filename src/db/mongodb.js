@@ -23,7 +23,7 @@ const connectToDb = async (): Promise<any> => {
       useUnifiedTopology: true,
       dbName: dbName,
     })
-    logger.info('MongoDB: Connection succesful')
+    logger.info(`MongoDB connection succesful: ${dbConnString}`)
   } catch (error) {
     throw new Error(`MongoDB: Error connecting to DB: ${error}`)
   }
@@ -38,7 +38,7 @@ const gracefulExit = async () => {
     throw new Error(`Error shutting down db connection: ${error}`)
   }
 
-  logger.info(`MongoDB: Connection ${dbConnString} closed`)
+  logger.info(`MongoDB connection closed: ${dbConnString}`)
 }
 
 // If the Node process ends, close the Mongoose connection
