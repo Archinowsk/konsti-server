@@ -1,5 +1,6 @@
 // @flow
 import mongoose from 'mongoose'
+import to from 'await-to-js'
 import { logger } from 'utils/logger'
 import { config } from 'config'
 import { user } from 'db/user/userService'
@@ -12,21 +13,24 @@ import { serial } from 'db/serial/serialService'
 const connectToDb = async (): Promise<any> => {
   const { dbConnString, dbName } = config
 
-  // Use native Node promises
-  mongoose.Promise = global.Promise
-  // Don't use Mongoose useFindAndModify
-  mongoose.set('useFindAndModify', false)
+  logger.info(`MongoDB: Connecting to: ${dbConnString}`)
 
-  try {
-    await mongoose.connect(dbConnString, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      dbName: dbName,
-    })
-    logger.info(`MongoDB connection succesful: ${dbConnString}`)
-  } catch (error) {
-    throw new Error(`MongoDB: Error connecting to DB: ${error}`)
+  const options = {
+    promiseLibrary: global.Promise,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: dbName,
+    useFindAndModify: false,
   }
+
+  const [error] = await to(mongoose.connect(dbConnString, options))
+  if (error) throw new Error(`MongoDB: Error connecting to DB: ${error}`)
+
+  logger.info(`MongoDB: Connection succesful: ${dbConnString}`)
+
+  mongoose.connection.on('error', error => {
+    logger.error(error)
+  })
 }
 
 const gracefulExit = async () => {

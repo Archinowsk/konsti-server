@@ -1,5 +1,6 @@
 // @flow
 import 'array-flat-polyfill'
+import to from 'await-to-js'
 import moment from 'moment'
 import _ from 'lodash'
 import { logger } from 'utils/logger'
@@ -17,68 +18,63 @@ const testAssignPlayers = async (
 ): Promise<any> => {
   const { CONVENTION_START_TIME, saveTestAssign, removeOverlapSignups } = config
 
-  if (assignmentStategy) {
-    try {
-      await db.connectToDb()
-    } catch (error) {
-      logger.error(error)
-    }
+  const [error] = await to(db.connectToDb())
+  if (error) return logger.error(error)
 
-    let users = []
-    try {
-      users = await db.user.findUsers()
-    } catch (error) {
-      logger.error(`db.user.findUsers error: ${error}`)
-    }
+  let users = []
+  try {
+    users = await db.user.findUsers()
+  } catch (error) {
+    logger.error(`db.user.findUsers error: ${error}`)
+  }
 
-    let games = []
-    try {
-      games = await db.game.findGames()
-    } catch (error) {
-      logger.error(`db.user.findGames error: ${error}`)
-    }
+  let games = []
+  try {
+    games = await db.game.findGames()
+  } catch (error) {
+    logger.error(`db.user.findGames error: ${error}`)
+  }
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format()
+  const startingTime = moment(CONVENTION_START_TIME)
+    .add(2, 'hours')
+    .format()
 
-    const assignResults = await assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStategy
-    )
+  const assignResults = await assignPlayers(
+    users,
+    games,
+    startingTime,
+    assignmentStategy
+  )
 
-    if (saveTestAssign) {
-      if (removeOverlapSignups && assignResults.newSignupData) {
-        try {
-          logger.info('Remove overlapping signups')
-          await removeOverlappingSignups(assignResults.newSignupData)
-        } catch (error) {
-          logger.error(`removeOverlappingSignups error: ${error}`)
-        }
-      }
-
+  if (saveTestAssign) {
+    if (removeOverlapSignups && assignResults.newSignupData) {
       try {
-        await saveResults(
-          assignResults.results,
-          startingTime,
-          assignResults.algorithm,
-          assignResults.message
-        )
+        logger.info('Remove overlapping signups')
+        await removeOverlappingSignups(assignResults.newSignupData)
       } catch (error) {
-        logger.error(`saveResult error: ${error}`)
+        logger.error(`removeOverlappingSignups error: ${error}`)
       }
-
-      await verifyUserSignups(startingTime)
-      await verifyResults(startingTime)
     }
 
     try {
-      await db.gracefulExit()
+      await saveResults(
+        assignResults.results,
+        startingTime,
+        assignResults.algorithm,
+        assignResults.message
+      )
     } catch (error) {
-      logger.error(error)
+      logger.error(`saveResult error: ${error}`)
     }
+
+    await verifyUserSignups(startingTime)
+    await verifyResults(startingTime)
+  }
+
+  try {
+    await db.gracefulExit()
+  } catch (error) {
+    logger.error(error)
   }
 }
 
@@ -135,7 +131,7 @@ const verifyUserSignups = async (startingTime: string): Promise<void> => {
           `Signup not found: ${user.username} - ${enteredGame.gameDetails.title}`
         )
       } else {
-        logger.info(
+        logger.debug(
           `Signup found: ${user.username} - ${enteredGame.gameDetails.title}`
         )
       }

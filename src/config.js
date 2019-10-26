@@ -25,7 +25,7 @@ const commonConfig = {
 
   // Development and testing
   generateSignups: true,
-  saveTestAssign: false,
+  saveTestAssign: true,
 
   // Convention settings
   dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
