@@ -12,9 +12,16 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir)
 }
 
-const loggerLevel = () => {
+const loggerLevel = (): string => {
   if (debug) return 'debug'
   else return 'info'
+}
+
+const formatMessage = (message: string | Object): string => {
+  if (message && message.constructor === Object) {
+    return JSON.stringify(message)
+  }
+  return message
 }
 
 // $FlowFixMe: Missing type annotation for `T`. `T` is a type parameter declared in function type [1] and was implicitly instantiated at call of `createLogger` [2].
@@ -39,7 +46,9 @@ export const logger = createLogger({
           format: 'HH:mm:ss',
         }),
         printf(info => {
-          return `${info.timestamp} ${info.level}: ${info.message}`
+          return `${info.timestamp} ${info.level}: ${formatMessage(
+            info.message
+          )}`
         })
       ),
     }),
