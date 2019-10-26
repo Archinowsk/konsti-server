@@ -1,7 +1,7 @@
 // @flow
-import _ from 'lodash'
-import type { OpaAssignResults } from 'flow/opaAssign.flow'
-import type { UserArray } from 'flow/user.flow'
+import _ from 'lodash';
+import type { OpaAssignResults } from 'flow/opaAssign.flow';
+import type { UserArray } from 'flow/user.flow';
 
 export const formatResults = (
   assignResults: OpaAssignResults,
@@ -14,10 +14,10 @@ export const formatResults = (
           (assignResult.id === _.first(playerGroup).groupCode ||
             assignResult.id === _.first(playerGroup).serial) &&
           assignResult.assignment !== -1
-      )
+      );
     })
     // $FlowFixMe: Cannot call `playerGroups.filter(...).flat` because property `flat` is missing in `Array` [1].
-    .flat()
+    .flat();
 
   return selectedPlayers.map(player => {
     return {
@@ -30,6 +30,6 @@ export const formatResults = (
             assignResult.assignment === signedGame.gameDetails.gameId
         )
       ),
-    }
-  })
-}
+    };
+  });
+};

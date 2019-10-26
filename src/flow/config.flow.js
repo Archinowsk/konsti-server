@@ -1,7 +1,7 @@
 // @flow
 
-export type AssignmentStrategy = 'munkres' | 'group' | 'opa' | 'group+opa'
-export type GameUpdateMethod = 'signups' | 'assign'
+export type AssignmentStrategy = 'munkres' | 'group' | 'opa' | 'group+opa';
+export type GameUpdateMethod = 'signups' | 'assign';
 
 export type Config = {|
   +appName: string,
@@ -30,4 +30,4 @@ export type Config = {|
   +updateGamePopularityEnabled: boolean,
   +useLocalProgramFile: boolean,
   +autoAssignPlayersEnabled: boolean,
-|}
+|};

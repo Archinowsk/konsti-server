@@ -1,8 +1,8 @@
 // @flow
-import moment from 'moment'
-import _ from 'lodash'
-import type { UserArray } from 'flow/user.flow'
-import type { Group } from 'flow/opaAssign.flow'
+import moment from 'moment';
+import _ from 'lodash';
+import type { UserArray } from 'flow/user.flow';
+import type { Group } from 'flow/opaAssign.flow';
 
 export const getGroups = (
   playerGroups: $ReadOnlyArray<UserArray>,
@@ -21,6 +21,6 @@ export const getGroups = (
             moment(signedGame.time).format() === moment(startingTime).format()
         )
         .map(signedGame => signedGame.gameDetails.gameId),
-    }
-  })
-}
+    };
+  });
+};

@@ -1,38 +1,38 @@
 // @flow
-import moment from 'moment'
-import { db } from 'db/mongodb'
-import { logger } from 'utils/logger'
+import moment from 'moment';
+import { db } from 'db/mongodb';
+import { logger } from 'utils/logger';
 
 export const verifyResults = async (startTime: string): Promise<any> => {
-  logger.info(`Verify results for time ${startTime}`)
+  logger.info(`Verify results for time ${startTime}`);
 
-  let users = null
+  let users = null;
   try {
-    users = await db.user.findUsers()
+    users = await db.user.findUsers();
   } catch (error) {
-    logger.error(`db.user.findUsers error: ${error}`)
+    logger.error(`db.user.findUsers error: ${error}`);
   }
 
   if (!users) {
-    logger.error(`No users found`)
-    return
+    logger.error(`No users found`);
+    return;
   }
 
-  let results = null
+  let results = null;
   try {
-    results = await db.results.findResult(startTime)
+    results = await db.results.findResult(startTime);
   } catch (error) {
-    logger.error(`db.results.findResult: ${error}`)
+    logger.error(`db.results.findResult: ${error}`);
   }
 
   if (!results) {
-    logger.error(`No results found for time ${startTime}`)
-    return
+    logger.error(`No results found for time ${startTime}`);
+    return;
   }
 
-  logger.info(`Found ${results.result.length} results for this time`)
+  logger.info(`Found ${results.result.length} results for this time`);
 
-  logger.info('Check if user enteredGames match results')
+  logger.info('Check if user enteredGames match results');
   users.forEach(user => {
     // console.log(`user: ${user.username}`)
     user.enteredGames.forEach(enteredGame => {
@@ -46,18 +46,18 @@ export const verifyResults = async (startTime: string): Promise<any> => {
         if (!results || !results.result) {
           logger.error(
             `No results or results.result found for time ${startTime}`
-          )
-          return
+          );
+          return;
         }
 
         const matchingResult = results.result.find(result => {
           if (!enteredGame.gameDetails) {
-            logger.error(`Game details missing for entered game`)
+            logger.error(`Game details missing for entered game`);
           }
 
           if (!result.enteredGame.gameDetails) {
-            logger.error(`Game details missing for result`)
-            console.log(result)
+            logger.error(`Game details missing for result`);
+            console.log(result);
           }
 
           if (
@@ -73,31 +73,31 @@ export const verifyResults = async (startTime: string): Promise<any> => {
             )
             */
 
-            return result
+            return result;
           }
-        })
+        });
 
         if (!matchingResult) {
           logger.error(
             `No matching result for user "${user.username}" and game "${enteredGame.gameDetails.title}"`
-          )
+          );
         }
       }
-    })
-  })
+    });
+  });
 
-  logger.info('Check if results match user enteredGames')
+  logger.info('Check if results match user enteredGames');
 
   results.result.forEach(result => {
     if (!users) {
-      logger.error(`No users found`)
-      return
+      logger.error(`No users found`);
+      return;
     }
 
     if (!result.enteredGame.gameDetails) {
-      logger.error(`Game details missing for result`)
-      console.log(result)
-      return
+      logger.error(`Game details missing for result`);
+      console.log(result);
+      return;
     }
 
     users.forEach(user => {
@@ -110,12 +110,12 @@ export const verifyResults = async (startTime: string): Promise<any> => {
       */
 
       if (user.username === result.username) {
-        let gameFound = false
+        let gameFound = false;
         user.enteredGames.forEach(enteredGame => {
           if (
             moment(enteredGame.time).format() === moment(startTime).format()
           ) {
-            gameFound = true
+            gameFound = true;
             /*
             logger.info(
               `Found entered game "${enteredGame.gameDetails.title}" for user "${user.username}"`
@@ -123,7 +123,7 @@ export const verifyResults = async (startTime: string): Promise<any> => {
             */
 
             if (!enteredGame.gameDetails) {
-              logger.error(`Game details missing for entered game`)
+              logger.error(`Game details missing for entered game`);
             }
 
             if (
@@ -138,19 +138,19 @@ export const verifyResults = async (startTime: string): Promise<any> => {
             } else {
               logger.error(
                 `No matching result for user "${user.username}": enteredGame: "${enteredGame.gameDetails.title}", result: "${result.enteredGame.gameDetails.title}"`
-              )
+              );
             }
           }
-        })
+        });
 
         if (!gameFound) {
           logger.error(
             `No entered game found for user "${user.username}" and result "${result.enteredGame.gameDetails.title}"`
-          )
+          );
         }
       }
-    })
-  })
+    });
+  });
 
-  logger.info('Verify results done')
-}
+  logger.info('Verify results done');
+};

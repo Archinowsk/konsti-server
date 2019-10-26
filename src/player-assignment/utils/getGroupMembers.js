@@ -1,14 +1,14 @@
 // @flow
-import { logger } from 'utils/logger'
-import type { User } from 'flow/user.flow'
+import { logger } from 'utils/logger';
+import type { User } from 'flow/user.flow';
 
 export const getGroupMembers = (
   groupLeaders: $ReadOnlyArray<User>,
   players: $ReadOnlyArray<User>
 ): $ReadOnlyArray<User> => {
-  logger.debug('Add group members to groups')
+  logger.debug('Add group members to groups');
 
-  const selectedPlayersWithSignups = []
+  const selectedPlayersWithSignups = [];
 
   for (const groupLeader of groupLeaders) {
     // Skip individual users
@@ -25,13 +25,13 @@ export const getGroupMembers = (
               ...player,
               signedGames: groupLeader.signedGames,
             })
-          )
+          );
         }
       }
     }
   }
 
-  logger.debug(`Found ${selectedPlayersWithSignups.length} group members`)
+  logger.debug(`Found ${selectedPlayersWithSignups.length} group members`);
 
-  return selectedPlayersWithSignups
-}
+  return selectedPlayersWithSignups;
+};

@@ -1,6 +1,6 @@
 // @flow
-import type { Game } from 'flow/game.flow'
-import type { Event } from 'flow/opaAssign.flow'
+import type { Game } from 'flow/game.flow';
+import type { Event } from 'flow/opaAssign.flow';
 
 export const getEvents = (signedGames: $ReadOnlyArray<Game>): Array<Event> => {
   return signedGames.map(signedGame => {
@@ -9,6 +9,6 @@ export const getEvents = (signedGames: $ReadOnlyArray<Game>): Array<Event> => {
       min: signedGame.minAttendance,
       max: signedGame.maxAttendance,
       groups: [],
-    }
-  })
-}
+    };
+  });
+};

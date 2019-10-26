@@ -1,78 +1,80 @@
 // @flow
-import moment from 'moment'
-import { logger } from 'utils/logger'
-import { Settings } from 'db/settings/settingsSchema'
-import type { Game } from 'flow/game.flow'
-import type { SettingsType } from 'flow/settings.flow'
+import moment from 'moment';
+import { logger } from 'utils/logger';
+import { Settings } from 'db/settings/settingsSchema';
+import type { Game } from 'flow/game.flow';
+import type { SettingsType } from 'flow/settings.flow';
 
 const removeSettings = async (): Promise<void> => {
-  logger.info('MongoDB: remove ALL settings from db')
-  await Settings.deleteMany({})
-  await createSettings()
-}
+  logger.info('MongoDB: remove ALL settings from db');
+  await Settings.deleteMany({});
+  await createSettings();
+};
 
 const createSettings = async (): Promise<any> => {
-  logger.info('MongoDB: Create default "Settings" collection')
+  logger.info('MongoDB: Create default "Settings" collection');
 
-  const settings = new Settings()
+  const settings = new Settings();
 
-  let response = null
+  let response = null;
   try {
-    response = await settings.save()
-    logger.info(`MongoDB: Empty settings collection saved to DB`)
-    return response
+    response = await settings.save();
+    logger.info(`MongoDB: Empty settings collection saved to DB`);
+    return response;
   } catch (error) {
-    logger.error(`MongoDB: Error creating empty settings collection - ${error}`)
-    return error
+    logger.error(
+      `MongoDB: Error creating empty settings collection - ${error}`
+    );
+    return error;
   }
-}
+};
 
 const findSettings = async (): Promise<SettingsType> => {
-  let response = null
+  let response = null;
   try {
     response = await Settings.findOne({}, '-_id -__v -createdAt -updatedAt')
       .lean()
-      .populate('hiddenGames')
+      .populate('hiddenGames');
   } catch (error) {
-    logger.error(`MongoDB: Error finding settings data - ${error}`)
-    return error
+    logger.error(`MongoDB: Error finding settings data - ${error}`);
+    return error;
   }
 
   if (response === null) {
     // No settings data, create new collection
-    return createSettings()
+    return createSettings();
   }
-  logger.debug(`MongoDB: Settings data found`)
-  return response
-}
+  logger.debug(`MongoDB: Settings data found`);
+  return response;
+};
 
 const saveHidden = async (
   hiddenData: $ReadOnlyArray<Game>
 ): Promise<SettingsType> => {
-  let response = null
+  let response = null;
   try {
     response = await Settings.findOneAndUpdate(
       {},
       {
         hiddenGames: hiddenData.map(game => {
-          return game._id
+          return game._id;
         }),
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
-    ).populate('hiddenGames')
+    ).populate('hiddenGames');
   } catch (error) {
-    logger.error(`MongoDB: Error updating hidden data - ${error}`)
-    return error
+    logger.error(`MongoDB: Error updating hidden data - ${error}`);
+    return error;
   }
 
-  logger.info(`MongoDB: Hidden data updated`)
-  return response
-}
+  logger.info(`MongoDB: Hidden data updated`);
+  return response;
+};
 
 const saveSignupTime = async (signupTime: string): Promise<SettingsType> => {
-  const formattedTime = moment(signupTime).format()
+  const formattedTime = moment(signupTime).format();
 
-  let response = null
+  let response = null;
   try {
     response = await Settings.findOneAndUpdate(
       {},
@@ -80,17 +82,17 @@ const saveSignupTime = async (signupTime: string): Promise<SettingsType> => {
         signupTime: signupTime ? formattedTime : null,
       },
       { new: true }
-    )
-    logger.info(`MongoDB: Signup time updated`)
-    return response
+    );
+    logger.info(`MongoDB: Signup time updated`);
+    return response;
   } catch (error) {
-    logger.error(`MongoDB: Error updating signup time - ${error}`)
-    return error
+    logger.error(`MongoDB: Error updating signup time - ${error}`);
+    return error;
   }
-}
+};
 
 const saveToggleAppOpen = async (appOpen: boolean): Promise<SettingsType> => {
-  let response = null
+  let response = null;
   try {
     response = await Settings.findOneAndUpdate(
       {},
@@ -98,14 +100,14 @@ const saveToggleAppOpen = async (appOpen: boolean): Promise<SettingsType> => {
         appOpen,
       },
       { new: true }
-    )
-    logger.info(`MongoDB: Toggle app open updated`)
-    return response
+    );
+    logger.info(`MongoDB: Toggle app open updated`);
+    return response;
   } catch (error) {
-    logger.error(`MongoDB: Error updating toggle app open - ${error}`)
-    return error
+    logger.error(`MongoDB: Error updating toggle app open - ${error}`);
+    return error;
   }
-}
+};
 
 export const settings = {
   findSettings,
@@ -113,4 +115,4 @@ export const settings = {
   saveHidden,
   saveSignupTime,
   saveToggleAppOpen,
-}
+};

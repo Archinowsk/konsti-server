@@ -1,5 +1,5 @@
 // @flow
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const SettingsSchema = new mongoose.Schema(
   {
@@ -10,6 +10,6 @@ const SettingsSchema = new mongoose.Schema(
     appOpen: { type: Boolean, default: true },
   },
   { timestamps: true }
-)
+);
 
-export const Settings = mongoose.model('Settings', SettingsSchema)
+export const Settings = mongoose.model('Settings', SettingsSchema);

@@ -1,9 +1,9 @@
 // @flow
-import faker from 'faker'
-import moment from 'moment'
-import { logger } from 'utils/logger'
-import { db } from 'db/mongodb'
-import { config } from 'config'
+import faker from 'faker';
+import moment from 'moment';
+import { logger } from 'utils/logger';
+import { db } from 'db/mongodb';
+import { config } from 'config';
 
 const startingTimes = [
   moment(config.CONVENTION_START_TIME)
@@ -17,19 +17,19 @@ const startingTimes = [
   moment(config.CONVENTION_START_TIME)
     .add(7, 'hours')
     .format(),
-]
+];
 
 export const createGames = (count: number): Promise<any> => {
-  logger.info(`Generate data for ${count} games`)
+  logger.info(`Generate data for ${count} games`);
 
-  const games = []
+  const games = [];
 
   startingTimes.forEach(startingTime => {
     for (let i = 0; i < count; i += 1) {
-      const minAttendance = faker.random.number({ min: 3, max: 4 })
-      const maxAttendance = faker.random.number({ min: 4, max: 6 })
-      const startTime = startingTime
-      const length = 180
+      const minAttendance = faker.random.number({ min: 3, max: 4 });
+      const maxAttendance = faker.random.number({ min: 4, max: 6 });
+      const startTime = startingTime;
+      const length = 180;
 
       const gameData = {
         title: faker.random.words(3),
@@ -65,12 +65,12 @@ export const createGames = (count: number): Promise<any> => {
         styles: ['serious', 'story_driven', 'character_driven'],
         short_blurb: faker.lorem.sentence(),
         revolving_door: true,
-      }
+      };
 
-      logger.info(`Stored game "${gameData.title}"`)
-      games.push(gameData)
+      logger.info(`Stored game "${gameData.title}"`);
+      games.push(gameData);
     }
-  })
+  });
 
-  return db.game.saveGames(games)
-}
+  return db.game.saveGames(games);
+};

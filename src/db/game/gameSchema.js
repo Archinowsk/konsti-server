@@ -1,5 +1,5 @@
 // @flow
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const GameSchema = new mongoose.Schema(
   {
@@ -28,6 +28,6 @@ const GameSchema = new mongoose.Schema(
     popularity: { type: Number, default: 0 },
   },
   { timestamps: true }
-)
+);
 
-export const Game = mongoose.model('Game', GameSchema)
+export const Game = mongoose.model('Game', GameSchema);

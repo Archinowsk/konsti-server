@@ -1,51 +1,51 @@
 // @flow
-import { logger } from 'utils/logger'
-import type { Game } from 'flow/game.flow'
-import type { Result } from 'flow/result.flow'
+import { logger } from 'utils/logger';
+import type { Game } from 'flow/game.flow';
+import type { Result } from 'flow/result.flow';
 
 export const checkMinAttendance = (
   results: $ReadOnlyArray<Result>,
   signedGames: $ReadOnlyArray<Game>
 ) => {
   // Check that game minAttendance is fullfilled
-  const gameIds = []
+  const gameIds = [];
 
   for (let i = 0; i < results.length; i += 1) {
     // Row determines the game
-    const selectedRow = parseInt(results[i][0], 10)
+    const selectedRow = parseInt(results[i][0], 10);
 
     // Figure what games the row numbers are
-    let attendanceRange = 0
+    let attendanceRange = 0;
     for (let j = 0; j < signedGames.length; j += 1) {
-      attendanceRange += signedGames[j].maxAttendance
+      attendanceRange += signedGames[j].maxAttendance;
       // Found game
       if (selectedRow < attendanceRange) {
-        gameIds.push(signedGames[j].gameId)
-        break
+        gameIds.push(signedGames[j].gameId);
+        break;
       }
     }
   }
 
-  const counts = {}
+  const counts = {};
   gameIds.forEach(x => {
-    counts[x] = (counts[x] || 0) + 1
-  })
+    counts[x] = (counts[x] || 0) + 1;
+  });
 
   // Find games with too few players
-  const gamesWithTooFewPlayers = []
+  const gamesWithTooFewPlayers = [];
   signedGames.forEach(signedGame => {
     if (counts[signedGame.gameId] < signedGame.minAttendance) {
       gamesWithTooFewPlayers.push({
         game: signedGame,
         players: counts[signedGame.gameId],
-      })
+      });
       logger.info(
         `Too few people for game "${signedGame.title}" (${
           counts[signedGame.gameId]
         }/${signedGame.minAttendance})`
-      )
+      );
     }
-  })
+  });
 
-  return gamesWithTooFewPlayers
-}
+  return gamesWithTooFewPlayers;
+};

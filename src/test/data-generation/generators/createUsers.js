@@ -1,14 +1,14 @@
 // @flow
-import faker from 'faker'
-import { logger } from 'utils/logger'
-import { db } from 'db/mongodb'
-import { hashPassword } from 'utils/bcrypt'
+import faker from 'faker';
+import { logger } from 'utils/logger';
+import { db } from 'db/mongodb';
+import { hashPassword } from 'utils/bcrypt';
 
 export const createAdminUser = async (): Promise<any> => {
   // Create admin user with predefined data
-  logger.info(`Generate data for admin user "admin:test"`)
+  logger.info(`Generate data for admin user "admin:test"`);
 
-  const passwordHash = await hashPassword('test')
+  const passwordHash = await hashPassword('test');
 
   const registrationData = {
     username: 'admin',
@@ -18,20 +18,20 @@ export const createAdminUser = async (): Promise<any> => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-  }
+  };
 
   try {
-    return db.user.saveUser(registrationData)
+    return db.user.saveUser(registrationData);
   } catch (error) {
-    logger.error(`db.game.saveUser error: ${error}`)
+    logger.error(`db.game.saveUser error: ${error}`);
   }
-}
+};
 
 export const createHelpUser = async (): Promise<any> => {
   // Create admin user with predefined data
-  logger.info(`Generate data for help user "ropetiski:test"`)
+  logger.info(`Generate data for help user "ropetiski:test"`);
 
-  const passwordHash = await hashPassword('test')
+  const passwordHash = await hashPassword('test');
 
   const registrationData = {
     username: 'ropetiski',
@@ -41,19 +41,19 @@ export const createHelpUser = async (): Promise<any> => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-  }
+  };
 
   try {
-    return db.user.saveUser(registrationData)
+    return db.user.saveUser(registrationData);
   } catch (error) {
-    logger.error(`db.game.saveUser error: ${error}`)
+    logger.error(`db.game.saveUser error: ${error}`);
   }
-}
+};
 
 const createTestUser = async (userNumber: number): Promise<any> => {
-  logger.info(`Generate data for user "test${userNumber}:test"`)
+  logger.info(`Generate data for user "test${userNumber}:test"`);
 
-  const passwordHash = await hashPassword('test')
+  const passwordHash = await hashPassword('test');
 
   const registrationData = {
     username: `test${userNumber}`,
@@ -63,21 +63,21 @@ const createTestUser = async (userNumber: number): Promise<any> => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-  }
+  };
 
   try {
-    return db.user.saveUser(registrationData)
+    return db.user.saveUser(registrationData);
   } catch (error) {
-    logger.error(`db.game.saveUser error: ${error}`)
+    logger.error(`db.game.saveUser error: ${error}`);
   }
-}
+};
 
 export const createTestUsers = async (number: number): Promise<any> => {
   // Create test users with predefined data
   for (let i = 0; i < number; i += 1) {
-    createTestUser(i + 1)
+    createTestUser(i + 1);
   }
-}
+};
 
 const createUserInGroup = (groupCode: string, index: number): Promise<any> => {
   const registrationData = {
@@ -89,24 +89,24 @@ const createUserInGroup = (groupCode: string, index: number): Promise<any> => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-  }
+  };
 
-  return db.user.saveUser(registrationData)
-}
+  return db.user.saveUser(registrationData);
+};
 
 export const createUsersInGroup = (
   count: number,
   groupId: string
 ): Promise<any> => {
-  logger.info(`Generate data for ${count} users in group ${groupId}`)
+  logger.info(`Generate data for ${count} users in group ${groupId}`);
 
-  const promises = []
+  const promises = [];
   for (let i = 0; i < count; i++) {
-    promises.push(createUserInGroup(groupId, i))
+    promises.push(createUserInGroup(groupId, i));
   }
 
-  return Promise.all(promises)
-}
+  return Promise.all(promises);
+};
 
 const createUser = (): Promise<any> => {
   const registrationData = {
@@ -118,18 +118,18 @@ const createUser = (): Promise<any> => {
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
-  }
+  };
 
-  return db.user.saveUser(registrationData)
-}
+  return db.user.saveUser(registrationData);
+};
 
 export const createUsers = (count: number): Promise<any> => {
-  logger.info(`Generate data for ${count} users`)
+  logger.info(`Generate data for ${count} users`);
 
-  const promises = []
+  const promises = [];
   for (let i = 0; i < count; i++) {
-    promises.push(createUser())
+    promises.push(createUser());
   }
 
-  return Promise.all(promises)
-}
+  return Promise.all(promises);
+};

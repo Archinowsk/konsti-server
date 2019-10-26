@@ -1,15 +1,15 @@
 // @flow
-import { readJson, writeJson } from './statsUtil'
+import { readJson, writeJson } from './statsUtil';
 
 const fixData = async (): Promise<any> => {
-  const data = readJson()
+  const data = readJson();
 
   // Implement fixer logic here
   data.forEach(dataEntry => {
-    dataEntry.username = dataEntry.username.toUpperCase()
-  })
+    dataEntry.username = dataEntry.username.toUpperCase();
+  });
 
-  writeJson(data)
-}
+  writeJson(data);
+};
 
-fixData()
+fixData();

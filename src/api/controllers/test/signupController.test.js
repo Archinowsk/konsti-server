@@ -1,19 +1,19 @@
 // @flow
-import request from 'supertest'
-import { startServer, closeServer } from 'server/server'
+import request from 'supertest';
+import { startServer, closeServer } from 'server/server';
 
-let server
+let server;
 beforeEach(async () => {
-  server = await startServer()
-})
+  server = await startServer();
+});
 
 afterEach(async () => {
-  await closeServer(server)
-})
+  await closeServer(server);
+});
 
 describe('POST /api/signup', () => {
   test('should return 401 without valid authorization', async () => {
-    const response = await request(server).post('/api/signup')
-    expect(response.status).toEqual(401)
-  })
-})
+    const response = await request(server).post('/api/signup');
+    expect(response.status).toEqual(401);
+  });
+});

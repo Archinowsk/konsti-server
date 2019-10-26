@@ -1,5 +1,5 @@
 // @flow
-import type { ObjectId } from 'mongoose'
+import type { ObjectId } from 'mongoose';
 
 export type Game = {
   +_id: ObjectId,
@@ -24,7 +24,7 @@ export type Game = {
   +beginnerFriendly: boolean,
   +intendedForExperiencedParticipants: boolean,
   +popularity: number,
-}
+};
 
 export type KompassiGame = {|
   +title: string,
@@ -51,9 +51,9 @@ export type KompassiGame = {|
   +styles: $ReadOnlyArray<string>,
   +short_blurb: string,
   +revolving_door: boolean,
-|}
+|};
 
 export type GameWithPlayerCount = {|
   +game: Game,
   +players: number,
-|}
+|};

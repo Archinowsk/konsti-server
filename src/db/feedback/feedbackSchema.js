@@ -1,5 +1,5 @@
 // @flow
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const FeedbackSchema = new mongoose.Schema(
   {
@@ -7,6 +7,6 @@ const FeedbackSchema = new mongoose.Schema(
     feedback: String,
   },
   { timestamps: true }
-)
+);
 
-export const Feedback = mongoose.model('Feedback', FeedbackSchema)
+export const Feedback = mongoose.model('Feedback', FeedbackSchema);

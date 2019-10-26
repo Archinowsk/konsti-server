@@ -1,5 +1,5 @@
 // @flow
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const ResultsSchema = new mongoose.Schema(
   {
@@ -18,6 +18,6 @@ const ResultsSchema = new mongoose.Schema(
     message: String,
   },
   { timestamps: true }
-)
+);
 
-export const Results = mongoose.model('Results', ResultsSchema)
+export const Results = mongoose.model('Results', ResultsSchema);

@@ -1,10 +1,10 @@
 // @flow
-import { logger } from 'utils/logger'
-import type { User } from 'flow/user.flow'
+import { logger } from 'utils/logger';
+import type { User } from 'flow/user.flow';
 
 export const getSignupWishes = (players: $ReadOnlyArray<User>) => {
-  logger.debug('Get signup wishes')
-  const signupWishes = []
+  logger.debug('Get signup wishes');
+  const signupWishes = [];
 
   // Get signup wishes for all players
   players.forEach(player => {
@@ -14,12 +14,12 @@ export const getSignupWishes = (players: $ReadOnlyArray<User>) => {
           username: player.username,
           gameId: signedGame.gameDetails.gameId,
           priority: signedGame.priority,
-        })
-      })
+        });
+      });
     }
-  })
+  });
 
-  logger.debug(`Found ${signupWishes.length} signup wishes`)
+  logger.debug(`Found ${signupWishes.length} signup wishes`);
 
-  return signupWishes
-}
+  return signupWishes;
+};

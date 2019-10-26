@@ -1,5 +1,5 @@
 // @flow
-import { check } from 'express-validator'
+import { check } from 'express-validator';
 
 export const postUserValidation = [
   check('username')
@@ -18,7 +18,7 @@ export const postUserValidation = [
     .isEmpty()
     .trim()
     .escape(),
-]
+];
 
 export const postLoginValidation = [
   check('username')
@@ -30,4 +30,4 @@ export const postLoginValidation = [
   check('jwt')
     .trim()
     .escape(),
-]
+];

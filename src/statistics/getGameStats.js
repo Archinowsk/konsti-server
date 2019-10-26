@@ -1,6 +1,6 @@
 // @flow
-import fs from 'fs'
-import { getYear } from './statsUtil'
+import fs from 'fs';
+import { getYear } from './statsUtil';
 import {
   getGamesByStartingTime,
   getUsersByGames,
@@ -8,30 +8,30 @@ import {
   getMaximumNumberOfPlayersByTime,
   getDemandByTime,
   getSignupsByStartTime,
-} from './statistics-helpers/gameDataHelpers'
+} from './statistics-helpers/gameDataHelpers';
 
 const getGameStats = () => {
-  const year = getYear()
+  const year = getYear();
 
   const games = JSON.parse(
     fs.readFileSync(`src/statistics/datafiles/${year}/games.json`, 'utf8')
-  )
-  console.info(`Loaded ${games.length} games`)
+  );
+  console.info(`Loaded ${games.length} games`);
 
   const users = JSON.parse(
     fs.readFileSync(`src/statistics/datafiles/${year}/users.json`, 'utf8')
-  )
-  console.info(`Loaded ${games.length} users`)
+  );
+  console.info(`Loaded ${games.length} users`);
 
-  getGamesByStartingTime(games)
+  getGamesByStartingTime(games);
 
-  const usersByGames = getUsersByGames(users)
+  const usersByGames = getUsersByGames(users);
 
-  getNumberOfFullGames(games, usersByGames)
+  getNumberOfFullGames(games, usersByGames);
 
-  const signupsByStartTime = getSignupsByStartTime(users)
-  const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games)
-  getDemandByTime(signupsByStartTime, maximumNumberOfPlayersByTime)
-}
+  const signupsByStartTime = getSignupsByStartTime(users);
+  const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);
+  getDemandByTime(signupsByStartTime, maximumNumberOfPlayersByTime);
+};
 
-getGameStats()
+getGameStats();

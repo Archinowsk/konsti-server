@@ -1,51 +1,51 @@
 // @flow
-import _ from 'lodash'
-import moment from 'moment'
-import { logger } from 'utils/logger'
-import { Game } from 'db/game/gameSchema'
-import { db } from 'db/mongodb'
-import type { KompassiGame } from 'flow/game.flow'
+import _ from 'lodash';
+import moment from 'moment';
+import { logger } from 'utils/logger';
+import { Game } from 'db/game/gameSchema';
+import { db } from 'db/mongodb';
+import type { KompassiGame } from 'flow/game.flow';
 
 const removeGames = async (): Promise<any> => {
-  logger.info('MongoDB: remove ALL games from db')
+  logger.info('MongoDB: remove ALL games from db');
   try {
-    return await Game.deleteMany({})
+    return await Game.deleteMany({});
   } catch (error) {
-    logger.error(`MongoDB: Error removing games - ${error}`)
-    return error
+    logger.error(`MongoDB: Error removing games - ${error}`);
+    return error;
   }
-}
+};
 
 const removeDeletedGames = async (
   updatedGames: $ReadOnlyArray<Game>
 ): Promise<any> => {
-  const currentGames = await findGames()
+  const currentGames = await findGames();
 
-  const deletedGames = _.differenceBy(currentGames, updatedGames, 'gameId')
+  const deletedGames = _.differenceBy(currentGames, updatedGames, 'gameId');
 
   if (deletedGames && deletedGames.length !== 0) {
-    logger.info(`Found ${deletedGames.length} deleted games, remove...`)
+    logger.info(`Found ${deletedGames.length} deleted games, remove...`);
 
     try {
       await Promise.all(
         deletedGames.map(async deletedGame => {
-          await Game.deleteOne({ gameId: deletedGame.gameId })
+          await Game.deleteOne({ gameId: deletedGame.gameId });
         })
-      )
+      );
     } catch (error) {
-      logger.error(`Error removing deleted games: ${error}`)
-      return Promise.reject(error)
+      logger.error(`Error removing deleted games: ${error}`);
+      return Promise.reject(error);
     }
 
-    await removeDeletedGamesFromUsers()
+    await removeDeletedGamesFromUsers();
   }
-}
+};
 
 const removeMovedGamesFromUsers = async (
   updatedGames: $ReadOnlyArray<Game>
 ): Promise<any> => {
-  logger.info('Remove moved games from users')
-  const currentGames = await findGames()
+  logger.info('Remove moved games from users');
+  const currentGames = await findGames();
 
   const movedGames = currentGames.filter(currentGame => {
     return updatedGames.find(updatedGame => {
@@ -53,20 +53,20 @@ const removeMovedGamesFromUsers = async (
         currentGame.gameId === updatedGame.gameId &&
         moment(currentGame.startTime).format() !==
           moment(updatedGame.startTime).format()
-      )
-    })
-  })
+      );
+    });
+  });
 
-  if (!movedGames || movedGames.length === 0) return
+  if (!movedGames || movedGames.length === 0) return;
 
-  logger.info(`Found ${movedGames.length} moved games`)
+  logger.info(`Found ${movedGames.length} moved games`);
 
-  let users = null
+  let users = null;
   try {
-    users = await db.user.findUsers()
+    users = await db.user.findUsers();
   } catch (error) {
-    logger.error(`findUsers error: ${error}`)
-    return Promise.reject(error)
+    logger.error(`findUsers error: ${error}`);
+    return Promise.reject(error);
   }
 
   try {
@@ -74,21 +74,21 @@ const removeMovedGamesFromUsers = async (
       users.map(async user => {
         const signedGames = user.signedGames.filter(signedGame => {
           const movedFound = movedGames.find(movedGame => {
-            return movedGame.gameId === signedGame.gameDetails.gameId
-          })
+            return movedGame.gameId === signedGame.gameDetails.gameId;
+          });
           if (!movedFound) {
-            return signedGame
+            return signedGame;
           }
-        })
+        });
 
         const enteredGames = user.enteredGames.filter(enteredGame => {
           const movedFound = movedGames.find(movedGame => {
-            return movedGame.gameId === enteredGame.gameDetails.gameId
-          })
+            return movedGame.gameId === enteredGame.gameDetails.gameId;
+          });
           if (!movedFound) {
-            return enteredGame
+            return enteredGame;
           }
-        })
+        });
 
         if (
           user.signedGames.length !== signedGames.length ||
@@ -98,41 +98,41 @@ const removeMovedGamesFromUsers = async (
             ...user,
             signedGames,
             enteredGames,
-          })
+          });
         }
       })
-    )
+    );
   } catch (error) {
-    logger.error(`db.user.updateUser error: ${error}`)
-    throw new Error('No assign results')
+    logger.error(`db.user.updateUser error: ${error}`);
+    throw new Error('No assign results');
   }
-}
+};
 
 export const removeDeletedGamesFromUsers = async () => {
-  logger.info('Remove deleted games from users')
+  logger.info('Remove deleted games from users');
 
-  let users = null
+  let users = null;
   try {
-    users = await db.user.findUsers()
+    users = await db.user.findUsers();
   } catch (error) {
-    logger.error(`findUsers error: ${error}`)
-    return Promise.reject(error)
+    logger.error(`findUsers error: ${error}`);
+    return Promise.reject(error);
   }
 
   try {
     await Promise.all(
       users.map(async user => {
         const signedGames = user.signedGames.filter(signedGame => {
-          return signedGame.gameDetails
-        })
+          return signedGame.gameDetails;
+        });
 
         const enteredGames = user.enteredGames.filter(enteredGame => {
-          return enteredGame.gameDetails
-        })
+          return enteredGame.gameDetails;
+        });
 
         const favoritedGames = user.favoritedGames.filter(favoritedGame => {
-          return favoritedGame
-        })
+          return favoritedGame;
+        });
 
         if (
           user.signedGames.length !== signedGames.length ||
@@ -144,18 +144,18 @@ export const removeDeletedGamesFromUsers = async () => {
             signedGames,
             enteredGames,
             favoritedGames,
-          })
+          });
         }
       })
-    )
+    );
   } catch (error) {
-    logger.error(`db.user.updateUser error: ${error}`)
-    throw new Error('No assign results')
+    logger.error(`db.user.updateUser error: ${error}`);
+    throw new Error('No assign results');
   }
-}
+};
 
 const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
-  logger.info('MongoDB: Store games to DB')
+  logger.info('MongoDB: Store games to DB');
 
   const updatedGames = games.map(game => {
     return {
@@ -182,11 +182,11 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
         game.intended_for_experienced_participants,
       shortDescription: game.short_blurb,
       revolvingDoor: game.revolving_door,
-    }
-  })
+    };
+  });
 
-  await removeDeletedGames(updatedGames)
-  await removeMovedGamesFromUsers(updatedGames)
+  await removeDeletedGames(updatedGames);
+  await removeMovedGamesFromUsers(updatedGames);
 
   try {
     await Promise.all(
@@ -222,35 +222,35 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
             upsert: true,
             setDefaultsOnInsert: true,
           }
-        )
+        );
       })
-    )
+    );
   } catch (error) {
-    logger.error(`Error saving games to db: ${error}`)
-    return Promise.reject(error)
+    logger.error(`Error saving games to db: ${error}`);
+    return Promise.reject(error);
   }
 
-  logger.debug('MongoDB: Games saved to DB succesfully')
-  return findGames()
-}
+  logger.debug('MongoDB: Games saved to DB succesfully');
+  return findGames();
+};
 
 const findGames = async (): Promise<any> => {
-  let response = null
+  let response = null;
   try {
-    response = await Game.find({}).lean()
-    logger.debug(`MongoDB: Find all games`)
-    return response
+    response = await Game.find({}).lean();
+    logger.debug(`MongoDB: Find all games`);
+    return response;
   } catch (error) {
-    logger.error(`MongoDB: Error fetcing games - ${error}`)
-    return error
+    logger.error(`MongoDB: Error fetcing games - ${error}`);
+    return error;
   }
-}
+};
 
 const saveGamePopularity = async (
   gameId: string,
   popularity: number
 ): Promise<any> => {
-  logger.debug(`MongoDB: Update game ${gameId} popularity to ${popularity}`)
+  logger.debug(`MongoDB: Update game ${gameId} popularity to ${popularity}`);
   try {
     return await Game.updateOne(
       {
@@ -259,10 +259,10 @@ const saveGamePopularity = async (
       {
         popularity,
       }
-    )
+    );
   } catch (error) {
-    logger.errog(`Error updating game popularity: ${error}`)
+    logger.errog(`Error updating game popularity: ${error}`);
   }
-}
+};
 
-export const game = { saveGames, findGames, removeGames, saveGamePopularity }
+export const game = { saveGames, findGames, removeGames, saveGamePopularity };
