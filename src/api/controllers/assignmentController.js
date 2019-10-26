@@ -10,11 +10,11 @@ import type { Signup, Result, PlayerAssignmentResult } from 'flow/result.flow'
 import type { $Request, $Response, Middleware } from 'express'
 
 // Assign players to games
-const postPlayers: Middleware = async (
+const postAssignment: Middleware = async (
   req: $Request,
   res: $Response
 ): Promise<void> => {
-  logger.info('API call: POST /api/players')
+  logger.info('API call: POST /api/assignment')
   const startingTime = req.body.startingTime
 
   const authHeader = req.headers.authorization
@@ -180,4 +180,4 @@ export const doAssignment = async (
   return assignResults
 }
 
-export { postPlayers }
+export { postAssignment }

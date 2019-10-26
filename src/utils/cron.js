@@ -10,7 +10,7 @@ import {
   doAssignment,
   saveResults,
   removeOverlappingSignups,
-} from 'api/controllers/playersController'
+} from 'api/controllers/assignmentController'
 import { sleep } from 'utils/sleep'
 
 const {

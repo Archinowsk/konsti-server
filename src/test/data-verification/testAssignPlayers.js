@@ -9,7 +9,7 @@ import { config } from 'config'
 import {
   saveResults,
   removeOverlappingSignups,
-} from 'api/controllers/playersController'
+} from 'api/controllers/assignmentController'
 import type { AssignmentStrategy } from 'flow/config.flow'
 
 const testAssignPlayers = async (
