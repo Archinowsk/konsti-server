@@ -26,6 +26,9 @@ const commonConfig = {
   // Development and testing
   generateSignups: true,
   saveTestAssign: false,
+
+  // Convention settings
+  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
 }
 
 const prodConfig = {
@@ -38,7 +41,6 @@ const prodConfig = {
       ? process.env.CORS_WHITELIST.split(';')
       : [],
   useLocalProgramFile: false,
-  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
@@ -61,7 +63,6 @@ const stagingConfig = {
       ? process.env.CORS_WHITELIST.split(';')
       : [],
   useLocalProgramFile: false,
-  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
@@ -81,7 +82,6 @@ const devConfig = {
   jwtSecretKeyAdmin: 'admin secret',
   allowedCorsOrigins: ['http://localhost:8080'],
   useLocalProgramFile: true,
-  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
   debug: false,
   GROUP_ASSIGNMENT_ROUNDS: 1,
   OPA_ASSIGNMENT_ROUNDS: 300,
