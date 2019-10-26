@@ -1,4 +1,5 @@
 // @flow
+import to from 'await-to-js';
 import moment from 'moment';
 import { logger } from 'utils/logger';
 import { User } from 'db/user/userSchema';
@@ -239,19 +240,19 @@ const findGroup = async (groupCode: string, username: string): Promise<any> => {
 };
 
 const findUsers = async (): Promise<any> => {
-  let response = null;
-  try {
-    response = await User.find({})
+  logger.debug(`MongoDB: Find all users`);
+
+  const [error, users] = await to(
+    User.find({})
       .lean()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
-      .populate('signedGames.gameDetails');
-    logger.debug(`MongoDB: Find all users`);
-    return response;
-  } catch (error) {
-    logger.error(`MongoDB: Error fetcing users - ${error}`);
-    return error;
-  }
+      .populate('signedGames.gameDetails')
+  );
+  if (error) throw new Error(`MongoDB: Error fetcing users - ${error}`);
+  if (!users) throw new Error('MongoDB: No users found');
+
+  return users;
 };
 
 const saveSignup = async (signupData: Signup): Promise<any> => {

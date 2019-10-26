@@ -13,7 +13,7 @@ import { serial } from 'db/serial/serialService';
 const connectToDb = async (): Promise<any> => {
   const { dbConnString, dbName } = config;
 
-  logger.info(`MongoDB: Connecting to: ${dbConnString}`);
+  logger.info(`MongoDB: Connecting to ${dbConnString}`);
 
   const options = {
     promiseLibrary: global.Promise,
@@ -26,7 +26,7 @@ const connectToDb = async (): Promise<any> => {
   const [error] = await to(mongoose.connect(dbConnString, options));
   if (error) throw new Error(`MongoDB: Error connecting to DB: ${error}`);
 
-  logger.info(`MongoDB: Connection succesful: ${dbConnString}`);
+  logger.info(`MongoDB: Connection succesful to ${dbConnString}`);
 
   mongoose.connection.on('error', error => {
     logger.error(error);

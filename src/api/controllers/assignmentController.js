@@ -101,8 +101,7 @@ export const saveResults = async (
     );
     await db.results.saveResult(results, startingTime, algorithm, message);
   } catch (error) {
-    logger.error(`db.results.saveResult error: ${error}`);
-    throw new Error('No assign results');
+    throw new Error(`No assign results: db.results.saveResult error: ${error}`);
   }
 
   try {
@@ -110,7 +109,7 @@ export const saveResults = async (
     await saveUserSignupResults(results);
   } catch (error) {
     logger.error(`saveUserSignupResults: ${error}`);
-    throw new Error('No assign results');
+    throw new Error(`No assign results: saveUserSignupResults: ${error}`);
   }
 };
 
@@ -139,8 +138,7 @@ export const removeOverlappingSignups = async (
       })
     );
   } catch (error) {
-    logger.error(`saveSignup error: ${error}`);
-    throw new Error('No assign results');
+    throw new Error(`No assign results: saveSignup error: ${error}`);
   }
 };
 

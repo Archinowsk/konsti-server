@@ -22,22 +22,13 @@ const testAssignPlayers = async (
     removeOverlapSignups,
   } = config;
 
-  const [error] = await to(db.connectToDb());
+  let error, users, games;
+
+  [error, users] = await to(db.user.findUsers());
   if (error) return logger.error(error);
 
-  let users = [];
-  try {
-    users = await db.user.findUsers();
-  } catch (error) {
-    logger.error(`db.user.findUsers error: ${error}`);
-  }
-
-  let games = [];
-  try {
-    games = await db.game.findGames();
-  } catch (error) {
-    logger.error(`db.user.findGames error: ${error}`);
-  }
+  [error, games] = await to(db.game.findGames());
+  if (error) return logger.error(error);
 
   const startingTime = moment(CONVENTION_START_TIME)
     .add(2, 'hours')
@@ -52,33 +43,25 @@ const testAssignPlayers = async (
 
   if (saveTestAssign) {
     if (removeOverlapSignups && assignResults.newSignupData) {
-      try {
-        logger.info('Remove overlapping signups');
-        await removeOverlappingSignups(assignResults.newSignupData);
-      } catch (error) {
-        logger.error(`removeOverlappingSignups error: ${error}`);
-      }
+      [error] = await to(removeOverlappingSignups(assignResults.newSignupData));
+      if (error) return logger.error(error);
     }
 
-    try {
-      await saveResults(
+    [error] = await to(
+      saveResults(
         assignResults.results,
         startingTime,
         assignResults.algorithm,
         assignResults.message
-      );
-    } catch (error) {
-      logger.error(`saveResult error: ${error}`);
-    }
+      )
+    );
+    if (error) return logger.error(error);
 
-    await verifyUserSignups(startingTime);
-    await verifyResults(startingTime);
-  }
+    [error] = await to(verifyUserSignups(startingTime));
+    if (error) return logger.error(error);
 
-  try {
-    await db.gracefulExit();
-  } catch (error) {
-    logger.error(error);
+    [error] = await to(verifyResults(startingTime));
+    if (error) return logger.error(error);
   }
 };
 
@@ -91,19 +74,18 @@ const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
   ) {
     return userParameter;
   } else {
-    throw new Error('Unexpected assignment strategy');
+    throw new Error(
+      'Give valid strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
+    );
   }
 };
 
-const verifyUserSignups = async (startingTime: string): Promise<void> => {
+const verifyUserSignups = async (startingTime: string): Promise<any> => {
   logger.info('Verify entered games and signups match for users');
 
-  let usersAfterAssign = [];
-  try {
-    usersAfterAssign = await db.user.findUsers();
-  } catch (error) {
-    logger.error(`db.user.findUsers error: ${error}`);
-  }
+  const [error, usersAfterAssign] = await to(db.user.findUsers());
+  if (error) return logger.error(error);
+  if (!usersAfterAssign) return;
 
   usersAfterAssign.map(user => {
     const enteredGames = user.enteredGames.filter(
@@ -143,15 +125,11 @@ const verifyUserSignups = async (startingTime: string): Promise<void> => {
   });
 };
 
-const verifyResults = async (startingTime: string): Promise<void> => {
+const verifyResults = async (startingTime: string): Promise<any> => {
   logger.info('Verify results contain valid data');
 
-  let results;
-  try {
-    results = await db.results.findResult(startingTime);
-  } catch (error) {
-    logger.error(`Results: ${error}`);
-  }
+  const [error, results] = await to(db.results.findResult(startingTime));
+  if (error) return logger.error(error);
 
   if (!results || !results.result) {
     logger.error('No results found');
@@ -173,9 +151,10 @@ const verifyResults = async (startingTime: string): Promise<void> => {
   });
 };
 
-const init = (): void => {
+const init = async (): Promise<any> => {
   if (process.env.NODE_ENV === 'production') {
-    throw new Error(`Player allocation not allowed in production`);
+    logger.error(`Player allocation not allowed in production`);
+    return;
   }
 
   const userParameter = process.argv[2];
@@ -184,12 +163,19 @@ const init = (): void => {
   try {
     assignmentStategy = getAssignmentStategy(userParameter);
   } catch (error) {
-    throw new Error(
-      'Give strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
-    );
+    logger.error(error);
+    return;
   }
 
-  testAssignPlayers(assignmentStategy);
+  let error;
+
+  [error] = await to(db.connectToDb());
+  if (error) return logger.error(error);
+
+  await testAssignPlayers(assignmentStategy);
+
+  [error] = await to(db.gracefulExit());
+  if (error) logger.error(error);
 };
 
 init();

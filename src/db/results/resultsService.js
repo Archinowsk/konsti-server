@@ -21,10 +21,9 @@ const findResult = async (startTime: string): Promise<any> => {
     logger.debug(`MongoDB: Results data found for time ${startTime}`);
     return response;
   } catch (error) {
-    logger.error(
+    throw new Error(
       `MongoDB: Error finding results data for time ${startTime} - ${error}`
     );
-    return error;
   }
 };
 
