@@ -4,7 +4,8 @@ import fs from 'fs'
 import 'winston-daily-rotate-file'
 import { config } from 'config'
 
-const { combine, printf, colorize, timestamp, json } = format
+// $FlowFixMe: property `errors` is missing in `$winstonFormatSubModule` [1].
+const { combine, printf, colorize, timestamp, json, errors } = format
 const { logDir, debug } = config
 
 // Create logs directory if it does not exist
@@ -26,6 +27,7 @@ const formatMessage = (message: string | Object): string => {
 
 // $FlowFixMe: Missing type annotation for `T`. `T` is a type parameter declared in function type [1] and was implicitly instantiated at call of `createLogger` [2].
 export const logger = createLogger({
+  format: errors({ stack: true }),
   transports: [
     // $FlowFixMe: Cannot get `transports.DailyRotateFile` because property `DailyRotateFile` is missing in object type [1].
     new transports.DailyRotateFile({
