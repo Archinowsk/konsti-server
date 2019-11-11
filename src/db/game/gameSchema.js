@@ -1,7 +1,7 @@
 // @flow
 import mongoose from 'mongoose';
 
-const GameSchema = new mongoose.Schema(
+const gameSchema = new mongoose.Schema(
   {
     gameId: String,
     title: String,
@@ -30,4 +30,4 @@ const GameSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const Game = mongoose.model('Game', GameSchema);
+export const gameModel = mongoose.model('Game', gameSchema);

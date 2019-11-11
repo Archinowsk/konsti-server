@@ -4,6 +4,7 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { config } from 'config';
+import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 
 const startingTimes = [
   moment(config.CONVENTION_START_TIME)
@@ -22,7 +23,7 @@ const startingTimes = [
 export const createGames = (count: number): Promise<void> => {
   logger.info(`Generate data for ${count} games`);
 
-  const games = [];
+  const kompassiGames = [];
 
   startingTimes.forEach(startingTime => {
     for (let i = 0; i < count; i += 1) {
@@ -68,9 +69,9 @@ export const createGames = (count: number): Promise<void> => {
       };
 
       logger.info(`Stored game "${gameData.title}"`);
-      games.push(gameData);
+      kompassiGames.push(gameData);
     }
   });
 
-  return db.game.saveGames(games);
+  return db.game.saveGames(kompassiGameMapper(kompassiGames));
 };

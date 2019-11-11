@@ -12,6 +12,7 @@ import {
   removeOverlappingSignups,
 } from 'api/controllers/assignmentController';
 import { sleep } from 'utils/sleep';
+import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 
 const {
   autoUpdateGamesEnabled,
@@ -27,8 +28,8 @@ export const autoUpdateGames = async (): Promise<void> => {
       async (): Promise<void> => {
         if (autoUpdateGamesEnabled) {
           logger.info('----> Auto update games');
-          const games = await updateGames();
-          await db.game.saveGames(games);
+          const kompassiGames = await updateGames();
+          await db.game.saveGames(kompassiGameMapper(kompassiGames));
           logger.info('***** Games auto update completed');
         }
 

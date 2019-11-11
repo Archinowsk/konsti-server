@@ -2,14 +2,14 @@
 import _ from 'lodash';
 import moment from 'moment';
 import { logger } from 'utils/logger';
-import { Game } from 'db/game/gameSchema';
+import { gameModel } from 'db/game/gameSchema';
 import { db } from 'db/mongodb';
-import type { KompassiGame } from 'flow/game.flow';
+import type { Game } from 'flow/game.flow';
 
 const removeGames = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL games from db');
   try {
-    return await Game.deleteMany({});
+    return await gameModel.deleteMany({});
   } catch (error) {
     logger.error(`MongoDB: Error removing games - ${error}`);
     return error;
@@ -29,7 +29,7 @@ const removeDeletedGames = async (
     try {
       await Promise.all(
         deletedGames.map(async deletedGame => {
-          await Game.deleteOne({ gameId: deletedGame.gameId });
+          await gameModel.deleteOne({ gameId: deletedGame.gameId });
         })
       );
     } catch (error) {
@@ -154,44 +154,16 @@ export const removeDeletedGamesFromUsers = async () => {
   }
 };
 
-const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
+const saveGames = async (games: $ReadOnlyArray<Game>): Promise<any> => {
   logger.info('MongoDB: Store games to DB');
 
-  const updatedGames = games.map(game => {
-    return {
-      gameId: game.identifier,
-      title: game.title,
-      description: game.description,
-      location: game.room_name,
-      startTime: moment(game.start_time).format(),
-      mins: game.length,
-      tags: game.tags,
-      genres: game.genres,
-      styles: game.styles,
-      language: game.language,
-      endTime: game.end_time,
-      people: game.formatted_hosts,
-      minAttendance: game.min_players,
-      maxAttendance: game.max_players,
-      gameSystem: game.rpg_system,
-      englishOk: game.english_ok,
-      childrenFriendly: game.children_friendly,
-      ageRestricted: game.age_restricted,
-      beginnerFriendly: game.beginner_friendly,
-      intendedForExperiencedParticipants:
-        game.intended_for_experienced_participants,
-      shortDescription: game.short_blurb,
-      revolvingDoor: game.revolving_door,
-    };
-  });
-
-  await removeDeletedGames(updatedGames);
-  await removeMovedGamesFromUsers(updatedGames);
+  await removeDeletedGames(games);
+  await removeMovedGamesFromUsers(games);
 
   try {
     await Promise.all(
-      updatedGames.map(async game => {
-        await Game.updateOne(
+      games.map(async game => {
+        await gameModel.updateOne(
           { gameId: game.gameId },
           {
             gameId: game.gameId,
@@ -237,7 +209,7 @@ const saveGames = async (games: $ReadOnlyArray<KompassiGame>): Promise<any> => {
 const findGames = async (): Promise<any> => {
   let response = null;
   try {
-    response = await Game.find({}).lean();
+    response = await gameModel.find({}).lean();
     logger.debug(`MongoDB: Find all games`);
     return response;
   } catch (error) {
@@ -252,7 +224,7 @@ const saveGamePopularity = async (
 ): Promise<void> => {
   logger.debug(`MongoDB: Update game ${gameId} popularity to ${popularity}`);
   try {
-    return await Game.updateOne(
+    return await gameModel.updateOne(
       {
         gameId,
       },

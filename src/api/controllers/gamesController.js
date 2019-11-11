@@ -5,6 +5,7 @@ import { validateAuthHeader } from 'utils/authHeader';
 import { updateGames } from 'utils/updateGames';
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
 import { config } from 'config';
+import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 import type { $Request, $Response, Middleware } from 'express';
 
 // Update games db from master data
@@ -21,9 +22,9 @@ const postGames: Middleware = async (
     return res.sendStatus(401);
   }
 
-  let games = [];
+  let kompassiGames = [];
   try {
-    games = await updateGames();
+    kompassiGames = await updateGames();
   } catch (error) {
     return res.json({
       message: 'Games db update failed',
@@ -31,18 +32,20 @@ const postGames: Middleware = async (
     });
   }
 
-  if (!games || games.length === 0) {
+  if (!kompassiGames || kompassiGames.length === 0) {
     return res.json({
       message: 'Games db update failed: No games available',
       status: 'error',
     });
   }
 
-  logger.info(`Found ${games.length} games`);
+  logger.info(`Found ${kompassiGames.length} games`);
 
   let gameSaveResponse = null;
   try {
-    gameSaveResponse = await db.game.saveGames(games);
+    gameSaveResponse = await db.game.saveGames(
+      kompassiGameMapper(kompassiGames)
+    );
   } catch (error) {
     logger.error(`db.game.saveGames error: ${error}`);
     return res.json({
