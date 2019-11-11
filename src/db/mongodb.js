@@ -10,7 +10,7 @@ import { results } from 'db/results/resultsService';
 import { settings } from 'db/settings/settingsService';
 import { serial } from 'db/serial/serialService';
 
-const connectToDb = async (): Promise<any> => {
+const connectToDb = async (): Promise<void> => {
   const { dbConnString, dbName } = config;
 
   logger.info(`MongoDB: Connecting to ${dbConnString}`);
@@ -33,14 +33,12 @@ const connectToDb = async (): Promise<any> => {
   });
 };
 
-const gracefulExit = async () => {
+const gracefulExit = async (): Promise<void> => {
   const { dbConnString } = config;
 
-  try {
-    await mongoose.connection.close();
-  } catch (error) {
-    throw new Error(`Error shutting down db connection: ${error}`);
-  }
+  const [error] = await to(mongoose.connection.close());
+  if (error)
+    throw new Error(`MongoDB: Error shutting down db connection: ${error}`);
 
   logger.info(`MongoDB connection closed: ${dbConnString}`);
 };
