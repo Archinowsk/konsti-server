@@ -3,7 +3,7 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { SettingsModel } from 'db/settings/settingsSchema';
 import type { Game } from 'flow/game.flow';
-import type { SettingsType } from 'flow/settings.flow';
+import type { Settings } from 'flow/settings.flow';
 
 const removeSettings = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL settings from db');
@@ -29,7 +29,7 @@ const createSettings = async (): Promise<any> => {
   }
 };
 
-const findSettings = async (): Promise<SettingsType> => {
+const findSettings = async (): Promise<Settings> => {
   let response = null;
   try {
     response = await SettingsModel.findOne(
@@ -53,7 +53,7 @@ const findSettings = async (): Promise<SettingsType> => {
 
 const saveHidden = async (
   hiddenData: $ReadOnlyArray<Game>
-): Promise<SettingsType> => {
+): Promise<Settings> => {
   let response = null;
   try {
     response = await SettingsModel.findOneAndUpdate(
@@ -74,7 +74,7 @@ const saveHidden = async (
   return response;
 };
 
-const saveSignupTime = async (signupTime: string): Promise<SettingsType> => {
+const saveSignupTime = async (signupTime: string): Promise<Settings> => {
   const formattedTime = moment(signupTime).format();
 
   let response = null;
@@ -94,7 +94,7 @@ const saveSignupTime = async (signupTime: string): Promise<SettingsType> => {
   }
 };
 
-const saveToggleAppOpen = async (appOpen: boolean): Promise<SettingsType> => {
+const saveToggleAppOpen = async (appOpen: boolean): Promise<Settings> => {
   let response = null;
   try {
     response = await SettingsModel.findOneAndUpdate(
