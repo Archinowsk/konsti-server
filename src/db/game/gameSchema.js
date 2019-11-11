@@ -30,4 +30,4 @@ const gameSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const gameModel = mongoose.model('Game', gameSchema);
+export const GameModel = mongoose.model('Game', gameSchema);

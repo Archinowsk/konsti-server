@@ -1,6 +1,6 @@
 // @flow
 
-export type FeedbackData = {|
+export type Feedback = {|
   +gameId: string,
   +feedback: string,
 |};

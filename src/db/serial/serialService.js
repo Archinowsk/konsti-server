@@ -1,10 +1,10 @@
 // @flow
 import { logger } from 'utils/logger';
-import { Serial } from 'db/serial/serialSchema';
+import { SerialModel } from 'db/serial/serialSchema';
 
 const removeSerials = () => {
   logger.info('MongoDB: remove ALL serials from db');
-  return Serial.deleteMany({});
+  return SerialModel.deleteMany({});
 };
 
 const saveSerials = async (serials: $ReadOnlyArray<string>): Promise<void> => {
@@ -12,7 +12,7 @@ const saveSerials = async (serials: $ReadOnlyArray<string>): Promise<void> => {
 
   for (const serial of serials) {
     serialDocs.push(
-      new Serial({
+      new SerialModel({
         serial,
       })
     );
@@ -20,7 +20,7 @@ const saveSerials = async (serials: $ReadOnlyArray<string>): Promise<void> => {
 
   let response = null;
   try {
-    response = await Serial.create(serialDocs);
+    response = await SerialModel.create(serialDocs);
     logger.info(`MongoDB: Serials data saved`);
     return response;
   } catch (error) {
@@ -32,7 +32,7 @@ const saveSerials = async (serials: $ReadOnlyArray<string>): Promise<void> => {
 const findSerial = async (serial: string): Promise<any> => {
   let response = null;
   try {
-    response = await Serial.findOne({ serial }).lean();
+    response = await SerialModel.findOne({ serial }).lean();
   } catch (error) {
     logger.error(`MongoDB: Error finding serial ${serial} - ${error}`);
     return error;

@@ -1,7 +1,7 @@
 // @flow
 import mongoose from 'mongoose';
 import { db } from 'db/mongodb';
-import { gameModel } from 'db/game/gameSchema';
+import { GameModel } from 'db/game/gameSchema';
 
 beforeAll(async () => {
   const options = {
@@ -15,7 +15,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await gameModel.deleteMany({});
+  await GameModel.deleteMany({});
 });
 
 afterAll(async () => {
@@ -59,7 +59,7 @@ describe('Game service', () => {
 
     await db.game.saveGames([mockGame]);
 
-    const insertedGame = await gameModel.findOne({
+    const insertedGame = await GameModel.findOne({
       gameId: mockGame.gameId,
     });
     expect(insertedGame.gameId).toEqual(mockGame.gameId);

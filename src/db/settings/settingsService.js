@@ -1,20 +1,20 @@
 // @flow
 import moment from 'moment';
 import { logger } from 'utils/logger';
-import { Settings } from 'db/settings/settingsSchema';
+import { SettingsModel } from 'db/settings/settingsSchema';
 import type { Game } from 'flow/game.flow';
 import type { SettingsType } from 'flow/settings.flow';
 
 const removeSettings = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL settings from db');
-  await Settings.deleteMany({});
+  await SettingsModel.deleteMany({});
   await createSettings();
 };
 
 const createSettings = async (): Promise<any> => {
   logger.info('MongoDB: Create default "Settings" collection');
 
-  const settings = new Settings();
+  const settings = new SettingsModel();
 
   let response = null;
   try {
@@ -32,7 +32,10 @@ const createSettings = async (): Promise<any> => {
 const findSettings = async (): Promise<SettingsType> => {
   let response = null;
   try {
-    response = await Settings.findOne({}, '-_id -__v -createdAt -updatedAt')
+    response = await SettingsModel.findOne(
+      {},
+      '-_id -__v -createdAt -updatedAt'
+    )
       .lean()
       .populate('hiddenGames');
   } catch (error) {
@@ -53,7 +56,7 @@ const saveHidden = async (
 ): Promise<SettingsType> => {
   let response = null;
   try {
-    response = await Settings.findOneAndUpdate(
+    response = await SettingsModel.findOneAndUpdate(
       {},
       {
         hiddenGames: hiddenData.map(game => {
@@ -76,7 +79,7 @@ const saveSignupTime = async (signupTime: string): Promise<SettingsType> => {
 
   let response = null;
   try {
-    response = await Settings.findOneAndUpdate(
+    response = await SettingsModel.findOneAndUpdate(
       {},
       {
         signupTime: signupTime ? formattedTime : null,
@@ -94,7 +97,7 @@ const saveSignupTime = async (signupTime: string): Promise<SettingsType> => {
 const saveToggleAppOpen = async (appOpen: boolean): Promise<SettingsType> => {
   let response = null;
   try {
-    response = await Settings.findOneAndUpdate(
+    response = await SettingsModel.findOneAndUpdate(
       {},
       {
         appOpen,

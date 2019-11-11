@@ -5,4 +5,4 @@ const SerialSchema = new mongoose.Schema({
   serial: String,
 });
 
-export const Serial = mongoose.model('Serial', SerialSchema);
+export const SerialModel = mongoose.model('Serial', SerialSchema);

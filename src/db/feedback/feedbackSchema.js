@@ -1,7 +1,7 @@
 // @flow
 import mongoose from 'mongoose';
 
-const FeedbackSchema = new mongoose.Schema(
+const feedbackSchema = new mongoose.Schema(
   {
     gameId: String,
     feedback: String,
@@ -9,4 +9,4 @@ const FeedbackSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const Feedback = mongoose.model('Feedback', FeedbackSchema);
+export const FeedbackModel = mongoose.model('Feedback', feedbackSchema);

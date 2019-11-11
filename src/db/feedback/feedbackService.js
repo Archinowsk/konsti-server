@@ -1,10 +1,10 @@
 // @flow
 import { logger } from 'utils/logger';
-import { Feedback } from 'db/feedback/feedbackSchema';
-import type { FeedbackData } from 'flow/feedback.flow';
+import { FeedbackModel } from 'db/feedback/feedbackSchema';
+import type { Feedback } from 'flow/feedback.flow';
 
-const saveFeedback = async (feedbackData: FeedbackData): Promise<void> => {
-  const feedback = new Feedback({
+const saveFeedback = async (feedbackData: Feedback): Promise<void> => {
+  const feedback = new FeedbackModel({
     gameId: feedbackData.gameId,
     feedback: feedbackData.feedback,
   });

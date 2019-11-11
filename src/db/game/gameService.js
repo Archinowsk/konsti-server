@@ -2,14 +2,14 @@
 import _ from 'lodash';
 import moment from 'moment';
 import { logger } from 'utils/logger';
-import { gameModel } from 'db/game/gameSchema';
+import { GameModel } from 'db/game/gameSchema';
 import { db } from 'db/mongodb';
 import type { Game } from 'flow/game.flow';
 
 const removeGames = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL games from db');
   try {
-    return await gameModel.deleteMany({});
+    return await GameModel.deleteMany({});
   } catch (error) {
     logger.error(`MongoDB: Error removing games - ${error}`);
     return error;
@@ -29,7 +29,7 @@ const removeDeletedGames = async (
     try {
       await Promise.all(
         deletedGames.map(async deletedGame => {
-          await gameModel.deleteOne({ gameId: deletedGame.gameId });
+          await GameModel.deleteOne({ gameId: deletedGame.gameId });
         })
       );
     } catch (error) {
@@ -163,7 +163,7 @@ const saveGames = async (games: $ReadOnlyArray<Game>): Promise<any> => {
   try {
     await Promise.all(
       games.map(async game => {
-        await gameModel.updateOne(
+        await GameModel.updateOne(
           { gameId: game.gameId },
           {
             gameId: game.gameId,
@@ -209,7 +209,7 @@ const saveGames = async (games: $ReadOnlyArray<Game>): Promise<any> => {
 const findGames = async (): Promise<any> => {
   let response = null;
   try {
-    response = await gameModel.find({}).lean();
+    response = await GameModel.find({}).lean();
     logger.debug(`MongoDB: Find all games`);
     return response;
   } catch (error) {
@@ -224,7 +224,7 @@ const saveGamePopularity = async (
 ): Promise<void> => {
   logger.debug(`MongoDB: Update game ${gameId} popularity to ${popularity}`);
   try {
-    return await gameModel.updateOne(
+    return await GameModel.updateOne(
       {
         gameId,
       },

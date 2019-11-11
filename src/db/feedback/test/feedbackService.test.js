@@ -1,7 +1,7 @@
 // @flow
 import mongoose from 'mongoose';
 import { db } from 'db/mongodb';
-import { Feedback } from 'db/feedback/feedbackSchema';
+import { FeedbackModel } from 'db/feedback/feedbackSchema';
 
 beforeAll(async () => {
   const options = {
@@ -15,7 +15,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await Feedback.deleteMany({});
+  await FeedbackModel.deleteMany({});
 });
 
 afterAll(async () => {
@@ -27,7 +27,7 @@ describe('Feedback service', () => {
     const mockFeedback = { gameId: '1234A', feedback: 'Test feedback' };
     await db.feedback.saveFeedback(mockFeedback);
 
-    const insertedFeedback = await Feedback.findOne(mockFeedback);
+    const insertedFeedback = await FeedbackModel.findOne(mockFeedback);
     expect(insertedFeedback.gameId).toEqual(mockFeedback.gameId);
     expect(insertedFeedback.feedback).toEqual(mockFeedback.feedback);
   });

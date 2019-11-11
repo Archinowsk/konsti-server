@@ -1,17 +1,17 @@
 // @flow
 import { logger } from 'utils/logger';
-import { Results } from 'db/results/resultsSchema';
+import { ResultsModel } from 'db/results/resultsSchema';
 import type { Result } from 'flow/result.flow';
 
 const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db');
-  return Results.deleteMany({});
+  return ResultsModel.deleteMany({});
 };
 
 const findResult = async (startTime: string): Promise<void> => {
   let response = null;
   try {
-    response = await Results.findOne(
+    response = await ResultsModel.findOne(
       { startTime },
       '-_id -__v -createdAt -updatedAt -result._id'
     )
@@ -46,7 +46,7 @@ const saveResult = async (
 
   let response = null;
   try {
-    response = await Results.replaceOne(
+    response = await ResultsModel.replaceOne(
       { startTime },
       { startTime, result, algorithm, message },
       { upsert: true }
