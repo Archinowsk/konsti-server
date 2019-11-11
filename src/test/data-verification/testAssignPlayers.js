@@ -65,7 +65,7 @@ const testAssignPlayers = async (
   }
 };
 
-const getAssignmentStategy = (userParameter: string): AssignmentStrategy => {
+const getAssignmentStrategy = (userParameter: string): AssignmentStrategy => {
   if (
     userParameter === 'munkres' ||
     userParameter === 'group' ||
@@ -161,7 +161,7 @@ const init = async (): Promise<any> => {
 
   let assignmentStategy;
   try {
-    assignmentStategy = getAssignmentStategy(userParameter);
+    assignmentStategy = getAssignmentStrategy(userParameter);
   } catch (error) {
     logger.error(error);
     return;
