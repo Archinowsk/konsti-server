@@ -6,7 +6,7 @@ import { db } from 'db/mongodb';
 import { config } from 'config';
 import { logger } from 'utils/logger';
 import { assignPlayers } from 'player-assignment/assignPlayers';
-import { groupGenerator } from 'test/data-generation/generators/groupGenerator';
+import { generateTestData } from 'test/data-generation/generators/generateTestData';
 
 beforeAll(async () => {
   const options = {
@@ -38,7 +38,7 @@ describe('Assignment with valid data', () => {
     const newGamesCount = 10;
     const testUsersCount = 5;
 
-    await groupGenerator(
+    await generateTestData(
       newUsersCount,
       newGamesCount,
       groupSize,
@@ -134,7 +134,7 @@ describe('Assignment with no games', () => {
     const newGamesCount = 0;
     const testUsersCount = 5;
 
-    await groupGenerator(
+    await generateTestData(
       newUsersCount,
       newGamesCount,
       groupSize,
@@ -230,7 +230,7 @@ describe('Assignment with no players', () => {
     const newGamesCount = 10;
     const testUsersCount = 0;
 
-    await groupGenerator(
+    await generateTestData(
       newUsersCount,
       newGamesCount,
       groupSize,

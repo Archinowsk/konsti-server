@@ -11,7 +11,7 @@ import { createGames } from 'test/data-generation/generators/createGames';
 import { createSignups } from 'test/data-generation/generators/createSignups';
 import { config } from 'config';
 
-export const groupGenerator = async (
+export const generateTestData = async (
   newUsersCount: number,
   newGamesCount: number,
   groupSize: number,

@@ -2,8 +2,7 @@
 import 'array-flat-polyfill';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
-import { munkresGenerator } from 'test/data-generation/generators/munkresGenerator';
-import { groupGenerator } from 'test/data-generation/generators/groupGenerator';
+import { generateTestData } from 'test/data-generation/generators/generateTestData';
 
 const runGenerators = async (): Promise<any> => {
   const strategy = process.argv[2];
@@ -16,16 +15,19 @@ const runGenerators = async (): Promise<any> => {
     throw new Error(`Data creation not allowed in production`);
   }
 
+  // Total users: newUsersCount + groupSize * numberOfGroups + testUsersCount
   let newUsersCount = 0; // Number of individual users
   let groupSize = 0; // How many users in each group
   let numberOfGroups = 0; // Number of groups
-  let newGamesCount = 0; // How many games are availale for each signup time - minimum is 3
   let testUsersCount = 0; // Number of test users
+
+  let newGamesCount = 0; // How many games are availale for each signup time - minimum is 3
+
   if (strategy === 'munkres') {
     newUsersCount = 20;
     newGamesCount = 10;
+    testUsersCount = 5;
   } else if (strategy === 'group') {
-    // Total users: newUsersCount + groupSize * numberOfGroups + testUsersCount
     newUsersCount = 40;
     groupSize = 3;
     numberOfGroups = 15;
@@ -52,19 +54,15 @@ const runGenerators = async (): Promise<any> => {
   logger.info(`MongoDB: Generate new data with "${strategy}" strategy`);
 
   try {
-    if (strategy === 'munkres') {
-      await munkresGenerator(newUsersCount, newGamesCount);
-    } else if (strategy === 'group') {
-      await groupGenerator(
-        newUsersCount,
-        newGamesCount,
-        groupSize,
-        numberOfGroups,
-        testUsersCount
-      );
-    }
+    await generateTestData(
+      newUsersCount,
+      newGamesCount,
+      groupSize,
+      numberOfGroups,
+      testUsersCount
+    );
   } catch (error) {
-    logger.error(`runGenerators error: ${error}`);
+    logger.error(`generateTestData error: ${error}`);
   }
 
   try {
