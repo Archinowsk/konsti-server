@@ -118,4 +118,5 @@ export const settings = {
   saveHidden,
   saveSignupTime,
   saveToggleAppOpen,
+  createSettings,
 };
