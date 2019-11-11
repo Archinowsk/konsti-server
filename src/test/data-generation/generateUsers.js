@@ -67,7 +67,7 @@ const generateUsers = async (): Promise<any> => {
   }
 
   if (generateSignups) {
-    await createSignups('group');
+    await createSignups();
   }
 
   try {

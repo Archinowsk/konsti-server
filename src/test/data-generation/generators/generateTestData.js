@@ -34,6 +34,6 @@ export const generateTestData = async (
   await createGames(newGamesCount);
 
   if (generateSignups) {
-    await createSignups('group');
+    await createSignups();
   }
 };
