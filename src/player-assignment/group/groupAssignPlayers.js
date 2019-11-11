@@ -28,6 +28,7 @@ export const groupAssignPlayers = (
       message: 'Group Assign Result - No starting games',
       newSignupData: [],
       algorithm: 'group',
+      status: 'error',
     };
   }
 
@@ -40,6 +41,7 @@ export const groupAssignPlayers = (
       message: 'Group Assign Result - No signup wishes',
       newSignupData: [],
       algorithm: 'group',
+      status: 'error',
     };
   }
 
@@ -75,5 +77,10 @@ export const groupAssignPlayers = (
 
   logger.debug(`${result.message}`);
 
-  return Object.assign({ ...result, newSignupData, algorithm: 'group' });
+  return Object.assign({
+    ...result,
+    newSignupData,
+    algorithm: 'group',
+    status: 'success',
+  });
 };

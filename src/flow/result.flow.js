@@ -16,6 +16,7 @@ export type PlayerAssignmentResult = {|
   +message: string,
   +newSignupData: $ReadOnlyArray<Signup>,
   +algorithm: string,
+  +status: 'success' | 'error',
 |};
 
 export type AssignmentStrategyResult = {|

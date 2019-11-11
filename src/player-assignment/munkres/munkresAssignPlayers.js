@@ -88,5 +88,6 @@ export const munkresAssignPlayers = (
     message,
     newSignupData: [],
     algorithm: 'munkres',
+    status: 'success',
   };
 };

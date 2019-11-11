@@ -28,6 +28,7 @@ export const opaAssignPlayers = (
       message: 'Opa Assign Result - No starting games',
       newSignupData: [],
       algorithm: 'opa',
+      status: 'error',
     };
   }
 
@@ -40,6 +41,7 @@ export const opaAssignPlayers = (
       message: 'Opa Assign Result - No signup wishes',
       newSignupData: [],
       algorithm: 'opa',
+      status: 'error',
     };
   }
 
@@ -90,5 +92,11 @@ export const opaAssignPlayers = (
 
   logger.debug(`${message}`);
 
-  return Object.assign({ ...result, newSignupData, message, algorithm: 'opa' });
+  return Object.assign({
+    ...result,
+    newSignupData,
+    message,
+    algorithm: 'opa',
+    status: 'success',
+  });
 };
