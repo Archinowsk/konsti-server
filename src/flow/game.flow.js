@@ -24,6 +24,8 @@ export type Game = {
   +beginnerFriendly: boolean,
   +intendedForExperiencedParticipants: boolean,
   +popularity: number,
+  +shortDescription: string,
+  +revolvingDoor: boolean,
 };
 
 export type KompassiGame = {|
