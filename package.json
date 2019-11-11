@@ -28,7 +28,6 @@
     "flow": "flow check",
     "generate-data": "babel-node src/test/data-generation/runGenerators.js",
     "generate-serials": "babel-node src/utils/generateSerials.js",
-    "generate-users": "babel-node src/test/data-generation/generateUsers.js",
     "prepare-deploy-prod": "npm run clean && npm run build-front-prod && npm run build",
     "prepare-deploy-staging": "npm run clean && npm run build-front-staging && npm run build",
     "prettier": "prettier --write src/**/*.{js,json,md}",
