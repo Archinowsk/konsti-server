@@ -1,7 +1,7 @@
 // @flow
 import faker from 'faker';
 import {
-  createUsers,
+  createIndividualUsers,
   createAdminUser,
   createTestUsers,
   createUsersInGroup,
@@ -24,11 +24,11 @@ export const generateTestData = async (
   await createHelpUser();
 
   if (testUsersCount) await createTestUsers(testUsersCount);
-  if (newUsersCount) await createUsers(newUsersCount);
+  if (newUsersCount) await createIndividualUsers(newUsersCount);
 
   for (let i = 0; i < numberOfGroups; i++) {
-    const randomGroupId = faker.random.number().toString();
-    await createUsersInGroup(groupSize, randomGroupId);
+    const randomGroupCode = faker.random.number().toString();
+    await createUsersInGroup(groupSize, randomGroupCode);
   }
 
   await createGames(newGamesCount);

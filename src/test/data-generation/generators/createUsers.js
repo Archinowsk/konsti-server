@@ -1,11 +1,11 @@
 // @flow
+import to from 'await-to-js';
 import faker from 'faker';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { hashPassword } from 'utils/bcrypt';
 
-export const createAdminUser = async (): Promise<any> => {
-  // Create admin user with predefined data
+export const createAdminUser = async (): Promise<void> => {
   logger.info(`Generate data for admin user "admin:test"`);
 
   const passwordHash = await hashPassword('test');
@@ -20,22 +20,16 @@ export const createAdminUser = async (): Promise<any> => {
     enteredGames: [],
   };
 
-  try {
-    return db.user.saveUser(registrationData);
-  } catch (error) {
-    logger.error(`db.game.saveUser error: ${error}`);
-  }
+  const [error] = await to(db.user.saveUser(registrationData));
+  if (error) logger.error(error);
 };
 
-export const createHelpUser = async (): Promise<any> => {
-  // Create admin user with predefined data
+export const createHelpUser = async (): Promise<void> => {
   logger.info(`Generate data for help user "ropetiski:test"`);
-
-  const passwordHash = await hashPassword('test');
 
   const registrationData = {
     username: 'ropetiski',
-    passwordHash: passwordHash,
+    passwordHash: await hashPassword('test'),
     userGroup: 'help',
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
@@ -43,21 +37,16 @@ export const createHelpUser = async (): Promise<any> => {
     enteredGames: [],
   };
 
-  try {
-    return db.user.saveUser(registrationData);
-  } catch (error) {
-    logger.error(`db.game.saveUser error: ${error}`);
-  }
+  const [error] = await to(db.user.saveUser(registrationData));
+  if (error) logger.error(error);
 };
 
-const createTestUser = async (userNumber: number): Promise<any> => {
+const createTestUser = async (userNumber: number): Promise<void> => {
   logger.info(`Generate data for user "test${userNumber}:test"`);
-
-  const passwordHash = await hashPassword('test');
 
   const registrationData = {
     username: `test${userNumber}`,
-    passwordHash,
+    passwordHash: await hashPassword('test'),
     userGroup: 'user',
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
@@ -65,70 +54,59 @@ const createTestUser = async (userNumber: number): Promise<any> => {
     enteredGames: [],
   };
 
-  try {
-    return db.user.saveUser(registrationData);
-  } catch (error) {
-    logger.error(`db.game.saveUser error: ${error}`);
-  }
+  const [error] = await to(db.user.saveUser(registrationData));
+  if (error) logger.error(error);
 };
 
-export const createTestUsers = async (number: number): Promise<any> => {
-  // Create test users with predefined data
+export const createTestUsers = async (number: number): Promise<void> => {
   for (let i = 0; i < number; i += 1) {
     createTestUser(i + 1);
   }
 };
 
-const createUserInGroup = (groupCode: string, index: number): Promise<any> => {
+const createUser = async ({
+  groupCode,
+  groupMemberCount,
+}: {
+  groupCode: string,
+  groupMemberCount: number,
+}): Promise<void> => {
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass', // Skip hashing to save time
     userGroup: 'user',
-    serial: index === 0 ? groupCode : faker.random.number().toString(),
+    serial:
+      groupMemberCount === 0 ? groupCode : faker.random.number().toString(),
     groupCode,
     favoritedGames: [],
     signedGames: [],
     enteredGames: [],
   };
 
-  return db.user.saveUser(registrationData);
+  const [error] = await to(db.user.saveUser(registrationData));
+  if (error) logger.error(error);
 };
 
 export const createUsersInGroup = (
   count: number,
-  groupId: string
+  groupCode: string
 ): Promise<any> => {
-  logger.info(`Generate data for ${count} users in group ${groupId}`);
+  logger.info(`Generate data for ${count} users in group ${groupCode}`);
 
   const promises = [];
-  for (let i = 0; i < count; i++) {
-    promises.push(createUserInGroup(groupId, i));
+  for (let groupMemberCount = 0; groupMemberCount < count; groupMemberCount++) {
+    promises.push(createUser({ groupCode, groupMemberCount }));
   }
 
   return Promise.all(promises);
 };
 
-const createUser = (): Promise<any> => {
-  const registrationData = {
-    username: faker.internet.userName(),
-    passwordHash: 'testPass', // Skip hashing to save time
-    userGroup: 'user',
-    serial: faker.random.number().toString(),
-    groupCode: '0',
-    favoritedGames: [],
-    signedGames: [],
-    enteredGames: [],
-  };
-
-  return db.user.saveUser(registrationData);
-};
-
-export const createUsers = (count: number): Promise<any> => {
+export const createIndividualUsers = (count: number): Promise<any> => {
   logger.info(`Generate data for ${count} users`);
 
   const promises = [];
   for (let i = 0; i < count; i++) {
-    promises.push(createUser());
+    promises.push(createUser({ groupCode: '0', groupMemberCount: 0 }));
   }
 
   return Promise.all(promises);

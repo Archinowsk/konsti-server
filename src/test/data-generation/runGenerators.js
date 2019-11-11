@@ -1,10 +1,12 @@
 // @flow
 import 'array-flat-polyfill';
+import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { generateTestData } from 'test/data-generation/generators/generateTestData';
 
 const runGenerators = async (): Promise<any> => {
+  let error;
   const strategy = process.argv[2];
 
   if (!strategy || (strategy !== 'munkres' && strategy !== 'group')) {
@@ -35,41 +37,36 @@ const runGenerators = async (): Promise<any> => {
     testUsersCount = 5;
   }
 
-  try {
-    await db.connectToDb();
-  } catch (error) {
-    logger.error(error);
-  }
+  [error] = await to(db.connectToDb());
+  if (error) logger.error(error);
 
-  try {
-    logger.info(`MongoDB: Clean old data`);
-    await db.user.removeUsers();
-    await db.game.removeGames();
-    await db.results.removeResults();
-    await db.settings.removeSettings();
-  } catch (error) {
-    logger.error(`MongoDB: Clean old data error: ${error}`);
-  }
+  [error] = await to(db.user.removeUsers());
+  if (error) logger.error(error);
+
+  [error] = await to(db.game.removeGames());
+  if (error) logger.error(error);
+
+  [error] = await to(db.results.removeResults());
+  if (error) logger.error(error);
+
+  [error] = await to(db.settings.removeSettings());
+  if (error) logger.error(error);
 
   logger.info(`MongoDB: Generate new data with "${strategy}" strategy`);
 
-  try {
-    await generateTestData(
+  [error] = await to(
+    generateTestData(
       newUsersCount,
       newGamesCount,
       groupSize,
       numberOfGroups,
       testUsersCount
-    );
-  } catch (error) {
-    logger.error(`generateTestData error: ${error}`);
-  }
+    )
+  );
+  if (error) logger.error(error);
 
-  try {
-    await db.gracefulExit();
-  } catch (error) {
-    logger.error(error);
-  }
+  [error] = await to(db.gracefulExit());
+  if (error) logger.error(error);
 };
 
 runGenerators();
