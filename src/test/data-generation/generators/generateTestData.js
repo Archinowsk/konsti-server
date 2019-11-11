@@ -17,7 +17,7 @@ export const generateTestData = async (
   groupSize: number,
   numberOfGroups: number,
   testUsersCount: number
-): Promise<any> => {
+): Promise<void> => {
   const { generateSignups } = config;
 
   await createAdminUser();

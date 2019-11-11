@@ -24,7 +24,7 @@ export const autoUpdateGames = async (): Promise<void> => {
   if (autoUpdateGamesEnabled || autoUpdateGamePopularityEnabled) {
     await schedule.scheduleJob(
       `*/${gameUpdateInterval} * * * *`,
-      async (): Promise<any> => {
+      async (): Promise<void> => {
         if (autoUpdateGamesEnabled) {
           logger.info('----> Auto update games');
           const games = await updateGames();
@@ -44,7 +44,7 @@ export const autoUpdateGames = async (): Promise<void> => {
 
 export const autoAssignPlayers = async (): Promise<void> => {
   if (autoAssignPlayersEnabled) {
-    await schedule.scheduleJob(`30 * * * *`, async (): Promise<any> => {
+    await schedule.scheduleJob(`30 * * * *`, async (): Promise<void> => {
       logger.info('----> Auto assign players');
       // 30 * * * * -> “At minute 30.”
       // */1 * * * * -> “Every minute”

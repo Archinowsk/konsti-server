@@ -36,7 +36,7 @@ export type UserArray = $ReadOnlyArray<User>;
 export type NewUserData = {|
   +username: string,
   +serial: string,
-  +passwordHash: string | Promise<any>,
+  +passwordHash: string | Promise<void>,
   +userGroup?: string,
   +groupCode?: string,
   +favoritedGames?: $ReadOnlyArray<Game>,

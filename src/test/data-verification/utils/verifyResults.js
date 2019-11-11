@@ -3,7 +3,7 @@ import moment from 'moment';
 import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
 
-export const verifyResults = async (startTime: string): Promise<any> => {
+export const verifyResults = async (startTime: string): Promise<void> => {
   logger.info(`Verify results for time ${startTime}`);
 
   let users = null;

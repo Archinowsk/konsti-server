@@ -58,7 +58,7 @@ const getRandomSignup = (
   return signedGames;
 };
 
-const signup = (games: $ReadOnlyArray<Game>, user: User): Promise<any> => {
+const signup = (games: $ReadOnlyArray<Game>, user: User): Promise<void> => {
   const signedGames = getRandomSignup(games, user);
 
   return db.user.saveSignup({
@@ -103,7 +103,7 @@ const signupGroup = async (
   return Promise.all(promises);
 };
 
-export const createSignups = async (): Promise<any> => {
+export const createSignups = async (): Promise<void> => {
   logger.info('Generate signup data');
 
   let games = [];

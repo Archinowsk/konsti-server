@@ -40,7 +40,7 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
   }
 };
 
-const updateUser = async (newUserData: NewUserData): Promise<any> => {
+const updateUser = async (newUserData: NewUserData): Promise<void> => {
   let response = null;
 
   try {
@@ -83,7 +83,7 @@ const updateUser = async (newUserData: NewUserData): Promise<any> => {
 const updateUserPassword = async (
   username: string,
   password: string
-): Promise<any> => {
+): Promise<void> => {
   let response = null;
 
   try {
@@ -134,7 +134,7 @@ const findUser = async (username: string): Promise<any> => {
   return response;
 };
 
-const findUserBySerial = async (serial: string): Promise<any> => {
+const findUserBySerial = async (serial: string): Promise<void> => {
   let response = null;
   try {
     response = await User.findOne(
@@ -160,7 +160,7 @@ const findUserBySerial = async (serial: string): Promise<any> => {
   return response;
 };
 
-const findSerial = async (serialData: Object): Promise<any> => {
+const findSerial = async (serialData: Object): Promise<void> => {
   const serial = serialData.serial;
 
   let response = null;
@@ -202,7 +202,10 @@ const findGroupMembers = async (groupCode: string): Promise<any> => {
   return response;
 };
 
-const findGroup = async (groupCode: string, username: string): Promise<any> => {
+const findGroup = async (
+  groupCode: string,
+  username: string
+): Promise<void> => {
   let response = null;
   if (username) {
     try {
@@ -287,7 +290,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
 const saveGroupCode = async (
   groupCode: string,
   username: string
-): Promise<any> => {
+): Promise<void> => {
   let response = null;
 
   try {
@@ -358,7 +361,7 @@ const getEnteredGames = async (
   return enteredGames.concat([signupResult.enteredGame]);
 };
 
-const saveSignupResult = async (signupResult: Result): Promise<any> => {
+const saveSignupResult = async (signupResult: Result): Promise<void> => {
   const newEnteredGames = await getEnteredGames(signupResult);
 
   let response = null;

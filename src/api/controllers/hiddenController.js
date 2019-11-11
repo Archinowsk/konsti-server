@@ -52,7 +52,7 @@ const postHidden: Middleware = async (
 
 const removeHiddenGamesFromUsers = async (
   hiddenGames: $ReadOnlyArray<Game>
-): Promise<any> => {
+): Promise<void> => {
   logger.info(`Remove hidden games from users`);
 
   if (!hiddenGames || hiddenGames.length === 0) return;

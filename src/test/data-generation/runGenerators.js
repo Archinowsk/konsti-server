@@ -5,7 +5,7 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { generateTestData } from 'test/data-generation/generators/generateTestData';
 
-const runGenerators = async (): Promise<any> => {
+const runGenerators = async (): Promise<void> => {
   let error;
   const strategy = process.argv[2];
 

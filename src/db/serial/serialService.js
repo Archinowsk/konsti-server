@@ -7,7 +7,7 @@ const removeSerials = () => {
   return Serial.deleteMany({});
 };
 
-const saveSerials = async (serials: $ReadOnlyArray<string>): Promise<any> => {
+const saveSerials = async (serials: $ReadOnlyArray<string>): Promise<void> => {
   const serialDocs = [];
 
   for (const serial of serials) {

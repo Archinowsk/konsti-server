@@ -1,7 +1,7 @@
 // @flow
 import { readJson, writeJson } from './statsUtil';
 
-const fixData = async (): Promise<any> => {
+const fixData = async (): Promise<void> => {
   const data = readJson();
 
   // Implement fixer logic here

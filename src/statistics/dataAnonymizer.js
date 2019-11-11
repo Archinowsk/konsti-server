@@ -4,7 +4,7 @@ import faker from 'faker';
 import { getYear } from './statsUtil';
 import { logger } from 'utils/logger';
 
-const anonymizeData = async (): Promise<any> => {
+const anonymizeData = async (): Promise<void> => {
   const year = getYear();
 
   const users = JSON.parse(

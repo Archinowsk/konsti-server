@@ -94,7 +94,7 @@ export const saveResults = async (
   startingTime: string,
   algorithm: string,
   message: string
-): Promise<any> => {
+): Promise<void> => {
   try {
     logger.info(
       `Save all signup results to separate collection for starting time ${startingTime}`
@@ -115,7 +115,7 @@ export const saveResults = async (
 
 const saveUserSignupResults = async (
   results: $ReadOnlyArray<Result>
-): Promise<any> => {
+): Promise<void> => {
   try {
     await Promise.all(
       results.map(async result => {
@@ -130,7 +130,7 @@ const saveUserSignupResults = async (
 
 export const removeOverlappingSignups = async (
   signups: $ReadOnlyArray<Signup>
-): Promise<any> => {
+): Promise<void> => {
   try {
     await Promise.all(
       signups.map(async signup => {

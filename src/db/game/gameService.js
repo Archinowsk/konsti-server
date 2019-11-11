@@ -6,7 +6,7 @@ import { Game } from 'db/game/gameSchema';
 import { db } from 'db/mongodb';
 import type { KompassiGame } from 'flow/game.flow';
 
-const removeGames = async (): Promise<any> => {
+const removeGames = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL games from db');
   try {
     return await Game.deleteMany({});
@@ -18,7 +18,7 @@ const removeGames = async (): Promise<any> => {
 
 const removeDeletedGames = async (
   updatedGames: $ReadOnlyArray<Game>
-): Promise<any> => {
+): Promise<void> => {
   const currentGames = await findGames();
 
   const deletedGames = _.differenceBy(currentGames, updatedGames, 'gameId');
@@ -43,7 +43,7 @@ const removeDeletedGames = async (
 
 const removeMovedGamesFromUsers = async (
   updatedGames: $ReadOnlyArray<Game>
-): Promise<any> => {
+): Promise<void> => {
   logger.info('Remove moved games from users');
   const currentGames = await findGames();
 
@@ -249,7 +249,7 @@ const findGames = async (): Promise<any> => {
 const saveGamePopularity = async (
   gameId: string,
   popularity: number
-): Promise<any> => {
+): Promise<void> => {
   logger.debug(`MongoDB: Update game ${gameId} popularity to ${popularity}`);
   try {
     return await Game.updateOne(
