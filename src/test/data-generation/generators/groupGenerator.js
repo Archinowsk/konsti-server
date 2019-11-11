@@ -15,14 +15,16 @@ export const groupGenerator = async (
   newUsersCount: number,
   newGamesCount: number,
   groupSize: number,
-  numberOfGroups: number
+  numberOfGroups: number,
+  testUsersCount: number
 ): Promise<any> => {
   const { generateSignups } = config;
 
   await createAdminUser();
   await createHelpUser();
-  await createTestUsers(5);
-  await createUsers(newUsersCount);
+
+  if (testUsersCount) await createTestUsers(testUsersCount);
+  if (newUsersCount) await createUsers(newUsersCount);
 
   for (let i = 0; i < numberOfGroups; i++) {
     const randomGroupId = faker.random.number().toString();

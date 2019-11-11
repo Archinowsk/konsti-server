@@ -74,7 +74,7 @@ const signupMultiple = (
   const promises = [];
 
   for (const user of users) {
-    if (user.username !== 'admin' /* && user.username !== 'test' */) {
+    if (user.username !== 'admin' && user.username !== 'ropetiski') {
       promises.push(signup(games, user));
     }
   }

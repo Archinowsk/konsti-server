@@ -20,16 +20,17 @@ const runGenerators = async (): Promise<any> => {
   let groupSize = 0; // How many users in each group
   let numberOfGroups = 0; // Number of groups
   let newGamesCount = 0; // How many games are availale for each signup time - minimum is 3
-
+  let testUsersCount = 0; // Number of test users
   if (strategy === 'munkres') {
     newUsersCount = 20;
     newGamesCount = 10;
   } else if (strategy === 'group') {
-    // Total users: newUsersCount + 2 test accounts + groupSize * numberOfGroups
+    // Total users: newUsersCount + groupSize * numberOfGroups + testUsersCount
     newUsersCount = 40;
     groupSize = 3;
     numberOfGroups = 15;
     newGamesCount = 10;
+    testUsersCount = 5;
   }
 
   try {
@@ -58,7 +59,8 @@ const runGenerators = async (): Promise<any> => {
         newUsersCount,
         newGamesCount,
         groupSize,
-        numberOfGroups
+        numberOfGroups,
+        testUsersCount
       );
     }
   } catch (error) {
