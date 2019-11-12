@@ -68,7 +68,7 @@
     "jsonwebtoken": "8.5.1",
     "lodash": "4.17.15",
     "moment": "2.24.0",
-    "mongoose": "5.7.9",
+    "mongoose": "5.7.10",
     "morgan": "1.9.1",
     "munkres-js": "1.2.2",
     "node-schedule": "1.3.2",
