@@ -95,7 +95,7 @@ export const runGroupAssignment = (
         const seatsRemaining = maximumPlayers - numberOfPlayers;
         logger.debug(`Seats remaining: ${seatsRemaining}`);
       }
-      // Not enought seats remaining for the game
+      // Not enough seats remaining for the game
       else {
         counter += 1;
         logger.debug(`No match, increase counter: ${counter}/${counterLimit}`);
@@ -108,7 +108,7 @@ export const runGroupAssignment = (
 
     // Check if game has enough signups
     if (numberOfPlayers < selectedGame.minAttendance) {
-      // Not enought signups, game will not happen
+      // Not enough signups, game will not happen
       logger.debug(
         `Not enough signups for game "${selectedGame.title}" (signed: ${playersCount}, assigned: ${numberOfPlayers}, required: ${selectedGame.minAttendance}-${selectedGame.maxAttendance})`
       );

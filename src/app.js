@@ -5,11 +5,8 @@ import { logger } from 'utils/logger';
 import { autoUpdateGames, autoAssignPlayers } from 'utils/cron';
 
 const startApp = async (): Promise<void> => {
-  // Start cronjob to auto update games from Kompassi
-  autoUpdateGames();
-
-  // Start cronjob to automatically assing players
-  autoAssignPlayers();
+  autoUpdateGames(); // Start cronjob to auto update games from Kompassi
+  autoAssignPlayers(); // Start cronjob to automatically assing players
 
   const server = await startServer();
 

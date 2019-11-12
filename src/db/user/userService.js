@@ -252,7 +252,7 @@ const findUsers = async (): Promise<any> => {
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails')
   );
-  if (error) throw new Error(`MongoDB: Error fetcing users - ${error}`);
+  if (error) throw new Error(`MongoDB: Error fetching users - ${error}`);
   if (!users) throw new Error('MongoDB: No users found');
 
   return users;

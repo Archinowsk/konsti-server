@@ -71,7 +71,7 @@ export const getUsersSignupCount = (users: $ReadOnlyArray<User>) => {
   });
 
   logger.info(
-    `Users didn't get into any games after this many signup attemps:`,
+    `Users didn't get into any games after this many signup attempts:`,
     signupCount
   );
 };

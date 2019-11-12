@@ -42,7 +42,7 @@ const postGroup: Middleware = async (
     }
 
     return res.json({
-      message: 'Group closed succesfully',
+      message: 'Group closed successfully',
       status: 'success',
       groupCode: '0',
     });

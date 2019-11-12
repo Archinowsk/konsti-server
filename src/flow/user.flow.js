@@ -50,7 +50,7 @@ export type SignupWish = {|
   +priority: number,
 |};
 
-export type PlayeIdWithPriority = {|
+export type PlayerIdWithPriority = {|
   +playerId: number,
   +priorityValue: number,
 |};

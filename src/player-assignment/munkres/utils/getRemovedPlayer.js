@@ -1,8 +1,8 @@
 // @flow
-import type { PlayeIdWithPriority } from 'flow/user.flow';
+import type { PlayerIdWithPriority } from 'flow/user.flow';
 
 export const getRemovedPlayer = (
-  playersWithTooHighPriority: $ReadOnlyArray<PlayeIdWithPriority>
+  playersWithTooHighPriority: $ReadOnlyArray<PlayerIdWithPriority>
 ) => {
   const randomIndex = Math.floor(
     Math.random() * playersWithTooHighPriority.length
