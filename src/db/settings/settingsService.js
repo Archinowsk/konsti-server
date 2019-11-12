@@ -9,21 +9,18 @@ import type { Settings } from 'flow/settings.flow';
 const removeSettings = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL settings from db');
   const [error] = await to(SettingsModel.deleteMany({}));
-  if (error)
-    throw new Error(`MongoDB: Error deleting settings collection: ${error}`);
+  if (error) throw new Error(`MongoDB: Error removing settings: ${error}`);
 };
 
 const createSettings = async (): Promise<Settings> => {
   logger.info('MongoDB: Create default settings');
 
-  const settings = new SettingsModel();
+  const defaultSettings = new SettingsModel();
 
-  const [error] = await to(settings.save());
-  if (error)
-    throw new Error(`MongoDB: Error creating default settings: ${error}`);
+  const [error, settings] = await to(defaultSettings.save());
+  if (error) throw new Error(`MongoDB: Add default settings error: ${error}`);
 
   logger.info(`MongoDB: Default settings saved to DB`);
-
   return settings;
 };
 
@@ -52,7 +49,11 @@ const saveHidden = async (
           return game._id;
         }),
       },
-      { new: true, fields: '-_id -__v -createdAt -updatedAt' }
+      {
+        new: true,
+        upsert: true,
+        fields: '-_id -__v -createdAt -updatedAt',
+      }
     ).populate('hiddenGames')
   );
   if (error) throw new Error(`MongoDB: Error updating hidden games: ${error}`);
@@ -68,7 +69,7 @@ const saveSignupTime = async (signupTime: string): Promise<Settings> => {
       {
         signupTime: signupTime ? moment(signupTime).format() : null,
       },
-      { new: true }
+      { new: true, upsert: true }
     )
   );
   if (error) throw new Error(`MongoDB: Error updating signup time: ${error}`);
@@ -84,11 +85,10 @@ const saveToggleAppOpen = async (appOpen: boolean): Promise<Settings> => {
       {
         appOpen,
       },
-      { new: true }
+      { new: true, upsert: true }
     )
   );
-  if (error)
-    throw new Error(`MongoDB: Error updating app open status: ${error}`);
+  if (error) throw new Error(`MongoDB: Error updating app status: ${error}`);
 
   logger.info(`MongoDB: App open status updated`);
   return settings;
