@@ -1,25 +1,27 @@
 // @flow
 import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import { db } from 'db/mongodb';
 import { FeedbackModel } from 'db/feedback/feedbackSchema';
 
-beforeAll(async () => {
-  const options = {
-    promiseLibrary: global.Promise,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  };
+let mongoServer;
 
-  await mongoose.connect(global.process.env.MONGO_URL, options);
-});
+const options = {
+  promiseLibrary: global.Promise,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+};
 
 beforeEach(async () => {
-  await FeedbackModel.deleteMany({});
+  mongoServer = new MongoMemoryServer();
+  const mongoUri = await mongoServer.getConnectionString();
+  await mongoose.connect(mongoUri, options);
 });
 
-afterAll(async () => {
-  await mongoose.connection.close();
+afterEach(async () => {
+  await mongoose.disconnect();
+  await mongoServer.stop();
 });
 
 describe('Feedback service', () => {

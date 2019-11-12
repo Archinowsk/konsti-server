@@ -1,26 +1,29 @@
 // @flow
 import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import moment from 'moment';
 import { db } from 'db/mongodb';
 import { SettingsModel } from 'db/settings/settingsSchema';
 import { mockGame } from 'test/mock-data/mockGame';
 
-beforeAll(async () => {
-  const options = {
-    promiseLibrary: global.Promise,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  };
-  await mongoose.connect(global.process.env.MONGO_URL, options);
-});
+let mongoServer;
+
+const options = {
+  promiseLibrary: global.Promise,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+};
 
 beforeEach(async () => {
-  await SettingsModel.deleteMany({});
+  mongoServer = new MongoMemoryServer();
+  const mongoUri = await mongoServer.getConnectionString();
+  await mongoose.connect(mongoUri, options);
 });
 
-afterAll(async () => {
-  await mongoose.connection.close();
+afterEach(async () => {
+  await mongoose.disconnect();
+  await mongoServer.stop();
 });
 
 describe('Settings service', () => {
