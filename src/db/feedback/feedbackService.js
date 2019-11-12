@@ -1,4 +1,5 @@
 // @flow
+import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { FeedbackModel } from 'db/feedback/feedbackSchema';
 import type { Feedback } from 'flow/feedback.flow';
@@ -9,15 +10,10 @@ const saveFeedback = async (feedbackData: Feedback): Promise<void> => {
     feedback: feedbackData.feedback,
   });
 
-  let response = null;
-  try {
-    response = await feedback.save();
-    logger.info(`MongoDB: Feedback saved successfully`);
-    return response;
-  } catch (error) {
-    logger.error(`MongoDB: Feedback save error - ${error}`);
-    return error;
-  }
+  const [error] = await to(feedback.save());
+  if (error) throw new Error(`MongoDB: Feedback save error: ${error}`);
+
+  logger.info(`MongoDB: Feedback saved successfully`);
 };
 
 export const feedback = {
