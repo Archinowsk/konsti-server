@@ -202,7 +202,7 @@ const saveGames = async (games: $ReadOnlyArray<Game>): Promise<any> => {
     return Promise.reject(error);
   }
 
-  logger.debug('MongoDB: Games saved to DB succesfully');
+  logger.debug('MongoDB: Games saved to DB successfully');
   return findGames();
 };
 
@@ -213,7 +213,7 @@ const findGames = async (): Promise<any> => {
     logger.debug(`MongoDB: Find all games`);
     return response;
   } catch (error) {
-    logger.error(`MongoDB: Error fetcing games - ${error}`);
+    logger.error(`MongoDB: Error fetching games - ${error}`);
     return error;
   }
 };
@@ -233,7 +233,7 @@ const saveGamePopularity = async (
       }
     );
   } catch (error) {
-    logger.errog(`Error updating game popularity: ${error}`);
+    logger.error(`Error updating game popularity: ${error}`);
   }
 };
 

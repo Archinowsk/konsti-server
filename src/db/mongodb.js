@@ -26,7 +26,7 @@ const connectToDb = async (): Promise<void> => {
   const [error] = await to(mongoose.connect(dbConnString, options));
   if (error) throw new Error(`MongoDB: Error connecting to DB: ${error}`);
 
-  logger.info(`MongoDB: Connection succesful to ${dbConnString}`);
+  logger.info(`MongoDB: Connection successful to ${dbConnString}`);
 
   mongoose.connection.on('error', error => {
     logger.error(error);
