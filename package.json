@@ -26,7 +26,7 @@
     "flow-coverage-report": "flow-coverage-report -c 10 -i 'src/**/*.js'",
     "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundled",
     "flow": "flow check",
-    "generate-data": "babel-node src/test/data-generation/runGenerators.js",
+    "generate-data": "babel-node src/test/test-data-generation/runGenerators.js",
     "generate-serials": "babel-node src/utils/generateSerials.js",
     "prepare-deploy-prod": "npm run clean && npm run build-front-prod && npm run build",
     "prepare-deploy-staging": "npm run clean && npm run build-front-staging && npm run build",

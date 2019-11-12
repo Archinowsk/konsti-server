@@ -6,7 +6,7 @@ import { db } from 'db/mongodb';
 import { config } from 'config';
 import { logger } from 'utils/logger';
 import { assignPlayers } from 'player-assignment/assignPlayers';
-import { generateTestData } from 'test/data-generation/generators/generateTestData';
+import { generateTestData } from 'test/test-data-generation/generators/generateTestData';
 
 beforeAll(async () => {
   const options = {
