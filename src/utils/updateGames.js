@@ -13,7 +13,10 @@ export const updateGames = async (): Promise<$ReadOnlyArray<KompassiGame>> => {
     logger.info('Games: GET games from local filesystem');
 
     const rawData = fs.readFileSync(
-      path.join(__dirname, '../test/data-files/program-ropecon-2019.json'),
+      path.join(
+        __dirname,
+        '../test/kompassi-data-dumps/program-ropecon-2019.json'
+      ),
       'utf8'
     );
 
