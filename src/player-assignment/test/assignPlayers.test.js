@@ -50,7 +50,7 @@ describe('Assignment with valid data', () => {
   test('should return success with group strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'group';
+    const assignmentStrategy = 'group';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -67,7 +67,7 @@ describe('Assignment with valid data', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('success');
@@ -76,7 +76,7 @@ describe('Assignment with valid data', () => {
   test('should return success with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'opa';
+    const assignmentStrategy = 'opa';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -93,7 +93,7 @@ describe('Assignment with valid data', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('success');
@@ -102,7 +102,7 @@ describe('Assignment with valid data', () => {
   test('should return success with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'group+opa';
+    const assignmentStrategy = 'group+opa';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -119,7 +119,7 @@ describe('Assignment with valid data', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('success');
@@ -146,7 +146,7 @@ describe('Assignment with no games', () => {
   test('should return error with group strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'group';
+    const assignmentStrategy = 'group';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -163,7 +163,7 @@ describe('Assignment with no games', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('error');
@@ -172,7 +172,7 @@ describe('Assignment with no games', () => {
   test('should return error with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'opa';
+    const assignmentStrategy = 'opa';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -189,7 +189,7 @@ describe('Assignment with no games', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('error');
@@ -198,7 +198,7 @@ describe('Assignment with no games', () => {
   test('should return error with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'group+opa';
+    const assignmentStrategy = 'group+opa';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -215,7 +215,7 @@ describe('Assignment with no games', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('error');
@@ -242,7 +242,7 @@ describe('Assignment with no players', () => {
   test('should return error with group strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'group';
+    const assignmentStrategy = 'group';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -259,7 +259,7 @@ describe('Assignment with no players', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('error');
@@ -268,7 +268,7 @@ describe('Assignment with no players', () => {
   test('should return error with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'opa';
+    const assignmentStrategy = 'opa';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -285,7 +285,7 @@ describe('Assignment with no players', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('error');
@@ -294,7 +294,7 @@ describe('Assignment with no players', () => {
   test('should return error with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStategy = 'group+opa';
+    const assignmentStrategy = 'group+opa';
     let error, users, games;
 
     [error, users] = await to(db.user.findUsers());
@@ -311,7 +311,7 @@ describe('Assignment with no players', () => {
       users,
       games,
       startingTime,
-      assignmentStategy
+      assignmentStrategy
     );
 
     expect(assignResults.status).toEqual('error');

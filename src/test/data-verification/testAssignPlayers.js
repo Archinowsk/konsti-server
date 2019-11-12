@@ -14,7 +14,7 @@ import {
 import type { AssignmentStrategy } from 'flow/config.flow';
 
 const testAssignPlayers = async (
-  assignmentStategy: AssignmentStrategy
+  assignmentStrategy: AssignmentStrategy
 ): Promise<any> => {
   const {
     CONVENTION_START_TIME,
@@ -38,7 +38,7 @@ const testAssignPlayers = async (
     users,
     games,
     startingTime,
-    assignmentStategy
+    assignmentStrategy
   );
 
   if (saveTestAssign) {
@@ -159,9 +159,9 @@ const init = async (): Promise<any> => {
 
   const userParameter = process.argv[2];
 
-  let assignmentStategy;
+  let assignmentStrategy;
   try {
-    assignmentStategy = getAssignmentStrategy(userParameter);
+    assignmentStrategy = getAssignmentStrategy(userParameter);
   } catch (error) {
     logger.error(error);
     return;
@@ -172,7 +172,7 @@ const init = async (): Promise<any> => {
   [error] = await to(db.connectToDb());
   if (error) return logger.error(error);
 
-  await testAssignPlayers(assignmentStategy);
+  await testAssignPlayers(assignmentStrategy);
 
   [error] = await to(db.gracefulExit());
   if (error) logger.error(error);
