@@ -1,5 +1,5 @@
 module.exports = api => {
-  api.cache.using(() => process.env.NODE_ENV)
+  api.cache.using(() => process.env.NODE_ENV);
   const presets = [
     [
       '@babel/preset-env',
@@ -12,7 +12,7 @@ module.exports = api => {
       },
     ],
     '@babel/preset-flow',
-  ]
+  ];
 
   const plugins = [
     [
@@ -22,10 +22,10 @@ module.exports = api => {
       },
       'babel-plugin-lodash',
     ],
-  ]
+  ];
 
   return {
     presets,
     plugins,
-  }
-}
+  };
+};

@@ -65,4 +65,4 @@ module.exports = {
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',
   },
-}
+};
