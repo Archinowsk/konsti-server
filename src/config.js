@@ -21,7 +21,7 @@ const commonConfig = {
   bundleCompression: true,
   CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
   removeOverlapSignups: true,
-  gamePopularityUpdateMethod: 'assign', // 'signups, 'assign'
+  gamePopularityUpdateMethod: 'assign', // 'signups', 'assign'
 
   // Development and testing
   generateSignups: true,
