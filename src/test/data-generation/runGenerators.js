@@ -23,7 +23,7 @@ const runGenerators = async (): Promise<void> => {
   let numberOfGroups = 0; // Number of groups
   let testUsersCount = 0; // Number of test users
 
-  let newGamesCount = 0; // How many games are availale for each signup time - minimum is 3
+  let newGamesCount = 0; // How many games are available for each signup time - minimum is 3
 
   if (strategy === 'munkres') {
     newUsersCount = 20;
