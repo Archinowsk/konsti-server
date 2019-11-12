@@ -157,7 +157,7 @@ const postLogin: Middleware = async (
 
       return res.json({
         code: 21,
-        message: 'User login failed',
+        message: 'User login error',
         status: 'error',
       });
     }
