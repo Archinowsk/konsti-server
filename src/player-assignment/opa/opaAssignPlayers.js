@@ -28,7 +28,7 @@ export const opaAssignPlayers = (
       message: 'Opa Assign Result - No starting games',
       newSignupData: [],
       algorithm: 'opa',
-      status: 'error',
+      status: 'error: no starting games',
     };
   }
 
@@ -41,7 +41,7 @@ export const opaAssignPlayers = (
       message: 'Opa Assign Result - No signup wishes',
       newSignupData: [],
       algorithm: 'opa',
-      status: 'error',
+      status: 'error: no signup wishes',
     };
   }
 

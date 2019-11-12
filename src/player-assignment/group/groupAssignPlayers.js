@@ -28,7 +28,7 @@ export const groupAssignPlayers = (
       message: 'Group Assign Result - No starting games',
       newSignupData: [],
       algorithm: 'group',
-      status: 'error',
+      status: 'error: no starting games',
     };
   }
 
@@ -41,7 +41,7 @@ export const groupAssignPlayers = (
       message: 'Group Assign Result - No signup wishes',
       newSignupData: [],
       algorithm: 'group',
-      status: 'error',
+      status: 'error: no signup wishes',
     };
   }
 
