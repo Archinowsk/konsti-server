@@ -3,7 +3,7 @@ import 'array-flat-polyfill';
 import to from 'await-to-js';
 import moment from 'moment';
 import { logger } from 'utils/logger';
-import { assignPlayers } from 'player-assignment/assignPlayers';
+import { doAssignment } from 'player-assignment/doAssignment';
 import { db } from 'db/mongodb';
 import { config } from 'config';
 import { saveResults } from 'player-assignment/utils/saveResults';
@@ -21,24 +21,16 @@ const testAssignPlayers = async (
     enableRemoveOverlapSignups,
   } = config;
 
-  let error, users, games, results;
+  let error, users, results;
 
   [error, users] = await to(db.user.findUsers());
-  if (error) return logger.error(error);
-
-  [error, games] = await to(db.game.findGames());
   if (error) return logger.error(error);
 
   const startingTime = moment(CONVENTION_START_TIME)
     .add(2, 'hours')
     .format();
 
-  const assignResults = await assignPlayers(
-    users,
-    games,
-    startingTime,
-    assignmentStrategy
-  );
+  const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
   if (saveTestAssign) {
     if (enableRemoveOverlapSignups) {

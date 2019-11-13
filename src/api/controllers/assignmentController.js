@@ -2,7 +2,7 @@
 import { logger } from 'utils/logger';
 import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
 import { saveResults } from 'player-assignment/utils/saveResults';
-import { doAssignment } from 'player-assignment/utils/doAssignment';
+import { doAssignment } from 'player-assignment/doAssignment';
 import { validateAuthHeader } from 'utils/authHeader';
 import { config } from 'config';
 import type { $Request, $Response, Middleware } from 'express';

@@ -8,7 +8,7 @@ import type { Game } from 'flow/game.flow';
 import type { PlayerAssignmentResult } from 'flow/result.flow';
 import type { AssignmentStrategy } from 'flow/config.flow';
 
-export const assignPlayers = (
+export const runAssignmentStrategy = (
   players: $ReadOnlyArray<User>,
   games: $ReadOnlyArray<Game>,
   startingTime: string,

@@ -6,7 +6,7 @@ import moment from 'moment';
 import { db } from 'db/mongodb';
 import { config } from 'config';
 import { logger } from 'utils/logger';
-import { assignPlayers } from 'player-assignment/assignPlayers';
+import { doAssignment } from 'player-assignment/doAssignment';
 import { generateTestData } from 'test/test-data-generation/generators/generateTestData';
 import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignups';
 import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
@@ -54,12 +54,9 @@ describe('Assignment with valid data', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group';
-    let error, users, games, results;
+    let error, users, results;
 
     [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
     if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
@@ -68,12 +65,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
 
@@ -104,12 +96,7 @@ describe('Assignment with valid data', () => {
 
     // SECOND RUN
 
-    const assignResults2 = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults2 = await doAssignment(startingTime);
 
     expect(assignResults2.status).toEqual('success');
 
@@ -143,12 +130,9 @@ describe('Assignment with valid data', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'opa';
-    let error, users, games, results;
+    let error, users, results;
 
     [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
     if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
@@ -157,12 +141,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
 
@@ -193,12 +172,7 @@ describe('Assignment with valid data', () => {
 
     // SECOND RUN
 
-    const assignResults2 = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults2 = await doAssignment(startingTime);
 
     expect(assignResults2.status).toEqual('success');
 
@@ -232,12 +206,9 @@ describe('Assignment with valid data', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group+opa';
-    let error, users, games, results;
+    let error, users, results;
 
     [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
     if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
@@ -246,12 +217,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
 
@@ -282,12 +248,7 @@ describe('Assignment with valid data', () => {
 
     // SECOND RUN
 
-    const assignResults2 = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults2 = await doAssignment(startingTime);
 
     expect(assignResults2.status).toEqual('success');
 
@@ -339,24 +300,12 @@ describe('Assignment with no games', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group';
-    let error, users, games;
-
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
-    if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
       .format();
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
   });
@@ -365,24 +314,12 @@ describe('Assignment with no games', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'opa';
-    let error, users, games;
-
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
-    if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
       .format();
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
   });
@@ -391,24 +328,12 @@ describe('Assignment with no games', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group+opa';
-    let error, users, games;
-
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
-    if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
       .format();
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
   });
@@ -435,24 +360,12 @@ describe('Assignment with no players', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group';
-    let error, users, games;
-
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
-    if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
       .format();
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
@@ -461,24 +374,12 @@ describe('Assignment with no players', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'opa';
-    let error, users, games;
-
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
-    if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
       .format();
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
@@ -487,24 +388,12 @@ describe('Assignment with no players', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group+opa';
-    let error, users, games;
-
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
-
-    [error, games] = await to(db.game.findGames());
-    if (error) return logger.error(error);
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
       .format();
 
-    const assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
+    const assignResults = await doAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
