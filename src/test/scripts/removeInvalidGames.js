@@ -1,26 +1,20 @@
 // @flow
+import to from 'await-to-js';
 import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
 import { removeDeletedGamesFromUsers } from 'db/game/gameService';
 
-const removeInvalidGames = async (): Promise<void> => {
-  try {
-    await db.connectToDb();
-  } catch (error) {
-    logger.error(error);
-  }
+const removeInvalidGames = async (): Promise<any> => {
+  let error;
 
-  try {
-    await removeDeletedGamesFromUsers();
-  } catch (error) {
-    logger.error(`Error removing invalid games: ${error}`);
-  }
+  [error] = await to(db.connectToDb());
+  if (error) return logger.error(error);
 
-  try {
-    await db.gracefulExit();
-  } catch (error) {
-    logger.error(error);
-  }
+  [error] = await to(removeDeletedGamesFromUsers);
+  if (error) return logger.error(`Error removing invalid games: ${error}`);
+
+  [error] = await to(db.gracefulExit());
+  if (error) return logger.error(error);
 };
 
 removeInvalidGames();
