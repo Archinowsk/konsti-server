@@ -39,9 +39,9 @@ export type NewUserData = {|
   +passwordHash: string | Promise<void>,
   +userGroup?: string,
   +groupCode?: string,
-  +favoritedGames?: $ReadOnlyArray<Game>,
-  +signedGames?: $ReadOnlyArray<Game>,
-  +enteredGames?: $ReadOnlyArray<Game>,
+  +favoritedGames?: $ReadOnlyArray<FavoritedGame>,
+  +signedGames?: $ReadOnlyArray<SignedGame>,
+  +enteredGames?: $ReadOnlyArray<EnteredGame>,
 |};
 
 export type SignupWish = {|
