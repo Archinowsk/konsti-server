@@ -30,14 +30,16 @@ const getResults: Middleware = async (
     return res.json({
       message: 'Getting results success',
       status: 'success',
-      results: { result: [], startTime },
+      results: [],
+      startTime: startTime,
     });
   }
 
   return res.json({
     message: 'Getting results success',
     status: 'success',
-    results: { result: results.result, startTime: results.startTime },
+    results: results.results,
+    startTime: results.startTime,
   });
 };
 

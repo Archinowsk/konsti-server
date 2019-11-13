@@ -1,28 +1,19 @@
 // @flow
 import moment from 'moment';
-import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
+import type { ResultsCollectionEntry } from 'flow/result.flow';
+import type { User } from 'flow/user.flow';
 
-export const verifyResults = async (startTime: string): Promise<void> => {
+export const verifyResults = async (
+  startTime: string,
+  users: Array<User>,
+  results: ResultsCollectionEntry
+): Promise<void> => {
   logger.info(`Verify results for time ${startTime}`);
-
-  let users = null;
-  try {
-    users = await db.user.findUsers();
-  } catch (error) {
-    logger.error(`db.user.findUsers error: ${error}`);
-  }
 
   if (!users) {
     logger.error(`No users found`);
     return;
-  }
-
-  let results = null;
-  try {
-    results = await db.results.findResult(startTime);
-  } catch (error) {
-    logger.error(`db.results.findResult: ${error}`);
   }
 
   if (!results) {
@@ -30,7 +21,21 @@ export const verifyResults = async (startTime: string): Promise<void> => {
     return;
   }
 
-  logger.info(`Found ${results.result.length} results for this time`);
+  logger.info(`Found ${results.results.length} results for this time`);
+
+  results.results.map(result => {
+    if (
+      moment(result.enteredGame.time).format() !== moment(startTime).format()
+    ) {
+      logger.error(
+        `Invalid time for "${
+          result.enteredGame.gameDetails.title
+        }" - actual: ${moment(
+          result.enteredGame.time
+        ).format()}, expected: ${startTime}`
+      );
+    }
+  });
 
   logger.info('Check if user enteredGames match results');
   users.forEach(user => {
@@ -43,14 +48,14 @@ export const verifyResults = async (startTime: string): Promise<void> => {
         )
         */
 
-        if (!results || !results.result) {
+        if (!results || !results.results) {
           logger.error(
-            `No results or results.result found for time ${startTime}`
+            `No results or results.results found for time ${startTime}`
           );
           return;
         }
 
-        const matchingResult = results.result.find(result => {
+        const matchingResult = results.results.find(result => {
           if (!enteredGame.gameDetails) {
             logger.error(`Game details missing for entered game`);
           }
@@ -88,7 +93,7 @@ export const verifyResults = async (startTime: string): Promise<void> => {
 
   logger.info('Check if results match user enteredGames');
 
-  results.result.forEach(result => {
+  results.results.forEach(result => {
     if (!users) {
       logger.error(`No users found`);
       return;

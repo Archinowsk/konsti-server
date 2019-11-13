@@ -19,6 +19,14 @@ export type PlayerAssignmentResult = {|
   +status: string,
 |};
 
+export type ResultsCollectionEntry = {|
+  +startTime: string,
+  +results: $ReadOnlyArray<Result>,
+  +message: string,
+  +newSignupData: $ReadOnlyArray<Signup>,
+  +algorithm: string,
+|};
+
 export type AssignmentStrategyResult = {|
   +results: $ReadOnlyArray<Result>,
   +message: string,

@@ -1,14 +1,16 @@
 // @flow
 import { logger } from 'utils/logger';
 import { ResultsModel } from 'db/results/resultsSchema';
-import type { Result } from 'flow/result.flow';
+import type { Result, ResultsCollectionEntry } from 'flow/result.flow';
 
 const removeResults = () => {
   logger.info('MongoDB: remove ALL results from db');
   return ResultsModel.deleteMany({});
 };
 
-const findResult = async (startTime: string): Promise<void> => {
+const findResult = async (
+  startTime: string
+): Promise<ResultsCollectionEntry> => {
   let response = null;
   try {
     response = await ResultsModel.findOne(
@@ -17,14 +19,15 @@ const findResult = async (startTime: string): Promise<void> => {
     )
       .lean()
       .sort({ createdAt: -1 })
-      .populate('result.enteredGame.gameDetails');
+      .populate('results.enteredGame.gameDetails');
     logger.debug(`MongoDB: Results data found for time ${startTime}`);
-    return response;
   } catch (error) {
     throw new Error(
       `MongoDB: Error finding results data for time ${startTime} - ${error}`
     );
   }
+
+  return response;
 };
 
 const saveResult = async (
@@ -32,8 +35,8 @@ const saveResult = async (
   startTime: string,
   algorithm: string,
   message: string
-): Promise<void> => {
-  const result = signupResultData.map(result => {
+): Promise<ResultsCollectionEntry> => {
+  const results = signupResultData.map(result => {
     return {
       username: result.username,
       enteredGame: {
@@ -48,19 +51,20 @@ const saveResult = async (
   try {
     response = await ResultsModel.replaceOne(
       { startTime },
-      { startTime, result, algorithm, message },
+      { startTime, results, algorithm, message },
       { upsert: true }
     );
     logger.debug(
       `MongoDB: Signup results for starting time ${startTime} stored to separate collection`
     );
-    return response;
   } catch (error) {
     logger.error(
       `MongoDB: Error storing signup results for starting time ${startTime} to separate collection - ${error}`
     );
     return error;
   }
+
+  return response;
 };
 
 export const results = { removeResults, saveResult, findResult };

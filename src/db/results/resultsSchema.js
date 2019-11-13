@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 const ResultsSchema = new mongoose.Schema(
   {
-    result: [
+    results: [
       {
         username: String,
         enteredGame: {

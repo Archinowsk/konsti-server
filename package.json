@@ -39,13 +39,13 @@
     "stats:results": "babel-node src/statistics/getResultsStats.js",
     "feedback-formatter": "babel-node src/statistics/feedbackFormatter.js",
     "stats:users": "babel-node src/statistics/getUserStats.js",
-    "test-assign": "cross-env NODE_ENV=development babel-node src/test/data-verification/testAssignPlayers.js",
+    "test-assign": "cross-env NODE_ENV=development babel-node src/test/scripts/testAssignPlayers.js",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
     "test": "jest",
-    "update-game-popularity": "cross-env NODE_ENV=development babel-node src/test/data-verification/testUpdateGamePopularity.js",
-    "verify-results": "cross-env NODE_ENV=development babel-node src/test/data-verification/testVerifyResults.js",
-    "remove-invalid-games": "cross-env NODE_ENV=development babel-node src/test/data-verification/removeInvalidGames.js"
+    "update-game-popularity": "cross-env NODE_ENV=development babel-node src/test/scripts/testUpdateGamePopularity.js",
+    "verify-results": "cross-env NODE_ENV=development babel-node src/test/scripts/testVerifyResults.js",
+    "remove-invalid-games": "cross-env NODE_ENV=development babel-node src/test/scripts/removeInvalidGames.js"
   },
   "dependencies": {
     "@babel/cli": "7.7.0",

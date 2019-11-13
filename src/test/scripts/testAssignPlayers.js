@@ -2,7 +2,6 @@
 import 'array-flat-polyfill';
 import to from 'await-to-js';
 import moment from 'moment';
-import _ from 'lodash';
 import { logger } from 'utils/logger';
 import { assignPlayers } from 'player-assignment/assignPlayers';
 import { db } from 'db/mongodb';
@@ -11,6 +10,8 @@ import {
   saveResults,
   removeOverlappingSignups,
 } from 'api/controllers/assignmentController';
+import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignups';
+import { verifyResults } from 'player-assignment/test/utils/verifyResults';
 import type { AssignmentStrategy } from 'flow/config.flow';
 
 const testAssignPlayers = async (
@@ -22,7 +23,7 @@ const testAssignPlayers = async (
     removeOverlapSignups,
   } = config;
 
-  let error, users, games;
+  let error, users, games, results;
 
   [error, users] = await to(db.user.findUsers());
   if (error) return logger.error(error);
@@ -57,10 +58,16 @@ const testAssignPlayers = async (
     );
     if (error) return logger.error(error);
 
-    [error] = await to(verifyUserSignups(startingTime));
+    [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    [error] = await to(verifyResults(startingTime));
+    [error] = await to(verifyUserSignups(startingTime, users));
+    if (error) return logger.error(error);
+
+    [error, results] = await to(db.results.findResult(startingTime));
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyResults(startingTime, users, results));
     if (error) return logger.error(error);
   }
 };
@@ -78,77 +85,6 @@ const getAssignmentStrategy = (userParameter: string): AssignmentStrategy => {
       'Give valid strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
     );
   }
-};
-
-const verifyUserSignups = async (startingTime: string): Promise<any> => {
-  logger.info('Verify entered games and signups match for users');
-
-  const [error, usersAfterAssign] = await to(db.user.findUsers());
-  if (error) return logger.error(error);
-  if (!usersAfterAssign) return;
-
-  usersAfterAssign.map(user => {
-    const enteredGames = user.enteredGames.filter(
-      enteredGame =>
-        moment(enteredGame.time).format() === moment(startingTime).format()
-    );
-
-    if (!enteredGames || enteredGames.length === 0) return;
-
-    if (enteredGames.length !== 1) {
-      logger.error(
-        `Too many entered games for time ${startingTime}: ${user.username} - ${enteredGames.length} games`
-      );
-      return;
-    }
-
-    const enteredGame = _.first(enteredGames);
-
-    if (user.signedGames && user.signedGames.length !== 0) {
-      const signupFound = user.signedGames.find(signedGame => {
-        return (
-          signedGame.gameDetails.gameId === enteredGame.gameDetails.gameId &&
-          moment(signedGame.time).format() === moment(enteredGame.time).format()
-        );
-      });
-
-      if (!signupFound) {
-        logger.error(
-          `Signup not found: ${user.username} - ${enteredGame.gameDetails.title}`
-        );
-      } else {
-        logger.debug(
-          `Signup found: ${user.username} - ${enteredGame.gameDetails.title}`
-        );
-      }
-    }
-  });
-};
-
-const verifyResults = async (startingTime: string): Promise<any> => {
-  logger.info('Verify results contain valid data');
-
-  const [error, results] = await to(db.results.findResult(startingTime));
-  if (error) return logger.error(error);
-
-  if (!results || !results.result) {
-    logger.error('No results found');
-    return;
-  }
-
-  results.result.map(result => {
-    if (
-      moment(result.enteredGame.time).format() !== moment(startingTime).format()
-    ) {
-      logger.error(
-        `Invalid time for "${
-          result.enteredGame.gameDetails.title
-        }" - actual: ${moment(
-          result.enteredGame.time
-        ).format()}, expected: ${startingTime}`
-      );
-    }
-  });
 };
 
 const init = async (): Promise<any> => {
