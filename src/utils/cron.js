@@ -7,10 +7,8 @@ import { updateGames } from 'api/controllers/gamesController';
 import { config } from 'config';
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
 import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
-import {
-  doAssignment,
-  saveResults,
-} from 'api/controllers/assignmentController';
+import { doAssignment } from 'player-assignment/utils/doAssignment';
+import { saveResults } from 'player-assignment/utils/saveResults';
 import { sleep } from 'utils/sleep';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 

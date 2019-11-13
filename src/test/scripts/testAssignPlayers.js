@@ -6,7 +6,7 @@ import { logger } from 'utils/logger';
 import { assignPlayers } from 'player-assignment/assignPlayers';
 import { db } from 'db/mongodb';
 import { config } from 'config';
-import { saveResults } from 'api/controllers/assignmentController';
+import { saveResults } from 'player-assignment/utils/saveResults';
 import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
 import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignups';
 import { verifyResults } from 'player-assignment/test/utils/verifyResults';

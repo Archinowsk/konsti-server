@@ -1,13 +1,10 @@
 // @flow
 import { logger } from 'utils/logger';
-import { db } from 'db/mongodb';
-import { assignPlayers } from 'player-assignment/assignPlayers';
 import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
+import { saveResults } from 'player-assignment/utils/saveResults';
+import { doAssignment } from 'player-assignment/utils/doAssignment';
 import { validateAuthHeader } from 'utils/authHeader';
 import { config } from 'config';
-import type { User } from 'flow/user.flow';
-import type { Game } from 'flow/game.flow';
-import type { Result, PlayerAssignmentResult } from 'flow/result.flow';
 import type { $Request, $Response, Middleware } from 'express';
 
 // Assign players to games
@@ -88,81 +85,6 @@ const postAssignment: Middleware = async (
     signups: assignResults.newSignupData,
     startTime: startingTime,
   });
-};
-
-export const saveResults = async (
-  results: $ReadOnlyArray<Result>,
-  startingTime: string,
-  algorithm: string,
-  message: string
-): Promise<void> => {
-  try {
-    logger.info(
-      `Save all signup results to separate collection for starting time ${startingTime}`
-    );
-    await db.results.saveResult(results, startingTime, algorithm, message);
-  } catch (error) {
-    throw new Error(`No assign results: db.results.saveResult error: ${error}`);
-  }
-
-  try {
-    logger.info(`Save user signup results for starting time ${startingTime}`);
-    await saveUserSignupResults(results);
-  } catch (error) {
-    logger.error(`saveUserSignupResults: ${error}`);
-    throw new Error(`No assign results: saveUserSignupResults: ${error}`);
-  }
-};
-
-const saveUserSignupResults = async (
-  results: $ReadOnlyArray<Result>
-): Promise<void> => {
-  try {
-    await Promise.all(
-      results.map(async result => {
-        await db.user.saveSignupResult(result);
-      })
-    );
-  } catch (error) {
-    logger.error(`saveSignupResult error: ${error}`);
-    throw new Error('No assign results');
-  }
-};
-
-export const doAssignment = async (
-  startingTime: string
-): Promise<PlayerAssignmentResult> => {
-  const { assignmentStrategy } = config;
-
-  let users: $ReadOnlyArray<User> = [];
-  try {
-    users = await db.user.findUsers();
-  } catch (error) {
-    throw new Error(`findUsers error: ${error}`);
-  }
-
-  let games: $ReadOnlyArray<Game> = [];
-  try {
-    games = await db.game.findGames();
-  } catch (error) {
-    logger.error(`findGames error: ${error}`);
-    throw new Error(`findGames error: ${error}`);
-  }
-
-  let assignResults = null;
-  try {
-    assignResults = assignPlayers(
-      users,
-      games,
-      startingTime,
-      assignmentStrategy
-    );
-  } catch (error) {
-    logger.error(`Player assign error: ${error}`);
-    throw new Error(`Player assign error: ${error}`);
-  }
-
-  return assignResults;
 };
 
 export { postAssignment };
