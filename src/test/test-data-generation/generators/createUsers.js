@@ -106,7 +106,12 @@ export const createIndividualUsers = (count: number): Promise<any> => {
 
   const promises = [];
   for (let i = 0; i < count; i++) {
-    promises.push(createUser({ groupCode: '0', groupMemberCount: 0 }));
+    promises.push(
+      createUser({
+        groupCode: faker.random.number().toString(),
+        groupMemberCount: 0,
+      })
+    );
   }
 
   return Promise.all(promises);
