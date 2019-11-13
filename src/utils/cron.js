@@ -6,10 +6,10 @@ import { db } from 'db/mongodb';
 import { updateGames } from 'api/controllers/gamesController';
 import { config } from 'config';
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
+import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
 import {
   doAssignment,
   saveResults,
-  removeOverlappingSignups,
 } from 'api/controllers/assignmentController';
 import { sleep } from 'utils/sleep';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
@@ -55,11 +55,12 @@ export const autoAssignPlayers = async (): Promise<void> => {
         .add(1, 'seconds')
         .format();
 
+      // const startTime = '2019-07-26T14:00:00Z';
+
       // Wait for final signup requests
       logger.info('Wait 10s for final requests');
       await sleep(10000);
 
-      // const startTime = '2019-07-26T14:00:00Z'
       logger.info('Waiting done, start assignment');
       const assignResults = await doAssignment(startTime);
 
@@ -87,7 +88,7 @@ export const autoAssignPlayers = async (): Promise<void> => {
       }
 
       // Remove overlapping signups
-      if (config.removeOverlapSignups) {
+      if (config.enableRemoveOverlapSignups) {
         if (assignResults.newSignupData.length === 0) return;
 
         logger.info('Remove overlapping signups');

@@ -2,11 +2,12 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { assignPlayers } from 'player-assignment/assignPlayers';
+import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
 import { validateAuthHeader } from 'utils/authHeader';
 import { config } from 'config';
 import type { User } from 'flow/user.flow';
 import type { Game } from 'flow/game.flow';
-import type { Signup, Result, PlayerAssignmentResult } from 'flow/result.flow';
+import type { Result, PlayerAssignmentResult } from 'flow/result.flow';
 import type { $Request, $Response, Middleware } from 'express';
 
 // Assign players to games
@@ -65,7 +66,7 @@ const postAssignment: Middleware = async (
   }
 
   // Remove overlapping signups
-  if (config.removeOverlapSignups && assignResults.newSignupData) {
+  if (config.enableRemoveOverlapSignups && assignResults.newSignupData) {
     try {
       logger.info('Remove overlapping signups');
       await removeOverlappingSignups(assignResults.newSignupData);
@@ -125,20 +126,6 @@ const saveUserSignupResults = async (
   } catch (error) {
     logger.error(`saveSignupResult error: ${error}`);
     throw new Error('No assign results');
-  }
-};
-
-export const removeOverlappingSignups = async (
-  signups: $ReadOnlyArray<Signup>
-): Promise<void> => {
-  try {
-    await Promise.all(
-      signups.map(async signup => {
-        await db.user.saveSignup(signup);
-      })
-    );
-  } catch (error) {
-    throw new Error(`No assign results: saveSignup error: ${error}`);
   }
 };
 
