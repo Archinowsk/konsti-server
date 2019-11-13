@@ -3,7 +3,7 @@ import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
 import { removeDeletedGamesFromUsers } from 'db/game/gameService';
 
-const testVerifyResults = async (): Promise<void> => {
+const removeInvalidGames = async (): Promise<void> => {
   try {
     await db.connectToDb();
   } catch (error) {
@@ -23,4 +23,4 @@ const testVerifyResults = async (): Promise<void> => {
   }
 };
 
-testVerifyResults();
+removeInvalidGames();
