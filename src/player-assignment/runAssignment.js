@@ -8,7 +8,7 @@ import type { User } from 'flow/user.flow';
 import type { Game } from 'flow/game.flow';
 import type { AssignmentStrategy } from 'flow/config.flow';
 
-export const doAssignment = async (
+export const runAssignment = async (
   startingTime: string,
   assignmentStrategy: AssignmentStrategy = config.assignmentStrategy
 ): Promise<PlayerAssignmentResult> => {

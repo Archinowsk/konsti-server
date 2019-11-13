@@ -6,7 +6,7 @@ import moment from 'moment';
 import { db } from 'db/mongodb';
 import { config } from 'config';
 import { logger } from 'utils/logger';
-import { doAssignment } from 'player-assignment/doAssignment';
+import { runAssignment } from 'player-assignment/runAssignment';
 import { generateTestData } from 'test/test-data-generation/generators/generateTestData';
 import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignups';
 import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
@@ -65,7 +65,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
 
@@ -96,7 +96,7 @@ describe('Assignment with valid data', () => {
 
     // SECOND RUN
 
-    const assignResults2 = await doAssignment(startingTime);
+    const assignResults2 = await runAssignment(startingTime);
 
     expect(assignResults2.status).toEqual('success');
 
@@ -141,7 +141,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
 
@@ -172,7 +172,7 @@ describe('Assignment with valid data', () => {
 
     // SECOND RUN
 
-    const assignResults2 = await doAssignment(startingTime);
+    const assignResults2 = await runAssignment(startingTime);
 
     expect(assignResults2.status).toEqual('success');
 
@@ -217,7 +217,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
 
@@ -248,7 +248,7 @@ describe('Assignment with valid data', () => {
 
     // SECOND RUN
 
-    const assignResults2 = await doAssignment(startingTime);
+    const assignResults2 = await runAssignment(startingTime);
 
     expect(assignResults2.status).toEqual('success');
 
@@ -305,7 +305,7 @@ describe('Assignment with no games', () => {
       .add(2, 'hours')
       .format();
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
   });
@@ -319,7 +319,7 @@ describe('Assignment with no games', () => {
       .add(2, 'hours')
       .format();
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
   });
@@ -333,7 +333,7 @@ describe('Assignment with no games', () => {
       .add(2, 'hours')
       .format();
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
   });
@@ -365,7 +365,7 @@ describe('Assignment with no players', () => {
       .add(2, 'hours')
       .format();
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
@@ -379,7 +379,7 @@ describe('Assignment with no players', () => {
       .add(2, 'hours')
       .format();
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
@@ -393,7 +393,7 @@ describe('Assignment with no players', () => {
       .add(2, 'hours')
       .format();
 
-    const assignResults = await doAssignment(startingTime, assignmentStrategy);
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
