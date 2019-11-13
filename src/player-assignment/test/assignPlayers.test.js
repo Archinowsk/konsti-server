@@ -8,8 +8,10 @@ import { config } from 'config';
 import { logger } from 'utils/logger';
 import { assignPlayers } from 'player-assignment/assignPlayers';
 import { generateTestData } from 'test/test-data-generation/generators/generateTestData';
-
-jest.setTimeout(30000);
+import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignups';
+import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
+import { verifyResults } from 'player-assignment/test/utils/verifyResults';
+import { saveResults } from 'player-assignment/utils/saveResults';
 
 let mongoServer;
 
@@ -52,7 +54,7 @@ describe('Assignment with valid data', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group';
-    let error, users, games;
+    let error, users, games, results;
 
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
@@ -64,6 +66,8 @@ describe('Assignment with valid data', () => {
       .add(2, 'hours')
       .format();
 
+    // FIRST RUN
+
     const assignResults = assignPlayers(
       users,
       games,
@@ -72,13 +76,74 @@ describe('Assignment with valid data', () => {
     );
 
     expect(assignResults.status).toEqual('success');
+
+    [error] = await to(removeOverlappingSignups(assignResults.newSignupData));
+    if (error) return logger.error(error);
+
+    [error] = await to(
+      saveResults(
+        assignResults.results,
+        startingTime,
+        assignResults.algorithm,
+        assignResults.message
+      )
+    );
+    if (error) return logger.error(error);
+
+    [error, users] = await to(db.user.findUsers());
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyUserSignups(startingTime, users));
+    if (error) return logger.error(error);
+
+    [error, results] = await to(db.results.findResult(startingTime));
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyResults(startingTime, users, results));
+    if (error) return logger.error(error);
+
+    // SECOND RUN
+
+    const assignResults2 = assignPlayers(
+      users,
+      games,
+      startingTime,
+      assignmentStrategy
+    );
+
+    expect(assignResults2.status).toEqual('success');
+
+    [error] = await to(removeOverlappingSignups(assignResults2.newSignupData));
+    if (error) return logger.error(error);
+
+    [error] = await to(
+      saveResults(
+        assignResults2.results,
+        startingTime,
+        assignResults2.algorithm,
+        assignResults2.message
+      )
+    );
+    if (error) return logger.error(error);
+
+    [error, users] = await to(db.user.findUsers());
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyUserSignups(startingTime, users));
+    if (error) return logger.error(error);
+
+    [error, results] = await to(db.results.findResult(startingTime));
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyResults(startingTime, users, results));
+    if (error) return logger.error(error);
   });
 
   test('should return success with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'opa';
-    let error, users, games;
+    let error, users, games, results;
 
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
@@ -90,6 +155,8 @@ describe('Assignment with valid data', () => {
       .add(2, 'hours')
       .format();
 
+    // FIRST RUN
+
     const assignResults = assignPlayers(
       users,
       games,
@@ -98,13 +165,74 @@ describe('Assignment with valid data', () => {
     );
 
     expect(assignResults.status).toEqual('success');
+
+    [error] = await to(removeOverlappingSignups(assignResults.newSignupData));
+    if (error) return logger.error(error);
+
+    [error] = await to(
+      saveResults(
+        assignResults.results,
+        startingTime,
+        assignResults.algorithm,
+        assignResults.message
+      )
+    );
+    if (error) return logger.error(error);
+
+    [error, users] = await to(db.user.findUsers());
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyUserSignups(startingTime, users));
+    if (error) return logger.error(error);
+
+    [error, results] = await to(db.results.findResult(startingTime));
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyResults(startingTime, users, results));
+    if (error) return logger.error(error);
+
+    // SECOND RUN
+
+    const assignResults2 = assignPlayers(
+      users,
+      games,
+      startingTime,
+      assignmentStrategy
+    );
+
+    expect(assignResults2.status).toEqual('success');
+
+    [error] = await to(removeOverlappingSignups(assignResults2.newSignupData));
+    if (error) return logger.error(error);
+
+    [error] = await to(
+      saveResults(
+        assignResults2.results,
+        startingTime,
+        assignResults2.algorithm,
+        assignResults2.message
+      )
+    );
+    if (error) return logger.error(error);
+
+    [error, users] = await to(db.user.findUsers());
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyUserSignups(startingTime, users));
+    if (error) return logger.error(error);
+
+    [error, results] = await to(db.results.findResult(startingTime));
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyResults(startingTime, users, results));
+    if (error) return logger.error(error);
   });
 
   test('should return success with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group+opa';
-    let error, users, games;
+    let error, users, games, results;
 
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
@@ -116,6 +244,8 @@ describe('Assignment with valid data', () => {
       .add(2, 'hours')
       .format();
 
+    // FIRST RUN
+
     const assignResults = assignPlayers(
       users,
       games,
@@ -124,6 +254,67 @@ describe('Assignment with valid data', () => {
     );
 
     expect(assignResults.status).toEqual('success');
+
+    [error] = await to(removeOverlappingSignups(assignResults.newSignupData));
+    if (error) return logger.error(error);
+
+    [error] = await to(
+      saveResults(
+        assignResults.results,
+        startingTime,
+        assignResults.algorithm,
+        assignResults.message
+      )
+    );
+    if (error) return logger.error(error);
+
+    [error, users] = await to(db.user.findUsers());
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyUserSignups(startingTime, users));
+    if (error) return logger.error(error);
+
+    [error, results] = await to(db.results.findResult(startingTime));
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyResults(startingTime, users, results));
+    if (error) return logger.error(error);
+
+    // SECOND RUN
+
+    const assignResults2 = assignPlayers(
+      users,
+      games,
+      startingTime,
+      assignmentStrategy
+    );
+
+    expect(assignResults2.status).toEqual('success');
+
+    [error] = await to(removeOverlappingSignups(assignResults2.newSignupData));
+    if (error) return logger.error(error);
+
+    [error] = await to(
+      saveResults(
+        assignResults2.results,
+        startingTime,
+        assignResults2.algorithm,
+        assignResults2.message
+      )
+    );
+    if (error) return logger.error(error);
+
+    [error, users] = await to(db.user.findUsers());
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyUserSignups(startingTime, users));
+    if (error) return logger.error(error);
+
+    [error, results] = await to(db.results.findResult(startingTime));
+    if (error) return logger.error(error);
+
+    [error] = await to(verifyResults(startingTime, users, results));
+    if (error) return logger.error(error);
   });
 });
 
