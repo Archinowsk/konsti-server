@@ -1,10 +1,9 @@
 // @flow
 import to from 'await-to-js';
-import moment from 'moment';
 import { logger } from 'utils/logger';
 import { UserModel } from 'db/user/userSchema';
 import type { Result, Signup } from 'flow/result.flow';
-import type { NewUserData, SignedGame } from 'flow/user.flow';
+import type { NewUserData, EnteredGame } from 'flow/user.flow';
 
 const removeUsers = () => {
   logger.info('MongoDB: remove ALL users from db');
@@ -341,29 +340,7 @@ const saveFavorite = async (favoriteData: Object): Promise<any> => {
   }
 };
 
-const getEnteredGames = async (
-  signupResult: Result
-): Promise<$ReadOnlyArray<SignedGame>> => {
-  const user = await findUser(signupResult.username);
-
-  if (user.enteredGames.length === 0) {
-    return [signupResult.enteredGame];
-  }
-
-  // Remove results for same time
-  const enteredGames = user.enteredGames.filter(enteredGame => {
-    return (
-      moment(enteredGame.time).format() !==
-      moment(signupResult.enteredGame.time).format()
-    );
-  });
-
-  return enteredGames.concat([signupResult.enteredGame]);
-};
-
 const saveSignupResult = async (signupResult: Result): Promise<void> => {
-  const newEnteredGames = await getEnteredGames(signupResult);
-
   let response = null;
   try {
     response = await UserModel.updateOne(
@@ -371,7 +348,7 @@ const saveSignupResult = async (signupResult: Result): Promise<void> => {
         username: signupResult.username,
       },
       {
-        enteredGames: newEnteredGames,
+        enteredGames: signupResult.enteredGame,
       }
     );
 
@@ -382,6 +359,33 @@ const saveSignupResult = async (signupResult: Result): Promise<void> => {
   } catch (error) {
     logger.error(
       `MongoDB: Error storing signup result data for user ${signupResult.username} - ${error}`
+    );
+    return error;
+  }
+};
+
+const saveEnteredGames = async (
+  enteredGames: $ReadOnlyArray<EnteredGame>,
+  username: string
+): Promise<void> => {
+  let response = null;
+  try {
+    response = await UserModel.updateOne(
+      {
+        username,
+      },
+      {
+        enteredGames,
+      }
+    );
+
+    logger.debug(
+      `MongoDB: Updated entered games stored for user "${username}"`
+    );
+    return response;
+  } catch (error) {
+    logger.error(
+      `MongoDB: Error updating entered games for user ${username} - ${error}`
     );
     return error;
   }
@@ -402,4 +406,5 @@ export const user = {
   updateUser,
   findUserBySerial,
   updateUserPassword,
+  saveEnteredGames,
 };
