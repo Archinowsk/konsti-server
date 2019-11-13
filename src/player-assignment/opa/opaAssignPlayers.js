@@ -6,7 +6,6 @@ import { getSignupWishes } from 'player-assignment/utils/getSignupWishes';
 import { getSignedGames } from 'player-assignment/utils/getSignedGames';
 import { getSelectedPlayers } from 'player-assignment/utils/getSelectedPlayers';
 import { getPlayerGroups } from 'player-assignment/utils/getPlayerGroups';
-import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
 import { getGroupMembers } from 'player-assignment/utils/getGroupMembers';
 import { runOpaAssignment } from 'player-assignment/opa/utils/runOpaAssignment';
 import type { User } from 'flow/user.flow';
@@ -26,7 +25,6 @@ export const opaAssignPlayers = (
     return {
       results: [],
       message: 'Opa Assign Result - No starting games',
-      newSignupData: [],
       algorithm: 'opa',
       status: 'error: no starting games',
     };
@@ -39,7 +37,6 @@ export const opaAssignPlayers = (
     return {
       results: [],
       message: 'Opa Assign Result - No signup wishes',
-      newSignupData: [],
       algorithm: 'opa',
       status: 'error: no signup wishes',
     };
@@ -80,8 +77,6 @@ export const opaAssignPlayers = (
     result.results.map(result => result.enteredGame.gameDetails.gameId)
   );
 
-  const newSignupData = removeOverlapSignups(result.results, players);
-
   const message = `Opa Assign Result - Players: ${result.results.length}/${
     allPlayers.length
   } (${Math.round(
@@ -94,7 +89,6 @@ export const opaAssignPlayers = (
 
   return Object.assign({
     ...result,
-    newSignupData,
     message,
     algorithm: 'opa',
     status: 'success',

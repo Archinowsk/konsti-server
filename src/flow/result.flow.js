@@ -14,7 +14,6 @@ export type Signup = {|
 export type PlayerAssignmentResult = {|
   +results: $ReadOnlyArray<Result>,
   +message: string,
-  +newSignupData: $ReadOnlyArray<Signup>,
   +algorithm: string,
   +status: string,
 |};
@@ -23,7 +22,6 @@ export type ResultsCollectionEntry = {|
   +startTime: string,
   +results: $ReadOnlyArray<Result>,
   +message: string,
-  +newSignupData: $ReadOnlyArray<Signup>,
   +algorithm: string,
 |};
 

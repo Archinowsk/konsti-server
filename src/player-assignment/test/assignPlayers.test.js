@@ -9,7 +9,7 @@ import { logger } from 'utils/logger';
 import { assignPlayers } from 'player-assignment/assignPlayers';
 import { generateTestData } from 'test/test-data-generation/generators/generateTestData';
 import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignups';
-import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
+import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
 import { verifyResults } from 'player-assignment/test/utils/verifyResults';
 import { saveResults } from 'player-assignment/utils/saveResults';
 
@@ -77,7 +77,7 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults.status).toEqual('success');
 
-    [error] = await to(removeOverlappingSignups(assignResults.newSignupData));
+    [error] = await to(removeOverlapSignups(assignResults.results));
     if (error) return logger.error(error);
 
     [error] = await to(
@@ -113,7 +113,7 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults2.status).toEqual('success');
 
-    [error] = await to(removeOverlappingSignups(assignResults2.newSignupData));
+    [error] = await to(removeOverlapSignups(assignResults.results));
     if (error) return logger.error(error);
 
     [error] = await to(
@@ -166,7 +166,7 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults.status).toEqual('success');
 
-    [error] = await to(removeOverlappingSignups(assignResults.newSignupData));
+    [error] = await to(removeOverlapSignups(assignResults.results));
     if (error) return logger.error(error);
 
     [error] = await to(
@@ -202,7 +202,7 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults2.status).toEqual('success');
 
-    [error] = await to(removeOverlappingSignups(assignResults2.newSignupData));
+    [error] = await to(removeOverlapSignups(assignResults2.results));
     if (error) return logger.error(error);
 
     [error] = await to(
@@ -255,7 +255,7 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults.status).toEqual('success');
 
-    [error] = await to(removeOverlappingSignups(assignResults.newSignupData));
+    [error] = await to(removeOverlapSignups(assignResults.results));
     if (error) return logger.error(error);
 
     [error] = await to(
@@ -291,7 +291,7 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults2.status).toEqual('success');
 
-    [error] = await to(removeOverlappingSignups(assignResults2.newSignupData));
+    [error] = await to(removeOverlapSignups(assignResults2.results));
     if (error) return logger.error(error);
 
     [error] = await to(

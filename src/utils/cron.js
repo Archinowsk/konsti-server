@@ -6,7 +6,7 @@ import { db } from 'db/mongodb';
 import { updateGames } from 'api/controllers/gamesController';
 import { config } from 'config';
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
-import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
+import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
 import { doAssignment } from 'player-assignment/utils/doAssignment';
 import { saveResults } from 'player-assignment/utils/saveResults';
 import { sleep } from 'utils/sleep';
@@ -87,14 +87,12 @@ export const autoAssignPlayers = async (): Promise<void> => {
 
       // Remove overlapping signups
       if (config.enableRemoveOverlapSignups) {
-        if (assignResults.newSignupData.length === 0) return;
-
         logger.info('Remove overlapping signups');
 
         try {
-          await removeOverlappingSignups(assignResults.newSignupData);
+          await removeOverlapSignups(assignResults.results);
         } catch (error) {
-          logger.error(`removeOverlappingSignups error: ${error}`);
+          logger.error(`removeOverlapSignups error: ${error}`);
         }
       }
 

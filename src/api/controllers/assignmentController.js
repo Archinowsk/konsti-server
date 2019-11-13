@@ -1,6 +1,6 @@
 // @flow
 import { logger } from 'utils/logger';
-import { removeOverlappingSignups } from 'player-assignment/utils/removeOverlappingSignups';
+import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
 import { saveResults } from 'player-assignment/utils/saveResults';
 import { doAssignment } from 'player-assignment/utils/doAssignment';
 import { validateAuthHeader } from 'utils/authHeader';
@@ -63,12 +63,12 @@ const postAssignment: Middleware = async (
   }
 
   // Remove overlapping signups
-  if (config.enableRemoveOverlapSignups && assignResults.newSignupData) {
+  if (config.enableRemoveOverlapSignups) {
     try {
       logger.info('Remove overlapping signups');
-      await removeOverlappingSignups(assignResults.newSignupData);
+      await removeOverlapSignups(assignResults.results);
     } catch (error) {
-      logger.error(`removeOverlappingSignups error: ${error}`);
+      logger.error(`removeOverlapSignups error: ${error}`);
       return res.json({
         message: 'Players assign failure',
         status: 'error',
@@ -82,7 +82,6 @@ const postAssignment: Middleware = async (
     status: 'success',
     results: assignResults.results,
     resultMessage: assignResults.message,
-    signups: assignResults.newSignupData,
     startTime: startingTime,
   });
 };

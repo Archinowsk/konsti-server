@@ -86,7 +86,6 @@ export const munkresAssignPlayers = (
   return {
     results: signupResults,
     message,
-    newSignupData: [],
     algorithm: 'munkres',
     status: 'success',
   };

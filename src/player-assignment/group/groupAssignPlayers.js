@@ -6,7 +6,6 @@ import { getSignedGames } from 'player-assignment/utils/getSignedGames';
 import { getSelectedPlayers } from 'player-assignment/utils/getSelectedPlayers';
 import { assignGroups } from 'player-assignment/group/utils/assignGroup';
 import { getPlayerGroups } from 'player-assignment/utils/getPlayerGroups';
-import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
 import { getGroupMembers } from 'player-assignment/utils/getGroupMembers';
 import { getHappiness } from 'player-assignment/group/utils/getHappiness';
 import type { User } from 'flow/user.flow';
@@ -26,7 +25,6 @@ export const groupAssignPlayers = (
     return {
       results: [],
       message: 'Group Assign Result - No starting games',
-      newSignupData: [],
       algorithm: 'group',
       status: 'error: no starting games',
     };
@@ -39,7 +37,6 @@ export const groupAssignPlayers = (
     return {
       results: [],
       message: 'Group Assign Result - No signup wishes',
-      newSignupData: [],
       algorithm: 'group',
       status: 'error: no signup wishes',
     };
@@ -73,13 +70,10 @@ export const groupAssignPlayers = (
 
   getHappiness(result.results, playerGroups, allPlayers, startingTime);
 
-  const newSignupData = removeOverlapSignups(result.results, players);
-
   logger.debug(`${result.message}`);
 
   return Object.assign({
     ...result,
-    newSignupData,
     algorithm: 'group',
     status: 'success',
   });

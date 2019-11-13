@@ -1,15 +1,18 @@
 // @flow
+import to from 'await-to-js';
 import moment from 'moment';
 import { logger } from 'utils/logger';
-import type { User } from 'flow/user.flow';
+import { db } from 'db/mongodb';
 import type { Signup, Result } from 'flow/result.flow';
 
-export const removeOverlapSignups = (
-  results: $ReadOnlyArray<Result>,
-  players: $ReadOnlyArray<User>
-): $ReadOnlyArray<Signup> => {
+export const removeOverlapSignups = async (
+  results: $ReadOnlyArray<Result>
+): Promise<any> => {
   logger.debug('Find overlapping signups');
-  const signupData = [];
+  const signupData: Array<Signup> = [];
+
+  const [error, players] = await to(db.user.findUsers());
+  if (error) return logger.error(error);
 
   results.forEach(result => {
     const enteredGame = result.enteredGame.gameDetails;
@@ -58,5 +61,13 @@ export const removeOverlapSignups = (
     });
   });
 
-  return signupData;
+  try {
+    await Promise.all(
+      signupData.map(async signup => {
+        await db.user.saveSignup(signup);
+      })
+    );
+  } catch (error) {
+    throw new Error(`No assign results: saveSignup error: ${error}`);
+  }
 };
