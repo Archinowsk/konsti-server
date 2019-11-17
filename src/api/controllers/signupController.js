@@ -3,6 +3,7 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
+import { config } from 'config';
 import type { $Request, $Response, Middleware } from 'express';
 
 // Add signup data for user
@@ -30,8 +31,7 @@ const postSignup: Middleware = async (
   }
 
   const timeNow = moment();
-
-  if (signupTime !== 'all' && moment(signupTime).isBefore(timeNow)) {
+  if (config.enableSignupTimeCheck && moment(signupTime).isBefore(timeNow)) {
     const error = `Signup time ${moment(
       signupTime
     ).format()} does not match: too late`;

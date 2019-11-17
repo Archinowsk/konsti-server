@@ -45,6 +45,7 @@ const prodConfig = {
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
   updateGamePopularityEnabled: true,
+  enableSignupTimeCheck: true,
 
   // Cron
   autoUpdateGamesEnabled: false,
@@ -67,6 +68,7 @@ const stagingConfig = {
   GROUP_ASSIGNMENT_ROUNDS: 300,
   OPA_ASSIGNMENT_ROUNDS: 300,
   updateGamePopularityEnabled: true,
+  enableSignupTimeCheck: false,
 
   // Cron
   autoUpdateGamesEnabled: false,
@@ -86,6 +88,7 @@ const devConfig = {
   GROUP_ASSIGNMENT_ROUNDS: 1,
   OPA_ASSIGNMENT_ROUNDS: 300,
   updateGamePopularityEnabled: true,
+  enableSignupTimeCheck: false,
 
   // Cron
   autoUpdateGamesEnabled: false,

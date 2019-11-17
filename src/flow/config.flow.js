@@ -30,4 +30,5 @@ export type Config = {|
   +updateGamePopularityEnabled: boolean,
   +useLocalProgramFile: boolean,
   +autoAssignPlayersEnabled: boolean,
+  +enableSignupTimeCheck: boolean,
 |};
