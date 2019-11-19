@@ -19,7 +19,7 @@ const commonConfig = {
   // App settings
   assignmentStrategy: 'group+opa', // 'munkres', 'group', 'opa', 'group+opa'
   bundleCompression: true,
-  CONVENTION_START_TIME: '2019-11-23T07:00:00Z', // UTC date
+  CONVENTION_START_TIME: '2019-11-23T08:00:00Z', // UTC date
   enableRemoveOverlapSignups: true,
   gamePopularityUpdateMethod: 'assign', // 'signups', 'assign'
 
