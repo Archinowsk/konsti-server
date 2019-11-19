@@ -47,10 +47,10 @@ const prodConfig = {
   enableSignupTimeCheck: true,
 
   // Cron
-  autoUpdateGamesEnabled: false,
-  autoUpdateGamePopularityEnabled: false,
+  autoUpdateGamesEnabled: true,
+  autoUpdateGamePopularityEnabled: true,
   gameUpdateInterval: 4, // minutes
-  autoAssignPlayersEnabled: false,
+  autoAssignPlayersEnabled: true,
 };
 
 const stagingConfig = {
@@ -70,8 +70,8 @@ const stagingConfig = {
   enableSignupTimeCheck: false,
 
   // Cron
-  autoUpdateGamesEnabled: false,
-  autoUpdateGamePopularityEnabled: false,
+  autoUpdateGamesEnabled: true,
+  autoUpdateGamePopularityEnabled: true,
   gameUpdateInterval: 4, // minutes
   autoAssignPlayersEnabled: false,
 };
