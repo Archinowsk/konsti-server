@@ -8,8 +8,6 @@ import type { User, SignedGame } from 'flow//user.flow';
 import type { Game } from 'flow/game.flow';
 
 export const createSignups = async (): Promise<void> => {
-  logger.info('Generate signup data');
-
   let games = [];
   try {
     games = await db.game.findGames();

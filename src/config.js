@@ -24,7 +24,6 @@ const commonConfig = {
   gamePopularityUpdateMethod: 'assign', // 'signups', 'assign'
 
   // Development and testing
-  generateSignups: true,
   saveTestAssign: true,
 
   // Convention settings

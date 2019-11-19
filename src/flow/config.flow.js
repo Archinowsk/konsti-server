@@ -23,7 +23,6 @@ export type Config = {|
   +gameUpdateInterval: number,
   +CONVENTION_START_TIME: string,
   +enableRemoveOverlapSignups: boolean,
-  +generateSignups: boolean,
   +saveTestAssign: boolean,
   +autoUpdateGamePopularityEnabled: boolean,
   +gamePopularityUpdateMethod: GameUpdateMethod,
