@@ -19,7 +19,7 @@ const commonConfig = {
   // App settings
   assignmentStrategy: 'group+opa', // 'munkres', 'group', 'opa', 'group+opa'
   bundleCompression: true,
-  CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
+  CONVENTION_START_TIME: '2019-11-23T07:00:00Z', // UTC date
   enableRemoveOverlapSignups: true,
   gamePopularityUpdateMethod: 'assign', // 'signups', 'assign'
 
@@ -27,7 +27,7 @@ const commonConfig = {
   saveTestAssign: true,
 
   // Convention settings
-  dataUri: 'https://kompassi.eu/api/v1/events/ropecon2019/programme/ropecon',
+  dataUri: 'https://kompassi.eu/api/v1/events/hitpoint2019/programme/hitpoint',
 };
 
 const prodConfig = {
@@ -82,7 +82,7 @@ const devConfig = {
   jwtSecretKey: 'secret',
   jwtSecretKeyAdmin: 'admin secret',
   allowedCorsOrigins: ['http://localhost:8080'],
-  useLocalProgramFile: true,
+  useLocalProgramFile: false,
   debug: false,
   GROUP_ASSIGNMENT_ROUNDS: 1,
   OPA_ASSIGNMENT_ROUNDS: 300,
