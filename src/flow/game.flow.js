@@ -53,6 +53,7 @@ export type KompassiGame = {|
   +styles: $ReadOnlyArray<string>,
   +short_blurb: string,
   +revolving_door: boolean,
+  +three_word_description: string,
 |};
 
 export type GameWithPlayerCount = {|

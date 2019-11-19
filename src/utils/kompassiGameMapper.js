@@ -17,7 +17,9 @@ export const kompassiGameMapper = (
       genres: game.genres,
       styles: game.styles,
       language: game.language,
-      endTime: game.end_time,
+      endTime: moment(game.start_time)
+        .add(game.length, 'minutes')
+        .format(),
       people: game.formatted_hosts,
       minAttendance: game.min_players,
       maxAttendance: game.max_players,
@@ -28,7 +30,7 @@ export const kompassiGameMapper = (
       beginnerFriendly: game.beginner_friendly,
       intendedForExperiencedParticipants:
         game.intended_for_experienced_participants,
-      shortDescription: game.short_blurb,
+      shortDescription: game.short_blurb || game.three_word_description,
       revolvingDoor: game.revolving_door,
     };
   });

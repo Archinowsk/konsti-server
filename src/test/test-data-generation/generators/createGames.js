@@ -66,6 +66,7 @@ export const createGames = (count: number): Promise<void> => {
         styles: ['serious', 'story_driven', 'character_driven'],
         short_blurb: faker.lorem.sentence(),
         revolving_door: true,
+        three_word_description: 'This is example ',
       };
 
       logger.info(`Stored game "${gameData.title}"`);
