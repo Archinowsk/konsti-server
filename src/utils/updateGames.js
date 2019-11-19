@@ -48,7 +48,10 @@ export const updateGames = async (): Promise<$ReadOnlyArray<KompassiGame>> => {
   }
 
   return programItems.filter(programItem => {
-    if (programItem.category_title === 'Roolipeli / Pen & Paper RPG') {
+    if (
+      programItem.category_title === 'Roolipeli' ||
+      programItem.category_title === 'Freeform'
+    ) {
       return programItem;
     }
   });
