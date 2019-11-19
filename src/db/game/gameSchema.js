@@ -26,6 +26,7 @@ const gameSchema = new mongoose.Schema(
     shortDescription: String,
     revolvingDoor: Boolean,
     popularity: { type: Number, default: 0 },
+    programType: String,
   },
   { timestamps: true }
 );

@@ -189,6 +189,7 @@ const saveGames = async (games: $ReadOnlyArray<Game>): Promise<any> => {
               game.intendedForExperiencedParticipants,
             shortDescription: game.shortDescription,
             revolvingDoor: game.revolvingDoor,
+            programType: game.programType,
           },
           {
             upsert: true,

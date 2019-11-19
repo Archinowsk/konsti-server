@@ -32,7 +32,7 @@ export const mockGame = {
   popularity: 0,
   // $FlowFixMe: Cannot call `mongoose.Types.ObjectId` because a call signature declaring the expected parameter / return type is missing in statics of `bson$ObjectId` [1].
   _id: mongoose.Types.ObjectId('5dcc2c4920faf03a7814ce56'),
-  three_word_description: 'This is example ',
+  programType: 'Roolipeli',
 };
 
 export const mockGame2 = {
@@ -66,5 +66,5 @@ export const mockGame2 = {
   popularity: 0,
   // $FlowFixMe: Cannot call `mongoose.Types.ObjectId` because a call signature declaring the expected parameter / return type is missing in statics of `bson$ObjectId` [1].
   _id: mongoose.Types.ObjectId('5dcc2c4920faf03a7814ce57'),
-  three_word_description: 'This is example ',
+  programType: 'Roolipeli',
 };

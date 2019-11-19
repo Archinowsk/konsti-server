@@ -27,11 +27,17 @@ export const kompassiGameMapper = (
       englishOk: game.english_ok,
       childrenFriendly: game.children_friendly,
       ageRestricted: game.age_restricted,
-      beginnerFriendly: game.beginner_friendly,
+      beginnerFriendly: game.beginner_friendly || game.is_beginner_friendly,
       intendedForExperiencedParticipants:
         game.intended_for_experienced_participants,
       shortDescription: game.short_blurb || game.three_word_description,
       revolvingDoor: game.revolving_door,
+      programType: mapProgramType(game.category_title),
     };
   });
+};
+
+const mapProgramType = programType => {
+  if (programType === 'Roolipeli') return 'tabletopRPG';
+  else if (programType === 'Freeform') return 'freeformRPG';
 };

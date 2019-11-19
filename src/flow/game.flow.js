@@ -26,6 +26,7 @@ export type Game = {
   +popularity: number,
   +shortDescription: string,
   +revolvingDoor: boolean,
+  +programType: string,
 };
 
 export type KompassiGame = {|
@@ -54,6 +55,7 @@ export type KompassiGame = {|
   +short_blurb: string,
   +revolving_door: boolean,
   +three_word_description: string,
+  +is_beginner_friendly: boolean,
 |};
 
 export type GameWithPlayerCount = {|
