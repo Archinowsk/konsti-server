@@ -7,6 +7,49 @@ import { db } from 'db/mongodb';
 import type { User, SignedGame } from 'flow//user.flow';
 import type { Game } from 'flow/game.flow';
 
+export const createSignups = async (): Promise<void> => {
+  logger.info('Generate signup data');
+
+  let games = [];
+  try {
+    games = await db.game.findGames();
+  } catch (error) {
+    logger.error(`db.game.findGames error: ${error}`);
+  }
+
+  let users = [];
+  try {
+    users = await db.user.findUsers();
+  } catch (error) {
+    logger.error(`db.game.findUsers error: ${error}`);
+  }
+
+  logger.info(`Signup: ${games.length} games`);
+  logger.info(`Signup: ${users.length} users`);
+  logger.info(`Signup: Generate signup data for ${users.length} users`);
+
+  // Group all unique group numbers
+  const groupedUsers = users.reduce((acc, user) => {
+    acc[user.groupCode] = acc[user.groupCode] || [];
+    acc[user.groupCode].push(user);
+    return acc;
+  }, {});
+
+  for (const [key: String, value: $ReadOnlyArray<User>] of Object.entries(
+    groupedUsers
+  )) {
+    // $FlowFixMe
+    const array = [...value];
+    if (key === '0') {
+      logger.info('SIGNUP INDIVIDUAL USERS');
+      await signupMultiple(games, array);
+    } else {
+      logger.info(`SIGNUP GROUP ${key}`);
+      await signupGroup(games, array);
+    }
+  }
+};
+
 const getRandomSignup = (
   games: $ReadOnlyArray<Game>,
   user: User
@@ -101,47 +144,4 @@ const signupGroup = async (
   }
 
   return Promise.all(promises);
-};
-
-export const createSignups = async (): Promise<void> => {
-  logger.info('Generate signup data');
-
-  let games = [];
-  try {
-    games = await db.game.findGames();
-  } catch (error) {
-    logger.error(`db.game.findGames error: ${error}`);
-  }
-
-  let users = [];
-  try {
-    users = await db.user.findUsers();
-  } catch (error) {
-    logger.error(`db.game.findUsers error: ${error}`);
-  }
-
-  logger.info(`Signup: ${games.length} games`);
-  logger.info(`Signup: ${users.length} users`);
-  logger.info(`Signup: Generate signup data for ${users.length} users`);
-
-  // Group all unique group numbers
-  const groupedUsers = users.reduce((acc, user) => {
-    acc[user.groupCode] = acc[user.groupCode] || [];
-    acc[user.groupCode].push(user);
-    return acc;
-  }, {});
-
-  for (const [key: String, value: $ReadOnlyArray<User>] of Object.entries(
-    groupedUsers
-  )) {
-    // $FlowFixMe
-    const array = [...value];
-    if (key === '0') {
-      logger.info('SIGNUP INDIVIDUAL USERS');
-      await signupMultiple(games, array);
-    } else {
-      logger.info(`SIGNUP GROUP ${key}`);
-      await signupGroup(games, array);
-    }
-  }
 };
