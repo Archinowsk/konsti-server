@@ -75,7 +75,7 @@ const getAssignmentStrategy = (userParameter: string): AssignmentStrategy => {
     return userParameter;
   } else {
     throw new Error(
-      'Give valid strategy parameter, possible: "munkres", "group", "opa", "group-opa"'
+      'Give valid strategy parameter, possible: "munkres", "group", "opa", "group+opa"'
     );
   }
 };
