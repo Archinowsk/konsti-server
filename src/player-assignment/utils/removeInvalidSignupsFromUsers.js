@@ -2,8 +2,8 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 
-export const removeDeletedGamesFromUsers = async (): Promise<any> => {
-  logger.info('Remove deleted games from users');
+export const removeInvalidSignupsFromUsers = async (): Promise<any> => {
+  logger.info('Remove invalid signups from users');
 
   let users = null;
   try {

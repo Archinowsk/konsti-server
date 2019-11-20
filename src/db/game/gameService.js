@@ -4,7 +4,7 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { GameModel } from 'db/game/gameSchema';
 import { db } from 'db/mongodb';
-import { removeDeletedGamesFromUsers } from 'player-assignment/utils/removeDeletedGamesFromUsers';
+import { removeInvalidSignupsFromUsers } from 'player-assignment/utils/removeInvalidSignupsFromUsers';
 import type { Game } from 'flow/game.flow';
 
 const removeGames = async (): Promise<void> => {
@@ -38,7 +38,7 @@ const removeDeletedGames = async (
       return Promise.reject(error);
     }
 
-    await removeDeletedGamesFromUsers();
+    await removeInvalidSignupsFromUsers();
   }
 };
 
