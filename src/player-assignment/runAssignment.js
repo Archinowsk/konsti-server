@@ -36,7 +36,6 @@ export const runAssignment = async (
       assignmentStrategy
     );
   } catch (error) {
-    logger.error(`Player assign error: ${error}`);
     throw new Error(`Player assign error: ${error}`);
   }
 

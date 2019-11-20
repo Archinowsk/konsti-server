@@ -33,6 +33,7 @@ const postAssignment: Middleware = async (
   try {
     assignResults = await runAssignment(startingTime);
   } catch (error) {
+    logger.error(`Player assign error: ${error}`);
     return res.json({
       message: 'Players assign failure',
       status: 'error',

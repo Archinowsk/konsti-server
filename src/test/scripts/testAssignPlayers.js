@@ -21,7 +21,7 @@ const testAssignPlayers = async (
     enableRemoveOverlapSignups,
   } = config;
 
-  let error, users, results;
+  let error, users, results, assignResults;
 
   [error, users] = await to(db.user.findUsers());
   if (error) return logger.error(error);
@@ -30,7 +30,10 @@ const testAssignPlayers = async (
     .add(2, 'hours')
     .format();
 
-  const assignResults = await runAssignment(startingTime, assignmentStrategy);
+  [error, assignResults] = await to(
+    runAssignment(startingTime, assignmentStrategy)
+  );
+  if (error) return logger.error(error);
 
   if (saveTestAssign) {
     if (enableRemoveOverlapSignups) {

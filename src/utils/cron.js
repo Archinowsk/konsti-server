@@ -1,4 +1,5 @@
 // @flow
+import to from 'await-to-js';
 import moment from 'moment';
 import schedule from 'node-schedule';
 import { logger } from 'utils/logger';
@@ -43,7 +44,7 @@ export const autoUpdateGames = async (): Promise<void> => {
 
 export const autoAssignPlayers = async (): Promise<void> => {
   if (autoAssignPlayersEnabled) {
-    await schedule.scheduleJob(`30 * * * *`, async (): Promise<void> => {
+    await schedule.scheduleJob(`30 * * * *`, async (): Promise<any> => {
       logger.info('----> Auto assign players');
       // 30 * * * * -> “At minute 30.”
       // */1 * * * * -> “Every minute”
@@ -53,14 +54,20 @@ export const autoAssignPlayers = async (): Promise<void> => {
         .add(1, 'seconds')
         .format();
 
-      // const startTime = '2019-07-26T14:00:00Z';
+      /*
+      const startTime = moment(config.CONVENTION_START_TIME)
+        .add(2, 'hours')
+        .format();
+      */
 
       // Wait for final signup requests
       logger.info('Wait 10s for final requests');
       await sleep(10000);
 
       logger.info('Waiting done, start assignment');
-      const assignResults = await runAssignment(startTime);
+
+      const [error, assignResults] = await to(runAssignment(startTime));
+      if (error) return logger.error(error);
 
       // console.log('>>> assignResults: ', assignResults)
 
