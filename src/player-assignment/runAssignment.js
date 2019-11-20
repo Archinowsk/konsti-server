@@ -1,8 +1,10 @@
 // @flow
+import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { config } from 'config';
 import { runAssignmentStrategy } from 'player-assignment/utils/runAssignmentStrategy';
+import { removeDeletedGamesFromUsers } from 'player-assignment/utils/removeDeletedGamesFromUsers';
 import type { PlayerAssignmentResult } from 'flow/result.flow';
 import type { User } from 'flow/user.flow';
 import type { Game } from 'flow/game.flow';
@@ -12,6 +14,9 @@ export const runAssignment = async (
   startingTime: string,
   assignmentStrategy: AssignmentStrategy = config.assignmentStrategy
 ): Promise<PlayerAssignmentResult> => {
+  const [error] = await to(removeDeletedGamesFromUsers());
+  if (error) throw new Error(`Error removing invalid games: ${error}`);
+
   let users: $ReadOnlyArray<User> = [];
   try {
     users = await db.user.findUsers();
