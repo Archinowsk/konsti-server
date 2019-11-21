@@ -77,7 +77,7 @@
     "request-promise-native": "1.0.8",
     "rimraf": "3.0.0",
     "winston": "3.2.1",
-    "winston-daily-rotate-file": "4.2.1"
+    "winston-daily-rotate-file": "4.3.0"
   },
   "devDependencies": {
     "babel-eslint": "10.0.3",
