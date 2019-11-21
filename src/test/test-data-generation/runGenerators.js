@@ -22,6 +22,16 @@ const runGenerators = async (): Promise<void> => {
 
   let error;
 
+  // Total users: newUsersCount + groupSize * numberOfGroups + testUsersCount
+  const newUsersCount = 40; // Number of individual users
+  const groupSize = 3; // How many users in each group
+  const numberOfGroups = 15; // Number of groups
+  const testUsersCount = 5; // Number of test users
+
+  // Total games: newGamesCount * signupTimes
+  const newGamesCount = 10; // How many games are available for each signup time
+  const signupTimes = 3; // For how many signup times games are created
+
   commander
     .option('-u, --users', 'Generate users')
     .option('-s, --signups', 'Generate signups')
@@ -55,12 +65,6 @@ const runGenerators = async (): Promise<void> => {
     [error] = await to(db.user.removeUsers());
     if (error) logger.error(error);
 
-    // Total users: newUsersCount + groupSize * numberOfGroups + testUsersCount
-    const newUsersCount = 40; // Number of individual users
-    const groupSize = 3; // How many users in each group
-    const numberOfGroups = 15; // Number of groups
-    const testUsersCount = 5; // Number of test users
-
     await createAdminUser();
     await createHelpUser();
 
@@ -79,8 +83,6 @@ const runGenerators = async (): Promise<void> => {
     [error] = await to(db.game.removeGames());
     if (error) logger.error(error);
 
-    const newGamesCount = 3; // How many games are available for each signup time
-    const signupTimes = 1; // For how many signup times games are created
     await createGames(newGamesCount, signupTimes);
   }
 
