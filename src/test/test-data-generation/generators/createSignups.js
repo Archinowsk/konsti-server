@@ -65,7 +65,7 @@ const getRandomSignup = (
   );
   const uniqueTimes = Array.from(new Set(startTimes));
 
-  // Select three random games for each starting time
+  // Select random games for each starting time
   uniqueTimes.forEach(startingTime => {
     logger.debug(`Generate signups for time ${startingTime}`);
     const gamesForTime = games.filter(
