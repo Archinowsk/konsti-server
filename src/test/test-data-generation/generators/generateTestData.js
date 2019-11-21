@@ -15,7 +15,8 @@ export const generateTestData = async (
   newGamesCount: number,
   groupSize: number,
   numberOfGroups: number,
-  testUsersCount: number
+  testUsersCount: number,
+  signupTimes: number
 ): Promise<void> => {
   await createAdminUser();
   await createHelpUser();
@@ -28,7 +29,7 @@ export const generateTestData = async (
     await createUsersInGroup(groupSize, randomGroupCode);
   }
 
-  await createGames(newGamesCount);
+  await createGames(newGamesCount, signupTimes);
 
   await createSignups();
 };

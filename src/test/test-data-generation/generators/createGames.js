@@ -6,27 +6,28 @@ import { db } from 'db/mongodb';
 import { config } from 'config';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 
-const startingTimes = [
-  moment(config.CONVENTION_START_TIME)
-    .add(2, 'hours')
-    .format(),
+export const createGames = (
+  gameCount: number,
+  signupTimes: number
+): Promise<void> => {
+  const startingTimes = [];
 
-  moment(config.CONVENTION_START_TIME)
-    .add(3, 'hours')
-    .format(),
+  for (let i = 0; i < signupTimes; i += 1) {
+    startingTimes.push(
+      moment(config.CONVENTION_START_TIME)
+        .add(i + 2, 'hours')
+        .format()
+    );
+  }
 
-  moment(config.CONVENTION_START_TIME)
-    .add(7, 'hours')
-    .format(),
-];
-
-export const createGames = (count: number): Promise<void> => {
-  logger.info(`Generate data for ${count} games`);
+  logger.info(
+    `Generate data for ${gameCount} games for ${signupTimes} starting times`
+  );
 
   const kompassiGames = [];
 
   startingTimes.forEach(startingTime => {
-    for (let i = 0; i < count; i += 1) {
+    for (let i = 0; i < gameCount; i += 1) {
       const minAttendance = faker.random.number({ min: 3, max: 4 });
       const maxAttendance = faker.random.number({ min: 4, max: 6 });
       const startTime = startingTime;

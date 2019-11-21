@@ -79,8 +79,9 @@ const runGenerators = async (): Promise<void> => {
     [error] = await to(db.game.removeGames());
     if (error) logger.error(error);
 
-    const newGamesCount = 10; // How many games are available for each signup time - minimum is 3
-    await createGames(newGamesCount);
+    const newGamesCount = 3; // How many games are available for each signup time - minimum is 3
+    const signupTimes = 1; // For how many signup times games are created
+    await createGames(newGamesCount, signupTimes);
   }
 
   if (commander.signups) {

@@ -40,13 +40,15 @@ describe('Assignment with valid data', () => {
     const numberOfGroups = 5;
     const newGamesCount = 10;
     const testUsersCount = 0;
+    const signupTimes = 3;
 
     await generateTestData(
       newUsersCount,
       newGamesCount,
       groupSize,
       numberOfGroups,
-      testUsersCount
+      testUsersCount,
+      signupTimes
     );
   });
 
@@ -286,13 +288,15 @@ describe('Assignment with no games', () => {
     const numberOfGroups = 0;
     const newGamesCount = 0;
     const testUsersCount = 0;
+    const signupTimes = 3;
 
     await generateTestData(
       newUsersCount,
       newGamesCount,
       groupSize,
       numberOfGroups,
-      testUsersCount
+      testUsersCount,
+      signupTimes
     );
   });
 
@@ -346,13 +350,15 @@ describe('Assignment with no players', () => {
     const numberOfGroups = 0;
     const newGamesCount = 1;
     const testUsersCount = 0;
+    const signupTimes = 3;
 
     await generateTestData(
       newUsersCount,
       newGamesCount,
       groupSize,
       numberOfGroups,
-      testUsersCount
+      testUsersCount,
+      signupTimes
     );
   });
 
