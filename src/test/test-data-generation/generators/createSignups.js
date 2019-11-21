@@ -23,7 +23,7 @@ export const createSignups = async (): Promise<void> => {
   }
 
   const users = allUsers.filter(
-    user => user.username !== 'admin' || user.username !== 'ropetiski'
+    user => user.username !== 'admin' && user.username !== 'ropetiski'
   );
 
   logger.info(`Signup: ${games.length} games`);
