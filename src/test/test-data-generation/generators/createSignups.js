@@ -4,6 +4,7 @@ import moment from 'moment';
 import _ from 'lodash';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
+import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
 import type { User, SignedGame } from 'flow//user.flow';
 import type { Game } from 'flow/game.flow';
 
@@ -49,6 +50,8 @@ export const createSignups = async (): Promise<void> => {
       await signupGroup(games, array);
     }
   }
+
+  await updateGamePopularity();
 };
 
 const getRandomSignup = (

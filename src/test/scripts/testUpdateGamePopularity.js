@@ -11,7 +11,7 @@ const testUpdateGamePopularity = async (): Promise<any> => {
   [error] = await to(db.connectToDb());
   if (error) return logger.error(error);
 
-  [error] = await to(updateGamePopularity);
+  [error] = await to(updateGamePopularity());
   if (error) return logger.error(`updateGamePopularity error: ${error}`);
 
   [error] = await to(db.gracefulExit());
