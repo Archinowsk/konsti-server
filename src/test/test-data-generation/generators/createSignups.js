@@ -15,16 +15,19 @@ export const createSignups = async (): Promise<void> => {
     logger.error(`db.game.findGames error: ${error}`);
   }
 
-  let users = [];
+  let allUsers = [];
   try {
-    users = await db.user.findUsers();
+    allUsers = await db.user.findUsers();
   } catch (error) {
     logger.error(`db.game.findUsers error: ${error}`);
   }
 
+  const users = allUsers.filter(
+    user => user.username !== 'admin' || user.username !== 'ropetiski'
+  );
+
   logger.info(`Signup: ${games.length} games`);
   logger.info(`Signup: ${users.length} users`);
-  logger.info(`Signup: Generate signup data for ${users.length} users`);
 
   // Group all unique group numbers
   const groupedUsers = users.reduce((acc, user) => {
