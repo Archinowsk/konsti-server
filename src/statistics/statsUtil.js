@@ -23,12 +23,26 @@ export const getYear = () => {
   return year;
 };
 
+export const getEvent = () => {
+  const event = process.argv[4];
+
+  if (!event) {
+    throw new Error('Give valid year parameter: ropecon, tracon-hitpoint');
+  }
+
+  return event;
+};
+
 export const readJson = () => {
   const year = getYear();
   const type = getType();
+  const event = getEvent();
 
   const data = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/${type}.json`, 'utf8')
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/${type}.json`,
+      'utf8'
+    )
   );
 
   console.info(`Loaded ${data.length} ${type}`);
@@ -38,19 +52,20 @@ export const readJson = () => {
 export const writeJson = (data: Array<any> | Object) => {
   const year = getYear();
   const type = getType();
+  const event = getEvent();
 
-  if (!fs.existsSync(`src/statistics/datafiles/${year}/temp/`)) {
-    fs.mkdirSync(`src/statistics/datafiles/${year}/temp/`);
+  if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
+    fs.mkdirSync(`src/statistics/datafiles/${event}/${year}/temp/`);
   }
 
   fs.writeFileSync(
-    `src/statistics/datafiles/${year}/temp/${type}-fixed.json`,
+    `src/statistics/datafiles/${event}/${year}/temp/${type}-fixed.json`,
     JSON.stringify(data, null, 2),
     'utf8'
   );
 
   console.info(
-    `Saved ${data.length} ${type} to file src/statistics/datafiles/${year}/temp/${type}-fixed.json`
+    `Saved ${data.length} ${type} to file src/statistics/datafiles/${event}/${year}/temp/${type}-fixed.json`
   );
 };
 

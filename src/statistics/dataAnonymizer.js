@@ -1,18 +1,25 @@
 // @flow
 import fs from 'fs';
 import faker from 'faker';
-import { getYear } from './statsUtil';
+import { getYear, getEvent } from './statsUtil';
 import { logger } from 'utils/logger';
 
 const anonymizeData = async (): Promise<void> => {
   const year = getYear();
+  const event = getEvent();
 
   const users = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/users.json`, 'utf8')
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/users.json`,
+      'utf8'
+    )
   );
 
   const results = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/results.json`, 'utf8')
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/results.json`,
+      'utf8'
+    )
   );
 
   users.forEach(user => {
@@ -31,18 +38,18 @@ const anonymizeData = async (): Promise<void> => {
     user.username = randomUsername;
   });
 
-  if (!fs.existsSync(`src/statistics/datafiles/${year}/temp/`)) {
-    fs.mkdirSync(`src/statistics/datafiles/${year}/temp/`);
+  if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
+    fs.mkdirSync(`src/statistics/datafiles/${event}/${year}/temp/`);
   }
 
   fs.writeFileSync(
-    `src/statistics/datafiles/${year}/temp/users-anonymized.json`,
+    `src/statistics/datafiles/${event}/${year}/temp/users-anonymized.json`,
     JSON.stringify(users, null, 2),
     'utf8'
   );
 
   fs.writeFileSync(
-    `src/statistics/datafiles/${year}/temp/results-anonymized.json`,
+    `src/statistics/datafiles/${event}/${year}/temp/results-anonymized.json`,
     JSON.stringify(results, null, 2),
     'utf8'
   );

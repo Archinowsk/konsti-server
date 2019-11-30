@@ -1,6 +1,6 @@
 // @flow
 import fs from 'fs';
-import { getYear } from './statsUtil';
+import { getYear, getEvent } from './statsUtil';
 import {
   getUsersWithoutGames,
   getUsersWithoutSignups,
@@ -10,9 +10,13 @@ import {
 
 const getUserStats = () => {
   const year = getYear();
+  const event = getEvent();
 
   const users = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/users.json`, 'utf8')
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/users.json`,
+      'utf8'
+    )
   );
 
   console.info(`Loaded ${users.length} users`);

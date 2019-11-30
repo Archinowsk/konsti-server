@@ -2,22 +2,26 @@
 import fs from 'fs';
 import _ from 'lodash';
 import moment from 'moment';
-import { getYear, writeJson } from './statsUtil';
+import { getYear, getEvent, writeJson } from './statsUtil';
 
 const formatFeedbacks = () => {
   moment.locale('fi');
   const year = getYear();
+  const event = getEvent();
 
   const feedbacks = JSON.parse(
     fs.readFileSync(
-      `src/statistics/datafiles/${year}/secret/feedbacks.json`,
+      `src/statistics/datafiles/${event}/${year}/secret/feedbacks.json`,
       'utf8'
     )
   );
   console.info(`Loaded ${feedbacks.length} feedbacks`);
 
   const games = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/games.json`, 'utf8')
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/games.json`,
+      'utf8'
+    )
   );
   console.info(`Loaded ${games.length} games`);
 

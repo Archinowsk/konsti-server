@@ -1,6 +1,6 @@
 // @flow
 import fs from 'fs';
-import { getYear } from './statsUtil';
+import { getYear, getEvent } from './statsUtil';
 import {
   getGamesByStartingTime,
   getUsersByGames,
@@ -12,14 +12,21 @@ import {
 
 const getGameStats = () => {
   const year = getYear();
+  const event = getEvent();
 
   const games = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/games.json`, 'utf8')
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/games.json`,
+      'utf8'
+    )
   );
   console.info(`Loaded ${games.length} games`);
 
   const users = JSON.parse(
-    fs.readFileSync(`src/statistics/datafiles/${year}/users.json`, 'utf8')
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/users.json`,
+      'utf8'
+    )
   );
   console.info(`Loaded ${games.length} users`);
 
