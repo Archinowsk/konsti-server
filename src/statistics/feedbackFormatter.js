@@ -25,7 +25,11 @@ const formatFeedbacks = () => {
   );
   console.info(`Loaded ${games.length} games`);
 
-  const formattedFeedbacks = feedbacks.map(feedback => {
+  const filteredFeedbacks = feedbacks.filter(
+    feedback => feedback.feedback !== ''
+  );
+
+  const formattedFeedbacks = filteredFeedbacks.map(feedback => {
     const foundGame = games.find(game => game.gameId === feedback.gameId);
     return {
       ...feedback,

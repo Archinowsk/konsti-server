@@ -49,6 +49,18 @@ export const readJson = () => {
   return data;
 };
 
+const getDataLength = (data: Array<any> | Object): number => {
+  if (Array.isArray(data)) {
+    return data.length;
+  } else {
+    let sum = 0;
+    Object.keys(data).forEach((key, index) => {
+      sum += data[key].length;
+    });
+    return sum;
+  }
+};
+
 export const writeJson = (data: Array<any> | Object) => {
   const year = getYear();
   const type = getType();
@@ -65,7 +77,9 @@ export const writeJson = (data: Array<any> | Object) => {
   );
 
   console.info(
-    `Saved ${data.length} ${type} to file src/statistics/datafiles/${event}/${year}/temp/${type}-fixed.json`
+    `Saved ${getDataLength(
+      data
+    )} ${type} to file src/statistics/datafiles/${event}/${year}/temp/${type}-fixed.json`
   );
 };
 
