@@ -1,5 +1,5 @@
-// flow-typed signature: 3e24267af7be7025595f84ad9a07c7aa
-// flow-typed version: d37a8ea72b/supertest_v4.x.x/flow_>=v0.94.x
+// flow-typed signature: cb75189a4ad36a3b747aaf3ad60a2a16
+// flow-typed version: 1182cc56c8/supertest_v4.x.x/flow_>=v0.94.x
 
 declare module 'supertest' {
   import type { IncomingMessage, ServerResponse } from 'http';
@@ -90,6 +90,8 @@ declare module 'supertest' {
   // Stream, but I don't know how to do it with Flow... I decided to use the
   // Promise because it's likely more useful.
   declare class superagent$Request extends Promise<superagent$Response> {
+    called: boolean;
+
     abort(): void;
     accept(type: string): this;
     attach(
