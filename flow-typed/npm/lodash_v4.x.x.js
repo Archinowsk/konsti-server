@@ -1,5 +1,5 @@
-// flow-typed signature: 600b583a3bf2df0c41f42bdbd60b0bab
-// flow-typed version: d7307dc68b/lodash_v4.x.x/flow_>=v0.104.x
+// flow-typed signature: e6d7f3c946f49bfbacf3a5e75f1bd469
+// flow-typed version: 1ea39ed6d8/lodash_v4.x.x/flow_>=v0.104.x
 
 declare module "lodash" {
   declare type Path = $ReadOnlyArray<string | number> | string | number;
@@ -356,7 +356,7 @@ declare module "lodash" {
       values?: ?$ReadOnlyArray<any>,
       comparator?: ?Function
     ): T;
-    pullAllWith<T>(array: T[], values?: ?(T[]), comparator?: ?Function): T[];   
+    pullAllWith<T>(array: T[], values?: ?(T[]), comparator?: ?Function): T[];
     pullAt<T>(array?: ?Array<T>, ...indexed?: Array<?number>): Array<T>;
     pullAt<T>(array?: ?Array<T>, indexed?: ?Array<number>): Array<T>;
     remove<T>(array?: ?Array<T>, predicate?: ?Predicate<T>): Array<T>;
@@ -1253,14 +1253,14 @@ declare module "lodash" {
     ): Object;
     omit(object?: ?Object, ...props: $ReadOnlyArray<string>): Object;
     omit(object?: ?Object, props: $ReadOnlyArray<string>): Object;
-    omitBy<A, T: { [id: any]: A, ... } | { [id: number]: A, ... }>(
+    omitBy<A, T: $ReadOnly<{ [id: any]: A, ... } | { [id: number]: A, ... }>>(
       object: $ReadOnly<T>,
       predicate?: ?OPredicate<A, T>
     ): Object;
     omitBy<A, T>(object: void | null, predicate?: ?OPredicate<A, T>): {...};
     pick(object?: ?Object, ...props: $ReadOnlyArray<string>): Object;
     pick(object?: ?Object, props: $ReadOnlyArray<string>): Object;
-    pickBy<A, T: { [id: any]: A, ... } | { [id: number]: A, ... }>(
+    pickBy<A, T: $ReadOnly<{ [id: any]: A, ... } | { [id: number]: A, ... }>>(
       object: $ReadOnly<T>,
       predicate?: ?OPredicate<A, T>
     ): Object;
@@ -2960,20 +2960,20 @@ declare module "lodash/fp" {
     omit(props: Array<string>, object: Object): Object;
     omitAll(props: Array<string>): (object: Object) => Object;
     omitAll(props: Array<string>, object: Object): Object;
-    omitBy<A, T: { [id: any]: A, ... }>(
+    omitBy<A, T: $ReadOnly<{ [id: any]: A, ... }>>(
       predicate: OPredicate<A>
     ): (object: T) => Object;
-    omitBy<A, T: { [id: any]: A, ... }>(predicate: OPredicate<A>, object: T): Object;
+    omitBy<A, T: $ReadOnly<{ [id: any]: A, ... }>>(predicate: OPredicate<A>, object: T): Object;
     pick(...props: Array<string | {...}>): Object;
     pick(props: $ReadOnlyArray<string>, object: Object): Object;
     pick(...props: Array<string>): (object: Object) => Object;
     pick(props: $ReadOnlyArray<string>): (object: Object) => Object;
     pickAll(props: Array<string>): (object: Object) => Object;
     pickAll(props: Array<string>, object: Object): Object;
-    pickBy<A, T: { [id: any]: A, ... }>(
+    pickBy<A, T: $ReadOnly<{ [id: any]: A, ... }>>(
       predicate: OPredicate<A>
     ): (object: T) => Object;
-    pickBy<A, T: { [id: any]: A, ... }>(predicate: OPredicate<A>, object: T): Object;
+    pickBy<A, T: $ReadOnly<{ [id: any]: A, ... }>>(predicate: OPredicate<A>, object: T): Object;
     result(path: Path): (object: Object) => any;
     result(path: Path, object: Object): any;
     set(
