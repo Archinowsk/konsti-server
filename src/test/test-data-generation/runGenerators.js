@@ -38,6 +38,10 @@ const runGenerators = async (): Promise<void> => {
     .option('-g, --games', 'Generate games')
     .option('-c, --clean', 'Clean all data');
 
+  if (process.argv.length < 3) {
+    commander.help();
+  }
+
   commander.parse(process.argv);
 
   [error] = await to(db.connectToDb());
