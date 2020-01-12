@@ -132,5 +132,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "4.2.2"
+    }
   }
 }
