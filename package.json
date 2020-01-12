@@ -42,7 +42,7 @@
     "test-assign": "cross-env NODE_ENV=development babel-node src/test/scripts/testAssignPlayers.js",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
-    "test": "jest --forceExit",
+    "test": "jest",
     "update-game-popularity": "cross-env NODE_ENV=development babel-node src/test/scripts/testUpdateGamePopularity.js",
     "verify-results": "cross-env NODE_ENV=development babel-node src/test/scripts/testVerifyResults.js",
     "remove-invalid-games": "cross-env NODE_ENV=development babel-node src/test/scripts/removeInvalidGames.js",

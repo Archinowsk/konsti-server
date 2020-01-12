@@ -90,9 +90,12 @@ export const startServer = async (
   return server;
 };
 
-export const closeServer = async (server: $Application<>): Promise<void> => {
+export const closeServer = async (
+  server: $Application<>,
+  dbConnString: string
+): Promise<void> => {
   try {
-    await db.gracefulExit();
+    await db.gracefulExit(dbConnString);
   } catch (error) {
     logger.error(error);
   }

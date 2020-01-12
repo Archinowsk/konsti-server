@@ -35,9 +35,9 @@ const connectToDb = async (
   });
 };
 
-const gracefulExit = async (): Promise<void> => {
-  const { dbConnString } = config;
-
+const gracefulExit = async (
+  dbConnString?: string = config.dbConnString
+): Promise<void> => {
   const [error] = await to(mongoose.connection.close());
   if (error)
     throw new Error(`MongoDB: Error shutting down db connection: ${error}`);
