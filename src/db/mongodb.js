@@ -10,8 +10,10 @@ import { results } from 'db/results/resultsService';
 import { settings } from 'db/settings/settingsService';
 import { serial } from 'db/serial/serialService';
 
-const connectToDb = async (): Promise<void> => {
-  const { dbConnString, dbName } = config;
+const connectToDb = async (
+  dbConnString?: string = config.dbConnString
+): Promise<void> => {
+  const { dbName } = config;
 
   logger.info(`MongoDB: Connecting to ${dbConnString}`);
 
