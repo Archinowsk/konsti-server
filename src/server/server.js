@@ -13,9 +13,11 @@ import { allowCORS } from 'server/middleware/cors';
 import { apiRoutes } from 'api/apiRoutes';
 import type { $Request, $Response, NextFunction, $Application } from 'express';
 
-export const startServer = async (): Promise<$Application<>> => {
+export const startServer = async (
+  dbConnString: string
+): Promise<$Application<>> => {
   try {
-    await db.connectToDb();
+    await db.connectToDb(dbConnString);
   } catch (error) {
     logger.error(error);
   }
