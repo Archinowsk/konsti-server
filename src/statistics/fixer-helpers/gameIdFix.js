@@ -1,4 +1,5 @@
 // @flow
+import prettier from 'prettier';
 import fs from 'fs';
 import { logger } from 'utils/logger';
 
@@ -10,6 +11,8 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
     )
   );
 
+  logger.info(`Loaded ${users.length} users`);
+
   const results = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/results.json`,
@@ -17,12 +20,16 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
     )
   );
 
+  logger.info(`Loaded ${results.length} results`);
+
   const games = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/games.json`,
       'utf8'
     )
   );
+
+  logger.info(`Loaded ${games.length} games`);
 
   users.forEach(user => {
     const tempFavoritedGames = [];
@@ -53,7 +60,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
 
   results.forEach(result => {
     games.forEach(game => {
-      result.result.forEach(userResult => {
+      result.results.forEach(userResult => {
         if (game._id === userResult.enteredGame.gameDetails) {
           userResult.enteredGame = {
             ...userResult.enteredGame,
@@ -70,13 +77,13 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
 
   fs.writeFileSync(
     `src/statistics/datafiles/${event}/${year}/temp/users-gameid-fix.json`,
-    JSON.stringify(users, null, 2),
+    prettier.format(JSON.stringify(users), { parser: 'json' }),
     'utf8'
   );
 
   fs.writeFileSync(
     `src/statistics/datafiles/${event}/${year}/temp/results-gameid-fix.json`,
-    JSON.stringify(results, null, 2),
+    prettier.format(JSON.stringify(results), { parser: 'json' }),
     'utf8'
   );
 
