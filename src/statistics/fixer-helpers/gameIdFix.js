@@ -1,6 +1,5 @@
 // @flow
 import fs from 'fs';
-import faker from 'faker';
 import { logger } from 'utils/logger';
 
 export const gameIdFix = async (year: number, event: string): Promise<void> => {
@@ -18,20 +17,51 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
     )
   );
 
-  users.forEach(user => {
-    const randomUsername = faker.random.number(1000000).toString();
+  const games = JSON.parse(
+    fs.readFileSync(
+      `src/statistics/datafiles/${event}/${year}/games.json`,
+      'utf8'
+    )
+  );
 
-    results.forEach(result => {
-      result.result.forEach(userResult => {
-        if (user.username === userResult.username) {
-          logger.info(`results.json: ${user.username} -> ${randomUsername}`);
-          userResult.username = randomUsername;
+  users.forEach(user => {
+    const tempFavoritedGames = [];
+    const tempEnteredGames = [];
+    const tempSignedGames = [];
+
+    games.forEach(game => {
+      user.favoritedGames.forEach(favoritedGame => {
+        if (game._id === favoritedGame) {
+          tempFavoritedGames.push(game.gameId);
+        }
+      });
+      user.enteredGames.forEach(enteredGame => {
+        if (game._id === enteredGame.gameDetails) {
+          tempEnteredGames.push({ ...enteredGame, gameDetails: game.gameId });
+        }
+      });
+      user.signedGames.forEach(signedGame => {
+        if (game._id === signedGame.gameDetails) {
+          tempSignedGames.push({ ...signedGame, gameDetails: game.gameId });
         }
       });
     });
+    user.favoritedGames = tempFavoritedGames;
+    user.enteredGames = tempEnteredGames;
+    user.signedGames = tempSignedGames;
+  });
 
-    logger.info(`users.json: ${user.username} -> ${randomUsername}`);
-    user.username = randomUsername;
+  results.forEach(result => {
+    games.forEach(game => {
+      result.result.forEach(userResult => {
+        if (game._id === userResult.enteredGame.gameDetails) {
+          userResult.enteredGame = {
+            ...userResult.enteredGame,
+            gameDetails: game.gameId,
+          };
+        }
+      });
+    });
   });
 
   if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
@@ -39,14 +69,16 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
   }
 
   fs.writeFileSync(
-    `src/statistics/datafiles/${event}/${year}/temp/users-anonymized.json`,
+    `src/statistics/datafiles/${event}/${year}/temp/users-gameid-fix.json`,
     JSON.stringify(users, null, 2),
     'utf8'
   );
 
   fs.writeFileSync(
-    `src/statistics/datafiles/${event}/${year}/temp/results-anonymized.json`,
+    `src/statistics/datafiles/${event}/${year}/temp/results-gameid-fix.json`,
     JSON.stringify(results, null, 2),
     'utf8'
   );
+
+  logger.info('GameIds fixed');
 };
