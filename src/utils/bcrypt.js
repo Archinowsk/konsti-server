@@ -39,4 +39,4 @@ const validateLogin = async (password: string, hash: string): Promise<any> => {
   return false;
 };
 
-export { hashPassword, comparePasswordHash, validateLogin };
+export { hashPassword, validateLogin };

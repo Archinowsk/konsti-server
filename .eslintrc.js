@@ -62,7 +62,7 @@ module.exports = {
     'node/no-missing-import': 'off', // Not working with babel-plugin-module-resolver and handled by eslint-plugin-import or flow
 
     // eslint-plugin-import
-    'import/no-unused-modules': ['off', { unusedExports: true }], // Slows down ESLint
+    'import/no-unused-modules': ['off', { unusedExports: true }], // Does not work with importing flow types
 
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',
