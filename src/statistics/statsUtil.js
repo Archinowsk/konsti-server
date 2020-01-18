@@ -1,51 +1,19 @@
 // @flow
 import fs from 'fs';
 
-const getType = (): string => {
-  const type = process.argv[4];
-
-  if (!type) {
-    throw new Error(
-      'Give valid type parameter: games, results, users, feedbacks'
-    );
-  }
-
-  return type;
-};
-
-export const getYear = (): number => {
-  const year = parseInt(process.argv[2], 10);
-
-  if (!year) {
-    throw new Error('Give valid year parameter: 2017, 2018, 2019');
-  }
-
-  return year;
-};
-
-export const getEvent = (): string => {
-  const event = process.argv[3];
-
-  if (!event) {
-    throw new Error('Give valid event parameter: ropecon, tracon-hitpoint');
-  }
-
-  return event;
-};
-
-export const readJson = (): Array<any> => {
-  const year = getYear();
-  const event = getEvent();
-  const type = getType();
-
+export const readJson = (
+  year: number,
+  event: string,
+  datatype: string
+): Array<any> => {
   const data = JSON.parse(
     fs.readFileSync(
-      `src/statistics/datafiles/${event}/${year}/${type}.json`,
+      `src/statistics/datafiles/${event}/${year}/${datatype}.json`,
       'utf8'
     )
   );
 
-  console.info(`Loaded ${data.length} ${type}`);
+  console.info(`Loaded ${data.length} ${datatype}`);
   return data;
 };
 
@@ -61,17 +29,18 @@ const getDataLength = (data: Array<any> | Object): number => {
   }
 };
 
-export const writeJson = (data: Array<any> | Object) => {
-  const year = getYear();
-  const type = getType();
-  const event = getEvent();
-
+export const writeJson = (
+  year: number,
+  event: string,
+  datatype: string,
+  data: Array<any> | Object
+): void => {
   if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
     fs.mkdirSync(`src/statistics/datafiles/${event}/${year}/temp/`);
   }
 
   fs.writeFileSync(
-    `src/statistics/datafiles/${event}/${year}/temp/${type}-fixed.json`,
+    `src/statistics/datafiles/${event}/${year}/temp/${datatype}-fixed.json`,
     JSON.stringify(data, null, 2),
     'utf8'
   );
@@ -79,10 +48,10 @@ export const writeJson = (data: Array<any> | Object) => {
   console.info(
     `Saved ${getDataLength(
       data
-    )} ${type} to file src/statistics/datafiles/${event}/${year}/temp/${type}-fixed.json`
+    )} ${datatype} to file src/statistics/datafiles/${event}/${year}/temp/${datatype}-fixed.json`
   );
 };
 
-export const toPercent = (num: number) => {
+export const toPercent = (num: number): number => {
   return Math.round(num * 100);
 };

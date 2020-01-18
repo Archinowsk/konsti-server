@@ -1,26 +1,9 @@
 // @flow
 import fs from 'fs';
 import faker from 'faker';
-import { getYear, getEvent } from './statsUtil';
 import { logger } from 'utils/logger';
 
-const anonymizeData = async (): Promise<void> => {
-  let year;
-  try {
-    year = getYear();
-  } catch (error) {
-    logger.error(error);
-    return;
-  }
-
-  let event;
-  try {
-    event = getEvent();
-  } catch (error) {
-    logger.error(error);
-    return;
-  }
-
+export const gameIdFix = async (year: number, event: string): Promise<void> => {
   const users = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/users.json`,
@@ -67,5 +50,3 @@ const anonymizeData = async (): Promise<void> => {
     'utf8'
   );
 };
-
-anonymizeData();

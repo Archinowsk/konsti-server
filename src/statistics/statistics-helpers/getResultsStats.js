@@ -1,16 +1,12 @@
 // @flow
 import fs from 'fs';
-import { getYear, getEvent } from './statsUtil';
 import {
   getSignupsByTime,
   getMaximumNumberOfPlayersByTime,
   getDemandByTime,
-} from './statistics-helpers/resultDataHelpers';
+} from './resultDataHelpers';
 
-const getResultsStats = () => {
-  const year = getYear();
-  const event = getEvent();
-
+export const getResultsStats = (year: number, event: string) => {
   const results = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/results.json`,
@@ -31,5 +27,3 @@ const getResultsStats = () => {
   const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);
   getDemandByTime(signupsByTime, maximumNumberOfPlayersByTime);
 };
-
-getResultsStats();

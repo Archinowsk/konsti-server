@@ -2,12 +2,10 @@
 import fs from 'fs';
 import _ from 'lodash';
 import moment from 'moment';
-import { getYear, getEvent, writeJson } from './statsUtil';
+import { writeJson } from '../statsUtil';
 
-const formatFeedbacks = () => {
+export const formatFeedbacks = (year: number, event: string) => {
   moment.locale('fi');
-  const year = getYear();
-  const event = getEvent();
 
   const feedbacks = JSON.parse(
     fs.readFileSync(
@@ -41,7 +39,5 @@ const formatFeedbacks = () => {
 
   const groupedFeedbacks = _.groupBy(formattedFeedbacks, 'people');
 
-  writeJson(groupedFeedbacks);
+  writeJson(year, event, 'feedback', groupedFeedbacks);
 };
-
-formatFeedbacks();

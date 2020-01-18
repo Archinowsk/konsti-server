@@ -1,17 +1,13 @@
 // @flow
 import fs from 'fs';
-import { getYear, getEvent } from './statsUtil';
 import {
   getUsersWithoutGames,
   getUsersWithoutSignups,
   getUsersSignupCount,
   getUsersWithAllGames,
-} from './statistics-helpers/userDataHelpers';
+} from './userDataHelpers';
 
-const getUserStats = () => {
-  const year = getYear();
-  const event = getEvent();
-
+export const getUserStats = (year: number, event: string) => {
   const users = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/users.json`,
@@ -26,5 +22,3 @@ const getUserStats = () => {
   getUsersSignupCount(usersWithoutGames);
   getUsersWithAllGames(users);
 };
-
-getUserStats();
