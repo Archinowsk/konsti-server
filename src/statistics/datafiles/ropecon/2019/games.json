@@ -28,7 +28,6 @@
     "shortDescription": "Kaikille sopivia lyhyitä roolipelejä ilman ennakkoilmoittautumista",
     "revolvingDoor": true
   },
-
   {
     "tags": [
       "aloittelijaystavallinen",
@@ -58,33 +57,6 @@
     "shortDescription": "Minute RPG: Helppoa ja lyhyttä roolipelaamista! Genrenä voi olla pelaajien valinnan mukaisesti joko fantasia, mysteeri, avaruusooppera tai cyberpunk. Sopii myös ensikertalaisille. Kesto noin tunnin / peli.",
     "revolvingDoor": true
   },
-
-  {
-    "tags": ["aloittelijaystavallinen"],
-    "genres": ["historical", "modern", "war"],
-    "styles": ["serious", "light", "rules_heavy", "combat_driven"],
-    "popularity": 0,
-    "gameId": "p3501",
-    "title": "Charlie ei surffaa",
-    "description": "Roolipelikampanja Vietnamin sodasta. Nyt 24. kertaa Ropeconissa. http://www.charlieeisurffaa.com\r\n\r\nIlmoittautuminen pelipaikalla, peliin voi päästä mukaan kesken skenaarion ja voi poistua kun on tarve. Aikaisempaa pelikokemusta ei tarvita. Huom! Tänä vuonna ei ole mahdollista pelata kommunistisia pelaajahahmoja (sissejä).\r\n\r\nSkenaariot kestänevät 6+ tuntia.\r\n\r\nPeli perjantaina klo 16-23, lauantaina klo 10-23, sunnuntaina klo 10-16",
-    "location": "Sali 211",
-    "startTime": "2019-07-26T13:00:00.000Z",
-    "mins": 420,
-    "language": "fi",
-    "endTime": "2019-07-26T20:00:00.000Z",
-    "people": "Eero",
-    "minAttendance": 1,
-    "maxAttendance": 16,
-    "gameSystem": "Charlie ei surffaa",
-    "englishOk": false,
-    "childrenFriendly": false,
-    "ageRestricted": false,
-    "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "shortDescription": "Roolipelikampanja Vietnamin sodasta",
-    "revolvingDoor": true
-  },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "horror", "adventure"],
@@ -110,7 +82,6 @@
     "shortDescription": "Scifiä ja epätoivoa autiolla avaruusasemalla",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english"],
     "genres": ["fantasy", "adventure"],
@@ -136,7 +107,6 @@
     "shortDescription": "Fantasy adventure and investigation in a world entering a new age of invention and science",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille", "perheohjelma"],
     "genres": ["fantasy", "humor"],
@@ -162,7 +132,6 @@
     "shortDescription": "",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "war", "humor"],
@@ -188,7 +157,6 @@
     "shortDescription": "Avaruusjääkäreitä, muukalaisia, huonoa huumoria, vahinkolaukauksia ja vuosikymmenen turpakäräjät!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["adventure"],
@@ -214,7 +182,6 @@
     "shortDescription": "Seikkailua Mouse Guard -sarjakuvaan perustuvassa maailmassa hahmovetoisesti.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "adventure"],
@@ -240,7 +207,6 @@
     "shortDescription": "Avaruusagenttiseikkailua synkässä frigatissa.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["vain-taysi-ikaisille"],
     "genres": ["fantasy", "scifi", "horror", "adventure"],
@@ -266,7 +232,6 @@
     "shortDescription": "Byrokratiahuumoria ja tyrmäryömintää Warhammer 40k:n tunnelmissa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor"],
@@ -292,7 +257,6 @@
     "shortDescription": "Nopea parodia fantasiapeli",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "humor", "adventure"],
@@ -318,7 +282,6 @@
     "shortDescription": "Tunti, alati muuttuva vankila, vankitoverisi ja sinä - pakene tai jää iäksi vangiksi!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "adventure"],
@@ -344,7 +307,6 @@
     "shortDescription": "Tutustumista Starfinder-skififantasiaan.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "adventure"],
@@ -370,7 +332,6 @@
     "shortDescription": "Yltiöavuliaat Skittermanderit pelastusretkellä.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -396,7 +357,6 @@
     "shortDescription": "Pathfinder Society seikkailu",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -422,7 +382,6 @@
     "shortDescription": "Ehkä aloittelijaystävällisin Pathfinder Society -seikkailu",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["fantasy", "mystery", "adventure"],
@@ -448,7 +407,6 @@
     "shortDescription": "Taistelu/seikkailuvetoinen murhamysteeri taikaviikinkien mailla.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy"],
@@ -474,7 +432,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "adventure"],
@@ -500,7 +457,6 @@
     "shortDescription": "Uudelleenpelattava Starfinder Society-seikkailu Repeatable Starfinder Society adventure",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english"],
     "genres": ["fantasy", "horror", "mystery", "adventure"],
@@ -526,7 +482,6 @@
     "shortDescription": "D&D meets Call of Cthulhu: Underground horrors and buried secrets.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "scifi", "mystery"],
@@ -552,7 +507,6 @@
     "shortDescription": "Juonipainotteista johtolankojen etsimistä ja jännitystä WH40k-maailmassa!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["scifi", "mystery", "drama"],
@@ -578,7 +532,6 @@
     "shortDescription": "Dystopinen tieteisseikkailu PR-kriisiin joutuvasta lelufirmasta.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "mystery"],
@@ -604,7 +557,6 @@
     "shortDescription": "Lyhyt pakohuone tyyppinen fantasia peli.",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "drama", "adventure"],
@@ -630,7 +582,6 @@
     "shortDescription": "Ole osa Star Trek -siltamiehistöä!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "horror", "mystery", "drama", "humor", "adventure"],
@@ -656,7 +607,6 @@
     "shortDescription": "",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille", "teema"],
     "genres": ["fantasy", "adventure"],
@@ -682,7 +632,6 @@
     "shortDescription": "Satuteemainen D&D-seikkailu",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["modern", "horror", "mystery"],
@@ -708,7 +657,6 @@
     "shortDescription": "Panttivankitilanne syrjäisellä maatilalla.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "adventure"],
@@ -734,7 +682,6 @@
     "shortDescription": "A spy thriller / commando raid for 5th edition of D&D.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english"],
     "genres": ["adventure"],
@@ -760,7 +707,6 @@
     "shortDescription": "Character driven adventure in the world of the Mouse Guard Comics.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "war", "humor"],
@@ -786,7 +732,6 @@
     "shortDescription": "Avaruusjääkäreitä, muukalaisia, huonoa huumoria, vahinkolaukauksia ja vuosikymmenen turpakäräjät!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor"],
@@ -812,7 +757,6 @@
     "shortDescription": "Puolusta urheana (tai ei niin urheana luultavimmin) goblinina kotiluolaasi seikkailijoilta, jotka hyökkäävät sinne.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "horror", "drama", "humor", "adventure"],
@@ -838,7 +782,6 @@
     "shortDescription": "Tragikoominen tarinapeli mestarivelhosta",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "drama", "humor", "adventure"],
@@ -864,7 +807,6 @@
     "shortDescription": "60 minuuttia - pakene tai jää iäksi vangiksi!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -890,7 +832,6 @@
     "shortDescription": "D&D seikkailu - ongelmanratkaisu",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "humor"],
@@ -916,7 +857,6 @@
     "shortDescription": "Fiaskoon päättyvä tarina supersankareista tai zombeista",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "horror", "adventure"],
@@ -942,7 +882,6 @@
     "shortDescription": "D&D-esque dungeon crawl with a Lovecraftian twist.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "vain-taysi-ikaisille"],
     "genres": ["modern", "mystery", "drama"],
@@ -968,7 +907,6 @@
     "shortDescription": "Urban fantasy mystery inspired by the works of Neil Gaiman",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -994,7 +932,6 @@
     "shortDescription": "D&D 5th edition dungeon delving adventure, now with 20% added plot!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["modern"],
@@ -1020,7 +957,6 @@
     "shortDescription": "Sukellus Suomalaisen pelikoulutuksen syövereihin",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["humor"],
@@ -1046,7 +982,6 @@
     "shortDescription": "Yhdistelmä showpainia ja avaruusolentoja",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["fantasy", "mystery", "drama"],
@@ -1072,7 +1007,6 @@
     "shortDescription": "Itsensä etsimistä ja samuraidraamaa Legend of the Five Ringsin Rokuganissa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "war", "drama"],
@@ -1098,7 +1032,6 @@
     "shortDescription": "D&D 5e. Taistele Örkkien armeijan jäsenenä Haltioita vastaan ja auta kansasi voittoon.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "drama", "humor"],
@@ -1124,7 +1057,6 @@
     "shortDescription": "Palvelusneitojen jokapäiväistä (ja ei niin jokapäiväistä) elämää",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english"],
     "genres": ["fantasy", "humor", "adventure"],
@@ -1150,7 +1082,6 @@
     "shortDescription": "Old school D&D crawl in a dungeon where you will die - a lot.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "mystery", "drama", "adventure"],
@@ -1176,7 +1107,6 @@
     "shortDescription": "Happoinen post-apokalyptinen tunnelmointipeli",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "mystery", "drama", "humor", "adventure"],
@@ -1202,7 +1132,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "humor", "adventure"],
@@ -1228,7 +1157,6 @@
     "shortDescription": "Humoristinen avaruusseikkailu galaksin laidalla",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["scifi", "horror", "mystery", "adventure"],
@@ -1254,7 +1182,6 @@
     "shortDescription": "Cyberpunk-action and claustrophobia on a space station.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy"],
@@ -1280,7 +1207,6 @@
     "shortDescription": "Retrohenkistä sankarimenoa muinaisessa Pohjois-Kalevalassa.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["scifi"],
@@ -1306,7 +1232,6 @@
     "shortDescription": "Helppoa seikkailua Tähtien sodan ulkokehällä",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille"],
     "genres": ["fantasy", "horror", "mystery", "adventure"],
@@ -1332,7 +1257,6 @@
     "shortDescription": "Meriaiheista kauhufantasiaa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror"],
@@ -1358,7 +1282,6 @@
     "shortDescription": "Teens in a cabin in the woods, what could go wrong? (Sama suomeksi.)",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["horror", "mystery"],
@@ -1384,7 +1307,6 @@
     "shortDescription": "Oceanic horror in the 50's",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "mystery"],
@@ -1410,7 +1332,6 @@
     "shortDescription": "Mysteeriä ja modernia Cthulhu-kauhua Seattlessa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["horror", "mystery"],
@@ -1436,7 +1357,6 @@
     "shortDescription": "Lovecraftilainen kauhu sekoittuu New Orleansin värikkyyteen",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["modern", "horror", "mystery"],
@@ -1468,7 +1388,6 @@
     "shortDescription": "Moderni X-files",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "humor"],
@@ -1494,7 +1413,6 @@
     "shortDescription": "Fallout kohtaa Paranoian kohtaa Kardashianit!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy"],
@@ -1527,7 +1445,6 @@
     "shortDescription": "Luolia ja lohikäärmeitä korkean tason hahmoilla",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "teema"],
     "genres": ["fantasy", "historical", "adventure"],
@@ -1553,40 +1470,6 @@
     "shortDescription": "Tunne kuin olisit Kalevalan legendassa - Feel like a legend from Kalevala",
     "revolvingDoor": false
   },
-
-  {
-    "tags": ["aloittelijaystavallinen"],
-    "genres": ["humor"],
-    "styles": [
-      "serious",
-      "light",
-      "rules_heavy",
-      "rules_light",
-      "story_driven",
-      "character_driven"
-    ],
-    "popularity": 0,
-    "gameId": "p3402",
-    "title": "Jumalat",
-    "description": "Taas on se aika vuodesta, kun Jumalat heräävät unestaan. Mitä he luovat ja mitä he tuhoavat?\r\n\r\nTänä vuonna selkeämmät ja helpommat säännöt.\r\n\r\nIlmoittautuminen pelipaikalla.",
-    "location": "Ropekulma",
-    "startTime": "2019-07-26T21:00:00.000Z",
-    "mins": 60,
-    "language": "fi",
-    "endTime": "2019-07-26T22:00:00.000Z",
-    "people": "Shiroten",
-    "minAttendance": 1,
-    "maxAttendance": 20,
-    "gameSystem": "Jumalat",
-    "englishOk": false,
-    "childrenFriendly": false,
-    "ageRestricted": false,
-    "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": true,
-    "shortDescription": "Jumalat heräävät tietoisuuteen",
-    "revolvingDoor": true
-  },
-
   {
     "tags": [],
     "genres": ["fantasy", "adventure"],
@@ -1612,7 +1495,6 @@
     "shortDescription": "Ryöstöretki valloitettuun fantasiakaupunkiin",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["scifi", "mystery"],
@@ -1638,33 +1520,6 @@
     "shortDescription": "Etsivätoimiston toimeksianto dystopisessa scifimaailamassa",
     "revolvingDoor": false
   },
-
-  {
-    "tags": ["aloittelijaystavallinen"],
-    "genres": ["historical", "modern", "war"],
-    "styles": ["serious", "light", "rules_heavy", "combat_driven"],
-    "popularity": 0,
-    "gameId": "p3549",
-    "title": "Charlie ei surffaa",
-    "description": "Roolipelikampanja Vietnamin sodasta. Nyt 24. kertaa Ropeconissa. http://www.charlieeisurffaa.com\r\n\r\nIlmoittautuminen pelipaikalla, peliin voi päästä mukaan kesken skenaarion ja voi poistua kun on tarve. Aikaisempaa pelikokemusta ei tarvita. Huom! Tänä vuonna ei ole mahdollista pelata kommunistisia pelaajahahmoja (sissejä).\r\n\r\nSkenaariot kestänevät 6+ tuntia.\r\n\r\nPeli perjantaina klo 16-23, lauantaina klo 10-23, sunnuntaina klo 10-16",
-    "location": "Sali 211",
-    "startTime": "2019-07-27T07:00:00.000Z",
-    "mins": 780,
-    "language": "fi",
-    "endTime": "2019-07-27T20:00:00.000Z",
-    "people": "Eero",
-    "minAttendance": 1,
-    "maxAttendance": 16,
-    "gameSystem": "Charlie ei surffaa",
-    "englishOk": false,
-    "childrenFriendly": false,
-    "ageRestricted": false,
-    "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "shortDescription": "Roolipelikampanja Vietnamin sodasta",
-    "revolvingDoor": true
-  },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille", "teema"],
     "genres": ["scifi", "adventure"],
@@ -1690,7 +1545,6 @@
     "shortDescription": "Sammon Ryöstö 2323: Kalevalainen roolipelitarina avaruuslaivascifin ystäville",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor", "adventure"],
@@ -1716,7 +1570,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "mystery", "adventure"],
@@ -1742,7 +1595,6 @@
     "shortDescription": "Nykypäivän tokiolaisia myyttien maailmassa.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "mystery"],
@@ -1768,7 +1620,6 @@
     "shortDescription": "Lyhyt pakohuone tyyppinen fantasia peli.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["vain-taysi-ikaisille"],
     "genres": ["scifi", "horror"],
@@ -1794,7 +1645,6 @@
     "shortDescription": "Avaruuden kylmässä pimeydessä riittää hommia hoidettaviksi ja kauhuja koettavaksi.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor", "adventure"],
@@ -1820,7 +1670,6 @@
     "shortDescription": "Huumoripitoista seikkailua hahmojen taitojen huonontuessa koko ajan.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "war", "humor"],
@@ -1846,7 +1695,6 @@
     "shortDescription": "Avaruusjääkäreitä, muukalaisia, huonoa huumoria, vahinkolaukauksia ja vuosikymmenen turpakäräjät!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "horror", "mystery"],
@@ -1872,7 +1720,6 @@
     "shortDescription": "Dread adventure in space",
     "revolvingDoor": false
   },
-
   {
     "tags": [
       "aloittelijaystavallinen",
@@ -1902,7 +1749,6 @@
     "shortDescription": "Kaikille sopivia lyhyitä roolipelejä ilman ennakkoilmoittautumista",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["modern", "horror", "mystery"],
@@ -1928,7 +1774,6 @@
     "shortDescription": "Mysteerinen ja väkivaltainen kauhuanime",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy"],
@@ -1954,7 +1799,6 @@
     "shortDescription": "Beating up monsters in a D&Dish fantasy world for fame and profit",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "vain-taysi-ikaisille"],
     "genres": ["historical", "humor", "adventure"],
@@ -1980,7 +1824,6 @@
     "shortDescription": "Pirate adventure à la 1680 with no laughter or drama spared!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror"],
@@ -2006,7 +1849,6 @@
     "shortDescription": "Teens in a cabin in the woods, what could go wrong? (Sama suomeksi.)",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["modern", "humor", "adventure"],
@@ -2032,33 +1874,6 @@
     "shortDescription": "Kansainväliset varkaat tekevät uskaliaita keikkoja käyttäen autojaan ja kokemustaan laittomista katuajoista.",
     "revolvingDoor": false
   },
-
-  {
-    "tags": ["aloittelijaystavallinen"],
-    "genres": ["fantasy", "adventure"],
-    "styles": ["light", "rules_heavy", "combat_driven"],
-    "popularity": 0,
-    "gameId": "p3654",
-    "title": "Pathfinder Society Scenario #10-00: The Hao Jin Cataclysm",
-    "description": "ILMOITTAUTUMISLOMAKE LARP- JA ROOLIPELITISKILLÄ\r\n\r\nPathfinder Society -peli tason 1-11 hahmoille. Peli vedetään ensisijaisesti suomeksi, mutta voidaan tarvittaessa myös vetää englanniksi. Mikäli sinulla ei ole omaa hahmoa, niin meillä on tarjolla valmiiksi luotuja hahmoja peliä varten. This game will be run primarily in Finnish but can also be run in English.\r\n\r\nMany centuries ago, the legendary sorceress Hao Jin crafted a museum demiplane, ripping locations from across Golarion to add to her personal collection. When she vanished without a trace, the demiplane began falling into disrepair. Ever since the Pathfinder Society gained access to this realm seven years ago, its agents have been gradually exploring the demiplane's wonders, meeting its people, and cataloging its preserved historical relics.\r\n\r\nFormer Pathfinder Master of Spells Aram Zey has just made a terrible discovery—the demiplane's deterioration has reached a critical stage. Unless the Pathfinder Society intervenes, the entire demiplane will rip apart violently, ejecting most of its contents into the Astral Plane and killing everyone inside. Yet it isn't as simple as sewing the demiplane back together with some metaphysical thread. Powerful forces from both within the tapestry and outside of it seek to hasten the destruction or profit off the chaos, and the impending apocalypse has thrown the tapestry's civilizations into turmoil.",
-    "location": "Sali 203b",
-    "startTime": "2019-07-27T09:00:00.000Z",
-    "mins": 300,
-    "language": "fi",
-    "endTime": "2019-07-27T14:00:00.000Z",
-    "people": "Rieha, Mari \"Mary Leathert\" Saarhelo, Tomppak, Atte \"Atteisti\" Kiljunen, Naal, Toni \"Swyrlyn\" Miinalainen",
-    "minAttendance": 6,
-    "maxAttendance": 30,
-    "gameSystem": "Pathfinder 1st edition",
-    "englishOk": false,
-    "childrenFriendly": false,
-    "ageRestricted": false,
-    "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "shortDescription": "PFS monipöytäspesiaali",
-    "revolvingDoor": false
-  },
-
   {
     "tags": [],
     "genres": ["scifi", "drama", "adventure"],
@@ -2084,7 +1899,6 @@
     "shortDescription": "Ole osa Star Trek -siltamiehistöä!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille", "perheohjelma"],
     "genres": ["fantasy", "humor"],
@@ -2110,7 +1924,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "mystery"],
@@ -2136,7 +1949,6 @@
     "shortDescription": "Tavalliset ihmiset nykymaailmassa joutuvat kohtaamaan omat menneisyytensä myyttisten voimien puristuksissa. Keitä kukin heistä oikeastaan onkaan... tai on ollut... tai on tuleva jälleen olemaan...",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "adventure"],
@@ -2162,7 +1974,6 @@
     "shortDescription": "Classic \"Sword & Sorcery\" high adventure with a sprinkle of ancient European mythology.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "mystery", "adventure"],
@@ -2188,7 +1999,6 @@
     "shortDescription": "Fast-paced action adventure where players co-create elements of the world and plot.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille"],
     "genres": ["fantasy", "horror", "mystery", "adventure"],
@@ -2214,7 +2024,6 @@
     "shortDescription": "Meriaiheista kauhufantasiaa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["historical", "war", "horror", "drama"],
@@ -2240,7 +2049,6 @@
     "shortDescription": "Tumma tarinavetoinen peli, jonka näyttämönä on sota.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor"],
@@ -2266,7 +2074,6 @@
     "shortDescription": "Puolusta urheana (tai ei niin urheana luultavimmin) goblinina kotiluolaasi seikkailijoilta osallistumalla vastahyökkäykseen kaupunkiin.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "war", "humor"],
@@ -2292,7 +2099,6 @@
     "shortDescription": "Avaruusjääkäreitä, muukalaisia, huonoa huumoria, vahinkolaukauksia ja vuosikymmenen turpakäräjät!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "horror", "drama", "humor", "adventure"],
@@ -2318,7 +2124,6 @@
     "shortDescription": "Tragikoominen tarinapeli mestarivelhosta",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "teema"],
     "genres": ["fantasy"],
@@ -2344,7 +2149,6 @@
     "shortDescription": "Kalevalan sankarit Tuonelassa",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["modern", "horror", "mystery"],
@@ -2370,7 +2174,6 @@
     "shortDescription": "Panttivankitilanne syrjäisellä maatilalla.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "horror", "adventure"],
@@ -2396,7 +2199,6 @@
     "shortDescription": "Scifiä ja epätoivoa autiolla avaruusasemalla",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille"],
     "genres": ["scifi", "humor"],
@@ -2422,7 +2224,6 @@
     "shortDescription": "Tosimaailmaa ja scifiä yhdistelevä kapinamättö",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "humor", "adventure"],
@@ -2448,7 +2249,6 @@
     "shortDescription": "Tunti, alati muuttuva vankila, vankitoverisi ja sinä - pakene tai jää iäksi vangiksi!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "horror", "adventure"],
@@ -2474,7 +2274,6 @@
     "shortDescription": "D&D-esque dungeon crawl with a Lovecraftian twist.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["vain-taysi-ikaisille"],
     "genres": ["fantasy", "mystery", "drama"],
@@ -2500,7 +2299,6 @@
     "shortDescription": "Selvitä Obsidiaanitornin salaisuudet.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille", "perheohjelma"],
     "genres": ["fantasy", "scifi", "adventure"],
@@ -2526,7 +2324,6 @@
     "shortDescription": "Seikkailua ja mysteerejä Astraterran ihmeellisessä maailmassa.",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "horror", "drama"],
@@ -2552,7 +2349,6 @@
     "shortDescription": "Rooli- ja lautapelit kohtaavat vampyyriseikkailussa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "humor"],
@@ -2578,7 +2374,6 @@
     "shortDescription": "Lemmenlaiva kohtaa Warhammer 40 000:n",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille"],
     "genres": ["modern", "mystery"],
@@ -2604,7 +2399,6 @@
     "shortDescription": "salapoliisiseikkailu koululaisille",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "mystery", "drama", "adventure"],
@@ -2630,7 +2424,6 @@
     "shortDescription": "Happoinen post-apokalyptinen tunnelmointipeli",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["horror", "mystery"],
@@ -2656,7 +2449,6 @@
     "shortDescription": "Merellistä mysteerikauhua 50-luvulla",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "vain-taysi-ikaisille"],
     "genres": ["modern", "mystery", "drama"],
@@ -2682,7 +2474,6 @@
     "shortDescription": "Urban fantasy mystery inspired by the works of Neil Gaiman",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "mystery", "humor", "adventure"],
@@ -2708,7 +2499,6 @@
     "shortDescription": "D&D 5e. Outojen olentojen kanssa tutkimista ja selvittelyä, sekä uuden aikakauden alun näkemistä.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["scifi", "modern"],
@@ -2734,7 +2524,6 @@
     "shortDescription": "Supersankarit (ja pahikset) kokeilemassa voimiaan toisiaan vastaan.",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "adventure"],
@@ -2760,7 +2549,6 @@
     "shortDescription": "Avaruusagenttiseikkailua synkässä frigatissa.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["vain-taysi-ikaisille"],
     "genres": ["scifi", "horror"],
@@ -2786,7 +2574,6 @@
     "shortDescription": "Scifikauhua \"Alien — Kahdeksas matkustaja\" -elokuvan hengessä",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["scifi", "modern", "mystery"],
@@ -2812,7 +2599,6 @@
     "shortDescription": "Mulderin ja Scullyn vastavoima 2028 Suomessa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["scifi"],
@@ -2838,7 +2624,6 @@
     "shortDescription": "Helppoa seikkailua Tähtien sodan ulkokehällä",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["mystery"],
@@ -2864,7 +2649,6 @@
     "shortDescription": "Viktoriaanisen aikakauden 'Kummitusjengi' / steampunk sekoitus.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "modern", "drama", "humor"],
@@ -2890,7 +2674,6 @@
     "shortDescription": "Teinihirviöiden suhdesotkua, mutta Powered by the Apocalypse",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english"],
     "genres": ["fantasy", "adventure"],
@@ -2916,7 +2699,6 @@
     "shortDescription": "Fantasy adventure and investigation in a world entering a new age of invention and science",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "teema"],
     "genres": ["fantasy", "historical", "adventure"],
@@ -2942,7 +2724,6 @@
     "shortDescription": "HeroQuest -seikkailu Kalevalan jälkeisessä Lapissa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "mystery"],
@@ -2968,7 +2749,6 @@
     "shortDescription": "Mysteeriä ja modernia Cthulhu-kauhua Seattlessa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "mystery", "drama", "humor", "adventure"],
@@ -2994,7 +2774,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "scifi", "horror", "mystery"],
@@ -3020,7 +2799,6 @@
     "shortDescription": "Steampunk-kauhua ja dekkarointia tuhoutuneen maailman dystooppisissa raunioissa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "horror", "drama", "humor", "adventure"],
@@ -3046,7 +2824,6 @@
     "shortDescription": "Tragikoominen tarinapeli mestarivelhosta",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["horror", "mystery"],
@@ -3072,7 +2849,6 @@
     "shortDescription": "Lovecraftilainen kauhu sekoittuu New Orleansin värikkyyteen",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["horror", "mystery"],
@@ -3098,7 +2874,6 @@
     "shortDescription": "Salaisuuksia ja kauhua pienessä kaupungissa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["scifi", "horror", "adventure"],
@@ -3124,7 +2899,6 @@
     "shortDescription": "Kyberpunk-toimintaa ja suljetun paikan kammoa avaruusasemalla",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "drama"],
@@ -3150,7 +2924,6 @@
     "shortDescription": "Australia avaruudessa! Scifiä ja sosiaalista draamaa kevyillä säännöillä.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["modern"],
@@ -3176,7 +2949,6 @@
     "shortDescription": "Sukellus Suomalaisen pelikoulutuksen syövereihin",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "adventure"],
@@ -3202,7 +2974,6 @@
     "shortDescription": "A D&D adventure, that continues the story of a group of heroes from Ropecon 2018.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "drama", "humor"],
@@ -3228,7 +2999,6 @@
     "shortDescription": "The everyday (and not so everyday) life of Maids.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi"],
@@ -3254,7 +3024,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["fantasy"],
@@ -3280,7 +3049,6 @@
     "shortDescription": "PFS Hao-Jin juonikaaren huippukohta.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -3306,7 +3074,6 @@
     "shortDescription": "Seikkailua itämaisten fantasia/kung fu -elokuvien maisemissa.",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["fantasy"],
@@ -3332,7 +3099,6 @@
     "shortDescription": "Fantasiaroolipeliä Pathfinder-maailmassa.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "sopii-lapsille"],
     "genres": ["fantasy"],
@@ -3358,7 +3124,6 @@
     "shortDescription": "Pathfinder Society #7-10 The Consortium Compact",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "adventure"],
@@ -3384,7 +3149,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "humor", "adventure"],
@@ -3410,7 +3174,6 @@
     "shortDescription": "Hauska Starfinder-seikkailu valmishahmoilla! Fun Starfinder adventure with pregenerated characters!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["historical", "horror", "mystery", "humor", "adventure"],
@@ -3436,7 +3199,6 @@
     "shortDescription": "Alamo, Texas, 1836. Villi länsi, taikausko, azteekkien muinainen mystiikka, erätoveruus ja sivistys sekoittuvat iloisesti.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "mystery"],
@@ -3462,7 +3224,6 @@
     "shortDescription": "Meditatiivinen free-form -roolipeli jossa pelataan hautaholvia vartioivia luurankoja.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "horror", "mystery", "adventure"],
@@ -3488,7 +3249,6 @@
     "shortDescription": "Murtojengin elämää synkässä teollisfantasiakaupungissa",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "humor"],
@@ -3514,7 +3274,6 @@
     "shortDescription": "Fallout kohtaa Paranoian kohtaa Kardashianit!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["modern", "humor"],
@@ -3540,7 +3299,6 @@
     "shortDescription": "Absurdeja tilanteita ja kömmähdyksiä Lontoossa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "horror", "drama"],
@@ -3566,7 +3324,6 @@
     "shortDescription": "Rooli- ja lautapelit kohtaavat vampyyriseikkailussa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "scifi", "drama", "humor"],
@@ -3592,7 +3349,6 @@
     "shortDescription": "Kyberpunkkia slaavikyykyssä karussa lähitulevaisuudessa mahdollisilla myyttisillä ja mystisillä elementeillä maustettuna.. Freeform läpän heittoa plus perinteistä pöytäropetusta.",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy"],
@@ -3618,7 +3374,6 @@
     "shortDescription": "Ukkosenjumalan pidoissa jumalat juonivat alkavan maailmanajan järjestystä.",
     "revolvingDoor": true
   },
-
   {
     "tags": ["in-english"],
     "genres": ["fantasy", "modern"],
@@ -3644,7 +3399,6 @@
     "shortDescription": "High fantasy technothriller",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["historical", "mystery"],
@@ -3670,7 +3424,6 @@
     "shortDescription": "Murhamysteeri pikku herttuakunnassa 1800-luvulla.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "mystery"],
@@ -3696,7 +3449,6 @@
     "shortDescription": "Tavalliset ihmiset nykymaailmassa joutuvat kohtaamaan omat menneisyytensä myyttisten voimien puristuksissa. Keitä kukin heistä oikeastaan onkaan... tai on ollut... tai on tuleva jälleen olemaan...",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille", "teema"],
     "genres": ["fantasy", "adventure"],
@@ -3722,7 +3474,6 @@
     "shortDescription": "Suomalaista mytologiaa D&D-seikkailuna",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor", "adventure"],
@@ -3748,7 +3499,6 @@
     "shortDescription": "Huumoripitoista seikkailua hahmojen taitojen huonontuessa koko ajan.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "mystery"],
@@ -3774,7 +3524,6 @@
     "shortDescription": "Lyhyt pakohuone tyyppinen fantasia peli.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor"],
@@ -3800,7 +3549,6 @@
     "shortDescription": "Puolusta urheana (tai ei niin urheana luultavimmin) goblinina kotiluolaasi seikkailijoilta, jotka hyökkäävät sinne osana koston kierrettä.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["vain-taysi-ikaisille"],
     "genres": ["historical", "horror", "mystery"],
@@ -3826,7 +3574,6 @@
     "shortDescription": "Pelkoa ja inhoa 180 vuoden takaa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "war", "humor"],
@@ -3852,7 +3599,6 @@
     "shortDescription": "Avaruusjääkäreitä, muukalaisia, huonoa huumoria, vahinkolaukauksia ja vuosikymmenen turpakäräjät!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "drama"],
@@ -3878,7 +3624,6 @@
     "shortDescription": "Resource management driven problem solving fantasy drama.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["historical", "horror", "mystery", "drama"],
@@ -3904,7 +3649,6 @@
     "shortDescription": "Cthulhumytologiaa Woodstockin musiikkifestivaaleilla 1969",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["scifi", "modern", "horror"],
@@ -3930,7 +3674,6 @@
     "shortDescription": "Hulluus ei ole pahinta, mitä voi kokea yhden yön aikana mielisairaalassa...",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "mystery"],
@@ -3956,7 +3699,6 @@
     "shortDescription": "Murhamysteeri Gloranthan salaperäisessä idässä",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["historical", "war", "drama"],
@@ -3982,7 +3724,6 @@
     "shortDescription": "Tylyä sotaa Vietnamissa kasaripelin säännöillä.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "mystery"],
@@ -4008,7 +3749,6 @@
     "shortDescription": "1982, a haunted house and kids on bikes.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english"],
     "genres": ["fantasy", "horror", "mystery", "adventure"],
@@ -4034,7 +3774,6 @@
     "shortDescription": "D&D meets Call of Cthulhu: Underground horrors and buried secrets.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "teema"],
     "genres": ["fantasy", "historical", "adventure"],
@@ -4060,7 +3799,6 @@
     "shortDescription": "Tunne kuin olisit Kalevalan legendassa - Feel like a legend from Kalevala",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "historical", "war", "adventure"],
@@ -4086,7 +3824,6 @@
     "shortDescription": "Kevyt-Ars Magicaa viikinkiajan Suomessa.",
     "revolvingDoor": true
   },
-
   {
     "tags": ["vain-taysi-ikaisille"],
     "genres": ["scifi", "modern", "horror", "mystery"],
@@ -4112,7 +3849,6 @@
     "shortDescription": "Modernia scifiä valmishahmoilla ja kevyellä noppajärjestelmällä",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["historical", "horror", "mystery", "humor", "adventure"],
@@ -4138,7 +3874,6 @@
     "shortDescription": "Alamo, Texas, 1836. Mitä Davy Crockett, Jim \"the knife\" Bowie ja muut iloiset vapaaehtoiset tekivät ennen taistelua?",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "mystery"],
@@ -4164,7 +3899,6 @@
     "shortDescription": "Lyhyt pakohuone tyyppinen fantasia peli.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "drama"],
@@ -4190,7 +3924,6 @@
     "shortDescription": "Changeling the Lost -esittelyskenaario",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "horror", "drama", "humor", "adventure"],
@@ -4216,40 +3949,6 @@
     "shortDescription": "Tragikoominen tarinapeli mestarivelhosta",
     "revolvingDoor": false
   },
-
-  {
-    "tags": ["aloittelijaystavallinen"],
-    "genres": ["humor"],
-    "styles": [
-      "serious",
-      "light",
-      "rules_heavy",
-      "rules_light",
-      "story_driven",
-      "character_driven"
-    ],
-    "popularity": 0,
-    "gameId": "p3548",
-    "title": "Jumalat",
-    "description": "Taas on se aika vuodesta, kun Jumalat heräävät unestaan. Mitä he luovat ja mitä he tuhoavat?\r\n\r\nTänä vuonna selkeämmät ja helpommat säännöt.\r\n\r\nIlmoittautuminen pelipaikalla.",
-    "location": "Ropekulma",
-    "startTime": "2019-07-27T21:00:00.000Z",
-    "mins": 60,
-    "language": "fi",
-    "endTime": "2019-07-27T22:00:00.000Z",
-    "people": "Shiroten",
-    "minAttendance": 1,
-    "maxAttendance": 20,
-    "gameSystem": "Jumalat",
-    "englishOk": false,
-    "childrenFriendly": false,
-    "ageRestricted": false,
-    "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": true,
-    "shortDescription": "Jumalat heräävät tietoisuuteen",
-    "revolvingDoor": true
-  },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "adventure"],
@@ -4275,7 +3974,6 @@
     "shortDescription": "Avaruusagenttiseikkailua synkässä frigatissa.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy"],
@@ -4301,7 +3999,6 @@
     "shortDescription": "Vauhdikkaampaa ja vivahteikkaampaa Dungeons and Dragonsia",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["scifi", "mystery"],
@@ -4327,7 +4024,6 @@
     "shortDescription": "Etsivätoimiston toimeksianto dystopisessa scifimaailamassa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille", "teema"],
     "genres": ["scifi", "adventure"],
@@ -4353,7 +4049,6 @@
     "shortDescription": "Sammon Ryöstö 2323: Kalevalainen roolipelitarina avaruuslaivascifin ystäville",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "horror", "adventure"],
@@ -4379,33 +4074,6 @@
     "shortDescription": "Scifiä ja epätoivoa autiolla avaruusasemalla",
     "revolvingDoor": false
   },
-
-  {
-    "tags": ["aloittelijaystavallinen"],
-    "genres": ["historical", "modern", "war"],
-    "styles": ["serious", "light", "rules_heavy", "combat_driven"],
-    "popularity": 0,
-    "gameId": "p3550",
-    "title": "Charlie ei surffaa",
-    "description": "Roolipelikampanja Vietnamin sodasta. Nyt 24. kertaa Ropeconissa. http://www.charlieeisurffaa.com\r\n\r\nIlmoittautuminen pelipaikalla, peliin voi päästä mukaan kesken skenaarion ja voi poistua kun on tarve. Aikaisempaa pelikokemusta ei tarvita. Huom! Tänä vuonna ei ole mahdollista pelata kommunistisia pelaajahahmoja (sissejä).\r\n\r\nSkenaariot kestänevät 6+ tuntia.\r\n\r\nPeli perjantaina klo 16-23, lauantaina klo 10-23, sunnuntaina klo 10-16",
-    "location": "Sali 211",
-    "startTime": "2019-07-28T07:00:00.000Z",
-    "mins": 360,
-    "language": "fi",
-    "endTime": "2019-07-28T13:00:00.000Z",
-    "people": "Eero",
-    "minAttendance": 1,
-    "maxAttendance": 16,
-    "gameSystem": "Charlie ei surffaa",
-    "englishOk": false,
-    "childrenFriendly": false,
-    "ageRestricted": false,
-    "beginnerFriendly": true,
-    "intendedForExperiencedParticipants": false,
-    "shortDescription": "Roolipelikampanja Vietnamin sodasta",
-    "revolvingDoor": true
-  },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "war", "humor"],
@@ -4431,7 +4099,6 @@
     "shortDescription": "Avaruusjääkäreitä, muukalaisia, huonoa huumoria, vahinkolaukauksia ja vuosikymmenen turpakäräjät!",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["fantasy"],
@@ -4457,7 +4124,6 @@
     "shortDescription": "Klaaniseikkailua Gloranthassa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "mystery"],
@@ -4483,7 +4149,6 @@
     "shortDescription": "Mystisen taudin torjuntaa ja tutkimustyötä",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "mystery", "drama", "adventure"],
@@ -4509,7 +4174,6 @@
     "shortDescription": "Ole osa Star Trek -siltamiehistöä!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["scifi"],
@@ -4535,7 +4199,6 @@
     "shortDescription": "Imagine if Star Trek was about the people who run the Enterprise's canteen and clean its toilets",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["adventure"],
@@ -4561,7 +4224,6 @@
     "shortDescription": "Character driven adventure in the world of the Mouse Guard Comics.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "humor"],
@@ -4587,7 +4249,6 @@
     "shortDescription": "Puolusta urheana (tai ei niin urheana luultavimmin) goblinina heimosi jäänteitä, jotka pakenevat kotiluolastaan seikkailijoiden kostoa.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["modern", "horror", "mystery"],
@@ -4613,7 +4274,6 @@
     "shortDescription": "Tavalliset ihmiset nykymaailmassa joutuvat kohtaamaan omat menneisyytensä myyttisten voimien puristuksissa. Keitä kukin heistä oikeastaan onkaan... tai on ollut... tai on tuleva jälleen olemaan...",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english"],
     "genres": ["fantasy", "drama"],
@@ -4639,7 +4299,6 @@
     "shortDescription": "Resource management driven problem solving fantasy drama.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["in-english"],
     "genres": ["fantasy", "horror", "mystery", "adventure"],
@@ -4665,7 +4324,6 @@
     "shortDescription": "D&D meets Call of Cthulhu: Underground horrors and buried secrets.",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "war", "horror"],
@@ -4691,7 +4349,6 @@
     "shortDescription": "Selviytymisseikkailu fantasia-Bysantin pääkaupungin tuhon keskellä!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -4717,7 +4374,6 @@
     "shortDescription": "",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["scifi", "war", "humor"],
@@ -4743,7 +4399,6 @@
     "shortDescription": "Avaruusjääkäreitä, muukalaisia, huonoa huumoria, vahinkolaukauksia ja vuosikymmenen turpakäräjät!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "scifi", "horror", "mystery"],
@@ -4769,7 +4424,6 @@
     "shortDescription": "Steampunk-kauhua ja dekkarointia tuhoutuneen maailman dystooppisissa raunioissa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "drama"],
@@ -4795,7 +4449,6 @@
     "shortDescription": "Naisten elämää ja arvoituksia Gloranthan patriarkaalisessa yhteiskunnassa",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["adventure"],
@@ -4821,7 +4474,6 @@
     "shortDescription": "Seikkailua Mouse Guard -sarjakuvaan perustuvassa maailmassa hahmovetoisesti.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["fantasy", "scifi", "horror", "mystery"],
@@ -4847,7 +4499,6 @@
     "shortDescription": "Toimintapainotteista, hyytävää jännitystä WH40k-maailmassa!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "mystery"],
@@ -4873,7 +4524,6 @@
     "shortDescription": "Lyhyt pakohuone tyyppinen fantasia peli.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "sopii-lapsille"],
     "genres": ["fantasy", "humor"],
@@ -4899,7 +4549,6 @@
     "shortDescription": "",
     "revolvingDoor": true
   },
-
   {
     "tags": [],
     "genres": ["scifi", "adventure"],
@@ -4925,7 +4574,6 @@
     "shortDescription": "Starfinder Society seikkailu",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -4951,7 +4599,6 @@
     "shortDescription": "Pathfinder Society -seikkailu tulisissa tunnelmissa",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["fantasy", "scifi", "adventure"],
@@ -4977,7 +4624,6 @@
     "shortDescription": "Pathfinder IN SPACE!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "adventure"],
@@ -5003,7 +4649,6 @@
     "shortDescription": "Starfinder-skififantasiaa aloitteleville ja kokeneille pelaajille.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "adventure"],
@@ -5029,7 +4674,6 @@
     "shortDescription": "Episodimaista ongelmanratkomista kaupunkiympäristössä ja ajoittaisia kamppailuja sitä estäviä vihulaisia vastaan.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "sopii-lapsille"],
     "genres": ["fantasy"],
@@ -5055,7 +4699,6 @@
     "shortDescription": "Pathfinder Society #9-16 Fallen Family, Broken Name",
     "revolvingDoor": false
   },
-
   {
     "tags": [],
     "genres": ["scifi", "humor"],
@@ -5081,7 +4724,6 @@
     "shortDescription": "Fallout kohtaa Paranoian kohtaa Kardashianit!",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "modern", "humor"],
@@ -5107,7 +4749,6 @@
     "shortDescription": "Fantasiamaailman sankarit japanilaisessa lukiossa.",
     "revolvingDoor": true
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy", "scifi", "humor", "adventure"],
@@ -5133,7 +4774,6 @@
     "shortDescription": "Ikuisuusvankila: pakene tunnissa tai jää iäksi vangiksi.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "in-english", "kunniavieras"],
     "genres": [],
@@ -5159,7 +4799,6 @@
     "shortDescription": "A steampunk pulp adventure concerning a gang of daring (and notorious) jewel thieves.",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "genres": ["scifi", "modern", "horror"],
@@ -5185,7 +4824,6 @@
     "shortDescription": "Hulluus ei ole pahinta, mitä voi kokea yhden yön aikana mielisairaalassa...",
     "revolvingDoor": false
   },
-
   {
     "tags": ["aloittelijaystavallinen"],
     "genres": ["fantasy"],
@@ -5211,10 +4849,8 @@
     "shortDescription": "Vauhdikkaampaa ja vivahteikkaampaa Dungeons and Dragonsia",
     "revolvingDoor": false
   },
-
   {
     "gameId": "p3580",
-
     "ageRestricted": true,
     "beginnerFriendly": true,
     "childrenFriendly": false,
@@ -5239,38 +4875,8 @@
     "tags": ["aloittelijaystavallinen", "vain-taysi-ikaisille"],
     "title": "Kingdom Death Monster -tutustumispeli"
   },
-
-  {
-    "gameId": "p3935",
-
-    "ageRestricted": true,
-    "beginnerFriendly": true,
-    "childrenFriendly": false,
-    "createdAt": "2019-07-27T06:36:03.309Z",
-    "description": "old world of Darkness mage the Ascencion 20y edition",
-    "endTime": "2019-07-28T04:30:00.000Z",
-    "englishOk": false,
-    "gameSystem": "old world of Darkness mage the Ascencion 20y edition",
-    "genres": [],
-    "intendedForExperiencedParticipants": false,
-    "language": "fi",
-    "location": "Sali 302",
-    "maxAttendance": 5,
-    "minAttendance": 5,
-    "mins": 240,
-    "people": "Joni Selinheimo",
-    "popularity": 0,
-    "revolvingDoor": true,
-    "shortDescription": "",
-    "startTime": "2019-07-28T00:30:00.000Z",
-    "styles": [],
-    "tags": ["aloittelijaystavallinen", "in-english", "vain-taysi-ikaisille"],
-    "title": "Color out of Space"
-  },
-
   {
     "gameId": "p3936",
-
     "ageRestricted": false,
     "beginnerFriendly": true,
     "childrenFriendly": false,
@@ -5295,10 +4901,8 @@
     "tags": ["aloittelijaystavallinen", "in-english"],
     "title": "Blades in the Dark"
   },
-
   {
     "gameId": "p3927",
-
     "ageRestricted": true,
     "beginnerFriendly": true,
     "childrenFriendly": false,
@@ -5323,10 +4927,8 @@
     "tags": ["aloittelijaystavallinen", "in-english", "vain-taysi-ikaisille"],
     "title": "Against the Cult of the Night God"
   },
-
   {
     "gameId": "p3937",
-
     "ageRestricted": false,
     "beginnerFriendly": true,
     "childrenFriendly": false,
