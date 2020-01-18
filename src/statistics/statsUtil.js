@@ -1,8 +1,8 @@
 // @flow
 import fs from 'fs';
 
-const getType = () => {
-  const type = process.argv[3];
+const getType = (): string => {
+  const type = process.argv[4];
 
   if (!type) {
     throw new Error(
@@ -13,7 +13,7 @@ const getType = () => {
   return type;
 };
 
-export const getYear = () => {
+export const getYear = (): number => {
   const year = parseInt(process.argv[2], 10);
 
   if (!year) {
@@ -23,20 +23,20 @@ export const getYear = () => {
   return year;
 };
 
-export const getEvent = () => {
-  const event = process.argv[4];
+export const getEvent = (): string => {
+  const event = process.argv[3];
 
   if (!event) {
-    throw new Error('Give valid year parameter: ropecon, tracon-hitpoint');
+    throw new Error('Give valid event parameter: ropecon, tracon-hitpoint');
   }
 
   return event;
 };
 
-export const readJson = () => {
+export const readJson = (): Array<any> => {
   const year = getYear();
-  const type = getType();
   const event = getEvent();
+  const type = getType();
 
   const data = JSON.parse(
     fs.readFileSync(

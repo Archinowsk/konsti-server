@@ -5,8 +5,21 @@ import { getYear, getEvent } from './statsUtil';
 import { logger } from 'utils/logger';
 
 const anonymizeData = async (): Promise<void> => {
-  const year = getYear();
-  const event = getEvent();
+  let year;
+  try {
+    year = getYear();
+  } catch (error) {
+    logger.error(error);
+    return;
+  }
+
+  let event;
+  try {
+    event = getEvent();
+  } catch (error) {
+    logger.error(error);
+    return;
+  }
 
   const users = JSON.parse(
     fs.readFileSync(
