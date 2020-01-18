@@ -26,6 +26,8 @@ module.exports = {
     // 'eslint-plugin-unicorn',
   ],
 
+  ignorePatterns: ['flow-typed', 'lib', 'coverage', 'front'],
+
   parser: 'babel-eslint',
 
   parserOptions: {
