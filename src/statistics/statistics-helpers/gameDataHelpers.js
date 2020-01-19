@@ -54,15 +54,24 @@ export const getNumberOfFullGames = (
 export const getSignupsByStartTime = (users: $ReadOnlyArray<User>) => {
   const userSignupCountsByTime = {};
 
+  logger.warn('Warning: inaccurate because forming groups deletes signedGames');
+
   users.forEach(user => {
+    let groupSize = 1;
+
+    if (user.groupCode !== '0' && user.groupCode === user.serial) {
+      groupSize = users.filter(groupUser => groupUser.groupCode === user.serial)
+        .length;
+    }
+
     const signedGames = user.signedGames.reduce((acc, signedGame) => {
-      acc[signedGame.time] = ++acc[signedGame.time] || 1;
+      acc[signedGame.time] = acc[signedGame.time] + 1 || 1;
       return acc;
     }, {});
 
     for (const signupTime in signedGames) {
       userSignupCountsByTime[signupTime] =
-        ++userSignupCountsByTime[signupTime] || 1;
+        userSignupCountsByTime[signupTime] + groupSize || groupSize;
     }
   });
 
@@ -98,10 +107,9 @@ export const getDemandByTime = (
   games: $ReadOnlyArray<Game>,
   users: $ReadOnlyArray<User>
 ) => {
+  logger.info('>>> Demand by time');
   const signupsByTime = getSignupsByStartTime(users);
   const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);
-
-  // TODO: Does not count group members
 
   for (const startTime in maximumNumberOfPlayersByTime) {
     logger.info(
@@ -118,7 +126,7 @@ export const getDemandByGame = (
   games: $ReadOnlyArray<Game>,
   users: $ReadOnlyArray<User>
 ) => {
-  logger.info('Demand by games');
+  logger.info('>>> Demand by games');
 
   const signedGames = users.reduce((acc, user) => {
     let groupSize = 1;
