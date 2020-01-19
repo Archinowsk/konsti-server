@@ -44,12 +44,18 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
       });
       user.enteredGames.forEach(enteredGame => {
         if (game._id === enteredGame.gameDetails) {
-          tempEnteredGames.push({ ...enteredGame, gameDetails: game.gameId });
+          tempEnteredGames.push({
+            ...enteredGame,
+            gameDetails: { gameId: game.gameId },
+          });
         }
       });
       user.signedGames.forEach(signedGame => {
         if (game._id === signedGame.gameDetails) {
-          tempSignedGames.push({ ...signedGame, gameDetails: game.gameId });
+          tempSignedGames.push({
+            ...signedGame,
+            gameDetails: { gameId: game.gameId },
+          });
         }
       });
     });
@@ -64,7 +70,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
         if (game._id === userResult.enteredGame.gameDetails) {
           userResult.enteredGame = {
             ...userResult.enteredGame,
-            gameDetails: game.gameId,
+            gameDetails: { gameId: game.gameId },
           };
         }
       });
