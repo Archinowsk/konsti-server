@@ -26,7 +26,7 @@ const fixData = async (): Promise<void> => {
       await getResultsStats(year, event);
     });
 
-  if (process.argv.length < 3) {
+  if (process.argv.length < 4) {
     commander.help();
   }
 

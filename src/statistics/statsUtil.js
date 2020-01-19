@@ -1,5 +1,7 @@
 // @flow
 import fs from 'fs';
+import prettier from 'prettier';
+import { logger } from 'utils/logger';
 
 export const readJson = (
   year: number,
@@ -13,20 +15,8 @@ export const readJson = (
     )
   );
 
-  console.info(`Loaded ${data.length} ${datatype}`);
+  logger.info(`Loaded ${data.length} ${datatype}`);
   return data;
-};
-
-const getDataLength = (data: Array<any> | Object): number => {
-  if (Array.isArray(data)) {
-    return data.length;
-  } else {
-    let sum = 0;
-    Object.keys(data).forEach((key, index) => {
-      sum += data[key].length;
-    });
-    return sum;
-  }
 };
 
 export const writeJson = (
@@ -41,11 +31,11 @@ export const writeJson = (
 
   fs.writeFileSync(
     `src/statistics/datafiles/${event}/${year}/temp/${datatype}-fixed.json`,
-    JSON.stringify(data, null, 2),
+    prettier.format(JSON.stringify(data), { parser: 'json' }),
     'utf8'
   );
 
-  console.info(
+  logger.info(
     `Saved ${getDataLength(
       data
     )} ${datatype} to file src/statistics/datafiles/${event}/${year}/temp/${datatype}-fixed.json`
@@ -54,4 +44,16 @@ export const writeJson = (
 
 export const toPercent = (num: number): number => {
   return Math.round(num * 100);
+};
+
+const getDataLength = (data: Array<any> | Object): number => {
+  if (Array.isArray(data)) {
+    return data.length;
+  } else {
+    let sum = 0;
+    Object.keys(data).forEach((key, index) => {
+      sum += data[key].length;
+    });
+    return sum;
+  }
 };

@@ -2,6 +2,7 @@
 import fs from 'fs';
 import faker from 'faker';
 import { logger } from 'utils/logger';
+import { writeJson } from '../statsUtil';
 
 export const anonymizeData = async (
   year: number,
@@ -37,19 +38,6 @@ export const anonymizeData = async (
     user.username = randomUsername;
   });
 
-  if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
-    fs.mkdirSync(`src/statistics/datafiles/${event}/${year}/temp/`);
-  }
-
-  fs.writeFileSync(
-    `src/statistics/datafiles/${event}/${year}/temp/users-anonymized.json`,
-    JSON.stringify(users, null, 2),
-    'utf8'
-  );
-
-  fs.writeFileSync(
-    `src/statistics/datafiles/${event}/${year}/temp/results-anonymized.json`,
-    JSON.stringify(results, null, 2),
-    'utf8'
-  );
+  await writeJson(year, event, 'users', users);
+  await writeJson(year, event, 'results', results);
 };

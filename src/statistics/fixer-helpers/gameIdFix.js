@@ -1,7 +1,7 @@
 // @flow
-import prettier from 'prettier';
 import fs from 'fs';
 import { logger } from 'utils/logger';
+import { writeJson } from '../statsUtil';
 
 export const gameIdFix = async (year: number, event: string): Promise<void> => {
   const users = JSON.parse(
@@ -71,21 +71,6 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
     });
   });
 
-  if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
-    fs.mkdirSync(`src/statistics/datafiles/${event}/${year}/temp/`);
-  }
-
-  fs.writeFileSync(
-    `src/statistics/datafiles/${event}/${year}/temp/users-gameid-fix.json`,
-    prettier.format(JSON.stringify(users), { parser: 'json' }),
-    'utf8'
-  );
-
-  fs.writeFileSync(
-    `src/statistics/datafiles/${event}/${year}/temp/results-gameid-fix.json`,
-    prettier.format(JSON.stringify(results), { parser: 'json' }),
-    'utf8'
-  );
-
-  logger.info('GameIds fixed');
+  await writeJson(year, event, 'users', users);
+  await writeJson(year, event, 'results', results);
 };

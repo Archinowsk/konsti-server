@@ -33,7 +33,7 @@ const fixData = async (): Promise<void> => {
       await wildFix(year, event, datatype);
     });
 
-  if (process.argv.length < 3) {
+  if (process.argv.length < 4) {
     commander.help();
   }
 
