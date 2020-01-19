@@ -7,6 +7,7 @@ import {
   getMaximumNumberOfPlayersByTime,
   getDemandByTime,
   getSignupsByStartTime,
+  getDemandByGame,
 } from './gameDataHelpers';
 
 export const getGameStats = (year: number, event: string) => {
@@ -35,4 +36,5 @@ export const getGameStats = (year: number, event: string) => {
   const signupsByStartTime = getSignupsByStartTime(users);
   const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);
   getDemandByTime(signupsByStartTime, maximumNumberOfPlayersByTime);
+  getDemandByGame(games, users);
 };

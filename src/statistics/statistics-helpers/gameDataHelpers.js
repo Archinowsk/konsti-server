@@ -17,8 +17,9 @@ export const getGamesByStartingTime = (games: $ReadOnlyArray<Game>) => {
 
 export const getUsersByGames = (users: $ReadOnlyArray<User>) => {
   const enteredGames = users.reduce((acc, user) => {
-    user.enteredGames.forEach(game => {
-      acc[game.gameDetails.gameId] = ++acc[game.gameDetails.gameId] || 1;
+    user.enteredGames.forEach(enteredGame => {
+      acc[enteredGame.gameDetails.gameId] =
+        ++acc[enteredGame.gameDetails.gameId] || 1;
     });
     return acc;
   }, {});
@@ -95,6 +96,8 @@ export const getDemandByTime = (
   signupsByTime: Object,
   maximumNumberOfPlayersByTime: Object
 ) => {
+  // TODO: Does not count group members
+
   for (const startTime in maximumNumberOfPlayersByTime) {
     logger.info(
       `Demand for ${moment(startTime).format('DD.M.YYYY HH:mm')}: ${
@@ -104,4 +107,49 @@ export const getDemandByTime = (
       )}%)`
     );
   }
+};
+
+export const getDemandByGame = (
+  games: $ReadOnlyArray<Game>,
+  users: $ReadOnlyArray<User>
+) => {
+  logger.info('Demand by games');
+
+  const signedGames = users.reduce((acc, user) => {
+    let groupSize = 1;
+    if (user.groupCode !== '0' && user.groupCode === user.serial) {
+      groupSize = users.filter(groupUser => groupUser.groupCode === user.serial)
+        .length;
+    }
+
+    user.signedGames.forEach(signedGame => {
+      const game = games.find(
+        game => game.gameId === signedGame.gameDetails.gameId
+      );
+
+      if (!game) return;
+
+      acc[game.title] = {
+        first:
+          acc[game.title] && acc[game.title].first ? acc[game.title].first : 0,
+        second:
+          acc[game.title] && acc[game.title].second
+            ? acc[game.title].second
+            : 0,
+        third:
+          acc[game.title] && acc[game.title].third ? acc[game.title].third : 0,
+      };
+
+      if (signedGame.priority === 1) {
+        acc[game.title].first = acc[game.title].first + groupSize;
+      } else if (signedGame.priority === 2) {
+        acc[game.title].second = ++acc[game.title].second + groupSize;
+      } else if (signedGame.priority === 3) {
+        acc[game.title].third = ++acc[game.title].third + groupSize;
+      }
+    });
+    return acc;
+  }, {});
+
+  logger.info(JSON.stringify(signedGames, null, 2));
 };
