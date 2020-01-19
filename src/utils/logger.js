@@ -20,7 +20,7 @@ const loggerLevel = (): string => {
 
 const formatMessage = (message: string | Object): string => {
   if (message && message.constructor === Object) {
-    return JSON.stringify(message);
+    return JSON.stringify(message, null, 2);
   }
   return message;
 };
