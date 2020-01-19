@@ -2,11 +2,8 @@
 import fs from 'fs';
 import {
   getGamesByStartingTime,
-  getUsersByGames,
   getNumberOfFullGames,
-  getMaximumNumberOfPlayersByTime,
   getDemandByTime,
-  getSignupsByStartTime,
   getDemandByGame,
 } from './gameDataHelpers';
 
@@ -28,13 +25,7 @@ export const getGameStats = (year: number, event: string) => {
   console.info(`Loaded ${games.length} users`);
 
   getGamesByStartingTime(games);
-
-  const usersByGames = getUsersByGames(users);
-
-  getNumberOfFullGames(games, usersByGames);
-
-  const signupsByStartTime = getSignupsByStartTime(users);
-  const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);
-  getDemandByTime(signupsByStartTime, maximumNumberOfPlayersByTime);
+  getNumberOfFullGames(games, users);
+  getDemandByTime(games, users);
   getDemandByGame(games, users);
 };

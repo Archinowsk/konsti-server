@@ -30,8 +30,10 @@ export const getUsersByGames = (users: $ReadOnlyArray<User>) => {
 
 export const getNumberOfFullGames = (
   games: $ReadOnlyArray<Game>,
-  usersByGames: Object
+  users: $ReadOnlyArray<User>
 ) => {
+  const usersByGames = getUsersByGames(users);
+
   let counter = 0;
   games.forEach(game => {
     if (
@@ -93,9 +95,12 @@ export const getMaximumNumberOfPlayersByTime = (
 };
 
 export const getDemandByTime = (
-  signupsByTime: Object,
-  maximumNumberOfPlayersByTime: Object
+  games: $ReadOnlyArray<Game>,
+  users: $ReadOnlyArray<User>
 ) => {
+  const signupsByTime = getSignupsByStartTime(users);
+  const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);
+
   // TODO: Does not count group members
 
   for (const startTime in maximumNumberOfPlayersByTime) {
