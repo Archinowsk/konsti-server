@@ -1,13 +1,14 @@
 module.exports = {
   root: true,
 
+  parser: '@typescript-eslint/parser', // or 'babel-eslint'
+
   extends: [
-    'eslint-config-standard',
+    // 'eslint-config-standard-with-typescript',
     'eslint-config-prettier',
-    'eslint-config-prettier/flowtype',
     'eslint-config-prettier/standard',
+    'eslint-config-prettier/@typescript-eslint',
     'plugin:eslint-plugin-eslint-comments/recommended',
-    'plugin:eslint-plugin-flowtype/recommended',
     'plugin:eslint-plugin-jest/recommended',
     'plugin:eslint-plugin-node/recommended',
     'plugin:eslint-plugin-promise/recommended',
@@ -17,24 +18,23 @@ module.exports = {
   ],
 
   plugins: [
-    'eslint-plugin-flowtype',
     'eslint-plugin-jest',
     'eslint-plugin-node',
     'eslint-plugin-prettier',
     'eslint-plugin-promise',
     'eslint-plugin-standard',
     'eslint-plugin-import',
+    '@typescript-eslint',
     // 'eslint-plugin-security',
     // 'eslint-plugin-unicorn',
   ],
 
-  ignorePatterns: ['flow-typed', 'lib', 'coverage', 'front'],
-
-  parser: 'babel-eslint',
+  ignorePatterns: ['lib', 'coverage', 'front'],
 
   parserOptions: {
     sourceType: 'module',
     impliedStrict: true,
+    project: './tsconfig.json',
   },
 
   env: {
@@ -50,21 +50,17 @@ module.exports = {
 
   rules: {
     // eslint
-    'no-unused-expressions': 'off', // False warnings with Flow
     'no-param-reassign': 'error',
-
-    // eslint-plugin-flowtype
-    'flowtype/no-unused-expressions': 'error', // Fixed version of no-unused-expressions
 
     // eslint-plugin-prettier
     'prettier/prettier': 'error',
 
     // eslint-plugin-node
     'node/no-unsupported-features/es-syntax': 'off', // Import and export declarations are not supported yet
-    'node/no-missing-import': 'off', // Not working with babel-plugin-module-resolver and handled by eslint-plugin-import or flow
+    'node/no-missing-import': 'off', // Not working with babel-plugin-module-resolver and handled by eslint-plugin-import
 
     // eslint-plugin-import
-    'import/no-unused-modules': ['off', { unusedExports: true }], // Does not work with importing flow types
+    'import/no-unused-modules': ['error', { unusedExports: true }],
 
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',

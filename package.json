@@ -22,15 +22,12 @@
     "docker-start": "docker-compose -f docker-compose.yml up --build",
     "eslint-rules-table": "eslint-index .eslintrc.js --format table",
     "eslint-rules": "eslint-index .eslintrc.js",
-    "eslint": "eslint . --fix",
-    "flow-coverage-report": "flow-coverage-report -c 10 -i 'src/**/*.js'",
-    "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundled",
-    "flow": "flow check",
+    "eslint": "eslint . --ext .js,.ts --fix",
     "generate-data": "babel-node src/test/test-data-generation/runGenerators.js",
     "generate-serials": "babel-node src/utils/generateSerials.js",
     "prepare-deploy-prod": "npm run clean && npm run build-front-prod && npm run build",
     "prepare-deploy-staging": "npm run clean && npm run build-front-staging && npm run build",
-    "prettier": "prettier --write ./**/*.{js,json,md}",
+    "prettier": "prettier --write ./**/*.{js,json,md,ts,yml}",
     "start-dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/app.js",
     "start": "npm run build && node lib/app.js",
     "fixer": "babel-node src/statistics/dataFixer.js --",
@@ -42,14 +39,13 @@
     "update-game-popularity": "cross-env NODE_ENV=development babel-node src/test/scripts/testUpdateGamePopularity.js",
     "verify-results": "cross-env NODE_ENV=development babel-node src/test/scripts/testVerifyResults.js",
     "remove-invalid-games": "cross-env NODE_ENV=development babel-node src/test/scripts/removeInvalidGames.js",
-    "lint": "eslint . && prettier --check ./**/*.{js,json,md} && flow check"
+    "lint": "eslint . && prettier --check ./**/*.{js,json,md}",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@babel/cli": "7.8.4",
     "@babel/core": "7.8.4",
     "@babel/node": "7.8.4",
     "@babel/preset-env": "7.8.4",
-    "@babel/preset-flow": "^7.8.3",
     "array-flat-polyfill": "1.0.1",
     "await-to-js": "2.1.1",
     "babel-plugin-module-resolver": "4.0.0",
@@ -77,29 +73,28 @@
     "winston-daily-rotate-file": "4.4.2"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "7.8.3",
+    "@typescript-eslint/eslint-plugin": "2.19.0",
+    "@typescript-eslint/parser": "2.19.0",
     "babel-eslint": "10.0.3",
     "babel-jest": "25.1.0",
     "babel-plugin-lodash": "3.3.4",
     "cross-env": "7.0.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
-    "eslint-config-standard": "14.1.0",
+    "eslint-config-standard-with-typescript": "12.0.1",
     "eslint-import-resolver-babel-module": "5.1.2",
     "eslint-index": "1.5.0",
     "eslint-plugin-eslint-comments": "3.1.2",
-    "eslint-plugin-flowtype": "4.6.0",
     "eslint-plugin-import": "2.20.1",
     "eslint-plugin-jest": "23.6.0",
-    "eslint-plugin-node": "11.0.0",
+    "eslint-plugin-node": "9.2.0",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-security": "1.4.0",
     "eslint-plugin-standard": "4.0.1",
     "eslint-plugin-unicorn": "16.0.0",
     "faker": "4.1.0",
-    "flow-bin": "0.117.0",
-    "flow-coverage-report": "0.6.1",
-    "flow-typed": "2.6.2",
     "husky": "4.2.1",
     "jest": "25.1.0",
     "lint-staged": "10.0.7",
@@ -107,21 +102,8 @@
     "ncp": "2.0.0",
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
-    "supertest": "4.0.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,yml}": [
-      "prettier --write"
-    ]
+    "supertest": "4.0.2",
+    "typescript": "3.7.5"
   },
   "config": {
     "mongodbMemoryServer": {

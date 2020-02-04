@@ -21,14 +21,14 @@ Registered users by year:
   - Express
   - AWS
   - MongoDB
-  - Flow
+  - TypeScript
   - Jest
   - Prettier & ESLint
 - Front-end (see [konsti-client](https://github.com/Archinowsk/konsti-client))
   - React
   - Redux
   - Webpack
-  - Flow
+  - TypeScript
   - Jest
   - Prettier & ESLint & stylelint
 
