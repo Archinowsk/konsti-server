@@ -12,6 +12,7 @@ const postFeedback: Middleware = async (
   const feedbackData = req.body.feedbackData;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'user');
 
   if (!validToken) {

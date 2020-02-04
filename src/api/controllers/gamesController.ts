@@ -15,6 +15,7 @@ const postGames: Middleware = async (
   logger.info('API call: POST /api/games');
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'admin');
 
   if (!validToken) {
@@ -23,6 +24,7 @@ const postGames: Middleware = async (
 
   let kompassiGames = [];
   try {
+    // @ts-ignore
     kompassiGames = await updateGames();
   } catch (error) {
     return res.json({

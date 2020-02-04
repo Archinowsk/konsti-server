@@ -49,6 +49,7 @@ export const removeOverlapSignups = async (
           );
           logger.debug(`=> Remove signup "${signedGame.gameDetails.title}"`);
         } else {
+          // @ts-ignore
           newSignedGames.push(signedGame);
         }
       });

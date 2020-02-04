@@ -14,6 +14,7 @@ export const removeInvalidSignupsFromUsers = async (): Promise<any> => {
 
   try {
     await Promise.all(
+      // @ts-ignore
       users.map(async user => {
         const signedGames = user.signedGames.filter(signedGame => {
           return signedGame.gameDetails;

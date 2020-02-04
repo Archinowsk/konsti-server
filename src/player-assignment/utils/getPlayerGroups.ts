@@ -16,9 +16,11 @@ export const getPlayerGroups = (
       if (key === '0') {
         // Loop array and add players individually
         for (let i = 0; i < value.length; i++) {
+          // @ts-ignore
           playersArray.push([value[i]]);
         }
       } else {
+        // @ts-ignore
         playersArray.push(value);
       }
     }

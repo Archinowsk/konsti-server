@@ -29,6 +29,7 @@ const postLogin: Middleware = async (
     const { userGroup } = jwtData;
     const jwtResponse = verifyJWT(jwt, userGroup);
 
+    // @ts-ignore
     if (jwtResponse.status === 'error') {
       return res.json({
         message: 'Invalid jwt',
@@ -36,9 +37,11 @@ const postLogin: Middleware = async (
       });
     }
 
+    // @ts-ignore
     if (typeof jwtResponse.username === 'string') {
       let user = null;
       try {
+        // @ts-ignore
         user = await db.user.findUser(jwtResponse.username);
       } catch (error) {
         logger.error(`Login: ${error}`);
@@ -70,6 +73,7 @@ const postLogin: Middleware = async (
         });
       }
 
+      // @ts-ignore
       if (!settingsResponse.appOpen && user.userGroup === 'user') {
         return res.json({
           code: 22,
@@ -81,10 +85,15 @@ const postLogin: Middleware = async (
       return res.json({
         message: 'Session restore success',
         status: 'success',
+        // @ts-ignore
         username: user.username,
+        // @ts-ignore
         userGroup: user.userGroup,
+        // @ts-ignore
         serial: user.serial,
+        // @ts-ignore
         groupCode: user.groupCode,
+        // @ts-ignore
         jwt: getJWT(user.userGroup, user.username),
       });
     }
@@ -123,6 +132,7 @@ const postLogin: Middleware = async (
     });
   }
 
+  // @ts-ignore
   if (!settingsResponse.appOpen && user.userGroup === 'user') {
     return res.json({
       code: 22,
@@ -134,9 +144,11 @@ const postLogin: Middleware = async (
   // User exists
   let validLogin;
   try {
+    // @ts-ignore
     validLogin = await validateLogin(password, user.password);
 
     logger.info(
+      // @ts-ignore
       `Login: User "${user.username}" with "${user.userGroup}" user group`
     );
 
@@ -145,10 +157,15 @@ const postLogin: Middleware = async (
       return res.json({
         message: 'User login success',
         status: 'success',
+        // @ts-ignore
         username: user.username,
+        // @ts-ignore
         userGroup: user.userGroup,
+        // @ts-ignore
         serial: user.serial,
+        // @ts-ignore
         groupCode: user.groupCode,
+        // @ts-ignore
         jwt: getJWT(user.userGroup, user.username),
       });
     } else {

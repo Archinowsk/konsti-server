@@ -38,6 +38,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
     games.forEach(game => {
       user.favoritedGames.forEach(favoritedGame => {
         if (game._id === favoritedGame) {
+          // @ts-ignore
           tempFavoritedGames.push(game.gameId);
         }
       });
@@ -45,6 +46,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
         if (game._id === enteredGame.gameDetails) {
           tempEnteredGames.push({
             ...enteredGame,
+            // @ts-ignore
             gameDetails: { gameId: game.gameId },
           });
         }
@@ -53,6 +55,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
         if (game._id === signedGame.gameDetails) {
           tempSignedGames.push({
             ...signedGame,
+            // @ts-ignore
             gameDetails: { gameId: game.gameId },
           });
         }

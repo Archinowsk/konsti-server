@@ -12,6 +12,7 @@ const postFavorite: Middleware = async (
   const favoriteData = req.body.favoriteData;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'user');
 
   if (!validToken) {

@@ -11,6 +11,7 @@ const saveSerials = async (serials: readonly string[]): Promise<void> => {
 
   for (const serial of serials) {
     serialDocs.push(
+      // @ts-ignore
       new SerialModel({
         serial,
       })
@@ -21,6 +22,7 @@ const saveSerials = async (serials: readonly string[]): Promise<void> => {
   try {
     response = await SerialModel.create(serialDocs);
     logger.info(`MongoDB: Serials data saved`);
+    // @ts-ignore
     return response;
   } catch (error) {
     logger.error(`MongoDB: Error saving serials data - ${error}`);

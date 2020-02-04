@@ -7,6 +7,7 @@ export const getUsersWithoutGames = (users: readonly User[]) => {
   const usersWithoutGames = [];
   users.forEach(user => {
     if (user.enteredGames.length === 0 && user.signedGames.length !== 0) {
+      // @ts-ignore
       usersWithoutGames.push(user);
       counter += 1;
     }
@@ -26,6 +27,7 @@ export const getUsersWithoutSignups = (users: readonly User[]) => {
   const usersWithoutSignups = [];
   users.forEach(user => {
     if (user.signedGames.length === 0) {
+      // @ts-ignore
       usersWithoutSignups.push(user);
       counter += 1;
     }
@@ -47,12 +49,14 @@ export const getUsersSignupCount = (users: readonly User[]) => {
       acc[signedGame.time] = ++acc[signedGame.time] || 1;
       return acc;
     }, {});
+    // @ts-ignore
     userSignupCounts.push(signedGames);
   });
 
   const gameWishes = {};
   userSignupCounts.forEach(userSignups => {
     for (const signupTime in userSignups) {
+      // @ts-ignore
       gameWishes[userSignups[signupTime]] =
         ++gameWishes[userSignups[signupTime]] || 1;
     }

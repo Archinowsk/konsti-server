@@ -69,6 +69,7 @@ const updateUser = async (newUserData: NewUserData): Promise<void> => {
 
     logger.debug(`MongoDB: User "${newUserData.username}" updated`);
 
+    // @ts-ignore
     return response;
   } catch (error) {
     logger.error(
@@ -99,6 +100,7 @@ const updateUserPassword = async (
 
     logger.debug(`MongoDB: Password for user "${username}" updated`);
 
+    // @ts-ignore
     return response;
   } catch (error) {
     logger.error(
@@ -155,10 +157,12 @@ const findUserBySerial = async (serial: string): Promise<void> => {
   } else {
     logger.debug(`MongoDB: Found user with serial "${serial}"`);
   }
+  // @ts-ignore
   return response;
 };
 
 const findSerial = async (serialData: Object): Promise<void> => {
+  // @ts-ignore
   const serial = serialData.serial;
 
   let response = null;
@@ -174,6 +178,7 @@ const findSerial = async (serialData: Object): Promise<void> => {
   } else {
     logger.debug(`MongoDB: Found Serial "${serial}"`);
   }
+  // @ts-ignore
   return response;
 };
 
@@ -190,10 +195,12 @@ const findGroupMembers = async (groupCode: string): Promise<any> => {
     return error;
   }
 
+  // @ts-ignore
   if (!response || response.length === 0) {
     logger.info(`MongoDB: group "${groupCode}" not found`);
   } else {
     logger.debug(
+      // @ts-ignore
       `MongoDB: Found group "${groupCode}" with ${response.length} members`
     );
   }
@@ -222,6 +229,7 @@ const findGroup = async (
         `MongoDB: Group "${groupCode}" with leader "${username}" found`
       );
     }
+    // @ts-ignore
     return response;
   } else {
     try {
@@ -236,6 +244,7 @@ const findGroup = async (
     } else {
       logger.info(`MongoDB: Group "${groupCode}" found`);
     }
+    // @ts-ignore
     return response;
   }
 };
@@ -309,6 +318,7 @@ const saveGroupCode = async (
   } else {
     logger.info(`MongoDB: Group "${groupCode}" stored for user "${username}"`);
   }
+  // @ts-ignore
   return response;
 };
 
@@ -316,8 +326,10 @@ const saveFavorite = async (favoriteData: Object): Promise<any> => {
   let response = null;
   try {
     response = await UserModel.findOneAndUpdate(
+      // @ts-ignore
       { username: favoriteData.username },
       {
+        // @ts-ignore
         favoritedGames: favoriteData.favoritedGames.map(game => {
           return game._id;
         }),
@@ -328,11 +340,13 @@ const saveFavorite = async (favoriteData: Object): Promise<any> => {
       .populate('favoritedGames');
 
     logger.info(
+      // @ts-ignore
       `MongoDB: Favorite data stored for user "${favoriteData.username}"`
     );
     return response;
   } catch (error) {
     logger.error(
+      // @ts-ignore
       `MongoDB: Error storing favorite data for user "${favoriteData.username}" - ${error}`
     );
     return error;
@@ -354,6 +368,7 @@ const saveSignupResult = async (signupResult: Result): Promise<void> => {
     logger.debug(
       `MongoDB: Signup result data stored for user "${signupResult.username}"`
     );
+    // @ts-ignore
     return response;
   } catch (error) {
     logger.error(
@@ -381,6 +396,7 @@ const saveEnteredGames = async (
     logger.debug(
       `MongoDB: Updated entered games stored for user "${username}"`
     );
+    // @ts-ignore
     return response;
   } catch (error) {
     logger.error(

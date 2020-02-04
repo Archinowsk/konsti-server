@@ -10,7 +10,9 @@ export const getPriorities = (
     const matrixValue = signupMatrix[results[i][0]][results[i][1]];
     const selectedPlayer = parseInt(results[i][1], 10);
     priorities.push({
+      // @ts-ignore
       playerId: selectedPlayer,
+      // @ts-ignore
       priorityValue: matrixValue,
     });
   }

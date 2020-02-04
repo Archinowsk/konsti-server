@@ -13,6 +13,7 @@ const postHidden: Middleware = async (
   const hiddenData = req.body.hiddenData;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'admin');
 
   if (!validToken) {
@@ -21,6 +22,7 @@ const postHidden: Middleware = async (
 
   let settings = null;
   try {
+    // @ts-ignore
     settings = await db.settings.saveHidden(hiddenData);
   } catch (error) {
     logger.error(`db.settings.saveHidden error: ${error}`);
@@ -32,6 +34,7 @@ const postHidden: Middleware = async (
   }
 
   try {
+    // @ts-ignore
     await removeHiddenGamesFromUsers(settings.hiddenGames);
   } catch (error) {
     logger.error(`removeHiddenGamesFromUsers error: ${error}`);
@@ -45,6 +48,7 @@ const postHidden: Middleware = async (
   return res.json({
     message: 'Update hidden success',
     status: 'success',
+    // @ts-ignore
     hiddenGames: settings.hiddenGames,
   });
 };
@@ -68,6 +72,7 @@ const removeHiddenGamesFromUsers = async (
 
   try {
     await Promise.all(
+      // @ts-ignore
       users.map(async user => {
         const signedGames = user.signedGames.filter(signedGame => {
           const hiddenFound = hiddenGames.find(hiddenGame => {

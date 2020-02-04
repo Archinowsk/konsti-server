@@ -6,7 +6,7 @@ export const allowCORS: Middleware = (
   req: $Request,
   res: $Response,
   next: NextFunction
-): mixed => {
+) => {
   const allowedOrigins = config.allowedCorsOrigins;
   const origin = req.headers.origin;
 

@@ -15,6 +15,7 @@ export const getSignedGames = (
   startingGames.forEach(startingGame => {
     for (let i = 0; i < signupWishes.length; i += 1) {
       if (startingGame.gameId === signupWishes[i].gameId) {
+        // @ts-ignore
         signedGames.push(startingGame);
         minAttendance += startingGame.minAttendance;
         maxAttendance += startingGame.maxAttendance;

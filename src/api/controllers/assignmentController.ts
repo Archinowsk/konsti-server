@@ -15,6 +15,7 @@ const postAssignment: Middleware = async (
   const startingTime = req.body.startingTime;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'admin');
 
   if (!validToken) {
@@ -30,6 +31,7 @@ const postAssignment: Middleware = async (
 
   let assignResults = null;
   try {
+    // @ts-ignore
     assignResults = await runAssignment(startingTime);
   } catch (error) {
     logger.error(`Player assign error: ${error}`);
@@ -39,6 +41,7 @@ const postAssignment: Middleware = async (
     });
   }
 
+  // @ts-ignore
   if (!assignResults || !assignResults.results) {
     return res.json({
       message: 'Players assign failure',
@@ -48,9 +51,12 @@ const postAssignment: Middleware = async (
 
   try {
     await saveResults(
+      // @ts-ignore
       assignResults.results,
       startingTime,
+      // @ts-ignore
       assignResults.algorithm,
+      // @ts-ignore
       assignResults.message
     );
   } catch (error) {
@@ -66,6 +72,7 @@ const postAssignment: Middleware = async (
   if (config.enableRemoveOverlapSignups) {
     try {
       logger.info('Remove overlapping signups');
+      // @ts-ignore
       await removeOverlapSignups(assignResults.results);
     } catch (error) {
       logger.error(`removeOverlapSignups error: ${error}`);
@@ -80,7 +87,9 @@ const postAssignment: Middleware = async (
   return res.json({
     message: 'Players assign success',
     status: 'success',
+    // @ts-ignore
     results: assignResults.results,
+    // @ts-ignore
     resultMessage: assignResults.message,
     startTime: startingTime,
   });

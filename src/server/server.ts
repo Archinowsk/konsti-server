@@ -18,7 +18,7 @@ import { apiRoutes } from 'api/apiRoutes';
 
 export const startServer = async (
   dbConnString: string
-): Promise<$Application<>> => {
+): Promise<$Application> => {
   try {
     await db.connectToDb(dbConnString);
   } catch (error) {
@@ -93,7 +93,7 @@ export const startServer = async (
 };
 
 export const closeServer = async (
-  server: $Application<>,
+  server: $Application,
   dbConnString: string
 ): Promise<void> => {
   try {

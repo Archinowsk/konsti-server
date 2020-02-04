@@ -11,6 +11,7 @@ export const toggleAppOpen: Middleware = async (
   const appOpen = req.body.appOpen;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'admin');
 
   if (!validToken) {

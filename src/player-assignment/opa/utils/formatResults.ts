@@ -13,6 +13,7 @@ export const formatResults = (
         assignResult =>
           (assignResult.id === _.first(playerGroup).groupCode ||
             assignResult.id === _.first(playerGroup).serial) &&
+          // @ts-ignore
           assignResult.assignment !== -1
       );
     })

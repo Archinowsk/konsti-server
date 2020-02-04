@@ -14,6 +14,7 @@ export const getStartingGames = (
   games.forEach(game => {
     const gameStartingTime = moment(game.startTime).format();
     if (gameStartingTime === selectedStartingTime) {
+      // @ts-ignore
       startingGames.push(game);
     }
   });

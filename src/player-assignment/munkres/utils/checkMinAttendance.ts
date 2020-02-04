@@ -19,6 +19,7 @@ export const checkMinAttendance = (
       attendanceRange += signedGames[j].maxAttendance;
       // Found game
       if (selectedRow < attendanceRange) {
+        // @ts-ignore
         gameIds.push(signedGames[j].gameId);
         break;
       }
@@ -27,6 +28,7 @@ export const checkMinAttendance = (
 
   const counts = {};
   gameIds.forEach(x => {
+    // @ts-ignore
     counts[x] = (counts[x] || 0) + 1;
   });
 
@@ -35,7 +37,9 @@ export const checkMinAttendance = (
   signedGames.forEach(signedGame => {
     if (counts[signedGame.gameId] < signedGame.minAttendance) {
       gamesWithTooFewPlayers.push({
+        // @ts-ignore
         game: signedGame,
+        // @ts-ignore
         players: counts[signedGame.gameId],
       });
       logger.info(

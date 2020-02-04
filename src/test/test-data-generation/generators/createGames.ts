@@ -13,6 +13,7 @@ export const createGames = (
 
   for (let i = 0; i < signupTimes; i += 1) {
     startingTimes.push(
+      // @ts-ignore
       moment(config.CONVENTION_START_TIME)
         .add(i + 2, 'hours')
         .format()
@@ -71,6 +72,7 @@ export const createGames = (
       };
 
       logger.info(`Stored game "${gameData.title}"`);
+      // @ts-ignore
       kompassiGames.push(gameData);
     }
   });

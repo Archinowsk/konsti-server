@@ -14,6 +14,7 @@ const postSignup: Middleware = async (
   const signupData = req.body.signupData;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'user');
 
   if (!validToken) {

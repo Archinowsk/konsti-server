@@ -86,6 +86,7 @@ const postUser: Middleware = async (
     // Check if serial is used
     let serialResponse = null;
     try {
+      // @ts-ignore
       serialResponse = await db.user.findSerial({ serial });
     } catch (error) {
       logger.error(`db.user.findSerial(): ${error}`);
@@ -149,7 +150,9 @@ const postUser: Middleware = async (
         return res.json({
           message: 'User registration success',
           status: 'success',
+          // @ts-ignore
           username: saveUserResponse.username,
+          // @ts-ignore
           password: saveUserResponse.password,
         });
       }
@@ -166,6 +169,7 @@ const getUser: Middleware = async (
   const { username, serial } = req.query;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'user');
 
   if (!validToken) {
@@ -189,6 +193,7 @@ const getUser: Middleware = async (
 
   if (serial) {
     try {
+      // @ts-ignore
       user = await db.user.findUserBySerial(serial);
     } catch (error) {
       logger.error(`db.user.findUser(): ${error}`);
@@ -211,11 +216,16 @@ const getUser: Middleware = async (
     message: 'Getting user data success',
     status: 'success',
     games: {
+      // @ts-ignore
       enteredGames: user.enteredGames,
+      // @ts-ignore
       favoritedGames: user.favoritedGames,
+      // @ts-ignore
       signedGames: user.signedGames,
     },
+    // @ts-ignore
     username: user.username,
+    // @ts-ignore
     serial: user.serial,
   });
 };

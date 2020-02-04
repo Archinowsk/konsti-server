@@ -17,6 +17,7 @@ const testVerifyResults = async (): Promise<any> => {
   [error, results] = await to(db.results.findResult(startTime));
   if (error) return logger.error(error);
 
+  // @ts-ignore
   [error] = await to(verifyResults(startTime, users, results));
   if (error) return logger.error(error);
 

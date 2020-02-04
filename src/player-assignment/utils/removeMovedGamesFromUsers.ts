@@ -36,6 +36,7 @@ export const removeMovedGamesFromUsers = async (
 
   try {
     await Promise.all(
+      // @ts-ignore
       users.map(async user => {
         const signedGames = user.signedGames.filter(signedGame => {
           const movedFound = movedGames.find(movedGame => {

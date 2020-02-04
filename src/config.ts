@@ -1,4 +1,8 @@
-import { Config } from 'typings/config.typings';
+import {
+  Config,
+  AssignmentStrategy,
+  GameUpdateMethod,
+} from 'typings/config.typings';
 
 const commonConfig = {
   // App info
@@ -16,11 +20,11 @@ const commonConfig = {
   enableAccessLog: false,
 
   // App settings
-  assignmentStrategy: 'group+opa', // 'munkres', 'group', 'opa', 'group+opa'
+  assignmentStrategy: AssignmentStrategy.groupopa, // 'munkres', 'group', 'opa', 'group+opa'
   bundleCompression: true,
   CONVENTION_START_TIME: '2019-11-23T08:00:00Z', // UTC date
   enableRemoveOverlapSignups: true,
-  gamePopularityUpdateMethod: 'assign', // 'signups', 'assign'
+  gamePopularityUpdateMethod: GameUpdateMethod.assign, // 'signups', 'assign'
 
   // Development and testing
   saveTestAssign: true,

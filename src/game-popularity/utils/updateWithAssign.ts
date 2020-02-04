@@ -19,9 +19,11 @@ export const updateWithAssign = async (
   let results = [];
   _.forEach(groupedGames, (value, key) => {
     const assignmentResult = opaAssignPlayers(users, games, key);
+    // @ts-ignore
     results = results.concat(assignmentResult.results);
   });
 
+  // @ts-ignore
   const signedGames = results.flatMap(result => result.enteredGame.gameDetails);
 
   const groupedSignups = signedGames.reduce((acc, game) => {

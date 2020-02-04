@@ -19,11 +19,17 @@ export const assignGroups = (
   let bestResult = [];
 
   for (let i = 0; i < GROUP_ASSIGNMENT_ROUNDS; i++) {
+    // @ts-ignore
     result = runGroupAssignment(playerGroups, signedGames);
+    // @ts-ignore
     if (result.score > bestScore) {
+      // @ts-ignore
       bestScore = result.score;
+      // @ts-ignore
       bestResult = result.signupResults;
+      // @ts-ignore
       players = result.playerCounter;
+      // @ts-ignore
       games = result.gameCounter;
       logger.debug(`New best score: ${bestScore}`);
     }

@@ -72,15 +72,15 @@ export const autoAssignPlayers = async (): Promise<void> => {
 
         // console.log('>>> assignResults: ', assignResults)
 
-        if (assignResults.results.length === 0) return;
+        if (assignResults?.results.length === 0) return;
 
         // Save results
         try {
           await saveResults(
-            assignResults.results,
+            assignResults ? assignResults.results : [],
             startTime,
-            assignResults.algorithm,
-            assignResults.message
+            assignResults ? assignResults.algorithm : '',
+            assignResults ? assignResults.message : ''
           );
         } catch (error) {
           logger.error(`saveResult error: ${error}`);
@@ -98,6 +98,7 @@ export const autoAssignPlayers = async (): Promise<void> => {
           logger.info('Remove overlapping signups');
 
           try {
+            // @ts-ignore
             await removeOverlapSignups(assignResults.results);
           } catch (error) {
             logger.error(`removeOverlapSignups error: ${error}`);

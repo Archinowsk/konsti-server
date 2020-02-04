@@ -10,6 +10,7 @@ const postGroup: Middleware = async (
   logger.info('API call: POST /api/group');
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'user');
 
   if (!validToken) {
@@ -92,6 +93,7 @@ const postGroup: Middleware = async (
     let findGroupResponse = null;
     try {
       // Check if group exists
+      // @ts-ignore
       findGroupResponse = await db.user.findGroup(groupCode, username);
     } catch (error) {
       logger.error(`db.user.findUser(): ${error}`);
@@ -154,6 +156,7 @@ const postGroup: Middleware = async (
     // Check if code is valid
     let findSerialResponse = null;
     try {
+      // @ts-ignore
       findSerialResponse = await db.user.findSerial({ serial: groupCode });
     } catch (error) {
       logger.error(`db.user.findSerial(): ${error}`);
@@ -176,7 +179,9 @@ const postGroup: Middleware = async (
     // Check if group leader has created a group
     let findGroupResponse = null;
     try {
+      // @ts-ignore
       const leaderUsername = findSerialResponse.username;
+      // @ts-ignore
       findGroupResponse = await db.user.findGroup(groupCode, leaderUsername);
     } catch (error) {
       logger.error(`db.user.findGroup(): ${error}`);
@@ -236,6 +241,7 @@ const getGroup: Middleware = async (
   const groupCode = req.query.groupCode;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'user');
 
   if (!validToken) {
@@ -247,12 +253,18 @@ const getGroup: Middleware = async (
     findGroupResults = await db.user.findGroupMembers(groupCode);
 
     const returnData = [];
+    // @ts-ignore
     for (const findGroupResult of findGroupResults) {
       returnData.push({
+        // @ts-ignore
         groupCode: findGroupResult.groupCode,
+        // @ts-ignore
         signedGames: findGroupResult.signedGames,
+        // @ts-ignore
         enteredGames: findGroupResult.enteredGames,
+        // @ts-ignore
         serial: findGroupResult.serial,
+        // @ts-ignore
         username: findGroupResult.username,
       });
     }

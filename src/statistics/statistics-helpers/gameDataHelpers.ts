@@ -36,6 +36,7 @@ export const getNumberOfFullGames = (
   let counter = 0;
   games.forEach(game => {
     if (
+      // @ts-ignore
       parseInt(game.maxAttendance, 10) ===
       parseInt(usersByGames[game.gameId], 10)
     ) {
@@ -87,6 +88,7 @@ export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
 
     maxNumberOfPlayersByTime[game.startTime] =
       parseInt(maxNumberOfPlayersByTime[game.startTime], 10) +
+      // @ts-ignore
       parseInt(game.maxAttendance, 10);
   });
 

@@ -41,7 +41,9 @@ export const munkresAssignPlayers = (
     const removedGame = getRemovedGame(gamesWithTooFewPlayers);
 
     for (let i = 0; i < signedGames.length; i += 1) {
+      // @ts-ignore
       if (signedGames[i].gameId === removedGame.gameId) {
+        // @ts-ignore
         logger.info(`Removed game "${signedGames[i].title}"`);
         signedGames.splice(i, 1);
         removedGamesCount += 1;

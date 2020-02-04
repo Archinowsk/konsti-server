@@ -10,7 +10,7 @@ import { settings } from 'db/settings/settingsService';
 import { serial } from 'db/serial/serialService';
 
 const connectToDb = async (
-  dbConnString?: string = config.dbConnString
+  dbConnString: string = config.dbConnString
 ): Promise<void> => {
   const { dbName } = config;
 
@@ -35,7 +35,7 @@ const connectToDb = async (
 };
 
 const gracefulExit = async (
-  dbConnString?: string = config.dbConnString
+  dbConnString: string = config.dbConnString
 ): Promise<void> => {
   const [error] = await to(mongoose.connection.close());
   if (error)

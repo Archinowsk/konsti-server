@@ -24,6 +24,7 @@ export const getSelectedPlayers = (
       }
       // Player matched, break
       if (match) {
+        // @ts-ignore
         selectedPlayers.push(player);
         break;
       }

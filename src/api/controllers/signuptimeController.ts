@@ -12,6 +12,7 @@ const postSignupTime: Middleware = async (
   const signupTime = req.body.signupTime;
 
   const authHeader = req.headers.authorization;
+  // @ts-ignore
   const validToken = validateAuthHeader(authHeader, 'admin');
 
   if (!validToken) {

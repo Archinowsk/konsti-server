@@ -10,8 +10,11 @@ export const getSignupWishes = (players: readonly User[]) => {
     if (player.signedGames.length !== 0) {
       player.signedGames.forEach(signedGame => {
         signupWishes.push({
+          // @ts-ignore
           username: player.username,
+          // @ts-ignore
           gameId: signedGame.gameDetails.gameId,
+          // @ts-ignore
           priority: signedGame.priority,
         });
       });

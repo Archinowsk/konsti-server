@@ -16,10 +16,12 @@ export const getRemovedGame = (
       sortedGamesWithTooFewPlayers[i].players ===
       _.first(sortedGamesWithTooFewPlayers).players
     )
+      // @ts-ignore
       tiedToLowest.push(sortedGamesWithTooFewPlayers[i]);
   }
 
   const randomIndex = Math.floor(Math.random() * tiedToLowest.length);
+  // @ts-ignore
   const removedGame = tiedToLowest[randomIndex].game;
 
   return removedGame;

@@ -66,6 +66,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
@@ -86,14 +87,12 @@ describe('Assignment with valid data', () => {
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    [error] = await to(verifyUserSignups(startingTime, users));
-    if (error) return logger.error(error);
+    verifyUserSignups(startingTime, users);
 
     [error, results] = await to(db.results.findResult(startingTime));
     if (error) return logger.error(error);
 
-    [error] = await to(verifyResults(startingTime, users, results));
-    if (error) return logger.error(error);
+    verifyResults(startingTime, users, results);
 
     // SECOND RUN
 
@@ -117,14 +116,12 @@ describe('Assignment with valid data', () => {
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    [error] = await to(verifyUserSignups(startingTime, users));
-    if (error) return logger.error(error);
+    verifyUserSignups(startingTime, users);
 
     [error, results] = await to(db.results.findResult(startingTime));
     if (error) return logger.error(error);
 
-    [error] = await to(verifyResults(startingTime, users, results));
-    if (error) return logger.error(error);
+    verifyResults(startingTime, users, results);
   });
 
   test('should return success with opa strategy', async () => {
@@ -142,6 +139,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
@@ -162,14 +160,12 @@ describe('Assignment with valid data', () => {
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    [error] = await to(verifyUserSignups(startingTime, users));
-    if (error) return logger.error(error);
+    verifyUserSignups(startingTime, users);
 
     [error, results] = await to(db.results.findResult(startingTime));
     if (error) return logger.error(error);
 
-    [error] = await to(verifyResults(startingTime, users, results));
-    if (error) return logger.error(error);
+    verifyResults(startingTime, users, results);
 
     // SECOND RUN
 
@@ -193,14 +189,12 @@ describe('Assignment with valid data', () => {
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    [error] = await to(verifyUserSignups(startingTime, users));
-    if (error) return logger.error(error);
+    verifyUserSignups(startingTime, users);
 
     [error, results] = await to(db.results.findResult(startingTime));
     if (error) return logger.error(error);
 
-    [error] = await to(verifyResults(startingTime, users, results));
-    if (error) return logger.error(error);
+    verifyResults(startingTime, users, results);
   });
 
   test('should return success with group+opa strategy', async () => {
@@ -218,6 +212,7 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
@@ -238,14 +233,12 @@ describe('Assignment with valid data', () => {
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    [error] = await to(verifyUserSignups(startingTime, users));
-    if (error) return logger.error(error);
+    verifyUserSignups(startingTime, users);
 
     [error, results] = await to(db.results.findResult(startingTime));
     if (error) return logger.error(error);
 
-    [error] = await to(verifyResults(startingTime, users, results));
-    if (error) return logger.error(error);
+    verifyResults(startingTime, users, results);
 
     // SECOND RUN
 
@@ -269,14 +262,12 @@ describe('Assignment with valid data', () => {
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    [error] = await to(verifyUserSignups(startingTime, users));
-    if (error) return logger.error(error);
+    verifyUserSignups(startingTime, users);
 
     [error, results] = await to(db.results.findResult(startingTime));
     if (error) return logger.error(error);
 
-    [error] = await to(verifyResults(startingTime, users, results));
-    if (error) return logger.error(error);
+    verifyResults(startingTime, users, results);
   });
 });
 
@@ -308,6 +299,7 @@ describe('Assignment with no games', () => {
       .add(2, 'hours')
       .format();
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
@@ -322,6 +314,7 @@ describe('Assignment with no games', () => {
       .add(2, 'hours')
       .format();
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
@@ -336,6 +329,7 @@ describe('Assignment with no games', () => {
       .add(2, 'hours')
       .format();
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
@@ -370,6 +364,7 @@ describe('Assignment with no players', () => {
       .add(2, 'hours')
       .format();
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
@@ -384,6 +379,7 @@ describe('Assignment with no players', () => {
       .add(2, 'hours')
       .format();
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
@@ -398,6 +394,7 @@ describe('Assignment with no players', () => {
       .add(2, 'hours')
       .format();
 
+    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');

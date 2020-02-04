@@ -20,6 +20,7 @@ export const getGroupMembers = (
         ) {
           // player.signedGames = groupLeader.signedGames
           selectedPlayersWithSignups.push(
+            // @ts-ignore
             Object.assign({
               ...player,
               signedGames: groupLeader.signedGames,
