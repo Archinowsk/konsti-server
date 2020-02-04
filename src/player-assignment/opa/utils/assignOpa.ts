@@ -12,9 +12,9 @@ import {
 } from 'typings/opaAssign.typings';
 
 export const assignOpa = (
-  groups: Array<Group>,
-  events: Array<Event>,
-  list: Array<ListItem>,
+  groups: Group[],
+  events: Event[],
+  list: ListItem[],
   updateL: Function
 ): OpaAssignResults => {
   const { OPA_ASSIGNMENT_ROUNDS } = config;
@@ -22,7 +22,7 @@ export const assignOpa = (
   let finalHappiness = 0;
   let finalAssignResults: OpaAssignResults = [];
 
-  const sortList = (list: Array<ListItem>, i: number) => {
+  const sortList = (list: ListItem[], i: number) => {
     switch (i) {
       case 0:
         return _.sortBy(list, 'gain');

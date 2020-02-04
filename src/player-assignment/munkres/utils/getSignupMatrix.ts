@@ -3,19 +3,19 @@ import { Game } from 'typings/game.typings';
 import { User } from 'typings/user.typings';
 
 export const getSignupMatrix = (
-  signedGames: ReadonlyArray<Game>,
-  selectedPlayers: ReadonlyArray<User>
+  signedGames: readonly Game[],
+  selectedPlayers: readonly User[]
 ) => {
   logger.info('Generate signup matrix');
   // Create matrix for the sorting algorithm
   // Each available seat is possible result
   // Sort same game wishes to single array
-  const signupMatrix: Array<Array<number>> = [];
+  const signupMatrix: number[][] = [];
   let counter = 0;
 
   // For each starting game...
   signedGames.forEach(signedGame => {
-    const gameSignups: Array<number> = [];
+    const gameSignups: number[] = [];
 
     // ... check if players have wishes that match with game id
     selectedPlayers.forEach(player => {

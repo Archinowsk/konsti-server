@@ -2,9 +2,9 @@ import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
 
 export const getGroupMembers = (
-  groupLeaders: ReadonlyArray<User>,
-  players: ReadonlyArray<User>
-): ReadonlyArray<User> => {
+  groupLeaders: readonly User[],
+  players: readonly User[]
+): readonly User[] => {
   logger.debug('Add group members to groups');
 
   const selectedPlayersWithSignups = [];

@@ -5,7 +5,7 @@ import { User } from 'typings/user.typings';
 
 export const verifyResults = async (
   startTime: string,
-  users: Array<User>,
+  users: User[],
   results: ResultsCollectionEntry
 ): Promise<void> => {
   logger.info(`Verify results for time ${startTime}`);

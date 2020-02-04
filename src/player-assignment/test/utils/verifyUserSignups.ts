@@ -5,7 +5,7 @@ import { User } from 'typings/user.typings';
 
 export const verifyUserSignups = async (
   startingTime: string,
-  users: Array<User>
+  users: User[]
 ): Promise<any> => {
   logger.info('Verify entered games and signups match for users');
 

@@ -50,10 +50,7 @@ export const createSignups = async (): Promise<void> => {
   await updateGamePopularity();
 };
 
-const getRandomSignup = (
-  games: ReadonlyArray<Game>,
-  user: User
-): Array<SignedGame> => {
+const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
   const signedGames = [];
   let randomIndex;
 
@@ -101,7 +98,7 @@ const getRandomSignup = (
   return signedGames;
 };
 
-const signup = (games: ReadonlyArray<Game>, user: User): Promise<void> => {
+const signup = (games: readonly Game[], user: User): Promise<void> => {
   const signedGames = getRandomSignup(games, user);
 
   return db.user.saveSignup({
@@ -111,8 +108,8 @@ const signup = (games: ReadonlyArray<Game>, user: User): Promise<void> => {
 };
 
 const signupMultiple = (
-  games: ReadonlyArray<Game>,
-  users: ReadonlyArray<User>
+  games: readonly Game[],
+  users: readonly User[]
 ): Promise<any> => {
   const promises = [];
 
@@ -126,8 +123,8 @@ const signupMultiple = (
 };
 
 const signupGroup = async (
-  games: ReadonlyArray<Game>,
-  users: ReadonlyArray<User>
+  games: readonly Game[],
+  users: readonly User[]
 ): Promise<any> => {
   // Generate random signup data for the first user
   const signedGames = getRandomSignup(games, _.first(users));

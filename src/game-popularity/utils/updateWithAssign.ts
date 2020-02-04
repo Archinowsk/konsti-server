@@ -7,8 +7,8 @@ import { User } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 
 export const updateWithAssign = async (
-  users: ReadonlyArray<User>,
-  games: ReadonlyArray<Game>
+  users: readonly User[],
+  games: readonly Game[]
 ) => {
   const groupedGames = _.groupBy(games, game =>
     moment(game.startTime)

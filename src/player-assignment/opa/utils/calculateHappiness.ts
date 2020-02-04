@@ -2,7 +2,7 @@ import { OpaAssignResults, Group } from 'typings/opaAssign.typings';
 
 export const calculateHappiness = (
   assignment: OpaAssignResults,
-  groups: Array<Group>
+  groups: Group[]
 ): number => {
   let happiness = 0;
 

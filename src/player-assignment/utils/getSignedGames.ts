@@ -3,8 +3,8 @@ import { Game } from 'typings/game.typings';
 import { SignupWish } from 'typings/user.typings';
 
 export const getSignedGames = (
-  startingGames: ReadonlyArray<Game>,
-  signupWishes: ReadonlyArray<SignupWish>
+  startingGames: readonly Game[],
+  signupWishes: readonly SignupWish[]
 ) => {
   logger.debug('Get selected games');
   const signedGames = [];

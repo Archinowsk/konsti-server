@@ -3,7 +3,7 @@ import { db } from 'db/mongodb';
 import { Result } from 'typings/result.typings';
 
 export const saveUserSignupResults = async (
-  results: ReadonlyArray<Result>
+  results: readonly Result[]
 ): Promise<void> => {
   try {
     await Promise.all(

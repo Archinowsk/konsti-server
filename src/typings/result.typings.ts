@@ -7,11 +7,11 @@ export interface Result {
 
 export interface Signup {
   username: string;
-  signedGames: ReadonlyArray<SignedGame>;
+  signedGames: readonly SignedGame[];
 }
 
 export interface PlayerAssignmentResult {
-  results: ReadonlyArray<Result>;
+  results: readonly Result[];
   message: string;
   algorithm: string;
   status: string;
@@ -19,12 +19,12 @@ export interface PlayerAssignmentResult {
 
 export interface ResultsCollectionEntry {
   startTime: string;
-  results: ReadonlyArray<Result>;
+  results: readonly Result[];
   message: string;
   algorithm: string;
 }
 
 export interface AssignmentStrategyResult {
-  results: ReadonlyArray<Result>;
+  results: readonly Result[];
   message: string;
 }

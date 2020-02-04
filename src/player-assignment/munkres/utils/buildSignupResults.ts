@@ -3,10 +3,10 @@ import { Game } from 'typings/game.typings';
 import { Result } from 'typings/result.typings';
 
 export const buildSignupResults = (
-  results: ReadonlyArray<ReadonlyArray<number>>,
-  signedGames: ReadonlyArray<Game>,
-  players: ReadonlyArray<User>
-): ReadonlyArray<Result> => {
+  results: ReadonlyArray<readonly number[]>,
+  signedGames: readonly Game[],
+  players: readonly User[]
+): readonly Result[] => {
   const signupResults = [];
 
   // Build signup results

@@ -1,8 +1,8 @@
 import { Result } from 'typings/result.typings';
 
 export const getPriorities = (
-  results: ReadonlyArray<Result>,
-  signupMatrix: ReadonlyArray<ReadonlyArray<number>>
+  results: readonly Result[],
+  signupMatrix: ReadonlyArray<readonly number[]>
 ) => {
   // Show the priorities players were assigned to
   const priorities = [];

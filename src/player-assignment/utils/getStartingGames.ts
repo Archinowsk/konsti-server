@@ -3,7 +3,7 @@ import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
 
 export const getStartingGames = (
-  games: ReadonlyArray<Game>,
+  games: readonly Game[],
   startingTime: string
 ) => {
   logger.debug('Get starting games');

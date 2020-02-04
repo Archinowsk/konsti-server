@@ -5,8 +5,8 @@ import { Result } from 'typings/result.typings';
 
 export const formatResults = (
   assignResults: OpaAssignResults,
-  playerGroups: ReadonlyArray<UserArray>
-): ReadonlyArray<Result> => {
+  playerGroups: readonly UserArray[]
+): readonly Result[] => {
   const selectedPlayers = playerGroups
     .filter(playerGroup => {
       return assignResults.find(

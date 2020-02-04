@@ -8,8 +8,8 @@ import { UserArray } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 
 export const runOpaAssignment = (
-  signedGames: ReadonlyArray<Game>,
-  playerGroups: ReadonlyArray<UserArray>,
+  signedGames: readonly Game[],
+  playerGroups: readonly UserArray[],
   startingTime: string
 ): AssignmentStrategyResult => {
   const groups = getGroups(playerGroups, startingTime);

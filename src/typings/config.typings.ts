@@ -20,7 +20,7 @@ export interface Config {
   dbName: string;
   jwtSecretKey: string;
   jwtSecretKeyAdmin: string;
-  allowedCorsOrigins: ReadonlyArray<string>;
+  allowedCorsOrigins: readonly string[];
   dataUri: string;
   GROUP_ASSIGNMENT_ROUNDS: number;
   OPA_ASSIGNMENT_ROUNDS: number;

@@ -6,9 +6,9 @@ import { Game } from 'typings/game.typings';
 import { AssignmentStrategyResult } from 'typings/result.typings';
 
 export const assignGroups = (
-  selectedPlayers: ReadonlyArray<User>,
-  signedGames: ReadonlyArray<Game>,
-  playerGroups: ReadonlyArray<UserArray>
+  selectedPlayers: readonly User[],
+  signedGames: readonly Game[],
+  playerGroups: readonly UserArray[]
 ): AssignmentStrategyResult => {
   const { GROUP_ASSIGNMENT_ROUNDS } = config;
 

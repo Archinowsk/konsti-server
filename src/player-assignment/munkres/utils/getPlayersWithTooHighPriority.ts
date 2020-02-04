@@ -2,7 +2,7 @@ import { logger } from 'utils/logger';
 import { PlayerIdWithPriority } from 'typings/user.typings';
 
 export const getPlayersWithTooHighPriority = (
-  priorities: ReadonlyArray<PlayerIdWithPriority>
+  priorities: readonly PlayerIdWithPriority[]
 ) => {
   const playersWithTooHighPriority = [];
 

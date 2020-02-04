@@ -28,13 +28,13 @@ export interface User {
   userGroup: UserGroup;
   serial: string;
   groupCode: string;
-  favoritedGames: ReadonlyArray<FavoritedGame>;
-  signedGames: ReadonlyArray<SignedGame>;
-  enteredGames: ReadonlyArray<EnteredGame>;
+  favoritedGames: readonly FavoritedGame[];
+  signedGames: readonly SignedGame[];
+  enteredGames: readonly EnteredGame[];
   createdAt: string | null;
 }
 
-export type UserArray = ReadonlyArray<User>;
+export type UserArray = readonly User[];
 
 export interface NewUserData {
   username: string;
@@ -42,9 +42,9 @@ export interface NewUserData {
   passwordHash: string | Promise<void>;
   userGroup?: string;
   groupCode?: string;
-  favoritedGames?: ReadonlyArray<FavoritedGame>;
-  signedGames?: ReadonlyArray<SignedGame>;
-  enteredGames?: ReadonlyArray<EnteredGame>;
+  favoritedGames?: readonly FavoritedGame[];
+  signedGames?: readonly SignedGame[];
+  enteredGames?: readonly EnteredGame[];
 }
 
 export interface SignupWish {

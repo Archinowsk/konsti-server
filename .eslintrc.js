@@ -4,7 +4,7 @@ module.exports = {
   parser: '@typescript-eslint/parser', // or 'babel-eslint'
 
   extends: [
-    // 'eslint-config-standard-with-typescript',
+    'eslint-config-standard-with-typescript',
     'eslint-config-prettier',
     'eslint-config-prettier/standard',
     'eslint-config-prettier/@typescript-eslint',

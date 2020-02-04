@@ -2,7 +2,7 @@ import { toPercent } from '../statsUtil';
 import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
 
-export const getSignupsByTime = (results: ReadonlyArray<any>) => {
+export const getSignupsByTime = (results: readonly any[]) => {
   const signupsByTime = results.reduce((acc, result) => {
     acc[result.startTime] = result.result.length;
     return acc;
@@ -18,7 +18,7 @@ export const getSignupsByTime = (results: ReadonlyArray<any>) => {
   return signupsByTime;
 };
 
-export const getMaximumNumberOfPlayersByTime = (games: ReadonlyArray<Game>) => {
+export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
   const maxNumberOfPlayersByTime = {};
   games.forEach(game => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {

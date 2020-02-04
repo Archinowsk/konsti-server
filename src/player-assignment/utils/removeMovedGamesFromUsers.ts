@@ -5,7 +5,7 @@ import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
 
 export const removeMovedGamesFromUsers = async (
-  updatedGames: ReadonlyArray<Game>
+  updatedGames: readonly Game[]
 ): Promise<void> => {
   logger.info('Remove moved games from users');
 

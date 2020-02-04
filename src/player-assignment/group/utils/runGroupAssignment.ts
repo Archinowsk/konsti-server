@@ -7,8 +7,8 @@ import { Game } from 'typings/game.typings';
 import { GroupAssignResult } from 'typings/groupAssign.typings';
 
 export const runGroupAssignment = (
-  playerGroups: ReadonlyArray<UserArray>,
-  signedGames: ReadonlyArray<Game>
+  playerGroups: readonly UserArray[],
+  signedGames: readonly Game[]
 ): GroupAssignResult => {
   const signupResults = [];
   let matchingGroups = [];

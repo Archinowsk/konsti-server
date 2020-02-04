@@ -5,7 +5,7 @@ import { logger } from 'utils/logger';
 import { config } from 'config';
 import { KompassiGame } from 'typings/game.typings';
 
-export const updateGames = async (): Promise<ReadonlyArray<KompassiGame>> => {
+export const updateGames = async (): Promise<readonly KompassiGame[]> => {
   let programItems = null;
 
   if (config.useLocalProgramFile) {

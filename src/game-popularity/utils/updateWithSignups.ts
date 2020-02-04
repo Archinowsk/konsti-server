@@ -4,8 +4,8 @@ import { User } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 
 export const updateWithSignups = async (
-  users: Array<User>,
-  games: Array<Game>
+  users: User[],
+  games: Game[]
 ): Promise<void> => {
   const groupLeaders = users.filter(
     user => user.groupCode !== '0' && user.groupCode === user.serial

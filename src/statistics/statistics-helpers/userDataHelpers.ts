@@ -2,7 +2,7 @@ import { toPercent } from '../statsUtil';
 import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
 
-export const getUsersWithoutGames = (users: ReadonlyArray<User>) => {
+export const getUsersWithoutGames = (users: readonly User[]) => {
   let counter = 0;
   const usersWithoutGames = [];
   users.forEach(user => {
@@ -21,7 +21,7 @@ export const getUsersWithoutGames = (users: ReadonlyArray<User>) => {
   return usersWithoutGames;
 };
 
-export const getUsersWithoutSignups = (users: ReadonlyArray<User>) => {
+export const getUsersWithoutSignups = (users: readonly User[]) => {
   let counter = 0;
   const usersWithoutSignups = [];
   users.forEach(user => {
@@ -40,7 +40,7 @@ export const getUsersWithoutSignups = (users: ReadonlyArray<User>) => {
   return usersWithoutSignups;
 };
 
-export const getUsersSignupCount = (users: ReadonlyArray<User>) => {
+export const getUsersSignupCount = (users: readonly User[]) => {
   const userSignupCounts = [];
   users.forEach(user => {
     const signedGames = user.signedGames.reduce((acc, signedGame) => {
@@ -75,7 +75,7 @@ export const getUsersSignupCount = (users: ReadonlyArray<User>) => {
   );
 };
 
-export const getUsersWithAllGames = (users: ReadonlyArray<User>) => {
+export const getUsersWithAllGames = (users: readonly User[]) => {
   let counter = 0;
 
   users.forEach(user => {

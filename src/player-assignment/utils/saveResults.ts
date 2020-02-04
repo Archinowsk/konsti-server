@@ -6,7 +6,7 @@ import { removeOldEnteredGames } from 'player-assignment/utils/removeOldEnteredG
 import { Result } from 'typings/result.typings';
 
 export const saveResults = async (
-  results: ReadonlyArray<Result>,
+  results: readonly Result[],
   startingTime: string,
   algorithm: string,
   message: string

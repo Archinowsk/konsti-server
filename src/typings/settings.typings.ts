@@ -1,7 +1,7 @@
 import { Game } from 'typings/game.typings';
 
 export interface Settings {
-  hiddenGames: ReadonlyArray<Game>;
+  hiddenGames: readonly Game[];
   signupTime: string;
   appOpen: boolean;
 }

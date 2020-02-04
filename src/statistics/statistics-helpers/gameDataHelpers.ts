@@ -4,7 +4,7 @@ import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
 import { User } from 'typings/user.typings';
 
-export const getGamesByStartingTime = (games: ReadonlyArray<Game>) => {
+export const getGamesByStartingTime = (games: readonly Game[]) => {
   const gamesByTime = games.reduce((acc, game) => {
     acc[game.startTime] = ++acc[game.startTime] || 1;
     return acc;
@@ -14,7 +14,7 @@ export const getGamesByStartingTime = (games: ReadonlyArray<Game>) => {
   return gamesByTime;
 };
 
-export const getUsersByGames = (users: ReadonlyArray<User>) => {
+export const getUsersByGames = (users: readonly User[]) => {
   const enteredGames = users.reduce((acc, user) => {
     user.enteredGames.forEach(enteredGame => {
       acc[enteredGame.gameDetails.gameId] =
@@ -28,8 +28,8 @@ export const getUsersByGames = (users: ReadonlyArray<User>) => {
 };
 
 export const getNumberOfFullGames = (
-  games: ReadonlyArray<Game>,
-  users: ReadonlyArray<User>
+  games: readonly Game[],
+  users: readonly User[]
 ) => {
   const usersByGames = getUsersByGames(users);
 
@@ -50,7 +50,7 @@ export const getNumberOfFullGames = (
   );
 };
 
-export const getSignupsByStartTime = (users: ReadonlyArray<User>) => {
+export const getSignupsByStartTime = (users: readonly User[]) => {
   const userSignupCountsByTime = {};
 
   logger.warn('Warning: inaccurate because forming groups deletes signedGames');
@@ -78,7 +78,7 @@ export const getSignupsByStartTime = (users: ReadonlyArray<User>) => {
   return userSignupCountsByTime;
 };
 
-export const getMaximumNumberOfPlayersByTime = (games: ReadonlyArray<Game>) => {
+export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
   const maxNumberOfPlayersByTime = {};
   games.forEach(game => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {
@@ -101,8 +101,8 @@ export const getMaximumNumberOfPlayersByTime = (games: ReadonlyArray<Game>) => {
 };
 
 export const getDemandByTime = (
-  games: ReadonlyArray<Game>,
-  users: ReadonlyArray<User>
+  games: readonly Game[],
+  users: readonly User[]
 ) => {
   logger.info('>>> Demand by time');
   const signupsByTime = getSignupsByStartTime(users);
@@ -120,8 +120,8 @@ export const getDemandByTime = (
 };
 
 export const getDemandByGame = (
-  games: ReadonlyArray<Game>,
-  users: ReadonlyArray<User>
+  games: readonly Game[],
+  users: readonly User[]
 ) => {
   logger.info('>>> Demand by games');
 

@@ -37,9 +37,7 @@ const findSettings = async (): Promise<Settings> => {
   return settings;
 };
 
-const saveHidden = async (
-  hiddenData: ReadonlyArray<Game>
-): Promise<Settings> => {
+const saveHidden = async (hiddenData: readonly Game[]): Promise<Settings> => {
   const [error, settings] = await to(
     SettingsModel.findOneAndUpdate(
       {},

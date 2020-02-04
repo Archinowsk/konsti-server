@@ -8,9 +8,9 @@ export interface Game {
   location: string;
   startTime: string;
   mins: number;
-  tags: ReadonlyArray<string>;
-  genres: ReadonlyArray<string>;
-  styles: ReadonlyArray<string>;
+  tags: readonly string[];
+  genres: readonly string[];
+  styles: readonly string[];
   language: string;
   endTime: string;
   people: string;
@@ -48,9 +48,9 @@ export interface KompassiGame {
   min_players: number;
   max_players: number;
   identifier: string;
-  tags: ReadonlyArray<string>;
-  genres: ReadonlyArray<string>;
-  styles: ReadonlyArray<string>;
+  tags: readonly string[];
+  genres: readonly string[];
+  styles: readonly string[];
   short_blurb: string;
   revolving_door: boolean;
   three_word_description: string;

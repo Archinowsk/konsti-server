@@ -3,8 +3,8 @@ import { Game } from 'typings/game.typings';
 import { Result } from 'typings/result.typings';
 
 export const checkMinAttendance = (
-  results: ReadonlyArray<Result>,
-  signedGames: ReadonlyArray<Game>
+  results: readonly Result[],
+  signedGames: readonly Game[]
 ) => {
   // Check that game minAttendance is fullfilled
   const gameIds = [];

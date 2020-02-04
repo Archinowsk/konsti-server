@@ -1,14 +1,14 @@
 export interface Group {
   id: string; // Group id
   size: number; // Group size
-  pref: ReadonlyArray<string>; // Game wishes (game id)
+  pref: readonly string[]; // Game wishes (game id)
 }
 
 export interface Event {
   id: string; // game id
   min: number; // game min players
   max: number; // game max players
-  groups: ReadonlyArray<Group>; // groups signed for the game
+  groups: readonly Group[]; // groups signed for the game
 }
 
 export interface ListItem {
@@ -19,9 +19,9 @@ export interface ListItem {
 }
 
 export interface Input {
-  groups: ReadonlyArray<Group>;
-  events: ReadonlyArray<Event>;
-  list: ReadonlyArray<ListItem>;
+  groups: readonly Group[];
+  events: readonly Event[];
+  list: readonly ListItem[];
   updateL: Function;
 }
 
@@ -30,4 +30,4 @@ export interface OpaAssignResult {
   assignment: string; // assigned game id
 }
 
-export type OpaAssignResults = ReadonlyArray<OpaAssignResult>;
+export type OpaAssignResults = readonly OpaAssignResult[];

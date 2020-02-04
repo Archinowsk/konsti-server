@@ -30,10 +30,10 @@ const commonConfig = {
 };
 
 const prodConfig = {
-  dbConnString: process.env.CONN_STRING || '',
+  dbConnString: process.env.CONN_STRING ?? '',
   dbName: 'konsti',
-  jwtSecretKey: process.env.JWT_SECRET_KEY || '',
-  jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
+  jwtSecretKey: process.env.JWT_SECRET_KEY ?? '',
+  jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN ?? '',
   allowedCorsOrigins:
     typeof process.env.CORS_WHITELIST === 'string'
       ? process.env.CORS_WHITELIST.split(';')
@@ -53,10 +53,10 @@ const prodConfig = {
 };
 
 const stagingConfig = {
-  dbConnString: process.env.CONN_STRING || '',
+  dbConnString: process.env.CONN_STRING ?? '',
   dbName: 'konsti',
-  jwtSecretKey: process.env.JWT_SECRET_KEY || '',
-  jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN || '',
+  jwtSecretKey: process.env.JWT_SECRET_KEY ?? '',
+  jwtSecretKeyAdmin: process.env.JWT_SECRET_KEY_ADMIN ?? '',
   allowedCorsOrigins:
     typeof process.env.CORS_WHITELIST === 'string'
       ? process.env.CORS_WHITELIST.split(';')

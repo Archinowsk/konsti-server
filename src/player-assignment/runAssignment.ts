@@ -16,14 +16,14 @@ export const runAssignment = async (
   const [error] = await to(removeInvalidSignupsFromUsers());
   if (error) throw new Error(`Error removing invalid games: ${error}`);
 
-  let users: ReadonlyArray<User> = [];
+  let users: readonly User[] = [];
   try {
     users = await db.user.findUsers();
   } catch (error) {
     throw new Error(`findUsers error: ${error}`);
   }
 
-  let games: ReadonlyArray<Game> = [];
+  let games: readonly Game[] = [];
   try {
     games = await db.game.findGames();
   } catch (error) {

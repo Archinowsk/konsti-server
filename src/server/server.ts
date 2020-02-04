@@ -1,5 +1,10 @@
 import path from 'path';
-import express from 'express';
+import express, {
+  $Request,
+  $Response,
+  NextFunction,
+  $Application,
+} from 'express';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -10,7 +15,6 @@ import { logger, stream } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { allowCORS } from 'server/middleware/cors';
 import { apiRoutes } from 'api/apiRoutes';
-import { $Request, $Response, NextFunction, $Application } from 'express';
 
 export const startServer = async (
   dbConnString: string

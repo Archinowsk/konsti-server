@@ -3,9 +3,9 @@ import { User } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 
 export const getSelectedPlayers = (
-  players: ReadonlyArray<User>,
-  startingGames: ReadonlyArray<Game>
-): Array<User> => {
+  players: readonly User[],
+  startingGames: readonly Game[]
+): User[] => {
   logger.debug('Get selected players');
 
   // Get users who have wishes for starting games

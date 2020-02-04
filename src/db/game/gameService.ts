@@ -16,7 +16,7 @@ const removeGames = async (): Promise<void> => {
 };
 
 const removeDeletedGames = async (
-  updatedGames: ReadonlyArray<Game>
+  updatedGames: readonly Game[]
 ): Promise<void> => {
   const currentGames = await findGames();
 
@@ -40,7 +40,7 @@ const removeDeletedGames = async (
   }
 };
 
-const saveGames = async (games: ReadonlyArray<Game>): Promise<any> => {
+const saveGames = async (games: readonly Game[]): Promise<any> => {
   logger.info('MongoDB: Store games to DB');
 
   await removeDeletedGames(games);

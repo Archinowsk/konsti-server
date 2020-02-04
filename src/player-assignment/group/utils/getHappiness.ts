@@ -6,9 +6,9 @@ import { Result } from 'typings/result.typings';
 import { User, UserArray } from 'typings/user.typings';
 
 export const getHappiness = (
-  results: ReadonlyArray<Result>,
-  playerGroups: ReadonlyArray<UserArray>,
-  allPlayers: ReadonlyArray<User>,
+  results: readonly Result[],
+  playerGroups: readonly UserArray[],
+  allPlayers: readonly User[],
   startingTime: string
 ): void => {
   const opaAssignment = results.map(result => {

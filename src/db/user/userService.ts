@@ -20,9 +20,9 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
     serial: newUserData.serial,
     groupCode:
       typeof newUserData.groupCode === 'string' ? newUserData.groupCode : '0',
-    favoritedGames: newUserData.favoritedGames || [],
-    signedGames: newUserData.signedGames || [],
-    enteredGames: newUserData.enteredGames || [],
+    favoritedGames: newUserData.favoritedGames ?? [],
+    signedGames: newUserData.signedGames ?? [],
+    enteredGames: newUserData.enteredGames ?? [],
   });
 
   let response = null;
@@ -56,9 +56,9 @@ const updateUser = async (newUserData: NewUserData): Promise<void> => {
           typeof newUserData.groupCode === 'string'
             ? newUserData.groupCode
             : '0',
-        favoritedGames: newUserData.favoritedGames || [],
-        signedGames: newUserData.signedGames || [],
-        enteredGames: newUserData.enteredGames || [],
+        favoritedGames: newUserData.favoritedGames ?? [],
+        signedGames: newUserData.signedGames ?? [],
+        enteredGames: newUserData.enteredGames ?? [],
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
     )
@@ -364,7 +364,7 @@ const saveSignupResult = async (signupResult: Result): Promise<void> => {
 };
 
 const saveEnteredGames = async (
-  enteredGames: ReadonlyArray<EnteredGame>,
+  enteredGames: readonly EnteredGame[],
   username: string
 ): Promise<void> => {
   let response = null;

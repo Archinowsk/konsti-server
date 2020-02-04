@@ -6,7 +6,7 @@ export const readJson = (
   year: number,
   event: string,
   datatype: string
-): Array<any> => {
+): any[] => {
   const data = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/${datatype}.json`,
@@ -22,7 +22,7 @@ export const writeJson = (
   year: number,
   event: string,
   datatype: string,
-  data: Array<any> | Object
+  data: any[] | Object
 ): void => {
   if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
     fs.mkdirSync(`src/statistics/datafiles/${event}/${year}/temp/`);
@@ -45,7 +45,7 @@ export const toPercent = (num: number): number => {
   return Math.round(num * 100);
 };
 
-const getDataLength = (data: Array<any> | Object): number => {
+const getDataLength = (data: any[] | Object): number => {
   if (Array.isArray(data)) {
     return data.length;
   } else {

@@ -1,8 +1,8 @@
 import { User, UserArray } from 'typings/user.typings';
 
 export const getPlayerGroups = (
-  players: ReadonlyArray<User>
-): ReadonlyArray<UserArray> => {
+  players: readonly User[]
+): readonly UserArray[] => {
   // Group all unique group numbers
   const groupedUsers = players.reduce((acc, player) => {
     acc[player.groupCode] = acc[player.groupCode] || [];

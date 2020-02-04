@@ -12,8 +12,8 @@ import { Game } from 'typings/game.typings';
 import { PlayerAssignmentResult } from 'typings/result.typings';
 
 export const groupAssignPlayers = (
-  players: ReadonlyArray<User>,
-  games: ReadonlyArray<Game>,
+  players: readonly User[],
+  games: readonly Game[],
   startingTime: string
 ): PlayerAssignmentResult => {
   logger.debug(`***** Run Group Assignment for ${startingTime}`);

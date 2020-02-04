@@ -1,7 +1,7 @@
 import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
 
-export const getSignupWishes = (players: ReadonlyArray<User>) => {
+export const getSignupWishes = (players: readonly User[]) => {
   logger.debug('Get signup wishes');
   const signupWishes = [];
 

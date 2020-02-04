@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Middleware } from 'express';
 import { postUserValidation, postLoginValidation } from 'api/validation';
 import { postGames, getGames } from 'api/controllers/gamesController';
 import { postUser, getUser } from 'api/controllers/userController';
@@ -13,7 +13,6 @@ import { getSettings } from 'api/controllers/settingsController';
 import { getResults } from 'api/controllers/resultsController';
 import { postGroup, getGroup } from 'api/controllers/groupController';
 import { toggleAppOpen } from 'api/controllers/toggleAppOpenController';
-import { Middleware } from 'express';
 
 export const apiRoutes: Middleware = express.Router();
 

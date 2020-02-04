@@ -5,10 +5,10 @@ import { db } from 'db/mongodb';
 import { Signup, Result } from 'typings/result.typings';
 
 export const removeOverlapSignups = async (
-  results: ReadonlyArray<Result>
+  results: readonly Result[]
 ): Promise<any> => {
   logger.debug('Find overlapping signups');
-  const signupData: Array<Signup> = [];
+  const signupData: Signup[] = [];
 
   const [error, players] = await to(db.user.findUsers());
   if (error) return logger.error(error);
@@ -26,7 +26,7 @@ export const removeOverlapSignups = async (
 
     const newSignedGames = [];
 
-    if (signedPlayer && signedPlayer.signedGames) {
+    if (signedPlayer?.signedGames) {
       signedPlayer.signedGames.forEach(signedGame => {
         // If signed game takes place during the length of entered game, cancel it
         if (

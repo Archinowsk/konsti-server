@@ -4,9 +4,9 @@ import { ListItem } from 'typings/opaAssign.typings';
 import { UserArray, SignedGame } from 'typings/user.typings';
 
 export const getList = (
-  playerGroups: ReadonlyArray<UserArray>,
+  playerGroups: readonly UserArray[],
   startingTime: string
-): Array<ListItem> => {
+): ListItem[] => {
   return playerGroups.flatMap(playerGroup => {
     return _.first(playerGroup)
       .signedGames.filter(

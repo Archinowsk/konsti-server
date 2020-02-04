@@ -30,7 +30,7 @@ const findResult = async (
 };
 
 const saveResult = async (
-  signupResultData: ReadonlyArray<Result>,
+  signupResultData: readonly Result[],
   startTime: string,
   algorithm: string,
   message: string

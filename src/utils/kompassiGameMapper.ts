@@ -2,8 +2,8 @@ import moment from 'moment';
 import { KompassiGame } from 'typings/game.typings';
 
 export const kompassiGameMapper = (
-  games: ReadonlyArray<KompassiGame>
-): ReadonlyArray<any> => {
+  games: readonly KompassiGame[]
+): readonly any[] => {
   return games.map(game => {
     return {
       gameId: game.identifier,

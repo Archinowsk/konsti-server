@@ -1,7 +1,7 @@
 import { Game } from 'typings/game.typings';
 import { Event } from 'typings/opaAssign.typings';
 
-export const getEvents = (signedGames: ReadonlyArray<Game>): Array<Event> => {
+export const getEvents = (signedGames: readonly Game[]): Event[] => {
   return signedGames.map(signedGame => {
     return {
       id: signedGame.gameId,

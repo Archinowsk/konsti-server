@@ -4,9 +4,9 @@ import { UserArray } from 'typings/user.typings';
 import { Group } from 'typings/opaAssign.typings';
 
 export const getGroups = (
-  playerGroups: ReadonlyArray<UserArray>,
+  playerGroups: readonly UserArray[],
   startingTime: string
-): Array<Group> => {
+): Group[] => {
   return playerGroups.map(playerGroup => {
     return {
       id:

@@ -8,8 +8,8 @@ import { PlayerAssignmentResult } from 'typings/result.typings';
 import { AssignmentStrategy } from 'typings/config.typings';
 
 export const runAssignmentStrategy = (
-  players: ReadonlyArray<User>,
-  games: ReadonlyArray<Game>,
+  players: readonly User[],
+  games: readonly Game[],
   startingTime: string,
   assignmentStrategy: AssignmentStrategy
 ): PlayerAssignmentResult => {
