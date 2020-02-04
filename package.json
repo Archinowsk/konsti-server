@@ -105,6 +105,20 @@
     "supertest": "4.0.2",
     "typescript": "3.7.5"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write"
+    ]
+  },
   "config": {
     "mongodbMemoryServer": {
       "version": "4.2.3"

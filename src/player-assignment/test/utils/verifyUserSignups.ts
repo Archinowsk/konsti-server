@@ -3,10 +3,7 @@ import _ from 'lodash';
 import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
 
-export const verifyUserSignups = async (
-  startingTime: string,
-  users: User[]
-): Promise<any> => {
+export const verifyUserSignups = (startingTime: string, users: User[]) => {
   logger.info('Verify entered games and signups match for users');
 
   if (!users) {

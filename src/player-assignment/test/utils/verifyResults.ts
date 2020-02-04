@@ -3,11 +3,11 @@ import { logger } from 'utils/logger';
 import { ResultsCollectionEntry } from 'typings/result.typings';
 import { User } from 'typings/user.typings';
 
-export const verifyResults = async (
+export const verifyResults = (
   startTime: string,
   users: User[],
   results: ResultsCollectionEntry
-): Promise<void> => {
+) => {
   logger.info(`Verify results for time ${startTime}`);
 
   if (!users) {

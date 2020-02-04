@@ -57,7 +57,7 @@ const createTestUser = async (userNumber: number): Promise<void> => {
   if (error) logger.error(error);
 };
 
-export const createTestUsers = async (number: number): Promise<void> => {
+export const createTestUsers = (number: number): Promise<void> => {
   for (let i = 0; i < number; i += 1) {
     createTestUser(i + 1);
   }

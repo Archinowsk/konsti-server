@@ -3,7 +3,7 @@ import { anonymizeData } from './fixer-helpers/dataAnonymizer';
 import { wildFix } from './fixer-helpers/wildFix';
 import { gameIdFix } from './fixer-helpers/gameIdFix';
 
-const fixData = async (): Promise<void> => {
+const fixData = () => {
   commander
     .command('anonymize <year> <event>')
     .description('Anonymize users and results')
