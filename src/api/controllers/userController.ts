@@ -160,6 +160,7 @@ const postUser: Middleware = async (
   }
 };
 
+// foobar
 // Get user info
 const getUser: Middleware = async (
   req: $Request,
