@@ -12,7 +12,7 @@
     "build-front-dev": "cd ../konsti-client && npm run build-dev && cd ../konsti-server && npm run copy-front",
     "build-front-prod": "cd ../konsti-client && npm run build && cd ../konsti-server && npm run copy-front",
     "build-front-staging": "cd ../konsti-client && npm run build-staging && cd ../konsti-server && npm run copy-front",
-    "build-js": "babel src -d lib --extensions \".ts,.tsx\"",
+    "build-js": "babel src -d lib --extensions \".ts\"",
     "build-types": "tsc --emitDeclarationOnly",
     "clean": "rimraf lib",
     "copy-front": "rimraf front && ncp ../konsti-client/build ./front",
