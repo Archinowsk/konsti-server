@@ -53,15 +53,13 @@ const testAssignPlayers = async (
     [error, users] = await to(db.user.findUsers());
     if (error) return logger.error(error);
 
-    // @ts-ignore
-    [error] = await to(verifyUserSignups(startingTime, users));
+    verifyUserSignups(startingTime, users);
     if (error) return logger.error(error);
 
     [error, results] = await to(db.results.findResult(startingTime));
     if (error) return logger.error(error);
 
-    // @ts-ignore
-    [error] = await to(verifyResults(startingTime, users, results));
+    verifyResults(startingTime, users, results);
     if (error) return logger.error(error);
   }
 };
