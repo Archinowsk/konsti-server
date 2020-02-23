@@ -18,10 +18,5 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules",
-    "src/test/**/*",
-    "src/statistics/**/*",
-    "*/**/*.test.ts"
-  ]
+  "exclude": ["node_modules"]
 }
