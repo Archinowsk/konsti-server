@@ -14,7 +14,7 @@ const connectToDb = async (
 ): Promise<void> => {
   const { dbName } = config;
 
-  logger.info(`MongoDB: Connecting to ${dbConnString}`);
+  logger.info(`MongoDB: Connecting`);
 
   const options = {
     promiseLibrary: global.Promise,
@@ -27,7 +27,7 @@ const connectToDb = async (
   const [error] = await to(mongoose.connect(dbConnString, options));
   if (error) throw new Error(`MongoDB: Error connecting to DB: ${error}`);
 
-  logger.info(`MongoDB: Connection successful to ${dbConnString}`);
+  logger.info(`MongoDB: Connection successful`);
 
   mongoose.connection.on('error', error => {
     logger.error(error);
@@ -41,7 +41,7 @@ const gracefulExit = async (
   if (error)
     throw new Error(`MongoDB: Error shutting down db connection: ${error}`);
 
-  logger.info(`MongoDB connection closed: ${dbConnString}`);
+  logger.info(`MongoDB connection closed`);
 };
 
 // If the Node process ends, close the Mongoose connection
