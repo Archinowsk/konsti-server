@@ -16,15 +16,16 @@ const createSettings = async (): Promise<Settings> => {
 
   const defaultSettings = new SettingsModel();
 
-  const [error, settings] = await to(defaultSettings.save());
-  if (error) throw new Error(`MongoDB: Add default settings error: ${error}`);
+  const [error, settings] = await to<Settings>(defaultSettings.save());
+  if (error ?? !settings)
+    throw new Error(`MongoDB: Add default settings error: ${error}`);
 
   logger.info(`MongoDB: Default settings saved to DB`);
   return settings;
 };
 
 const findSettings = async (): Promise<Settings> => {
-  const [error, settings] = await to(
+  const [error, settings] = await to<Settings>(
     SettingsModel.findOne({}, '-_id -__v -createdAt -updatedAt')
       .lean()
       .populate('hiddenGames')
@@ -38,7 +39,7 @@ const findSettings = async (): Promise<Settings> => {
 };
 
 const saveHidden = async (hiddenData: readonly Game[]): Promise<Settings> => {
-  const [error, settings] = await to(
+  const [error, settings] = await to<Settings>(
     SettingsModel.findOneAndUpdate(
       {},
       {
@@ -53,14 +54,15 @@ const saveHidden = async (hiddenData: readonly Game[]): Promise<Settings> => {
       }
     ).populate('hiddenGames')
   );
-  if (error) throw new Error(`MongoDB: Error updating hidden games: ${error}`);
+  if (error ?? !settings)
+    throw new Error(`MongoDB: Error updating hidden games: ${error}`);
 
   logger.info(`MongoDB: Hidden data updated`);
   return settings;
 };
 
 const saveSignupTime = async (signupTime: string): Promise<Settings> => {
-  const [error, settings] = await to(
+  const [error, settings] = await to<Settings>(
     SettingsModel.findOneAndUpdate(
       {},
       {
@@ -69,14 +71,15 @@ const saveSignupTime = async (signupTime: string): Promise<Settings> => {
       { new: true, upsert: true }
     )
   );
-  if (error) throw new Error(`MongoDB: Error updating signup time: ${error}`);
+  if (error ?? !settings)
+    throw new Error(`MongoDB: Error updating signup time: ${error}`);
 
   logger.info(`MongoDB: Signup time updated`);
   return settings;
 };
 
 const saveToggleAppOpen = async (appOpen: boolean): Promise<Settings> => {
-  const [error, settings] = await to(
+  const [error, settings] = await to<Settings>(
     SettingsModel.findOneAndUpdate(
       {},
       {
@@ -85,7 +88,8 @@ const saveToggleAppOpen = async (appOpen: boolean): Promise<Settings> => {
       { new: true, upsert: true }
     )
   );
-  if (error) throw new Error(`MongoDB: Error updating app status: ${error}`);
+  if (error ?? !settings)
+    throw new Error(`MongoDB: Error updating app status: ${error}`);
 
   logger.info(`MongoDB: App open status updated`);
   return settings;
