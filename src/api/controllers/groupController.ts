@@ -87,7 +87,7 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
   // Create group
   if (leader) {
     // Check that serial is not used
-    let findGroupResponse = null;
+    let findGroupResponse;
     try {
       // Check if group exists
       // @ts-ignore
@@ -151,7 +151,7 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
     }
 
     // Check if code is valid
-    let findSerialResponse = null;
+    let findSerialResponse;
     try {
       // @ts-ignore
       findSerialResponse = await db.user.findSerial({ serial: groupCode });
@@ -174,7 +174,7 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
     }
 
     // Check if group leader has created a group
-    let findGroupResponse = null;
+    let findGroupResponse;
     try {
       // @ts-ignore
       const leaderUsername = findSerialResponse.username;
@@ -242,7 +242,7 @@ const getGroup = async (req: Request, res: Response): Promise<unknown> => {
     return res.sendStatus(401);
   }
 
-  let findGroupResults = null;
+  let findGroupResults;
   try {
     findGroupResults = await db.user.findGroupMembers(groupCode);
 

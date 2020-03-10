@@ -26,7 +26,7 @@ export const removeMovedGamesFromUsers = async (
 
   logger.info(`Found ${movedGames.length} moved games`);
 
-  let users = null;
+  let users;
   try {
     users = await db.user.findUsers();
   } catch (error) {

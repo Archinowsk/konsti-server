@@ -17,7 +17,7 @@ const postHidden = async (req: Request, res: Response): Promise<unknown> => {
     return res.sendStatus(401);
   }
 
-  let settings = null;
+  let settings;
   try {
     // @ts-ignore
     settings = await db.settings.saveHidden(hiddenData);
@@ -59,7 +59,7 @@ const removeHiddenGamesFromUsers = async (
 
   logger.info(`Found ${hiddenGames.length} hidden games`);
 
-  let users = null;
+  let users;
   try {
     users = await db.user.findUsers();
   } catch (error) {

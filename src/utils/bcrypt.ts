@@ -24,7 +24,7 @@ const comparePasswordHash = async (
 };
 
 const validateLogin = async (password: string, hash: string): Promise<any> => {
-  let hashResponse = null;
+  let hashResponse;
   try {
     // @ts-ignore
     hashResponse = await comparePasswordHash(password, hash);

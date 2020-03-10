@@ -31,7 +31,7 @@ export const runAssignment = async (
     throw new Error(`findGames error: ${error}`);
   }
 
-  let assignResults = null;
+  let assignResults;
   try {
     // @ts-ignore
     assignResults = runAssignmentStrategy(

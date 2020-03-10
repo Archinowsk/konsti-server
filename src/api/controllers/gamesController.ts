@@ -39,7 +39,7 @@ const postGames = async (req: Request, res: Response): Promise<unknown> => {
 
   logger.info(`Found ${kompassiGames.length} games`);
 
-  let gameSaveResponse = null;
+  let gameSaveResponse;
   try {
     gameSaveResponse = await db.game.saveGames(
       kompassiGameMapper(kompassiGames)
@@ -82,7 +82,7 @@ const postGames = async (req: Request, res: Response): Promise<unknown> => {
 const getGames = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/games');
 
-  let games = null;
+  let games;
   try {
     games = await db.game.findGames();
 

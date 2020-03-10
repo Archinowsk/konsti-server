@@ -56,7 +56,7 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('User: Serial is valid');
 
   // Check that serial is not used
-  let user = null;
+  let user;
   try {
     // Check if user already exists
     user = await db.user.findUser(username);
@@ -81,7 +81,7 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
   // Username free
   if (!user) {
     // Check if serial is used
-    let serialResponse = null;
+    let serialResponse;
     try {
       // @ts-ignore
       serialResponse = await db.user.findSerial({ serial });
@@ -106,7 +106,7 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
 
     // Serial not used
     if (!serialResponse) {
-      let passwordHash = null;
+      let passwordHash;
       try {
         passwordHash = await hashPassword(password);
       } catch (error) {
@@ -128,7 +128,7 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
       }
 
       if (passwordHash) {
-        let saveUserResponse = null;
+        let saveUserResponse;
         try {
           saveUserResponse = await db.user.saveUser({
             username,
@@ -170,7 +170,7 @@ const getUser = async (req: Request, res: Response): Promise<unknown> => {
     return res.sendStatus(401);
   }
 
-  let user = null;
+  let user;
 
   if (username) {
     try {

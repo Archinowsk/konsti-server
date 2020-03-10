@@ -29,7 +29,7 @@ const postAssignment = async (
     });
   }
 
-  let assignResults = null;
+  let assignResults;
   try {
     // @ts-ignore
     assignResults = await runAssignment(startingTime);

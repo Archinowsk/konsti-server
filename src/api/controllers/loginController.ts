@@ -44,7 +44,7 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
 
     // @ts-ignore
     if (typeof jwtResponse.username === 'string') {
-      let user = null;
+      let user;
       try {
         // @ts-ignore
         user = await db.user.findUser(jwtResponse.username);
@@ -104,7 +104,7 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
     }
   }
 
-  let user = null;
+  let user;
   try {
     user = await db.user.findUser(username);
   } catch (error) {
