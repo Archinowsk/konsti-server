@@ -9,10 +9,13 @@ export const formatResults = (
 ): readonly Result[] => {
   const selectedPlayers = playerGroups
     .filter(playerGroup => {
+      const firstMember = _.first(playerGroup);
+      if (!firstMember)
+        throw new Error('Opa assign: error getting first member');
       return assignResults.find(
         assignResult =>
-          (assignResult.id === _.first(playerGroup).groupCode ||
-            assignResult.id === _.first(playerGroup).serial) &&
+          (assignResult.id === firstMember.groupCode ||
+            assignResult.id === firstMember.serial) &&
           // @ts-ignore
           assignResult.assignment !== -1
       );

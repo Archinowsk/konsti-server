@@ -8,14 +8,16 @@ export const getGroups = (
   startingTime: string
 ): Group[] => {
   return playerGroups.map(playerGroup => {
+    const firstMember = _.first(playerGroup);
+    if (!firstMember) throw new Error('Opa assign: error getting first member');
     return {
       id:
-        _.first(playerGroup).groupCode !== '0'
-          ? _.first(playerGroup).groupCode
-          : _.first(playerGroup).serial,
+        firstMember.groupCode !== '0'
+          ? firstMember.groupCode
+          : firstMember.serial,
       size: playerGroup.length,
-      pref: _.first(playerGroup)
-        .signedGames.filter(
+      pref: firstMember.signedGames
+        .filter(
           signedGame =>
             moment(signedGame.time).format() === moment(startingTime).format()
         )

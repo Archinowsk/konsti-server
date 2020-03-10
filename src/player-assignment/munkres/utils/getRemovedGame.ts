@@ -14,7 +14,7 @@ export const getRemovedGame = (
   for (let i = 0; i < sortedGamesWithTooFewPlayers.length; i += 1) {
     if (
       sortedGamesWithTooFewPlayers[i].players ===
-      _.first(sortedGamesWithTooFewPlayers).players
+      _.first(sortedGamesWithTooFewPlayers)?.players
     )
       // @ts-ignore
       tiedToLowest.push(sortedGamesWithTooFewPlayers[i]);
