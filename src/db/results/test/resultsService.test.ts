@@ -38,6 +38,6 @@ describe('Results service', () => {
     );
 
     const insertedResults = await ResultsModel.findOne({ message });
-    expect(insertedResults.message).toEqual(message);
+    expect(insertedResults?.message).toEqual(message);
   });
 });

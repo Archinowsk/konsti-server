@@ -42,18 +42,20 @@ describe('removeMovedGamesFromUsers', () => {
     const insertedUser = await UserModel.findOne({
       username: mockUser.username,
     });
-    expect(insertedUser.signedGames.length).toEqual(2);
+    expect(insertedUser?.signedGames.length).toEqual(2);
 
-    await GameModel.updateOne({
-      gameId: game.gameId,
-      startTime: moment(game.startTime).add(1, 'hours'),
-    });
+    await GameModel.updateOne(
+      { gameId: game.gameId },
+      {
+        startTime: moment(game.startTime).add(1, 'hours'),
+      }
+    );
 
     await removeMovedGamesFromUsers(insertedGames);
 
     const updatedUser = await UserModel.findOne({
       username: mockUser.username,
     });
-    expect(updatedUser.signedGames.length).toEqual(1);
+    expect(updatedUser?.signedGames.length).toEqual(1);
   });
 });

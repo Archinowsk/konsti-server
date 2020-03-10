@@ -1,4 +1,10 @@
 import mongoose from 'mongoose';
+import { Result } from 'typings/result.typings';
+
+interface ResultDoc extends Result, mongoose.Document {
+  algorithm: string;
+  message: string;
+}
 
 const ResultsSchema = new mongoose.Schema(
   {
@@ -19,4 +25,4 @@ const ResultsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const ResultsModel = mongoose.model('Results', ResultsSchema);
+export const ResultsModel = mongoose.model<ResultDoc>('Results', ResultsSchema);

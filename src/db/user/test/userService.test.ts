@@ -41,6 +41,6 @@ describe('User service', () => {
     const insertedUser = await UserModel.findOne({
       username: mockUser.username,
     });
-    expect(insertedUser.username).toEqual(mockUser.username);
+    expect(insertedUser?.username).toEqual(mockUser.username);
   });
 });

@@ -13,6 +13,7 @@ module.exports = {
     'plugin:eslint-plugin-node/recommended',
     'plugin:eslint-plugin-promise/recommended',
     'plugin:eslint-plugin-import/errors',
+    'plugin:eslint-plugin-import/typescript',
     // 'plugin:eslint-plugin-security/recommended',
     // 'plugin:eslint-plugin-unicorn/recommended',
   ],

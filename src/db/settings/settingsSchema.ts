@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+import { Settings } from 'typings/settings.typings';
+
+interface SettingsDoc extends Settings, mongoose.Document {}
 
 const SettingsSchema = new mongoose.Schema(
   {
@@ -11,4 +14,7 @@ const SettingsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const SettingsModel = mongoose.model('Settings', SettingsSchema);
+export const SettingsModel = mongoose.model<SettingsDoc>(
+  'Settings',
+  SettingsSchema
+);

@@ -41,7 +41,7 @@ describe('removeInvalidSignupsFromUsers', () => {
     const insertedUser = await UserModel.findOne({
       username: mockUser.username,
     });
-    expect(insertedUser.signedGames.length).toEqual(2);
+    expect(insertedUser?.signedGames.length).toEqual(2);
 
     await GameModel.deleteOne({ gameId: game.gameId });
 
@@ -49,7 +49,7 @@ describe('removeInvalidSignupsFromUsers', () => {
     const updatedUser = await UserModel.findOne({
       username: mockUser.username,
     });
-    expect(updatedUser.signedGames.length).toEqual(1);
+    expect(updatedUser?.signedGames.length).toEqual(1);
 
     const insertedGames2 = await GameModel.find({});
     expect(insertedGames2.length).toEqual(1);

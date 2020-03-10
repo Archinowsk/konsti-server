@@ -29,7 +29,7 @@ describe('Feedback service', () => {
     await db.feedback.saveFeedback(mockFeedback);
 
     const insertedFeedback = await FeedbackModel.findOne(mockFeedback);
-    expect(insertedFeedback.gameId).toEqual(mockFeedback.gameId);
-    expect(insertedFeedback.feedback).toEqual(mockFeedback.feedback);
+    expect(insertedFeedback?.gameId).toEqual(mockFeedback.gameId);
+    expect(insertedFeedback?.feedback).toEqual(mockFeedback.feedback);
   });
 });

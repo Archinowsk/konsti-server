@@ -1,4 +1,4 @@
-import mongoose = require('mongoose');
+import mongoose from 'mongoose';
 import Types = mongoose.Types;
 import ObjectId = Types.ObjectId;
 

@@ -14,7 +14,7 @@ export const getGamesByStartingTime = (games: readonly Game[]) => {
   return gamesByTime;
 };
 
-export const getUsersByGames = (users: readonly User[]) => {
+const getUsersByGames = (users: readonly User[]) => {
   const enteredGames = users.reduce((acc, user) => {
     user.enteredGames.forEach(enteredGame => {
       acc[enteredGame.gameDetails.gameId] =
@@ -51,7 +51,7 @@ export const getNumberOfFullGames = (
   );
 };
 
-export const getSignupsByStartTime = (users: readonly User[]) => {
+const getSignupsByStartTime = (users: readonly User[]) => {
   const userSignupCountsByTime = {};
 
   logger.warn('Warning: inaccurate because forming groups deletes signedGames');
@@ -79,7 +79,7 @@ export const getSignupsByStartTime = (users: readonly User[]) => {
   return userSignupCountsByTime;
 };
 
-export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
+const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
   const maxNumberOfPlayersByTime = {};
   games.forEach(game => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {

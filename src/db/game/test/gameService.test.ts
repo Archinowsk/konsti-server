@@ -31,6 +31,6 @@ describe('Game service', () => {
     const insertedGame = await GameModel.findOne({
       gameId: mockGame.gameId,
     });
-    expect(insertedGame.gameId).toEqual(mockGame.gameId);
+    expect(insertedGame?.gameId).toEqual(mockGame.gameId);
   });
 });

@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+import { Feedback } from 'typings/feedback.typings';
+
+interface FeedbackDoc extends Feedback, mongoose.Document {}
 
 const feedbackSchema = new mongoose.Schema(
   {
@@ -8,4 +11,7 @@ const feedbackSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const FeedbackModel = mongoose.model('Feedback', feedbackSchema);
+export const FeedbackModel = mongoose.model<FeedbackDoc>(
+  'Feedback',
+  feedbackSchema
+);

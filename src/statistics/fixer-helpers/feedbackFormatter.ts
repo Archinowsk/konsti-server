@@ -3,6 +3,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import { writeJson } from '../statsUtil';
 
+/* eslint-disable import/no-unused-modules */
 export const formatFeedbacks = (year: number, event: string) => {
   moment.locale('fi');
 
@@ -40,3 +41,4 @@ export const formatFeedbacks = (year: number, event: string) => {
 
   writeJson(year, event, 'feedback', groupedFeedbacks);
 };
+/* eslint-enable import/no-unused-modules */

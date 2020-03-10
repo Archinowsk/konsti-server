@@ -34,25 +34,25 @@ describe('Settings service', () => {
       appOpen: true,
     };
     const insertedSettings = await SettingsModel.findOne({});
-    expect(insertedSettings.hiddenGames.length).toEqual(
+    expect(insertedSettings?.hiddenGames.length).toEqual(
       defaultSettings.hiddenGames.length
     );
-    expect(insertedSettings.signupTime).toEqual(defaultSettings.signupTime);
-    expect(insertedSettings.appOpen).toEqual(defaultSettings.appOpen);
+    expect(insertedSettings?.signupTime).toEqual(defaultSettings.signupTime);
+    expect(insertedSettings?.appOpen).toEqual(defaultSettings.appOpen);
   });
 
   it('should update hidden games', async () => {
     const hiddenGames = [mockGame, mockGame];
     await db.settings.saveHidden(hiddenGames);
     const insertedSettings = await SettingsModel.findOne({});
-    expect(insertedSettings.hiddenGames.length).toEqual(hiddenGames.length);
+    expect(insertedSettings?.hiddenGames.length).toEqual(hiddenGames.length);
   });
 
   it('should update signup time', async () => {
     const signupTime = '2019-07-26T14:00:00.000Z';
     await db.settings.saveSignupTime(signupTime);
     const insertedSettings = await SettingsModel.findOne({});
-    expect(moment(insertedSettings.signupTime).format()).toEqual(
+    expect(moment(insertedSettings?.signupTime).format()).toEqual(
       moment(signupTime).format()
     );
   });
@@ -61,6 +61,6 @@ describe('Settings service', () => {
     const appOpen = false;
     await db.settings.saveToggleAppOpen(appOpen);
     const insertedSettings = await SettingsModel.findOne({});
-    expect(insertedSettings.appOpen).toEqual(appOpen);
+    expect(insertedSettings?.appOpen).toEqual(appOpen);
   });
 });

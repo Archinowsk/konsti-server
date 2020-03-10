@@ -1,4 +1,8 @@
 import mongoose from 'mongoose';
+import { Game } from 'typings/game.typings';
+
+// @ts-ignore
+interface GameDoc extends Game, mongoose.Document {}
 
 const gameSchema = new mongoose.Schema(
   {
@@ -30,4 +34,4 @@ const gameSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const GameModel = mongoose.model('Game', gameSchema);
+export const GameModel = mongoose.model<GameDoc>('Game', gameSchema);
