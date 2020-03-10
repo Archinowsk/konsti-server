@@ -24,6 +24,14 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
     }
 
     const { userGroup } = jwtData;
+
+    if (userGroup !== 'user' && userGroup !== 'admin' && userGroup !== 'help') {
+      return res.json({
+        message: 'Invalid userGroup',
+        status: 'error',
+      });
+    }
+
     const jwtResponse = verifyJWT(jwt, userGroup);
 
     // @ts-ignore
