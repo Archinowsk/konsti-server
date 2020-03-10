@@ -3,12 +3,9 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { hashPassword } from 'utils/bcrypt';
 import { validateAuthHeader } from 'utils/authHeader';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
-const postUser: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/user');
   const { username, password, serial, changePassword } = req.body;
 
@@ -161,10 +158,7 @@ const postUser: Middleware = async (
 };
 
 // Get user info
-const getUser: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const getUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/user');
   const { username, serial } = req.query;
 

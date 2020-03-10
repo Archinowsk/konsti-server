@@ -3,13 +3,10 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
 import { config } from 'config';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
 // Add signup data for user
-const postSignup: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postSignup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/signup');
   const signupData = req.body.signupData;
 

@@ -1,12 +1,9 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
 // Get settings
-const getSettings: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const getSettings = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/settings');
 
   try {

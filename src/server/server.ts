@@ -1,10 +1,5 @@
 import path from 'path';
-import express, {
-  $Request,
-  $Response,
-  NextFunction,
-  $Application,
-} from 'express';
+import express, { Request, Response, NextFunction, Application } from 'express';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -18,7 +13,7 @@ import { apiRoutes } from 'api/apiRoutes';
 
 export const startServer = async (
   dbConnString: string
-): Promise<$Application> => {
+): Promise<Application> => {
   try {
     await db.connectToDb(dbConnString);
   } catch (error) {
@@ -40,7 +35,7 @@ export const startServer = async (
 
   server.use(
     '/',
-    (err: Error, req: $Request, res: $Response, next: NextFunction) => {
+    (err: Error, req: Request, res: Response, next: NextFunction) => {
       if (err) {
         return res.sendStatus(400);
       } else {
@@ -83,7 +78,7 @@ export const startServer = async (
     server.use(express.static(staticPath));
   }
 
-  server.get('/*', (req: $Request, res: $Response) => {
+  server.get('/*', (req: Request, res: Response) => {
     res.sendFile(path.join(staticPath, 'index.html'));
   });
 
@@ -93,7 +88,7 @@ export const startServer = async (
 };
 
 export const closeServer = async (
-  server: $Application,
+  server: Application,
   dbConnString: string
 ): Promise<void> => {
   try {

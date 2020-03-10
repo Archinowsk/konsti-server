@@ -4,13 +4,13 @@ import { saveResults } from 'player-assignment/utils/saveResults';
 import { runAssignment } from 'player-assignment/runAssignment';
 import { validateAuthHeader } from 'utils/authHeader';
 import { config } from 'config';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
 // Assign players to games
-const postAssignment: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postAssignment = async (
+  req: Request,
+  res: Response
+): Promise<unknown> => {
   logger.info('API call: POST /api/assignment');
   const startingTime = req.body.startingTime;
 

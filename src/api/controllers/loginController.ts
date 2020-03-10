@@ -2,12 +2,9 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateLogin } from 'utils/bcrypt';
 import { getJWT, verifyJWT, decodeJWT } from 'utils/jwt';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
-const postLogin: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postLogin = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/login');
   const { username, password, jwt } = req.body;
 

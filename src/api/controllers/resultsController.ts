@@ -1,11 +1,8 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
-const getResults: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const getResults = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/results');
   const startTime = req.query.startTime;
 
