@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { saveUserSignupResults } from 'player-assignment/utils/saveUserSignupResults';
@@ -21,8 +20,12 @@ export const saveResults = async (
   }
 
   logger.info('Remove old games for the same starting time');
-  const [error] = await to(removeOldEnteredGames(startingTime));
-  if (error) throw new Error(`MongoDB: Error removing old games - ${error}`);
+
+  try {
+    await removeOldEnteredGames(startingTime);
+  } catch (error) {
+    throw new Error(`MongoDB: Error removing old games - ${error}`);
+  }
 
   try {
     logger.info(`Save user signup results for starting time ${startingTime}`);

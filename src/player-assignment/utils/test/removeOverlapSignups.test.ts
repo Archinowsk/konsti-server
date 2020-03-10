@@ -42,12 +42,12 @@ describe('removeOverlapSignups', () => {
     const insertedUser = await UserModel.findOne({
       username: mockUser.username,
     });
-    expect(insertedUser.signedGames.length).toEqual(2);
+    expect(insertedUser?.signedGames.length).toEqual(2);
 
     await removeOverlapSignups(mockResults);
     const updatedUser = await UserModel.findOne({
       username: mockUser.username,
     });
-    expect(updatedUser.signedGames.length).toEqual(1);
+    expect(updatedUser?.signedGames.length).toEqual(1);
   });
 });

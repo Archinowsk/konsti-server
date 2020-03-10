@@ -5,13 +5,10 @@ import { updateGames } from 'utils/updateGames';
 import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
 import { config } from 'config';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
 // Update games db from master data
-const postGames: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postGames = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/games');
 
   const authHeader = req.headers.authorization;
@@ -42,7 +39,7 @@ const postGames: Middleware = async (
 
   logger.info(`Found ${kompassiGames.length} games`);
 
-  let gameSaveResponse = null;
+  let gameSaveResponse;
   try {
     gameSaveResponse = await db.game.saveGames(
       kompassiGameMapper(kompassiGames)
@@ -82,13 +79,10 @@ const postGames: Middleware = async (
 };
 
 // Get games from db
-const getGames: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const getGames = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/games');
 
-  let games = null;
+  let games;
   try {
     games = await db.game.findGames();
 

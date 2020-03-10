@@ -1,13 +1,10 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
 // Post feedback data
-const postFeedback: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postFeedback = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/feedback');
   const feedbackData = req.body.feedbackData;
 

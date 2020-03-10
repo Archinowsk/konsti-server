@@ -11,8 +11,9 @@ const startApp = async (): Promise<void> => {
   const server = await startServer(config.dbConnString);
 
   const app = server.listen(server.get('port'), () => {
-    if (!app) return;
-    logger.info(`Express: Server started on port ${app.address().port}`);
+    const address = app?.address();
+    if (!address || typeof address === 'string') return;
+    logger.info(`Express: Server started on port ${address.port}`);
   });
 };
 

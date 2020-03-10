@@ -1,16 +1,12 @@
 import { logger } from 'utils/logger';
 import { config } from 'config';
-import { $Request, $Response, NextFunction, Middleware } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
-export const allowCORS: Middleware = (
-  req: $Request,
-  res: $Response,
-  next: NextFunction
-) => {
+export const allowCORS = (req: Request, res: Response, next: NextFunction) => {
   const allowedOrigins = config.allowedCorsOrigins;
   const origin = req.headers.origin;
 
-  if (allowedOrigins.includes(origin)) {
+  if (origin && !Array.isArray(origin) && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.setHeader(

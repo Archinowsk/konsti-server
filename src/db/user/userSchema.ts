@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+import { User } from 'typings/user.typings';
+
+interface UserDoc extends User, mongoose.Document {}
 
 const UserSchema = new mongoose.Schema(
   {
@@ -26,4 +29,4 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const UserModel = mongoose.model('User', UserSchema);
+export const UserModel = mongoose.model<UserDoc>('User', UserSchema);

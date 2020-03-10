@@ -2,15 +2,15 @@ import { logger } from 'utils/logger';
 import { ResultsModel } from 'db/results/resultsSchema';
 import { Result, ResultsCollectionEntry } from 'typings/result.typings';
 
-const removeResults = () => {
+const removeResults = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL results from db');
-  return ResultsModel.deleteMany({});
+  await ResultsModel.deleteMany({});
 };
 
 const findResult = async (
   startTime: string
 ): Promise<ResultsCollectionEntry> => {
-  let response = null;
+  let response;
   try {
     response = await ResultsModel.findOne(
       { startTime },
@@ -46,11 +46,12 @@ const saveResult = async (
     };
   });
 
-  let response = null;
+  let response;
   try {
     response = await ResultsModel.replaceOne(
       { startTime },
       { startTime, results, algorithm, message },
+      // @ts-ignore
       { upsert: true }
     );
     logger.debug(

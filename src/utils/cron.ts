@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import moment from 'moment';
 import schedule from 'node-schedule';
 import { logger } from 'utils/logger';
@@ -67,8 +66,12 @@ export const autoAssignPlayers = async (): Promise<void> => {
 
         logger.info('Waiting done, start assignment');
 
-        const [error, assignResults] = await to(runAssignment(startTime));
-        if (error) return logger.error(error);
+        let assignResults;
+        try {
+          assignResults = await runAssignment(startTime);
+        } catch (error) {
+          return logger.error(error);
+        }
 
         // console.log('>>> assignResults: ', assignResults)
 

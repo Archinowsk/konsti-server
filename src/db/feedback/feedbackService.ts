@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { FeedbackModel } from 'db/feedback/feedbackSchema';
 import { Feedback } from 'typings/feedback.typings';
@@ -9,8 +8,11 @@ const saveFeedback = async (feedbackData: Feedback): Promise<void> => {
     feedback: feedbackData.feedback,
   });
 
-  const [error] = await to(feedback.save());
-  if (error) throw new Error(`MongoDB: Feedback save error: ${error}`);
+  try {
+    await feedback.save();
+  } catch (error) {
+    throw new Error(`MongoDB: Feedback save error: ${error}`);
+  }
 
   logger.info(`MongoDB: Feedback saved successfully`);
 };

@@ -30,6 +30,6 @@ describe('Serial service', () => {
     await db.serial.saveSerials([mockSerial]);
 
     const insertedSerial = await SerialModel.findOne({ serial: mockSerial });
-    expect(insertedSerial.serial).toEqual(mockSerial);
+    expect(insertedSerial?.serial).toEqual(mockSerial);
   });
 });

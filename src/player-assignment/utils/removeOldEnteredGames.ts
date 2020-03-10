@@ -1,12 +1,15 @@
-import to from 'await-to-js';
 import moment from 'moment';
 import { db } from 'db/mongodb';
 
 export const removeOldEnteredGames = async (
   startingTime: string
 ): Promise<void> => {
-  const [error, users] = await to(db.user.findUsers());
-  if (error) throw new Error(`MongoDB: Error fetching users - ${error}`);
+  let users;
+  try {
+    users = await db.user.findUsers();
+  } catch (error) {
+    throw new Error(`MongoDB: Error fetching users - ${error}`);
+  }
 
   try {
     await Promise.all(

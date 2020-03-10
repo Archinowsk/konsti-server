@@ -11,8 +11,8 @@ export const runGroupAssignment = (
   signedGames: readonly Game[]
 ): GroupAssignResult => {
   const signupResults = [];
-  let matchingGroups = [];
-  let selectedGroups = [];
+  let matchingGroups = [] as UserArray[];
+  let selectedGroups = [] as UserArray[];
   let score = 0;
   let playerCounter = 0;
   let gameCounter = 0;
@@ -32,7 +32,7 @@ export const runGroupAssignment = (
   for (const selectedGame of shuffledGames) {
     for (const playerGroup of playerGroupsCopy) {
       // Get groups with specific game signup, always use first player in group
-      _.first(playerGroup).signedGames.forEach(signedGame => {
+      _.first(playerGroup)?.signedGames.forEach(signedGame => {
         if (signedGame.gameDetails.gameId === selectedGame.gameId) {
           // @ts-ignore
           matchingGroups.push(playerGroup);
@@ -73,10 +73,10 @@ export const runGroupAssignment = (
 
       // @ts-ignore
       if (selectedGroup.length === 1) {
-        logger.debug(`Selected player: ${_.first(selectedGroup).username} `);
+        logger.debug(`Selected player: ${_.first(selectedGroup)?.username} `);
       } else {
         logger.debug(
-          `Selected group ${_.first(selectedGroup).groupCode} with ${
+          `Selected group ${_.first(selectedGroup)?.groupCode} with ${
             // @ts-ignore
             selectedGroup.length
           } players`
@@ -94,7 +94,8 @@ export const runGroupAssignment = (
         // Remove selected group from MATCHING groups array
         matchingGroups = matchingGroups.filter(
           remainingGroup =>
-            _.first(remainingGroup).username !== _.first(selectedGroup).username
+            _.first(remainingGroup)?.username !==
+            _.first(selectedGroup)?.username
         );
 
         const seatsRemaining = maximumPlayers - numberOfPlayers;
@@ -159,7 +160,8 @@ export const runGroupAssignment = (
       playerGroupsCopy = playerGroupsCopy.filter(remainingGroup => {
         for (const selectedGroup of selectedGroups) {
           if (
-            _.first(remainingGroup).username === _.first(selectedGroup).username
+            _.first(remainingGroup)?.username ===
+            _.first(selectedGroup)?.username
           ) {
             return undefined;
           }

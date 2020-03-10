@@ -130,7 +130,9 @@ const signupMultiple = (games: readonly Game[], users: readonly User[]) => {
 
 const signupGroup = async (games: readonly Game[], users: readonly User[]) => {
   // Generate random signup data for the first user
-  const signedGames = getRandomSignup(games, _.first(users));
+  const firstUser = _.first(users);
+  if (!firstUser) throw new Error('Error getting first user of group');
+  const signedGames = getRandomSignup(games, firstUser);
 
   // Assign same signup data for group members
   const promises = [];

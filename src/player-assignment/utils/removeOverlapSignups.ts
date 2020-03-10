@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import moment from 'moment';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
@@ -10,8 +9,12 @@ export const removeOverlapSignups = async (
   logger.debug('Find overlapping signups');
   const signupData: Signup[] = [];
 
-  const [error, players] = await to(db.user.findUsers());
-  if (error) return logger.error(error);
+  let players;
+  try {
+    players = await db.user.findUsers();
+  } catch (error) {
+    return logger.error(error);
+  }
 
   results.forEach(result => {
     const enteredGame = result.enteredGame.gameDetails;

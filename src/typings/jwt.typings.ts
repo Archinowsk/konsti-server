@@ -1,9 +1,8 @@
 export interface JWTResult {
   username: string;
+  userGroup: string;
   iat: number;
-}
-
-export interface JWTError {
+  exp: number;
   status: string;
   message: string;
 }

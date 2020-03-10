@@ -1,5 +1,4 @@
 import 'array-flat-polyfill';
-import to from 'await-to-js';
 import commander from 'commander';
 import faker from 'faker';
 import { logger } from 'utils/logger';
@@ -18,8 +17,6 @@ const runGenerators = async (): Promise<void> => {
   if (process.env.NODE_ENV === 'production') {
     throw new Error(`Data creation not allowed in production`);
   }
-
-  let error;
 
   // Total users: newUsersCount + groupSize * numberOfGroups + testUsersCount
   const newUsersCount = 40; // Number of individual users
@@ -43,30 +40,48 @@ const runGenerators = async (): Promise<void> => {
 
   commander.parse(process.argv);
 
-  [error] = await to(db.connectToDb());
-  if (error) logger.error(error);
+  try {
+    await db.connectToDb();
+  } catch (error) {
+    logger.error(error);
+  }
 
   if (commander.clean) {
     logger.info('Clean all data');
 
-    [error] = await to(db.user.removeUsers());
-    if (error) logger.error(error);
+    try {
+      await db.user.removeUsers();
+    } catch (error) {
+      logger.error(error);
+    }
 
-    [error] = await to(db.game.removeGames());
-    if (error) logger.error(error);
+    try {
+      await db.game.removeGames();
+    } catch (error) {
+      logger.error(error);
+    }
 
-    [error] = await to(db.results.removeResults());
-    if (error) logger.error(error);
+    try {
+      await db.results.removeResults();
+    } catch (error) {
+      logger.error(error);
+    }
 
-    [error] = await to(db.settings.removeSettings());
-    if (error) logger.error(error);
+    try {
+      await db.settings.removeSettings();
+    } catch (error) {
+      logger.error(error);
+    }
   }
 
   if (commander.users) {
     logger.info('Generate users');
 
-    [error] = await to(db.user.removeUsers());
-    if (error) logger.error(error);
+    try {
+      await db.user.removeUsers();
+    } catch (error) {
+      logger.error(error);
+    }
 
     await createAdminUser();
     await createHelpUser();
@@ -83,8 +98,11 @@ const runGenerators = async (): Promise<void> => {
   if (commander.games) {
     logger.info('Generate games');
 
-    [error] = await to(db.game.removeGames());
-    if (error) logger.error(error);
+    try {
+      await db.game.removeGames();
+    } catch (error) {
+      logger.error(error);
+    }
 
     await createGames(newGamesCount, signupTimes);
   }
@@ -95,8 +113,11 @@ const runGenerators = async (): Promise<void> => {
     await createSignups();
   }
 
-  [error] = await to(db.gracefulExit());
-  if (error) logger.error(error);
+  try {
+    await db.gracefulExit();
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 runGenerators();

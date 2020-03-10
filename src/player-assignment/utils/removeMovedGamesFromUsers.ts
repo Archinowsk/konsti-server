@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import moment from 'moment';
 import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
@@ -9,8 +8,12 @@ export const removeMovedGamesFromUsers = async (
 ): Promise<void> => {
   logger.info('Remove moved games from users');
 
-  const [error, currentGames] = await to(db.game.findGames());
-  if (error) logger.error(error);
+  let currentGames;
+  try {
+    currentGames = await db.game.findGames();
+  } catch (error) {
+    logger.error(error);
+  }
 
   const movedGames = currentGames.filter(currentGame => {
     return updatedGames.find(updatedGame => {
@@ -26,7 +29,7 @@ export const removeMovedGamesFromUsers = async (
 
   logger.info(`Found ${movedGames.length} moved games`);
 
-  let users = null;
+  let users;
   try {
     users = await db.user.findUsers();
   } catch (error) {

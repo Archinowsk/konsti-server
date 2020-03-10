@@ -31,18 +31,18 @@ export const verifyUserSignups = (startingTime: string, users: User[]) => {
     if (user.signedGames && user.signedGames.length !== 0) {
       const signupFound = user.signedGames.find(signedGame => {
         return (
-          signedGame.gameDetails.gameId === enteredGame.gameDetails.gameId &&
+          signedGame.gameDetails.gameId === enteredGame?.gameDetails.gameId &&
           moment(signedGame.time).format() === moment(enteredGame.time).format()
         );
       });
 
       if (!signupFound) {
         logger.error(
-          `Signup not found: ${user.username} - ${enteredGame.gameDetails.title}`
+          `Signup not found: ${user.username} - ${enteredGame?.gameDetails.title}`
         );
       } else {
         logger.debug(
-          `Signup found: ${user.username} - ${enteredGame.gameDetails.title}`
+          `Signup found: ${user.username} - ${enteredGame?.gameDetails.title}`
         );
       }
     }

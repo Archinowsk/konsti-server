@@ -18,7 +18,7 @@ const saveSerials = async (serials: readonly string[]): Promise<void> => {
     );
   }
 
-  let response = null;
+  let response;
   try {
     response = await SerialModel.create(serialDocs);
     logger.info(`MongoDB: Serials data saved`);
@@ -31,7 +31,7 @@ const saveSerials = async (serials: readonly string[]): Promise<void> => {
 };
 
 const findSerial = async (serial: string): Promise<any> => {
-  let response = null;
+  let response;
   try {
     response = await SerialModel.findOne({ serial }).lean();
   } catch (error) {

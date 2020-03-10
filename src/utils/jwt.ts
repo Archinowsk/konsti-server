@@ -1,6 +1,6 @@
 import jsonwebtoken from 'jsonwebtoken';
 import { config } from 'config';
-import { JWTResult, JWTError } from 'typings/jwt.typings';
+import { JWTResult } from 'typings/jwt.typings';
 import { UserGroup } from 'typings/user.typings';
 
 const getSecret = (userGroup: UserGroup) => {
@@ -26,21 +26,42 @@ export const getJWT = (userGroup: UserGroup, username: string): string => {
   );
 };
 
-export const verifyJWT = (
-  jwt: string,
-  userGroup: UserGroup
-): JWTResult | JWTError => {
+export const verifyJWT = (jwt: string, userGroup: UserGroup): JWTResult => {
   try {
-    return jsonwebtoken.verify(jwt, getSecret(userGroup));
+    const result = jsonwebtoken.verify(jwt, getSecret(userGroup)) as JWTResult;
+    console.log('result', result);
+    if (typeof result !== 'string')
+      return {
+        username: result.username,
+        userGroup: result.userGroup,
+        iat: result.iat,
+        exp: result.exp,
+        status: 'success',
+        message: 'success',
+      };
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
-      return { status: 'error', message: 'expired jwt' };
+      return {
+        status: 'error',
+        message: 'expired jwt',
+        username: '',
+        userGroup: '',
+        iat: 0,
+        exp: 0,
+      };
     }
   }
 
-  return { status: 'error', message: 'unknown jwt error' };
+  return {
+    status: 'error',
+    message: 'unknown jwt error',
+    username: '',
+    userGroup: '',
+    iat: 0,
+    exp: 0,
+  };
 };
 
-export const decodeJWT = (jwt: string) => {
-  return jsonwebtoken.decode(jwt);
+export const decodeJWT = (jwt: string): JWTResult => {
+  return jsonwebtoken.decode(jwt) as JWTResult;
 };

@@ -4,7 +4,7 @@ import { db } from 'db/mongodb';
 export const removeInvalidSignupsFromUsers = async (): Promise<any> => {
   logger.info('Remove invalid signups from users');
 
-  let users = null;
+  let users;
   try {
     users = await db.user.findUsers();
   } catch (error) {

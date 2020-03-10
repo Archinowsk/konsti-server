@@ -3,12 +3,9 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { hashPassword } from 'utils/bcrypt';
 import { validateAuthHeader } from 'utils/authHeader';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
-const postUser: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/user');
   const { username, password, serial, changePassword } = req.body;
 
@@ -59,7 +56,7 @@ const postUser: Middleware = async (
   logger.info('User: Serial is valid');
 
   // Check that serial is not used
-  let user = null;
+  let user;
   try {
     // Check if user already exists
     user = await db.user.findUser(username);
@@ -84,7 +81,7 @@ const postUser: Middleware = async (
   // Username free
   if (!user) {
     // Check if serial is used
-    let serialResponse = null;
+    let serialResponse;
     try {
       // @ts-ignore
       serialResponse = await db.user.findSerial({ serial });
@@ -109,7 +106,7 @@ const postUser: Middleware = async (
 
     // Serial not used
     if (!serialResponse) {
-      let passwordHash = null;
+      let passwordHash;
       try {
         passwordHash = await hashPassword(password);
       } catch (error) {
@@ -131,7 +128,7 @@ const postUser: Middleware = async (
       }
 
       if (passwordHash) {
-        let saveUserResponse = null;
+        let saveUserResponse;
         try {
           saveUserResponse = await db.user.saveUser({
             username,
@@ -161,10 +158,7 @@ const postUser: Middleware = async (
 };
 
 // Get user info
-const getUser: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const getUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/user');
   const { username, serial } = req.query;
 
@@ -176,7 +170,7 @@ const getUser: Middleware = async (
     return res.sendStatus(401);
   }
 
-  let user = null;
+  let user;
 
   if (username) {
     try {

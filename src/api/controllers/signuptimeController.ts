@@ -1,13 +1,13 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
 // Add open signup time to server settings
-const postSignupTime: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postSignupTime = async (
+  req: Request,
+  res: Response
+): Promise<unknown> => {
   logger.info('API call: POST /api/signuptime');
   const signupTime = req.body.signupTime;
 

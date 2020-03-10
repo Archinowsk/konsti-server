@@ -1,19 +1,25 @@
-import to from 'await-to-js';
 import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
 import { removeInvalidSignupsFromUsers } from 'player-assignment/utils/removeInvalidSignupsFromUsers';
 
 const removeInvalidGames = async (): Promise<any> => {
-  let error;
+  try {
+    await db.connectToDb();
+  } catch (error) {
+    return logger.error(error);
+  }
 
-  [error] = await to(db.connectToDb());
-  if (error) return logger.error(error);
+  try {
+    await removeInvalidSignupsFromUsers();
+  } catch (error) {
+    return logger.error(`Error removing invalid games: ${error}`);
+  }
 
-  [error] = await to(removeInvalidSignupsFromUsers());
-  if (error) return logger.error(`Error removing invalid games: ${error}`);
-
-  [error] = await to(db.gracefulExit());
-  if (error) return logger.error(error);
+  try {
+    await db.gracefulExit();
+  } catch (error) {
+    return logger.error(error);
+  }
 };
 
 removeInvalidGames();

@@ -2,12 +2,9 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateLogin } from 'utils/bcrypt';
 import { getJWT, verifyJWT, decodeJWT } from 'utils/jwt';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
-const postLogin: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postLogin = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/login');
   const { username, password, jwt } = req.body;
 
@@ -27,6 +24,14 @@ const postLogin: Middleware = async (
     }
 
     const { userGroup } = jwtData;
+
+    if (userGroup !== 'user' && userGroup !== 'admin' && userGroup !== 'help') {
+      return res.json({
+        message: 'Invalid userGroup',
+        status: 'error',
+      });
+    }
+
     const jwtResponse = verifyJWT(jwt, userGroup);
 
     // @ts-ignore
@@ -39,7 +44,7 @@ const postLogin: Middleware = async (
 
     // @ts-ignore
     if (typeof jwtResponse.username === 'string') {
-      let user = null;
+      let user;
       try {
         // @ts-ignore
         user = await db.user.findUser(jwtResponse.username);
@@ -99,7 +104,7 @@ const postLogin: Middleware = async (
     }
   }
 
-  let user = null;
+  let user;
   try {
     user = await db.user.findUser(username);
   } catch (error) {

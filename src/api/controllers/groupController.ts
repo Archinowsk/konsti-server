@@ -1,12 +1,9 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
-import { $Request, $Response, Middleware } from 'express';
+import { Request, Response } from 'express';
 
-const postGroup: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const postGroup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/group');
 
   const authHeader = req.headers.authorization;
@@ -90,7 +87,7 @@ const postGroup: Middleware = async (
   // Create group
   if (leader) {
     // Check that serial is not used
-    let findGroupResponse = null;
+    let findGroupResponse;
     try {
       // Check if group exists
       // @ts-ignore
@@ -154,7 +151,7 @@ const postGroup: Middleware = async (
     }
 
     // Check if code is valid
-    let findSerialResponse = null;
+    let findSerialResponse;
     try {
       // @ts-ignore
       findSerialResponse = await db.user.findSerial({ serial: groupCode });
@@ -177,7 +174,7 @@ const postGroup: Middleware = async (
     }
 
     // Check if group leader has created a group
-    let findGroupResponse = null;
+    let findGroupResponse;
     try {
       // @ts-ignore
       const leaderUsername = findSerialResponse.username;
@@ -232,10 +229,7 @@ const postGroup: Middleware = async (
 };
 
 // Get group members
-const getGroup: Middleware = async (
-  req: $Request,
-  res: $Response
-): Promise<void> => {
+const getGroup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/group');
 
   const groupCode = req.query.groupCode;
@@ -248,7 +242,7 @@ const getGroup: Middleware = async (
     return res.sendStatus(401);
   }
 
-  let findGroupResults = null;
+  let findGroupResults;
   try {
     findGroupResults = await db.user.findGroupMembers(groupCode);
 
