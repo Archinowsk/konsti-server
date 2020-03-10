@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
-import Types = mongoose.Types;
-import ObjectId = Types.ObjectId;
 
 export interface Game {
-  _id: ObjectId;
+  _id: mongoose.Types.ObjectId;
   gameId: string;
   title: string;
   description: string;
