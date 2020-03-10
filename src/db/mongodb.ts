@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { config } from 'config';
 import { user } from 'db/user/userService';
@@ -24,8 +23,11 @@ const connectToDb = async (
     useFindAndModify: false,
   };
 
-  const [error] = await to(mongoose.connect(dbConnString, options));
-  if (error) throw new Error(`MongoDB: Error connecting to DB: ${error}`);
+  try {
+    await mongoose.connect(dbConnString, options);
+  } catch (error) {
+    throw new Error(`MongoDB: Error connecting to DB: ${error}`);
+  }
 
   logger.info(`MongoDB: Connection successful`);
 
@@ -37,9 +39,11 @@ const connectToDb = async (
 const gracefulExit = async (
   dbConnString: string = config.dbConnString
 ): Promise<void> => {
-  const [error] = await to(mongoose.connection.close());
-  if (error)
+  try {
+    await mongoose.connection.close();
+  } catch (error) {
     throw new Error(`MongoDB: Error shutting down db connection: ${error}`);
+  }
 
   logger.info(`MongoDB connection closed`);
 };

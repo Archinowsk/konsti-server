@@ -1,12 +1,15 @@
-import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { UserModel } from 'db/user/userSchema';
 import { Result, Signup } from 'typings/result.typings';
 import { NewUserData, EnteredGame } from 'typings/user.typings';
 
-const removeUsers = () => {
+const removeUsers = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL users from db');
-  return UserModel.deleteMany({});
+  try {
+    await UserModel.deleteMany({});
+  } catch (error) {
+    throw new Error(`MongoDB: Error removing users: ${error}`);
+  }
 };
 
 const saveUser = async (newUserData: NewUserData): Promise<any> => {
@@ -25,7 +28,7 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
     enteredGames: newUserData.enteredGames ?? [],
   });
 
-  let response = null;
+  let response;
   try {
     response = await user.save();
     logger.debug(`MongoDB: User "${newUserData.username}" saved to DB`);
@@ -39,7 +42,7 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
 };
 
 const updateUser = async (newUserData: NewUserData): Promise<void> => {
-  let response = null;
+  let response;
 
   try {
     response = await UserModel.findOneAndUpdate(
@@ -83,7 +86,7 @@ const updateUserPassword = async (
   username: string,
   password: string
 ): Promise<void> => {
-  let response = null;
+  let response;
 
   try {
     response = await UserModel.findOneAndUpdate(
@@ -111,7 +114,7 @@ const updateUserPassword = async (
 };
 
 const findUser = async (username: string): Promise<any> => {
-  let response = null;
+  let response;
   try {
     response = await UserModel.findOne(
       { username },
@@ -135,7 +138,7 @@ const findUser = async (username: string): Promise<any> => {
 };
 
 const findUserBySerial = async (serial: string): Promise<void> => {
-  let response = null;
+  let response;
   try {
     response = await UserModel.findOne(
       { serial },
@@ -165,7 +168,7 @@ const findSerial = async (serialData: Object): Promise<void> => {
   // @ts-ignore
   const serial = serialData.serial;
 
-  let response = null;
+  let response;
   try {
     response = await UserModel.findOne({ serial }).lean();
   } catch (error) {
@@ -183,7 +186,7 @@ const findSerial = async (serialData: Object): Promise<void> => {
 };
 
 const findGroupMembers = async (groupCode: string): Promise<any> => {
-  let response = null;
+  let response;
   try {
     response = await UserModel.find({ groupCode })
       .lean()
@@ -211,7 +214,7 @@ const findGroup = async (
   groupCode: string,
   username: string
 ): Promise<void> => {
-  let response = null;
+  let response;
   if (username) {
     try {
       response = await UserModel.findOne({ groupCode, username }).lean();
@@ -251,24 +254,23 @@ const findGroup = async (
 
 const findUsers = async (): Promise<any> => {
   logger.debug(`MongoDB: Find all users`);
-
-  const [error, users] = await to(
-    UserModel.find({})
+  let users;
+  try {
+    users = await UserModel.find({})
       .lean()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
-      .populate('signedGames.gameDetails')
-  );
-  if (error) throw new Error(`MongoDB: Error fetching users - ${error}`);
-  if (!users) throw new Error('MongoDB: No users found');
-
+      .populate('signedGames.gameDetails');
+  } catch (error) {
+    throw new Error(`MongoDB: Error fetching users - ${error}`);
+  }
   return users;
 };
 
 const saveSignup = async (signupData: Signup): Promise<any> => {
   const { signedGames, username } = signupData;
 
-  let signupResponse = null;
+  let signupResponse;
   try {
     signupResponse = await UserModel.findOneAndUpdate(
       { username: username },
@@ -298,7 +300,7 @@ const saveGroupCode = async (
   groupCode: string,
   username: string
 ): Promise<void> => {
-  let response = null;
+  let response;
 
   try {
     response = await UserModel.findOneAndUpdate(
@@ -323,7 +325,7 @@ const saveGroupCode = async (
 };
 
 const saveFavorite = async (favoriteData: Object): Promise<any> => {
-  let response = null;
+  let response;
   try {
     response = await UserModel.findOneAndUpdate(
       // @ts-ignore
@@ -354,7 +356,7 @@ const saveFavorite = async (favoriteData: Object): Promise<any> => {
 };
 
 const saveSignupResult = async (signupResult: Result): Promise<void> => {
-  let response = null;
+  let response;
   try {
     response = await UserModel.updateOne(
       {
@@ -382,7 +384,7 @@ const saveEnteredGames = async (
   enteredGames: readonly EnteredGame[],
   username: string
 ): Promise<void> => {
-  let response = null;
+  let response;
   try {
     response = await UserModel.updateOne(
       {

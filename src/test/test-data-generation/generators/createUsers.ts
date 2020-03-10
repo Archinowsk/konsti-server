@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import faker from 'faker';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
@@ -19,8 +18,11 @@ export const createAdminUser = async (): Promise<void> => {
     enteredGames: [],
   };
 
-  const [error] = await to(db.user.saveUser(registrationData));
-  if (error) logger.error(error);
+  try {
+    await db.user.saveUser(registrationData);
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 export const createHelpUser = async (): Promise<void> => {
@@ -36,8 +38,11 @@ export const createHelpUser = async (): Promise<void> => {
     enteredGames: [],
   };
 
-  const [error] = await to(db.user.saveUser(registrationData));
-  if (error) logger.error(error);
+  try {
+    await db.user.saveUser(registrationData);
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 const createTestUser = async (userNumber: number): Promise<void> => {
@@ -53,8 +58,11 @@ const createTestUser = async (userNumber: number): Promise<void> => {
     enteredGames: [],
   };
 
-  const [error] = await to(db.user.saveUser(registrationData));
-  if (error) logger.error(error);
+  try {
+    await db.user.saveUser(registrationData);
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 export const createTestUsers = (number: number) => {
@@ -82,8 +90,11 @@ const createUser = async ({
     enteredGames: [],
   };
 
-  const [error] = await to(db.user.saveUser(registrationData));
-  if (error) logger.error(error);
+  try {
+    await db.user.saveUser(registrationData);
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 export const createUsersInGroup = (count: number, groupCode: string) => {

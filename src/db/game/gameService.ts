@@ -8,10 +8,9 @@ import { Game } from 'typings/game.typings';
 const removeGames = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL games from db');
   try {
-    return await GameModel.deleteMany({});
+    await GameModel.deleteMany({});
   } catch (error) {
-    logger.error(`MongoDB: Error removing games - ${error}`);
-    return error;
+    throw new Error(`MongoDB: Error removing games - ${error}`);
   }
 };
 
@@ -95,7 +94,7 @@ const saveGames = async (games: readonly Game[]): Promise<any> => {
 };
 
 const findGames = async (): Promise<any> => {
-  let response = null;
+  let response;
   try {
     response = await GameModel.find({}).lean();
     logger.debug(`MongoDB: Find all games`);

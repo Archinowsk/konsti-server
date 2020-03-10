@@ -1,5 +1,4 @@
 import 'array-flat-polyfill';
-import to from 'await-to-js';
 import moment from 'moment';
 import { logger } from 'utils/logger';
 import { runAssignment } from 'player-assignment/runAssignment';
@@ -20,47 +19,59 @@ const testAssignPlayers = async (
     enableRemoveOverlapSignups,
   } = config;
 
-  let error, users, results, assignResults;
+  let users, results, assignResults;
 
-  [error, users] = await to(db.user.findUsers());
-  if (error) return logger.error(error);
+  try {
+    users = await db.user.findUsers();
+  } catch (error) {
+    return logger.error(error);
+  }
 
   const startingTime = moment(CONVENTION_START_TIME)
     .add(2, 'hours')
     .format();
 
-  [error, assignResults] = await to(
-    runAssignment(startingTime, assignmentStrategy)
-  );
-  if (error) return logger.error(error);
+  try {
+    assignResults = await runAssignment(startingTime, assignmentStrategy);
+  } catch (error) {
+    return logger.error(error);
+  }
 
   if (saveTestAssign) {
     if (enableRemoveOverlapSignups) {
-      [error] = await to(removeOverlapSignups(assignResults.results));
-      if (error) return logger.error(error);
+      try {
+        await removeOverlapSignups(assignResults.results);
+      } catch (error) {
+        return logger.error(error);
+      }
     }
 
-    [error] = await to(
-      saveResults(
+    try {
+      await saveResults(
         assignResults.results,
         startingTime,
         assignResults.algorithm,
         assignResults.message
-      )
-    );
-    if (error) return logger.error(error);
+      );
+    } catch (error) {
+      if (error) return logger.error(error);
+    }
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyUserSignups(startingTime, users);
-    if (error) return logger.error(error);
 
-    [error, results] = await to(db.results.findResult(startingTime));
-    if (error) return logger.error(error);
+    try {
+      results = await db.results.findResult(startingTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyResults(startingTime, users, results);
-    if (error) return logger.error(error);
   }
 };
 
@@ -96,15 +107,19 @@ const init = async (): Promise<any> => {
     return;
   }
 
-  let error;
-
-  [error] = await to(db.connectToDb());
-  if (error) return logger.error(error);
+  try {
+    await db.connectToDb();
+  } catch (error) {
+    return logger.error(error);
+  }
 
   await testAssignPlayers(assignmentStrategy);
 
-  [error] = await to(db.gracefulExit());
-  if (error) logger.error(error);
+  try {
+    await db.gracefulExit();
+  } catch (error) {
+    logger.error(error);
+  }
 };
 
 init();

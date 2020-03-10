@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import moment from 'moment';
@@ -55,10 +54,15 @@ describe('Assignment with valid data', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group';
-    let error, users, results;
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    let users;
+    let results;
+
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
@@ -71,26 +75,36 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults.status).toEqual('success');
 
-    [error] = await to(removeOverlapSignups(assignResults.results));
-    if (error) return logger.error(error);
+    try {
+      await removeOverlapSignups(assignResults.results);
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error] = await to(
-      saveResults(
+    try {
+      await saveResults(
         assignResults.results,
         startingTime,
         assignResults.algorithm,
         assignResults.message
-      )
-    );
-    if (error) return logger.error(error);
+      );
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyUserSignups(startingTime, users);
 
-    [error, results] = await to(db.results.findResult(startingTime));
-    if (error) return logger.error(error);
+    try {
+      results = await db.results.findResult(startingTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyResults(startingTime, users, results);
 
@@ -100,26 +114,36 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults2.status).toEqual('success');
 
-    [error] = await to(removeOverlapSignups(assignResults.results));
-    if (error) return logger.error(error);
+    try {
+      await removeOverlapSignups(assignResults.results);
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error] = await to(
-      saveResults(
+    try {
+      await saveResults(
         assignResults2.results,
         startingTime,
         assignResults2.algorithm,
         assignResults2.message
-      )
-    );
-    if (error) return logger.error(error);
+      );
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyUserSignups(startingTime, users);
 
-    [error, results] = await to(db.results.findResult(startingTime));
-    if (error) return logger.error(error);
+    try {
+      results = await db.results.findResult(startingTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyResults(startingTime, users, results);
   });
@@ -128,10 +152,13 @@ describe('Assignment with valid data', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'opa';
-    let error, users, results;
+    let users, results;
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
@@ -144,26 +171,36 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults.status).toEqual('success');
 
-    [error] = await to(removeOverlapSignups(assignResults.results));
-    if (error) return logger.error(error);
+    try {
+      await removeOverlapSignups(assignResults.results);
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error] = await to(
-      saveResults(
+    try {
+      await saveResults(
         assignResults.results,
         startingTime,
         assignResults.algorithm,
         assignResults.message
-      )
-    );
-    if (error) return logger.error(error);
+      );
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyUserSignups(startingTime, users);
 
-    [error, results] = await to(db.results.findResult(startingTime));
-    if (error) return logger.error(error);
+    try {
+      results = await db.results.findResult(startingTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyResults(startingTime, users, results);
 
@@ -173,26 +210,36 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults2.status).toEqual('success');
 
-    [error] = await to(removeOverlapSignups(assignResults2.results));
-    if (error) return logger.error(error);
+    try {
+      await removeOverlapSignups(assignResults2.results);
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error] = await to(
-      saveResults(
+    try {
+      await saveResults(
         assignResults2.results,
         startingTime,
         assignResults2.algorithm,
         assignResults2.message
-      )
-    );
-    if (error) return logger.error(error);
+      );
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      if (error) return logger.error(error);
+    }
 
     verifyUserSignups(startingTime, users);
 
-    [error, results] = await to(db.results.findResult(startingTime));
-    if (error) return logger.error(error);
+    try {
+      results = await db.results.findResult(startingTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyResults(startingTime, users, results);
   });
@@ -201,10 +248,13 @@ describe('Assignment with valid data', () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = 'group+opa';
-    let error, users, results;
+    let users, results;
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     const startingTime = moment(CONVENTION_START_TIME)
       .add(2, 'hours')
@@ -217,26 +267,36 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults.status).toEqual('success');
 
-    [error] = await to(removeOverlapSignups(assignResults.results));
-    if (error) return logger.error(error);
+    try {
+      await removeOverlapSignups(assignResults.results);
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error] = await to(
-      saveResults(
+    try {
+      await saveResults(
         assignResults.results,
         startingTime,
         assignResults.algorithm,
         assignResults.message
-      )
-    );
-    if (error) return logger.error(error);
+      );
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyUserSignups(startingTime, users);
 
-    [error, results] = await to(db.results.findResult(startingTime));
-    if (error) return logger.error(error);
+    try {
+      results = await db.results.findResult(startingTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyResults(startingTime, users, results);
 
@@ -246,26 +306,36 @@ describe('Assignment with valid data', () => {
 
     expect(assignResults2.status).toEqual('success');
 
-    [error] = await to(removeOverlapSignups(assignResults2.results));
-    if (error) return logger.error(error);
+    try {
+      await removeOverlapSignups(assignResults2.results);
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error] = await to(
-      saveResults(
+    try {
+      await saveResults(
         assignResults2.results,
         startingTime,
         assignResults2.algorithm,
         assignResults2.message
-      )
-    );
-    if (error) return logger.error(error);
+      );
+    } catch (error) {
+      return logger.error(error);
+    }
 
-    [error, users] = await to(db.user.findUsers());
-    if (error) return logger.error(error);
+    try {
+      users = await db.user.findUsers();
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyUserSignups(startingTime, users);
 
-    [error, results] = await to(db.results.findResult(startingTime));
-    if (error) return logger.error(error);
+    try {
+      results = await db.results.findResult(startingTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
     verifyResults(startingTime, users, results);
   });

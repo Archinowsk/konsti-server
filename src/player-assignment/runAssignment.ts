@@ -1,4 +1,3 @@
-import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { config } from 'config';
@@ -13,8 +12,11 @@ export const runAssignment = async (
   startingTime: string,
   assignmentStrategy: AssignmentStrategy = config.assignmentStrategy
 ): Promise<PlayerAssignmentResult> => {
-  const [error] = await to(removeInvalidSignupsFromUsers());
-  if (error) throw new Error(`Error removing invalid games: ${error}`);
+  try {
+    await removeInvalidSignupsFromUsers();
+  } catch (error) {
+    throw new Error(`Error removing invalid games: ${error}`);
+  }
 
   let users: readonly User[] = [];
   try {

@@ -1,5 +1,4 @@
 import moment from 'moment';
-import to from 'await-to-js';
 import { logger } from 'utils/logger';
 import { SettingsModel } from 'db/settings/settingsSchema';
 import { Game } from 'typings/game.typings';
@@ -7,8 +6,11 @@ import { Settings } from 'typings/settings.typings';
 
 const removeSettings = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL settings from db');
-  const [error] = await to(SettingsModel.deleteMany({}));
-  if (error) throw new Error(`MongoDB: Error removing settings: ${error}`);
+  try {
+    await SettingsModel.deleteMany({});
+  } catch (error) {
+    throw new Error(`MongoDB: Error removing settings: ${error}`);
+  }
 };
 
 const createSettings = async (): Promise<Settings> => {
@@ -16,21 +18,29 @@ const createSettings = async (): Promise<Settings> => {
 
   const defaultSettings = new SettingsModel();
 
-  const [error, settings] = await to<Settings>(defaultSettings.save());
-  if (error ?? !settings)
+  let settings;
+  try {
+    settings = await defaultSettings.save();
+  } catch (error) {
     throw new Error(`MongoDB: Add default settings error: ${error}`);
+  }
 
   logger.info(`MongoDB: Default settings saved to DB`);
   return settings;
 };
 
 const findSettings = async (): Promise<Settings> => {
-  const [error, settings] = await to<Settings>(
-    SettingsModel.findOne({}, '-_id -__v -createdAt -updatedAt')
+  let settings;
+  try {
+    settings = await SettingsModel.findOne(
+      {},
+      '-_id -__v -createdAt -updatedAt'
+    )
       .lean()
-      .populate('hiddenGames')
-  );
-  if (error) throw new Error(`MongoDB: Error finding settings data: ${error}`);
+      .populate('hiddenGames');
+  } catch (error) {
+    throw new Error(`MongoDB: Error finding settings data: ${error}`);
+  }
 
   if (!settings) return createSettings();
 
@@ -39,8 +49,9 @@ const findSettings = async (): Promise<Settings> => {
 };
 
 const saveHidden = async (hiddenData: readonly Game[]): Promise<Settings> => {
-  const [error, settings] = await to<Settings>(
-    SettingsModel.findOneAndUpdate(
+  let settings;
+  try {
+    settings = await SettingsModel.findOneAndUpdate(
       {},
       {
         hiddenGames: hiddenData.map(game => {
@@ -52,44 +63,46 @@ const saveHidden = async (hiddenData: readonly Game[]): Promise<Settings> => {
         upsert: true,
         fields: '-_id -__v -createdAt -updatedAt',
       }
-    ).populate('hiddenGames')
-  );
-  if (error ?? !settings)
+    ).populate('hiddenGames');
+  } catch (error) {
     throw new Error(`MongoDB: Error updating hidden games: ${error}`);
+  }
 
   logger.info(`MongoDB: Hidden data updated`);
   return settings;
 };
 
 const saveSignupTime = async (signupTime: string): Promise<Settings> => {
-  const [error, settings] = await to<Settings>(
-    SettingsModel.findOneAndUpdate(
+  let settings;
+  try {
+    settings = await SettingsModel.findOneAndUpdate(
       {},
       {
         signupTime: signupTime ? moment(signupTime).format() : null,
       },
       { new: true, upsert: true }
-    )
-  );
-  if (error ?? !settings)
+    );
+  } catch (error) {
     throw new Error(`MongoDB: Error updating signup time: ${error}`);
+  }
 
   logger.info(`MongoDB: Signup time updated`);
   return settings;
 };
 
 const saveToggleAppOpen = async (appOpen: boolean): Promise<Settings> => {
-  const [error, settings] = await to<Settings>(
-    SettingsModel.findOneAndUpdate(
+  let settings;
+  try {
+    settings = await SettingsModel.findOneAndUpdate(
       {},
       {
         appOpen,
       },
       { new: true, upsert: true }
-    )
-  );
-  if (error ?? !settings)
+    );
+  } catch (error) {
     throw new Error(`MongoDB: Error updating app status: ${error}`);
+  }
 
   logger.info(`MongoDB: App open status updated`);
   return settings;
