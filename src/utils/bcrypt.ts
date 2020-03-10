@@ -14,12 +14,13 @@ const hashPassword = async (password: string): Promise<any> => {
 const comparePasswordHash = async (
   password: string,
   hash: string
-): Promise<void> => {
+): Promise<boolean> => {
   try {
     return await bcrypt.compare(password, hash);
   } catch (error) {
     logger.error(`bcrypt.compare error: ${error}`);
   }
+  return false;
 };
 
 const validateLogin = async (password: string, hash: string): Promise<any> => {
