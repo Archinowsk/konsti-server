@@ -29,7 +29,6 @@ export const getJWT = (userGroup: UserGroup, username: string): string => {
 export const verifyJWT = (jwt: string, userGroup: UserGroup): JWTResult => {
   try {
     const result = jsonwebtoken.verify(jwt, getSecret(userGroup)) as JWTResult;
-    console.log('result', result);
     if (typeof result !== 'string')
       return {
         username: result.username,
