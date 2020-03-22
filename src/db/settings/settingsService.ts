@@ -42,7 +42,7 @@ const findSettings = async (): Promise<Settings> => {
     throw new Error(`MongoDB: Error finding settings data: ${error}`);
   }
 
-  if (!settings) return createSettings();
+  if (!settings) return await createSettings();
 
   logger.debug(`MongoDB: Settings data found`);
   return settings;

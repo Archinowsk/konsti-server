@@ -16,11 +16,12 @@ const loggerLevel = (): string => {
   else return 'info';
 };
 
-const formatMessage = (message: string | Object): string | Object => {
-  if (message && message.constructor === Object) {
+const formatMessage = (message: string | object): string => {
+  if (typeof message === 'string') {
+    return message;
+  } else {
     return JSON.stringify(message, null, 2);
   }
-  return message;
 };
 
 export const logger = createLogger({

@@ -33,7 +33,7 @@ const removeDeletedGames = async (
       );
     } catch (error) {
       logger.error(`Error removing deleted games: ${error}`);
-      return Promise.reject(error);
+      return await Promise.reject(error);
     }
 
     await removeInvalidSignupsFromUsers();
@@ -86,11 +86,11 @@ const saveGames = async (games: readonly Game[]): Promise<any> => {
     );
   } catch (error) {
     logger.error(`Error saving games to db: ${error}`);
-    return Promise.reject(error);
+    return await Promise.reject(error);
   }
 
   logger.debug('MongoDB: Games saved to DB successfully');
-  return findGames();
+  return await findGames();
 };
 
 const findGames = async (): Promise<any> => {

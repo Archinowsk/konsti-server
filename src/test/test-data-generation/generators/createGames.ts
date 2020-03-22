@@ -5,7 +5,7 @@ import { db } from 'db/mongodb';
 import { config } from 'config';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 
-export const createGames = (
+export const createGames = async (
   gameCount: number,
   signupTimes: number
 ): Promise<void> => {
@@ -77,5 +77,5 @@ export const createGames = (
     }
   });
 
-  return db.game.saveGames(kompassiGameMapper(kompassiGames));
+  return await db.game.saveGames(kompassiGameMapper(kompassiGames));
 };

@@ -38,7 +38,7 @@ export const updateGames = async (): Promise<readonly KompassiGame[]> => {
       programItems = await request(options);
     } catch (error) {
       logger.error(`Games request error: ${error}`);
-      return Promise.reject(error);
+      return await Promise.reject(error);
     }
   }
 

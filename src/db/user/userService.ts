@@ -236,7 +236,7 @@ const findGroup = async (
     return response;
   } else {
     try {
-      response = await UserModel.findOne(groupCode).lean();
+      response = await UserModel.findOne({ groupCode }).lean();
     } catch (error) {
       logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`);
       return error;

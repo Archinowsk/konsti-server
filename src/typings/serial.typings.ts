@@ -1,3 +1,3 @@
 export interface Serial {
-  serial: number;
+  serial: string;
 }

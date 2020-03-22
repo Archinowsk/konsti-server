@@ -106,16 +106,19 @@ const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
   return signedGames;
 };
 
-const signup = (games: readonly Game[], user: User) => {
+const signup = async (games: readonly Game[], user: User) => {
   const signedGames = getRandomSignup(games, user);
 
-  return db.user.saveSignup({
+  return await db.user.saveSignup({
     username: user.username,
     signedGames: signedGames,
   });
 };
 
-const signupMultiple = (games: readonly Game[], users: readonly User[]) => {
+const signupMultiple = async (
+  games: readonly Game[],
+  users: readonly User[]
+) => {
   const promises = [];
 
   for (const user of users) {
@@ -125,7 +128,7 @@ const signupMultiple = (games: readonly Game[], users: readonly User[]) => {
     }
   }
 
-  return Promise.all(promises);
+  return await Promise.all(promises);
 };
 
 const signupGroup = async (games: readonly Game[], users: readonly User[]) => {
@@ -146,5 +149,5 @@ const signupGroup = async (games: readonly Game[], users: readonly User[]) => {
     promises.push(db.user.saveSignup(signupData));
   }
 
-  return Promise.all(promises);
+  return await Promise.all(promises);
 };
