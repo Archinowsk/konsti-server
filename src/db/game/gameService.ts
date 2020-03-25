@@ -26,7 +26,7 @@ const removeDeletedGames = async (
 
     try {
       await Promise.all(
-        deletedGames.map(async deletedGame => {
+        deletedGames.map(async (deletedGame) => {
           // @ts-ignore
           await GameModel.deleteOne({ gameId: deletedGame.gameId });
         })
@@ -48,7 +48,7 @@ const saveGames = async (games: readonly Game[]): Promise<any> => {
 
   try {
     await Promise.all(
-      games.map(async game => {
+      games.map(async (game) => {
         await GameModel.updateOne(
           { gameId: game.gameId },
           {

@@ -64,9 +64,7 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // FIRST RUN
 
@@ -160,9 +158,7 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // FIRST RUN
 
@@ -256,9 +252,7 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // FIRST RUN
 
@@ -365,9 +359,7 @@ describe('Assignment with no games', () => {
 
     const assignmentStrategy = 'group';
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
@@ -380,9 +372,7 @@ describe('Assignment with no games', () => {
 
     const assignmentStrategy = 'opa';
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
@@ -395,9 +385,7 @@ describe('Assignment with no games', () => {
 
     const assignmentStrategy = 'group+opa';
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
@@ -430,9 +418,7 @@ describe('Assignment with no players', () => {
 
     const assignmentStrategy = 'group';
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
@@ -445,9 +431,7 @@ describe('Assignment with no players', () => {
 
     const assignmentStrategy = 'opa';
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
@@ -460,9 +444,7 @@ describe('Assignment with no players', () => {
 
     const assignmentStrategy = 'group+opa';
 
-    const startingTime = moment(CONVENTION_START_TIME)
-      .add(2, 'hours')
-      .format();
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);

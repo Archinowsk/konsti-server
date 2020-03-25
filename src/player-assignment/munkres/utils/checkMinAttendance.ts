@@ -27,14 +27,14 @@ export const checkMinAttendance = (
   }
 
   const counts = {};
-  gameIds.forEach(x => {
+  gameIds.forEach((x) => {
     // @ts-ignore
     counts[x] = (counts[x] || 0) + 1;
   });
 
   // Find games with too few players
   const gamesWithTooFewPlayers = [];
-  signedGames.forEach(signedGame => {
+  signedGames.forEach((signedGame) => {
     if (counts[signedGame.gameId] < signedGame.minAttendance) {
       gamesWithTooFewPlayers.push({
         // @ts-ignore

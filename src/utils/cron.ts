@@ -49,10 +49,7 @@ export const autoAssignPlayers = async (): Promise<void> => {
         // 30 * * * * -> “At minute 30.”
         // */1 * * * * -> “Every minute”
 
-        const startTime = moment()
-          .endOf('hour')
-          .add(1, 'seconds')
-          .format();
+        const startTime = moment().endOf('hour').add(1, 'seconds').format();
 
         /*
       const startTime = moment(config.CONVENTION_START_TIME)

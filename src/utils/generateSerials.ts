@@ -2,7 +2,7 @@ import generator from 'generate-serial-number';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 
-const isInt = n => parseInt(n, 10) % 1 === 0;
+const isInt = (n) => parseInt(n, 10) % 1 === 0;
 
 const generateSerials = async (): Promise<void> => {
   const serials: any = [];

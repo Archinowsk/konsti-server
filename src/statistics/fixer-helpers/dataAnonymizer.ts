@@ -21,11 +21,11 @@ export const anonymizeData = async (
     )
   );
 
-  users.forEach(user => {
+  users.forEach((user) => {
     const randomUsername = faker.random.number(1000000).toString();
 
-    results.forEach(result => {
-      result.results.forEach(userResult => {
+    results.forEach((result) => {
+      result.results.forEach((userResult) => {
         if (user.username === userResult.username) {
           logger.info(`results.json: ${user.username} -> ${randomUsername}`);
           userResult.username = randomUsername;

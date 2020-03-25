@@ -16,7 +16,7 @@ export const getGamesByStartingTime = (games: readonly Game[]) => {
 
 const getUsersByGames = (users: readonly User[]) => {
   const enteredGames = users.reduce((acc, user) => {
-    user.enteredGames.forEach(enteredGame => {
+    user.enteredGames.forEach((enteredGame) => {
       acc[enteredGame.gameDetails.gameId] =
         ++acc[enteredGame.gameDetails.gameId] || 1;
     });
@@ -34,7 +34,7 @@ export const getNumberOfFullGames = (
   const usersByGames = getUsersByGames(users);
 
   let counter = 0;
-  games.forEach(game => {
+  games.forEach((game) => {
     if (
       // @ts-ignore
       parseInt(game.maxAttendance, 10) ===
@@ -56,12 +56,13 @@ const getSignupsByStartTime = (users: readonly User[]) => {
 
   logger.warn('Warning: inaccurate because forming groups deletes signedGames');
 
-  users.forEach(user => {
+  users.forEach((user) => {
     let groupSize = 1;
 
     if (user.groupCode !== '0' && user.groupCode === user.serial) {
-      groupSize = users.filter(groupUser => groupUser.groupCode === user.serial)
-        .length;
+      groupSize = users.filter(
+        (groupUser) => groupUser.groupCode === user.serial
+      ).length;
     }
 
     const signedGames = user.signedGames.reduce((acc, signedGame) => {
@@ -81,7 +82,7 @@ const getSignupsByStartTime = (users: readonly User[]) => {
 
 const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
   const maxNumberOfPlayersByTime = {};
-  games.forEach(game => {
+  games.forEach((game) => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {
       maxNumberOfPlayersByTime[game.startTime] = 0;
     }
@@ -130,13 +131,14 @@ export const getDemandByGame = (
   const signedGames = users.reduce((acc, user) => {
     let groupSize = 1;
     if (user.groupCode !== '0' && user.groupCode === user.serial) {
-      groupSize = users.filter(groupUser => groupUser.groupCode === user.serial)
-        .length;
+      groupSize = users.filter(
+        (groupUser) => groupUser.groupCode === user.serial
+      ).length;
     }
 
-    user.signedGames.forEach(signedGame => {
+    user.signedGames.forEach((signedGame) => {
       const game = games.find(
-        game => game.gameId === signedGame.gameDetails.gameId
+        (game) => game.gameId === signedGame.gameDetails.gameId
       );
 
       if (!game) return;

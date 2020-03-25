@@ -11,9 +11,9 @@ export const getHappiness = (
   allPlayers: readonly User[],
   startingTime: string
 ): void => {
-  const opaAssignment = results.map(result => {
+  const opaAssignment = results.map((result) => {
     const player = allPlayers.find(
-      player => player.username === result.username
+      (player) => player.username === result.username
     );
 
     if (!player) throw new Error('Error calculating assignment happiness');

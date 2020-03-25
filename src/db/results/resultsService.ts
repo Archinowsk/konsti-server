@@ -35,7 +35,7 @@ const saveResult = async (
   algorithm: string,
   message: string
 ): Promise<ResultsCollectionEntry> => {
-  const results = signupResultData.map(result => {
+  const results = signupResultData.map((result) => {
     return {
       username: result.username,
       enteredGame: {

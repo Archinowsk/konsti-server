@@ -7,15 +7,15 @@ export const getList = (
   playerGroups: readonly UserArray[],
   startingTime: string
 ): ListItem[] => {
-  return playerGroups.flatMap(playerGroup => {
+  return playerGroups.flatMap((playerGroup) => {
     const firstMember = _.first(playerGroup);
     if (!firstMember) throw new Error('Opa assign: error getting first member');
     return firstMember.signedGames
       .filter(
-        signedGame =>
+        (signedGame) =>
           moment(signedGame.time).format() === moment(startingTime).format()
       )
-      .map(signedGame => {
+      .map((signedGame) => {
         return {
           id:
             firstMember.groupCode !== '0'

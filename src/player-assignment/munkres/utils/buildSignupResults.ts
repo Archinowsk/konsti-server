@@ -23,7 +23,7 @@ export const buildSignupResults = (
 
     const findEnteredGame = (enteredGame, signedGames) => {
       return signedGames.find(
-        signedGame => signedGame.gameDetails.gameId === enteredGame.gameId
+        (signedGame) => signedGame.gameDetails.gameId === enteredGame.gameId
       );
     };
 

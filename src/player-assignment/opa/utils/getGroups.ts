@@ -7,7 +7,7 @@ export const getGroups = (
   playerGroups: readonly UserArray[],
   startingTime: string
 ): Group[] => {
-  return playerGroups.map(playerGroup => {
+  return playerGroups.map((playerGroup) => {
     const firstMember = _.first(playerGroup);
     if (!firstMember) throw new Error('Opa assign: error getting first member');
     return {
@@ -18,10 +18,10 @@ export const getGroups = (
       size: playerGroup.length,
       pref: firstMember.signedGames
         .filter(
-          signedGame =>
+          (signedGame) =>
             moment(signedGame.time).format() === moment(startingTime).format()
         )
-        .map(signedGame => signedGame.gameDetails.gameId),
+        .map((signedGame) => signedGame.gameDetails.gameId),
     };
   });
 };

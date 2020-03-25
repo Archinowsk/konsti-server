@@ -19,9 +19,7 @@ afterEach(async () => {
 
 describe('server', () => {
   test('should return 400 if request is not valid json', async () => {
-    const response = await request(server)
-      .post('/foobar')
-      .send('notJSON');
+    const response = await request(server).post('/foobar').send('notJSON');
     expect(response.status).toEqual(400);
   });
 });

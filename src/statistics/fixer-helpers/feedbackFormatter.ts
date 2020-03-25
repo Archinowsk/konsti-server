@@ -24,11 +24,11 @@ export const formatFeedbacks = (year: number, event: string) => {
   console.info(`Loaded ${games.length} games`);
 
   const filteredFeedbacks = feedbacks.filter(
-    feedback => feedback.feedback !== ''
+    (feedback) => feedback.feedback !== ''
   );
 
-  const formattedFeedbacks = filteredFeedbacks.map(feedback => {
-    const foundGame = games.find(game => game.gameId === feedback.gameId);
+  const formattedFeedbacks = filteredFeedbacks.map((feedback) => {
+    const foundGame = games.find((game) => game.gameId === feedback.gameId);
     return {
       ...feedback,
       title: foundGame.title,

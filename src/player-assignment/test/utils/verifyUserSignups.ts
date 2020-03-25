@@ -11,9 +11,9 @@ export const verifyUserSignups = (startingTime: string, users: User[]) => {
     return;
   }
 
-  users.map(user => {
+  users.map((user) => {
     const enteredGames = user.enteredGames.filter(
-      enteredGame =>
+      (enteredGame) =>
         moment(enteredGame.time).format() === moment(startingTime).format()
     );
 
@@ -29,7 +29,7 @@ export const verifyUserSignups = (startingTime: string, users: User[]) => {
     const enteredGame = _.first(enteredGames);
 
     if (user.signedGames && user.signedGames.length !== 0) {
-      const signupFound = user.signedGames.find(signedGame => {
+      const signupFound = user.signedGames.find((signedGame) => {
         return (
           signedGame.gameDetails.gameId === enteredGame?.gameDetails.gameId &&
           moment(signedGame.time).format() === moment(enteredGame.time).format()

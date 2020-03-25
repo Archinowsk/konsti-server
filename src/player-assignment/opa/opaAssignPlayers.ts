@@ -73,7 +73,7 @@ export const opaAssignPlayers = (
   const result = runOpaAssignment(signedGames, playerGroups, startingTime);
 
   const selectedUniqueGames = _.uniq(
-    result.results.map(result => result.enteredGame.gameDetails.gameId)
+    result.results.map((result) => result.enteredGame.gameDetails.gameId)
   );
 
   const message = `Opa Assign Result - Players: ${result.results.length}/${

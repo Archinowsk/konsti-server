@@ -70,9 +70,9 @@ const removeHiddenGamesFromUsers = async (
   try {
     await Promise.all(
       // @ts-ignore
-      users.map(async user => {
-        const signedGames = user.signedGames.filter(signedGame => {
-          const hiddenFound = hiddenGames.find(hiddenGame => {
+      users.map(async (user) => {
+        const signedGames = user.signedGames.filter((signedGame) => {
+          const hiddenFound = hiddenGames.find((hiddenGame) => {
             return hiddenGame.gameId === signedGame.gameDetails.gameId;
           });
           if (!hiddenFound) {
@@ -80,8 +80,8 @@ const removeHiddenGamesFromUsers = async (
           }
         });
 
-        const enteredGames = user.enteredGames.filter(enteredGame => {
-          const hiddenFound = hiddenGames.find(hiddenGame => {
+        const enteredGames = user.enteredGames.filter((enteredGame) => {
+          const hiddenFound = hiddenGames.find((hiddenGame) => {
             return hiddenGame.gameId === enteredGame.gameDetails.gameId;
           });
           if (!hiddenFound) {
@@ -89,8 +89,8 @@ const removeHiddenGamesFromUsers = async (
           }
         });
 
-        const favoritedGames = user.favoritedGames.filter(favoritedGame => {
-          const hiddenFound = hiddenGames.find(hiddenGame => {
+        const favoritedGames = user.favoritedGames.filter((favoritedGame) => {
+          const hiddenFound = hiddenGames.find((hiddenGame) => {
             return hiddenGame.gameId === favoritedGame.gameId;
           });
           if (!hiddenFound) {

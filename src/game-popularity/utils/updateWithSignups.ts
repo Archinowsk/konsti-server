@@ -8,12 +8,12 @@ export const updateWithSignups = async (
   games: Game[]
 ): Promise<void> => {
   const groupLeaders = users.filter(
-    user => user.groupCode !== '0' && user.groupCode === user.serial
+    (user) => user.groupCode !== '0' && user.groupCode === user.serial
   );
 
-  const allUsers = users.map(user => {
+  const allUsers = users.map((user) => {
     const groupLeader = groupLeaders.find(
-      groupLeader =>
+      (groupLeader) =>
         user.groupCode === groupLeader.groupCode &&
         user.serial !== groupLeader.serial
     );
@@ -23,8 +23,8 @@ export const updateWithSignups = async (
     } else return user;
   });
 
-  const signedGames = allUsers.flatMap(user =>
-    user.signedGames.map(signedGames => signedGames.gameDetails)
+  const signedGames = allUsers.flatMap((user) =>
+    user.signedGames.map((signedGames) => signedGames.gameDetails)
   );
 
   const groupedSignups = signedGames.reduce((acc, game) => {
@@ -34,7 +34,7 @@ export const updateWithSignups = async (
 
   try {
     await Promise.all(
-      games.map(async game => {
+      games.map(async (game) => {
         if (groupedSignups[game.gameId]) {
           await db.game.saveGamePopularity(
             game.gameId,

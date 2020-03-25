@@ -4,7 +4,7 @@ import { KompassiGame } from 'typings/game.typings';
 export const kompassiGameMapper = (
   games: readonly KompassiGame[]
 ): readonly any[] => {
-  return games.map(game => {
+  return games.map((game) => {
     return {
       gameId: game.identifier,
       title: game.title,
@@ -16,9 +16,7 @@ export const kompassiGameMapper = (
       genres: game.genres,
       styles: game.styles,
       language: game.language,
-      endTime: moment(game.start_time)
-        .add(game.length, 'minutes')
-        .format(),
+      endTime: moment(game.start_time).add(game.length, 'minutes').format(),
       people: game.formatted_hosts,
       minAttendance: game.min_players,
       maxAttendance: game.max_players,
@@ -36,7 +34,7 @@ export const kompassiGameMapper = (
   });
 };
 
-const mapProgramType = programType => {
+const mapProgramType = (programType) => {
   if (programType === 'Roolipeli') return 'tabletopRPG';
   else if (programType === 'Freeform') return 'freeformRPG';
 };

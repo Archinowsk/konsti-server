@@ -14,11 +14,11 @@ export const getSignupMatrix = (
   let counter = 0;
 
   // For each starting game...
-  signedGames.forEach(signedGame => {
+  signedGames.forEach((signedGame) => {
     const gameSignups: number[] = [];
 
     // ... check if players have wishes that match with game id
-    selectedPlayers.forEach(player => {
+    selectedPlayers.forEach((player) => {
       let match = false;
       for (let i = 0; i < player.signedGames.length; i += 1) {
         // Player has wish that matches starting game

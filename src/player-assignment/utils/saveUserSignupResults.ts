@@ -7,7 +7,7 @@ export const saveUserSignupResults = async (
 ): Promise<void> => {
   try {
     await Promise.all(
-      results.map(async result => {
+      results.map(async (result) => {
         await db.user.saveSignupResult(result);
       })
     );

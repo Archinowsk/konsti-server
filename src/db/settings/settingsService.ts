@@ -54,7 +54,7 @@ const saveHidden = async (hiddenData: readonly Game[]): Promise<Settings> => {
     settings = await SettingsModel.findOneAndUpdate(
       {},
       {
-        hiddenGames: hiddenData.map(game => {
+        hiddenGames: hiddenData.map((game) => {
           return game._id;
         }),
       },

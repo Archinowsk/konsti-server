@@ -27,9 +27,7 @@ const testAssignPlayers = async (
     return logger.error(error);
   }
 
-  const startingTime = moment(CONVENTION_START_TIME)
-    .add(2, 'hours')
-    .format();
+  const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
   try {
     assignResults = await runAssignment(startingTime, assignmentStrategy);

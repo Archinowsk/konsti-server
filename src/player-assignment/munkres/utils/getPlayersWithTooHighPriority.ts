@@ -6,7 +6,7 @@ export const getPlayersWithTooHighPriority = (
 ) => {
   const playersWithTooHighPriority = [];
 
-  priorities.forEach(priority => {
+  priorities.forEach((priority) => {
     if (priority.priorityValue === 9) {
       // @ts-ignore
       playersWithTooHighPriority.push(priority);

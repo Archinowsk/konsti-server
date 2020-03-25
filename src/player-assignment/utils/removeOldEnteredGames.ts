@@ -13,9 +13,9 @@ export const removeOldEnteredGames = async (
 
   try {
     await Promise.all(
-      users.map(async user => {
+      users.map(async (user) => {
         const enteredGames = user.enteredGames.filter(
-          enteredGame =>
+          (enteredGame) =>
             moment(enteredGame.time).format() !== moment(startingTime).format()
         );
         await db.user.saveEnteredGames(enteredGames, user.username);

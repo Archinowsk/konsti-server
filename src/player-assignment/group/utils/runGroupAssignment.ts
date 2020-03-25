@@ -19,7 +19,7 @@ export const runGroupAssignment = (
 
   const findEnteredGame = (enteredGame, signedGames) => {
     return signedGames.find(
-      signedGame => signedGame.gameDetails.gameId === enteredGame.gameId
+      (signedGame) => signedGame.gameDetails.gameId === enteredGame.gameId
     );
   };
 
@@ -32,7 +32,7 @@ export const runGroupAssignment = (
   for (const selectedGame of shuffledGames) {
     for (const playerGroup of playerGroupsCopy) {
       // Get groups with specific game signup, always use first player in group
-      _.first(playerGroup)?.signedGames.forEach(signedGame => {
+      _.first(playerGroup)?.signedGames.forEach((signedGame) => {
         if (signedGame.gameDetails.gameId === selectedGame.gameId) {
           // @ts-ignore
           matchingGroups.push(playerGroup);
@@ -93,7 +93,7 @@ export const runGroupAssignment = (
 
         // Remove selected group from MATCHING groups array
         matchingGroups = matchingGroups.filter(
-          remainingGroup =>
+          (remainingGroup) =>
             _.first(remainingGroup)?.username !==
             _.first(selectedGroup)?.username
         );
@@ -125,7 +125,8 @@ export const runGroupAssignment = (
         // @ts-ignore
         for (const groupMember of selectedGroup) {
           const signedGame = groupMember.signedGames.find(
-            signedGame => signedGame.gameDetails.gameId === selectedGame.gameId
+            (signedGame) =>
+              signedGame.gameDetails.gameId === selectedGame.gameId
           );
 
           // Increase score based on priority of the entered game
@@ -157,7 +158,7 @@ export const runGroupAssignment = (
       }
 
       // Remove selected groups from ALL groups array
-      playerGroupsCopy = playerGroupsCopy.filter(remainingGroup => {
+      playerGroupsCopy = playerGroupsCopy.filter((remainingGroup) => {
         for (const selectedGroup of selectedGroups) {
           if (
             _.first(remainingGroup)?.username ===

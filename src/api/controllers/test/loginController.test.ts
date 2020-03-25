@@ -24,20 +24,16 @@ describe('POST /api/login', () => {
   });
 
   test('should return 422 if username is found but password is missing', async () => {
-    const response = await request(server)
-      .post('/api/login')
-      .send({
-        username: 'testuser',
-      });
+    const response = await request(server).post('/api/login').send({
+      username: 'testuser',
+    });
     expect(response.status).toEqual(422);
   });
 
   test('should return 422 if password is found but username is missing', async () => {
-    const response = await request(server)
-      .post('/api/login')
-      .send({
-        password: 'testpass',
-      });
+    const response = await request(server).post('/api/login').send({
+      password: 'testpass',
+    });
     expect(response.status).toEqual(422);
   });
 

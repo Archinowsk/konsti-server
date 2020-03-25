@@ -26,32 +26,26 @@ describe('GET /api/user', () => {
 
 describe('POST /api/user', () => {
   test('should return 422 without username', async () => {
-    const response = await request(server)
-      .post('/api/user')
-      .send({
-        password: 'testpass',
-        serial: 'testserial',
-      });
+    const response = await request(server).post('/api/user').send({
+      password: 'testpass',
+      serial: 'testserial',
+    });
     expect(response.status).toEqual(422);
   });
 
   test('should return 422 without password', async () => {
-    const response = await request(server)
-      .post('/api/user')
-      .send({
-        username: 'testuser',
-        serial: 'testserial',
-      });
+    const response = await request(server).post('/api/user').send({
+      username: 'testuser',
+      serial: 'testserial',
+    });
     expect(response.status).toEqual(422);
   });
 
   test('should return 422 without serial', async () => {
-    const response = await request(server)
-      .post('/api/user')
-      .send({
-        username: 'testuser',
-        password: 'testpass',
-      });
+    const response = await request(server).post('/api/user').send({
+      username: 'testuser',
+      password: 'testpass',
+    });
     expect(response.status).toEqual(422);
   });
 });

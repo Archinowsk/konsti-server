@@ -11,7 +11,7 @@ export const getSelectedPlayers = (
   // Get users who have wishes for starting games
   const selectedPlayers = [];
 
-  players.forEach(player => {
+  players.forEach((player) => {
     let match = false;
     for (let i = 0; i < player.signedGames.length; i += 1) {
       for (let j = 0; j < startingGames.length; j += 1) {

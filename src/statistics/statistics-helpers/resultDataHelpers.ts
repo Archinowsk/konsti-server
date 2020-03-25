@@ -20,7 +20,7 @@ export const getSignupsByTime = (results: readonly any[]) => {
 
 export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
   const maxNumberOfPlayersByTime = {};
-  games.forEach(game => {
+  games.forEach((game) => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {
       maxNumberOfPlayersByTime[game.startTime] = 0;
     }

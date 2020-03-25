@@ -29,7 +29,7 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
 
     try {
       await Promise.all(
-        groupMembers.map(async groupMember => {
+        groupMembers.map(async (groupMember) => {
           await db.user.saveGroupCode('0', groupMember.username);
         })
       );

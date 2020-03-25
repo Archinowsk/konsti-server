@@ -26,7 +26,7 @@ export const createGames = async (
 
   const kompassiGames = [];
 
-  startingTimes.forEach(startingTime => {
+  startingTimes.forEach((startingTime) => {
     for (let i = 0; i < gameCount; i += 1) {
       const minAttendance = faker.random.number({ min: 3, max: 4 });
       const maxAttendance = faker.random.number({ min: 4, max: 6 });
@@ -41,9 +41,7 @@ export const createGames = async (
         room_name: 'Ropetaverna',
         length,
         start_time: moment(startTime).format(),
-        end_time: moment(startTime)
-          .add(length, 'minutes')
-          .format(),
+        end_time: moment(startTime).add(length, 'minutes').format(),
         language: 'fi',
         rpg_system: 'Test gamesystem',
         no_language: true,

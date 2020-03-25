@@ -44,7 +44,7 @@ export const logger = createLogger({
         timestamp({
           format: 'HH:mm:ss',
         }),
-        printf(info => {
+        printf((info) => {
           return `${info.timestamp} ${info.level}: ${formatMessage(
             info.message
           )}`;

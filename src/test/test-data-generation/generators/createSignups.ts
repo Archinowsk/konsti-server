@@ -24,7 +24,7 @@ export const createSignups = async () => {
 
   const users = allUsers.filter(
     // @ts-ignore
-    user => user.username !== 'admin' && user.username !== 'ropetiski'
+    (user) => user.username !== 'admin' && user.username !== 'ropetiski'
   );
 
   logger.info(`Signup: ${games.length} games`);
@@ -58,18 +58,14 @@ const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
   const signedGames = [];
   let randomIndex;
 
-  const startTimes = games.map(game =>
-    moment(game.startTime)
-      .utc()
-      .format()
-  );
+  const startTimes = games.map((game) => moment(game.startTime).utc().format());
   const uniqueTimes = Array.from(new Set(startTimes));
 
   // Select random games for each starting time
-  uniqueTimes.forEach(startingTime => {
+  uniqueTimes.forEach((startingTime) => {
     logger.debug(`Generate signups for time ${startingTime}`);
     const gamesForTime = games.filter(
-      games =>
+      (games) =>
         moment(games.startTime).format() === moment(startingTime).format()
     );
 
@@ -85,7 +81,7 @@ const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
 
       const duplicate = !!signedGames.find(
         // @ts-ignore
-        signedGame => signedGame.gameDetails.gameId === randomGame.gameId
+        (signedGame) => signedGame.gameDetails.gameId === randomGame.gameId
       );
 
       if (duplicate) {

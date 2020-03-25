@@ -6,7 +6,7 @@ export const getRemovedGame = (
 ) => {
   // Get games with least players
   const sortedGamesWithTooFewPlayers = _.sortBy(gamesWithTooFewPlayers, [
-    game => game.players,
+    (game) => game.players,
   ]);
 
   // Find games that are tied to the lowest player count

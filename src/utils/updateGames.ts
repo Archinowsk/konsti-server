@@ -48,7 +48,7 @@ export const updateGames = async (): Promise<readonly KompassiGame[]> => {
   }
 
   // @ts-ignore
-  return programItems.filter(programItem => {
+  return programItems.filter((programItem) => {
     if (
       programItem.category_title === 'Roolipeli' ||
       programItem.category_title === 'Freeform'

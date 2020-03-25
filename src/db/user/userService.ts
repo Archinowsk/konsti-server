@@ -275,7 +275,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
     signupResponse = await UserModel.findOneAndUpdate(
       { username: username },
       {
-        signedGames: signedGames.map(signedGame => {
+        signedGames: signedGames.map((signedGame) => {
           return {
             gameDetails: signedGame.gameDetails._id,
             priority: signedGame.priority,
@@ -332,7 +332,7 @@ const saveFavorite = async (favoriteData: Object): Promise<any> => {
       { username: favoriteData.username },
       {
         // @ts-ignore
-        favoritedGames: favoriteData.favoritedGames.map(game => {
+        favoritedGames: favoriteData.favoritedGames.map((game) => {
           return game._id;
         }),
       },

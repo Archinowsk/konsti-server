@@ -15,8 +15,8 @@ export const removeMovedGamesFromUsers = async (
     logger.error(error);
   }
 
-  const movedGames = currentGames.filter(currentGame => {
-    return updatedGames.find(updatedGame => {
+  const movedGames = currentGames.filter((currentGame) => {
+    return updatedGames.find((updatedGame) => {
       return (
         currentGame.gameId === updatedGame.gameId &&
         moment(currentGame.startTime).format() !==
@@ -40,9 +40,9 @@ export const removeMovedGamesFromUsers = async (
   try {
     await Promise.all(
       // @ts-ignore
-      users.map(async user => {
-        const signedGames = user.signedGames.filter(signedGame => {
-          const movedFound = movedGames.find(movedGame => {
+      users.map(async (user) => {
+        const signedGames = user.signedGames.filter((signedGame) => {
+          const movedFound = movedGames.find((movedGame) => {
             return movedGame.gameId === signedGame.gameDetails.gameId;
           });
           if (!movedFound) {
@@ -50,8 +50,8 @@ export const removeMovedGamesFromUsers = async (
           }
         });
 
-        const enteredGames = user.enteredGames.filter(enteredGame => {
-          const movedFound = movedGames.find(movedGame => {
+        const enteredGames = user.enteredGames.filter((enteredGame) => {
+          const movedFound = movedGames.find((movedGame) => {
             return movedGame.gameId === enteredGame.gameDetails.gameId;
           });
           if (!movedFound) {

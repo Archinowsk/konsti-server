@@ -22,7 +22,7 @@ export const verifyResults = (
 
   logger.info(`Found ${results.results.length} results for this time`);
 
-  results.results.map(result => {
+  results.results.map((result) => {
     if (
       moment(result.enteredGame.time).format() !== moment(startTime).format()
     ) {
@@ -37,9 +37,9 @@ export const verifyResults = (
   });
 
   logger.info('Check if user enteredGames match results');
-  users.forEach(user => {
+  users.forEach((user) => {
     // console.log(`user: ${user.username}`)
-    user.enteredGames.forEach(enteredGame => {
+    user.enteredGames.forEach((enteredGame) => {
       if (moment(enteredGame.time).format() === moment(startTime).format()) {
         /*
         logger.info(
@@ -54,7 +54,7 @@ export const verifyResults = (
           return;
         }
 
-        const matchingResult = results.results.find(result => {
+        const matchingResult = results.results.find((result) => {
           if (!enteredGame.gameDetails) {
             logger.error(`Game details missing for entered game`);
           }
@@ -92,7 +92,7 @@ export const verifyResults = (
 
   logger.info('Check if results match user enteredGames');
 
-  results.results.forEach(result => {
+  results.results.forEach((result) => {
     if (!users) {
       logger.error(`No users found`);
       return;
@@ -104,7 +104,7 @@ export const verifyResults = (
       return;
     }
 
-    users.forEach(user => {
+    users.forEach((user) => {
       // console.log(`user: ${user.username}`)
 
       /*
@@ -115,7 +115,7 @@ export const verifyResults = (
 
       if (user.username === result.username) {
         let gameFound = false;
-        user.enteredGames.forEach(enteredGame => {
+        user.enteredGames.forEach((enteredGame) => {
           if (
             moment(enteredGame.time).format() === moment(startTime).format()
           ) {

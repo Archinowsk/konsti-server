@@ -11,7 +11,7 @@ export const getStartingGames = (
   const selectedStartingTime = moment(startingTime).format();
 
   // Get games that start at defined time
-  games.forEach(game => {
+  games.forEach((game) => {
     const gameStartingTime = moment(game.startTime).format();
     if (gameStartingTime === selectedStartingTime) {
       // @ts-ignore

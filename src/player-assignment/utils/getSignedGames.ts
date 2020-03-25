@@ -12,7 +12,7 @@ export const getSignedGames = (
   let maxAttendance = 0;
 
   // Get valid games from games that are starting and games that have wishes
-  startingGames.forEach(startingGame => {
+  startingGames.forEach((startingGame) => {
     for (let i = 0; i < signupWishes.length; i += 1) {
       if (startingGame.gameId === signupWishes[i].gameId) {
         // @ts-ignore

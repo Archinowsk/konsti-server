@@ -6,9 +6,9 @@ export const getSignupWishes = (players: readonly User[]) => {
   const signupWishes = [];
 
   // Get signup wishes for all players
-  players.forEach(player => {
+  players.forEach((player) => {
     if (player.signedGames.length !== 0) {
-      player.signedGames.forEach(signedGame => {
+      player.signedGames.forEach((signedGame) => {
         signupWishes.push({
           // @ts-ignore
           username: player.username,

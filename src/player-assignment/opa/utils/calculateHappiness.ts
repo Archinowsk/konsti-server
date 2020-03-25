@@ -8,9 +8,9 @@ export const calculateHappiness = (
 
   if (!assignment) return 0;
 
-  assignment.forEach(m => {
-    const grpInd = groups.findIndex(g => g.id === m.id);
-    let ind = groups[grpInd].pref.findIndex(ele => {
+  assignment.forEach((m) => {
+    const grpInd = groups.findIndex((g) => g.id === m.id);
+    let ind = groups[grpInd].pref.findIndex((ele) => {
       return ele === m.assignment;
     });
     ind = ind + 1;

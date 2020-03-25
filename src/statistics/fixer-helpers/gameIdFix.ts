@@ -30,19 +30,19 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
 
   logger.info(`Loaded ${games.length} games`);
 
-  users.forEach(user => {
+  users.forEach((user) => {
     const tempFavoritedGames = [];
     const tempEnteredGames = [];
     const tempSignedGames = [];
 
-    games.forEach(game => {
-      user.favoritedGames.forEach(favoritedGame => {
+    games.forEach((game) => {
+      user.favoritedGames.forEach((favoritedGame) => {
         if (game._id === favoritedGame) {
           // @ts-ignore
           tempFavoritedGames.push(game.gameId);
         }
       });
-      user.enteredGames.forEach(enteredGame => {
+      user.enteredGames.forEach((enteredGame) => {
         if (game._id === enteredGame.gameDetails) {
           tempEnteredGames.push({
             ...enteredGame,
@@ -51,7 +51,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
           });
         }
       });
-      user.signedGames.forEach(signedGame => {
+      user.signedGames.forEach((signedGame) => {
         if (game._id === signedGame.gameDetails) {
           tempSignedGames.push({
             ...signedGame,
@@ -66,9 +66,9 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
     user.signedGames = tempSignedGames;
   });
 
-  results.forEach(result => {
-    games.forEach(game => {
-      result.results.forEach(userResult => {
+  results.forEach((result) => {
+    games.forEach((game) => {
+      result.results.forEach((userResult) => {
         if (game._id === userResult.enteredGame.gameDetails) {
           userResult.enteredGame = {
             ...userResult.enteredGame,

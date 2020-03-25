@@ -16,13 +16,13 @@ export const removeOverlapSignups = async (
     return logger.error(error);
   }
 
-  results.forEach(result => {
+  results.forEach((result) => {
     const enteredGame = result.enteredGame.gameDetails;
 
     if (!enteredGame) return new Error('Error finding entered game');
 
     const signedPlayer = players.find(
-      player => player.username === result.username
+      (player) => player.username === result.username
     );
 
     if (!signedPlayer) return new Error('Error finding signed player');
@@ -30,7 +30,7 @@ export const removeOverlapSignups = async (
     const newSignedGames = [];
 
     if (signedPlayer?.signedGames) {
-      signedPlayer.signedGames.forEach(signedGame => {
+      signedPlayer.signedGames.forEach((signedGame) => {
         // If signed game takes place during the length of entered game, cancel it
         if (
           moment(signedGame.gameDetails.startTime).isBetween(
@@ -66,7 +66,7 @@ export const removeOverlapSignups = async (
 
   try {
     await Promise.all(
-      signupData.map(async signup => {
+      signupData.map(async (signup) => {
         await db.user.saveSignup(signup);
       })
     );

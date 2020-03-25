@@ -10,10 +10,8 @@ export const updateWithAssign = async (
   users: readonly User[],
   games: readonly Game[]
 ) => {
-  const groupedGames = _.groupBy(games, game =>
-    moment(game.startTime)
-      .utc()
-      .format()
+  const groupedGames = _.groupBy(games, (game) =>
+    moment(game.startTime).utc().format()
   );
 
   let results = [];
@@ -24,7 +22,10 @@ export const updateWithAssign = async (
   });
 
   // @ts-ignore
-  const signedGames = results.flatMap(result => result.enteredGame.gameDetails);
+  const signedGames = results.flatMap(
+    // @ts-ignore
+    (result) => result.enteredGame.gameDetails
+  );
 
   const groupedSignups = signedGames.reduce((acc, game) => {
     acc[game.gameId] = ++acc[game.gameId] || 1;
@@ -33,7 +34,7 @@ export const updateWithAssign = async (
 
   try {
     await Promise.all(
-      games.map(async game => {
+      games.map(async (game) => {
         if (groupedSignups[game.gameId]) {
           await db.game.saveGamePopularity(
             game.gameId,

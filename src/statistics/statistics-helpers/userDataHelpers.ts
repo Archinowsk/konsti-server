@@ -5,7 +5,7 @@ import { User } from 'typings/user.typings';
 export const getUsersWithoutGames = (users: readonly User[]) => {
   let counter = 0;
   const usersWithoutGames = [];
-  users.forEach(user => {
+  users.forEach((user) => {
     if (user.enteredGames.length === 0 && user.signedGames.length !== 0) {
       // @ts-ignore
       usersWithoutGames.push(user);
@@ -25,7 +25,7 @@ export const getUsersWithoutGames = (users: readonly User[]) => {
 export const getUsersWithoutSignups = (users: readonly User[]) => {
   let counter = 0;
   const usersWithoutSignups = [];
-  users.forEach(user => {
+  users.forEach((user) => {
     if (user.signedGames.length === 0) {
       // @ts-ignore
       usersWithoutSignups.push(user);
@@ -44,7 +44,7 @@ export const getUsersWithoutSignups = (users: readonly User[]) => {
 
 export const getUsersSignupCount = (users: readonly User[]) => {
   const userSignupCounts = [];
-  users.forEach(user => {
+  users.forEach((user) => {
     const signedGames = user.signedGames.reduce((acc, signedGame) => {
       acc[signedGame.time] = ++acc[signedGame.time] || 1;
       return acc;
@@ -54,7 +54,7 @@ export const getUsersSignupCount = (users: readonly User[]) => {
   });
 
   const gameWishes = {};
-  userSignupCounts.forEach(userSignups => {
+  userSignupCounts.forEach((userSignups) => {
     for (const signupTime in userSignups) {
       // @ts-ignore
       gameWishes[userSignups[signupTime]] =
@@ -68,7 +68,7 @@ export const getUsersSignupCount = (users: readonly User[]) => {
   );
 
   const signupCount = {};
-  userSignupCounts.forEach(userSignups => {
+  userSignupCounts.forEach((userSignups) => {
     signupCount[Object.keys(userSignups).length] =
       ++signupCount[Object.keys(userSignups).length] || 1;
   });
@@ -82,7 +82,7 @@ export const getUsersSignupCount = (users: readonly User[]) => {
 export const getUsersWithAllGames = (users: readonly User[]) => {
   let counter = 0;
 
-  users.forEach(user => {
+  users.forEach((user) => {
     const signedGamesByTime = user.signedGames.reduce((acc, signedGame) => {
       acc[signedGame.time] = ++acc[signedGame.time] || 1;
       return acc;
