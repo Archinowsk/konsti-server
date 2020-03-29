@@ -84,7 +84,7 @@ const devConfig = {
   dbName: 'konsti',
   jwtSecretKey: 'secret',
   jwtSecretKeyAdmin: 'admin secret',
-  allowedCorsOrigins: ['http://localhost:8080'],
+  allowedCorsOrigins: ['http://localhost:8000'],
   useLocalProgramFile: false,
   debug: false,
   GROUP_ASSIGNMENT_ROUNDS: 1,
