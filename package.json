@@ -30,7 +30,7 @@
     "prettier": "prettier --write ./**/*.{js,json,md,ts,yml}",
     "remove-invalid-games": "npm run build && cross-env NODE_ENV=development node lib/test/scripts/removeInvalidGames.js",
     "start": "npm run build && node lib/app.js",
-    "start-dev": "npm run build && cross-env NODE_ENV=development nodemon --exec node lib/app.js",
+    "start-dev": "npm run build && cross-env NODE_ENV=development nodemon --ext js,ts,json --exec node lib/app.js",
     "stats": "npm run build && node lib/statistics/statGenerator.js --",
     "test": "jest",
     "test-assign": "npm run build && cross-env NODE_ENV=development node lib/test/scripts/testAssignPlayers.js",
