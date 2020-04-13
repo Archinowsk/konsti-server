@@ -1,3 +1,4 @@
+import { Record, String } from 'runtypes';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
@@ -6,9 +7,7 @@ import { Request, Response } from 'express';
 const postGroup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/group');
 
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'user');
+  const validToken = validateAuthHeader(req.headers.authorization, 'user');
 
   if (!validToken) {
     return res.sendStatus(401);
@@ -232,15 +231,25 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
 const getGroup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/group');
 
-  const groupCode = req.query.groupCode;
-
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'user');
+  const validToken = validateAuthHeader(req.headers.authorization, 'user');
 
   if (!validToken) {
     return res.sendStatus(401);
   }
+
+  const GetGroupQueryParameters = Record({
+    groupCode: String,
+  });
+
+  let queryParameters;
+
+  try {
+    queryParameters = GetGroupQueryParameters.check(req.query);
+  } catch (error) {
+    return res.sendStatus(422);
+  }
+
+  const { groupCode } = queryParameters;
 
   let findGroupResults;
   try {

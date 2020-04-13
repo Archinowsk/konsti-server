@@ -14,9 +14,7 @@ const postAssignment = async (
   logger.info('API call: POST /api/assignment');
   const startingTime = req.body.startingTime;
 
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
 
   if (!validToken) {
     return res.sendStatus(401);

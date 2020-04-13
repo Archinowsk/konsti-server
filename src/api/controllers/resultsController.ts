@@ -1,10 +1,23 @@
+import { Record, String } from 'runtypes';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { Request, Response } from 'express';
 
 const getResults = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/results');
-  const startTime = req.query.startTime;
+
+  const GetResultsQueryParameters = Record({
+    startTime: String,
+  });
+
+  let queryParameters;
+  try {
+    queryParameters = GetResultsQueryParameters.check(req.query);
+  } catch (error) {
+    return res.sendStatus(422);
+  }
+
+  const { startTime } = queryParameters;
 
   if (!startTime) {
     return res.sendStatus(422);

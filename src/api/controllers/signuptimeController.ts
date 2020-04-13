@@ -11,9 +11,7 @@ const postSignupTime = async (
   logger.info('API call: POST /api/signuptime');
   const signupTime = req.body.signupTime;
 
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
 
   if (!validToken) {
     return res.sendStatus(401);

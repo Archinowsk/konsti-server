@@ -1,4 +1,5 @@
 import { validationResult } from 'express-validator';
+import { Record, String, Undefined } from 'runtypes';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { hashPassword } from 'utils/bcrypt';
@@ -160,14 +161,24 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
 // Get user info
 const getUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/user');
-  const { username, serial } = req.query;
 
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'user');
+  const validToken = validateAuthHeader(req.headers.authorization, 'user');
 
   if (!validToken) {
     return res.sendStatus(401);
+  }
+
+  const GetUserQueryParameters = Record({
+    username: String.Or(Undefined),
+    serial: String.Or(Undefined),
+  });
+
+  const queryParameters = GetUserQueryParameters.check(req.query);
+
+  const { username, serial } = queryParameters;
+
+  if (!username && !serial) {
+    return res.sendStatus(422);
   }
 
   let user;
@@ -183,9 +194,7 @@ const getUser = async (req: Request, res: Response): Promise<unknown> => {
         error,
       });
     }
-  }
-
-  if (serial) {
+  } else if (serial) {
     try {
       // @ts-ignore
       user = await db.user.findUserBySerial(serial);

@@ -11,9 +11,7 @@ import { Request, Response } from 'express';
 const postGames = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/games');
 
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
 
   if (!validToken) {
     return res.sendStatus(401);

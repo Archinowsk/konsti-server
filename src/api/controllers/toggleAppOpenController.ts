@@ -10,9 +10,7 @@ export const toggleAppOpen = async (
   logger.info('API call: POST /api/toggle-app-open');
   const appOpen = req.body.appOpen;
 
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'admin');
+  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
 
   if (!validToken) {
     return res.sendStatus(401);

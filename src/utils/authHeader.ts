@@ -3,7 +3,7 @@ import { logger } from 'utils/logger';
 import { UserGroup } from 'typings/user.typings';
 
 export const validateAuthHeader = (
-  authHeader: string,
+  authHeader: string | undefined,
   userGroup: UserGroup
 ) => {
   logger.debug(`Auth: Require jwt for user group "${userGroup}"`);

@@ -10,9 +10,7 @@ const postSignup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/signup');
   const signupData = req.body.signupData;
 
-  const authHeader = req.headers.authorization;
-  // @ts-ignore
-  const validToken = validateAuthHeader(authHeader, 'user');
+  const validToken = validateAuthHeader(req.headers.authorization, 'user');
 
   if (!validToken) {
     return res.sendStatus(401);
