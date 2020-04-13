@@ -19,15 +19,16 @@
     "deploy-prod": "npm run prepare-deploy-prod && eb deploy konsti-prod",
     "deploy-staging": "npm run prepare-deploy-staging && eb deploy konsti-staging",
     "docker-start": "docker-compose -f docker-compose.yml up --build",
-    "eslint": "eslint . --ext .js,.ts --fix",
+    "eslint": "eslint . --ext .js,.ts",
     "eslint-rules": "eslint --print-config .eslintrc.js",
     "fixer": "npm run build && node lib/statistics/dataFixer.js --",
     "generate-data": "npm run build && node lib/test/test-data-generation/runGenerators.js",
     "generate-serials": "npm run build && node lib/utils/generateSerials.js",
-    "lint": "eslint . && prettier --check ./**/*.{js,ts,json,md}",
+    "lint": "npm run eslint && npm run prettier:check",
     "prepare-deploy-prod": "npm run build-front-prod && npm run build",
     "prepare-deploy-staging": "npm run build-front-staging && npm run build",
-    "prettier": "prettier --write ./**/*.{js,json,md,ts,yml}",
+    "prettier:write": "prettier --write ./**/*.{js,json,md,ts,yml}",
+    "prettier:check": "prettier --check ./**/*.{js,json,md,ts,yml}",
     "remove-invalid-games": "npm run build && cross-env NODE_ENV=development node lib/test/scripts/removeInvalidGames.js",
     "start": "npm run build && node lib/app.js",
     "start-dev": "npm run build && cross-env NODE_ENV=development nodemon --ext js,ts,json --exec node lib/app.js",
@@ -47,11 +48,11 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint",
+      "prettier --check"
     ],
     "*.{json,md,yml}": [
-      "prettier --write"
+      "prettier --check"
     ]
   },
   "config": {
