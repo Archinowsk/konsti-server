@@ -1,18 +1,17 @@
 import { Result } from 'typings/result.typings';
+import { PlayerIdWithPriority } from 'typings/user.typings';
 
 export const getPriorities = (
   results: readonly Result[],
-  signupMatrix: ReadonlyArray<readonly number[]>
-) => {
+  signupMatrix: readonly number[][]
+): PlayerIdWithPriority[] => {
   // Show the priorities players were assigned to
-  const priorities = [];
+  const priorities: PlayerIdWithPriority[] = [];
   for (let i = 0; i < results.length; i += 1) {
     const matrixValue = signupMatrix[results[i][0]][results[i][1]];
-    const selectedPlayer = parseInt(results[i][1], 10);
+    const selectedPlayer = results[i][1];
     priorities.push({
-      // @ts-ignore
-      playerId: selectedPlayer,
-      // @ts-ignore
+      playerId: parseInt(selectedPlayer, 10),
       priorityValue: matrixValue,
     });
   }

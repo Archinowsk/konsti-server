@@ -3,12 +3,11 @@ import { PlayerIdWithPriority } from 'typings/user.typings';
 
 export const getPlayersWithTooHighPriority = (
   priorities: readonly PlayerIdWithPriority[]
-) => {
-  const playersWithTooHighPriority = [];
+): PlayerIdWithPriority[] => {
+  const playersWithTooHighPriority: PlayerIdWithPriority[] = [];
 
   priorities.forEach((priority) => {
     if (priority.priorityValue === 9) {
-      // @ts-ignore
       playersWithTooHighPriority.push(priority);
       logger.info(`Priority too high for player ${priority.playerId}`);
     }

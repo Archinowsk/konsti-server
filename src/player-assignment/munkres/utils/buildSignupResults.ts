@@ -3,7 +3,7 @@ import { Game } from 'typings/game.typings';
 import { Result } from 'typings/result.typings';
 
 export const buildSignupResults = (
-  results: ReadonlyArray<readonly number[]>,
+  results: readonly number[][],
   signedGames: readonly Game[],
   players: readonly User[]
 ): readonly Result[] => {
