@@ -1,4 +1,7 @@
+import mongoose from 'mongoose';
 import { Game } from 'typings/game.typings';
+
+export interface UserDoc extends User, mongoose.Document {}
 
 export interface FavoritedGame {
   gameId: string;

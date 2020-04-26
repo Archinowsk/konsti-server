@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-import { User } from 'typings/user.typings';
-
-interface UserDoc extends User, mongoose.Document {}
+import { UserDoc } from 'typings/user.typings';
 
 const UserSchema = new mongoose.Schema(
   {

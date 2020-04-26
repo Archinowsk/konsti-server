@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-import { Feedback } from 'typings/feedback.typings';
-
-interface FeedbackDoc extends Feedback, mongoose.Document {}
+import { FeedbackDoc } from 'typings/feedback.typings';
 
 const feedbackSchema = new mongoose.Schema(
   {

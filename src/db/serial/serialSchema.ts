@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-import { Serial } from 'typings/serial.typings';
-
-interface SerialDoc extends Serial, mongoose.Document {}
+import { SerialDoc } from 'typings/serial.typings';
 
 const SerialSchema = new mongoose.Schema({
   serial: String,

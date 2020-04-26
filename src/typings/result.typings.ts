@@ -1,4 +1,10 @@
+import mongoose from 'mongoose';
 import { SignedGame, EnteredGame } from 'typings/user.typings';
+
+export interface ResultDoc extends Result, mongoose.Document {
+  algorithm: string;
+  message: string;
+}
 
 export interface Result {
   username: string;

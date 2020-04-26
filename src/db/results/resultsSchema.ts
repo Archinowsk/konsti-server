@@ -1,10 +1,5 @@
 import mongoose from 'mongoose';
-import { Result } from 'typings/result.typings';
-
-interface ResultDoc extends Result, mongoose.Document {
-  algorithm: string;
-  message: string;
-}
+import { ResultDoc } from 'typings/result.typings';
 
 const ResultsSchema = new mongoose.Schema(
   {
