@@ -3,11 +3,15 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
 import { Request, Response } from 'express';
+import { UserGroup } from 'typings/user.typings';
 
 const postGroup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/group');
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'user');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.user
+  );
 
   if (!validToken) {
     return res.sendStatus(401);
@@ -231,7 +235,10 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
 const getGroup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/group');
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'user');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.user
+  );
 
   if (!validToken) {
     return res.sendStatus(401);

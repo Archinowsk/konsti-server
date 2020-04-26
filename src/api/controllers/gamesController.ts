@@ -6,12 +6,16 @@ import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
 import { config } from 'config';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 import { Request, Response } from 'express';
+import { UserGroup } from 'typings/user.typings';
 
 // Update games db from master data
 const postGames = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/games');
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.admin
+  );
 
   if (!validToken) {
     return res.sendStatus(401);

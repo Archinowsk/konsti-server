@@ -3,6 +3,7 @@ import { db } from 'db/mongodb';
 import { validateLogin } from 'utils/bcrypt';
 import { getJWT, verifyJWT, decodeJWT } from 'utils/jwt';
 import { Request, Response } from 'express';
+import { UserGroup } from 'typings/user.typings';
 
 const postLogin = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/login');
@@ -25,7 +26,11 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
 
     const { userGroup } = jwtData;
 
-    if (userGroup !== 'user' && userGroup !== 'admin' && userGroup !== 'help') {
+    if (
+      userGroup !== UserGroup.user &&
+      userGroup !== UserGroup.admin &&
+      userGroup !== UserGroup.help
+    ) {
       return res.json({
         message: 'Invalid userGroup',
         status: 'error',

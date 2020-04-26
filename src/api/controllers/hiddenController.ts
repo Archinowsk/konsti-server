@@ -3,13 +3,17 @@ import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
 import { Request, Response } from 'express';
 import { Game } from 'typings/game.typings';
+import { UserGroup } from 'typings/user.typings';
 
 // Add hidden data to server settings
 const postHidden = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/hidden');
   const hiddenData = req.body.hiddenData;
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.admin
+  );
 
   if (!validToken) {
     return res.sendStatus(401);

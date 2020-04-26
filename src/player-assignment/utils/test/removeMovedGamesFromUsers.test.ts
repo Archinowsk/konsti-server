@@ -47,7 +47,7 @@ describe('removeMovedGamesFromUsers', () => {
     await GameModel.updateOne(
       { gameId: game.gameId },
       {
-        startTime: moment(game.startTime).add(1, 'hours'),
+        startTime: moment(game.startTime).add(1, 'hours').format(),
       }
     );
 

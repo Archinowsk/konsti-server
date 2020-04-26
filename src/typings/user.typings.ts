@@ -16,7 +16,11 @@ export interface EnteredGame {
   time: string;
 }
 
-export type UserGroup = 'user' | 'admin' | 'help';
+export enum UserGroup {
+  user = 'user',
+  admin = 'admin',
+  help = 'help',
+}
 
 export interface User {
   username: string;

@@ -5,6 +5,7 @@ import { runAssignment } from 'player-assignment/runAssignment';
 import { validateAuthHeader } from 'utils/authHeader';
 import { config } from 'config';
 import { Request, Response } from 'express';
+import { UserGroup } from 'typings/user.typings';
 
 // Assign players to games
 const postAssignment = async (
@@ -14,7 +15,10 @@ const postAssignment = async (
   logger.info('API call: POST /api/assignment');
   const startingTime = req.body.startingTime;
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.admin
+  );
 
   if (!validToken) {
     return res.sendStatus(401);

@@ -4,13 +4,17 @@ import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
 import { config } from 'config';
 import { Request, Response } from 'express';
+import { UserGroup } from 'typings/user.typings';
 
 // Add signup data for user
 const postSignup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/signup');
   const signupData = req.body.signupData;
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'user');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.user
+  );
 
   if (!validToken) {
     return res.sendStatus(401);

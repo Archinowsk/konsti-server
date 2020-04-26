@@ -5,6 +5,7 @@ import { db } from 'db/mongodb';
 import { hashPassword } from 'utils/bcrypt';
 import { validateAuthHeader } from 'utils/authHeader';
 import { Request, Response } from 'express';
+import { UserGroup } from 'typings/user.typings';
 
 const postUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/user');
@@ -162,7 +163,10 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
 const getUser = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: GET /api/user');
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'user');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.user
+  );
 
   if (!validToken) {
     return res.sendStatus(401);

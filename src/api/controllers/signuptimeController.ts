@@ -2,6 +2,7 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
 import { Request, Response } from 'express';
+import { UserGroup } from 'typings/user.typings';
 
 // Add open signup time to server settings
 const postSignupTime = async (
@@ -11,7 +12,10 @@ const postSignupTime = async (
   logger.info('API call: POST /api/signuptime');
   const signupTime = req.body.signupTime;
 
-  const validToken = validateAuthHeader(req.headers.authorization, 'admin');
+  const validToken = validateAuthHeader(
+    req.headers.authorization,
+    UserGroup.admin
+  );
 
   if (!validToken) {
     return res.sendStatus(401);
