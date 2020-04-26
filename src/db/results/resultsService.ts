@@ -1,4 +1,5 @@
 import { logger } from 'utils/logger';
+import { db } from 'db/mongodb';
 import { ResultsModel } from 'db/results/resultsSchema';
 import { Result, ResultsCollectionEntry } from 'typings/result.typings';
 
@@ -35,16 +36,31 @@ const saveResult = async (
   algorithm: string,
   message: string
 ): Promise<ResultsCollectionEntry> => {
-  const results = signupResultData.map((result) => {
-    return {
-      username: result.username,
-      enteredGame: {
-        gameDetails: result.enteredGame.gameDetails._id,
-        priority: result.enteredGame.priority,
-        time: result.enteredGame.time,
-      },
-    };
-  });
+  let games;
+  try {
+    games = await db.game.findGames();
+  } catch (error) {
+    logger.error(`MongoDB: Error loading games - ${error}`);
+    return error;
+  }
+
+  const results = signupResultData.reduce((acc, result) => {
+    const gameDocInDb = games.find(
+      (game) => game.gameId === result.enteredGame.gameDetails.gameId
+    );
+
+    if (gameDocInDb) {
+      acc.push({
+        username: result.username,
+        enteredGame: {
+          gameDetails: gameDocInDb._id,
+          priority: result.enteredGame.priority,
+          time: result.enteredGame.time,
+        },
+      });
+    }
+    return acc;
+  }, [] as Result[]);
 
   let response;
   try {

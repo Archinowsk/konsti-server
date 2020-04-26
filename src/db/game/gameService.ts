@@ -3,7 +3,7 @@ import { logger } from 'utils/logger';
 import { GameModel } from 'db/game/gameSchema';
 import { removeInvalidSignupsFromUsers } from 'player-assignment/utils/removeInvalidSignupsFromUsers';
 import { removeMovedGamesFromUsers } from 'player-assignment/utils/removeMovedGamesFromUsers';
-import { Game } from 'typings/game.typings';
+import { Game, GameDoc } from 'typings/game.typings';
 
 const removeGames = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL games from db');
@@ -93,7 +93,7 @@ const saveGames = async (games: readonly Game[]): Promise<any> => {
   return await findGames();
 };
 
-const findGames = async (): Promise<any> => {
+const findGames = async (): Promise<GameDoc[]> => {
   let response;
   try {
     response = await GameModel.find({}).lean();

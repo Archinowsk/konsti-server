@@ -8,14 +8,14 @@ import { User, SignedGame } from 'typings//user.typings';
 import { Game } from 'typings/game.typings';
 
 export const createSignups = async () => {
-  let games = [];
+  let games;
   try {
     games = await db.game.findGames();
   } catch (error) {
     logger.error(`db.game.findGames error: ${error}`);
   }
 
-  let allUsers = [];
+  let allUsers;
   try {
     allUsers = await db.user.findUsers();
   } catch (error) {

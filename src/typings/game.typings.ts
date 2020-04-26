@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
+export interface GameDoc extends Game, mongoose.Document {}
+
 export interface Game {
-  _id: mongoose.Types.ObjectId;
   gameId: string;
   title: string;
   description: string;

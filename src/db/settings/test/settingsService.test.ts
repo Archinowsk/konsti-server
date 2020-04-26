@@ -3,7 +3,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import moment from 'moment';
 import { db } from 'db/mongodb';
 import { SettingsModel } from 'db/settings/settingsSchema';
-import { mockGame } from 'test/mock-data/mockGame';
+import { mockGame, mockGame2 } from 'test/mock-data/mockGame';
 
 let mongoServer;
 
@@ -42,10 +42,18 @@ describe('Settings service', () => {
   });
 
   it('should update hidden games', async () => {
-    const hiddenGames = [mockGame, mockGame];
+    const hiddenGames = [mockGame, mockGame2];
+    await db.game.saveGames(hiddenGames);
     await db.settings.saveHidden(hiddenGames);
     const insertedSettings = await SettingsModel.findOne({});
     expect(insertedSettings?.hiddenGames.length).toEqual(hiddenGames.length);
+  });
+
+  it('should not return hidden games that are not in DB', async () => {
+    const hiddenGames = [mockGame, mockGame2];
+    await db.settings.saveHidden(hiddenGames);
+    const insertedSettings = await SettingsModel.findOne({});
+    expect(insertedSettings?.hiddenGames.length).toEqual(0);
   });
 
   it('should update signup time', async () => {

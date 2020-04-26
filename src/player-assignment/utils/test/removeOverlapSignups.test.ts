@@ -30,10 +30,7 @@ afterEach(async () => {
 
 describe('removeOverlapSignups', () => {
   it('should remove overlapping signups from user', async () => {
-    const game = new GameModel(mockGame);
-    await game.save();
-    const game2 = new GameModel(mockGame2);
-    await game2.save();
+    await db.game.saveGames([mockGame, mockGame2]);
     const insertedGames = await GameModel.find({});
     expect(insertedGames.length).toEqual(2);
 

@@ -1,6 +1,7 @@
 import { mockGame } from 'test/mock-data/mockGame';
+import { Result } from 'typings/result.typings';
 
-export const mockResults = [
+export const mockResults: Result[] = [
   {
     username: 'Test User',
     enteredGame: {

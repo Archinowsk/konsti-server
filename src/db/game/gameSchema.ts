@@ -1,8 +1,5 @@
 import mongoose from 'mongoose';
-import { Game } from 'typings/game.typings';
-
-// @ts-ignore
-interface GameDoc extends Game, mongoose.Document {}
+import { GameDoc } from 'typings/game.typings';
 
 const gameSchema = new mongoose.Schema(
   {

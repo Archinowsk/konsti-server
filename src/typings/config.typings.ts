@@ -4,6 +4,7 @@ export enum AssignmentStrategy {
   opa = 'opa',
   groupopa = 'group+opa',
 }
+
 export enum GameUpdateMethod {
   signups = 'signups',
   assign = 'assign',

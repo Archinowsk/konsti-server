@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { logger } from 'utils/logger';
+import { db } from 'db/mongodb';
 import { SettingsModel } from 'db/settings/settingsSchema';
 import { Game } from 'typings/game.typings';
 import { Settings } from 'typings/settings.typings';
@@ -48,15 +49,29 @@ const findSettings = async (): Promise<Settings> => {
   return settings;
 };
 
-const saveHidden = async (hiddenData: readonly Game[]): Promise<Settings> => {
+const saveHidden = async (hiddenGames: readonly Game[]): Promise<Settings> => {
+  let games;
+  try {
+    games = await db.game.findGames();
+  } catch (error) {
+    logger.error(`MongoDB: Error loading games - ${error}`);
+    return error;
+  }
+
+  const formattedData = hiddenGames.reduce((acc, hiddenGame) => {
+    const gameDocInDb = games.find((game) => game.gameId === hiddenGame.gameId);
+    if (gameDocInDb) {
+      acc.push(gameDocInDb._id);
+    }
+    return acc;
+  }, [] as string[]);
+
   let settings;
   try {
     settings = await SettingsModel.findOneAndUpdate(
       {},
       {
-        hiddenGames: hiddenData.map((game) => {
-          return game._id;
-        }),
+        hiddenGames: formattedData,
       },
       {
         new: true,

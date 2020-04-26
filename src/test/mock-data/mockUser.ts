@@ -1,6 +1,8 @@
 import { mockGame, mockGame2 } from 'test/mock-data/mockGame';
+import { NewUserData } from 'typings/user.typings';
+import { Signup } from 'typings/result.typings';
 
-export const mockUser = {
+export const mockUser: NewUserData = {
   favoritedGames: [],
   username: 'Test User',
   passwordHash: 'testpass',
@@ -11,7 +13,7 @@ export const mockUser = {
   enteredGames: [],
 };
 
-export const mockSignup = {
+export const mockSignup: Signup = {
   username: 'Test User',
   signedGames: [
     {

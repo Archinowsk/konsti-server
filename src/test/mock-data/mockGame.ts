@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { Game } from 'typings/game.typings';
 
-export const mockGame = {
+export const mockGame: Game = {
   gameId: 'p2106',
   title: 'Test game',
   description: 'Test game description',
@@ -29,11 +29,10 @@ export const mockGame = {
   shortDescription: 'Short description',
   revolvingDoor: true,
   popularity: 0,
-  _id: mongoose.Types.ObjectId('5dcc2c4920faf03a7814ce56'),
   programType: 'Roolipeli',
 };
 
-export const mockGame2 = {
+export const mockGame2: Game = {
   gameId: 'p3001',
   title: 'Test game 2',
   description: 'Test game description',
@@ -62,6 +61,5 @@ export const mockGame2 = {
   shortDescription: 'Short description',
   revolvingDoor: true,
   popularity: 0,
-  _id: mongoose.Types.ObjectId('5dcc2c4920faf03a7814ce57'),
   programType: 'Roolipeli',
 };

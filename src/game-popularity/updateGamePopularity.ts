@@ -9,14 +9,14 @@ export const updateGamePopularity = async (): Promise<void> => {
   logger.info('Calculate game popularity');
   const { gamePopularityUpdateMethod } = config;
 
-  let users = [];
+  let users;
   try {
     users = await db.user.findUsers();
   } catch (error) {
     logger.error(`db.user.findUsers error: ${error}`);
   }
 
-  let games = [];
+  let games;
   try {
     games = await db.game.findGames();
   } catch (error) {

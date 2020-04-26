@@ -1,7 +1,8 @@
 import { logger } from 'utils/logger';
+import { db } from 'db/mongodb';
 import { UserModel } from 'db/user/userSchema';
 import { Result, Signup } from 'typings/result.typings';
-import { NewUserData, EnteredGame } from 'typings/user.typings';
+import { NewUserData, EnteredGame, SignedGame } from 'typings/user.typings';
 
 const removeUsers = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL users from db');
@@ -270,18 +271,35 @@ const findUsers = async (): Promise<any> => {
 const saveSignup = async (signupData: Signup): Promise<any> => {
   const { signedGames, username } = signupData;
 
+  let games;
+  try {
+    games = await db.game.findGames();
+  } catch (error) {
+    logger.error(`MongoDB: Error loading games - ${error}`);
+    return error;
+  }
+
+  const formattedData = signedGames.reduce((acc, signedGame) => {
+    const gameDocInDb = games.find(
+      (game) => game.gameId === signedGame.gameDetails.gameId
+    );
+
+    if (gameDocInDb) {
+      acc.push({
+        gameDetails: gameDocInDb._id,
+        priority: signedGame.priority,
+        time: signedGame.time,
+      });
+    }
+    return acc;
+  }, [] as SignedGame[]);
+
   let signupResponse;
   try {
     signupResponse = await UserModel.findOneAndUpdate(
       { username: username },
       {
-        signedGames: signedGames.map((signedGame) => {
-          return {
-            gameDetails: signedGame.gameDetails._id,
-            priority: signedGame.priority,
-            time: signedGame.time,
-          };
-        }),
+        signedGames: formattedData,
       },
       { new: true, fields: '-signedGames._id' }
     ).populate('signedGames.gameDetails');
