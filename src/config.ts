@@ -20,7 +20,7 @@ const commonConfig = {
   enableAccessLog: false,
 
   // App settings
-  assignmentStrategy: AssignmentStrategy.groupopa, // 'munkres', 'group', 'opa', 'group+opa'
+  assignmentStrategy: AssignmentStrategy.groupOpa, // 'munkres', 'group', 'opa', 'group+opa'
   bundleCompression: true,
   CONVENTION_START_TIME: '2019-11-23T08:00:00Z', // UTC date
   enableRemoveOverlapSignups: true,

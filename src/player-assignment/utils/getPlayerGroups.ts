@@ -10,17 +10,15 @@ export const getPlayerGroups = (
     return acc;
   }, {});
 
-  const playersArray = [];
+  const playersArray = [] as UserArray[];
   for (const [key, value] of Object.entries(groupedUsers)) {
     if (Array.isArray(value)) {
       if (key === '0') {
         // Loop array and add players individually
         for (let i = 0; i < value.length; i++) {
-          // @ts-ignore
           playersArray.push([value[i]]);
         }
       } else {
-        // @ts-ignore
         playersArray.push(value);
       }
     }

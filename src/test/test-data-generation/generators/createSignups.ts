@@ -23,7 +23,6 @@ export const createSignups = async () => {
   }
 
   const users = allUsers.filter(
-    // @ts-ignore
     (user) => user.username !== 'admin' && user.username !== 'ropetiski'
   );
 
@@ -32,16 +31,13 @@ export const createSignups = async () => {
 
   // Group all unique group numbers
   const groupedUsers = users.reduce((acc, user) => {
-    // @ts-ignore
     acc[user.groupCode] = acc[user.groupCode] || [];
-    // @ts-ignore
     acc[user.groupCode].push(user);
     return acc;
   }, {});
 
   for (const [key, value] of Object.entries(groupedUsers)) {
-    // @ts-ignore
-    const array = [...value];
+    const array = [...(value as User[])];
     if (key === '0') {
       logger.info('SIGNUP INDIVIDUAL USERS');
       await signupMultiple(games, array);
@@ -54,8 +50,8 @@ export const createSignups = async () => {
   await updateGamePopularity();
 };
 
-const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
-  const signedGames = [];
+const getRandomSignup = (games: readonly Game[]): SignedGame[] => {
+  const signedGames = [] as SignedGame[];
   let randomIndex;
 
   const startTimes = games.map((game) => moment(game.startTime).utc().format());
@@ -80,7 +76,6 @@ const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
       const randomGame = gamesForTime[randomIndex];
 
       const duplicate = !!signedGames.find(
-        // @ts-ignore
         (signedGame) => signedGame.gameDetails.gameId === randomGame.gameId
       );
 
@@ -88,11 +83,8 @@ const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
         i -= 1;
       } else {
         signedGames.push({
-          // @ts-ignore
           gameDetails: randomGame,
-          // @ts-ignore
           priority: i + 1,
-          // @ts-ignore
           time: randomGame.startTime,
         });
       }
@@ -103,7 +95,7 @@ const getRandomSignup = (games: readonly Game[], user: User): SignedGame[] => {
 };
 
 const signup = async (games: readonly Game[], user: User) => {
-  const signedGames = getRandomSignup(games, user);
+  const signedGames = getRandomSignup(games);
 
   return await db.user.saveSignup({
     username: user.username,
@@ -115,11 +107,10 @@ const signupMultiple = async (
   games: readonly Game[],
   users: readonly User[]
 ) => {
-  const promises = [];
+  const promises = [] as Array<Promise<any>>;
 
   for (const user of users) {
     if (user.username !== 'admin' && user.username !== 'ropetiski') {
-      // @ts-ignore
       promises.push(signup(games, user));
     }
   }
@@ -131,17 +122,16 @@ const signupGroup = async (games: readonly Game[], users: readonly User[]) => {
   // Generate random signup data for the first user
   const firstUser = _.first(users);
   if (!firstUser) throw new Error('Error getting first user of group');
-  const signedGames = getRandomSignup(games, firstUser);
+  const signedGames = getRandomSignup(games);
 
   // Assign same signup data for group members
-  const promises = [];
+  const promises = [] as Array<Promise<any>>;
   for (let i = 0; i < users.length; i++) {
     const signupData = {
       username: users[i].username,
       signedGames: i === 0 ? signedGames : [],
     };
 
-    // @ts-ignore
     promises.push(db.user.saveSignup(signupData));
   }
 

@@ -4,10 +4,9 @@ import { User } from 'typings/user.typings';
 
 export const getUsersWithoutGames = (users: readonly User[]) => {
   let counter = 0;
-  const usersWithoutGames = [];
+  const usersWithoutGames = [] as User[];
   users.forEach((user) => {
     if (user.enteredGames.length === 0 && user.signedGames.length !== 0) {
-      // @ts-ignore
       usersWithoutGames.push(user);
       counter += 1;
     }
@@ -24,10 +23,9 @@ export const getUsersWithoutGames = (users: readonly User[]) => {
 
 export const getUsersWithoutSignups = (users: readonly User[]) => {
   let counter = 0;
-  const usersWithoutSignups = [];
+  const usersWithoutSignups = [] as User[];
   users.forEach((user) => {
     if (user.signedGames.length === 0) {
-      // @ts-ignore
       usersWithoutSignups.push(user);
       counter += 1;
     }
@@ -43,20 +41,18 @@ export const getUsersWithoutSignups = (users: readonly User[]) => {
 };
 
 export const getUsersSignupCount = (users: readonly User[]) => {
-  const userSignupCounts = [];
+  let userSignupCounts;
   users.forEach((user) => {
     const signedGames = user.signedGames.reduce((acc, signedGame) => {
       acc[signedGame.time] = ++acc[signedGame.time] || 1;
       return acc;
     }, {});
-    // @ts-ignore
     userSignupCounts.push(signedGames);
   });
 
-  const gameWishes = {};
+  let gameWishes;
   userSignupCounts.forEach((userSignups) => {
     for (const signupTime in userSignups) {
-      // @ts-ignore
       gameWishes[userSignups[signupTime]] =
         ++gameWishes[userSignups[signupTime]] || 1;
     }

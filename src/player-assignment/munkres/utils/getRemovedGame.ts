@@ -10,18 +10,16 @@ export const getRemovedGame = (
   ]);
 
   // Find games that are tied to the lowest player count
-  const tiedToLowest = [];
+  const tiedToLowest = [] as GameWithPlayerCount[];
   for (let i = 0; i < sortedGamesWithTooFewPlayers.length; i += 1) {
     if (
       sortedGamesWithTooFewPlayers[i].players ===
       _.first(sortedGamesWithTooFewPlayers)?.players
     )
-      // @ts-ignore
       tiedToLowest.push(sortedGamesWithTooFewPlayers[i]);
   }
 
   const randomIndex = Math.floor(Math.random() * tiedToLowest.length);
-  // @ts-ignore
   const removedGame = tiedToLowest[randomIndex].game;
 
   return removedGame;

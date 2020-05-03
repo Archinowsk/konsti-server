@@ -21,7 +21,6 @@ export const updateGames = async (): Promise<readonly KompassiGame[]> => {
 
     programItems = JSON.parse(rawData);
 
-    // @ts-ignore
     logger.info(`Loaded ${programItems.length} program items`);
   } else {
     logger.info('Games: GET games from remote server');
@@ -47,7 +46,6 @@ export const updateGames = async (): Promise<readonly KompassiGame[]> => {
     return [];
   }
 
-  // @ts-ignore
   return programItems.filter((programItem) => {
     if (
       programItem.category_title === 'Roolipeli' ||

@@ -5,12 +5,13 @@ import { shuffleArray } from 'utils/shuffleArray';
 import { UserArray } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { GroupAssignResult } from 'typings/groupAssign.typings';
+import { Result } from 'typings/result.typings';
 
 export const runGroupAssignment = (
   playerGroups: readonly UserArray[],
   signedGames: readonly Game[]
 ): GroupAssignResult => {
-  const signupResults = [];
+  const signupResults = [] as Result[];
   let matchingGroups = [] as UserArray[];
   let selectedGroups = [] as UserArray[];
   let score = 0;
@@ -34,7 +35,6 @@ export const runGroupAssignment = (
       // Get groups with specific game signup, always use first player in group
       _.first(playerGroup)?.signedGames.forEach((signedGame) => {
         if (signedGame.gameDetails.gameId === selectedGame.gameId) {
-          // @ts-ignore
           matchingGroups.push(playerGroup);
         }
       });
@@ -42,7 +42,6 @@ export const runGroupAssignment = (
 
     // Number of matching players
     const playersCount = matchingGroups.reduce(
-      // @ts-ignore
       (acc, matchingGroup) => acc + matchingGroup.length,
       0
     );
@@ -71,22 +70,18 @@ export const runGroupAssignment = (
       const groupNumber = getRandomInt(0, matchingGroups.length - 1);
       const selectedGroup = matchingGroups[groupNumber];
 
-      // @ts-ignore
       if (selectedGroup.length === 1) {
         logger.debug(`Selected player: ${_.first(selectedGroup)?.username} `);
       } else {
         logger.debug(
           `Selected group ${_.first(selectedGroup)?.groupCode} with ${
-            // @ts-ignore
             selectedGroup.length
           } players`
         );
       }
 
       // Enough seats remaining for the game
-      // @ts-ignore
       if (numberOfPlayers + selectedGroup.length <= maximumPlayers) {
-        // @ts-ignore
         numberOfPlayers += selectedGroup.length;
 
         selectedGroups.push(selectedGroup);
@@ -122,7 +117,6 @@ export const runGroupAssignment = (
       // Enough signups, game will happen
       // Store results for selected groups
       for (const selectedGroup of selectedGroups) {
-        // @ts-ignore
         for (const groupMember of selectedGroup) {
           const signedGame = groupMember.signedGames.find(
             (signedGame) =>
@@ -149,9 +143,7 @@ export const runGroupAssignment = (
             throw new Error('Unable to find entered game from signed games');
 
           signupResults.push({
-            // @ts-ignore
             username: groupMember.username,
-            // @ts-ignore
             enteredGame,
           });
         }

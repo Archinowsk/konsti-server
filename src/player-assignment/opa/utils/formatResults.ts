@@ -16,7 +16,6 @@ export const formatResults = (
         (assignResult) =>
           (assignResult.id === firstMember.groupCode ||
             assignResult.id === firstMember.serial) &&
-          // @ts-ignore
           assignResult.assignment !== -1
       );
     })

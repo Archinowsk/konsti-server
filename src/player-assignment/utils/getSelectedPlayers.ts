@@ -9,7 +9,7 @@ export const getSelectedPlayers = (
   logger.debug('Get selected players');
 
   // Get users who have wishes for starting games
-  const selectedPlayers = [];
+  const selectedPlayers = [] as User[];
 
   players.forEach((player) => {
     let match = false;
@@ -24,7 +24,6 @@ export const getSelectedPlayers = (
       }
       // Player matched, break
       if (match) {
-        // @ts-ignore
         selectedPlayers.push(player);
         break;
       }

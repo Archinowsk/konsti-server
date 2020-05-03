@@ -3,20 +3,18 @@ import { Game } from 'typings/game.typings';
 import { Result } from 'typings/result.typings';
 
 export const buildSignupResults = (
-  results: readonly number[][],
+  results: readonly string[][],
   signedGames: readonly Game[],
   players: readonly User[]
 ): readonly Result[] => {
-  const signupResults = [];
+  const signupResults = [] as Result[];
 
   // Build signup results
   for (let i = 0; i < results.length; i += 1) {
     // Row determines the game
-    // @ts-ignore
     const selectedRow = parseInt(results[i][0], 10);
 
     // Player id
-    // @ts-ignore
     const selectedPlayer = parseInt(results[i][1], 10);
 
     let attendanceRange = 0;
@@ -42,9 +40,7 @@ export const buildSignupResults = (
           throw new Error('Unable to find entered game from signed games');
 
         signupResults.push({
-          // @ts-ignore
           username: players[selectedPlayer].username,
-          // @ts-ignore
           enteredGame,
         });
         break;

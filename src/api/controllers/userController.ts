@@ -85,7 +85,6 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
     // Check if serial is used
     let serialResponse;
     try {
-      // @ts-ignore
       serialResponse = await db.user.findSerial({ serial });
     } catch (error) {
       logger.error(`db.user.findSerial(): ${error}`);
@@ -149,9 +148,7 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
         return res.json({
           message: 'User registration success',
           status: 'success',
-          // @ts-ignore
           username: saveUserResponse.username,
-          // @ts-ignore
           password: saveUserResponse.password,
         });
       }
@@ -200,7 +197,6 @@ const getUser = async (req: Request, res: Response): Promise<unknown> => {
     }
   } else if (serial) {
     try {
-      // @ts-ignore
       user = await db.user.findUserBySerial(serial);
     } catch (error) {
       logger.error(`db.user.findUser(): ${error}`);
@@ -223,16 +219,11 @@ const getUser = async (req: Request, res: Response): Promise<unknown> => {
     message: 'Getting user data success',
     status: 'success',
     games: {
-      // @ts-ignore
       enteredGames: user.enteredGames,
-      // @ts-ignore
       favoritedGames: user.favoritedGames,
-      // @ts-ignore
       signedGames: user.signedGames,
     },
-    // @ts-ignore
     username: user.username,
-    // @ts-ignore
     serial: user.serial,
   });
 };

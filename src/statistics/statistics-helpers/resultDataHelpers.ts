@@ -27,8 +27,7 @@ export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
 
     maxNumberOfPlayersByTime[game.startTime] =
       parseInt(maxNumberOfPlayersByTime[game.startTime], 10) +
-      // @ts-ignore
-      parseInt(game.maxAttendance, 10);
+      game.maxAttendance;
   });
 
   /*

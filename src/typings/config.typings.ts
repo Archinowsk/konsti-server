@@ -2,7 +2,7 @@ export enum AssignmentStrategy {
   munkres = 'munkres',
   group = 'group',
   opa = 'opa',
-  groupopa = 'group+opa',
+  groupOpa = 'group+opa',
 }
 
 export enum GameUpdateMethod {

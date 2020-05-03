@@ -3,7 +3,7 @@ import { runGroupAssignment } from 'player-assignment/group/utils/runGroupAssign
 import { config } from 'config';
 import { User, UserArray } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
-import { AssignmentStrategyResult } from 'typings/result.typings';
+import { AssignmentStrategyResult, Result } from 'typings/result.typings';
 
 export const assignGroups = (
   selectedPlayers: readonly User[],
@@ -15,21 +15,14 @@ export const assignGroups = (
   let bestScore = 0;
   let players = 0;
   let games = 0;
-  let result = [];
-  let bestResult = [];
+  let bestResult = [] as readonly Result[];
 
   for (let i = 0; i < GROUP_ASSIGNMENT_ROUNDS; i++) {
-    // @ts-ignore
-    result = runGroupAssignment(playerGroups, signedGames);
-    // @ts-ignore
+    const result = runGroupAssignment(playerGroups, signedGames);
     if (result.score > bestScore) {
-      // @ts-ignore
       bestScore = result.score;
-      // @ts-ignore
       bestResult = result.signupResults;
-      // @ts-ignore
       players = result.playerCounter;
-      // @ts-ignore
       games = result.gameCounter;
       logger.debug(`New best score: ${bestScore}`);
     }

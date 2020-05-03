@@ -35,7 +35,6 @@ export const runAssignment = async (
 
   let assignResults;
   try {
-    // @ts-ignore
     assignResults = runAssignmentStrategy(
       users,
       games,
@@ -46,6 +45,5 @@ export const runAssignment = async (
     throw new Error(`Player assign error: ${error}`);
   }
 
-  // @ts-ignore
   return assignResults;
 };
