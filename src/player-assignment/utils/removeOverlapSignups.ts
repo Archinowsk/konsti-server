@@ -2,6 +2,7 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { Signup, Result } from 'typings/result.typings';
+import { SignedGame } from 'typings/user.typings';
 
 export const removeOverlapSignups = async (
   results: readonly Result[]
@@ -27,7 +28,7 @@ export const removeOverlapSignups = async (
 
     if (!signedPlayer) return new Error('Error finding signed player');
 
-    const newSignedGames = [];
+    const newSignedGames = [] as SignedGame[];
 
     if (signedPlayer?.signedGames) {
       signedPlayer.signedGames.forEach((signedGame) => {
@@ -52,7 +53,6 @@ export const removeOverlapSignups = async (
           );
           logger.debug(`=> Remove signup "${signedGame.gameDetails.title}"`);
         } else {
-          // @ts-ignore
           newSignedGames.push(signedGame);
         }
       });

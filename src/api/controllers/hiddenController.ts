@@ -21,7 +21,6 @@ const postHidden = async (req: Request, res: Response): Promise<unknown> => {
 
   let settings;
   try {
-    // @ts-ignore
     settings = await db.settings.saveHidden(hiddenData);
   } catch (error) {
     logger.error(`db.settings.saveHidden error: ${error}`);
@@ -33,7 +32,6 @@ const postHidden = async (req: Request, res: Response): Promise<unknown> => {
   }
 
   try {
-    // @ts-ignore
     await removeHiddenGamesFromUsers(settings.hiddenGames);
   } catch (error) {
     logger.error(`removeHiddenGamesFromUsers error: ${error}`);
@@ -47,7 +45,6 @@ const postHidden = async (req: Request, res: Response): Promise<unknown> => {
   return res.json({
     message: 'Update hidden success',
     status: 'success',
-    // @ts-ignore
     hiddenGames: settings.hiddenGames,
   });
 };
@@ -71,7 +68,6 @@ const removeHiddenGamesFromUsers = async (
 
   try {
     await Promise.all(
-      // @ts-ignore
       users.map(async (user) => {
         const signedGames = user.signedGames.filter((signedGame) => {
           const hiddenFound = hiddenGames.find((hiddenGame) => {

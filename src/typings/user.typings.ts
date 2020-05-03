@@ -60,3 +60,16 @@ export interface PlayerIdWithPriority {
   playerId: number;
   priorityValue: number;
 }
+
+export interface GetGroupReturValue {
+  groupCode: string;
+  signedGames: readonly SignedGame[];
+  enteredGames: readonly EnteredGame[];
+  serial: string;
+  username: string;
+}
+
+export interface SaveFavoriteRequest {
+  username: string;
+  favoritedGames: readonly Game[];
+}

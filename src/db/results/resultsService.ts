@@ -26,7 +26,6 @@ const findResult = async (
       `MongoDB: Error finding results data for time ${startTime} - ${error}`
     );
   }
-  // @ts-ignore
   return response;
 };
 
@@ -80,7 +79,6 @@ const saveResult = async (
     return error;
   }
 
-  // @ts-ignore
   return response;
 };
 

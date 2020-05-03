@@ -7,6 +7,7 @@ import { config } from 'config';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
 import { Request, Response } from 'express';
 import { UserGroup } from 'typings/user.typings';
+import { KompassiGame } from 'typings/game.typings';
 
 // Update games db from master data
 const postGames = async (req: Request, res: Response): Promise<unknown> => {
@@ -21,9 +22,8 @@ const postGames = async (req: Request, res: Response): Promise<unknown> => {
     return res.sendStatus(401);
   }
 
-  let kompassiGames = [];
+  let kompassiGames = [] as readonly KompassiGame[];
   try {
-    // @ts-ignore
     kompassiGames = await updateGames();
   } catch (error) {
     return res.json({

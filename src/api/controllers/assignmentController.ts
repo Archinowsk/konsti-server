@@ -33,7 +33,6 @@ const postAssignment = async (
 
   let assignResults;
   try {
-    // @ts-ignore
     assignResults = await runAssignment(startingTime);
   } catch (error) {
     logger.error(`Player assign error: ${error}`);
@@ -43,7 +42,6 @@ const postAssignment = async (
     });
   }
 
-  // @ts-ignore
   if (!assignResults || !assignResults.results) {
     return res.json({
       message: 'Players assign failure',
@@ -53,12 +51,9 @@ const postAssignment = async (
 
   try {
     await saveResults(
-      // @ts-ignore
       assignResults.results,
       startingTime,
-      // @ts-ignore
       assignResults.algorithm,
-      // @ts-ignore
       assignResults.message
     );
   } catch (error) {
@@ -74,7 +69,6 @@ const postAssignment = async (
   if (config.enableRemoveOverlapSignups) {
     try {
       logger.info('Remove overlapping signups');
-      // @ts-ignore
       await removeOverlapSignups(assignResults.results);
     } catch (error) {
       logger.error(`removeOverlapSignups error: ${error}`);
@@ -89,9 +83,7 @@ const postAssignment = async (
   return res.json({
     message: 'Players assign success',
     status: 'success',
-    // @ts-ignore
     results: assignResults.results,
-    // @ts-ignore
     resultMessage: assignResults.message,
     startTime: startingTime,
   });

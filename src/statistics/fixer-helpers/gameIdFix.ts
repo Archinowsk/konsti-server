@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { logger } from 'utils/logger';
 import { writeJson } from '../statsUtil';
+import { SignedGame, EnteredGame, FavoritedGame } from 'typings/user.typings';
 
 export const gameIdFix = async (year: number, event: string): Promise<void> => {
   const users = JSON.parse(
@@ -31,22 +32,20 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
   logger.info(`Loaded ${games.length} games`);
 
   users.forEach((user) => {
-    const tempFavoritedGames = [];
-    const tempEnteredGames = [];
-    const tempSignedGames = [];
+    const tempFavoritedGames = [] as FavoritedGame[];
+    const tempEnteredGames = [] as EnteredGame[];
+    const tempSignedGames = [] as SignedGame[];
 
     games.forEach((game) => {
       user.favoritedGames.forEach((favoritedGame) => {
         if (game._id === favoritedGame) {
-          // @ts-ignore
-          tempFavoritedGames.push(game.gameId);
+          tempFavoritedGames.push({ gameId: game.gameId });
         }
       });
       user.enteredGames.forEach((enteredGame) => {
         if (game._id === enteredGame.gameDetails) {
           tempEnteredGames.push({
             ...enteredGame,
-            // @ts-ignore
             gameDetails: { gameId: game.gameId },
           });
         }
@@ -55,7 +54,6 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
         if (game._id === signedGame.gameDetails) {
           tempSignedGames.push({
             ...signedGame,
-            // @ts-ignore
             gameDetails: { gameId: game.gameId },
           });
         }

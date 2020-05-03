@@ -5,9 +5,9 @@ import { SignupWish } from 'typings/user.typings';
 export const getSignedGames = (
   startingGames: readonly Game[],
   signupWishes: readonly SignupWish[]
-) => {
+): Game[] => {
   logger.debug('Get selected games');
-  const signedGames = [];
+  const signedGames = [] as Game[];
   let minAttendance = 0;
   let maxAttendance = 0;
 
@@ -15,7 +15,6 @@ export const getSignedGames = (
   startingGames.forEach((startingGame) => {
     for (let i = 0; i < signupWishes.length; i += 1) {
       if (startingGame.gameId === signupWishes[i].gameId) {
-        // @ts-ignore
         signedGames.push(startingGame);
         minAttendance += startingGame.minAttendance;
         maxAttendance += startingGame.maxAttendance;

@@ -29,7 +29,6 @@ export const runAssignmentStrategy = (
     return groupAssignPlayers(players, games, startingTime);
   } else if (assignmentStrategy === 'opa') {
     return opaAssignPlayers(players, games, startingTime);
-    // @ts-ignore
   } else if (assignmentStrategy === 'group+opa') {
     const groupResult = groupAssignPlayers(players, games, startingTime);
     const opaResult = opaAssignPlayers(players, games, startingTime);

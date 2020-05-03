@@ -7,7 +7,7 @@ export const getGroupMembers = (
 ): readonly User[] => {
   logger.debug('Add group members to groups');
 
-  const selectedPlayersWithSignups = [];
+  const selectedPlayersWithSignups = [] as User[];
 
   for (const groupLeader of groupLeaders) {
     // Skip individual users
@@ -20,7 +20,6 @@ export const getGroupMembers = (
         ) {
           // player.signedGames = groupLeader.signedGames
           selectedPlayersWithSignups.push(
-            // @ts-ignore
             Object.assign({
               ...player,
               signedGames: groupLeader.signedGames,

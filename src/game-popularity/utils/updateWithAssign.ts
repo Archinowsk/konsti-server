@@ -5,6 +5,7 @@ import { logger } from 'utils/logger';
 import { opaAssignPlayers } from 'player-assignment/opa/opaAssignPlayers';
 import { User } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
+import { Result } from 'typings/result.typings';
 
 export const updateWithAssign = async (
   users: readonly User[],
@@ -14,16 +15,13 @@ export const updateWithAssign = async (
     moment(game.startTime).utc().format()
   );
 
-  let results = [];
+  let results = [] as readonly Result[];
   _.forEach(groupedGames, (value, key) => {
     const assignmentResult = opaAssignPlayers(users, games, key);
-    // @ts-ignore
     results = results.concat(assignmentResult.results);
   });
 
-  // @ts-ignore
   const signedGames = results.flatMap(
-    // @ts-ignore
     (result) => result.enteredGame.gameDetails
   );
 

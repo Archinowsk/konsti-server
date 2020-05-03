@@ -75,12 +75,11 @@ const testAssignPlayers = async (
 
 const getAssignmentStrategy = (userParameter: string): AssignmentStrategy => {
   if (
-    userParameter === 'munkres' ||
-    userParameter === 'group' ||
-    userParameter === 'opa' ||
-    userParameter === 'group+opa'
+    userParameter === AssignmentStrategy.munkres ||
+    userParameter === AssignmentStrategy.group ||
+    userParameter === AssignmentStrategy.opa ||
+    userParameter === AssignmentStrategy.groupOpa
   ) {
-    // @ts-ignore
     return userParameter;
   } else {
     throw new Error(

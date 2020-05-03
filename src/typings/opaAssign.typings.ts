@@ -27,7 +27,7 @@ export interface Input {
 
 export interface OpaAssignResult {
   id: string; // group id
-  assignment: string; // assigned game id
+  assignment: string | -1; // assigned game id
 }
 
 export type OpaAssignResults = readonly OpaAssignResult[];

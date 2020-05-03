@@ -98,7 +98,6 @@ export const autoAssignPlayers = async (): Promise<void> => {
           logger.info('Remove overlapping signups');
 
           try {
-            // @ts-ignore
             await removeOverlapSignups(assignResults.results);
           } catch (error) {
             logger.error(`removeOverlapSignups error: ${error}`);

@@ -3,7 +3,7 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { validateAuthHeader } from 'utils/authHeader';
 import { Request, Response } from 'express';
-import { UserGroup } from 'typings/user.typings';
+import { UserGroup, User, GetGroupReturValue } from 'typings/user.typings';
 
 const postGroup = async (req: Request, res: Response): Promise<unknown> => {
   logger.info('API call: POST /api/group');
@@ -93,7 +93,6 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
     let findGroupResponse;
     try {
       // Check if group exists
-      // @ts-ignore
       findGroupResponse = await db.user.findGroup(groupCode, username);
     } catch (error) {
       logger.error(`db.user.findUser(): ${error}`);
@@ -156,7 +155,6 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
     // Check if code is valid
     let findSerialResponse;
     try {
-      // @ts-ignore
       findSerialResponse = await db.user.findSerial({ serial: groupCode });
     } catch (error) {
       logger.error(`db.user.findSerial(): ${error}`);
@@ -179,9 +177,7 @@ const postGroup = async (req: Request, res: Response): Promise<unknown> => {
     // Check if group leader has created a group
     let findGroupResponse;
     try {
-      // @ts-ignore
       const leaderUsername = findSerialResponse.username;
-      // @ts-ignore
       findGroupResponse = await db.user.findGroup(groupCode, leaderUsername);
     } catch (error) {
       logger.error(`db.user.findGroup(): ${error}`);
@@ -258,23 +254,17 @@ const getGroup = async (req: Request, res: Response): Promise<unknown> => {
 
   const { groupCode } = queryParameters;
 
-  let findGroupResults;
+  let findGroupResults: User[];
   try {
     findGroupResults = await db.user.findGroupMembers(groupCode);
 
-    const returnData = [];
-    // @ts-ignore
+    const returnData: GetGroupReturValue[] = [];
     for (const findGroupResult of findGroupResults) {
       returnData.push({
-        // @ts-ignore
         groupCode: findGroupResult.groupCode,
-        // @ts-ignore
         signedGames: findGroupResult.signedGames,
-        // @ts-ignore
         enteredGames: findGroupResult.enteredGames,
-        // @ts-ignore
         serial: findGroupResult.serial,
-        // @ts-ignore
         username: findGroupResult.username,
       });
     }

@@ -39,7 +39,6 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
 
     const jwtResponse = verifyJWT(jwt, userGroup);
 
-    // @ts-ignore
     if (jwtResponse.status === 'error') {
       return res.json({
         message: 'Invalid jwt',
@@ -47,11 +46,9 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
       });
     }
 
-    // @ts-ignore
     if (typeof jwtResponse.username === 'string') {
       let user;
       try {
-        // @ts-ignore
         user = await db.user.findUser(jwtResponse.username);
       } catch (error) {
         logger.error(`Login: ${error}`);
@@ -83,7 +80,6 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
         });
       }
 
-      // @ts-ignore
       if (!settingsResponse.appOpen && user.userGroup === 'user') {
         return res.json({
           code: 22,
@@ -95,15 +91,10 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
       return res.json({
         message: 'Session restore success',
         status: 'success',
-        // @ts-ignore
         username: user.username,
-        // @ts-ignore
         userGroup: user.userGroup,
-        // @ts-ignore
         serial: user.serial,
-        // @ts-ignore
         groupCode: user.groupCode,
-        // @ts-ignore
         jwt: getJWT(user.userGroup, user.username),
       });
     }
@@ -142,7 +133,6 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
     });
   }
 
-  // @ts-ignore
   if (!settingsResponse.appOpen && user.userGroup === 'user') {
     return res.json({
       code: 22,
@@ -154,11 +144,9 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
   // User exists
   let validLogin;
   try {
-    // @ts-ignore
     validLogin = await validateLogin(password, user.password);
 
     logger.info(
-      // @ts-ignore
       `Login: User "${user.username}" with "${user.userGroup}" user group`
     );
 
@@ -167,15 +155,10 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
       return res.json({
         message: 'User login success',
         status: 'success',
-        // @ts-ignore
         username: user.username,
-        // @ts-ignore
         userGroup: user.userGroup,
-        // @ts-ignore
         serial: user.serial,
-        // @ts-ignore
         groupCode: user.groupCode,
-        // @ts-ignore
         jwt: getJWT(user.userGroup, user.username),
       });
     } else {

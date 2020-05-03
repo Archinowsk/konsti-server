@@ -10,6 +10,7 @@ import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignup
 import { removeOverlapSignups } from 'player-assignment/utils/removeOverlapSignups';
 import { verifyResults } from 'player-assignment/test/utils/verifyResults';
 import { saveResults } from 'player-assignment/utils/saveResults';
+import { AssignmentStrategy } from 'typings/config.typings';
 
 let mongoServer;
 
@@ -53,7 +54,7 @@ describe('Assignment with valid data', () => {
   test('should return success with group strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'group';
+    const assignmentStrategy = AssignmentStrategy.group;
 
     let users;
     let results;
@@ -68,7 +69,6 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
@@ -149,7 +149,7 @@ describe('Assignment with valid data', () => {
   test('should return success with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'opa';
+    const assignmentStrategy = AssignmentStrategy.opa;
     let users, results;
 
     try {
@@ -162,7 +162,6 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
@@ -243,7 +242,7 @@ describe('Assignment with valid data', () => {
   test('should return success with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'group+opa';
+    const assignmentStrategy = AssignmentStrategy.groupOpa;
     let users, results;
 
     try {
@@ -256,7 +255,6 @@ describe('Assignment with valid data', () => {
 
     // FIRST RUN
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('success');
@@ -357,11 +355,10 @@ describe('Assignment with no games', () => {
   test('should return error with group strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'group';
+    const assignmentStrategy = AssignmentStrategy.group;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
@@ -370,11 +367,10 @@ describe('Assignment with no games', () => {
   test('should return error with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'opa';
+    const assignmentStrategy = AssignmentStrategy.opa;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
@@ -383,11 +379,10 @@ describe('Assignment with no games', () => {
   test('should return error with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'group+opa';
+    const assignmentStrategy = AssignmentStrategy.groupOpa;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no starting games');
@@ -416,11 +411,10 @@ describe('Assignment with no players', () => {
   test('should return error with group strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'group';
+    const assignmentStrategy = AssignmentStrategy.group;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
@@ -429,11 +423,10 @@ describe('Assignment with no players', () => {
   test('should return error with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'opa';
+    const assignmentStrategy = AssignmentStrategy.opa;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');
@@ -442,11 +435,10 @@ describe('Assignment with no players', () => {
   test('should return error with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = 'group+opa';
+    const assignmentStrategy = AssignmentStrategy.groupOpa;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
-    // @ts-ignore
     const assignResults = await runAssignment(startingTime, assignmentStrategy);
 
     expect(assignResults.status).toEqual('error: no signup wishes');

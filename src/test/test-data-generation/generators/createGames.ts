@@ -4,16 +4,16 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { config } from 'config';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
+import { KompassiGame } from 'typings/game.typings';
 
 export const createGames = async (
   gameCount: number,
   signupTimes: number
 ): Promise<void> => {
-  const startingTimes = [];
+  const startingTimes = [] as string[];
 
   for (let i = 0; i < signupTimes; i += 1) {
     startingTimes.push(
-      // @ts-ignore
       moment(config.CONVENTION_START_TIME)
         .add(i + 2, 'hours')
         .format()
@@ -24,7 +24,7 @@ export const createGames = async (
     `Generate data for ${gameCount} games for ${signupTimes} starting times`
   );
 
-  const kompassiGames = [];
+  const kompassiGames = [] as KompassiGame[];
 
   startingTimes.forEach((startingTime) => {
     for (let i = 0; i < gameCount; i += 1) {
@@ -70,7 +70,6 @@ export const createGames = async (
       };
 
       logger.info(`Stored game "${gameData.title}"`);
-      // @ts-ignore
       kompassiGames.push(gameData);
     }
   });
