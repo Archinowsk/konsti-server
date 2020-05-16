@@ -4,8 +4,7 @@ import { SerialDoc } from 'typings/serial.typings';
 
 const removeSerials = async () => {
   logger.info('MongoDB: remove ALL serials from db');
-  const result = await SerialModel.deleteMany({});
-  return result;
+  return await SerialModel.deleteMany({});
 };
 
 const saveSerials = async (serials: readonly string[]): Promise<void> => {
@@ -13,7 +12,7 @@ const saveSerials = async (serials: readonly string[]): Promise<void> => {
 
   for (const serial of serials) {
     if (await findSerial(serial)) {
-      logger.info(`Found serial ${serial} when trying to save it as a new`);
+      logger.info(`Found serial ${serial} already in the database`);
       continue;
     }
     serialDocs.push(

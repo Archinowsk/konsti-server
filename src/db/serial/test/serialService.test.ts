@@ -19,7 +19,6 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await db.serial.removeSerials();
   await mongoose.disconnect();
   await mongoServer.stop();
 });
