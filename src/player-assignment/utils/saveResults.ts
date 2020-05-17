@@ -1,7 +1,6 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { saveUserSignupResults } from 'player-assignment/utils/saveUserSignupResults';
-import { removeOldEnteredGames } from 'player-assignment/utils/removeOldEnteredGames';
 import { Result } from 'typings/result.typings';
 
 export const saveResults = async (
@@ -19,19 +18,10 @@ export const saveResults = async (
     throw new Error(`No assign results: db.results.saveResult error: ${error}`);
   }
 
-  logger.info('Remove old games for the same starting time');
-
-  try {
-    await removeOldEnteredGames(startingTime);
-  } catch (error) {
-    throw new Error(`MongoDB: Error removing old games - ${error}`);
-  }
-
   try {
     logger.info(`Save user signup results for starting time ${startingTime}`);
-    await saveUserSignupResults(results);
+    await saveUserSignupResults(startingTime, results);
   } catch (error) {
-    logger.error(`saveUserSignupResults: ${error}`);
-    throw new Error(`No assign results: saveUserSignupResults: ${error}`);
+    throw new Error(`MongoDB: Error saving user signup results - ${error}`);
   }
 };

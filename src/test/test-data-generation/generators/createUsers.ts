@@ -2,7 +2,7 @@ import faker from 'faker';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { hashPassword } from 'utils/bcrypt';
-
+import { UserGroup } from 'typings/user.typings';
 export const createAdminUser = async (): Promise<void> => {
   logger.info(`Generate data for admin user "admin:test"`);
 
@@ -11,7 +11,7 @@ export const createAdminUser = async (): Promise<void> => {
   const registrationData = {
     username: 'admin',
     passwordHash: passwordHash,
-    userGroup: 'admin',
+    userGroup: UserGroup.admin,
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
     signedGames: [],
@@ -31,7 +31,7 @@ export const createHelpUser = async (): Promise<void> => {
   const registrationData = {
     username: 'ropetiski',
     passwordHash: await hashPassword('test'),
-    userGroup: 'help',
+    userGroup: UserGroup.help,
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
     signedGames: [],
@@ -51,7 +51,7 @@ const createTestUser = async (userNumber: number): Promise<void> => {
   const registrationData = {
     username: `test${userNumber}`,
     passwordHash: await hashPassword('test'),
-    userGroup: 'user',
+    userGroup: UserGroup.user,
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
     signedGames: [],
@@ -81,7 +81,7 @@ const createUser = async ({
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass', // Skip hashing to save time
-    userGroup: 'user',
+    userGroup: UserGroup.user,
     serial:
       groupMemberCount === 0 ? groupCode : faker.random.number().toString(),
     groupCode,

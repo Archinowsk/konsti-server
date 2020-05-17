@@ -1,13 +1,15 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { UserModel } from 'db/user/userSchema';
-import { Result, Signup } from 'typings/result.typings';
+import { Signup } from 'typings/result.typings';
 import {
   User,
   NewUserData,
   EnteredGame,
   SignedGame,
+  FavoritedGame,
   SaveFavoriteRequest,
+  UserGroup,
 } from 'typings/user.typings';
 import { Serial } from 'typings/serial.typings';
 import { Game } from 'typings/game.typings';
@@ -25,10 +27,7 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
   const user = new UserModel({
     username: newUserData.username,
     password: newUserData.passwordHash,
-    userGroup:
-      typeof newUserData.userGroup === 'string'
-        ? newUserData.userGroup
-        : 'user', // Options: 'user' and 'admin'
+    userGroup: newUserData.userGroup ? newUserData.userGroup : UserGroup.user,
     serial: newUserData.serial,
     groupCode:
       typeof newUserData.groupCode === 'string' ? newUserData.groupCode : '0',
@@ -62,7 +61,7 @@ const updateUser = async (newUserData: NewUserData): Promise<void> => {
         userGroup:
           typeof newUserData.userGroup === 'string'
             ? newUserData.userGroup
-            : 'user', // Options: 'user' and 'admin'
+            : UserGroup.user,
         serial: newUserData.serial,
         groupCode:
           typeof newUserData.groupCode === 'string'
@@ -252,7 +251,7 @@ const findGroup = async (
   }
 };
 
-const findUsers = async (): Promise<any> => {
+const findUsers = async (): Promise<User[]> => {
   logger.debug(`MongoDB: Find all users`);
   let users;
   try {
@@ -362,7 +361,7 @@ const saveFavorite = async (
       }
       return acc;
     },
-    [] as string[]
+    [] as FavoritedGame[]
   );
 
   let response;
@@ -383,30 +382,6 @@ const saveFavorite = async (
   } catch (error) {
     logger.error(
       `MongoDB: Error storing favorite data for user "${favoriteData.username}" - ${error}`
-    );
-    return error;
-  }
-};
-
-const saveSignupResult = async (signupResult: Result): Promise<void> => {
-  let response;
-  try {
-    response = await UserModel.updateOne(
-      {
-        username: signupResult.username,
-      },
-      {
-        enteredGames: signupResult.enteredGame,
-      }
-    );
-
-    logger.debug(
-      `MongoDB: Signup result data stored for user "${signupResult.username}"`
-    );
-    return response;
-  } catch (error) {
-    logger.error(
-      `MongoDB: Error storing signup result data for user ${signupResult.username} - ${error}`
     );
     return error;
   }
@@ -447,7 +422,6 @@ export const user = {
   removeUsers,
   saveFavorite,
   saveSignup,
-  saveSignupResult,
   saveUser,
   findGroupMembers,
   saveGroupCode,

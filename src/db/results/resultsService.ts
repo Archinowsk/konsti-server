@@ -29,6 +29,24 @@ const findResult = async (
   return response;
 };
 
+const findResults = async (): Promise<ResultsCollectionEntry[]> => {
+  let response;
+  try {
+    response = await ResultsModel.find(
+      {},
+      '-_id -__v -createdAt -updatedAt -result._id'
+    )
+      .lean()
+      .sort({ createdAt: -1 })
+      .populate('results.enteredGame.gameDetails');
+  } catch (error) {
+    throw new Error(`MongoDB: Error loading all results  - ${error}`);
+  }
+
+  logger.debug(`MongoDB: Succesfully loaded all results`);
+  return response;
+};
+
 const saveResult = async (
   signupResultData: readonly Result[],
   startTime: string,
@@ -82,4 +100,4 @@ const saveResult = async (
   return response;
 };
 
-export const results = { removeResults, saveResult, findResult };
+export const results = { removeResults, saveResult, findResult, findResults };

@@ -19,13 +19,7 @@ const testAssignPlayers = async (
     enableRemoveOverlapSignups,
   } = config;
 
-  let users, results, assignResults;
-
-  try {
-    users = await db.user.findUsers();
-  } catch (error) {
-    return logger.error(error);
-  }
+  let assignResults;
 
   const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -55,21 +49,9 @@ const testAssignPlayers = async (
       if (error) return logger.error(error);
     }
 
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
+    await verifyResults();
 
-    verifyUserSignups(startingTime, users);
-
-    try {
-      results = await db.results.findResult(startingTime);
-    } catch (error) {
-      return logger.error(error);
-    }
-
-    verifyResults(startingTime, users, results);
+    await verifyUserSignups();
   }
 };
 

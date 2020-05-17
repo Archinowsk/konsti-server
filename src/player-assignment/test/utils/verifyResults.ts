@@ -1,160 +1,113 @@
 import moment from 'moment';
+import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
-import { ResultsCollectionEntry } from 'typings/result.typings';
 import { User } from 'typings/user.typings';
+import { ResultsCollectionEntry } from 'typings/result.typings';
 
-export const verifyResults = (
-  startTime: string,
-  users: User[],
-  results: ResultsCollectionEntry
-) => {
-  logger.info(`Verify results for time ${startTime}`);
+export const verifyResults = async (): Promise<any> => {
+  logger.info(`Verify results and user entered games match`);
 
-  if (!users) {
-    logger.error(`No users found`);
-    return;
+  let resultsCollection: ResultsCollectionEntry[];
+  try {
+    resultsCollection = await db.results.findResults();
+  } catch (error) {
+    return logger.error(error);
   }
 
-  if (!results) {
-    logger.error(`No results found for time ${startTime}`);
-    return;
+  let users: User[];
+  try {
+    users = await db.user.findUsers();
+  } catch (error) {
+    return logger.error(error);
   }
 
-  logger.info(`Found ${results.results.length} results for this time`);
+  logger.info('Verify all userResults have correct startTime');
 
-  results.results.map((result) => {
-    if (
-      moment(result.enteredGame.time).format() !== moment(startTime).format()
-    ) {
-      logger.error(
-        `Invalid time for "${
-          result.enteredGame.gameDetails.title
-        }" - actual: ${moment(
-          result.enteredGame.time
-        ).format()}, expected: ${startTime}`
-      );
-    }
+  resultsCollection.map((result) => {
+    result.results.map((userResult) => {
+      if (
+        moment(userResult.enteredGame.time).format() !==
+        moment(result.startTime).format()
+      ) {
+        logger.error(
+          `Invalid time for "${
+            userResult.enteredGame.gameDetails.title
+          }" - actual: ${moment(
+            userResult.enteredGame.time
+          ).format()}, expected: ${result.startTime}`
+        );
+      }
+    });
   });
 
-  logger.info('Check if user enteredGames match results');
-  users.forEach((user) => {
-    // console.log(`user: ${user.username}`)
-    user.enteredGames.forEach((enteredGame) => {
-      if (moment(enteredGame.time).format() === moment(startTime).format()) {
-        /*
-        logger.info(
-          `Found entered game "${enteredGame.gameDetails.title}" for user "${user.username}"`
-        )
-        */
+  logger.info('Check if user enteredGames match userResults');
 
-        if (!results || !results.results) {
-          logger.error(
-            `No results or results.results found for time ${startTime}`
-          );
+  users.forEach((user) => {
+    if (!user.enteredGames.length) return;
+
+    user.enteredGames.forEach((enteredGame) => {
+      const results = resultsCollection.find((result) =>
+        moment(result.startTime).isSame(moment(enteredGame.time))
+      );
+
+      if (!results) {
+        logger.error(`No saved results for starting time ${enteredGame.time}`);
+        return;
+      }
+
+      const matchingResult = results.results.find((userResult) => {
+        if (!enteredGame.gameDetails) {
+          logger.error(`Game details missing for entered game`);
           return;
         }
 
-        const matchingResult = results.results.find((result) => {
-          if (!enteredGame.gameDetails) {
-            logger.error(`Game details missing for entered game`);
-          }
-
-          if (!result.enteredGame.gameDetails) {
-            logger.error(`Game details missing for result`);
-            console.log(result);
-          }
-
-          if (
-            enteredGame.gameDetails &&
-            result.enteredGame.gameDetails &&
-            enteredGame.gameDetails.gameId ===
-              result.enteredGame.gameDetails.gameId &&
-            user.username === result.username
-          ) {
-            /*
-            logger.info(
-              `Match for game ${enteredGame.gameDetails.title} and user ${user.username}`
-            )
-            */
-
-            return result;
-          }
-        });
-
-        if (!matchingResult) {
-          logger.error(
-            `No matching result for user "${user.username}" and game "${enteredGame.gameDetails.title}"`
-          );
+        if (!userResult.enteredGame.gameDetails) {
+          logger.error(`Game details missing for result`);
+          return;
         }
+
+        if (
+          enteredGame.gameDetails.gameId ===
+            userResult.enteredGame.gameDetails.gameId &&
+          user.username === userResult.username
+        ) {
+          logger.debug(
+            `Match for game "${enteredGame.gameDetails.title}" and user "${user.username}"`
+          );
+          return userResult;
+        }
+      });
+
+      if (!matchingResult) {
+        logger.error(
+          `No matching result for user "${user.username}" and game "${enteredGame.gameDetails.title}"`
+        );
       }
     });
   });
 
   logger.info('Check if results match user enteredGames');
 
-  results.results.forEach((result) => {
-    if (!users) {
-      logger.error(`No users found`);
-      return;
-    }
+  resultsCollection.forEach((results) => {
+    results.results.forEach((result) => {
+      const user = users.find((user) => user.username === result.username);
 
-    if (!result.enteredGame.gameDetails) {
-      logger.error(`Game details missing for result`);
-      console.log(result);
-      return;
-    }
-
-    users.forEach((user) => {
-      // console.log(`user: ${user.username}`)
-
-      /*
-      if (user.enteredGames.length === 0) {
-        return
+      if (!user) {
+        logger.error('No user found for result');
+        return;
       }
-      */
 
-      if (user.username === result.username) {
-        let gameFound = false;
-        user.enteredGames.forEach((enteredGame) => {
-          if (
-            moment(enteredGame.time).format() === moment(startTime).format()
-          ) {
-            gameFound = true;
-            /*
-            logger.info(
-              `Found entered game "${enteredGame.gameDetails.title}" for user "${user.username}"`
-            )
-            */
+      const gameFound = user.enteredGames.find(
+        (enteredGame) =>
+          enteredGame.gameDetails.gameId ===
+          result.enteredGame.gameDetails.gameId
+      );
 
-            if (!enteredGame.gameDetails) {
-              logger.error(`Game details missing for entered game`);
-            }
-
-            if (
-              enteredGame.gameDetails.gameId ===
-              result.enteredGame.gameDetails.gameId
-            ) {
-              /*
-              logger.info(
-                `Match for game ${enteredGame.gameDetails.title} and user ${user.username}`
-              )
-              */
-            } else {
-              logger.error(
-                `No matching result for user "${user.username}": enteredGame: "${enteredGame.gameDetails.title}", result: "${result.enteredGame.gameDetails.title}"`
-              );
-            }
-          }
-        });
-
-        if (!gameFound) {
-          logger.error(
-            `No entered game found for user "${user.username}" and result "${result.enteredGame.gameDetails.title}"`
-          );
-        }
+      if (!gameFound) {
+        logger.error(
+          `No entered game found for user "${user.username}" and result "${result.enteredGame.gameDetails?.title}"`
+        );
       }
     });
   });
-
-  logger.info('Verify results done');
 };
