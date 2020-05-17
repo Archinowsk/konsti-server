@@ -64,7 +64,7 @@ const saveHidden = async (hiddenGames: readonly Game[]): Promise<Settings> => {
       acc.push(gameDocInDb._id);
     }
     return acc;
-  }, [] as string[]);
+  }, [] as Game[]);
 
   let settings;
   try {
@@ -93,7 +93,7 @@ const saveSignupTime = async (signupTime: string): Promise<Settings> => {
     settings = await SettingsModel.findOneAndUpdate(
       {},
       {
-        signupTime: signupTime ? moment(signupTime).format() : null,
+        signupTime: signupTime ? moment(signupTime).format() : undefined,
       },
       { new: true, upsert: true }
     );

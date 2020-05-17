@@ -1,12 +1,12 @@
 import { mockGame, mockGame2 } from 'test/mock-data/mockGame';
-import { NewUserData } from 'typings/user.typings';
+import { NewUserData, UserGroup } from 'typings/user.typings';
 import { Signup } from 'typings/result.typings';
 
 export const mockUser: NewUserData = {
   favoritedGames: [],
   username: 'Test User',
   passwordHash: 'testpass',
-  userGroup: 'user',
+  userGroup: UserGroup.user,
   serial: '1234ABCD',
   groupCode: '0',
   signedGames: [],
