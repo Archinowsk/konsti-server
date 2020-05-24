@@ -19,93 +19,97 @@ const {
 } = config;
 
 export const autoUpdateGames = async (): Promise<void> => {
-  if (autoUpdateGamesEnabled || autoUpdateGamePopularityEnabled) {
-    await schedule.scheduleJob(
-      `*/${gameUpdateInterval} * * * *`,
-      async (): Promise<void> => {
-        if (autoUpdateGamesEnabled) {
-          logger.info('----> Auto update games');
-          const kompassiGames = await updateGames();
-          await db.game.saveGames(kompassiGameMapper(kompassiGames));
-          logger.info('***** Games auto update completed');
-        }
+  if (!autoUpdateGamesEnabled || !autoUpdateGamePopularityEnabled) return;
 
-        if (autoUpdateGamePopularityEnabled) {
-          logger.info('----> Auto update game popularity');
-          await updateGamePopularity();
-          logger.info('***** Game popularity auto update completed');
-        }
-      }
-    );
-  }
+  const cronRule = `*/${gameUpdateInterval} * * * *`;
+
+  const callback = async (): Promise<void> => {
+    if (autoUpdateGamesEnabled) {
+      logger.info('----> Auto update games');
+      const kompassiGames = await updateGames();
+      await db.game.saveGames(kompassiGameMapper(kompassiGames));
+      logger.info('***** Games auto update completed');
+    }
+
+    if (autoUpdateGamePopularityEnabled) {
+      logger.info('----> Auto update game popularity');
+      await updateGamePopularity();
+      logger.info('***** Game popularity auto update completed');
+    }
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  await schedule.scheduleJob(cronRule, callback);
 };
 
 export const autoAssignPlayers = async (): Promise<void> => {
-  if (autoAssignPlayersEnabled) {
-    await schedule.scheduleJob(
-      `30 * * * *`,
-      async (): Promise<any> => {
-        logger.info('----> Auto assign players');
-        // 30 * * * * -> “At minute 30.”
-        // */1 * * * * -> “Every minute”
+  if (!autoAssignPlayersEnabled) return;
 
-        const startTime = moment().endOf('hour').add(1, 'seconds').format();
+  const cronRule = `30 * * * *`;
 
-        /*
-      const startTime = moment(config.CONVENTION_START_TIME)
-        .add(2, 'hours')
-        .format();
-      */
+  const callback = async (): Promise<any> => {
+    logger.info('----> Auto assign players');
+    // 30 * * * * -> “At minute 30.”
+    // */1 * * * * -> “Every minute”
 
-        // Wait for final signup requests
-        logger.info('Wait 10s for final requests');
-        await sleep(10000);
+    const startTime = moment().endOf('hour').add(1, 'seconds').format();
 
-        logger.info('Waiting done, start assignment');
+    /*
+    const startTime = moment(config.CONVENTION_START_TIME)
+      .add(2, 'hours')
+      .format();
+    */
 
-        let assignResults;
-        try {
-          assignResults = await runAssignment(startTime);
-        } catch (error) {
-          return logger.error(error);
-        }
+    // Wait for final signup requests
+    logger.info('Wait 10s for final requests');
+    await sleep(10000);
 
-        // console.log('>>> assignResults: ', assignResults)
+    logger.info('Waiting done, start assignment');
 
-        if (assignResults?.results.length === 0) return;
+    let assignResults;
+    try {
+      assignResults = await runAssignment(startTime);
+    } catch (error) {
+      return logger.error(error);
+    }
 
-        // Save results
-        try {
-          await saveResults(
-            assignResults ? assignResults.results : [],
-            startTime,
-            assignResults ? assignResults.algorithm : '',
-            assignResults ? assignResults.message : ''
-          );
-        } catch (error) {
-          logger.error(`saveResult error: ${error}`);
-        }
+    // console.log('>>> assignResults: ', assignResults)
 
-        // Set which results are shown
-        try {
-          await db.settings.saveSignupTime(startTime);
-        } catch (error) {
-          logger.error(`db.settings.saveSignupTime error: ${error}`);
-        }
+    if (assignResults?.results.length === 0) return;
 
-        // Remove overlapping signups
-        if (config.enableRemoveOverlapSignups) {
-          logger.info('Remove overlapping signups');
+    // Save results
+    try {
+      await saveResults(
+        assignResults ? assignResults.results : [],
+        startTime,
+        assignResults ? assignResults.algorithm : '',
+        assignResults ? assignResults.message : ''
+      );
+    } catch (error) {
+      logger.error(`saveResult error: ${error}`);
+    }
 
-          try {
-            await removeOverlapSignups(assignResults.results);
-          } catch (error) {
-            logger.error(`removeOverlapSignups error: ${error}`);
-          }
-        }
+    // Set which results are shown
+    try {
+      await db.settings.saveSignupTime(startTime);
+    } catch (error) {
+      logger.error(`db.settings.saveSignupTime error: ${error}`);
+    }
 
-        logger.info('***** Automatic player assignment completed');
+    // Remove overlapping signups
+    if (config.enableRemoveOverlapSignups) {
+      logger.info('Remove overlapping signups');
+
+      try {
+        await removeOverlapSignups(assignResults.results);
+      } catch (error) {
+        logger.error(`removeOverlapSignups error: ${error}`);
       }
-    );
-  }
+    }
+
+    logger.info('***** Automatic player assignment completed');
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  await schedule.scheduleJob(cronRule, callback);
 };

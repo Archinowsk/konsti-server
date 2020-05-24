@@ -49,7 +49,9 @@ const gracefulExit = async (
 };
 
 // If the Node process ends, close the Mongoose connection
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 process.on('SIGINT', gracefulExit);
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 process.on('SIGTERM', gracefulExit);
 
 export const db = {

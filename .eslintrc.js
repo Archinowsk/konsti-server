@@ -75,6 +75,6 @@ module.exports = {
     // TODO: Enable these
     '@typescript-eslint/no-unnecessary-condition': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/no-misused-promises': 'off',
+    // '@typescript-eslint/no-misused-promises': 'off',
   },
 };
