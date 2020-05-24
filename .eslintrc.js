@@ -73,8 +73,6 @@ module.exports = {
     '@typescript-eslint/restrict-plus-operands': 'off', // Doesn't support dynamic object occurance counting
 
     // TODO: Enable these
-    '@typescript-eslint/no-unnecessary-condition': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
-    // '@typescript-eslint/no-misused-promises': 'off',
   },
 };
