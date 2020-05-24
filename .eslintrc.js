@@ -67,6 +67,8 @@ module.exports = {
     'eslint-comments/no-unused-disable': 'error',
 
     // @typescript-eslint
+    '@typescript-eslint/ban-ts-ignore': 'error',
+
     // TODO: Enable these
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',

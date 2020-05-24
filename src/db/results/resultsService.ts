@@ -84,7 +84,8 @@ const saveResult = async (
     response = await ResultsModel.replaceOne(
       { startTime },
       { startTime, results, algorithm, message },
-      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore: missing from mongoose typings
       { upsert: true }
     );
     logger.debug(

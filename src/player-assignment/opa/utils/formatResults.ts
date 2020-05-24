@@ -10,8 +10,11 @@ export const formatResults = (
   const selectedPlayers = playerGroups
     .filter((playerGroup) => {
       const firstMember = _.first(playerGroup);
-      if (!firstMember)
+
+      if (!firstMember) {
         throw new Error('Opa assign: error getting first member');
+      }
+
       return assignResults.find(
         (assignResult) =>
           (assignResult.id === firstMember.groupCode ||
@@ -21,17 +24,23 @@ export const formatResults = (
     })
     .flat();
 
-  return selectedPlayers.map((player) => {
+  const getEnteredGame = (player) => {
+    return player.signedGames.find((signedGame) => {
+      return assignResults.find(
+        (assignResult) =>
+          (assignResult.id === player.groupCode ||
+            assignResult.id === player.serial) &&
+          assignResult.assignment === signedGame.gameDetails.gameId
+      );
+    });
+  };
+
+  const results = selectedPlayers.map((player) => {
     return {
       username: player.username,
-      enteredGame: player.signedGames.find((signedGame) =>
-        assignResults.find(
-          (assignResult) =>
-            (assignResult.id === player.groupCode ||
-              assignResult.id === player.serial) &&
-            assignResult.assignment === signedGame.gameDetails.gameId
-        )
-      ),
+      enteredGame: getEnteredGame(player),
     };
   });
+
+  return results;
 };
