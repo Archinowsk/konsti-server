@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import { GameWithPlayerCount } from 'typings/game.typings';
+import { GameWithPlayerCount, Game } from 'typings/game.typings';
 
 export const getRemovedGame = (
   gamesWithTooFewPlayers: readonly GameWithPlayerCount[]
-) => {
+): Game => {
   // Get games with least players
   const sortedGamesWithTooFewPlayers = _.sortBy(gamesWithTooFewPlayers, [
     (game) => game.players,

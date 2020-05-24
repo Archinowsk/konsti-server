@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { logger } from 'utils/logger';
 import { getRandomInt } from 'player-assignment/utils/getRandomInt';
 import { shuffleArray } from 'utils/shuffleArray';
-import { UserArray } from 'typings/user.typings';
+import { UserArray, EnteredGame } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { GroupAssignResult } from 'typings/groupAssign.typings';
 import { Result } from 'typings/result.typings';
@@ -18,7 +18,7 @@ export const runGroupAssignment = (
   let playerCounter = 0;
   let gameCounter = 0;
 
-  const findEnteredGame = (enteredGame, signedGames) => {
+  const findEnteredGame = (enteredGame, signedGames): EnteredGame => {
     return signedGames.find(
       (signedGame) => signedGame.gameDetails.gameId === enteredGame.gameId
     );

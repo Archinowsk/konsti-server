@@ -10,7 +10,7 @@ import { Result } from 'typings/result.typings';
 export const updateWithAssign = async (
   users: readonly User[],
   games: readonly Game[]
-) => {
+): Promise<void> => {
   const groupedGames = _.groupBy(games, (game) =>
     moment(game.startTime).utc().format()
   );

@@ -5,7 +5,7 @@ import { User } from 'typings/user.typings';
 export const getSignupMatrix = (
   signedGames: readonly Game[],
   selectedPlayers: readonly User[]
-) => {
+): number[][] => {
   logger.info('Generate signup matrix');
   // Create matrix for the sorting algorithm
   // Each available seat is possible result

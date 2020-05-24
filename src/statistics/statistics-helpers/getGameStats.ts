@@ -6,7 +6,7 @@ import {
   getDemandByGame,
 } from './gameDataHelpers';
 
-export const getGameStats = (year: number, event: string) => {
+export const getGameStats = (year: number, event: string): void => {
   const games = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/games.json`,

@@ -6,7 +6,7 @@ import {
   getUsersWithAllGames,
 } from './userDataHelpers';
 
-export const getUserStats = (year: number, event: string) => {
+export const getUserStats = (year: number, event: string): void => {
   const users = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/users.json`,

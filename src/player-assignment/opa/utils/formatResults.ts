@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { OpaAssignResults } from 'typings/opaAssign.typings';
-import { UserArray } from 'typings/user.typings';
+import { UserArray, EnteredGame } from 'typings/user.typings';
 import { Result } from 'typings/result.typings';
 
 export const formatResults = (
@@ -24,7 +24,7 @@ export const formatResults = (
     })
     .flat();
 
-  const getEnteredGame = (player) => {
+  const getEnteredGame = (player): EnteredGame => {
     return player.signedGames.find((signedGame) => {
       return assignResults.find(
         (assignResult) =>

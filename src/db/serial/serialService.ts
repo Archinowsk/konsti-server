@@ -2,9 +2,9 @@ import { logger } from 'utils/logger';
 import { SerialModel } from 'db/serial/serialSchema';
 import { SerialDoc } from 'typings/serial.typings';
 
-const removeSerials = async () => {
+const removeSerials = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL serials from db');
-  return await SerialModel.deleteMany({});
+  await SerialModel.deleteMany({});
 };
 
 const saveSerials = async (serials: readonly string[]): Promise<void> => {

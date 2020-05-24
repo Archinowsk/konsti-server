@@ -3,8 +3,9 @@ import { toPercent } from '../statsUtil';
 import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
 import { User } from 'typings/user.typings';
+import { getMaximumNumberOfPlayersByTime } from './resultDataHelpers';
 
-export const getGamesByStartingTime = (games: readonly Game[]) => {
+export const getGamesByStartingTime = (games: readonly Game[]): any => {
   const gamesByTime = games.reduce((acc, game) => {
     acc[game.startTime] = ++acc[game.startTime] || 1;
     return acc;
@@ -14,7 +15,7 @@ export const getGamesByStartingTime = (games: readonly Game[]) => {
   return gamesByTime;
 };
 
-const getUsersByGames = (users: readonly User[]) => {
+const getUsersByGames = (users: readonly User[]): any => {
   const enteredGames = users.reduce((acc, user) => {
     user.enteredGames.forEach((enteredGame) => {
       acc[enteredGame.gameDetails.gameId] =
@@ -30,7 +31,7 @@ const getUsersByGames = (users: readonly User[]) => {
 export const getNumberOfFullGames = (
   games: readonly Game[],
   users: readonly User[]
-) => {
+): void => {
   const usersByGames = getUsersByGames(users);
 
   let counter = 0;
@@ -47,7 +48,7 @@ export const getNumberOfFullGames = (
   );
 };
 
-const getSignupsByStartTime = (users: readonly User[]) => {
+const getSignupsByStartTime = (users: readonly User[]): any => {
   const userSignupCountsByTime = {};
 
   logger.warn('Warning: inaccurate because forming groups deletes signedGames');
@@ -76,32 +77,10 @@ const getSignupsByStartTime = (users: readonly User[]) => {
   return userSignupCountsByTime;
 };
 
-const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
-  const maxNumberOfPlayersByTime = {};
-  games.forEach((game) => {
-    if (!maxNumberOfPlayersByTime[game.startTime]) {
-      maxNumberOfPlayersByTime[game.startTime] = 0;
-    }
-
-    maxNumberOfPlayersByTime[game.startTime] =
-      parseInt(maxNumberOfPlayersByTime[game.startTime], 10) +
-      game.maxAttendance;
-  });
-
-  /*
-  logger.info(
-    `Maximum number of seats by starting times: \n`,
-    maxNumberOfPlayersByTime
-  )
-  */
-
-  return maxNumberOfPlayersByTime;
-};
-
 export const getDemandByTime = (
   games: readonly Game[],
   users: readonly User[]
-) => {
+): void => {
   logger.info('>>> Demand by time');
   const signupsByTime = getSignupsByStartTime(users);
   const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);
@@ -120,7 +99,7 @@ export const getDemandByTime = (
 export const getDemandByGame = (
   games: readonly Game[],
   users: readonly User[]
-) => {
+): void => {
   logger.info('>>> Demand by games');
 
   const signedGames = users.reduce((acc, user) => {

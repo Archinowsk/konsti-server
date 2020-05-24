@@ -3,14 +3,15 @@ import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
 
-export const verifyUserSignups = async () => {
+export const verifyUserSignups = async (): Promise<void> => {
   logger.info('Verify entered games and signups match for users');
 
   let users: User[];
   try {
     users = await db.user.findUsers();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    return;
   }
 
   users.map((user) => {

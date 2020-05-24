@@ -5,7 +5,7 @@ import { Result } from 'typings/result.typings';
 export const checkMinAttendance = (
   results: readonly Result[],
   signedGames: readonly Game[]
-) => {
+): readonly GameWithPlayerCount[] => {
   // Check that game minAttendance is fullfilled
   const gameIds = [] as string[];
 
@@ -31,7 +31,7 @@ export const checkMinAttendance = (
   });
 
   // Find games with too few players
-  const gamesWithTooFewPlayers = [] as GameWithPlayerCount[];
+  const gamesWithTooFewPlayers: GameWithPlayerCount[] = [];
   signedGames.forEach((signedGame) => {
     if (counts[signedGame.gameId] < signedGame.minAttendance) {
       gamesWithTooFewPlayers.push({

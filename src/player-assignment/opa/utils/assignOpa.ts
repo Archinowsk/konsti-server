@@ -22,7 +22,7 @@ export const assignOpa = (
   let finalHappiness = 0;
   let finalAssignResults: OpaAssignResults = [];
 
-  const sortList = (list: ListItem[], i: number) => {
+  const sortList = (list: ListItem[], i: number): ListItem[] => {
     switch (i) {
       case 0:
         return _.sortBy(list, 'gain');

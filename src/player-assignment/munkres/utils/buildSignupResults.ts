@@ -1,4 +1,4 @@
-import { User } from 'typings/user.typings';
+import { User, EnteredGame } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { Result } from 'typings/result.typings';
 
@@ -19,7 +19,7 @@ export const buildSignupResults = (
 
     let attendanceRange = 0;
 
-    const findEnteredGame = (enteredGame, signedGames) => {
+    const findEnteredGame = (enteredGame, signedGames): EnteredGame => {
       return signedGames.find(
         (signedGame) => signedGame.gameDetails.gameId === enteredGame.gameId
       );

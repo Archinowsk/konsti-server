@@ -65,7 +65,7 @@ const createTestUser = async (userNumber: number): Promise<void> => {
   }
 };
 
-export const createTestUsers = (number: number) => {
+export const createTestUsers = (number: number): void => {
   for (let i = 0; i < number; i += 1) {
     createTestUser(i + 1);
   }
@@ -77,7 +77,7 @@ const createUser = async ({
 }: {
   groupCode: string;
   groupMemberCount: number;
-}) => {
+}): Promise<void> => {
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass', // Skip hashing to save time
@@ -97,10 +97,13 @@ const createUser = async ({
   }
 };
 
-export const createUsersInGroup = async (count: number, groupCode: string) => {
+export const createUsersInGroup = async (
+  count: number,
+  groupCode: string
+): Promise<void[]> => {
   logger.info(`Generate data for ${count} users in group ${groupCode}`);
 
-  const promises = [] as Array<Promise<any>>;
+  const promises: Array<Promise<void>> = [];
   for (let groupMemberCount = 0; groupMemberCount < count; groupMemberCount++) {
     promises.push(createUser({ groupCode, groupMemberCount }));
   }
@@ -108,10 +111,10 @@ export const createUsersInGroup = async (count: number, groupCode: string) => {
   return await Promise.all(promises);
 };
 
-export const createIndividualUsers = async (count: number) => {
+export const createIndividualUsers = async (count: number): Promise<void[]> => {
   logger.info(`Generate data for ${count} users`);
 
-  const promises = [] as Array<Promise<any>>;
+  const promises: Array<Promise<any>> = [];
   for (let i = 0; i < count; i++) {
     promises.push(
       createUser({

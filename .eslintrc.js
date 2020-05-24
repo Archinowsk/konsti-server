@@ -68,12 +68,11 @@ module.exports = {
 
     // @typescript-eslint
     '@typescript-eslint/ban-ts-ignore': 'error',
+    '@typescript-eslint/strict-boolean-expressions': 'off', // Forces unwanted code style
+    '@typescript-eslint/restrict-template-expressions': 'off', // Requires typing catch(e) every time
 
     // TODO: Enable these
-    '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/promise-function-async': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unnecessary-condition': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/restrict-plus-operands': 'off',
     '@typescript-eslint/no-misused-promises': 'off',

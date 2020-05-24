@@ -1,9 +1,9 @@
 import { logger } from 'utils/logger';
 import { User, SignupWish } from 'typings/user.typings';
 
-export const getSignupWishes = (players: readonly User[]) => {
+export const getSignupWishes = (players: readonly User[]): SignupWish[] => {
   logger.debug('Get signup wishes');
-  const signupWishes = [] as SignupWish[];
+  const signupWishes: SignupWish[] = [];
 
   // Get signup wishes for all players
   players.forEach((player) => {
