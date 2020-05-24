@@ -84,6 +84,7 @@ const saveResult = async (
     response = await ResultsModel.replaceOne(
       { startTime },
       { startTime, results, algorithm, message },
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       { upsert: true }
     );
