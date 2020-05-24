@@ -74,7 +74,7 @@
     "helmet": "3.22.0",
     "jsonwebtoken": "8.5.1",
     "lodash": "4.17.15",
-    "moment": "2.25.3",
+    "moment": "2.26.0",
     "mongoose": "5.9.14",
     "morgan": "1.10.0",
     "munkres-js": "1.2.2",
@@ -144,7 +144,7 @@
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
     "supertest": "4.0.2",
-    "typescript": "3.8.3"
+    "typescript": "3.9.3"
   },
   "engines": {
     "node": ">=12.x.x"
