@@ -22,4 +22,6 @@ const removeInvalidGames = async (): Promise<any> => {
   }
 };
 
-removeInvalidGames();
+removeInvalidGames().catch((error) => {
+  logger.error(error);
+});

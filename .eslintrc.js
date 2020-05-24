@@ -68,14 +68,8 @@ module.exports = {
 
     // @typescript-eslint
     '@typescript-eslint/ban-ts-ignore': 'error',
-
-    // TODO: Enable these
-    '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/promise-function-async': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/restrict-plus-operands': 'off',
-    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off', // Forces unwanted code style
+    '@typescript-eslint/restrict-template-expressions': 'off', // Requires typing catch(e) every time
+    '@typescript-eslint/restrict-plus-operands': 'off', // Doesn't support dynamic object occurance counting
   },
 };

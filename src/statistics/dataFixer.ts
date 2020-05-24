@@ -2,8 +2,9 @@ import commander from 'commander';
 import { anonymizeData } from './fixer-helpers/dataAnonymizer';
 import { wildFix } from './fixer-helpers/wildFix';
 import { gameIdFix } from './fixer-helpers/gameIdFix';
+import { formatFeedbacks } from './fixer-helpers/formatFeedbacks';
 
-const fixData = () => {
+const fixData = (): void => {
   commander
     .command('anonymize <year> <event>')
     .description('Anonymize users and results')
@@ -28,8 +29,8 @@ const fixData = () => {
   commander
     .command('feedback-format <year> <event>')
     .description('Format feedbacks')
-    .action(async (year, event, datatype) => {
-      await wildFix(year, event, datatype);
+    .action(async (year, event) => {
+      await formatFeedbacks(year, event);
     });
 
   if (process.argv.length < 4) {

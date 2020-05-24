@@ -5,7 +5,7 @@ import { UserGroup } from 'typings/user.typings';
 export const validateAuthHeader = (
   authHeader: string | undefined,
   userGroup: UserGroup
-) => {
+): boolean => {
   logger.debug(`Auth: Require jwt for user group "${userGroup}"`);
   let jwt = '';
 

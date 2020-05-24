@@ -34,7 +34,7 @@ export const kompassiGameMapper = (
   });
 };
 
-const mapProgramType = (programType) => {
+const mapProgramType = (programType): string | undefined => {
   if (programType === 'Roolipeli') return 'tabletopRPG';
   else if (programType === 'Freeform') return 'freeformRPG';
 };

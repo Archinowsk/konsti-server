@@ -2,7 +2,11 @@ import { logger } from 'utils/logger';
 import { config } from 'config';
 import { Request, Response, NextFunction } from 'express';
 
-export const allowCORS = (req: Request, res: Response, next: NextFunction) => {
+export const allowCORS = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const allowedOrigins = config.allowedCorsOrigins;
   const origin = req.headers.origin;
 

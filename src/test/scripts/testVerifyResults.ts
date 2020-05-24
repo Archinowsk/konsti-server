@@ -29,4 +29,6 @@ const testVerifyResults = async (): Promise<any> => {
   }
 };
 
-testVerifyResults();
+testVerifyResults().catch((error) => {
+  logger.error(error);
+});

@@ -5,7 +5,7 @@ import { Game } from 'typings/game.typings';
 export const getStartingGames = (
   games: readonly Game[],
   startingTime: string
-) => {
+): readonly Game[] => {
   logger.debug('Get starting games');
   const startingGames = [] as Game[];
   const selectedStartingTime = moment(startingTime).format();

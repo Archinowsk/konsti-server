@@ -3,7 +3,7 @@ import { config } from 'config';
 import { JWTResult } from 'typings/jwt.typings';
 import { UserGroup } from 'typings/user.typings';
 
-const getSecret = (userGroup: UserGroup) => {
+const getSecret = (userGroup: UserGroup): string => {
   if (userGroup === 'admin') {
     return config.jwtSecretKeyAdmin;
   } else if (userGroup === 'user') {

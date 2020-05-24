@@ -50,7 +50,7 @@ const getDataLength = (data: any[] | Object): number => {
     return data.length;
   } else {
     let sum = 0;
-    Object.keys(data).forEach((key, index) => {
+    Object.keys(data).forEach((key) => {
       sum += data[key].length;
     });
     return sum;

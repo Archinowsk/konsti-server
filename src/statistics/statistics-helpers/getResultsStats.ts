@@ -5,7 +5,7 @@ import {
   getDemandByTime,
 } from './resultDataHelpers';
 
-export const getResultsStats = (year: number, event: string) => {
+export const getResultsStats = (year: number, event: string): void => {
   const results = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/results.json`,

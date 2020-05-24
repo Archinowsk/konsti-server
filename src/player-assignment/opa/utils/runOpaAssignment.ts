@@ -15,7 +15,7 @@ export const runOpaAssignment = (
   const groups = getGroups(playerGroups, startingTime);
   const events = getEvents(signedGames);
   const list = getList(playerGroups, startingTime);
-  const updateL = (input) => input.list;
+  const updateL = (input): any => input.list;
 
   const assignResults = assignOpa(groups, events, list, updateL);
 

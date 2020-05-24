@@ -7,7 +7,7 @@ import { updateGamePopularity } from 'game-popularity/updateGamePopularity';
 import { User, SignedGame } from 'typings//user.typings';
 import { Game } from 'typings/game.typings';
 
-export const createSignups = async () => {
+export const createSignups = async (): Promise<void> => {
   let games;
   try {
     games = await db.game.findGames();
@@ -94,7 +94,7 @@ const getRandomSignup = (games: readonly Game[]): SignedGame[] => {
   return signedGames;
 };
 
-const signup = async (games: readonly Game[], user: User) => {
+const signup = async (games: readonly Game[], user: User): Promise<any> => {
   const signedGames = getRandomSignup(games);
 
   return await db.user.saveSignup({
@@ -106,8 +106,8 @@ const signup = async (games: readonly Game[], user: User) => {
 const signupMultiple = async (
   games: readonly Game[],
   users: readonly User[]
-) => {
-  const promises = [] as Array<Promise<any>>;
+): Promise<void[]> => {
+  const promises: Array<Promise<any>> = [];
 
   for (const user of users) {
     if (user.username !== 'admin' && user.username !== 'ropetiski') {
@@ -118,14 +118,17 @@ const signupMultiple = async (
   return await Promise.all(promises);
 };
 
-const signupGroup = async (games: readonly Game[], users: readonly User[]) => {
+const signupGroup = async (
+  games: readonly Game[],
+  users: readonly User[]
+): Promise<void[]> => {
   // Generate random signup data for the first user
   const firstUser = _.first(users);
   if (!firstUser) throw new Error('Error getting first user of group');
   const signedGames = getRandomSignup(games);
 
   // Assign same signup data for group members
-  const promises = [] as Array<Promise<any>>;
+  const promises: Array<Promise<any>> = [];
   for (let i = 0; i < users.length; i++) {
     const signupData = {
       username: users[i].username,

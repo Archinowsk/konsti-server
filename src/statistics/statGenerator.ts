@@ -3,7 +3,7 @@ import { getUserStats } from './statistics-helpers/getUserStats';
 import { getGameStats } from './statistics-helpers/getGameStats';
 import { getResultsStats } from './statistics-helpers/getResultsStats';
 
-const fixData = () => {
+const fixData = (): void => {
   commander
     .command('users <year> <event>')
     .description('Get user statisticss')
