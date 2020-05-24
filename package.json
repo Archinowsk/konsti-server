@@ -83,6 +83,7 @@
     "request": "2.88.2",
     "request-promise-native": "1.0.8",
     "rimraf": "3.0.2",
+    "runtypes": "4.2.0",
     "winston": "3.2.1",
     "winston-daily-rotate-file": "4.4.2"
   },
@@ -142,7 +143,6 @@
     "ncp": "2.0.0",
     "nodemon": "2.0.4",
     "prettier": "2.0.5",
-    "runtypes": "4.2.0",
     "supertest": "4.0.2",
     "typescript": "3.8.3"
   },
