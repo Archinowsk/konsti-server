@@ -42,4 +42,6 @@ const generateSerials = async (): Promise<void> => {
   }
 };
 
-generateSerials();
+generateSerials().catch((error) => {
+  logger.error(error);
+});

@@ -12,7 +12,7 @@ import { AssignmentStrategy } from 'typings/config.typings';
 
 const testAssignPlayers = async (
   assignmentStrategy: AssignmentStrategy
-): Promise<any> => {
+): Promise<void> => {
   const {
     CONVENTION_START_TIME,
     saveTestAssign,
@@ -26,7 +26,8 @@ const testAssignPlayers = async (
   try {
     assignResults = await runAssignment(startingTime, assignmentStrategy);
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    return;
   }
 
   if (saveTestAssign) {
@@ -34,7 +35,8 @@ const testAssignPlayers = async (
       try {
         await removeOverlapSignups(assignResults.results);
       } catch (error) {
-        return logger.error(error);
+        logger.error(error);
+        return;
       }
     }
 
@@ -46,7 +48,8 @@ const testAssignPlayers = async (
         assignResults.message
       );
     } catch (error) {
-      if (error) return logger.error(error);
+      logger.error(error);
+      return;
     }
 
     await verifyResults();
@@ -101,4 +104,6 @@ const init = async (): Promise<any> => {
   }
 };
 
-init();
+init().catch((error) => {
+  logger.error(error);
+});

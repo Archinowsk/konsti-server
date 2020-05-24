@@ -139,4 +139,6 @@ const runGenerators = async (): Promise<void> => {
   }
 };
 
-runGenerators();
+runGenerators().catch((error) => {
+  logger.error(error);
+});

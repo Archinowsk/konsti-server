@@ -65,9 +65,13 @@ const createTestUser = async (userNumber: number): Promise<void> => {
   }
 };
 
-export const createTestUsers = (number: number): void => {
+export const createTestUsers = async (number: number): Promise<void> => {
   for (let i = 0; i < number; i += 1) {
-    createTestUser(i + 1);
+    try {
+      await createTestUser(i + 1);
+    } catch (error) {
+      logger.error(error);
+    }
   }
 };
 

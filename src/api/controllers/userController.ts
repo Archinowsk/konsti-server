@@ -17,9 +17,9 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
   }
 
   if (changePassword) {
+    let passwordHash;
     try {
-      const passwordHash = await hashPassword(password);
-      db.user.updateUserPassword(username, passwordHash);
+      passwordHash = await hashPassword(password);
     } catch (error) {
       logger.error(`db.user.updateUser error: ${error}`);
       return res.json({
@@ -27,6 +27,17 @@ const postUser = async (req: Request, res: Response): Promise<unknown> => {
         status: 'error',
       });
     }
+
+    try {
+      await db.user.updateUserPassword(username, passwordHash);
+    } catch (error) {
+      logger.error(`db.user.updateUserPassword error: ${error}`);
+      return res.json({
+        message: 'Password change error',
+        status: 'error',
+      });
+    }
+
     return res.json({
       message: 'Password changed',
       status: 'success',
