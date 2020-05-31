@@ -104,7 +104,7 @@ const createUser = async ({
 export const createUsersInGroup = async (
   count: number,
   groupCode: string
-): Promise<void[]> => {
+): Promise<void> => {
   logger.info(`Generate data for ${count} users in group ${groupCode}`);
 
   const promises: Array<Promise<void>> = [];
@@ -112,10 +112,10 @@ export const createUsersInGroup = async (
     promises.push(createUser({ groupCode, groupMemberCount }));
   }
 
-  return await Promise.all(promises);
+  await Promise.all(promises);
 };
 
-export const createIndividualUsers = async (count: number): Promise<void[]> => {
+export const createIndividualUsers = async (count: number): Promise<void> => {
   logger.info(`Generate data for ${count} users`);
 
   const promises: Array<Promise<any>> = [];
@@ -128,5 +128,5 @@ export const createIndividualUsers = async (count: number): Promise<void[]> => {
     );
   }
 
-  return await Promise.all(promises);
+  await Promise.all(promises);
 };

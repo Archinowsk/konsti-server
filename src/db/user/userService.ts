@@ -277,7 +277,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
     return error;
   }
 
-  const formattedData = signedGames.reduce((acc, signedGame) => {
+  const formattedData = signedGames.reduce<SignedGame[]>((acc, signedGame) => {
     const gameDocInDb = games.find(
       (game) => game.gameId === signedGame.gameDetails.gameId
     );
@@ -290,7 +290,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
       });
     }
     return acc;
-  }, [] as SignedGame[]);
+  }, []);
 
   let signupResponse;
   try {
@@ -350,7 +350,7 @@ const saveFavorite = async (
     return error;
   }
 
-  const favoritedGames = favoriteData.favoritedGames.reduce(
+  const favoritedGames = favoriteData.favoritedGames.reduce<FavoritedGame[]>(
     (acc, favoritedGame) => {
       const gameDocInDb = games.find(
         (game) => game.gameId === favoritedGame.gameId
@@ -361,7 +361,7 @@ const saveFavorite = async (
       }
       return acc;
     },
-    [] as FavoritedGame[]
+    []
   );
 
   let response;

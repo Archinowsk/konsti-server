@@ -67,7 +67,7 @@ module.exports = {
     'eslint-comments/no-unused-disable': 'error',
 
     // @typescript-eslint
-    '@typescript-eslint/ban-ts-ignore': 'error',
+    '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/strict-boolean-expressions': 'off', // Forces unwanted code style
     '@typescript-eslint/restrict-template-expressions': 'off', // Requires typing catch(e) every time
     '@typescript-eslint/restrict-plus-operands': 'off', // Doesn't support dynamic object occurance counting

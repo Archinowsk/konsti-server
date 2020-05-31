@@ -106,7 +106,7 @@ const signup = async (games: readonly Game[], user: User): Promise<any> => {
 const signupMultiple = async (
   games: readonly Game[],
   users: readonly User[]
-): Promise<void[]> => {
+): Promise<void> => {
   const promises: Array<Promise<any>> = [];
 
   for (const user of users) {
@@ -115,13 +115,13 @@ const signupMultiple = async (
     }
   }
 
-  return await Promise.all(promises);
+  await Promise.all(promises);
 };
 
 const signupGroup = async (
   games: readonly Game[],
   users: readonly User[]
-): Promise<void[]> => {
+): Promise<void> => {
   // Generate random signup data for the first user
   const firstUser = _.first(users);
   if (!firstUser) throw new Error('Error getting first user of group');
@@ -138,5 +138,5 @@ const signupGroup = async (
     promises.push(db.user.saveSignup(signupData));
   }
 
-  return await Promise.all(promises);
+  await Promise.all(promises);
 };

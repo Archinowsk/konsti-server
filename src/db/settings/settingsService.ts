@@ -58,13 +58,13 @@ const saveHidden = async (hiddenGames: readonly Game[]): Promise<Settings> => {
     return error;
   }
 
-  const formattedData = hiddenGames.reduce((acc, hiddenGame) => {
+  const formattedData = hiddenGames.reduce<Game[]>((acc, hiddenGame) => {
     const gameDocInDb = games.find((game) => game.gameId === hiddenGame.gameId);
     if (gameDocInDb) {
       acc.push(gameDocInDb._id);
     }
     return acc;
-  }, [] as Game[]);
+  }, []);
 
   let settings;
   try {

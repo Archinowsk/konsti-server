@@ -61,7 +61,7 @@ const saveResult = async (
     return error;
   }
 
-  const results = signupResultData.reduce((acc, result) => {
+  const results = signupResultData.reduce<Result[]>((acc, result) => {
     const gameDocInDb = games.find(
       (game) => game.gameId === result.enteredGame.gameDetails.gameId
     );
@@ -77,15 +77,15 @@ const saveResult = async (
       });
     }
     return acc;
-  }, [] as Result[]);
+  }, []);
 
   let response;
   try {
     response = await ResultsModel.replaceOne(
       { startTime },
       { startTime, results, algorithm, message },
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore: missing from mongoose typings
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error: missing from mongoose typings
       { upsert: true }
     );
     logger.debug(
