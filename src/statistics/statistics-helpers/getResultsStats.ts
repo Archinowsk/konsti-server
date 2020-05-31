@@ -4,6 +4,7 @@ import {
   getMaximumNumberOfPlayersByTime,
   getDemandByTime,
 } from './resultDataHelpers';
+import { logger } from 'utils/logger';
 
 export const getResultsStats = (year: number, event: string): void => {
   const results = JSON.parse(
@@ -12,7 +13,8 @@ export const getResultsStats = (year: number, event: string): void => {
       'utf8'
     )
   );
-  console.info(`Loaded ${results.length} results`);
+
+  logger.info(`Loaded ${results.length} results`);
 
   const games = JSON.parse(
     fs.readFileSync(
@@ -20,7 +22,8 @@ export const getResultsStats = (year: number, event: string): void => {
       'utf8'
     )
   );
-  console.info(`Loaded ${games.length} games`);
+
+  logger.info(`Loaded ${games.length} games`);
 
   const signupsByTime = getSignupsByTime(results);
   const maximumNumberOfPlayersByTime = getMaximumNumberOfPlayersByTime(games);

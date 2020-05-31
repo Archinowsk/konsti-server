@@ -1,6 +1,7 @@
 import fs from 'fs';
 import _ from 'lodash';
 import moment from 'moment';
+import { logger } from 'utils/logger';
 import { writeJson } from '../statsUtil';
 
 export const formatFeedbacks = (year: number, event: string): void => {
@@ -12,7 +13,7 @@ export const formatFeedbacks = (year: number, event: string): void => {
       'utf8'
     )
   );
-  console.info(`Loaded ${feedbacks.length} feedbacks`);
+  logger.info(`Loaded ${feedbacks.length} feedbacks`);
 
   const games = JSON.parse(
     fs.readFileSync(
@@ -20,7 +21,7 @@ export const formatFeedbacks = (year: number, event: string): void => {
       'utf8'
     )
   );
-  console.info(`Loaded ${games.length} games`);
+  logger.info(`Loaded ${games.length} games`);
 
   const filteredFeedbacks = feedbacks.filter(
     (feedback) => feedback.feedback !== ''

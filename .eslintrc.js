@@ -52,6 +52,7 @@ module.exports = {
   rules: {
     // eslint
     'no-param-reassign': 'error',
+    'no-console': 'error',
 
     // eslint-plugin-prettier
     'prettier/prettier': 'error',
