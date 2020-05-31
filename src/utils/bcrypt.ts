@@ -32,7 +32,7 @@ const validateLogin = async (password: string, hash: string): Promise<any> => {
     return error;
   }
 
-  if (hashResponse === true) {
+  if (hashResponse) {
     return true;
   }
 

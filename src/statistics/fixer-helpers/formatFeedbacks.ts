@@ -2,25 +2,28 @@ import fs from 'fs';
 import _ from 'lodash';
 import moment from 'moment';
 import { logger } from 'utils/logger';
+import { Array } from 'runtypes';
 import { writeJson } from '../statsUtil';
+import { FeedbackRuntype } from 'typings/feedback.typings';
+import { GameRuntype } from 'typings/game.typings';
 
 export const formatFeedbacks = (year: number, event: string): void => {
   moment.locale('fi');
 
-  const feedbacks = JSON.parse(
-    fs.readFileSync(
-      `src/statistics/datafiles/${event}/${year}/secret/feedbacks.json`,
-      'utf8'
-    )
+  const feedbacksJson = fs.readFileSync(
+    `src/statistics/datafiles/${event}/${year}/secret/feedbacks.json`,
+    'utf8'
   );
+  const feedbacks = Array(FeedbackRuntype).check(JSON.parse(feedbacksJson));
+
   logger.info(`Loaded ${feedbacks.length} feedbacks`);
 
-  const games = JSON.parse(
-    fs.readFileSync(
-      `src/statistics/datafiles/${event}/${year}/games.json`,
-      'utf8'
-    )
+  const gamesJson = fs.readFileSync(
+    `src/statistics/datafiles/${event}/${year}/games.json`,
+    'utf8'
   );
+  const games = Array(GameRuntype).check(JSON.parse(gamesJson));
+
   logger.info(`Loaded ${games.length} games`);
 
   const filteredFeedbacks = feedbacks.filter(
@@ -31,9 +34,9 @@ export const formatFeedbacks = (year: number, event: string): void => {
     const foundGame = games.find((game) => game.gameId === feedback.gameId);
     return {
       ...feedback,
-      title: foundGame.title,
-      people: foundGame.people,
-      startTime: moment(foundGame.startTime).format('dddd HH:mm'),
+      title: foundGame?.title,
+      people: foundGame?.people,
+      startTime: moment(foundGame?.startTime).format('dddd HH:mm'),
     };
   });
 

@@ -1,4 +1,5 @@
 import moment from 'moment';
+import _ from 'lodash';
 import { toPercent } from '../statsUtil';
 import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
@@ -6,26 +7,16 @@ import { User } from 'typings/user.typings';
 import { getMaximumNumberOfPlayersByTime } from './resultDataHelpers';
 
 export const getGamesByStartingTime = (games: readonly Game[]): any => {
-  const gamesByTime = games.reduce((acc, game) => {
-    acc[game.startTime] = ++acc[game.startTime] || 1;
-    return acc;
-  }, {});
+  const gamesByTime = _.countBy(games, 'startTime');
 
   logger.info(`Number of games for each start time: \n`, gamesByTime);
   return gamesByTime;
 };
 
 const getUsersByGames = (users: readonly User[]): any => {
-  const enteredGames = users.reduce((acc, user) => {
-    user.enteredGames.forEach((enteredGame) => {
-      acc[enteredGame.gameDetails.gameId] =
-        ++acc[enteredGame.gameDetails.gameId] || 1;
-    });
-    return acc;
-  }, {});
-
-  // logger.info(enteredGames)
-  return enteredGames;
+  const enteredGames = users.flatMap((user) => user.enteredGames);
+  const usersByGames = _.countBy(enteredGames, 'gameDetails.gameId');
+  return usersByGames;
 };
 
 export const getNumberOfFullGames = (
@@ -49,9 +40,9 @@ export const getNumberOfFullGames = (
 };
 
 const getSignupsByStartTime = (users: readonly User[]): any => {
-  const userSignupCountsByTime = {};
+  const userSignupCountsByTime: any = {};
 
-  logger.warn('Warning: inaccurate because forming groups deletes signedGames');
+  logger.warn('Warning: Inaccurate because forming groups deletes signedGames');
 
   users.forEach((user) => {
     let groupSize = 1;
@@ -62,7 +53,7 @@ const getSignupsByStartTime = (users: readonly User[]): any => {
       ).length;
     }
 
-    const signedGames = user.signedGames.reduce((acc, signedGame) => {
+    const signedGames = user.signedGames.reduce<any>((acc, signedGame) => {
       acc[signedGame.time] = acc[signedGame.time] + 1 || 1;
       return acc;
     }, {});
@@ -102,7 +93,7 @@ export const getDemandByGame = (
 ): void => {
   logger.info('>>> Demand by games');
 
-  const signedGames = users.reduce((acc, user) => {
+  const signedGames = users.reduce<any>((acc, user) => {
     let groupSize = 1;
     if (user.groupCode !== '0' && user.groupCode === user.serial) {
       groupSize = users.filter(

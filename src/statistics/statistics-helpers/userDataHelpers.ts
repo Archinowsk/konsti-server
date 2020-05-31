@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { toPercent } from '../statsUtil';
 import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
@@ -45,17 +46,14 @@ export const getUsersWithoutSignups = (
 };
 
 export const getUsersSignupCount = (users: readonly User[]): void => {
-  let userSignupCounts;
+  let userSignupCounts: any;
   users.forEach((user) => {
-    const signedGames = user.signedGames.reduce((acc, signedGame) => {
-      acc[signedGame.time] = ++acc[signedGame.time] || 1;
-      return acc;
-    }, {});
+    const signedGames = _.countBy(user.signedGames, 'time');
     userSignupCounts.push(signedGames);
   });
 
-  let gameWishes;
-  userSignupCounts.forEach((userSignups) => {
+  let gameWishes: any;
+  userSignupCounts.forEach((userSignups: any) => {
     for (const signupTime in userSignups) {
       gameWishes[userSignups[signupTime]] =
         ++gameWishes[userSignups[signupTime]] || 1;
@@ -67,8 +65,8 @@ export const getUsersSignupCount = (users: readonly User[]): void => {
     gameWishes
   );
 
-  const signupCount = {};
-  userSignupCounts.forEach((userSignups) => {
+  const signupCount: any = {};
+  userSignupCounts.forEach((userSignups: any) => {
     signupCount[Object.keys(userSignups).length] =
       ++signupCount[Object.keys(userSignups).length] || 1;
   });
@@ -83,10 +81,7 @@ export const getUsersWithAllGames = (users: readonly User[]): void => {
   let counter = 0;
 
   users.forEach((user) => {
-    const signedGamesByTime = user.signedGames.reduce((acc, signedGame) => {
-      acc[signedGame.time] = ++acc[signedGame.time] || 1;
-      return acc;
-    }, {});
+    const signedGamesByTime = _.countBy(user.signedGames, 'time');
 
     if (Object.keys(signedGamesByTime).length === user.enteredGames.length) {
       counter++;

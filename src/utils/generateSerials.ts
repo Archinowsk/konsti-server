@@ -1,8 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import generator from 'generate-serial-number';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 
-const isInt = (n): boolean => parseInt(n, 10) % 1 === 0;
+const isInt = (n: string): boolean => parseInt(n, 10) % 1 === 0;
 
 const generateSerials = async (): Promise<void> => {
   const serials: any = [];

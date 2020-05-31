@@ -2,19 +2,21 @@ import fs from 'fs';
 import faker from 'faker';
 import { logger } from 'utils/logger';
 import { writeJson } from '../statsUtil';
+import { User } from 'typings/user.typings';
+import { ResultsCollectionEntry } from 'typings/result.typings';
 
 export const anonymizeData = async (
   year: number,
   event: string
 ): Promise<void> => {
-  const users = JSON.parse(
+  const users: User[] = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/users.json`,
       'utf8'
     )
   );
 
-  const results = JSON.parse(
+  const results: ResultsCollectionEntry[] = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/results.json`,
       'utf8'

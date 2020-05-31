@@ -1,13 +1,15 @@
 import { logger } from 'utils/logger';
 import { SerialModel } from 'db/serial/serialSchema';
-import { SerialDoc } from 'typings/serial.typings';
+import { SerialDoc, Serial } from 'typings/serial.typings';
 
 const removeSerials = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL serials from db');
   await SerialModel.deleteMany({});
 };
 
-const saveSerials = async (serials: readonly string[]): Promise<void> => {
+const saveSerials = async (
+  serials: readonly string[]
+): Promise<SerialDoc[]> => {
   const serialDocs = [] as SerialDoc[];
 
   for (const serial of serials) {
@@ -29,10 +31,10 @@ const saveSerials = async (serials: readonly string[]): Promise<void> => {
   }
 };
 
-const findSerial = async (serial: string): Promise<any> => {
+const findSerial = async (serial: string): Promise<Serial | boolean> => {
   let response;
   try {
-    response = await SerialModel.findOne({ serial }).lean();
+    response = await SerialModel.findOne({ serial }).lean<Serial>();
   } catch (error) {
     logger.error(`MongoDB: Error finding serial ${serial} - ${error}`);
     return error;

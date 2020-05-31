@@ -95,7 +95,7 @@ const saveGames = async (games: readonly Game[]): Promise<any> => {
 const findGames = async (): Promise<GameDoc[]> => {
   let response;
   try {
-    response = await GameModel.find({}).lean();
+    response = await GameModel.find({});
     logger.debug(`MongoDB: Find all games`);
     return response;
   } catch (error) {

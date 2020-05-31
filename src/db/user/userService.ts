@@ -12,7 +12,7 @@ import {
   UserGroup,
 } from 'typings/user.typings';
 import { Serial } from 'typings/serial.typings';
-import { Game } from 'typings/game.typings';
+import { GameDoc } from 'typings/game.typings';
 
 const removeUsers = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL users from db');
@@ -49,7 +49,7 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
   }
 };
 
-const updateUser = async (newUserData: NewUserData): Promise<void> => {
+const updateUser = async (newUserData: NewUserData): Promise<User | null> => {
   let response;
 
   try {
@@ -73,7 +73,7 @@ const updateUser = async (newUserData: NewUserData): Promise<void> => {
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -92,7 +92,7 @@ const updateUser = async (newUserData: NewUserData): Promise<void> => {
 const updateUserPassword = async (
   username: string,
   password: string
-): Promise<void> => {
+): Promise<User | null> => {
   let response;
 
   try {
@@ -103,7 +103,7 @@ const updateUserPassword = async (
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -119,14 +119,14 @@ const updateUserPassword = async (
   }
 };
 
-const findUser = async (username: string): Promise<any> => {
+const findUser = async (username: string): Promise<User | null> => {
   let response;
   try {
     response = await UserModel.findOne(
       { username },
       '-signedGames._id -enteredGames._id'
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -143,14 +143,14 @@ const findUser = async (username: string): Promise<any> => {
   return response;
 };
 
-const findUserBySerial = async (serial: string): Promise<void> => {
+const findUserBySerial = async (serial: string): Promise<User | null> => {
   let response;
   try {
     response = await UserModel.findOne(
       { serial },
       '-signedGames._id -enteredGames._id'
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -169,12 +169,12 @@ const findUserBySerial = async (serial: string): Promise<void> => {
   return response;
 };
 
-const findSerial = async (serialData: Serial): Promise<User> => {
+const findSerial = async (serialData: Serial): Promise<User | null> => {
   const serial = serialData.serial;
 
   let response;
   try {
-    response = await UserModel.findOne({ serial }).lean();
+    response = await UserModel.findOne({ serial }).lean<User>();
   } catch (error) {
     logger.error(`MongoDB: Error finding Serial ${serial} - ${error}`);
     return error;
@@ -192,7 +192,7 @@ const findGroupMembers = async (groupCode: string): Promise<User[]> => {
   let response;
   try {
     response = await UserModel.find({ groupCode })
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -214,11 +214,11 @@ const findGroupMembers = async (groupCode: string): Promise<User[]> => {
 const findGroup = async (
   groupCode: string,
   username: string
-): Promise<void> => {
+): Promise<User | null> => {
   let response;
   if (username) {
     try {
-      response = await UserModel.findOne({ groupCode, username }).lean();
+      response = await UserModel.findOne({ groupCode, username }).lean<User>();
     } catch (error) {
       logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`);
       return error;
@@ -236,7 +236,7 @@ const findGroup = async (
     return response;
   } else {
     try {
-      response = await UserModel.findOne({ groupCode }).lean();
+      response = await UserModel.findOne({ groupCode }).lean<User>();
     } catch (error) {
       logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`);
       return error;
@@ -256,7 +256,7 @@ const findUsers = async (): Promise<User[]> => {
   let users;
   try {
     users = await UserModel.find({})
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -269,7 +269,7 @@ const findUsers = async (): Promise<User[]> => {
 const saveSignup = async (signupData: Signup): Promise<any> => {
   const { signedGames, username } = signupData;
 
-  let games;
+  let games: GameDoc[];
   try {
     games = await db.game.findGames();
   } catch (error) {
@@ -315,7 +315,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
 const saveGroupCode = async (
   groupCode: string,
   username: string
-): Promise<void> => {
+): Promise<User | null> => {
   let response;
 
   try {
@@ -323,7 +323,7 @@ const saveGroupCode = async (
       { username: username },
       { groupCode: groupCode },
       { new: true, fields: 'groupCode' }
-    );
+    ).lean<User>();
   } catch (error) {
     logger.error(
       `MongoDB: Error storing group "${groupCode}" stored for user "${username}" - ${error}`
@@ -341,8 +341,8 @@ const saveGroupCode = async (
 
 const saveFavorite = async (
   favoriteData: SaveFavoriteRequest
-): Promise<{ favoritedGames: Game[] }> => {
-  let games;
+): Promise<User | null> => {
+  let games: GameDoc[];
   try {
     games = await db.game.findGames();
   } catch (error) {
@@ -373,7 +373,7 @@ const saveFavorite = async (
       },
       { new: true, fields: 'favoritedGames -_id' }
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames', '-_id -__v -updatedAt -createdAt');
     logger.info(
       `MongoDB: Favorite data stored for user "${favoriteData.username}"`

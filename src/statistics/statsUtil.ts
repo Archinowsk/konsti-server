@@ -1,4 +1,5 @@
 import fs from 'fs';
+import _ from 'lodash';
 import prettier from 'prettier';
 import { logger } from 'utils/logger';
 
@@ -49,10 +50,6 @@ const getDataLength = (data: any[] | Object): number => {
   if (Array.isArray(data)) {
     return data.length;
   } else {
-    let sum = 0;
-    Object.keys(data).forEach((key) => {
-      sum += data[key].length;
-    });
-    return sum;
+    return _.size(data);
   }
 };

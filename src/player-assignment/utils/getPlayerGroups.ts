@@ -1,14 +1,10 @@
+import _ from 'lodash';
 import { User, UserArray } from 'typings/user.typings';
 
 export const getPlayerGroups = (
   players: readonly User[]
 ): readonly UserArray[] => {
-  // Group all unique group numbers
-  const groupedUsers = players.reduce((acc, player) => {
-    acc[player.groupCode] = acc[player.groupCode] || [];
-    acc[player.groupCode].push(player);
-    return acc;
-  }, {});
+  const groupedUsers = _.groupBy(players, 'groupCode');
 
   const playersArray = [] as UserArray[];
   for (const [key, value] of Object.entries(groupedUsers)) {

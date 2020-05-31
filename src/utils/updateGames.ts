@@ -6,7 +6,7 @@ import { config } from 'config';
 import { KompassiGame } from 'typings/game.typings';
 
 export const updateGames = async (): Promise<readonly KompassiGame[]> => {
-  let programItems;
+  let programItems: readonly KompassiGame[] = [];
 
   if (config.useLocalProgramFile) {
     logger.info('Games: GET games from local filesystem');
