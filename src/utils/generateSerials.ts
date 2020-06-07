@@ -7,7 +7,7 @@ import { db } from 'db/mongodb';
 const isInt = (n: string): boolean => parseInt(n, 10) % 1 === 0;
 
 const generateSerials = async (): Promise<void> => {
-  const serials: any = [];
+  const serials: string[] = [];
   const count = process.argv[2];
   if (!count || !isInt(count)) {
     logger.error('Give number parameter: "npm run generate-serials 10"');

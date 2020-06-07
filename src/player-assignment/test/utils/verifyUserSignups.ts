@@ -16,7 +16,7 @@ export const verifyUserSignups = async (): Promise<void> => {
 
   users.map((user) => {
     // Group member enteredGames match with group leader signedGames
-    let groupLeader;
+    let groupLeader: User | undefined;
     if (user.groupCode !== '0' && user.groupCode !== user.serial) {
       groupLeader = users.find((leader) => leader.serial === user.groupCode);
     }

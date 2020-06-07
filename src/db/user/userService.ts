@@ -23,7 +23,7 @@ const removeUsers = async (): Promise<void> => {
   }
 };
 
-const saveUser = async (newUserData: NewUserData): Promise<any> => {
+const saveUser = async (newUserData: NewUserData): Promise<User> => {
   const user = new UserModel({
     username: newUserData.username,
     password: newUserData.passwordHash,
@@ -49,27 +49,20 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
   }
 };
 
-const updateUser = async (newUserData: NewUserData): Promise<User | null> => {
+const updateUser = async (user: User): Promise<User | null> => {
   let response;
 
   try {
     response = await UserModel.findOneAndUpdate(
-      { username: newUserData.username },
+      { username: user.username },
       {
-        // username: newUserData.username,
-        // password: newUserData.passwordHash,
         userGroup:
-          typeof newUserData.userGroup === 'string'
-            ? newUserData.userGroup
-            : UserGroup.user,
-        serial: newUserData.serial,
-        groupCode:
-          typeof newUserData.groupCode === 'string'
-            ? newUserData.groupCode
-            : '0',
-        favoritedGames: newUserData.favoritedGames ?? [],
-        signedGames: newUserData.signedGames ?? [],
-        enteredGames: newUserData.enteredGames ?? [],
+          typeof user.userGroup === 'string' ? user.userGroup : UserGroup.user,
+        serial: user.serial,
+        groupCode: typeof user.groupCode === 'string' ? user.groupCode : '0',
+        favoritedGames: user.favoritedGames ?? [],
+        signedGames: user.signedGames ?? [],
+        enteredGames: user.enteredGames ?? [],
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
     )
@@ -78,13 +71,11 @@ const updateUser = async (newUserData: NewUserData): Promise<User | null> => {
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
 
-    logger.debug(`MongoDB: User "${newUserData.username}" updated`);
+    logger.debug(`MongoDB: User "${user.username}" updated`);
 
     return response;
   } catch (error) {
-    logger.error(
-      `MongoDB: Error updating user ${newUserData.username} - ${error}`
-    );
+    logger.error(`MongoDB: Error updating user ${user.username} - ${error}`);
     return error;
   }
 };
@@ -266,7 +257,7 @@ const findUsers = async (): Promise<User[]> => {
   return users;
 };
 
-const saveSignup = async (signupData: Signup): Promise<any> => {
+const saveSignup = async (signupData: Signup): Promise<User> => {
   const { signedGames, username } = signupData;
 
   let games: GameDoc[];
@@ -301,6 +292,9 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
       },
       { new: true, fields: '-signedGames._id' }
     ).populate('signedGames.gameDetails');
+    if (!signupResponse) {
+      throw new Error('Error saving signup');
+    }
   } catch (error) {
     logger.error(
       `MongoDB: Error storing signup data for user "${username}" - ${error}`

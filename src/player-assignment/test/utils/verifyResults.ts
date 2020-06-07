@@ -4,21 +4,23 @@ import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
 import { ResultsCollectionEntry } from 'typings/result.typings';
 
-export const verifyResults = async (): Promise<any> => {
+export const verifyResults = async (): Promise<void> => {
   logger.info(`Verify results and user entered games match`);
 
   let resultsCollection: ResultsCollectionEntry[];
   try {
     resultsCollection = await db.results.findResults();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    throw new Error(error);
   }
 
   let users: User[];
   try {
     users = await db.user.findUsers();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    throw new Error(error);
   }
 
   logger.info('Verify all userResults have correct startTime');

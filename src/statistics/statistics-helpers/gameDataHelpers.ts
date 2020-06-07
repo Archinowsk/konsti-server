@@ -5,15 +5,18 @@ import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
 import { User } from 'typings/user.typings';
 import { getMaximumNumberOfPlayersByTime } from './resultDataHelpers';
+import { StringNumberObject, PriorityObject } from 'typings/common.typings';
 
-export const getGamesByStartingTime = (games: readonly Game[]): any => {
+export const getGamesByStartingTime = (
+  games: readonly Game[]
+): StringNumberObject => {
   const gamesByTime = _.countBy(games, 'startTime');
 
   logger.info(`Number of games for each start time: \n`, gamesByTime);
   return gamesByTime;
 };
 
-const getUsersByGames = (users: readonly User[]): any => {
+const getUsersByGames = (users: readonly User[]): StringNumberObject => {
   const enteredGames = users.flatMap((user) => user.enteredGames);
   const usersByGames = _.countBy(enteredGames, 'gameDetails.gameId');
   return usersByGames;
@@ -27,7 +30,7 @@ export const getNumberOfFullGames = (
 
   let counter = 0;
   games.forEach((game) => {
-    if (game.maxAttendance === parseInt(usersByGames[game.gameId], 10)) {
+    if (game.maxAttendance === usersByGames[game.gameId]) {
       counter++;
     }
   });
@@ -39,8 +42,8 @@ export const getNumberOfFullGames = (
   );
 };
 
-const getSignupsByStartTime = (users: readonly User[]): any => {
-  const userSignupCountsByTime: any = {};
+const getSignupsByStartTime = (users: readonly User[]): StringNumberObject => {
+  const userSignupCountsByTime: StringNumberObject = {};
 
   logger.warn('Warning: Inaccurate because forming groups deletes signedGames');
 
@@ -53,10 +56,13 @@ const getSignupsByStartTime = (users: readonly User[]): any => {
       ).length;
     }
 
-    const signedGames = user.signedGames.reduce<any>((acc, signedGame) => {
-      acc[signedGame.time] = acc[signedGame.time] + 1 || 1;
-      return acc;
-    }, {});
+    const signedGames = user.signedGames.reduce<StringNumberObject>(
+      (acc, signedGame) => {
+        acc[signedGame.time] = acc[signedGame.time] + 1 || 1;
+        return acc;
+      },
+      {}
+    );
 
     for (const signupTime in signedGames) {
       userSignupCountsByTime[signupTime] =
@@ -93,7 +99,7 @@ export const getDemandByGame = (
 ): void => {
   logger.info('>>> Demand by games');
 
-  const signedGames = users.reduce<any>((acc, user) => {
+  const signedGames = users.reduce<PriorityObject>((acc, user) => {
     let groupSize = 1;
     if (user.groupCode !== '0' && user.groupCode === user.serial) {
       groupSize = users.filter(

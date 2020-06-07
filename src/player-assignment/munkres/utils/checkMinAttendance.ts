@@ -1,9 +1,9 @@
 import { logger } from 'utils/logger';
 import { Game, GameWithPlayerCount } from 'typings/game.typings';
-import { Result } from 'typings/result.typings';
+import { StringNumberObject } from 'typings/common.typings';
 
 export const checkMinAttendance = (
-  results: readonly Result[],
+  results: readonly number[][],
   signedGames: readonly Game[]
 ): readonly GameWithPlayerCount[] => {
   // Check that game minAttendance is fullfilled
@@ -11,7 +11,7 @@ export const checkMinAttendance = (
 
   for (let i = 0; i < results.length; i += 1) {
     // Row determines the game
-    const selectedRow = parseInt(results[i][0], 10);
+    const selectedRow = results[i][0];
 
     // Figure what games the row numbers are
     let attendanceRange = 0;
@@ -25,7 +25,7 @@ export const checkMinAttendance = (
     }
   }
 
-  const counts = {};
+  const counts: StringNumberObject = {};
   gameIds.forEach((x) => {
     counts[x] = (counts[x] || 0) + 1;
   });

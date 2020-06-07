@@ -73,7 +73,7 @@ const getAssignmentStrategy = (userParameter: string): AssignmentStrategy => {
   }
 };
 
-const init = async (): Promise<any> => {
+const init = async (): Promise<void> => {
   if (process.env.NODE_ENV === 'production') {
     logger.error(`Player allocation not allowed in production`);
     return;
@@ -92,7 +92,8 @@ const init = async (): Promise<any> => {
   try {
     await db.connectToDb();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    throw new Error(error);
   }
 
   await testAssignPlayers(assignmentStrategy);

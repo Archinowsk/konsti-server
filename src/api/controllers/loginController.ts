@@ -150,7 +150,7 @@ const postLogin = async (req: Request, res: Response): Promise<unknown> => {
       `Login: User "${user.username}" with "${user.userGroup}" user group`
     );
 
-    if (validLogin === true) {
+    if (validLogin) {
       logger.info(`Login: Password for user "${username}" matches`);
       return res.json({
         message: 'User login success',

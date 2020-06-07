@@ -3,11 +3,11 @@ import _ from 'lodash';
 import prettier from 'prettier';
 import { logger } from 'utils/logger';
 
-export const readJson = (
+export const readJson = <T>(
   year: number,
   event: string,
   datatype: string
-): any[] => {
+): T[] => {
   const data = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/${datatype}.json`,
@@ -19,11 +19,11 @@ export const readJson = (
   return data;
 };
 
-export const writeJson = (
+export const writeJson = <T>(
   year: number,
   event: string,
   datatype: string,
-  data: any[] | Object
+  data: T[] | Object
 ): void => {
   if (!fs.existsSync(`src/statistics/datafiles/${event}/${year}/temp/`)) {
     fs.mkdirSync(`src/statistics/datafiles/${event}/${year}/temp/`);
@@ -46,7 +46,7 @@ export const toPercent = (num: number): number => {
   return Math.round(num * 100);
 };
 
-const getDataLength = (data: any[] | Object): number => {
+const getDataLength = <T>(data: T[] | Object): number => {
   if (Array.isArray(data)) {
     return data.length;
   } else {

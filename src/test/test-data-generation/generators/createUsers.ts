@@ -118,7 +118,7 @@ export const createUsersInGroup = async (
 export const createIndividualUsers = async (count: number): Promise<void> => {
   logger.info(`Generate data for ${count} users`);
 
-  const promises: Array<Promise<any>> = [];
+  const promises: Array<Promise<void>> = [];
   for (let i = 0; i < count; i++) {
     promises.push(
       createUser({

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { OpaAssignResults } from 'typings/opaAssign.typings';
-import { UserArray, EnteredGame } from 'typings/user.typings';
+import { UserArray, EnteredGame, User } from 'typings/user.typings';
 import { Result } from 'typings/result.typings';
 
 export const formatResults = (
@@ -24,7 +24,7 @@ export const formatResults = (
     })
     .flat();
 
-  const getEnteredGame = (player): EnteredGame => {
+  const getEnteredGame = (player: User): EnteredGame | undefined => {
     return player.signedGames.find((signedGame) => {
       return assignResults.find(
         (assignResult) =>
@@ -35,12 +35,16 @@ export const formatResults = (
     });
   };
 
-  const results = selectedPlayers.map((player) => {
-    return {
-      username: player.username,
-      enteredGame: getEnteredGame(player),
-    };
-  });
+  const results = selectedPlayers.reduce<Result[]>((acc, player) => {
+    const enteredGame = getEnteredGame(player);
+    if (enteredGame) {
+      acc.push({
+        username: player.username,
+        enteredGame,
+      });
+    }
+    return acc;
+  }, []);
 
   return results;
 };

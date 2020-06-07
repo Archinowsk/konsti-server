@@ -2,19 +2,20 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { Signup, Result } from 'typings/result.typings';
-import { SignedGame } from 'typings/user.typings';
+import { SignedGame, User } from 'typings/user.typings';
 
 export const removeOverlapSignups = async (
   results: readonly Result[]
-): Promise<any> => {
+): Promise<void> => {
   logger.debug('Find overlapping signups');
   const signupData: Signup[] = [];
 
-  let players;
+  let players: User[];
   try {
     players = await db.user.findUsers();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    throw new Error(error);
   }
 
   results.forEach((result) => {

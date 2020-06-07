@@ -3,12 +3,13 @@ import { logger } from 'utils/logger';
 
 const saltLength = 10;
 
-const hashPassword = async (password: string): Promise<any> => {
+const hashPassword = async (password: string): Promise<string> => {
   try {
     return await bcrypt.hash(password, saltLength);
   } catch (error) {
     logger.error(`bcrypt.hash error: ${error}`);
   }
+  return 'hash-error';
 };
 
 const comparePasswordHash = async (
@@ -23,13 +24,16 @@ const comparePasswordHash = async (
   return false;
 };
 
-const validateLogin = async (password: string, hash: string): Promise<any> => {
+const validateLogin = async (
+  password: string,
+  hash: string
+): Promise<boolean> => {
   let hashResponse;
   try {
     hashResponse = await comparePasswordHash(password, hash);
   } catch (error) {
     logger.error(`comparePasswordHash error: ${error}`);
-    return error;
+    throw new Error(error);
   }
 
   if (hashResponse) {

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { toPercent } from '../statsUtil';
 import { logger } from 'utils/logger';
 import { User } from 'typings/user.typings';
+import { StringNumberObject } from 'typings/common.typings';
 
 export const getUsersWithoutGames = (
   users: readonly User[]
@@ -46,14 +47,14 @@ export const getUsersWithoutSignups = (
 };
 
 export const getUsersSignupCount = (users: readonly User[]): void => {
-  let userSignupCounts: any;
+  const userSignupCounts: StringNumberObject[] = [];
   users.forEach((user) => {
     const signedGames = _.countBy(user.signedGames, 'time');
     userSignupCounts.push(signedGames);
   });
 
-  let gameWishes: any;
-  userSignupCounts.forEach((userSignups: any) => {
+  const gameWishes: StringNumberObject = {};
+  userSignupCounts.forEach((userSignups: StringNumberObject) => {
     for (const signupTime in userSignups) {
       gameWishes[userSignups[signupTime]] =
         ++gameWishes[userSignups[signupTime]] || 1;
@@ -65,8 +66,8 @@ export const getUsersSignupCount = (users: readonly User[]): void => {
     gameWishes
   );
 
-  const signupCount: any = {};
-  userSignupCounts.forEach((userSignups: any) => {
+  const signupCount: StringNumberObject = {};
+  userSignupCounts.forEach((userSignups: StringNumberObject) => {
     signupCount[Object.keys(userSignups).length] =
       ++signupCount[Object.keys(userSignups).length] || 1;
   });

@@ -11,7 +11,7 @@ import { verifyResults } from 'player-assignment/test/utils/verifyResults';
 import { saveResults } from 'player-assignment/utils/saveResults';
 import { AssignmentStrategy } from 'typings/config.typings';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,

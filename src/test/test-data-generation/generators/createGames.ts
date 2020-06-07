@@ -4,12 +4,12 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { config } from 'config';
 import { kompassiGameMapper } from 'utils/kompassiGameMapper';
-import { KompassiGame } from 'typings/game.typings';
+import { KompassiGame, Game } from 'typings/game.typings';
 
 export const createGames = async (
   gameCount: number,
   signupTimes: number
-): Promise<void> => {
+): Promise<Game[]> => {
   const startingTimes = [] as string[];
 
   for (let i = 0; i < signupTimes; i += 1) {

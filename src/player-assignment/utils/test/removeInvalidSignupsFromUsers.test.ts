@@ -7,7 +7,7 @@ import { mockUser, mockSignup } from 'test/mock-data/mockUser';
 import { mockGame, mockGame2 } from 'test/mock-data/mockGame';
 import { removeInvalidSignupsFromUsers } from 'player-assignment/utils/removeInvalidSignupsFromUsers';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,

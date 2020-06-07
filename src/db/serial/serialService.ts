@@ -31,7 +31,7 @@ const saveSerials = async (
   }
 };
 
-const findSerial = async (serial: string): Promise<Serial | boolean> => {
+const findSerial = async (serial: string): Promise<boolean> => {
   let response;
   try {
     response = await SerialModel.findOne({ serial }).lean<Serial>();

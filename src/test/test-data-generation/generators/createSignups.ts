@@ -89,7 +89,7 @@ const getRandomSignup = (games: readonly Game[]): SignedGame[] => {
   return signedGames;
 };
 
-const signup = async (games: readonly Game[], user: User): Promise<any> => {
+const signup = async (games: readonly Game[], user: User): Promise<User> => {
   const signedGames = getRandomSignup(games);
 
   return await db.user.saveSignup({
@@ -102,7 +102,7 @@ const signupMultiple = async (
   games: readonly Game[],
   users: readonly User[]
 ): Promise<void> => {
-  const promises: Array<Promise<any>> = [];
+  const promises: Array<Promise<User>> = [];
 
   for (const user of users) {
     if (user.username !== 'admin' && user.username !== 'ropetiski') {
@@ -123,7 +123,7 @@ const signupGroup = async (
   const signedGames = getRandomSignup(games);
 
   // Assign same signup data for group members
-  const promises: Array<Promise<any>> = [];
+  const promises: Array<Promise<User>> = [];
   for (let i = 0; i < users.length; i++) {
     const signupData = {
       username: users[i].username,
