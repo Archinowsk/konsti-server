@@ -4,7 +4,7 @@ import { db } from 'db/mongodb';
 import { UserModel } from 'db/user/userSchema';
 import { UserGroup } from 'typings/user.typings';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,

@@ -2,6 +2,7 @@ import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { ResultsModel } from 'db/results/resultsSchema';
 import { Result, ResultsCollectionEntry } from 'typings/result.typings';
+import { GameDoc } from 'typings/game.typings';
 
 const removeResults = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL results from db');
@@ -10,14 +11,14 @@ const removeResults = async (): Promise<void> => {
 
 const findResult = async (
   startTime: string
-): Promise<ResultsCollectionEntry> => {
+): Promise<ResultsCollectionEntry | null> => {
   let response;
   try {
     response = await ResultsModel.findOne(
       { startTime },
       '-_id -__v -createdAt -updatedAt -result._id'
     )
-      .lean()
+      .lean<ResultsCollectionEntry>()
       .sort({ createdAt: -1 })
       .populate('results.enteredGame.gameDetails');
     logger.debug(`MongoDB: Results data found for time ${startTime}`);
@@ -36,7 +37,7 @@ const findResults = async (): Promise<ResultsCollectionEntry[]> => {
       {},
       '-_id -__v -createdAt -updatedAt -result._id'
     )
-      .lean()
+      .lean<ResultsCollectionEntry>()
       .sort({ createdAt: -1 })
       .populate('results.enteredGame.gameDetails');
   } catch (error) {
@@ -53,7 +54,7 @@ const saveResult = async (
   algorithm: string,
   message: string
 ): Promise<ResultsCollectionEntry> => {
-  let games;
+  let games: GameDoc[] = [];
   try {
     games = await db.game.findGames();
   } catch (error) {

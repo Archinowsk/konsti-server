@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { logger } from 'utils/logger';
 import { getRandomInt } from 'player-assignment/utils/getRandomInt';
 import { shuffleArray } from 'utils/shuffleArray';
-import { UserArray, EnteredGame } from 'typings/user.typings';
+import { UserArray, SignedGame } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { GroupAssignResult } from 'typings/groupAssign.typings';
 import { Result } from 'typings/result.typings';
@@ -11,14 +11,17 @@ export const runGroupAssignment = (
   playerGroups: readonly UserArray[],
   signedGames: readonly Game[]
 ): GroupAssignResult => {
-  const signupResults = [] as Result[];
-  let matchingGroups = [] as UserArray[];
-  let selectedGroups = [] as UserArray[];
+  const signupResults: Result[] = [];
+  let matchingGroups: UserArray[] = [];
+  let selectedGroups: UserArray[] = [];
   let score = 0;
   let playerCounter = 0;
   let gameCounter = 0;
 
-  const findEnteredGame = (enteredGame, signedGames): EnteredGame => {
+  const findEnteredGame = (
+    enteredGame: Game,
+    signedGames: readonly SignedGame[]
+  ): SignedGame | undefined => {
     return signedGames.find(
       (signedGame) => signedGame.gameDetails.gameId === enteredGame.gameId
     );

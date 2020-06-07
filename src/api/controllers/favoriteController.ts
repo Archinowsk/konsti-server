@@ -18,14 +18,9 @@ const postFavorite = async (req: Request, res: Response): Promise<unknown> => {
     return res.sendStatus(401);
   }
 
+  let saveFavoriteResponse;
   try {
-    const saveFavoriteResponse = await db.user.saveFavorite(favoriteData);
-
-    return res.json({
-      message: 'Update favorite success',
-      status: 'success',
-      favoritedGames: saveFavoriteResponse.favoritedGames,
-    });
+    saveFavoriteResponse = await db.user.saveFavorite(favoriteData);
   } catch (error) {
     return res.json({
       message: 'Update favorite failure',
@@ -33,6 +28,19 @@ const postFavorite = async (req: Request, res: Response): Promise<unknown> => {
       error,
     });
   }
+
+  if (saveFavoriteResponse) {
+    return res.json({
+      message: 'Update favorite success',
+      status: 'success',
+      favoritedGames: saveFavoriteResponse.favoritedGames,
+    });
+  }
+
+  return res.json({
+    message: 'Update favorite failure',
+    status: 'error',
+  });
 };
 
 export { postFavorite };

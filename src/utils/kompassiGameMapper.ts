@@ -1,9 +1,9 @@
 import moment from 'moment';
-import { KompassiGame } from 'typings/game.typings';
+import { KompassiGame, Game } from 'typings/game.typings';
 
 export const kompassiGameMapper = (
   games: readonly KompassiGame[]
-): readonly any[] => {
+): readonly Game[] => {
   return games.map((game) => {
     return {
       gameId: game.identifier,
@@ -30,11 +30,13 @@ export const kompassiGameMapper = (
       shortDescription: game.short_blurb || game.three_word_description,
       revolvingDoor: game.revolving_door,
       programType: mapProgramType(game.category_title),
+      popularity: 0,
     };
   });
 };
 
-const mapProgramType = (programType): string | undefined => {
+const mapProgramType = (programType: string): string => {
   if (programType === 'Roolipeli') return 'tabletopRPG';
   else if (programType === 'Freeform') return 'freeformRPG';
+  else return 'unknown';
 };

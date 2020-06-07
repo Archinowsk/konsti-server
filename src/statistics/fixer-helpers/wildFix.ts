@@ -11,9 +11,11 @@ export const wildFix = (year: number, event: string, type: string): void => {
   }
 
   // Implement fixer logic here
+  /*
   data.forEach((dataEntry) => {
     dataEntry.username = dataEntry.username.toUpperCase();
   });
+  */
 
   writeJson(year, event, type, data);
 };

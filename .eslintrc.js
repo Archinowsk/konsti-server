@@ -69,6 +69,7 @@ module.exports = {
 
     // @typescript-eslint
     '@typescript-eslint/ban-ts-comment': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/strict-boolean-expressions': 'off', // Forces unwanted code style
     '@typescript-eslint/restrict-template-expressions': 'off', // Requires typing catch(e) every time
     '@typescript-eslint/restrict-plus-operands': 'off', // Doesn't support dynamic object occurance counting

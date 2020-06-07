@@ -8,14 +8,14 @@ import { User, SignedGame } from 'typings//user.typings';
 import { Game } from 'typings/game.typings';
 
 export const createSignups = async (): Promise<void> => {
-  let games;
+  let games: Game[] = [];
   try {
     games = await db.game.findGames();
   } catch (error) {
     logger.error(`db.game.findGames error: ${error}`);
   }
 
-  let allUsers;
+  let allUsers: User[] = [];
   try {
     allUsers = await db.user.findUsers();
   } catch (error) {
@@ -29,15 +29,10 @@ export const createSignups = async (): Promise<void> => {
   logger.info(`Signup: ${games.length} games`);
   logger.info(`Signup: ${users.length} users`);
 
-  // Group all unique group numbers
-  const groupedUsers = users.reduce((acc, user) => {
-    acc[user.groupCode] = acc[user.groupCode] || [];
-    acc[user.groupCode].push(user);
-    return acc;
-  }, {});
+  const groupedUsers = _.groupBy(users, 'groupCode');
 
   for (const [key, value] of Object.entries(groupedUsers)) {
-    const array = [...(value as User[])];
+    const array = [...value];
     if (key === '0') {
       logger.info('SIGNUP INDIVIDUAL USERS');
       await signupMultiple(games, array);
@@ -94,7 +89,7 @@ const getRandomSignup = (games: readonly Game[]): SignedGame[] => {
   return signedGames;
 };
 
-const signup = async (games: readonly Game[], user: User): Promise<any> => {
+const signup = async (games: readonly Game[], user: User): Promise<User> => {
   const signedGames = getRandomSignup(games);
 
   return await db.user.saveSignup({
@@ -107,7 +102,7 @@ const signupMultiple = async (
   games: readonly Game[],
   users: readonly User[]
 ): Promise<void> => {
-  const promises: Array<Promise<any>> = [];
+  const promises: Array<Promise<User>> = [];
 
   for (const user of users) {
     if (user.username !== 'admin' && user.username !== 'ropetiski') {
@@ -128,7 +123,7 @@ const signupGroup = async (
   const signedGames = getRandomSignup(games);
 
   // Assign same signup data for group members
-  const promises: Array<Promise<any>> = [];
+  const promises: Array<Promise<User>> = [];
   for (let i = 0; i < users.length; i++) {
     const signupData = {
       username: users[i].username,

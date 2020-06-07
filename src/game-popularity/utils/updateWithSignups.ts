@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { User } from 'typings/user.typings';
@@ -27,10 +28,7 @@ export const updateWithSignups = async (
     user.signedGames.map((signedGames) => signedGames.gameDetails)
   );
 
-  const groupedSignups = signedGames.reduce((acc, game) => {
-    acc[game.gameId] = ++acc[game.gameId] || 1;
-    return acc;
-  }, {});
+  const groupedSignups = _.countBy(signedGames, 'gameId');
 
   try {
     await Promise.all(

@@ -1,8 +1,7 @@
-import { Result } from 'typings/result.typings';
 import { PlayerIdWithPriority } from 'typings/user.typings';
 
 export const getPriorities = (
-  results: readonly Result[],
+  results: readonly number[][],
   signupMatrix: readonly number[][]
 ): PlayerIdWithPriority[] => {
   // Show the priorities players were assigned to
@@ -11,7 +10,7 @@ export const getPriorities = (
     const matrixValue = signupMatrix[results[i][0]][results[i][1]];
     const selectedPlayer = results[i][1];
     priorities.push({
-      playerId: parseInt(selectedPlayer, 10),
+      playerId: selectedPlayer,
       priorityValue: matrixValue,
     });
   }

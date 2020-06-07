@@ -47,7 +47,7 @@ export const autoAssignPlayers = async (): Promise<void> => {
 
   const cronRule = `30 * * * *`;
 
-  const callback = async (): Promise<any> => {
+  const callback = async (): Promise<void> => {
     logger.info('----> Auto assign players');
     // 30 * * * * -> “At minute 30.”
     // */1 * * * * -> “Every minute”
@@ -70,7 +70,7 @@ export const autoAssignPlayers = async (): Promise<void> => {
     try {
       assignResults = await runAssignment(startTime);
     } catch (error) {
-      return logger.error(error);
+      logger.error(error);
     }
 
     // console.log('>>> assignResults: ', assignResults)
@@ -100,10 +100,12 @@ export const autoAssignPlayers = async (): Promise<void> => {
     if (config.enableRemoveOverlapSignups) {
       logger.info('Remove overlapping signups');
 
-      try {
-        await removeOverlapSignups(assignResults.results);
-      } catch (error) {
-        logger.error(`removeOverlapSignups error: ${error}`);
+      if (assignResults) {
+        try {
+          await removeOverlapSignups(assignResults.results);
+        } catch (error) {
+          logger.error(`removeOverlapSignups error: ${error}`);
+        }
       }
     }
 

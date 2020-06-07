@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { db } from 'db/mongodb';
 import { ResultsModel } from 'db/results/resultsSchema';
+import { Result } from 'typings/result.typings';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,
@@ -25,7 +26,7 @@ afterEach(async () => {
 
 describe('Results service', () => {
   it('should insert new result into collection', async () => {
-    const signupResultData = [];
+    const signupResultData: Result[] = [];
     const startTime = '2019-07-26T14:00:00.000Z';
     const algorithm = 'group';
     const message = 'Test assign result message';

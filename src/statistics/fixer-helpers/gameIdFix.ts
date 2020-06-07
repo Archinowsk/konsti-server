@@ -1,10 +1,17 @@
 import fs from 'fs';
 import { logger } from 'utils/logger';
 import { writeJson } from '../statsUtil';
-import { SignedGame, EnteredGame, FavoritedGame } from 'typings/user.typings';
+import {
+  SignedGame,
+  EnteredGame,
+  FavoritedGame,
+  User,
+} from 'typings/user.typings';
+import { GameDoc } from 'typings/game.typings';
+import { ResultsCollectionEntry } from 'typings/result.typings';
 
 export const gameIdFix = async (year: number, event: string): Promise<void> => {
-  const users = JSON.parse(
+  const users: User[] = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/users.json`,
       'utf8'
@@ -13,7 +20,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
 
   logger.info(`Loaded ${users.length} users`);
 
-  const results = JSON.parse(
+  const results: ResultsCollectionEntry[] = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/results.json`,
       'utf8'
@@ -22,7 +29,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
 
   logger.info(`Loaded ${results.length} results`);
 
-  const games = JSON.parse(
+  const games: GameDoc[] = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/games.json`,
       'utf8'
@@ -32,9 +39,9 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
   logger.info(`Loaded ${games.length} games`);
 
   users.forEach((user) => {
-    const tempFavoritedGames = [] as FavoritedGame[];
-    const tempEnteredGames = [] as EnteredGame[];
-    const tempSignedGames = [] as SignedGame[];
+    const tempFavoritedGames: FavoritedGame[] = [];
+    const tempEnteredGames: EnteredGame[] = [];
+    const tempSignedGames: SignedGame[] = [];
 
     games.forEach((game) => {
       user.favoritedGames.forEach((favoritedGame) => {
@@ -46,7 +53,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
         if (game._id === enteredGame.gameDetails) {
           tempEnteredGames.push({
             ...enteredGame,
-            gameDetails: { gameId: game.gameId },
+            gameDetails: game,
           });
         }
       });
@@ -54,7 +61,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
         if (game._id === signedGame.gameDetails) {
           tempSignedGames.push({
             ...signedGame,
-            gameDetails: { gameId: game.gameId },
+            gameDetails: game,
           });
         }
       });
@@ -70,7 +77,7 @@ export const gameIdFix = async (year: number, event: string): Promise<void> => {
         if (game._id === userResult.enteredGame.gameDetails) {
           userResult.enteredGame = {
             ...userResult.enteredGame,
-            gameDetails: { gameId: game.gameId },
+            gameDetails: game,
           };
         }
       });

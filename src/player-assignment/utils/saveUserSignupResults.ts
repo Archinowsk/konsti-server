@@ -2,6 +2,8 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { Result } from 'typings/result.typings';
+import { GameDoc } from 'typings/game.typings';
+import { EnteredGame } from 'typings/user.typings';
 
 export const saveUserSignupResults = async (
   startingTime: string,
@@ -14,7 +16,7 @@ export const saveUserSignupResults = async (
     throw new Error(`MongoDB: Error fetching users - ${error}`);
   }
 
-  let games;
+  let games: GameDoc[];
   try {
     games = await db.game.findGames();
   } catch (error) {
@@ -38,18 +40,9 @@ export const saveUserSignupResults = async (
           (game) => game.gameId === result?.enteredGame.gameDetails.gameId
         );
 
-        let enteredGames = existingEnteredGames;
+        let enteredGames: EnteredGame[] = existingEnteredGames;
 
-        let newEnteredGame;
         if (gameDocInDb && result) {
-          newEnteredGame = {
-            gameDetails: gameDocInDb?._id,
-            priority: result?.enteredGame.priority,
-            time: result?.enteredGame.time,
-          };
-        }
-
-        if (newEnteredGame) {
           enteredGames = [
             ...existingEnteredGames,
             {

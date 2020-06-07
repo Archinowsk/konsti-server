@@ -2,7 +2,7 @@ import moment from 'moment';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { SettingsModel } from 'db/settings/settingsSchema';
-import { Game } from 'typings/game.typings';
+import { Game, GameDoc } from 'typings/game.typings';
 import { Settings } from 'typings/settings.typings';
 
 const removeSettings = async (): Promise<void> => {
@@ -37,7 +37,7 @@ const findSettings = async (): Promise<Settings> => {
       {},
       '-_id -__v -createdAt -updatedAt'
     )
-      .lean()
+      .lean<Settings>()
       .populate('hiddenGames');
   } catch (error) {
     throw new Error(`MongoDB: Error finding settings data: ${error}`);
@@ -50,7 +50,7 @@ const findSettings = async (): Promise<Settings> => {
 };
 
 const saveHidden = async (hiddenGames: readonly Game[]): Promise<Settings> => {
-  let games;
+  let games: GameDoc[];
   try {
     games = await db.game.findGames();
   } catch (error) {
