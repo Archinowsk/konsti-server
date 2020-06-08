@@ -29,7 +29,7 @@ export const getList = (
   });
 };
 
-const getGain = (signedGame: SignedGame) => {
+const getGain = (signedGame: SignedGame): number => {
   switch (signedGame.priority) {
     case 1:
       return 1;

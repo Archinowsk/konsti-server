@@ -99,7 +99,7 @@ const devConfig = {
   autoAssignPlayersEnabled: false,
 };
 
-const combineConfig = () => {
+const combineConfig = (): Config => {
   if (process.env.SETTINGS === 'production') {
     return { ...commonConfig, ...prodConfig };
   } else if (process.env.SETTINGS === 'staging') {

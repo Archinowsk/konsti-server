@@ -12,10 +12,14 @@ export const runOpaAssignment = (
   playerGroups: readonly UserArray[],
   startingTime: string
 ): AssignmentStrategyResult => {
+  interface Input {
+    list: string;
+  }
+
   const groups = getGroups(playerGroups, startingTime);
   const events = getEvents(signedGames);
   const list = getList(playerGroups, startingTime);
-  const updateL = (input) => input.list;
+  const updateL = (input: Input): string => input.list;
 
   const assignResults = assignOpa(groups, events, list, updateL);
 

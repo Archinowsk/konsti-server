@@ -2,9 +2,9 @@ import { logger } from 'utils/logger';
 import { SerialModel } from 'db/serial/serialSchema';
 import { SerialDoc, Serial } from 'typings/serial.typings';
 
-const removeSerials = async () => {
+const removeSerials = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL serials from db');
-  return await SerialModel.deleteMany({});
+  await SerialModel.deleteMany({});
 };
 
 const saveSerials = async (
@@ -37,10 +37,10 @@ const saveSerials = async (
   }
 };
 
-const findSerial = async (serial: string): Promise<Serial | boolean> => {
+const findSerial = async (serial: string): Promise<boolean> => {
   let response;
   try {
-    response = await SerialModel.findOne({ serial }).lean();
+    response = await SerialModel.findOne({ serial }).lean<Serial>();
   } catch (error) {
     logger.error(`MongoDB: Error finding serial ${serial} - ${error}`);
     return error;

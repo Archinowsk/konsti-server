@@ -1,7 +1,7 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 
-export const removeInvalidSignupsFromUsers = async (): Promise<any> => {
+export const removeInvalidSignupsFromUsers = async (): Promise<void> => {
   logger.info('Remove invalid signups from users');
 
   let users;
@@ -9,7 +9,7 @@ export const removeInvalidSignupsFromUsers = async (): Promise<any> => {
     users = await db.user.findUsers();
   } catch (error) {
     logger.error(`findUsers error: ${error}`);
-    return logger.error(error);
+    throw new Error(error);
   }
 
   try {
@@ -43,6 +43,6 @@ export const removeInvalidSignupsFromUsers = async (): Promise<any> => {
     );
   } catch (error) {
     logger.error(`db.user.updateUser error: ${error}`);
-    return logger.error(error);
+    throw new Error(error);
   }
 };

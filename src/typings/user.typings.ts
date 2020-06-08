@@ -43,7 +43,7 @@ export interface NewUserData {
   username: string;
   serial: string;
   passwordHash: string | Promise<void>;
-  userGroup?: string;
+  userGroup?: UserGroup;
   groupCode?: string;
   favoritedGames?: readonly FavoritedGame[];
   signedGames?: readonly SignedGame[];

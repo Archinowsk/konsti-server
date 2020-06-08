@@ -1,29 +1,23 @@
-import { User } from 'typings/user.typings';
+import { User, SignedGame } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { Result } from 'typings/result.typings';
 
 export const buildSignupResults = (
-  results: readonly string[][],
+  results: readonly number[][],
   signedGames: readonly Game[],
   players: readonly User[]
 ): readonly Result[] => {
-  const signupResults = [] as Result[];
+  const signupResults: Result[] = [];
 
   // Build signup results
   for (let i = 0; i < results.length; i += 1) {
     // Row determines the game
-    const selectedRow = parseInt(results[i][0], 10);
+    const selectedRow = results[i][0];
 
     // Player id
-    const selectedPlayer = parseInt(results[i][1], 10);
+    const selectedPlayer = results[i][1];
 
     let attendanceRange = 0;
-
-    const findEnteredGame = (enteredGame, signedGames) => {
-      return signedGames.find(
-        (signedGame) => signedGame.gameDetails.gameId === enteredGame.gameId
-      );
-    };
 
     // Figure what games the row numbers are
     for (let j = 0; j < signedGames.length; j += 1) {
@@ -48,4 +42,13 @@ export const buildSignupResults = (
     }
   }
   return signupResults;
+};
+
+const findEnteredGame = (
+  enteredGame: Game,
+  signedGames: readonly SignedGame[]
+): SignedGame | undefined => {
+  return signedGames.find(
+    (signedGame) => signedGame.gameDetails.gameId === enteredGame.gameId
+  );
 };

@@ -3,7 +3,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { db } from 'db/mongodb';
 import { SerialModel } from 'db/serial/serialSchema';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,

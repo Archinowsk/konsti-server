@@ -83,6 +83,12 @@ const runGenerators = async (): Promise<void> => {
       logger.error(error);
     }
 
+    try {
+      await db.results.removeResults();
+    } catch (error) {
+      logger.error(error);
+    }
+
     await createAdminUser();
     await createHelpUser();
 
@@ -104,12 +110,25 @@ const runGenerators = async (): Promise<void> => {
       logger.error(error);
     }
 
+    try {
+      await db.results.removeResults();
+    } catch (error) {
+      logger.error(error);
+    }
+
     await createGames(newGamesCount, signupTimes);
   }
 
   if (commander.signups) {
     logger.info('Generate signups');
     // TODO: Remove signups
+
+    try {
+      await db.results.removeResults();
+    } catch (error) {
+      logger.error(error);
+    }
+
     await createSignups();
   }
 
@@ -120,4 +139,6 @@ const runGenerators = async (): Promise<void> => {
   }
 };
 
-runGenerators();
+runGenerators().catch((error) => {
+  logger.error(error);
+});

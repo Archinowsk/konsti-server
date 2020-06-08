@@ -5,7 +5,7 @@ import { db } from 'db/mongodb';
 import { SettingsModel } from 'db/settings/settingsSchema';
 import { mockGame, mockGame2 } from 'test/mock-data/mockGame';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,

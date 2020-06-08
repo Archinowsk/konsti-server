@@ -1,13 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import generator from 'generate-serial-number';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { SerialDoc } from '../typings/serial.typings';
 
-const isInt = (n) => parseInt(n, 10) % 1 === 0;
+const isInt = (n: string): boolean => parseInt(n, 10) % 1 === 0;
 
 const generateSerials = async (): Promise<void> => {
   const serials: string[] = [];
-  const count: string = process.argv[2];
+  const count = process.argv[2];
   if (!count || !isInt(count)) {
     logger.error('Give number parameter: "npm run generate-serials 10"');
   } else {
@@ -59,4 +61,6 @@ const generateSerials = async (): Promise<void> => {
   }
 };
 
-generateSerials();
+generateSerials().catch((error) => {
+  logger.error(error);
+});

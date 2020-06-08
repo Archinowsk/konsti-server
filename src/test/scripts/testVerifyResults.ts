@@ -1,41 +1,34 @@
 import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
 import { verifyResults } from 'player-assignment/test/utils/verifyResults';
+import { verifyUserSignups } from 'player-assignment/test/utils/verifyUserSignups';
 
-const testVerifyResults = async (): Promise<any> => {
-  let users, results;
-
+const testVerifyResults = async (): Promise<void> => {
   try {
     await db.connectToDb();
   } catch (error) {
-    return logger.error(error);
-  }
-
-  const startTime = '2019-07-26 14:00:00.000Z';
-
-  try {
-    users = await db.user.findUsers();
-  } catch (error) {
-    return logger.error(error);
+    logger.error(error);
   }
 
   try {
-    results = await db.results.findResult(startTime);
+    await verifyResults();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
   }
 
   try {
-    await verifyResults(startTime, users, results);
+    await verifyUserSignups();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
   }
 
   try {
     await db.gracefulExit();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
   }
 };
 
-testVerifyResults();
+testVerifyResults().catch((error) => {
+  logger.error(error);
+});

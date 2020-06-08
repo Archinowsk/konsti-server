@@ -10,7 +10,7 @@ import { Result } from 'typings/result.typings';
 export const updateWithAssign = async (
   users: readonly User[],
   games: readonly Game[]
-) => {
+): Promise<void> => {
   const groupedGames = _.groupBy(games, (game) =>
     moment(game.startTime).utc().format()
   );
@@ -25,10 +25,7 @@ export const updateWithAssign = async (
     (result) => result.enteredGame.gameDetails
   );
 
-  const groupedSignups = signedGames.reduce((acc, game) => {
-    acc[game.gameId] = ++acc[game.gameId] || 1;
-    return acc;
-  }, {});
+  const groupedSignups = _.countBy(signedGames, 'gameId');
 
   try {
     await Promise.all(

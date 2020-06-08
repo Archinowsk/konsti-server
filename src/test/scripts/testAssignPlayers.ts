@@ -12,27 +12,22 @@ import { AssignmentStrategy } from 'typings/config.typings';
 
 const testAssignPlayers = async (
   assignmentStrategy: AssignmentStrategy
-): Promise<any> => {
+): Promise<void> => {
   const {
     CONVENTION_START_TIME,
     saveTestAssign,
     enableRemoveOverlapSignups,
   } = config;
 
-  let users, results, assignResults;
-
-  try {
-    users = await db.user.findUsers();
-  } catch (error) {
-    return logger.error(error);
-  }
+  let assignResults;
 
   const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
   try {
     assignResults = await runAssignment(startingTime, assignmentStrategy);
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    return;
   }
 
   if (saveTestAssign) {
@@ -40,7 +35,8 @@ const testAssignPlayers = async (
       try {
         await removeOverlapSignups(assignResults.results);
       } catch (error) {
-        return logger.error(error);
+        logger.error(error);
+        return;
       }
     }
 
@@ -52,24 +48,13 @@ const testAssignPlayers = async (
         assignResults.message
       );
     } catch (error) {
-      if (error) return logger.error(error);
+      logger.error(error);
+      return;
     }
 
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
+    await verifyResults();
 
-    verifyUserSignups(startingTime, users);
-
-    try {
-      results = await db.results.findResult(startingTime);
-    } catch (error) {
-      return logger.error(error);
-    }
-
-    verifyResults(startingTime, users, results);
+    await verifyUserSignups();
   }
 };
 
@@ -88,7 +73,7 @@ const getAssignmentStrategy = (userParameter: string): AssignmentStrategy => {
   }
 };
 
-const init = async (): Promise<any> => {
+const init = async (): Promise<void> => {
   if (process.env.NODE_ENV === 'production') {
     logger.error(`Player allocation not allowed in production`);
     return;
@@ -107,7 +92,8 @@ const init = async (): Promise<any> => {
   try {
     await db.connectToDb();
   } catch (error) {
-    return logger.error(error);
+    logger.error(error);
+    throw new Error(error);
   }
 
   await testAssignPlayers(assignmentStrategy);
@@ -119,4 +105,6 @@ const init = async (): Promise<any> => {
   }
 };
 
-init();
+init().catch((error) => {
+  logger.error(error);
+});

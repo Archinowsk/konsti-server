@@ -2,7 +2,7 @@ import faker from 'faker';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { hashPassword } from 'utils/bcrypt';
-
+import { UserGroup } from 'typings/user.typings';
 export const createAdminUser = async (): Promise<void> => {
   logger.info(`Generate data for admin user "admin:test"`);
 
@@ -11,7 +11,7 @@ export const createAdminUser = async (): Promise<void> => {
   const registrationData = {
     username: 'admin',
     passwordHash: passwordHash,
-    userGroup: 'admin',
+    userGroup: UserGroup.admin,
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
     signedGames: [],
@@ -31,7 +31,7 @@ export const createHelpUser = async (): Promise<void> => {
   const registrationData = {
     username: 'ropetiski',
     passwordHash: await hashPassword('test'),
-    userGroup: 'help',
+    userGroup: UserGroup.help,
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
     signedGames: [],
@@ -51,7 +51,7 @@ const createTestUser = async (userNumber: number): Promise<void> => {
   const registrationData = {
     username: `test${userNumber}`,
     passwordHash: await hashPassword('test'),
-    userGroup: 'user',
+    userGroup: UserGroup.user,
     serial: faker.random.number(10000000).toString(),
     favoritedGames: [],
     signedGames: [],
@@ -65,9 +65,13 @@ const createTestUser = async (userNumber: number): Promise<void> => {
   }
 };
 
-export const createTestUsers = (number: number) => {
+export const createTestUsers = async (number: number): Promise<void> => {
   for (let i = 0; i < number; i += 1) {
-    createTestUser(i + 1);
+    try {
+      await createTestUser(i + 1);
+    } catch (error) {
+      logger.error(error);
+    }
   }
 };
 
@@ -77,11 +81,11 @@ const createUser = async ({
 }: {
   groupCode: string;
   groupMemberCount: number;
-}) => {
+}): Promise<void> => {
   const registrationData = {
     username: faker.internet.userName(),
     passwordHash: 'testPass', // Skip hashing to save time
-    userGroup: 'user',
+    userGroup: UserGroup.user,
     serial:
       groupMemberCount === 0 ? groupCode : faker.random.number().toString(),
     groupCode,
@@ -97,21 +101,24 @@ const createUser = async ({
   }
 };
 
-export const createUsersInGroup = async (count: number, groupCode: string) => {
+export const createUsersInGroup = async (
+  count: number,
+  groupCode: string
+): Promise<void> => {
   logger.info(`Generate data for ${count} users in group ${groupCode}`);
 
-  const promises = [] as Array<Promise<any>>;
+  const promises: Array<Promise<void>> = [];
   for (let groupMemberCount = 0; groupMemberCount < count; groupMemberCount++) {
     promises.push(createUser({ groupCode, groupMemberCount }));
   }
 
-  return await Promise.all(promises);
+  await Promise.all(promises);
 };
 
-export const createIndividualUsers = async (count: number) => {
+export const createIndividualUsers = async (count: number): Promise<void> => {
   logger.info(`Generate data for ${count} users`);
 
-  const promises = [] as Array<Promise<any>>;
+  const promises: Array<Promise<void>> = [];
   for (let i = 0; i < count; i++) {
     promises.push(
       createUser({
@@ -121,5 +128,5 @@ export const createIndividualUsers = async (count: number) => {
     );
   }
 
-  return await Promise.all(promises);
+  await Promise.all(promises);
 };

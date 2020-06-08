@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import moment from 'moment';
-import { db } from 'db/mongodb';
 import { config } from 'config';
 import { logger } from 'utils/logger';
 import { runAssignment } from 'player-assignment/runAssignment';
@@ -12,7 +11,7 @@ import { verifyResults } from 'player-assignment/test/utils/verifyResults';
 import { saveResults } from 'player-assignment/utils/saveResults';
 import { AssignmentStrategy } from 'typings/config.typings';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,
@@ -56,15 +55,6 @@ describe('Assignment with valid data', () => {
 
     const assignmentStrategy = AssignmentStrategy.group;
 
-    let users;
-    let results;
-
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
-
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
     // FIRST RUN
@@ -90,21 +80,9 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
+    await verifyUserSignups();
 
-    verifyUserSignups(startingTime, users);
-
-    try {
-      results = await db.results.findResult(startingTime);
-    } catch (error) {
-      return logger.error(error);
-    }
-
-    verifyResults(startingTime, users, results);
+    await verifyResults();
 
     // SECOND RUN
 
@@ -129,34 +107,15 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
+    await verifyUserSignups();
 
-    verifyUserSignups(startingTime, users);
-
-    try {
-      results = await db.results.findResult(startingTime);
-    } catch (error) {
-      return logger.error(error);
-    }
-
-    verifyResults(startingTime, users, results);
+    await verifyResults();
   });
 
   test('should return success with opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = AssignmentStrategy.opa;
-    let users, results;
-
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -183,21 +142,9 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
+    await verifyUserSignups();
 
-    verifyUserSignups(startingTime, users);
-
-    try {
-      results = await db.results.findResult(startingTime);
-    } catch (error) {
-      return logger.error(error);
-    }
-
-    verifyResults(startingTime, users, results);
+    await verifyResults();
 
     // SECOND RUN
 
@@ -222,34 +169,15 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      if (error) return logger.error(error);
-    }
+    await verifyUserSignups();
 
-    verifyUserSignups(startingTime, users);
-
-    try {
-      results = await db.results.findResult(startingTime);
-    } catch (error) {
-      return logger.error(error);
-    }
-
-    verifyResults(startingTime, users, results);
+    await verifyResults();
   });
 
   test('should return success with group+opa strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
     const assignmentStrategy = AssignmentStrategy.groupOpa;
-    let users, results;
-
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -276,21 +204,9 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
-    try {
-      users = await db.user.findUsers();
-    } catch (error) {
-      return logger.error(error);
-    }
+    await verifyUserSignups();
 
-    verifyUserSignups(startingTime, users);
-
-    try {
-      results = await db.results.findResult(startingTime);
-    } catch (error) {
-      return logger.error(error);
-    }
-
-    verifyResults(startingTime, users, results);
+    await verifyResults();
 
     // SECOND RUN
 
@@ -315,21 +231,63 @@ describe('Assignment with valid data', () => {
       return logger.error(error);
     }
 
+    await verifyUserSignups();
+
+    await verifyResults();
+  });
+
+  test('should return valid results after multiple executions on different times', async () => {
+    const { CONVENTION_START_TIME } = config;
+
+    const assignmentStrategy = AssignmentStrategy.group;
+
+    const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
+
+    // FIRST RUN
+
+    const assignResults = await runAssignment(startingTime, assignmentStrategy);
+
+    expect(assignResults.status).toEqual('success');
+
     try {
-      users = await db.user.findUsers();
+      await saveResults(
+        assignResults.results,
+        startingTime,
+        assignResults.algorithm,
+        assignResults.message
+      );
     } catch (error) {
       return logger.error(error);
     }
 
-    verifyUserSignups(startingTime, users);
+    await verifyUserSignups();
+
+    await verifyResults();
+
+    // SECOND RUN
+
+    const startingTime2 = moment(CONVENTION_START_TIME)
+      .add(4, 'hours')
+      .format();
+
+    const assignResults2 = await runAssignment(startingTime2);
+
+    expect(assignResults2.status).toEqual('success');
 
     try {
-      results = await db.results.findResult(startingTime);
+      await saveResults(
+        assignResults2.results,
+        startingTime2,
+        assignResults2.algorithm,
+        assignResults2.message
+      );
     } catch (error) {
       return logger.error(error);
     }
 
-    verifyResults(startingTime, users, results);
+    await verifyUserSignups();
+
+    await verifyResults();
   });
 });
 

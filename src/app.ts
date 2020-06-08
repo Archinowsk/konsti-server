@@ -5,9 +5,15 @@ import { autoUpdateGames, autoAssignPlayers } from 'utils/cron';
 import { config } from 'config';
 
 const startApp = async (): Promise<void> => {
-  autoUpdateGames(); // Start cronjob to auto update games from Kompassi
-  autoAssignPlayers(); // Start cronjob to automatically assing players
+  // Start cronjob to auto update games from Kompassi
+  autoUpdateGames().catch((error) => {
+    logger.error(error);
+  });
 
+  // Start cronjob to automatically assing players
+  autoAssignPlayers().catch((error) => {
+    logger.error(error);
+  });
   const server = await startServer(config.dbConnString);
 
   const app = server.listen(server.get('port'), () => {
@@ -24,7 +30,9 @@ const init = (): void => {
     throw new Error(`Node environment NODE_ENV missing`);
   }
 
-  startApp();
+  startApp().catch((error) => {
+    logger.error(error);
+  });
 };
 
 init();

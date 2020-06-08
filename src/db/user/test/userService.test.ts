@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { db } from 'db/mongodb';
 import { UserModel } from 'db/user/userSchema';
+import { UserGroup } from 'typings/user.typings';
 
-let mongoServer;
+let mongoServer: MongoMemoryServer;
 
 const options = {
   promiseLibrary: global.Promise,
@@ -29,7 +30,7 @@ describe('User service', () => {
       favoritedGames: [],
       username: 'test user',
       passwordHash: 'testpass',
-      userGroup: 'user',
+      userGroup: UserGroup.user,
       serial: '1234ABCD',
       groupCode: '0',
       signedGames: [],

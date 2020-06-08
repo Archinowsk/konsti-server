@@ -1,16 +1,18 @@
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
 import { UserModel } from 'db/user/userSchema';
-import { Result, Signup } from 'typings/result.typings';
+import { Signup } from 'typings/result.typings';
 import {
   User,
   NewUserData,
   EnteredGame,
   SignedGame,
+  FavoritedGame,
   SaveFavoriteRequest,
+  UserGroup,
 } from 'typings/user.typings';
 import { Serial } from 'typings/serial.typings';
-import { Game } from 'typings/game.typings';
+import { GameDoc } from 'typings/game.typings';
 
 const removeUsers = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL users from db');
@@ -21,14 +23,11 @@ const removeUsers = async (): Promise<void> => {
   }
 };
 
-const saveUser = async (newUserData: NewUserData): Promise<any> => {
+const saveUser = async (newUserData: NewUserData): Promise<User> => {
   const user = new UserModel({
     username: newUserData.username,
     password: newUserData.passwordHash,
-    userGroup:
-      typeof newUserData.userGroup === 'string'
-        ? newUserData.userGroup
-        : 'user', // Options: 'user' and 'admin'
+    userGroup: newUserData.userGroup ? newUserData.userGroup : UserGroup.user,
     serial: newUserData.serial,
     groupCode:
       typeof newUserData.groupCode === 'string' ? newUserData.groupCode : '0',
@@ -50,42 +49,33 @@ const saveUser = async (newUserData: NewUserData): Promise<any> => {
   }
 };
 
-const updateUser = async (newUserData: NewUserData): Promise<void> => {
+const updateUser = async (user: User): Promise<User | null> => {
   let response;
 
   try {
     response = await UserModel.findOneAndUpdate(
-      { username: newUserData.username },
+      { username: user.username },
       {
-        // username: newUserData.username,
-        // password: newUserData.passwordHash,
         userGroup:
-          typeof newUserData.userGroup === 'string'
-            ? newUserData.userGroup
-            : 'user', // Options: 'user' and 'admin'
-        serial: newUserData.serial,
-        groupCode:
-          typeof newUserData.groupCode === 'string'
-            ? newUserData.groupCode
-            : '0',
-        favoritedGames: newUserData.favoritedGames ?? [],
-        signedGames: newUserData.signedGames ?? [],
-        enteredGames: newUserData.enteredGames ?? [],
+          typeof user.userGroup === 'string' ? user.userGroup : UserGroup.user,
+        serial: user.serial,
+        groupCode: typeof user.groupCode === 'string' ? user.groupCode : '0',
+        favoritedGames: user.favoritedGames ?? [],
+        signedGames: user.signedGames ?? [],
+        enteredGames: user.enteredGames ?? [],
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
 
-    logger.debug(`MongoDB: User "${newUserData.username}" updated`);
+    logger.debug(`MongoDB: User "${user.username}" updated`);
 
     return response;
   } catch (error) {
-    logger.error(
-      `MongoDB: Error updating user ${newUserData.username} - ${error}`
-    );
+    logger.error(`MongoDB: Error updating user ${user.username} - ${error}`);
     return error;
   }
 };
@@ -93,7 +83,7 @@ const updateUser = async (newUserData: NewUserData): Promise<void> => {
 const updateUserPassword = async (
   username: string,
   password: string
-): Promise<void> => {
+): Promise<User | null> => {
   let response;
 
   try {
@@ -104,7 +94,7 @@ const updateUserPassword = async (
       },
       { new: true, fields: '-_id -__v -createdAt -updatedAt' }
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -120,14 +110,14 @@ const updateUserPassword = async (
   }
 };
 
-const findUser = async (username: string): Promise<any> => {
+const findUser = async (username: string): Promise<User | null> => {
   let response;
   try {
     response = await UserModel.findOne(
       { username },
       '-signedGames._id -enteredGames._id'
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -144,14 +134,14 @@ const findUser = async (username: string): Promise<any> => {
   return response;
 };
 
-const findUserBySerial = async (serial: string): Promise<void> => {
+const findUserBySerial = async (serial: string): Promise<User | null> => {
   let response;
   try {
     response = await UserModel.findOne(
       { serial },
       '-signedGames._id -enteredGames._id'
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -170,12 +160,12 @@ const findUserBySerial = async (serial: string): Promise<void> => {
   return response;
 };
 
-const findSerial = async (serialData: Serial): Promise<User> => {
+const findSerial = async (serialData: Serial): Promise<User | null> => {
   const serial = serialData.serial;
 
   let response;
   try {
-    response = await UserModel.findOne({ serial }).lean();
+    response = await UserModel.findOne({ serial }).lean<User>();
   } catch (error) {
     logger.error(`MongoDB: Error finding Serial ${serial} - ${error}`);
     return error;
@@ -193,7 +183,7 @@ const findGroupMembers = async (groupCode: string): Promise<User[]> => {
   let response;
   try {
     response = await UserModel.find({ groupCode })
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -215,11 +205,11 @@ const findGroupMembers = async (groupCode: string): Promise<User[]> => {
 const findGroup = async (
   groupCode: string,
   username: string
-): Promise<void> => {
+): Promise<User | null> => {
   let response;
   if (username) {
     try {
-      response = await UserModel.findOne({ groupCode, username }).lean();
+      response = await UserModel.findOne({ groupCode, username }).lean<User>();
     } catch (error) {
       logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`);
       return error;
@@ -237,7 +227,7 @@ const findGroup = async (
     return response;
   } else {
     try {
-      response = await UserModel.findOne({ groupCode }).lean();
+      response = await UserModel.findOne({ groupCode }).lean<User>();
     } catch (error) {
       logger.error(`MongoDB: Error finding group ${groupCode} - ${error}`);
       return error;
@@ -252,12 +242,12 @@ const findGroup = async (
   }
 };
 
-const findUsers = async (): Promise<any> => {
+const findUsers = async (): Promise<User[]> => {
   logger.debug(`MongoDB: Find all users`);
   let users;
   try {
     users = await UserModel.find({})
-      .lean()
+      .lean<User>()
       .populate('favoritedGames')
       .populate('enteredGames.gameDetails')
       .populate('signedGames.gameDetails');
@@ -267,10 +257,10 @@ const findUsers = async (): Promise<any> => {
   return users;
 };
 
-const saveSignup = async (signupData: Signup): Promise<any> => {
+const saveSignup = async (signupData: Signup): Promise<User> => {
   const { signedGames, username } = signupData;
 
-  let games;
+  let games: GameDoc[];
   try {
     games = await db.game.findGames();
   } catch (error) {
@@ -278,7 +268,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
     return error;
   }
 
-  const formattedData = signedGames.reduce((acc, signedGame) => {
+  const formattedData = signedGames.reduce<SignedGame[]>((acc, signedGame) => {
     const gameDocInDb = games.find(
       (game) => game.gameId === signedGame.gameDetails.gameId
     );
@@ -291,7 +281,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
       });
     }
     return acc;
-  }, [] as SignedGame[]);
+  }, []);
 
   let signupResponse;
   try {
@@ -302,6 +292,9 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
       },
       { new: true, fields: '-signedGames._id' }
     ).populate('signedGames.gameDetails');
+    if (!signupResponse) {
+      throw new Error('Error saving signup');
+    }
   } catch (error) {
     logger.error(
       `MongoDB: Error storing signup data for user "${username}" - ${error}`
@@ -316,7 +309,7 @@ const saveSignup = async (signupData: Signup): Promise<any> => {
 const saveGroupCode = async (
   groupCode: string,
   username: string
-): Promise<void> => {
+): Promise<User | null> => {
   let response;
 
   try {
@@ -324,7 +317,7 @@ const saveGroupCode = async (
       { username: username },
       { groupCode: groupCode },
       { new: true, fields: 'groupCode' }
-    );
+    ).lean<User>();
   } catch (error) {
     logger.error(
       `MongoDB: Error storing group "${groupCode}" stored for user "${username}" - ${error}`
@@ -342,8 +335,8 @@ const saveGroupCode = async (
 
 const saveFavorite = async (
   favoriteData: SaveFavoriteRequest
-): Promise<{ favoritedGames: Game[] }> => {
-  let games;
+): Promise<User | null> => {
+  let games: GameDoc[];
   try {
     games = await db.game.findGames();
   } catch (error) {
@@ -351,7 +344,7 @@ const saveFavorite = async (
     return error;
   }
 
-  const favoritedGames = favoriteData.favoritedGames.reduce(
+  const favoritedGames = favoriteData.favoritedGames.reduce<FavoritedGame[]>(
     (acc, favoritedGame) => {
       const gameDocInDb = games.find(
         (game) => game.gameId === favoritedGame.gameId
@@ -362,7 +355,7 @@ const saveFavorite = async (
       }
       return acc;
     },
-    [] as string[]
+    []
   );
 
   let response;
@@ -374,7 +367,7 @@ const saveFavorite = async (
       },
       { new: true, fields: 'favoritedGames -_id' }
     )
-      .lean()
+      .lean<User>()
       .populate('favoritedGames', '-_id -__v -updatedAt -createdAt');
     logger.info(
       `MongoDB: Favorite data stored for user "${favoriteData.username}"`
@@ -383,30 +376,6 @@ const saveFavorite = async (
   } catch (error) {
     logger.error(
       `MongoDB: Error storing favorite data for user "${favoriteData.username}" - ${error}`
-    );
-    return error;
-  }
-};
-
-const saveSignupResult = async (signupResult: Result): Promise<void> => {
-  let response;
-  try {
-    response = await UserModel.updateOne(
-      {
-        username: signupResult.username,
-      },
-      {
-        enteredGames: signupResult.enteredGame,
-      }
-    );
-
-    logger.debug(
-      `MongoDB: Signup result data stored for user "${signupResult.username}"`
-    );
-    return response;
-  } catch (error) {
-    logger.error(
-      `MongoDB: Error storing signup result data for user ${signupResult.username} - ${error}`
     );
     return error;
   }
@@ -447,7 +416,6 @@ export const user = {
   removeUsers,
   saveFavorite,
   saveSignup,
-  saveSignupResult,
   saveUser,
   findGroupMembers,
   saveGroupCode,

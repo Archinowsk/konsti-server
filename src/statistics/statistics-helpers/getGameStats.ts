@@ -5,15 +5,17 @@ import {
   getDemandByTime,
   getDemandByGame,
 } from './gameDataHelpers';
+import { logger } from 'utils/logger';
 
-export const getGameStats = (year: number, event: string) => {
+export const getGameStats = (year: number, event: string): void => {
   const games = JSON.parse(
     fs.readFileSync(
       `src/statistics/datafiles/${event}/${year}/games.json`,
       'utf8'
     )
   );
-  console.info(`Loaded ${games.length} games`);
+
+  logger.info(`Loaded ${games.length} games`);
 
   const users = JSON.parse(
     fs.readFileSync(
@@ -21,7 +23,8 @@ export const getGameStats = (year: number, event: string) => {
       'utf8'
     )
   );
-  console.info(`Loaded ${games.length} users`);
+
+  logger.info(`Loaded ${games.length} users`);
 
   getGamesByStartingTime(games);
   getNumberOfFullGames(games, users);

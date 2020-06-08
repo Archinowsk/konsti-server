@@ -1,7 +1,7 @@
 import { readJson, writeJson } from '../statsUtil';
 import { logger } from 'utils/logger';
 
-export const wildFix = (year: number, event: string, type: string) => {
+export const wildFix = (year: number, event: string, type: string): void => {
   let data;
   try {
     data = readJson(year, event, type);
@@ -11,9 +11,11 @@ export const wildFix = (year: number, event: string, type: string) => {
   }
 
   // Implement fixer logic here
+  /*
   data.forEach((dataEntry) => {
     dataEntry.username = dataEntry.username.toUpperCase();
   });
+  */
 
   writeJson(year, event, type, data);
 };

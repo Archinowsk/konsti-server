@@ -1,10 +1,14 @@
 import { toPercent } from '../statsUtil';
 import { logger } from 'utils/logger';
 import { Game } from 'typings/game.typings';
+import { ResultsCollectionEntry } from 'typings/result.typings';
+import { StringNumberObject } from 'typings/common.typings';
 
-export const getSignupsByTime = (results: readonly any[]) => {
-  const signupsByTime = results.reduce((acc, result) => {
-    acc[result.startTime] = result.result.length;
+export const getSignupsByTime = (
+  results: readonly ResultsCollectionEntry[]
+): StringNumberObject => {
+  const signupsByTime = results.reduce<StringNumberObject>((acc, result) => {
+    acc[result.startTime] = result.results.length;
     return acc;
   }, {});
 
@@ -18,16 +22,18 @@ export const getSignupsByTime = (results: readonly any[]) => {
   return signupsByTime;
 };
 
-export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
-  const maxNumberOfPlayersByTime = {};
+export const getMaximumNumberOfPlayersByTime = (
+  games: readonly Game[]
+): StringNumberObject => {
+  const maxNumberOfPlayersByTime: StringNumberObject = {};
+
   games.forEach((game) => {
     if (!maxNumberOfPlayersByTime[game.startTime]) {
       maxNumberOfPlayersByTime[game.startTime] = 0;
     }
 
     maxNumberOfPlayersByTime[game.startTime] =
-      parseInt(maxNumberOfPlayersByTime[game.startTime], 10) +
-      game.maxAttendance;
+      maxNumberOfPlayersByTime[game.startTime] + game.maxAttendance;
   });
 
   /*
@@ -40,9 +46,9 @@ export const getMaximumNumberOfPlayersByTime = (games: readonly Game[]) => {
 };
 
 export const getDemandByTime = (
-  signupsByTime: Object,
-  maximumNumberOfPlayersByTime: Object
-) => {
+  signupsByTime: StringNumberObject,
+  maximumNumberOfPlayersByTime: StringNumberObject
+): void => {
   logger.info('Sanity check: values over 100% are anomalies');
   for (const startTime in maximumNumberOfPlayersByTime) {
     logger.info(

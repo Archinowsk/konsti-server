@@ -52,6 +52,7 @@ module.exports = {
   rules: {
     // eslint
     'no-param-reassign': 'error',
+    'no-console': 'error',
 
     // eslint-plugin-prettier
     'prettier/prettier': 'error',
@@ -67,13 +68,10 @@ module.exports = {
     'eslint-comments/no-unused-disable': 'error',
 
     // @typescript-eslint
-    // TODO: Enable these
-    '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/promise-function-async': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/restrict-plus-operands': 'off',
-    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/ban-ts-comment': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/strict-boolean-expressions': 'off', // Forces unwanted code style
+    '@typescript-eslint/restrict-template-expressions': 'off', // Requires typing catch(e) every time
+    '@typescript-eslint/restrict-plus-operands': 'off', // Doesn't support dynamic object occurance counting
   },
 };

@@ -4,19 +4,21 @@ import { db } from 'db/mongodb';
 import { updateWithSignups } from 'game-popularity/utils/updateWithSignups';
 import { updateWithAssign } from 'game-popularity/utils/updateWithAssign';
 import { config } from 'config';
+import { User } from 'typings/user.typings';
+import { Game } from 'typings/game.typings';
 
 export const updateGamePopularity = async (): Promise<void> => {
   logger.info('Calculate game popularity');
   const { gamePopularityUpdateMethod } = config;
 
-  let users;
+  let users: User[] = [];
   try {
     users = await db.user.findUsers();
   } catch (error) {
     logger.error(`db.user.findUsers error: ${error}`);
   }
 
-  let games;
+  let games: Game[] = [];
   try {
     games = await db.game.findGames();
   } catch (error) {

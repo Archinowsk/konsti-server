@@ -1,14 +1,14 @@
 import moment from 'moment';
 import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
-import { Game } from 'typings/game.typings';
+import { Game, GameDoc } from 'typings/game.typings';
 
 export const removeMovedGamesFromUsers = async (
   updatedGames: readonly Game[]
 ): Promise<void> => {
   logger.info('Remove moved games from users');
 
-  let currentGames;
+  let currentGames: GameDoc[] = [];
   try {
     currentGames = await db.game.findGames();
   } catch (error) {

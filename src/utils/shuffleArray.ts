@@ -1,4 +1,4 @@
-export const shuffleArray = (array: readonly any[]) => {
+export const shuffleArray = <T>(array: readonly T[]): readonly T[] => {
   // Don't mutate input array
   const shuffledArray = array.slice();
 

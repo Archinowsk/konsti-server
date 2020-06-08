@@ -1,10 +1,11 @@
 import request from 'supertest';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { startServer, closeServer } from 'server/server';
+import { Application } from 'express';
 
-let server;
-let mongoServer;
-let mongoUri;
+let server: Application;
+let mongoServer: MongoMemoryServer;
+let mongoUri: string;
 
 beforeEach(async () => {
   mongoServer = new MongoMemoryServer();
