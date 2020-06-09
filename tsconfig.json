@@ -17,5 +17,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules"]
+  "include": ["**/*.js", "**/*.ts", ".eslintrc.js"],
+  "exclude": ["node_modules", "lib", "coverage", "front"]
 }
