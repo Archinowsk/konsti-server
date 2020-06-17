@@ -15,7 +15,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": ["src/typings", "node_modules/@types"]
   },
-  "exclude": ["node_modules"]
+  "include": ["**/*.js", "**/*.ts", ".eslintrc.js"],
+  "exclude": ["node_modules", "lib", "coverage", "front"]
 }

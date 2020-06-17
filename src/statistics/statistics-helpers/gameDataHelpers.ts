@@ -115,14 +115,9 @@ export const getDemandByGame = (
       if (!game) return;
 
       acc[game.title] = {
-        first:
-          acc[game.title] && acc[game.title].first ? acc[game.title].first : 0,
-        second:
-          acc[game.title] && acc[game.title].second
-            ? acc[game.title].second
-            : 0,
-        third:
-          acc[game.title] && acc[game.title].third ? acc[game.title].third : 0,
+        first: acc[game.title]?.first ? acc[game.title].first : 0,
+        second: acc[game.title]?.second ? acc[game.title].second : 0,
+        third: acc[game.title]?.third ? acc[game.title].third : 0,
       };
 
       if (signedGame.priority === 1) {

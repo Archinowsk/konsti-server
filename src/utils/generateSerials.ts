@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 import generator from 'generate-serial-number';
 import { logger } from 'utils/logger';
 import { db } from 'db/mongodb';
