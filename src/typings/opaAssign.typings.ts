@@ -25,7 +25,7 @@ export interface Input {
   updateL: Function;
 }
 
-export interface OpaAssignResult {
+interface OpaAssignResult {
   id: string; // group id
   assignment: string | -1; // assigned game id
 }
