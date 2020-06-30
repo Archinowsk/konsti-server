@@ -58,7 +58,7 @@
     "commander": "5.1.0",
     "eventassigner-js": "0.1.6",
     "express": "4.17.1",
-    "express-jwt": "5.3.3",
+    "express-jwt": "6.0.0",
     "express-static-gzip": "2.0.6",
     "express-validator": "6.6.0",
     "generate-serial-number": "0.0.3",
