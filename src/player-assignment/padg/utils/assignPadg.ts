@@ -2,25 +2,25 @@ import eventassigner from 'eventassigner-js';
 import _ from 'lodash';
 import { logger } from 'utils/logger';
 import { config } from 'config';
-import { calculateHappiness } from 'player-assignment/opa/utils/calculateHappiness';
+import { calculateHappiness } from 'player-assignment/padg/utils/calculateHappiness';
 import {
   Input,
   ListItem,
   Group,
   Event,
-  OpaAssignResults,
-} from 'typings/opaAssign.typings';
+  PadgAssignResults,
+} from 'typings/padgAssign.typings';
 
-export const assignOpa = (
+export const assignPadg = (
   groups: Group[],
   events: Event[],
   list: ListItem[],
   updateL: Function
-): OpaAssignResults => {
-  const { OPA_ASSIGNMENT_ROUNDS } = config;
+): PadgAssignResults => {
+  const { PADG_ASSIGNMENT_ROUNDS } = config;
 
   let finalHappiness = 0;
-  let finalAssignResults: OpaAssignResults = [];
+  let finalAssignResults: PadgAssignResults = [];
 
   const sortList = (list: ListItem[], i: number): ListItem[] => {
     switch (i) {
@@ -33,7 +33,7 @@ export const assignOpa = (
     }
   };
 
-  for (let i = 0; i < OPA_ASSIGNMENT_ROUNDS; i++) {
+  for (let i = 0; i < PADG_ASSIGNMENT_ROUNDS; i++) {
     const eventsCopy = _.cloneDeep(events);
 
     const input: Input = {
@@ -43,7 +43,7 @@ export const assignOpa = (
       updateL,
     };
 
-    const assignResults: OpaAssignResults = eventassigner.eventAssignment(
+    const assignResults: PadgAssignResults = eventassigner.eventAssignment(
       input
     );
 
@@ -55,7 +55,7 @@ export const assignOpa = (
     }
   }
 
-  logger.debug(`Opa assignment completed with happiness ${finalHappiness}%`);
+  logger.debug(`Padg assignment completed with happiness ${finalHappiness}%`);
 
   return finalAssignResults;
 };

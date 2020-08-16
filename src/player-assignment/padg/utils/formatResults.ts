@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import { OpaAssignResults } from 'typings/opaAssign.typings';
+import { PadgAssignResults } from 'typings/padgAssign.typings';
 import { UserArray, EnteredGame, User } from 'typings/user.typings';
 import { Result } from 'typings/result.typings';
 
 export const formatResults = (
-  assignResults: OpaAssignResults,
+  assignResults: PadgAssignResults,
   playerGroups: readonly UserArray[]
 ): readonly Result[] => {
   const selectedPlayers = playerGroups
@@ -12,7 +12,7 @@ export const formatResults = (
       const firstMember = _.first(playerGroup);
 
       if (!firstMember) {
-        throw new Error('Opa assign: error getting first member');
+        throw new Error('Padg assign: error getting first member');
       }
 
       return assignResults.find(
