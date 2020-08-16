@@ -112,10 +112,10 @@ describe('Assignment with valid data', () => {
     await verifyResults();
   });
 
-  test('should return success with opa strategy', async () => {
+  test('should return success with padg strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = AssignmentStrategy.opa;
+    const assignmentStrategy = AssignmentStrategy.padg;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -174,10 +174,10 @@ describe('Assignment with valid data', () => {
     await verifyResults();
   });
 
-  test('should return success with group+opa strategy', async () => {
+  test('should return success with group+padg strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = AssignmentStrategy.groupOpa;
+    const assignmentStrategy = AssignmentStrategy.groupPadg;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -322,10 +322,10 @@ describe('Assignment with no games', () => {
     expect(assignResults.status).toEqual('error: no starting games');
   });
 
-  test('should return error with opa strategy', async () => {
+  test('should return error with padg strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = AssignmentStrategy.opa;
+    const assignmentStrategy = AssignmentStrategy.padg;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -334,10 +334,10 @@ describe('Assignment with no games', () => {
     expect(assignResults.status).toEqual('error: no starting games');
   });
 
-  test('should return error with group+opa strategy', async () => {
+  test('should return error with group+padg strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = AssignmentStrategy.groupOpa;
+    const assignmentStrategy = AssignmentStrategy.groupPadg;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -378,10 +378,10 @@ describe('Assignment with no players', () => {
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
 
-  test('should return error with opa strategy', async () => {
+  test('should return error with padg strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = AssignmentStrategy.opa;
+    const assignmentStrategy = AssignmentStrategy.padg;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 
@@ -390,10 +390,10 @@ describe('Assignment with no players', () => {
     expect(assignResults.status).toEqual('error: no signup wishes');
   });
 
-  test('should return error with group+opa strategy', async () => {
+  test('should return error with group+padg strategy', async () => {
     const { CONVENTION_START_TIME } = config;
 
-    const assignmentStrategy = AssignmentStrategy.groupOpa;
+    const assignmentStrategy = AssignmentStrategy.groupPadg;
 
     const startingTime = moment(CONVENTION_START_TIME).add(2, 'hours').format();
 

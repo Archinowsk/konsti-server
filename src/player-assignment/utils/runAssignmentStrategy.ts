@@ -1,7 +1,7 @@
 import { logger } from 'utils/logger';
 import { groupAssignPlayers } from 'player-assignment/group/groupAssignPlayers';
 import { munkresAssignPlayers } from 'player-assignment/munkres/munkresAssignPlayers';
-import { opaAssignPlayers } from 'player-assignment/opa/opaAssignPlayers';
+import { padgAssignPlayers } from 'player-assignment/padg/padgAssignPlayers';
 import { User } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { PlayerAssignmentResult } from 'typings/result.typings';
@@ -27,22 +27,22 @@ export const runAssignmentStrategy = (
     return munkresAssignPlayers(players, games, startingTime);
   } else if (assignmentStrategy === 'group') {
     return groupAssignPlayers(players, games, startingTime);
-  } else if (assignmentStrategy === 'opa') {
-    return opaAssignPlayers(players, games, startingTime);
-  } else if (assignmentStrategy === 'group+opa') {
+  } else if (assignmentStrategy === 'padg') {
+    return padgAssignPlayers(players, games, startingTime);
+  } else if (assignmentStrategy === 'group+padg') {
     const groupResult = groupAssignPlayers(players, games, startingTime);
-    const opaResult = opaAssignPlayers(players, games, startingTime);
+    const padgResult = padgAssignPlayers(players, games, startingTime);
 
     logger.info(
-      `Group result: ${groupResult.results.length} players, Opa result: ${opaResult.results.length} players`
+      `Group result: ${groupResult.results.length} players, Padg result: ${padgResult.results.length} players`
     );
 
-    if (groupResult.results.length > opaResult.results.length) {
+    if (groupResult.results.length > padgResult.results.length) {
       logger.info('----> Use Group Assign result');
       return groupResult;
     } else {
-      logger.info('----> Use Opa Assign result');
-      return opaResult;
+      logger.info('----> Use Padg Assign result');
+      return padgResult;
     }
   } else {
     throw new Error('Invalid or missing "assignmentStrategy" config');

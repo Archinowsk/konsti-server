@@ -62,13 +62,13 @@ const getAssignmentStrategy = (userParameter: string): AssignmentStrategy => {
   if (
     userParameter === AssignmentStrategy.munkres ||
     userParameter === AssignmentStrategy.group ||
-    userParameter === AssignmentStrategy.opa ||
-    userParameter === AssignmentStrategy.groupOpa
+    userParameter === AssignmentStrategy.padg ||
+    userParameter === AssignmentStrategy.groupPadg
   ) {
     return userParameter;
   } else {
     throw new Error(
-      'Give valid strategy parameter, possible: "munkres", "group", "opa", "group+opa"'
+      'Give valid strategy parameter, possible: "munkres", "group", "padg", "group+padg"'
     );
   }
 };

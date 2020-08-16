@@ -1,7 +1,7 @@
-import { OpaAssignResults, Group } from 'typings/opaAssign.typings';
+import { PadgAssignResults, Group } from 'typings/padgAssign.typings';
 
 export const calculateHappiness = (
-  assignment: OpaAssignResults,
+  assignment: PadgAssignResults,
   groups: Group[]
 ): number => {
   let happiness = 0;

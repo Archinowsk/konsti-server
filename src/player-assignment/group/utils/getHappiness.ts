@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { logger } from 'utils/logger';
-import { calculateHappiness } from 'player-assignment/opa/utils/calculateHappiness';
-import { getGroups } from 'player-assignment/opa/utils/getGroups';
+import { calculateHappiness } from 'player-assignment/padg/utils/calculateHappiness';
+import { getGroups } from 'player-assignment/padg/utils/getGroups';
 import { Result } from 'typings/result.typings';
 import { User, UserArray } from 'typings/user.typings';
 
@@ -11,7 +11,7 @@ export const getHappiness = (
   allPlayers: readonly User[],
   startingTime: string
 ): void => {
-  const opaAssignment = results.map((result) => {
+  const padgAssignment = results.map((result) => {
     const player = allPlayers.find(
       (player) => player.username === result.username
     );
@@ -25,6 +25,6 @@ export const getHappiness = (
   });
 
   const groups = getGroups(playerGroups, startingTime);
-  const happiness = calculateHappiness(_.uniqBy(opaAssignment, 'id'), groups);
+  const happiness = calculateHappiness(_.uniqBy(padgAssignment, 'id'), groups);
   logger.debug(`Group assignment completed with happiness ${happiness}%`);
 };

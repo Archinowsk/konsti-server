@@ -25,9 +25,9 @@ export interface Input {
   updateL: Function;
 }
 
-interface OpaAssignResult {
+interface PadgAssignResult {
   id: string; // group id
   assignment: string | -1; // assigned game id
 }
 
-export type OpaAssignResults = readonly OpaAssignResult[];
+export type PadgAssignResults = readonly PadgAssignResult[];

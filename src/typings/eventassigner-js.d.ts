@@ -1,5 +1,5 @@
 declare module 'eventassigner-js' {
-  import { Input, OpaAssignResults } from 'typings/opaAssign.typings';
-  const defaultImport: { eventAssignment: (input: Input) => OpaAssignResults };
+  import { Input, PadgAssignResults } from 'typings/padgAssign.typings';
+  const defaultImport: { eventAssignment: (input: Input) => PadgAssignResults };
   export = defaultImport;
 }
