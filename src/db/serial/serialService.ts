@@ -1,20 +1,25 @@
 import { logger } from 'utils/logger';
 import { SerialModel } from 'db/serial/serialSchema';
 import { SerialDoc, Serial } from 'typings/serial.typings';
+import generator from 'generate-serial-number';
 
 const removeSerials = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL serials from db');
   await SerialModel.deleteMany({});
 };
 
-const saveSerials = async (
-  serials: readonly string[]
-): Promise<SerialDoc[]> => {
+const saveSerials = async (count: number): Promise<SerialDoc[]> => {
   const serialDocs = [] as SerialDoc[];
+  // create serials
+  for (let i = 1; i <= count; i += 1) {
+    const serial: string = generator.generate(10);
+    const rawSerials = serialDocs.map((serialDoc) => serialDoc.serial);
 
-  for (const serial of serials) {
-    if (await findSerial(serial)) {
-      logger.info(`Found serial ${serial} already from the database`);
+    if (
+      (await findSerial(serial)) ||
+      rawSerials.filter((s) => s === serial).length > 0
+    ) {
+      i -= 1;
       continue;
     }
     serialDocs.push(
@@ -22,6 +27,7 @@ const saveSerials = async (
         serial,
       })
     );
+    logger.info(`${serial}`);
   }
 
   let response: SerialDoc[];
