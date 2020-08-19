@@ -6,25 +6,25 @@ import { getSignedGames } from 'player-assignment/utils/getSignedGames';
 import { getSelectedPlayers } from 'player-assignment/utils/getSelectedPlayers';
 import { getPlayerGroups } from 'player-assignment/utils/getPlayerGroups';
 import { getGroupMembers } from 'player-assignment/utils/getGroupMembers';
-import { runOpaAssignment } from 'player-assignment/opa/utils/runOpaAssignment';
+import { runPadgAssignment } from 'player-assignment/padg/utils/runPadgAssignment';
 import { User } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { PlayerAssignmentResult } from 'typings/result.typings';
 
-export const opaAssignPlayers = (
+export const padgAssignPlayers = (
   players: readonly User[],
   games: readonly Game[],
   startingTime: string
 ): PlayerAssignmentResult => {
-  logger.debug(`***** Run Opa Assignment for ${startingTime}`);
+  logger.debug(`***** Run Padg Assignment for ${startingTime}`);
   const startingGames = getStartingGames(games, startingTime);
 
   if (startingGames.length === 0) {
     logger.info('No starting games, stop!');
     return {
       results: [],
-      message: 'Opa Assign Result - No starting games',
-      algorithm: 'opa',
+      message: 'Padg Assign Result - No starting games',
+      algorithm: 'padg',
       status: 'error: no starting games',
     };
   }
@@ -35,8 +35,8 @@ export const opaAssignPlayers = (
     logger.info('No signup wishes, stop!');
     return {
       results: [],
-      message: 'Opa Assign Result - No signup wishes',
-      algorithm: 'opa',
+      message: 'Padg Assign Result - No signup wishes',
+      algorithm: 'padg',
       status: 'error: no signup wishes',
     };
   }
@@ -70,13 +70,13 @@ export const opaAssignPlayers = (
     `Selected players: ${allPlayers.length} (${numberOfIndividuals} individual, ${numberOfGroups} groups)`
   );
 
-  const result = runOpaAssignment(signedGames, playerGroups, startingTime);
+  const result = runPadgAssignment(signedGames, playerGroups, startingTime);
 
   const selectedUniqueGames = _.uniq(
     result.results.map((result) => result.enteredGame.gameDetails.gameId)
   );
 
-  const message = `Opa Assign Result - Players: ${result.results.length}/${
+  const message = `Padg Assign Result - Players: ${result.results.length}/${
     allPlayers.length
   } (${Math.round(
     (result.results.length / allPlayers.length) * 100
@@ -89,7 +89,7 @@ export const opaAssignPlayers = (
   return Object.assign({
     ...result,
     message,
-    algorithm: 'opa',
+    algorithm: 'padg',
     status: 'success',
   });
 };

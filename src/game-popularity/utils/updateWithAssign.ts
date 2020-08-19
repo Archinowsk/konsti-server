@@ -2,7 +2,7 @@ import moment from 'moment';
 import _ from 'lodash';
 import { db } from 'db/mongodb';
 import { logger } from 'utils/logger';
-import { opaAssignPlayers } from 'player-assignment/opa/opaAssignPlayers';
+import { padgAssignPlayers } from 'player-assignment/padg/padgAssignPlayers';
 import { User } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { Result } from 'typings/result.typings';
@@ -17,7 +17,7 @@ export const updateWithAssign = async (
 
   let results = [] as readonly Result[];
   _.forEach(groupedGames, (value, key) => {
-    const assignmentResult = opaAssignPlayers(users, games, key);
+    const assignmentResult = padgAssignPlayers(users, games, key);
     results = results.concat(assignmentResult.results);
   });
 

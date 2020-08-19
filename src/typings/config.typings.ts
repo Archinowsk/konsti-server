@@ -1,8 +1,8 @@
 export enum AssignmentStrategy {
   munkres = 'munkres',
   group = 'group',
-  opa = 'opa',
-  groupOpa = 'group+opa',
+  padg = 'padg',
+  groupPadg = 'group+padg',
 }
 
 export enum GameUpdateMethod {
@@ -24,7 +24,7 @@ export interface Config {
   allowedCorsOrigins: readonly string[];
   dataUri: string;
   GROUP_ASSIGNMENT_ROUNDS: number;
-  OPA_ASSIGNMENT_ROUNDS: number;
+  PADG_ASSIGNMENT_ROUNDS: number;
   bundleCompression: boolean;
   autoUpdateGamesEnabled: boolean;
   gameUpdateInterval: number;

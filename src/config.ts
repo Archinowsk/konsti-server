@@ -20,7 +20,7 @@ const commonConfig = {
   enableAccessLog: false,
 
   // App settings
-  assignmentStrategy: AssignmentStrategy.groupOpa, // 'munkres', 'group', 'opa', 'group+opa'
+  assignmentStrategy: AssignmentStrategy.groupPadg, // 'munkres', 'group', 'padg', 'group+padg'
   bundleCompression: true,
   CONVENTION_START_TIME: '2019-11-23T08:00:00Z', // UTC date
   enableRemoveOverlapSignups: true,
@@ -45,7 +45,7 @@ const prodConfig = {
   useLocalProgramFile: false,
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
-  OPA_ASSIGNMENT_ROUNDS: 300,
+  PADG_ASSIGNMENT_ROUNDS: 300,
   updateGamePopularityEnabled: true,
   enableSignupTimeCheck: true,
 
@@ -68,7 +68,7 @@ const stagingConfig = {
   useLocalProgramFile: false,
   debug: process.env.DEBUG === 'true' || false,
   GROUP_ASSIGNMENT_ROUNDS: 300,
-  OPA_ASSIGNMENT_ROUNDS: 300,
+  PADG_ASSIGNMENT_ROUNDS: 300,
   updateGamePopularityEnabled: true,
   enableSignupTimeCheck: false,
 
@@ -88,7 +88,7 @@ const devConfig = {
   useLocalProgramFile: false,
   debug: false,
   GROUP_ASSIGNMENT_ROUNDS: 1,
-  OPA_ASSIGNMENT_ROUNDS: 300,
+  PADG_ASSIGNMENT_ROUNDS: 300,
   updateGamePopularityEnabled: true,
   enableSignupTimeCheck: false,
 

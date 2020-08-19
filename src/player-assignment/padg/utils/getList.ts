@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import moment from 'moment';
-import { ListItem } from 'typings/opaAssign.typings';
+import { ListItem } from 'typings/padgAssign.typings';
 import { UserArray, SignedGame } from 'typings/user.typings';
 
 export const getList = (
@@ -9,7 +9,8 @@ export const getList = (
 ): ListItem[] => {
   return playerGroups.flatMap((playerGroup) => {
     const firstMember = _.first(playerGroup);
-    if (!firstMember) throw new Error('Opa assign: error getting first member');
+    if (!firstMember)
+      throw new Error('Padg assign: error getting first member');
     return firstMember.signedGames
       .filter(
         (signedGame) =>
