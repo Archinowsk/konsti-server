@@ -86,7 +86,7 @@ const saveResult = async (
       { startTime },
       { startTime, results, algorithm, message },
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error: missing from mongoose typings
+      // @ts-expect-error
       { upsert: true }
     );
     logger.debug(

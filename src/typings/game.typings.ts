@@ -3,8 +3,6 @@ import { Record, String, Number, Static, Boolean, Array } from 'runtypes';
 
 export interface GameDoc extends Game, mongoose.Document {}
 
-export type Game = Static<typeof GameRuntype>;
-
 export const GameRuntype = Record({
   gameId: String,
   title: String,
@@ -31,6 +29,8 @@ export const GameRuntype = Record({
   revolvingDoor: Boolean,
   programType: String,
 });
+
+export type Game = Static<typeof GameRuntype>;
 
 export interface KompassiGame {
   title: string;
