@@ -53,7 +53,7 @@ const findSerial = async (serial: string): Promise<boolean> => {
   }
 
   if (!response) {
-    logger.info(`MongoDB: Serial "${serial}" not found`);
+    logger.debug(`MongoDB: Serial "${serial}" not found`);
     return false;
   } else {
     logger.debug(`MongoDB: Found serial "${serial}"`);
