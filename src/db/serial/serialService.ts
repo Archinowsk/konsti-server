@@ -1,29 +1,41 @@
 import { logger } from 'utils/logger';
 import { SerialModel } from 'db/serial/serialSchema';
 import { SerialDoc, Serial } from 'typings/serial.typings';
+import generator from 'generate-serial-number';
 
 const removeSerials = async (): Promise<void> => {
   logger.info('MongoDB: remove ALL serials from db');
   await SerialModel.deleteMany({});
 };
 
-const saveSerials = async (
-  serials: readonly string[]
-): Promise<SerialDoc[]> => {
+const saveSerials = async (count: number): Promise<SerialDoc[]> => {
   const serialDocs = [] as SerialDoc[];
+  // create serials
+  for (let i = 1; i <= count; i += 1) {
+    const serial: string = generator.generate(10);
+    const rawSerials = serialDocs.map((serialDoc) => serialDoc.serial);
 
-  for (const serial of serials) {
+    if (
+      (await findSerial(serial)) ||
+      rawSerials.filter((s) => s === serial).length > 0
+    ) {
+      i -= 1;
+      continue;
+    }
     serialDocs.push(
       new SerialModel({
         serial,
       })
     );
+    logger.info(`${serial}`);
   }
 
-  let response;
+  let response: SerialDoc[];
   try {
     response = await SerialModel.create(serialDocs);
-    logger.info(`MongoDB: Serials data saved`);
+    logger.info(
+      `MongoDB: Serials data saved. (${serialDocs.length} serials saved)`
+    );
     return response;
   } catch (error) {
     logger.error(`MongoDB: Error saving serials data - ${error}`);
@@ -41,7 +53,7 @@ const findSerial = async (serial: string): Promise<boolean> => {
   }
 
   if (!response) {
-    logger.info(`MongoDB: Serial "${serial}" not found`);
+    logger.debug(`MongoDB: Serial "${serial}" not found`);
     return false;
   } else {
     logger.debug(`MongoDB: Found serial "${serial}"`);
