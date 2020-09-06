@@ -1,21 +1,17 @@
 FROM node:alpine
 
 # Create app directory
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json package-lock.json ./
-RUN npm install
-
-# If you are building your code for production
-# RUN npm install --only=production
+RUN npm ci --only=production
 
 # Copy app source
 COPY . .
 
-# App binds to port 3000 so use the EXPOSE instruction to have it mapped by the docker daemon
+# App binds to port 3000
 EXPOSE 3000
 
 # Command to run app
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start" ]
