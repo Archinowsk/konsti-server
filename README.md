@@ -1,3 +1,5 @@
+# Moved to https://github.com/ropekonsti/konsti
+
 # konsti-server
 
 ![Build](https://github.com/Archinowsk/konsti-server/workflows/Node%20CI/badge.svg)
